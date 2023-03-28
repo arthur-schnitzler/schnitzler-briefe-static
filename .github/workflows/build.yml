@@ -26,9 +26,13 @@ jobs:
     - name: Fetch the data
       run: |
         ./fetch_data.sh
+    - name: Install Ant-Contrib
+      run: |
+        wget https://repo1.maven.org/maven2/ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar
+        mv ant-contrib-1.0b3.jar /usr/share/ant/lib
     - name: Build the app
       run: |
-        ./transform.sh
+        ant
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
