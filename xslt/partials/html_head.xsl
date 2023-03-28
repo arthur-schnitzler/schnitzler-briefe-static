@@ -24,5 +24,26 @@
         <link rel="stylesheet" href="css/style.css" type="text/css"></link>
         <link rel="stylesheet" href="css/micro-editor.css" type="text/css"></link>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.css"></link>
+           <link rel="profile" href="http://gmpg.org/xfn/11"></link>
+            <title><xsl:value-of select="$html_title"/></title>
+            <link rel="shortcut icon" href="data/images/symbole/favicon.png"/>
+            <link rel="shortcut icon" href="../img/favicon/favicon.png"/>
+            <link rel="icon" href="./img/favicon/favicon.png"/>
+            <link rel="apple-touch-icon" sizes="57x57" href="./img/favicon/apple-icon-57x57.png"/>
+            <link rel="apple-touch-icon" sizes="60x60" href="./img/favicon/apple-icon-60x60.png"/>
+            <link rel="apple-touch-icon" sizes="72x72" href="./img/favicon/apple-icon-72x72.png"/>
+            <link rel="apple-touch-icon" sizes="76x76" href="./img/favicon/apple-icon-76x76.png"/>
+            <link rel="apple-touch-icon" sizes="114x114" href="./img/favicon/apple-icon-114x114.png"/>
+            <link rel="apple-touch-icon" sizes="120x120" href="./img/favicon/apple-icon-120x120.png"/>
+            <link rel="apple-touch-icon" sizes="144x144" href="./img/favicon/apple-icon-144x144.png"/>
+            <link rel="apple-touch-icon" sizes="152x152" href="./img/favicon/apple-icon-152x152.png"/>
+            <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-icon-180x180.png"/>
+            <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon/android-icon-192x192.png"/>
+            <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png"/>
+            <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png"/>
+            <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png"/>
+                <xsl:import href="./partials/biblStruct-output.xsl"/>
+    <xsl:import href="./partials/commentary.xsl"/>
+
     </xsl:template>
 </xsl:stylesheet>

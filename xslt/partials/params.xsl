@@ -6,6 +6,6 @@
     <xsl:param name="project_short_title">schnitzler-briefe</xsl:param>
     <xsl:param name="github_url">https://github.com/arthur-schnitzler/schnitzler-briefe-static</xsl:param>
     <xsl:param name="html_title">schnitzler-briefe</xsl:param>
-    <xsl:param name="project_logo">images/fundament_logo.svg</xsl:param>
+    <xsl:param name="project_logo">https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg</xsl:param>
     <xsl:param name="base_url">https://schnitzler-briefe.acdh.oeaw.ac.at</xsl:param>
 </xsl:stylesheet>
