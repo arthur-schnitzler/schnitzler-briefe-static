@@ -1,0 +1,4 @@
+#FORMAT: BEACON
+#NAME:Arthur Schnitzler Briefwechsel mit Autorinnnen und Autoren
+https://d-nb.info/gnd/11864193X/|Rétif de la Bretonne, Nicolas|https://schnitzler-briefe.acdh.oeaw.ac.at/pmb3978.html
+https://d-nb.info/gnd/1014062276/|Reumann, Jakob|https://schnitzler-briefe.acdh.oeaw.ac.at/pmb12511.html
