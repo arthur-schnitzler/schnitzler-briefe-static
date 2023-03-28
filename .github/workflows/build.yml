@@ -16,7 +16,6 @@ jobs:
       run: |
         wget https://repo1.maven.org/maven2/ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar
         mv ant-contrib-1.0b3.jar /usr/share/ant/lib
-<<<<<<< HEAD
     - name: Install Saxon, Ant and Fundament
       run: |
         apt-get update && apt-get install openjdk-11-jre-headless ant -y --no-install-recommend
@@ -27,8 +26,6 @@ jobs:
     - name: Fetch the data
       run: |
         ./fetch_data.sh
-=======
->>>>>>> 9ee6d9394c3ff7bd6a5b3372f61bc67644d0321d
     - name: Build
       run: |
         ant
