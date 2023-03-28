@@ -1,0 +1,1410 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:local="http://dse-static.foo.bar">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-title" content="" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="msapplication-TileImage" content="images/fundament_logo.svg" />
+      <link rel="icon" type="image/svg+xml" href="images/fundament_logo.svg" sizes="any" />
+      <link rel="profile" href="http://gmpg.org/xfn/11" />
+      <title></title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+      <link rel="stylesheet" href="css/style.css" type="text/css" />
+      <link rel="stylesheet" href="css/micro-editor.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.css" />
+      <style>
+                    .navBarNavDropdown ul li:nth-child(2) {
+                        display: none !important;
+                    }
+                </style>
+   </head>
+   <body class="page">
+      <div class="hfeed site" id="page">
+         <div class="wrapper-fluid wrapper-navbar sticky-top hide-reading" id="wrapper-navbar"><a class="skip-link screen-reader-text sr-only" href="#content">Skip to content</a><nav class="navbar navbar-expand-lg">
+               <div class="container-fluid"><a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url"><img src="images/fundament_logo.svg" class="img-fluid" title="schnitzler-briefe" alt="schnitzler-briefe" itemprop="logo" /></a><span class="badge bg-light text-dark">in development</span><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                     <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Projekt
+                              </a><ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="about.html" title="About the Project">
+                                    Über das Projekt
+                                    </a></li>
+                           </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Editionseinheiten
+                              </a><ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="toc.html" title="Ohne Faksimiles">
+                                    Ohne Faksimiles
+                                    </a></li>
+                              <li><a class="dropdown-item" href="toc_facs.html" title="Mit Faksimiles">
+                                    Mit Faksimiles
+                                    </a></li>
+                           </ul>
+                        </li>
+                        <li class="nav-item dropdown disabled"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Register
+                              </a><ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="listperson.html" title="Personen">
+                                    Personen
+                                    </a></li>
+                              <li><a class="dropdown-item" href="listplace.html" title="Orte">
+                                    Orte
+                                    </a></li>
+                              <li><a class="dropdown-item" href="listorg.html" title="Organisationen">
+                                    Organisationen
+                                    </a></li>
+                              <li><a class="dropdown-item" href="listbibl.html" title="Werke">
+                                    Werke
+                                    </a></li>
+                           </ul>
+                        </li>
+                        <li class="nav-item"><a title="Suche" class="nav-link" href="search.html">Suche</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+         </div>
+         <div class="container-fluid">
+            <div class="card" data-index="true">
+               <div class="card-header">
+                  <div class="row">
+                     <div class="col-md-2 col-lg-2 col-sm-12"></div>
+                     <div class="col-md-8 col-lg-8 col-sm-12">
+                        <h1 align="center"></h1>
+                        <h3 align="center"><a href="L02721"><i class="fas fa-download" title="show TEI source"></i></a></h3>
+                     </div>
+                     <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right"></div>
+                  </div>
+                  <div id="editor-widget">
+                     <p>Text Editor</p>
+                     <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
+                           <li class="dropdown-item">
+                              <full-size opt="fls"></full-size>
+                           </li>
+                           <li class="dropdown-item">
+                              <image-switch opt="es"></image-switch>
+                           </li>
+                           <li class="dropdown-item">
+                              <font-size opt="fs"></font-size>
+                           </li>
+                           <li class="dropdown-item">
+                              <font-family opt="ff"></font-family>
+                           </li>
+                           <li class="dropdown-item" style="border-top: 5px dashed lightgrey !important;">
+                              <annotation-slider opt="ef"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="prs"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="plc"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="wrk"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="org"></annotation-slider>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="card-body">
+                  
+                  <div id="div__180">
+                     <p id="p__3" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="HS.NZ85.1.3163_0077-0"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span><span class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb29442">Frankfurter Zeitung</span>.</span></span></p>
+                     <p id="p__3" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>(<span class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb29442">Gazette de Francfort</span>.)</span></span></p>
+                     <p id="p__6" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0">Directeur<span>M. <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb87771">L.
+                                 Sonnemann</span>.</span></span></p>
+                     <p id="p__7" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0">Journal politique, financier,</span><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb182">Paris</span></span>, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">5. December</span>.</p>
+                     <p id="p__5" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0">commercial et litteraire.</span></p>
+                     <p id="p__6" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Paraissant trois fois par jour</span></span></p>
+                     <p id="p__8" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Bureaux à <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb182">Paris</span>:</span></span></p>
+                     <p id="p__9" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span><span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb34187">rue Richelieu 75</span>.</span></span></p>Mein lieber Freund!
+                     <p id="p__9" class="yes-index">Nachdem ich bisher vergeblich auf die versprochenen Kritiken oder wenigstens auf eine
+                        briefliche Mittheilung über die <span xmlns:tei="http://www.tei-c.org/ns/1.0">n</span>-Eindrücke
+                        gewartet, habe ich mir das Nöthige von <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb146">Frankfurt</span>
+                        kommen lassen und bitte Dich, Dich nun nicht mehr zu bemühen.</p>
+                     <p id="p__153" class="yes-index">Wenn ich aus der Sammlung der Kritiken, die mir vorliegt, die dummen Jungen weglasse
+                        – ,<a name="fna_1" href="#fn1" title="[Friedrich Schütz]: Theater- und Kunstnachrichten. In: Neue Freie Presse, Jg. 30, Nr. 10.518, 2. 12. 1893, S. 7."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">1</sup></a><a name="fna_2" href="#fn2" title="l. h. [=Ludwig Held]: Theater, Kunst und Literatur. In: Neues Wiener Tagblatt, Jg. 27, Nr. 333, 2. 12. 1893, S. 8."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">2</sup></a>, <a name="fna_3" href="#fn3" title="H. P.: Theater, Kunst und Literatur. In: Deutsches Volksblatt, Jg. 5, Nr. 1.768, 2. 12. 1893, S. 6–7."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">3</sup></a>, <a name="fna_4" href="#fn4" title="–r–: Theater und Kunst. In: Das Vaterland, Jg. 34, Nr. 333, 2. 12. 1893, S. 7."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">4</sup></a><span xmlns:tei="http://www.tei-c.org/ns/1.0">etc.</span> – und mich nur an <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="HS.NZ85.1.3163_0077-1"></span>die Zurechnungsfähigen halte, wie <span xmlns:tei="http://www.tei-c.org/ns/1.0"><a name="fna_5" href="#fn5" title="[Friedrich Uhl]: Feuilleton. Theater. In: Wiener Abendpost. Beilage zur Wiener Zeitung, Jg. 190, Nr. 276, 2. 12. 1893, S. 1–2."><sup>5</sup></a></span>, <span xmlns:tei="http://www.tei-c.org/ns/1.0"><a name="fna_6" href="#fn6" title="Hermann Bahr: Das Märchen (Schauspiel in drei Aufzügen von Arthur Schnitzler. Zum ersten Male aufgeführt am Deutschen Volkstheater den 1. December). In: Deutsche Zeitung, Jg. 23, Nr. 7.879, 2. 12. 1893, Morgen-Ausgabe, S. 1–3."><sup>6</sup></a></span> und <span xmlns:tei="http://www.tei-c.org/ns/1.0"></span><a name="fna_7" href="#fn7" title="Marco Brociner: »Das Märchen.« (Schauspiel in 3 Aufzügen von Arthur Schnitzler. Zum erstenmale im Deutschen Volkstheater aufgeführt am 1. Dezember.) In: Wiener Tagblatt, Jg. XXXX, Nr. YYYY, 2. 12. 1893, S. 1–2."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">7</sup></a>,so finde
+                        ich, daß man Dich hier auch mehrfach mißversteht, daß man Dir aber auch vielerlei
+                        Richtiges und Beherzigenswerthessagt. Besonders <span xmlns:tei="http://www.tei-c.org/ns/1.0"></span> halte ich für im Wesentlichen richtig urtheilend. Du erinnerst Dich, wir haben
+                        oft im Streit gelegen, Du und ich, und ich meine noch heute, heute erst recht, daß
+                        Deinem glänzenden Talent beim Produciren die Disciplin fehlt. Auch beim Produciren
+                        denkst Du ein wenig zusehr an Dich und zu wenig an das Andere, an die Forderungen
+                        der Kunstform. Duschreibst Deinem Herzeleid zuliebe und nicht <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="HS.NZ85.1.3163_0078-0"></span>dem Drama zuliebe. Das ist falsch. Ich komme immer
+                        mehr dahinter, daß das Produciren ein Streben nach möglichster Objectivirungsein
+                        muß, am allermeisten aber das dramatische Produciren. Ich habe das in <span xmlns:tei="http://www.tei-c.org/ns/1.0"><span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb182">Paris</span></span><abbr xmlns:tei="http://www.tei-c.org/ns/1.0" title="unclear">no</abbr>ch mehr gelernt, habe
+                        daraufhin das »« nochmals gelesen und
+                        meine Ausstellungen von früher noch mehr bestätigt gefunden. Erinnere Dich auch, was
+                        ich Dirstets über den dritten <a name="fna_8" href="#fn8" title="und"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">8</sup></a> gesagt! Im Allgemeinen aber denke ich, daß Du mit Deinem  nicht unzufriedensein darfst. Du
+                        bist den Kennernsignalisirt; alle Leute, die es verstehen, haben Dein großes <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="HS.NZ85.1.3163_0078-1"></span>Talent erkannt; die dumme Bande Publicum wirst Du
+                        jetzt rasch gewinnen. Aber jetztsofort weiterschreiben! Vieles lernen aus den drei
+                        zurechnungsfähigen ! Und ein Drama machen, keine
+                        Beichte, kein Tagebuch! Das kostet nur eine Willensanstrengung. Denn Du bist, ich
+                        weiß es genau, ein Dramatiker allerersten Ranges. Mach’ auch einen neuen Versuch mit dem <span xmlns:tei="http://www.tei-c.org/ns/1.0"></span><a name="fna_9" href="#fn9" title="und"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">9</sup></a>, nachdem Du vorher den Schluß verstärk<del xmlns:tei="http://www.tei-c.org/ns/1.0">t</del>end umgearbeitet hast. An <span xmlns:tei="http://www.tei-c.org/ns/1.0"><span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb12987">Uhl</span></span> hatte ich geschrieben, damit er Dich nicht in der <a name="fna_10" href="#fn10" title="[Friedrich Uhl]: Wiener Brief. In: Frankfurter Zeitung, Jg. 38, Nr. 336, 4. 12. 1893, Abendblatt, S. 1. Uhl lobt das Stück als Habilitationsschrift, kritisiert aber den dritten Akt, der nicht gefallen habe."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">10</sup></a>
+                        etwaschlecht behandle. Ich glaube, er wer ganz anständig?</p>
+                     <p id="p__4" class="yes-index">Treue Grüße! Dein P. G.</p>
+                  </div>
+                  </div>
+               <div class="card-footer">
+                  <p style="text-align:center;">
+                     <div class="footnotes" id="note__10"><a name="fn1"><a href="#fna_1"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">1</span></a></a><div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                 <div class="modal-body">
+                                    <table class="table">
+                                       <tbody>
+                                          <tr>
+                                             <th>
+                                                Autor(en)
+                                                </th>
+                                             <td>
+                                                <ul></ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th></th>
+                                             <td>
+                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
+                                                </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                              </div>
+                           </div>
+                        </div>.</div>
+                     <div class="footnotes" id="note__14"><a name="fn2"><a href="#fna_2"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">2</span></a></a><div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                 <div class="modal-body">
+                                    <table class="table">
+                                       <tbody>
+                                          <tr>
+                                             <th>
+                                                Autor(en)
+                                                </th>
+                                             <td>
+                                                <ul></ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th></th>
+                                             <td>
+                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
+                                                </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                              </div>
+                           </div>
+                        </div>.</div>
+                     <div class="footnotes" id="note__17"><a name="fn3"><a href="#fna_3"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">3</span></a></a><div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                 <div class="modal-body">
+                                    <table class="table">
+                                       <tbody>
+                                          <tr>
+                                             <th>
+                                                Autor(en)
+                                                </th>
+                                             <td>
+                                                <ul></ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th></th>
+                                             <td>
+                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
+                                                </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                              </div>
+                           </div>
+                        </div>.</div>
+                     <div class="footnotes" id="note__20"><a name="fn4"><a href="#fna_4"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">4</span></a></a><div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                 <div class="modal-body">
+                                    <table class="table">
+                                       <tbody>
+                                          <tr>
+                                             <th>
+                                                Autor(en)
+                                                </th>
+                                             <td>
+                                                <ul></ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th></th>
+                                             <td>
+                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
+                                                </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                              </div>
+                           </div>
+                        </div>.</div>
+                     <div class="footnotes" id="note__8"><a name="fn5"><a href="#fna_5"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">5</span></a></a><div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                 <div class="modal-body">
+                                    <table class="table">
+                                       <tbody>
+                                          <tr>
+                                             <th>
+                                                Autor(en)
+                                                </th>
+                                             <td>
+                                                <ul></ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th></th>
+                                             <td>
+                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
+                                                </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                              </div>
+                           </div>
+                        </div>.</div>
+                     <div class="footnotes" id="note__8"><a name="fn6"><a href="#fna_6"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">6</span></a></a><div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                 <div class="modal-body">
+                                    <table class="table">
+                                       <tbody>
+                                          <tr>
+                                             <th>
+                                                Autor(en)
+                                                </th>
+                                             <td>
+                                                <ul></ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th></th>
+                                             <td>
+                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
+                                                </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                              </div>
+                           </div>
+                        </div>.</div>
+                     <div class="footnotes" id="note__28"><a name="fn7"><a href="#fna_7"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">7</span></a></a><div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                 <div class="modal-body">
+                                    <table class="table">
+                                       <tbody>
+                                          <tr>
+                                             <th>
+                                                Autor(en)
+                                                </th>
+                                             <td>
+                                                <ul></ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th></th>
+                                             <td>
+                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
+                                                </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                              </div>
+                           </div>
+                        </div>.</div>
+                     <div class="footnotes" id="note__61"><a name="fn8"><a href="#fna_8"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">8</span></a></a><a xmlns:tei="http://www.tei-c.org/ns/1.0" class="ref schnitzler-briefe" href="L02674"></a> und <a xmlns:tei="http://www.tei-c.org/ns/1.0" class="ref schnitzler-briefe" href="L02675"></a></div>
+                     <div class="footnotes" id="note__87"><a name="fn9"><a href="#fna_9"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">9</span></a></a><a xmlns:tei="http://www.tei-c.org/ns/1.0" class="ref schnitzler-briefe" href="L00296"></a> und <a xmlns:tei="http://www.tei-c.org/ns/1.0" class="ref schnitzler-tagebuch" href="1894-03-08"></a></div>
+                     <div class="footnotes" id="note__102"><a name="fn10"><a href="#fna_10"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">10</span></a></a><div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                 <div class="modal-body">
+                                    <table class="table">
+                                       <tbody>
+                                          <tr>
+                                             <th>
+                                                Autor(en)
+                                                </th>
+                                             <td>
+                                                <ul></ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th></th>
+                                             <td>
+                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
+                                                </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                              </div>
+                           </div>
+                        </div>. <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb12987">Uhl</span> lobt das
+                         als
+                        Habilitationsschrift, kritisiert aber den dritten , der nicht gefallen habe.</div>
+                     <div class="footnotes" id="note__8"><a name="fn11"><a href="#fna_11"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">11</span></a></a>Publikationsorgan &gt;&gt; Tageszeitung</div>
+                     <div class="footnotes" id="note__2"><a name="fn12"><a href="#fna_12"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">12</span></a></a>Arthur Schnitzler: Das Märchen. Schauspiel in drei Aufzügen. Dresden, Leipzig: E.
+                        Pierson’s Verlag 1894.</div>
+                     <div class="footnotes" id="note__3"><a name="fn13"><a href="#fna_13"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">13</span></a></a>https://babel.hathitrust.org/cgi/pt?id=coo.31924026341598&amp;view=1up&amp;seq=5</div>
+                     <div class="footnotes" id="note__14"><a name="fn14"><a href="#fna_14"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">14</span></a></a>Drama &gt;&gt; Mehraktiges Drama</div>
+                     <div class="footnotes" id="note__2"><a name="fn15"><a href="#fna_15"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">15</span></a></a>Neue Freie Presse, 2. 12. 1893</div>
+                     <div class="footnotes" id="note__3"><a name="fn16"><a href="#fna_16"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">16</span></a></a>N. N.: Theater- und Kunstnachrichten. In: Neue Freie Presse, Jg. 30, Nr. 10518, 2.
+                        12. 1893, S. 7</div>
+                     <div class="footnotes" id="note__4"><a name="fn17"><a href="#fna_17"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">17</span></a></a>https://anno.onb.ac.at/cgi-content/anno?aid=nfp&amp;datum=18931202&amp;seite=7&amp;zoom=33</div>
+                     <div class="footnotes" id="note__10"><a name="fn18"><a href="#fna_18"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">18</span></a></a>Rezension</div>
+                     <div class="footnotes" id="note__11"><a name="fn19"><a href="#fna_19"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">19</span></a></a>Publikationsorgan &gt;&gt; Tageszeitung</div>
+                     <div class="footnotes" id="note__2"><a name="fn20"><a href="#fna_20"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">20</span></a></a>https://anno.onb.ac.at/cgi-content/anno?aid=nwg&amp;datum=18931202&amp;seite=8&amp;zoom=33</div>
+                     <div class="footnotes" id="note__3"><a name="fn21"><a href="#fna_21"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">21</span></a></a>l. b.: Theater, Kunst und Literatur. In: Neues Wiener Tagblatt, Jg. 27, Nr. 333, 2.
+                        12. 1893, S. 8</div>
+                     <div class="footnotes" id="note__7"><a name="fn22"><a href="#fna_22"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">22</span></a></a>Rezension</div>
+                     <div class="footnotes" id="note__3"><a name="fn23"><a href="#fna_23"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">23</span></a></a>http://anno.onb.ac.at/cgi-content/anno?aid=nwg</div>
+                     <div class="footnotes" id="note__10"><a name="fn24"><a href="#fna_24"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">24</span></a></a>Publikationsorgan &gt;&gt; Tageszeitung</div>
+                     <div class="footnotes" id="note__2"><a name="fn25"><a href="#fna_25"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">25</span></a></a>https://anno.onb.ac.at/cgi-content/anno?aid=dvb&amp;datum=18931202&amp;seite=6&amp;zoom=33</div>
+                     <div class="footnotes" id="note__3"><a name="fn26"><a href="#fna_26"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">26</span></a></a>H. P.: Theater, Kunst und Literatur. In: Deutsches Volksblatt, Jg. 5, Nr. 1768, 2.
+                        12. 1893, S. 6–7</div>
+                     <div class="footnotes" id="note__7"><a name="fn27"><a href="#fna_27"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">27</span></a></a>Rezension</div>
+                     <div class="footnotes" id="note__5"><a name="fn28"><a href="#fna_28"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">28</span></a></a>Publikationsorgan &gt;&gt; Tageszeitung</div>
+                     <div class="footnotes" id="note__2"><a name="fn29"><a href="#fna_29"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">29</span></a></a>–r–: Theater und Kunst. In: Das Vaterland, Jg. 34, Nr. 333, 2. 12. 1893, S. 7</div>
+                     <div class="footnotes" id="note__4"><a name="fn30"><a href="#fna_30"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">30</span></a></a>https://anno.onb.ac.at/cgi-content/anno?aid=vtl&amp;datum=18931202&amp;seite=7&amp;zoom=33</div>
+                     <div class="footnotes" id="note__10"><a name="fn31"><a href="#fna_31"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">31</span></a></a>Rezension</div>
+                     <div class="footnotes" id="note__7"><a name="fn32"><a href="#fna_32"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">32</span></a></a>Publikationsorgan &gt;&gt; Tageszeitung</div>
+                     <div class="footnotes" id="note__2"><a name="fn33"><a href="#fna_33"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">33</span></a></a>https://anno.onb.ac.at/cgi-content/anno?aid=wrz&amp;datum=18931202&amp;seite=17</div>
+                     <div class="footnotes" id="note__3"><a name="fn34"><a href="#fna_34"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">34</span></a></a>[Friedrich Uhl]: Feuilleton. Theater. In: Wiener Abendpost. Beilage zur Wiener Zeitung,
+                        Jg. 190, Nr. 276, 2. 12. 1893, S. 1–2</div>
+                     <div class="footnotes" id="note__7"><a name="fn35"><a href="#fna_35"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">35</span></a></a>Rezension</div>
+                     <div class="footnotes" id="note__3"><a name="fn36"><a href="#fna_36"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">36</span></a></a>http://anno.onb.ac.at/cgi-content/anno?aid=wrz</div>
+                     <div class="footnotes" id="note__8"><a name="fn37"><a href="#fna_37"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">37</span></a></a>Publikationsorgan &gt;&gt; Tageszeitung</div>
+                     <div class="footnotes" id="note__2"><a name="fn38"><a href="#fna_38"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">38</span></a></a>Deutsche Zeitung, 2. 12. 1893</div>
+                     <div class="footnotes" id="note__3"><a name="fn39"><a href="#fna_39"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">39</span></a></a>Hermann Bahr: Das Märchen (Schauspiel in drei Aufzügen von Arthur Schnitzler. Zum
+                        ersten Male aufgeführt am Deutschen Volkstheater den 1. December). In: Deutsche Zeitung,
+                        Jg. 23, Nr. 7879, 2. 12. 1893, Morgen-Ausgabe, S. 1–3</div>
+                     <div class="footnotes" id="note__4"><a name="fn40"><a href="#fna_40"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">40</span></a></a>https://bahr.univie.ac.at/textdownload</div>
+                     <div class="footnotes" id="note__9"><a name="fn41"><a href="#fna_41"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">41</span></a></a>Rezension</div>
+                     <div class="footnotes" id="note__2"><a name="fn42"><a href="#fna_42"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">42</span></a></a>http://anno.onb.ac.at/cgi-content/anno?aid=dzg</div>
+                     <div class="footnotes" id="note__7"><a name="fn43"><a href="#fna_43"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">43</span></a></a>Publikationsorgan &gt;&gt; Tageszeitung</div>
+                     <div class="footnotes" id="note__2"><a name="fn44"><a href="#fna_44"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">44</span></a></a>https://schnitzler-zeitungen.acdh.oeaw.ac.at/transkribus/page/50217/224002/14</div>
+                     <div class="footnotes" id="note__6"><a name="fn45"><a href="#fna_45"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">45</span></a></a>Feuilleton</div>
+                     <div class="footnotes" id="note__7"><a name="fn46"><a href="#fna_46"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">46</span></a></a>Publikationsorgan &gt;&gt; Tageszeitung</div>
+                     <div class="footnotes" id="note__2"><a name="fn47"><a href="#fna_47"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">47</span></a></a>An der schönen blauen Donau, Jg. 5, H. 17, 15. 8. 1890; H. 18, 1. 9. 1890</div>
+                     <div class="footnotes" id="note__11"><a name="fn48"><a href="#fna_48"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">48</span></a></a>Drama &gt;&gt; Einakter</div>
+                     <div class="footnotes" id="note__2"><a name="fn49"><a href="#fna_49"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">49</span></a></a>[Friedrich Uhl]: Wiener Brief. In: Frankfurter Zeitung, Jg. 37, Nr. XXXX, S. XXXX</div>
+                     <div class="footnotes" id="note__6"><a name="fn50"><a href="#fna_50"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">50</span></a></a>Rezension</div>
+                     <div class="footnotes" id="note__11"><a name="fn51"><a href="#fna_51"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">51</span></a></a>
+                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">1856 – 1943</span>
+                        </div>
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="tei-back">
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb11485" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Goldmann, Paul" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Goldmann, Paul</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb11485.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb2121" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Schnitzler, Arthur" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Schnitzler, Arthur</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb2121.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb87771" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Sonnemann, Leopold" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Sonnemann, Leopold</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb87771.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb89987" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Held, Ludwig" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Held, Ludwig</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb89987.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb89999" data-bs-keyboard="false" tabindex="-1" aria-labelledby="P., H." aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">P., H.</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb89999.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29099" data-bs-keyboard="false" tabindex="-1" aria-labelledby="–r–, " aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">–r–, </h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29099.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb12987" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Uhl, Friedrich" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Uhl, Friedrich</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb12987.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb10815" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Bahr, Hermann" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Bahr, Hermann</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb10815.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb3442" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Brociner, Marco" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Brociner, Marco</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb3442.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb36344" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Frankfurter Zeitung</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul></ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb36344.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29823" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Das Märchen. Schauspiel in drei Aufzügen</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29823.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb30463" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Theater- und Kunstnachrichten [Uraufführung Das Märchen]</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb30463.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            2583
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb36374" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Neue Freie Presse http://anno.onb.ac.at/cgi-content/anno?aid=nfp</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                       <li><a href=".html"></a></li>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb36374.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb89985" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Theater, Kunst und Literatur [Uraufführung Das Märchen]</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb89985.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb41321" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Neues Wiener Tagblatt Neues Wiener Abendblatt</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul></ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb41321.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb89996" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Theater, Kunst und Literatur [Uraufführung Das Märchen]</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb89996.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb61194" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Deutsches Volksblatt https://anno.onb.ac.at/cgi-content/anno?aid=dvb</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul></ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb61194.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb33251" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Theater und Kunst [Uraufführung Das Märchen] –r–</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb33251.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb41503" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Das Vaterland https://www.geschichtewiki.wien.gv.at/Das_Vaterland</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul></ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb41503.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb90005" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Feuilleton. Theater [Uraufführung Das Märchen]</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb90005.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb41264" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Wiener Abendpost https://www.geschichtewiki.wien.gv.at/Wiener_Abendpost</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul></ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb41264.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb31563" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Das Märchen (Schauspiel in drei Aufzügen von Arthur Schnitzler)</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb31563.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb41471" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Deutsche Zeitung</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul></ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb41471.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb93146" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">»Das Märchen.« (Schauspiel in 3 Aufzügen von Arthur Schnitzler. Zum erstenmale
+                           im Deutschen Volkstheater aufgeführt am 1. Dezember.)</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb93146.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb42146" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Wiener Tagblatt</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb42146.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb31637" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Alkandi’s Lied</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb31637.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb90010" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Wiener Brief</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb90010.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb182" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Paris P'ariz http://d-nb.info/gnd/4044660-8 http://sws.geonames.org/6455259/ Pariž Parisius Île-de-France" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Paris P'ariz http://d-nb.info/gnd/4044660-8 http://sws.geonames.org/6455259/ Pariž
+                           Parisius Île-de-France</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb182.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb50" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Wien K.K. Reichshaupt- und Residenzstadt&#xA;                  Wien http://d-nb.info/gnd/4066009-6 Bécs Land Wien Vídeň Wenia Beč Vindobona (Wien) Vindobona Vienna Wien?" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Wien K.K. Reichshaupt- und Residenzstadt
+                           Wien http://d-nb.info/gnd/4066009-6 Bécs Land Wien Vídeň Wenia Beč Vindobona (Wien)
+                           Vindobona Vienna Wien?</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb50.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb34187" data-bs-keyboard="false" tabindex="-1" aria-labelledby="rue Richelieu" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">rue Richelieu</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb34187.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb146" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Frankfurt am Main https://schnitzler-briefe.acdh.oeaw.ac.at/A000532 Frankfurt/M.? http://pmb.acdh.oeaw.ac.at/apis/api2/entity/16352/ Frankfurt http://pmb.acdh.oeaw.ac.at/apis/api2/entity/6412/ http://sws.geonames.org/2925533/ Frankfurt a. Main http://pmb.acdh.oeaw.ac.at/apis/api2/entity/3358/ http://pmb.acdh.oeaw.ac.at/apis/api2/entity/29358/ Frankfurt, Main http://d-nb.info/gnd/4018118-2 Frankfurt/Main" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Frankfurt am Main https://schnitzler-briefe.acdh.oeaw.ac.at/A000532 Frankfurt/M.?
+                           http://pmb.acdh.oeaw.ac.at/apis/api2/entity/16352/ Frankfurt http://pmb.acdh.oeaw.ac.at/apis/api2/entity/6412/
+                           http://sws.geonames.org/2925533/ Frankfurt a. Main http://pmb.acdh.oeaw.ac.at/apis/api2/entity/3358/
+                           http://pmb.acdh.oeaw.ac.at/apis/api2/entity/29358/ Frankfurt, Main http://d-nb.info/gnd/4018118-2
+                           Frankfurt/Main</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb146.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29442" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29442.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            </div>
+         <div class="wrapper fundament-default-footer hide-reading" id="wrapper-footer-full">
+            <div class="container-fluid" id="footer-full-content" tabindex="-1">
+               <div class="footer-separator">
+                  KONTAKT
+                  </div>
+               <div class="row">
+                  <div class="footer-widget col-lg-1 col-md-2 col-sm-2 col-xs-6  ml-auto  text-center ">
+                     <div class="textwidget custom-html-widget"><a href="/"><img src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg" class="image" alt="ACDH Logo" style="max-width: 100%; height: auto;" title="ACDH Logo" /></a></div>
+                  </div>
+                  <div class="footer-widget col-lg-4 col-md-3 col-sm-3">
+                     <div class="textwidget custom-html-widget">
+                        <p>
+                           ACDH-CH OEAW
+                           <br />
+                           Austrian Centre for Digital Humanities and Cultural Heritage
+                           <br />
+                           Austrian Academy of Sciences
+                           </p>
+                        <p>
+                           Bäckerstraße 13
+                           <br />
+                           1010 Wien
+                           </p>
+                        <p>
+                           T: +43 1 51581-2200
+                           <br />
+                           E: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at">acdh-ch-helpdesk(at)oeaw.ac.at</a></p>
+                     </div>
+                  </div>
+                  <div class="footer-widget col-lg-4 col-md-3 col-sm-4">
+                     <h6 class="font-weight-bold">PROJEKTPARTNER</h6>
+                     <div class="container">
+                        <div class="row">
+                           <div class="col-lg-6 col-md-6 col-sm-12">
+                              <div class="flex-md-row mb-4 align-items-center"><a href="https://www.fwf.ac.at/en/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/fwf-logo_var2.jpg" alt="FWF Der Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" /></a></div>
+                           </div>
+                           <div class="col-lg-6 col-md-6 col-sm-12">
+                              <div class="flex-md-row mb-4 align-items-center"><a href="https://www.univie.ac.at/en/"><img class="card-img-right flex-auto d-md-block" src="https://communications.univie.ac.at/fileadmin/user_upload/d_oeffentlichkeitsarbeit/Logos/2016-02/Uni_Logo_2016.jpg" alt="Universität Wien Logo" style="max-width: 160px; height: auto; vertical-align: middle;" title="Universität Wien" /></a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
+                     <div class="row">
+                        <div class="textwidget custom-html-widget">
+                           <h6 class="font-weight-bold">HELPDESK</h6>
+                           <p>ACDH-CH runs a helpdesk offering advice for questions related to various digital humanities
+                              topics.</p>
+                           <p><a class="helpdesk-button" href="mailto:acdh-ch-helpdesk@oeaw.ac.at">ASK US!</a></p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto" style="margin-left:0 !important;">
+                           <div class="textwidget custom-html-widget">
+                              <p style="margin-bottom:0 !important;">Social: </p>
+                           </div>
+                           <div class="row">
+                              <div class="textwidget custom-html-widget col-md-4"><a id="github-logo" title="GitHub" href="https://github.com/arthur-schnitzler/schnitzler-briefe-static" class="nav-link" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4.466 19.59c-.405.078-.534-.171-.534-.384v-2.195c0-.747-.262-1.233-.55-1.481 1.782-.198 3.654-.875 3.654-3.947 0-.874-.312-1.588-.823-2.147.082-.202.356-1.016-.079-2.117 0 0-.671-.215-2.198.82-.64-.18-1.324-.267-2.004-.271-.68.003-1.364.091-2.003.269-1.528-1.035-2.2-.82-2.2-.82-.434 1.102-.16 1.915-.077 2.118-.512.56-.824 1.273-.824 2.147 0 3.064 1.867 3.751 3.645 3.954-.229.2-.436.552-.508 1.07-.457.204-1.614.557-2.328-.666 0 0-.423-.768-1.227-.825 0 0-.78-.01-.055.487 0 0 .525.246.889 1.17 0 0 .463 1.428 2.688.944v1.489c0 .211-.129.459-.528.385-3.18-1.057-5.472-4.056-5.472-7.59 0-4.419 3.582-8 8-8s8 3.581 8 8c0 3.533-2.289 6.531-5.466 7.59z"></path></svg></a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
+            © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script></div><script src="https://unpkg.com/de-micro-editor@0.2.6/dist/de-editor.min.js"></script><script type="text/javascript" src="js/run.js"></script><script type="text/javascript" src="js/osd_scroll.js"></script></body>
+</html>

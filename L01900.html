@@ -1,0 +1,743 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:local="http://dse-static.foo.bar">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-title" content="" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="msapplication-TileImage" content="images/fundament_logo.svg" />
+      <link rel="icon" type="image/svg+xml" href="images/fundament_logo.svg" sizes="any" />
+      <link rel="profile" href="http://gmpg.org/xfn/11" />
+      <title></title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+      <link rel="stylesheet" href="css/style.css" type="text/css" />
+      <link rel="stylesheet" href="css/micro-editor.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.css" />
+      <style>
+                    .navBarNavDropdown ul li:nth-child(2) {
+                        display: none !important;
+                    }
+                </style>
+   </head>
+   <body class="page">
+      <div class="hfeed site" id="page">
+         <div class="wrapper-fluid wrapper-navbar sticky-top hide-reading" id="wrapper-navbar"><a class="skip-link screen-reader-text sr-only" href="#content">Skip to content</a><nav class="navbar navbar-expand-lg">
+               <div class="container-fluid"><a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url"><img src="images/fundament_logo.svg" class="img-fluid" title="schnitzler-briefe" alt="schnitzler-briefe" itemprop="logo" /></a><span class="badge bg-light text-dark">in development</span><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                     <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Projekt
+                              </a><ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="about.html" title="About the Project">
+                                    Über das Projekt
+                                    </a></li>
+                           </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Editionseinheiten
+                              </a><ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="toc.html" title="Ohne Faksimiles">
+                                    Ohne Faksimiles
+                                    </a></li>
+                              <li><a class="dropdown-item" href="toc_facs.html" title="Mit Faksimiles">
+                                    Mit Faksimiles
+                                    </a></li>
+                           </ul>
+                        </li>
+                        <li class="nav-item dropdown disabled"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Register
+                              </a><ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="listperson.html" title="Personen">
+                                    Personen
+                                    </a></li>
+                              <li><a class="dropdown-item" href="listplace.html" title="Orte">
+                                    Orte
+                                    </a></li>
+                              <li><a class="dropdown-item" href="listorg.html" title="Organisationen">
+                                    Organisationen
+                                    </a></li>
+                              <li><a class="dropdown-item" href="listbibl.html" title="Werke">
+                                    Werke
+                                    </a></li>
+                           </ul>
+                        </li>
+                        <li class="nav-item"><a title="Suche" class="nav-link" href="search.html">Suche</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+         </div>
+         <div class="container-fluid">
+            <div class="card" data-index="true">
+               <div class="card-header">
+                  <div class="row">
+                     <div class="col-md-2 col-lg-2 col-sm-12"></div>
+                     <div class="col-md-8 col-lg-8 col-sm-12">
+                        <h1 align="center"></h1>
+                        <h3 align="center"><a href="L01900"><i class="fas fa-download" title="show TEI source"></i></a></h3>
+                     </div>
+                     <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right"></div>
+                  </div>
+                  <div id="editor-widget">
+                     <p>Text Editor</p>
+                     <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
+                           <li class="dropdown-item">
+                              <full-size opt="fls"></full-size>
+                           </li>
+                           <li class="dropdown-item">
+                              <image-switch opt="es"></image-switch>
+                           </li>
+                           <li class="dropdown-item">
+                              <font-size opt="fs"></font-size>
+                           </li>
+                           <li class="dropdown-item">
+                              <font-family opt="ff"></font-family>
+                           </li>
+                           <li class="dropdown-item" style="border-top: 5px dashed lightgrey !important;">
+                              <annotation-slider opt="ef"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="prs"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="plc"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="wrk"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="org"></annotation-slider>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="card-body">
+                  
+                  <div id="div__266">
+                     <p id="p__2" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00278"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0"></span></p>
+                     <p id="p__9" class="yes-index">Ein Epilog zur Generalprobe<a name="fna_1" href="#fn1" title="Der Text ist undatiert, wurde Schnitzler aber am von Beer-Hofmann vorgelesen. Damit ist anzunehmen, dass er ihn zu diesem Zeitpunkt erhalten hat."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">1</sup></a> des
+                        						Stückes<br xmlns:tei="http://www.tei-c.org/ns/1.0"></br>»«.</p>
+                     <p id="p__3" class="yes-index"></p>
+                     <p id="p__6" class="yes-index">Am Tage der Aufführung. Vier Uhr Nachmittags. Da es der <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">11. Dezember</span>
+                        					ist, dämmert es bereits merklich. Der Vorhang ist hochgezogen. Die Bühne trägt
+                        					die Dekoration des .
+                        					Die Figuren des Stückes, die noch vor kurzem, in der unmateriellen Wirklichkeit,
+                        					die ihnen die Worte ihres Schöpfers gaben, bewegt aufrecht standen – lehnen nun,
+                        					in der materiellen Unwirklichkeit, die ihnen gestern – bei der Generalprobe –
+                        					die Schauspieler gaben, etwas blass und müde an den Wänden umher. Nur »der alte
+                        					Moser« liegt von rechts nach links, die ganze Bühne überquerend, wie ein
+                        					Schlagbaum am Boden. Auf dem Fensterbrett scheint der Oberleib des Obersten zu
+                        					stehen. Man kann augenblicklich nicht erkennen, ob er einen Unterleib besitzt.
+                        					Irene, die man befragen könnte, liegt neben dem alten Moser auf dem Boden. Falls
+                        					Max sie fragen sollte, wird sie es verneinen.</p>
+                     <p id="p__6" class="yes-index">Vorne, hart am Souffleurkasten, ist eine dünne, frisch gestrichene grüne Barriere
+                        					aufgestellt, wohl, um zu verhindern, dass die Personen
+                        					des Stückes dem Publikum zu nahe gehen. Der Souffleurkasten scheint besetzt –
+                        					nach der Unruhe, die in ihm herrscht; (als sässe jemand darinn, dem
+                        					er zu eng ist).</p>
+                     <p id="p__6" class="yes-index">Eine Pause.</p>
+                     <p id="p__7" class="yes-index">Dann, eine ungeduldige Stimme aus dem Souffleurkasten:</p>
+                     <p id="p__9" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00280"></span>So fangen Sie doch an!</p>
+                     <p id="p__9" class="yes-index">Marie: (mit etwas starren Augen, leise, und ein wenig verlegen) Verzeihen Sie,
+                        					Herr – – – ich weiss gar nicht, wie ich Sie nennen soll – –</p>
+                     <p id="p__12" class="yes-index"><del xmlns:tei="http://www.tei-c.org/ns/1.0">Stimme</del>Souffleur: Souffleur! Nennen Sie mich nur so. Für Sie bin ich es augenblicklich –
+                        					was ich sonst bin, kommt hier nicht in Betracht. Fangen Sie doch an!</p>
+                     <p id="p__11" class="yes-index">Marie: Verzeihen Sie, Herr Souffleur – aber – – ich bin vielleicht nicht
+                        					ganz berechtigt, Sie das zu fragen – aber wieso sind wir da?</p>
+                     <p id="p__12" class="yes-index">Katharina: Ja! Wieso sind wir da?</p>
+                     <p id="p__13" class="yes-index">Der Oberst: Sie fragen nach den letzten Dingen – liebe Marie! Nach unserem
+                        					Dasein.</p>
+                     <p id="p__14" class="yes-index">Max: (zu Albrecht leise) Der Oberst ist ein gar zu witziger Kopf!</p>
+                     <p id="p__16" class="yes-index">Der Oberst: Die <del xmlns:tei="http://www.tei-c.org/ns/1.0">ewig</del> Fragen nach den letzten
+                        					Dingen, für den letzten Akt, liebe Marie! Vorher, ist jede Tiefe, eine Grube,
+                        					die sich der Dichter gräbt.</p>
+                     <p id="p__18" class="yes-index"><del xmlns:tei="http://www.tei-c.org/ns/1.0">Stimme</del>Souffleur: (ärgerlich) Dann graben Sie doch nicht, Herr Oberst!</p>
+                     <p id="p__20" class="yes-index">Marie: Aber<a name="fna_2" href="#fn2" title="geändert aus: »Marie; Aber«"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">2</sup></a> ich
+                        					habe ja nur ganz unschuldig gefragt – – –</p>
+                     <p id="p__20" class="yes-index">Die Oberstin (hebt den Kopf, sehr hart) »Unschuldig«? Sie? (Sie lacht auf, und lässt den Kopf wieder
+                        					sinken.)</p>
+                     <p id="p__19" class="yes-index">Katharina: Auch ich habe nur leichthin – – –</p>
+                     <p id="p__21" class="yes-index">Die Oberstin: (wie vorhin) »Leichthin«? <span xmlns:tei="http://www.tei-c.org/ns/1.0">Das</span> passt
+                        					für Sie. »Leichthin«.</p>
+                     <p id="p__23" class="yes-index"><del xmlns:tei="http://www.tei-c.org/ns/1.0">Stimme</del>Souffleur: (ärgerlich zur Oberstin) Fangen Sie nicht wieder an – –!</p>
+                     <p id="p__22" class="yes-index">Unteroffizier Sebastian (sehr militärisch, aber mit eingefetteter Stimme): Melde
+                        					gehorsamst, wir sollen doch anfangen!</p>
+                     <p id="p__27" class="yes-index"><del xmlns:tei="http://www.tei-c.org/ns/1.0">Stimme</del>Souffleur: Reden Sie nichts drein – Sie – wie heissen <del xmlns:tei="http://www.tei-c.org/ns/1.0">s</del>Sie, Unteroffizier, ich habe Ihren Namen vergessen.</p>
+                     <p id="p__25" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00282"></span>Sebastian: Melde gehorsamst,
+                        					Herr Soffleur, Sebastian!</p>
+                     <p id="p__27" class="yes-index"><del xmlns:tei="http://www.tei-c.org/ns/1.0">Stimme</del>Souffleur: Anfangen!</p>
+                     <p id="p__26" class="yes-index">Der Arzt: Herr Souffleur, ich kann Fräulein Marie nicht Unrecht geben
+                        					– – –</p>
+                     <p id="p__28" class="yes-index">Oberst: <span xmlns:tei="http://www.tei-c.org/ns/1.0">Das</span> haben wir gemerkt!</p>
+                     <p id="p__28" class="yes-index">Der Arzt: – – es ist doch für uns alle – sozusagen – eine Lebensfrage, zu
+                        					wissen, wieso wir da sind?</p>
+                     <p id="p__29" class="yes-index">Der Adjunkt / Max (gleichzeitig) Fräulein Marie hat Recht.</p>
+                     <p id="p__32" class="yes-index"><del xmlns:tei="http://www.tei-c.org/ns/1.0">Stimme</del>Souffleur: Gut, ich will versuchen – – –</p>
+                     <p id="p__31" class="yes-index">Der Oberst: Der Dichter ist unser Schöpfer! Sie, mein Herr, sind der
+                        					Versucher!</p>
+                     <p id="p__34" class="yes-index"><del xmlns:tei="http://www.tei-c.org/ns/1.0">Stimme</del>Souffleur: Graben Sie nicht, Herr Oberst! Ich will versuchen es Ihnen zu sagen.
+                        					Geben Sie Acht!</p>
+                     <p id="p__33" class="yes-index">Der alte Moser (hebt den Kopf): Acht? Nein, neunundsiebzig Jahre bin ich
+                        					alt – –</p>
+                     <p id="p__34" class="yes-index">Der Arzt: Sie irren sich, Herr Moser, Sie sind jetzt gar nicht mehr alt; Sie sind
+                        					ganz jung tot.</p>
+                     <p id="p__35" class="yes-index">Der alte Moser: Ich will nicht tot sein.</p>
+                     <p id="p__36" class="yes-index">Der Arzt: Herr Moser! Ich bin Ihr Arzt – Sie müssen tot sein! Sie sind dazu
+                        					verpflichtet. Nicht nur sich selbst gegenüber – – –</p>
+                     <p id="p__39" class="yes-index"><del xmlns:tei="http://www.tei-c.org/ns/1.0">Stimme</del>: Souffleur: Passen Sie auf, Sie
+                        					werden mich nicht verstehen! Wissen Sie, wie lange die kleinen Teilchen im
+                        					Resonnanzboden einer Violine nicht zur Ruhe kommen und noch
+                        					fortschwingen, wenn für unser Ohr der Bogenstrich, der sie erschütterte, längst
+                        					verklungen ist?</p>
+                     <p id="p__38" class="yes-index">Albrecht: Wir reiten morgen in den Tod, Herr Souffleur – und Sie – prüfen uns
+                        					Physik?</p>
+                     <p id="p__40" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00284"></span>Souffleur: Es war nur eine
+                        					rhetorische Frage – – –</p>
+                     <p id="p__40" class="yes-index">(Der Hintergrund wird durchsichtig; im hellen Sonnenlicht erblickt man ein Dorf,
+                        					lieblich an Hängen gelagert. Eine tiefsinnige Stimme sagt:</p>
+                     <p id="p__41" class="yes-index">Rhetorisch! Ja!</p>
+                     <p id="p__42" class="yes-index">Eine Frauenstimme (wiederholt in kurzen Atemstössen, ekstatisch): Rhetorisch! Ja,
+                        					das ist er!</p>
+                     <p id="p__43" class="yes-index">(Die Landschaft entschwindet.)</p>
+                     <p id="p__44" class="yes-index">Arzt: War das Grünau, Herr Adjunkt?</p>
+                     <p id="p__45" class="yes-index">Adjunkt: Nein, lieber Doktor: Grinzing!</p>
+                     <p id="p__46" class="yes-index">Souffleur: Nun sehen Sie: Von allen Worten, die Sie gestern auf der Generalprobe
+                        					sprachen, schwingt noch die Luft; sie hallen noch von den Mauern und den
+                        					gemalten Leinenwänden wieder, und wer feine Ohren hat, kann sie hören.</p>
+                     <p id="p__47" class="yes-index">Arzt: Aber Herr Souffleur, das würde ja nur erklären, wieso unsere Stimmen da
+                        					sind; aber woher nehmen Sie denn unsere Leiber?</p>
+                     <p id="p__48" class="yes-index">Souffleur: Ich könnte sagen: »Von die zwei Gulden!« Aber Sie würden mich nicht
+                        					verstehen, und es würde, überdies, vielleicht mein Inkognito lüften.</p>
+                     <p id="p__49" class="yes-index">Der alte Moser: (hebt den Kopf) Nicht lüften! Sind Sie toll, ich kann den Tod
+                        					davon haben. (er legt sich wieder hin).</p>
+                     <p id="p__50" class="yes-index">Arzt: (energisch) Herr Moser, ich ordiniere Ihnen tot zu sein. Wenn Sie meine
+                        					Verordnungen nicht befolgen, stehe ich für nichts!</p>
+                     <p id="p__51" class="yes-index">Souffleur: Ihre Leiber also, Herr Arzt? Nun denn: Wenn Sie einen Gegenstand, zum
+                        					Beispiel das Fensterkreuz dort – – –</p>
+                     <p id="p__52" class="yes-index">Max: Hier ist keines, Herr Souffleur! Sonst bleibt der Herr Oberst beim
+                        					Hereinspringen hängen!</p>
+                     <p id="p__54" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00286"></span>Souffleur: Lassen Sie mich
+                        					ausreden!</p>
+                     <p id="p__56" class="yes-index">Oberstin: (höhnisch) <span xmlns:tei="http://www.tei-c.org/ns/1.0">Wir</span> – <span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span>? Haha!</p>
+                     <p id="p__55" class="yes-index">Souffleur: Wenn Sie ein Fensterkreuz fest ins Auge fassen, und dann den Blick von
+                        					ihm abwenden, so werden Sie – wenn Sie genau beobachten – noch einen Augenblick
+                        					lang, vor sich in der Luft, das Bild des Fensterkreuzes sehen. Ich sage: »Das
+                        					Bild«! Aber wissen wir, ob es mehr oder weniger Bild ist, als das Fensterkreuz,
+                        					das wir vorhin sahen – nicht? – – Sagen Sie doch: »Jo«! – Von der
+                        					Leiblichkeit, die gestern auf der Probe Schauspieler den Worten des Dichters
+                        					liehen, schweben die Formen noch durcheinander in diesem Raum, und haben – eine
+                        					Weile – eine Art von Leiblichkeit.</p>
+                     <p id="p__56" class="yes-index">Sebastian: Herr Souffleur, melde gehorsamst, dass doch seither die gestrige
+                        					Abendvorstellung – ganz ausverkauft – hier war!</p>
+                     <p id="p__57" class="yes-index">Souffleur: (nach einer Pause) Sie haben recht – aber ich fange an zu zweifeln, ob
+                        					Sie wirklich »Sebastian« heissen!</p>
+                     <p id="p__58" class="yes-index">Sebastian: Melde gehorsamst: So soll ich le – – (abbrechend zu Max) Fürchten
+                        					Sie nichts, Herr Leutnant – auch wir haben einander zugeschworen, auch wir sind
+                        					totgeweiht!</p>
+                     <p id="p__59" class="yes-index">Oberst: Wie kommt es, Unteroffizier, dass ich gar niemanden vom Regiment
+                        					erblicke?</p>
+                     <p id="p__60" class="yes-index">Oberstin: (höhnisch) Weil Du mit dem Rücken gegen den Kasernhof stehst!</p>
+                     <p id="p__61" class="yes-index">Oberst: Aber es sollten doch Kürrassiere unseres Regimentes vorbeigehen und
+                        					grüssen, und ich sollte »Gute Nacht« wünschen – – – wo sind denn Alle
+                        					– – Unteroffizier!</p>
+                     <p id="p__63" class="yes-index">Sebastian: Melde gehorsamst: Das ganze Regiment ist nach Hause gefahren um
+                        					Abschied zu nehmen, und wir haben einander <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00288"></span>zugeschworen, dass keiner
+                        					zurückkommt. Wir sind Alle blaue Kürrassiere.</p>
+                     <p id="p__63" class="yes-index">Katharina: (gerührt zu Sebastian) Geben Sie mir Ihre Hand, Sebastian</p>
+                     <p id="p__64" class="yes-index">Sebastian: (gibt die Hand nicht)</p>
+                     <p id="p__65" class="yes-index">Katharina: Abschied nehmen ist süss!</p>
+                     <p id="p__66" class="yes-index">Sebastian: Melde gehorsamst, es kann auch eine Woche dauern!</p>
+                     <p id="p__67" class="yes-index">Katharina: Ich dachte, Du seist ein lustiger Bursche?</p>
+                     <p id="p__68" class="yes-index">Sebastian: Zu Befehl! Auch lustig bin ich, aber dann sag ich nicht »Abschied
+                        					nehmen«.</p>
+                     <p id="p__69" class="yes-index">Marie: (kommt nach vorne, bückt sich zum Souffleurkasten) Ich danke Ihnen, Herr
+                        					Souffleur – jetzt versteh ich mein Dasein! (sie wendet sich und tritt der
+                        					Oberstin auf ihr Kleid)</p>
+                     <p id="p__71" class="yes-index">Oberstin: (wütend) Jetzt treten Sie mir noch die Schleppe ab! <span xmlns:tei="http://www.tei-c.org/ns/1.0">Das</span> ist zu viel! Sie – Sie – Hyäne des
+                        					Schlachtfeldes!</p>
+                     <p id="p__71" class="yes-index">Maria: (sanft) Was habe ich Ihnen getan, Frau Oberst?</p>
+                     <p id="p__72" class="yes-index">Oberstin: Sie fragen noch? Mein Mann erschiesst mich, und an meiner Leiche hängen
+                        					Sie sich an den Hals meines Geliebten?</p>
+                     <p id="p__74" class="yes-index">Albrecht: (zu Max) Das sind <span xmlns:tei="http://www.tei-c.org/ns/1.0">Deine</span> Zusammenhänge,
+                        					Max!</p>
+                     <p id="p__80" class="yes-index">Marie: Und <span xmlns:tei="http://www.tei-c.org/ns/1.0">mein</span> Schicksal vergessen Sie? Ich habe mich
+                        					ihm hingegeben, und aus meinen Armen ist er gegangen, sich umbringen für eine
+                        					Andere? Was bin <del xmlns:tei="http://www.tei-c.org/ns/1.0">ich</del> denn dann ich ihm gewesen?<a name="fna_3" href="#fn3" title="Anspielung auf die Rede von Christine am Ende von Liebelei: »Und ich was bin denn ich? was bin denn ich ihm gewesen«."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">3</sup></a></p>
+                     <p id="p__76" class="yes-index">Oberst: (hebt den Kopf wie ein altes Schlachtross, das bekannte Signale hört) Was
+                        					sind <span xmlns:tei="http://www.tei-c.org/ns/1.0">das</span> für Töne?! Herr Leutnant!</p>
+                     <p id="p__76" class="yes-index">Max: Zu Befehl, Herr Oberst!</p>
+                     <p id="p__77" class="yes-index">Oberst: Ich komme um eine Kleinigkeit zu holen.</p>
+                     <p id="p__78" class="yes-index">Max: Herr Oberst?</p>
+                     <p id="p__80" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00290"></span>Oberst: Meine Frau hat sich
+                        					gestern bei Ihnen vergessen!</p>
+                     <p id="p__80" class="yes-index">Max: Herr Oberst scherzen.</p>
+                     <p id="p__82" class="yes-index">Oberst: (stark) Sie <span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>hat</span></span> sich vergessen.</p>
+                     <p id="p__83" class="yes-index">Sebastian: Melde gehorsamst, Herr Oberst, da liegt sie <span xmlns:tei="http://www.tei-c.org/ns/1.0">noch</span>. (er will sie aufheben.)</p>
+                     <p id="p__84" class="yes-index">Oberst: Lassen Sie! (zu Max) Ich will <del xmlns:tei="http://www.tei-c.org/ns/1.0">nicht</del>, dass
+                        					man sie später bei Ihnen finde!</p>
+                     <p id="p__84" class="yes-index">Marie: (will auf Max zueilen) Max!</p>
+                     <p id="p__85" class="yes-index">Der alte Moser: (hält sie am Fuss fest) Geh nicht weg von mir, Marie! Ich hab
+                        					dich gequält; ich bin ein alter kranker Mann von neunundsiebzig Jahren! Vergib
+                        					mir!</p>
+                     <p id="p__86" class="yes-index">Marie: (sanft) Ich vergebe Dir!</p>
+                     <p id="p__89" class="yes-index">Oberstin: (wild) Sie vergibt <span xmlns:tei="http://www.tei-c.org/ns/1.0">Ihnen</span>, Sie vergibt <span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span>, sie vergibt in allen Fällen! Ein sanftes
+                        					Mädchen, Ihre Tochter! Und Sie, Herr Rittmeister, sollten sich auch schämen!
+                        					Hören Sie auf mich zu zwicken! Sonst steh ich auf!</p>
+                     <p id="p__88" class="yes-index">Oberst: Irene!? Welcher Rittmeister zwickt dich?</p>
+                     <p id="p__89" class="yes-index">Max: Herr Oberst, wir sind beide vom Regiment der Geweihten.</p>
+                     <p id="p__90" class="yes-index">Oberstin: Der Herr Moser!</p>
+                     <p id="p__94" class="yes-index">Oberst: Woher weisst<a name="fna_4" href="#fn4" title="korrigiert aus: »wiesst« der Vorlage."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">4</sup></a> Du Irene, dass er Rittmeister
+                        					ist?</p>
+                     <p id="p__92" class="yes-index">Sebastian: Melde gehorsamst: Am Zwick, Herr Oberst!</p>
+                     <p id="p__93" class="yes-index">Katharina: Stecken Sie mir die Locken auf, Sebastian.!</p>
+                     <p id="p__94" class="yes-index">Sebastian: (fängt an, sie zu frisieren.)</p>
+                     <p id="p__95" class="yes-index">Oberst: Herr Rittmeister, Sie werden diesen Mord (auf Irene weisend) auf sich
+                        					nehmen und sich morgen Früh standrechtlich erschiessen lassen. (bitter höhnend)
+                        					Es wird Ihnen nicht schwer fallen, Sie sind ja das Sterben gewöhnt!</p>
+                     <p id="p__96" class="yes-index">Der alte Moser: Ich bin ein alter Mann von neunundsiebzig Jahren – –</p>
+                     <p id="p__98" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00292"></span>Oberst: Und erst
+                        					Rittmeister?</p>
+                     <p id="p__98" class="yes-index">Katharina: Noch diese Locke, Sebastian!</p>
+                     <p id="p__99" class="yes-index">Oberst: Wo haben Sie gedient, Herr Rittmeister?</p>
+                     <p id="p__100" class="yes-index">Der alte Moser: Wir sind alle blaue Kürrassiere!</p>
+                     <p id="p__101" class="yes-index">Oberst: Oh, über die verschlungenen Schicksalswege! So sind Sie der Rittmeister
+                        					Moser, den ich erfunden habe?</p>
+                     <p id="p__102" class="yes-index">Katharina: Noch eine Locke hier, Sebastian!</p>
+                     <p id="p__104" class="yes-index">Sebastian: (eine Locke aufsteckend) <span xmlns:tei="http://www.tei-c.org/ns/1.0">Noch</span> ein Dreh!</p>
+                     <p id="p__104" class="yes-index">Oberst: Da wären Sie ja an allem Schuld, was uns heute trifft!</p>
+                     <p id="p__106" class="yes-index"><del xmlns:tei="http://www.tei-c.org/ns/1.0">Rittmeister</del>Der alte Moser: Wenn Sie mich aber erfunden haben!</p>
+                     <p id="p__106" class="yes-index">Oberst: (bitter) Das hat Sie nicht gehindert wirklich zu sein.</p>
+                     <p id="p__107" class="yes-index">Arzt: Jetzt erkennen wir es, Herr Moser! Sie sind an allem schuld! Und an Ihrem
+                        					eigenen Tod trifft Ihre arme Tochter kein Verschulden. Sie selbst haben sich
+                        					umgebracht. Wären Sie damals, anstatt feige davonzulaufen, den Heldentod
+                        					gestorben – Sie hätten nie geheiratet, hätten nie eine Tochter (die Sie
+                        					notgedrungen vergiften musste) gehabt – und wären heute, – mit Ausnahme kleiner
+                        					Altersbeschwerden frisch und gesund!</p>
+                     <p id="p__109" class="yes-index">Sebastian: (eine neue Locke aufsteckend, sehr begeistert) <span xmlns:tei="http://www.tei-c.org/ns/1.0">Noch</span> ein Dreh!</p>
+                     <p id="p__111" class="yes-index">Oberstin: Um Ihretwillen, Sie alter Feigling, muss mein Ma<del xmlns:tei="http://www.tei-c.org/ns/1.0">nn</del>x sterben!</p>
+                     <p id="p__110" class="yes-index">Oberst: Um Ihretwillen, Herr Rittmeister, ist ein ganzes Regiment totgeweiht!</p>
+                     <p id="p__111" class="yes-index">Der Arzt: Sie sind an allem schuld, Herr Moser!</p>
+                     <p id="p__114" class="yes-index">Der alte Moser: Jetzt ist’s zu viel und vor allem, Herr Doktor, sagen Sie nicht
+                        					Herr Moser, sondern Rittmeister zu mir. <span xmlns:tei="http://www.tei-c.org/ns/1.0">Mein</span>
+                        					Davonlaufen ist an allem schuld? Ja, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00294"></span>dann ist mein Vater daran
+                        					schuld, weil er meine Mutter geheiratet hat, und so fort, bis auf Adam und Eva!
+                        					Muss ich alter Mann von neunundsiebzig Jahren Ihnen sagen, dass man sich nicht
+                        					auf Kausalitäten einlassen soll, weil sonst eine Konfusion herauskommt!</p>
+                     <p id="p__114" class="yes-index">Souffleur: Es <span xmlns:tei="http://www.tei-c.org/ns/1.0">giebt</span> keine Kausalitäten!</p>
+                     <p id="p__114" class="yes-index">Der alte Moser: Lassen Sie mich ausreden!</p>
+                     <p id="p__118" class="yes-index">Souffleur: Sie <del xmlns:tei="http://www.tei-c.org/ns/1.0">werden</del>wären der Erste, dem <span xmlns:tei="http://www.tei-c.org/ns/1.0">ich</span> das gestattet hätte!
+                        					Es gibt keine Ursachen, und keine Wirkungen! Eine Wirkung ist eine Ursache, die
+                        					noch lebt, sonst könnte sie nicht mehr wirken!</p>
+                     <p id="p__118" class="yes-index">Sebastian: (selig fri<del xmlns:tei="http://www.tei-c.org/ns/1.0">e</del>sierend): <span xmlns:tei="http://www.tei-c.org/ns/1.0">Noch</span> ein Dreh!</p>
+                     <p id="p__117" class="yes-index">Der alte Moser: Das versteh’ ich nicht! Aber, zum Teufel, merken Sie denn nicht,
+                        					dass Sie Alle meinem Davonlaufen Ihr Leben verdanken? Glauben Sie, mein
+                        					Heldentod hatte den Dichter interessiert?</p>
+                     <p id="p__119" class="yes-index">Sebastian: (jubilierend) <span xmlns:tei="http://www.tei-c.org/ns/1.0">Noch</span> ein Dreh!</p>
+                     <p id="p__122" class="yes-index">Oberst: Ihr Davonlaufen, ist doch überhaupt eine witzige Erfindung von <span xmlns:tei="http://www.tei-c.org/ns/1.0">mir</span>! <span xmlns:tei="http://www.tei-c.org/ns/1.0">Ich</span> kann darauf stolz
+                        					sein, dass Sie davongelaufen sind, aber doch nicht <span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span>.</p>
+                     <p id="p__121" class="yes-index">Sebastian: (dem Wahnsinn nah) <span xmlns:tei="http://www.tei-c.org/ns/1.0">Noch</span> ein Dreh!</p>
+                     <p id="p__123" class="yes-index">Arzt: Nun, Herr Oberst, wenn Sie sich aber gar so viel einbilden auf das Elend,
+                        					das Sie mit Ihrer witzigen Erfindung angerichtet haben, so muss ich Ihnen schon
+                        					sagen: <span xmlns:tei="http://www.tei-c.org/ns/1.0">wir</span> haben keinen Grund Ihnen dankbar zu sein.
+                        					Ertrinkende sind keine Menschen für ein Drama. Und in dem Stück sind fast alle
+                        					am Ersaufen. Katharina und der Herr Moser und die beiden Herrn Leutnants und
+                        Sie
+                        					auch, Herr Oberst. Für das, was einer tut, der weiss, dass er morgen <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00296"></span>sterben soll, kann man ihn
+                        					nicht mehr zur Rechenschaft ziehen; das ist kein Lebender mehr. Der hat nicht
+                        					mehr freien Willen, den kommandiert nur seine Todesangst, und wo es nicht freien
+                        					Willen gibt – gibt es kein Drama!</p>
+                     <p id="p__128" class="yes-index">Oberst: Schade, dass Ihre Weisheit so kurzen Atem hat, wie der Herr Moser. Es <span xmlns:tei="http://www.tei-c.org/ns/1.0">gab</span><a name="fna_5" href="#fn5" title="zusätzlich noch handschriftlich unterstrichen"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">5</sup></a> keines – aber es <span xmlns:tei="http://www.tei-c.org/ns/1.0">gibt</span><a name="fna_6" href="#fn6" title="zusätzlich noch handschriftlich unterstrichen"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">6</sup></a> eines: Sie selbst spielen ja darin!</p>
+                     <p id="p__124" class="yes-index">Sebastian: (entrüstet) <span xmlns:tei="http://www.tei-c.org/ns/1.0">Den</span> Dreh mach’ ich nicht
+                        					mit!</p>
+                     <p id="p__124" class="yes-index">Arzt: So werde ich Ihnen nach der Vorstellung sagen – – –</p>
+                     <p id="p__126" class="yes-index">Oberst: Das können Sie nicht! Sie sind nur <span xmlns:tei="http://www.tei-c.org/ns/1.0">in</span> der
+                        					Vorstellung!</p>
+                     <p id="p__126" class="yes-index">Sebastian: (schreit) Aufhören!</p>
+                     <p id="p__127" class="yes-index">Arzt: So werde ich Ihnen sagen, dass Tod und Leben Voraussetzungen sind – nicht
+                        					Stoffe. Tod und Leben sind unverantwortlich und stehen niemandem Rede; und dass
+                        					einer Dichter ist, heisst nur, dass er manchmal – nicht zu oft – nach ihnen
+                        					fragen darf. Fragen! Ohne Antwort zu bekommen! Und schön muss er fragen – sehr
+                        					schön!</p>
+                     <p id="p__128" class="yes-index">Oberst: Sie wollen mich wohl belehren, Herr Doktor? Schweigen Sie endlich!</p>
+                     <p id="p__129" class="yes-index">Arzt: Herr Oberst haben Ihrem Regiment zu befehlen – nicht mir!</p>
+                     <p id="p__131" class="yes-index">Oberst: Sie irren, mein Lieber! Auch Ihnen! Sie sind – wie ich selbst – von <span xmlns:tei="http://www.tei-c.org/ns/1.0">meinen</span> Gnaden! (er springt ins Zimmer, die Maske
+                        					fällt ab – der Dichter steht da).</p>
+                     <p id="p__133" class="yes-index">Sebastian: (wimmernd in die Knie sinkend) <span xmlns:tei="http://www.tei-c.org/ns/1.0">Kein</span> Dreh
+                        					mehr! Keiner mehr! Wenn <span xmlns:tei="http://www.tei-c.org/ns/1.0">ich</span> schon nicht mehr mit
+                        					kann!</p>
+                     <p id="p__134" class="yes-index">Dichter: (nach vorne kommend, zündet sich eine Virginia an, und sagt zum
+                        					Souffleur, in den Kasten hinunter, scharf): <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00298"></span>Die letzte Rede des Arztes
+                        					haben doch <span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span> souffliert!</p>
+                     <p id="p__133" class="yes-index">Souffleur: Ja mein Lieber – ebenso wie Ihre Reden!</p>
+                     <p id="p__134" class="yes-index">Sebastian: (wimmert auf, der Arzt unterstützt ihn und fühlt ihm den Puls).</p>
+                     <p id="p__135" class="yes-index">Dichter: Wieso? Ja so! Natürlich! Aber hören Sie auf, Sie sehen doch, der Mann
+                        					stirbt bereits an Ihren Drehs!</p>
+                     <p id="p__136" class="yes-index">Souffleur: An meinen? Doch auch an Ihren!</p>
+                     <p id="p__137" class="yes-index">Dichter: Ja, ja! Aber nach dem Nachtmahl ist mir das zu anstrengend. (Er will
+                        					sich auf die Barriere setzen).</p>
+                     <p id="p__138" class="yes-index">Souffleur: (aufschreiend) Nicht auf die Barriere! Das ist keine, das ist der
+                        					letzte Akt: grün und stark gestrichen! Auf den wird sich die Kritik setzen!</p>
+                     <p id="p__140" class="yes-index">Dichter: Keine Witze jetzt! Sagen Sie übrigens: Es ist ja sehr ehrenvoll für
+                        					mich, aber – haben Sie wirklich nichts anderes zu tun als sich meine Figuren
+                        					herzunehmen, und mit ihnen Schindluder zu treiben? <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb11324">Fischer</span> würde sagen: »Ein ausgeruhter Kopp!« Bei Ihnen
+                        					kann man sich ja nicht einmal revanchieren. Bis zu Ihrer Generalprobe bin ich
+                        					bestenfalls so alt wie der alte Moser! Warum verschwenden Sie so viel
+                        					Geist – –</p>
+                     <p id="p__140" class="yes-index">Arzt: (um Sebastian bemüht) Ein Glas Wasser, bitte.</p>
+                     <p id="p__146" class="yes-index">Dichter: (fortfahrend) – – da sehen Sie – so viel Geist an fertige Figuren,
+                        					die ihn wirklich nicht brauchen? Geben Sie Ihren davon – ich meine den noch
+                        					unfertigen! Bei einer Pentalogie kann man nie davon genug haben! Uebrigens, mir
+                        					fällt ein: Sie könnten eine Familienfideikomisstiftung aus der Pent<del xmlns:tei="http://www.tei-c.org/ns/1.0">h</del>alogie machen. Immer der älteste Sohn hat daran
+                        					zu schreiben, und wenn einer Ihrer Nachkommen sie wirklich fertig macht, so
+                        						wird<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00300"></span>er enterbt – weil er aus der
+                        					Art geschlagen ist! Wissen Sie: <span xmlns:tei="http://www.tei-c.org/ns/1.0">wenn</span> Sie schon das
+                        					Stück kritisieren wollen, gestalten Sie nicht an meinen Gestalten herum –
+                        					sondern schreiben Sie einen Essay für die »<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb29212">Rundschau</span>« – das wird wenigstens klarer und deutlicher sein.</p>
+                     <p id="p__142" class="yes-index">Souffleur: Deutlicher vielleicht – aber das war nicht meine Absicht!</p>
+                     <p id="p__143" class="yes-index">Dichter: Hetzen Sie doch nicht den Satz zu Tode – er ist sehr gut!</p>
+                     <p id="p__144" class="yes-index">Souffleur: Eigentlich, lieber Arthur, ist es recht unfreundlich von Ihnen, mir
+                        					das von der Pentalogie – wenn auch im Scherze – so vor allen den Leuten zu
+                        					sagen! Sie hätten mir das auch unter vier Augen sagen können – das wäre
+                        					liebenswürdiger gewesen.</p>
+                     <p id="p__145" class="yes-index">Dichter: Liebenswürdiger vielleicht! Aber das war nicht meine Absicht!</p>
+                     <p id="p__146" class="yes-index">Souffleur: Hetzen Sie doch den Satz nicht zu Tode! Er ist sehr gut!</p>
+                     <p id="p__148" class="yes-index">Dichter: Uebrigens, das, was Sie den Arzt da sagen lassen, von der Kausalität –
+                        					ist recht couragiert von Ihnen. Sie spielen den Krieg in Feindesland! <span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span> – als Verteidiger der Kausalität! Wissen Sie, was
+                        					Sie sind??</p>
+                     <p id="p__149" class="yes-index">Souffleur: Meiner Bescheidenheit, lieber Arthur, ist es
+                        					wohl zuzutrauen, dass ich weiss, was ich bin!</p>
+                     <p id="p__157" class="yes-index">Dichter: Sie sind: »Grachi de
+                        					seditione quaerentes<a name="fna_7" href="#fn7" title="Umwandlung einer lateinischen Redewendung in den Singular: »Quis tulerit Gracchos de seditione quaerentes« (»Wer ertrüge es, wenn die Gracchen sich über Aufruhr beklagen«)."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">7</sup></a>«! Bombenwerfer, die über Knallbonbons sich beklagen! <span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span> verlangen Kausalität in einem Drama! Ich krieg
+                        					ordentlich eine Wut, wenn ich mir das vorstelle! (er bricht erbittert ein Stück
+                        					von seiner Virginia, die nicht brennt, ab) Ausgerechnet <span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span> machen mir Vorwürfe! <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00002-000-00302"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span>, der Sie – – Sie – (wütend auflachend) <span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span>, <span xmlns:tei="http://www.tei-c.org/ns/1.0">Sie</span>: »Es geschah«
+                        					Sie!</p>
+                     <p id="p__150" class="yes-index">Sebastian: (interessiert aufhorchend) Eschkenasi?? Von welchem Eschkenasi sind
+                        					Sie – –</p>
+                     <p id="p__152" class="yes-index">Souffleur: (milde) Bestehen Sie noch immer darauf, dass Sie <del xmlns:tei="http://www.tei-c.org/ns/1.0">»Sesbas</del> »Sebastian« heissen?</p>
+                     <p id="p__152" class="yes-index">Sebastian: (hat sich aufgerichtet; respektlos, in herzlicher Gemütlichkeit,
+                        					fraternisierend) Sind Sie nicht bös, Herr Dichter – und Herr Eschkenasi – wir
+                        					sind Alle blaue Kürrassiere!</p>
+                     <p id="p__153" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0">Der Vorhang fällt.</span></p>
+                  </div>
+                  </div>
+               <div class="card-footer">
+                  <p style="text-align:center;">
+                     <div class="footnotes" id="note__5"><a name="fn1"><a href="#fna_1"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">1</span></a></a>Der Text ist
+                        						undatiert, wurde <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb2121">Schnitzler</span> aber am <a xmlns:tei="http://www.tei-c.org/ns/1.0" class="ref schnitzler-tagebuch" href="1909-12-13"></a> von <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10863">Beer-Hofmann</span> vorgelesen. Damit ist
+                        						anzunehmen, dass er ihn zu diesem Zeitpunkt erhalten hat.</div>
+                     <div class="footnotes" id="note__3"><a name="fn2"><a href="#fna_2"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">2</span></a></a>geändert aus: »Marie; Aber«</div>
+                     <div class="footnotes" id="note__7"><a name="fn3"><a href="#fna_3"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">3</span></a></a>Anspielung auf die Rede von Christine
+                        						am Ende von : »Und ich  was bin denn ich? was bin denn ich ihm
+                        								gewesen«.</div>
+                     <div class="footnotes" id="note__3"><a name="fn4"><a href="#fna_4"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">4</span></a></a>korrigiert aus:
+                        						»wiesst« der Vorlage.</div>
+                     <div class="footnotes" id="note__3"><a name="fn5"><a href="#fna_5"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">5</span></a></a>zusätzlich noch handschriftlich
+                        							unterstrichen</div>
+                     <div class="footnotes" id="note__6"><a name="fn6"><a href="#fna_6"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">6</span></a></a>zusätzlich noch handschriftlich
+                        							unterstrichen</div>
+                     <div class="footnotes" id="note__2"><a name="fn7"><a href="#fna_7"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">7</span></a></a>Umwandlung
+                        						einer lateinischen Redewendung in den Singular: »Quis tulerit Gracchos de
+                        						seditione quaerentes« (»Wer ertrüge es, wenn die Gracchen sich über Aufruhr
+                        						beklagen«).</div>
+                     <div class="footnotes" id="note__6"><a name="fn8"><a href="#fna_8"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">8</span></a></a>Parodie</div>
+                     <div class="footnotes" id="note__3"><a name="fn9"><a href="#fna_9"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">9</span></a></a>http://www.literature.at/viewer.alo?objid=12117&amp;page=1&amp;viewmode=fullscreen</div>
+                     <div class="footnotes" id="note__15"><a name="fn10"><a href="#fna_10"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">10</span></a></a>Drama &gt;&gt; Mehraktiges Drama</div>
+                     <div class="footnotes" id="note__13"><a name="fn11"><a href="#fna_11"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">11</span></a></a>Drama &gt;&gt; Mehraktiges Drama</div>
+                     <div class="footnotes" id="note__11"><a name="fn12"><a href="#fna_12"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">12</span></a></a>
+                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">1890</span>
+                        </div>
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="tei-back">
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb10863" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Beer-Hofmann, Richard" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Beer-Hofmann, Richard</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb10863.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb2121" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Schnitzler, Arthur" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Schnitzler, Arthur</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb2121.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb11324" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Fischer, Samuel" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Fischer, Samuel</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb11324.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb52544" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Das Echo des Lebens</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb52544.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29905" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Der Ruf des Lebens. Schauspiel in drei Akten Vatermörderin</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29905.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29917" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Liebelei. Schauspiel in drei Akten</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th>
+                                    Autor(en)
+                                    </th>
+                                 <td>
+                                    <ul>
+                                       <li><a href=".html"></a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29917.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb50" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Wien K.K. Reichshaupt- und Residenzstadt Wien http://d-nb.info/gnd/4066009-6 Bécs Land Wien Vídeň Wenia Beč Vindobona (Wien) Vindobona Vienna Wien?" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Wien K.K. Reichshaupt- und Residenzstadt Wien http://d-nb.info/gnd/4066009-6 Bécs
+                           Land Wien Vídeň Wenia Beč Vindobona (Wien) Vindobona Vienna Wien?</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb50.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29212" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29212.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            </div>
+         <div class="wrapper fundament-default-footer hide-reading" id="wrapper-footer-full">
+            <div class="container-fluid" id="footer-full-content" tabindex="-1">
+               <div class="footer-separator">
+                  KONTAKT
+                  </div>
+               <div class="row">
+                  <div class="footer-widget col-lg-1 col-md-2 col-sm-2 col-xs-6  ml-auto  text-center ">
+                     <div class="textwidget custom-html-widget"><a href="/"><img src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg" class="image" alt="ACDH Logo" style="max-width: 100%; height: auto;" title="ACDH Logo" /></a></div>
+                  </div>
+                  <div class="footer-widget col-lg-4 col-md-3 col-sm-3">
+                     <div class="textwidget custom-html-widget">
+                        <p>
+                           ACDH-CH OEAW
+                           <br />
+                           Austrian Centre for Digital Humanities and Cultural Heritage
+                           <br />
+                           Austrian Academy of Sciences
+                           </p>
+                        <p>
+                           Bäckerstraße 13
+                           <br />
+                           1010 Wien
+                           </p>
+                        <p>
+                           T: +43 1 51581-2200
+                           <br />
+                           E: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at">acdh-ch-helpdesk(at)oeaw.ac.at</a></p>
+                     </div>
+                  </div>
+                  <div class="footer-widget col-lg-4 col-md-3 col-sm-4">
+                     <h6 class="font-weight-bold">PROJEKTPARTNER</h6>
+                     <div class="container">
+                        <div class="row">
+                           <div class="col-lg-6 col-md-6 col-sm-12">
+                              <div class="flex-md-row mb-4 align-items-center"><a href="https://www.fwf.ac.at/en/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/fwf-logo_var2.jpg" alt="FWF Der Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" /></a></div>
+                           </div>
+                           <div class="col-lg-6 col-md-6 col-sm-12">
+                              <div class="flex-md-row mb-4 align-items-center"><a href="https://www.univie.ac.at/en/"><img class="card-img-right flex-auto d-md-block" src="https://communications.univie.ac.at/fileadmin/user_upload/d_oeffentlichkeitsarbeit/Logos/2016-02/Uni_Logo_2016.jpg" alt="Universität Wien Logo" style="max-width: 160px; height: auto; vertical-align: middle;" title="Universität Wien" /></a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
+                     <div class="row">
+                        <div class="textwidget custom-html-widget">
+                           <h6 class="font-weight-bold">HELPDESK</h6>
+                           <p>ACDH-CH runs a helpdesk offering advice for questions related to various digital humanities
+                              topics.</p>
+                           <p><a class="helpdesk-button" href="mailto:acdh-ch-helpdesk@oeaw.ac.at">ASK US!</a></p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto" style="margin-left:0 !important;">
+                           <div class="textwidget custom-html-widget">
+                              <p style="margin-bottom:0 !important;">Social: </p>
+                           </div>
+                           <div class="row">
+                              <div class="textwidget custom-html-widget col-md-4"><a id="github-logo" title="GitHub" href="https://github.com/arthur-schnitzler/schnitzler-briefe-static" class="nav-link" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4.466 19.59c-.405.078-.534-.171-.534-.384v-2.195c0-.747-.262-1.233-.55-1.481 1.782-.198 3.654-.875 3.654-3.947 0-.874-.312-1.588-.823-2.147.082-.202.356-1.016-.079-2.117 0 0-.671-.215-2.198.82-.64-.18-1.324-.267-2.004-.271-.68.003-1.364.091-2.003.269-1.528-1.035-2.2-.82-2.2-.82-.434 1.102-.16 1.915-.077 2.118-.512.56-.824 1.273-.824 2.147 0 3.064 1.867 3.751 3.645 3.954-.229.2-.436.552-.508 1.07-.457.204-1.614.557-2.328-.666 0 0-.423-.768-1.227-.825 0 0-.78-.01-.055.487 0 0 .525.246.889 1.17 0 0 .463 1.428 2.688.944v1.489c0 .211-.129.459-.528.385-3.18-1.057-5.472-4.056-5.472-7.59 0-4.419 3.582-8 8-8s8 3.581 8 8c0 3.533-2.289 6.531-5.466 7.59z"></path></svg></a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
+            © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script></div><script src="https://unpkg.com/de-micro-editor@0.2.6/dist/de-editor.min.js"></script><script type="text/javascript" src="js/run.js"></script><script type="text/javascript" src="js/osd_scroll.js"></script></body>
+</html>

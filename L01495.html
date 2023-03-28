@@ -1,0 +1,2082 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:local="http://dse-static.foo.bar">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-title" content="" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="msapplication-TileImage" content="images/fundament_logo.svg" />
+      <link rel="icon" type="image/svg+xml" href="images/fundament_logo.svg" sizes="any" />
+      <link rel="profile" href="http://gmpg.org/xfn/11" />
+      <title></title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+      <link rel="stylesheet" href="css/style.css" type="text/css" />
+      <link rel="stylesheet" href="css/micro-editor.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.css" />
+      <style>
+                    .navBarNavDropdown ul li:nth-child(2) {
+                        display: none !important;
+                    }
+                </style>
+   </head>
+   <body class="page">
+      <div class="hfeed site" id="page">
+         <div class="wrapper-fluid wrapper-navbar sticky-top hide-reading" id="wrapper-navbar"><a class="skip-link screen-reader-text sr-only" href="#content">Skip to content</a><nav class="navbar navbar-expand-lg">
+               <div class="container-fluid"><a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url"><img src="images/fundament_logo.svg" class="img-fluid" title="schnitzler-briefe" alt="schnitzler-briefe" itemprop="logo" /></a><span class="badge bg-light text-dark">in development</span><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                     <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Projekt
+                              </a><ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="about.html" title="About the Project">
+                                    Über das Projekt
+                                    </a></li>
+                           </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Editionseinheiten
+                              </a><ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="toc.html" title="Ohne Faksimiles">
+                                    Ohne Faksimiles
+                                    </a></li>
+                              <li><a class="dropdown-item" href="toc_facs.html" title="Mit Faksimiles">
+                                    Mit Faksimiles
+                                    </a></li>
+                           </ul>
+                        </li>
+                        <li class="nav-item dropdown disabled"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Register
+                              </a><ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="listperson.html" title="Personen">
+                                    Personen
+                                    </a></li>
+                              <li><a class="dropdown-item" href="listplace.html" title="Orte">
+                                    Orte
+                                    </a></li>
+                              <li><a class="dropdown-item" href="listorg.html" title="Organisationen">
+                                    Organisationen
+                                    </a></li>
+                              <li><a class="dropdown-item" href="listbibl.html" title="Werke">
+                                    Werke
+                                    </a></li>
+                           </ul>
+                        </li>
+                        <li class="nav-item"><a title="Suche" class="nav-link" href="search.html">Suche</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+         </div>
+         <div class="container-fluid">
+            <div class="card" data-index="true">
+               <div class="card-header">
+                  <div class="row">
+                     <div class="col-md-2 col-lg-2 col-sm-12"></div>
+                     <div class="col-md-8 col-lg-8 col-sm-12">
+                        <h1 align="center"></h1>
+                        <h3 align="center"><a href="L01495"><i class="fas fa-download" title="show TEI source"></i></a></h3>
+                     </div>
+                     <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right"></div>
+                  </div>
+                  <div id="editor-widget">
+                     <p>Text Editor</p>
+                     <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
+                           <li class="dropdown-item">
+                              <full-size opt="fls"></full-size>
+                           </li>
+                           <li class="dropdown-item">
+                              <image-switch opt="es"></image-switch>
+                           </li>
+                           <li class="dropdown-item">
+                              <font-size opt="fs"></font-size>
+                           </li>
+                           <li class="dropdown-item">
+                              <font-family opt="ff"></font-family>
+                           </li>
+                           <li class="dropdown-item" style="border-top: 5px dashed lightgrey !important;">
+                              <annotation-slider opt="ef"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="prs"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="plc"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="wrk"></annotation-slider>
+                           </li>
+                           <li class="dropdown-item">
+                              <annotation-slider opt="org"></annotation-slider>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="card-body">
+                  
+                  <div id="div__5"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="1905_AS_RBH_1_00002"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0">Herrn Dr. Richard Beer-Hofma</span><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb173">Rodaun bei Liesing</span></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb40101"><span>Liesingerstr. 2</span></span>. </div>
+                  
+                  <div id="div__14"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="1905_AS_RBH_1_00004"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">26. 1. 905</span>.lieber Richard, 
+                     <p id="p__4" class="yes-index">lockt Sie das nicht? – Würde Ihnen u <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10860">Paula</span>
+                        wohlthun. Ich würde mit <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb2173">Olga</span> gleichfalls
+                        fahren.</p>
+                     <p id="p__4" class="yes-index">Schicken Sie mir dieses Blatt zurück. Seien Sie gegrüßt.</p>Herzlichst<br xmlns:tei="http://www.tei-c.org/ns/1.0"></br>Ihr<br xmlns:tei="http://www.tei-c.org/ns/1.0"></br>A.</div>
+                  
+                  <div id="div__306">
+                     <p id="p__1" class="yes-index"></p>
+                     <p id="p__6" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="1905_AS_RBH_1_00006"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51616"><span>Schenker</span></span><span>’s Reise-Bulletin</span>. — <span class="date"><span>Januar–Februar 1905</span></span>.</span></p>
+                     <p id="p__5" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>-, Orient- und Sonderfahrten mit
+                           Dampfern der <span class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51619">Hamburg-Amerika-Linie</span>.</span></p>
+                     <p id="p__4" class="yes-index"></p>
+                     <p id="p__6" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrten mit dem
+                           Doppelschrauben-Dampfer »Meteor«.</span></p>
+                     <p id="p__30" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Erste <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           (Von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb506">Hamburg</span> ins <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>.) Abfahrt von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb506">Hamburg</span><span><span class="date">26. Oktober 1904</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb38495">Dover</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb15227">Lissabon</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb48004">Funchal</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb16330">Teneriffa</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb951">Tanger</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51646">Gibraltar</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51697">Oran</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb43991">Algier</span>,
+                           <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb48771">Tunis</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb901">Palermo</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb45264">Monreale</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51646">Gibraltar</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb595">Neapel</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51642">Vesuv</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb1283">Pompeji</span>
+                           etc.), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span>. Reisedauer 24 Tage. Fahrpreise von
+                           <span>K 570.—</span> an aufwärts.</span></p>
+                     <p id="p__30" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Zweite <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           Abfahrt von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span><span><span class="date">22. November 1904</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51666">Villafranca</span>
+                           (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb926">Nizza</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb5862">Monte
+                              Carlo</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb847">Ajaccio</span><a name="fna_1" href="#fn1" title="korrigiert aus: »Ajjaccio«"><sup>1</sup></a>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb6588">Barcelona</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb43991">Algier</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb48771">Tunis</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb901">Palermo</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb45264">Monreale</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44129">Messina</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb595">Neapel</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51642">Vesuv</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb1283">Pompeji</span> etc.), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span>. Reisedauer 14 Tage. Fahrpreise von <span>K 330.—</span> an aufwärts.</span></p>
+                     <p id="p__15" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Dritte <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           Abfahrt von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span><span><span class="date">8. Dezember 1904</span></span>. Fahrplan ebenso wie bei der zweiten <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt. Reisedauer 14 Tage. Fahrpreise von <span>K 330.—</span> an aufwärts.</span></p>
+                     <p id="p__32" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Vierte <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           (Bis nach Konstantinopel.) Abfahrt von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span><span><span class="date">5. Jänner 1905</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51666">Villafranca</span>
+                           (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb926">Nizza</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb5862">Monte
+                              Carlo</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb847">Ajaccio</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb43991">Algier</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb966">Konstantinopel</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44099">Smyrna</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb49145">Piräus</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb505">Athen</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb48769">Syrakus</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44129">Messina</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb901">Palermo</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb45264">Monreale</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb595">Neapel</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51642">Vesuv</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb1283">Pompeji</span> etc.), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span>. Reisedauer 25 Tage. Fahrpreise von <span>K 600.—</span> an aufwärts.</span></p>
+                     <p id="p__17" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Fünfte <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           (Bis nach Konstantinopel.) Abfahrt von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span><span><span class="date">5. Februar 1905</span></span>. Fahrplan ebenso wie bei der vierten <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt. Reisedauer 25 Tage. Fahrpreise von <span>K 600.—</span> an aufwärts.</span></p>
+                     <p id="p__38" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Sechste <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           (Im <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span> und Adriatischen Meer.) Abfahrt
+                           von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span><span><span class="date">5. März 1905</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51666">Villafranca</span>
+                           (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb926">Nizza</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb5862">Monte
+                              Carlo</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb847">Ajaccio</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb595">Neapel</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51642">Vesuv</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb1283">Pompeji</span> etc.), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb901">Palermo</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb45264">Monreale</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44129">Messina</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41212">Korfu</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb49149">Cattaro</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb682">Gravosa</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb682">Ragusa</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb4231">Spalato</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb38096">Abbazia</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44246">Fiume</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb873">Triest</span>
+                           (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51692">Miramare</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb462">Venedig</span>. Reisedauer 14 Tage. Fahrpreise von <span>K 330.—</span>
+                           an aufwärts.</span></p>
+                     <p id="p__36" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Siebente <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           (Im <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span> und Adriatischen Meer.) Abfahrt
+                           von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb462">Venedig</span><span><span class="date">21. März 1905</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb873">Triest</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51692">Miramare</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb38096">Abbazia</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44246">Fiume</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb4231">Spalato</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb682">Gravosa</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb682">Ragusa</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb49149">Cattaro</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41212">Korfu</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb48769">Syrakus</span>. <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44129">Messina</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb901">Palermo</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb45264">Monreale</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb595">Neapel</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51642">Vesuv</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb1283">Pompeji</span> etc.), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span>. Reisedauer 14 Tage. Fahrpreise von <span>K 330.—</span> an aufwärts.</span></p>
+                     <p id="p__31" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Achte <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           (Vom <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span> nach <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb506">Hamburg</span>.) Abfahrt von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span><span><span class="date">5. April 1905</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51666">Villafranca</span>
+                           (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb926">Nizza</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb5862">Monte
+                              Carlo</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb847">Ajaccio</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb6588">Barcelona</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb43991">Algier</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51646">Gibraltar</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb15227">Lissabon</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb38495">Dover</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb506">Hamburg</span>. Reisedauer 16 Tage, Fahrpreise von <span>K 390.—</span> an aufwärts.</span></p>
+                     <p id="p__14" class="yes-index"></p>
+                     <p id="p__15" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0">Mit dem Doppelschrauben-Schnelldampfer »Prinzessin Victoria
+                           Luise«.</span></p>
+                     <p id="p__31" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Neunte <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           Abfahrt von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44053">New-York</span><span><span class="date">4. April 1905</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51675">Ponta Delgada</span>,
+                           <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb48004">Funchal</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51673">Santa
+                              Cruz</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51646">Gibraltar</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb43991">Algier</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb901">Palermo</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb45264">Monreale</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb595">Neapel</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span>. Reisedauer 25 Tage.
+                           Fahrpreise von <span>K 360.—</span> an aufwärts.</span></p>
+                     <p id="p__36" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Zehnte <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41016">Mittelmeer</span>fahrt.</span>
+                           Abfahrt von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span><span><span class="date">30. April 1905</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51666">Villafranca</span>
+                           (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb926">Nizza</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb5862">Monte
+                              Carlo</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb847">Ajaccio</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51657">Cagliari</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb48771">Tunis</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb43991">Algier</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51697">Oran</span>,
+                           <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51646">Gibraltar</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb15227">Lissabon</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51695">Oporto</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb38495">Dover</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb506">Hamburg</span>. Reisedauer
+                           14 Tage. Fahrpreise von <span>K 312.—</span> an aufwärts.</span></p>
+                     <p id="p__18" class="yes-index"></p>
+                     <p id="p__19" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0">Westindienfahrten mit dem Doppelschrauben-Schnelldampfer
+                           »Prinzessin Victoria Luise«.</span></p>
+                     <p id="p__32" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Erste Westindienfahrt.</span> Abfahrt von <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44053">New-York</span><span><span class="date">12. Jänner 1905</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51699">St. Thomas</span>,
+                           <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51706">St. Pierre (Martinique)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51682">Fort de France</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb39662">San Juan
+                              (Puerto Rico)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51668">Santiago de Cuba</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb39944">Havana</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51639">Nassau</span>. Reisedauer 18 Tage. Fahrpreise von <span>K 600.—</span>
+                           an aufwärts.</span></p>
+                     <p id="p__40" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Zweite Westindienfahrt.</span> Abfahrt von New-York <span><span class="date">2. Februar 1905</span></span>. Besucht werden die Häfen : <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51699">St. Thomas</span>,
+                           <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb39662">San Juan (Puerto Rico)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51682">Fort de France (Martinique)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51706">St. Pierre</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51654">Bridgetown (Barbados)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51701">Port of Spain (Trinidad)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51685">La Brea Point</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51701">Port of
+                              Spain</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51690">La Guayra (Caracas)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51704">Puerto Cabello</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51660">Curaçao</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51671">Kingston (Jamaika)</span><span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51668">Santiago de Cuba</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb39944">Havana</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51639">Nassau</span>. Reisedauer 28 Tage.
+                           Fahrpreise von <span>K 840.—</span> an aufwärts.</span></p>
+                     <p id="p__37" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Dritte Westindienfahrt.</span> Abfahrt von New-York <span><span class="date">7. März 1905</span></span>. Besucht werden die Häfen: <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51639">Nassau</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb39944">Havana</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51668">Santiago
+                              de Cuba</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51671">Kingston (Jamaika)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb39662">San Juan (Puerto Rico)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51699">St. Thomas</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51654">Bridgetown
+                              (Barbados)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51682">Fort de France
+                              (Martinique)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51706">St. Pierre</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb39662">San Juan (Puerto Rico)</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46765">Bermudas</span>. Reisedauer 24 Tage. Fahrpreise von <span>K 600.—</span>
+                           an aufwärts.</span></p>
+                     <p id="p__56" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span>Große Orientreise</span>, per Dampfer »Moltke« ab <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span><span><span class="date">20. Februar 1905</span></span>. <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51666">Villafranka</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb926">Nizza</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb48769">Syrakus</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46462">Malta</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb12515">Alexandria</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb839">Cairo</span> etc.), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46759">Beirut</span>, (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51663">Damascus</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51648">Baalbec</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51650">Jaffa</span>, (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb5297">Jerusalem</span> etc.), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46759">Beirut</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb12515">Alexandria</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51650">Jaffa</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb966">Konstantinopel</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb505">Athen</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51677">Nauplia</span> (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb49147">Eleusis</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51679">Mykenae</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb44129">Messina</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb901">Palermo</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb595">Neapel</span>, (<span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51642">Vesuv</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb1283">Pompeji</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb919">Capri</span>, <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb445">Rom</span>), <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb994">Genua</span>. Reisedauer 43 Tage.
+                           Fahrpreise von <span>K 2520.—</span> an aufwärts.</span></p>
+                     <p id="p__24" class="yes-index"></p>
+                     <p id="p__25" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0">Nähere Auskünfte werden erteilt und Plätze reserviert im</span></p>
+                     <p id="p__30" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0"><span class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb51616">Internationalen Reise-Bureau Schenker  Co.</span><span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50493">Wien, I. Schottenring Nr. 3</span>.</span></p>
+                     <p id="p__27" class="yes-index"><span xmlns:tei="http://www.tei-c.org/ns/1.0">18</span></p>
+                  </div>
+                  </div>
+               <div class="card-footer">
+                  <p style="text-align:center;">
+                     <div class="footnotes" id="note__11"><a name="fn1"><a href="#fna_1"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">1</span></a></a>korrigiert
+                        aus: »Ajjaccio«</div>
+                     <div class="footnotes" id="note__12"><a name="fn2"><a href="#fna_2"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">2</span></a></a>
+                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">1957</span>
+                        </div>
+                     <div class="footnotes" id="note__9"><a name="fn3"><a href="#fna_3"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">3</span></a></a>
+                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">1847-05-27</span>
+                        </div>
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="tei-back">
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb2121" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Schnitzler, Arthur" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Schnitzler, Arthur</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb2121.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb10863" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Beer-Hofmann, Richard" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Beer-Hofmann, Richard</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb10863.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb10860" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Beer-Hofmann, Paula" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Beer-Hofmann, Paula</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb10860.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb2173" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Schnitzler, Olga" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Schnitzler, Olga</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb2173.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb68" data-bs-keyboard="false" tabindex="-1" aria-labelledby="XVIII., Währing" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">XVIII., Währing</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb68.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb173" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Rodaun Rodaun bei Wien http://pmb.acdh.oeaw.ac.at/apis/api2/entity/11742/" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Rodaun Rodaun bei Wien http://pmb.acdh.oeaw.ac.at/apis/api2/entity/11742/</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb173.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb50" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Wien K.K. Reichshaupt- und Residenzstadt Wien http://d-nb.info/gnd/4066009-6 Bécs Land Wien Vídeň Wenia Beč Vindobona (Wien) Vindobona Vienna Wien?" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Wien K.K. Reichshaupt- und Residenzstadt Wien http://d-nb.info/gnd/4066009-6 Bécs
+                           Land Wien Vídeň Wenia Beč Vindobona (Wien) Vindobona Vienna Wien?</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb50.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb40101" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Liesingerstraße https://www.geschichtewiki.wien.gv.at/Liesinger_Straße_(23,_Rodaun)" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Liesingerstraße https://www.geschichtewiki.wien.gv.at/Liesinger_Straße_(23,_Rodaun)</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb40101.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb41016" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Mittelmeer https://de.wikipedia.org/wiki/Mittelmeer" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Mittelmeer https://de.wikipedia.org/wiki/Mittelmeer</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb41016.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb506" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Hamburg Hamburgisches Staatsgebiet http://d-nb.info/gnd/4023118-5" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Hamburg Hamburgisches Staatsgebiet http://d-nb.info/gnd/4023118-5</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb506.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb38495" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Dover" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Dover</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb38495.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb15227" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Lissabon http://www.geonames.org/2267057/lisbon.html Lisabon" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Lissabon http://www.geonames.org/2267057/lisbon.html Lisabon</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb15227.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb48004" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Funchal Funchal, Madeira" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Funchal Funchal, Madeira</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb48004.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb16330" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Teneriffa http://www.geonames.org/2510529/tenerife.html" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Teneriffa http://www.geonames.org/2510529/tenerife.html</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb16330.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb951" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Tanger" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Tanger</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb951.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51646" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Gibraltar" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Gibraltar</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51646.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51697" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Oran" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Oran</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51697.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb43991" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Algiers Algier Algir" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Algiers Algier Algir</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb43991.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb48771" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Tunis" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Tunis</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb48771.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb901" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Palermo" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Palermo</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb901.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb45264" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Monreale" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Monreale</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb45264.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb595" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Neapel" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Neapel</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb595.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51642" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Vesuv Vesuvius" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Vesuv Vesuvius</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51642.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb1283" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Pompei https://de.wikipedia.org/wiki/Pompeji" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Pompei https://de.wikipedia.org/wiki/Pompeji</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb1283.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb994" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Genua Genoa" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Genua Genoa</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb994.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51666" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Villefranche-sur-Mer" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Villefranche-sur-Mer</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51666.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb926" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Nizza" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Nizza</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb926.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb5862" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Monte Carlo http://www.geonames.org/2992741/monte-carlo.html" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Monte Carlo http://www.geonames.org/2992741/monte-carlo.html</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb5862.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb847" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Ajaccio Ajaccio (Korsika)" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajaccio Ajaccio (Korsika)</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb847.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb6588" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Barcelona http://www.geonames.org/3128760/barcelona.html" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Barcelona http://www.geonames.org/3128760/barcelona.html</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb6588.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb44129" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Messina" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Messina</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb44129.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb966" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Istanbul Konstantinopel Istanbul Province" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Istanbul Konstantinopel Istanbul Province</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb966.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb44099" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Izmir" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Izmir</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb44099.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb49145" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Piraeus Piräus" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Piraeus Piräus</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb49145.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb505" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Athen" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Athen</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb505.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb48769" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Syrakus Syracuse" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Syrakus Syracuse</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb48769.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb41212" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Korfu Corcyra (Insel)" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Korfu Corcyra (Insel)</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb41212.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb49149" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Kotor Cattaro" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Kotor Cattaro</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb49149.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb682" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Dubrovnik Ragusa" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Dubrovnik Ragusa</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb682.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb4231" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Split https://de.wikipedia.org/wiki/Split Spalato" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Split https://de.wikipedia.org/wiki/Split Spalato</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb4231.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb38096" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Opatija Abbazia https://schnitzler-briefe.acdh.oeaw.ac.at/A000958 https://www.geonames.org/3194097 http://sws.geonames.org/3194099/" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Opatija Abbazia https://schnitzler-briefe.acdh.oeaw.ac.at/A000958 https://www.geonames.org/3194097
+                           http://sws.geonames.org/3194099/</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb38096.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb44246" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Rijeka Fiume" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Rijeka Fiume</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb44246.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb873" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Triest" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Triest</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb873.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51692" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Schloss Miramare Schloss Miramar Miramare Castle" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Schloss Miramare Schloss Miramar Miramare Castle</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51692.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb462" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Venedig Venice" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Venedig Venice</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb462.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb44053" data-bs-keyboard="false" tabindex="-1" aria-labelledby="New York City New York https://schnitzler-briefe.acdh.oeaw.ac.at/A001080 https://www.wikidata.org/wiki/Q60 https://www.geonames.org/5128581 New York, N. Y. http://pmb.acdh.oeaw.ac.at/apis/api2/entity/5939/ Neu-Amsterdam, NY New York, NY http://d-nb.info/gnd/4042011-5 Big Apple" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">New York City New York https://schnitzler-briefe.acdh.oeaw.ac.at/A001080 https://www.wikidata.org/wiki/Q60
+                           https://www.geonames.org/5128581 New York, N. Y. http://pmb.acdh.oeaw.ac.at/apis/api2/entity/5939/
+                           Neu-Amsterdam, NY New York, NY http://d-nb.info/gnd/4042011-5 Big Apple</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb44053.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51675" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Ponta Delgada Ponta Delgada (Azores)" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Ponta Delgada Ponta Delgada (Azores)</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51675.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51673" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Santa Cruz Santa Cruz (Madeira)" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Santa Cruz Santa Cruz (Madeira)</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51673.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51657" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Cagliari" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Cagliari</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51657.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51695" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Porto" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Porto</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51695.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51699" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Saint Thomas" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Saint Thomas</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51699.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51706" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Saint-Pierre" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Saint-Pierre</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51706.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51682" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Fort-de-France Fort Royal" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Fort-de-France Fort Royal</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51682.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb39662" data-bs-keyboard="false" tabindex="-1" aria-labelledby="San Juan San Juan, Puerto Rico" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">San Juan San Juan, Puerto Rico</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb39662.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51668" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Santiago de Cuba" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Santiago de Cuba</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51668.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb39944" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Havana Havanna" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Havana Havanna</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb39944.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51639" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Nassau" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Nassau</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51639.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51654" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Bridgetown" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Bridgetown</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51654.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51701" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Port of Spain Port-of-Spain" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Port of Spain Port-of-Spain</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51701.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51685" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Punta Brea" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Punta Brea</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51685.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51690" data-bs-keyboard="false" tabindex="-1" aria-labelledby="La Guaira" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">La Guaira</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51690.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51704" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Puerto Cabello" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Puerto Cabello</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51704.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51660" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Curaçao Country of Curaçao" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Curaçao Country of Curaçao</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51660.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51671" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Kingston" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Kingston</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51671.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb46765" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Bermuda Bermudas" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Bermuda Bermudas</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb46765.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb46462" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Malta Malta Island Republic of Malta" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Malta Malta Island Republic of Malta</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb46462.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb12515" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Alexandria http://www.geonames.org/361058/alexandria.html Alexandria?" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Alexandria http://www.geonames.org/361058/alexandria.html Alexandria?</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb12515.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb839" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Kairo Fustat (Alt-Kairo) Cairo" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Kairo Fustat (Alt-Kairo) Cairo</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb839.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb46759" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Beirut" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Beirut</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb46759.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51663" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Damascus Damaskus" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Damascus Damaskus</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51663.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51648" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Baalbek" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Baalbek</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51648.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51650" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Jaffa Yaffa Yafo Yaffo Yafah" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Jaffa Yaffa Yafo Yaffo Yafah</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51650.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb5297" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Jerusalem http://www.geonames.org/281184/jerusalem.html" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Jerusalem http://www.geonames.org/281184/jerusalem.html</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb5297.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51677" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Nafplion" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Nafplion</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51677.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb49147" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Elefsina Eleusis" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Elefsina Eleusis</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb49147.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51679" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Mycenae Mykene" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Mycenae Mykene</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51679.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb919" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Capri" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Capri</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb919.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb445" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Rom bei Rom Roma" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Rom bei Rom Roma</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb445.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb50493" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Schottenring" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Schottenring</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb50493.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51616" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51616.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb51619" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                     <div class="modal-body">
+                        <table class="table">
+                           <tbody>
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb51619.html">hier</a> für eine vollständige Auflistung
+                                    </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+                  </div>
+               </div>
+            </div>
+            
+            </div>
+         <div class="wrapper fundament-default-footer hide-reading" id="wrapper-footer-full">
+            <div class="container-fluid" id="footer-full-content" tabindex="-1">
+               <div class="footer-separator">
+                  KONTAKT
+                  </div>
+               <div class="row">
+                  <div class="footer-widget col-lg-1 col-md-2 col-sm-2 col-xs-6  ml-auto  text-center ">
+                     <div class="textwidget custom-html-widget"><a href="/"><img src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg" class="image" alt="ACDH Logo" style="max-width: 100%; height: auto;" title="ACDH Logo" /></a></div>
+                  </div>
+                  <div class="footer-widget col-lg-4 col-md-3 col-sm-3">
+                     <div class="textwidget custom-html-widget">
+                        <p>
+                           ACDH-CH OEAW
+                           <br />
+                           Austrian Centre for Digital Humanities and Cultural Heritage
+                           <br />
+                           Austrian Academy of Sciences
+                           </p>
+                        <p>
+                           Bäckerstraße 13
+                           <br />
+                           1010 Wien
+                           </p>
+                        <p>
+                           T: +43 1 51581-2200
+                           <br />
+                           E: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at">acdh-ch-helpdesk(at)oeaw.ac.at</a></p>
+                     </div>
+                  </div>
+                  <div class="footer-widget col-lg-4 col-md-3 col-sm-4">
+                     <h6 class="font-weight-bold">PROJEKTPARTNER</h6>
+                     <div class="container">
+                        <div class="row">
+                           <div class="col-lg-6 col-md-6 col-sm-12">
+                              <div class="flex-md-row mb-4 align-items-center"><a href="https://www.fwf.ac.at/en/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/fwf-logo_var2.jpg" alt="FWF Der Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" /></a></div>
+                           </div>
+                           <div class="col-lg-6 col-md-6 col-sm-12">
+                              <div class="flex-md-row mb-4 align-items-center"><a href="https://www.univie.ac.at/en/"><img class="card-img-right flex-auto d-md-block" src="https://communications.univie.ac.at/fileadmin/user_upload/d_oeffentlichkeitsarbeit/Logos/2016-02/Uni_Logo_2016.jpg" alt="Universität Wien Logo" style="max-width: 160px; height: auto; vertical-align: middle;" title="Universität Wien" /></a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
+                     <div class="row">
+                        <div class="textwidget custom-html-widget">
+                           <h6 class="font-weight-bold">HELPDESK</h6>
+                           <p>ACDH-CH runs a helpdesk offering advice for questions related to various digital humanities
+                              topics.</p>
+                           <p><a class="helpdesk-button" href="mailto:acdh-ch-helpdesk@oeaw.ac.at">ASK US!</a></p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto" style="margin-left:0 !important;">
+                           <div class="textwidget custom-html-widget">
+                              <p style="margin-bottom:0 !important;">Social: </p>
+                           </div>
+                           <div class="row">
+                              <div class="textwidget custom-html-widget col-md-4"><a id="github-logo" title="GitHub" href="https://github.com/arthur-schnitzler/schnitzler-briefe-static" class="nav-link" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4.466 19.59c-.405.078-.534-.171-.534-.384v-2.195c0-.747-.262-1.233-.55-1.481 1.782-.198 3.654-.875 3.654-3.947 0-.874-.312-1.588-.823-2.147.082-.202.356-1.016-.079-2.117 0 0-.671-.215-2.198.82-.64-.18-1.324-.267-2.004-.271-.68.003-1.364.091-2.003.269-1.528-1.035-2.2-.82-2.2-.82-.434 1.102-.16 1.915-.077 2.118-.512.56-.824 1.273-.824 2.147 0 3.064 1.867 3.751 3.645 3.954-.229.2-.436.552-.508 1.07-.457.204-1.614.557-2.328-.666 0 0-.423-.768-1.227-.825 0 0-.78-.01-.055.487 0 0 .525.246.889 1.17 0 0 .463 1.428 2.688.944v1.489c0 .211-.129.459-.528.385-3.18-1.057-5.472-4.056-5.472-7.59 0-4.419 3.582-8 8-8s8 3.581 8 8c0 3.533-2.289 6.531-5.466 7.59z"></path></svg></a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
+            © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script></div><script src="https://unpkg.com/de-micro-editor@0.2.6/dist/de-editor.min.js"></script><script type="text/javascript" src="js/run.js"></script><script type="text/javascript" src="js/osd_scroll.js"></script></body>
+</html>
