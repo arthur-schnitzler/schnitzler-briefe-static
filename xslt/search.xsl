@@ -13,11 +13,9 @@
         <xsl:variable name="doc_title" select="'Volltextsuche'"/>
         <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text>
         <html xmlns="http://www.w3.org/1999/xhtml">
-            <head>
-                <xsl:call-template name="html_head">
-                    <xsl:with-param name="html_title" select="$doc_title"></xsl:with-param>
-                </xsl:call-template>
-            </head>
+            <xsl:call-template name="html_head">
+                <xsl:with-param name="html_title" select="$doc_title"></xsl:with-param>
+            </xsl:call-template>
             
             <body class="page">
                 <div class="hfeed site" id="page">
@@ -25,11 +23,34 @@
                     
                     <div class="container-fluid">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" style="text-align:center">
                                 <h1><xsl:value-of select="$doc_title"/></h1>
                             </div>
                             <div class="card-body">
-                                <div id="staticSearch"/>                            
+                                <div class="ais-InstantSearch">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div id="stats-container"></div>
+                                            <div id="searchbox"></div>
+                                            <div id="current-refinements"></div>
+                                            <div id="clear-refinements"></div>
+                                            <h4>Personen</h4>
+                                            <div id="refinement-list-persons"></div>
+                                            <h4>Orte</h4>
+                                            <div id="refinement-list-places"></div>
+                                            <h4>Institutionen</h4>
+                                            <div id="refinement-list-orgs"></div>
+                                            <h4>Werke</h4>
+                                            <div id="refinement-list-works"></div>
+                                            <h4>Jahr</h4>
+                                            <div id="range-input"></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div id="hits"></div>
+                                            <div id="pagination"></div>
+                                        </div>
+                                    </div>
+                                </div>                          
                             </div>
                         </div>
                     </div>
@@ -37,6 +58,10 @@
                     <xsl:call-template name="html_footer"/>
                     
                 </div>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+                </script>
+                <script src="js/ts_index.js"></script>
             </body>
         </html>
     </xsl:template>
