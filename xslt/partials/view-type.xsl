@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:_="urn:acdh"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs xsl tei" version="2.0">
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mam="whatever" exclude-result-prefixes="xs xsl tei" version="2.0">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
@@ -15,15 +16,15 @@
             <p>Bootstrap is required.</p>
         </desc>
     </doc>
-    <xsl:function name="_:ano">
+    <!--<xsl:function name="_:ano">
         <xsl:param name="node"/>
         <xsl:for-each-group select="$node" group-by="$node">
             <xsl:sequence
                 select="concat('(', count(current-group()[current-grouping-key() = .]), ' ', current-grouping-key(), ')')"
             />
         </xsl:for-each-group>
-    </xsl:function>
-    <xsl:template name="view-type-img">
+    </xsl:function>-->
+    <xsl:template name="mam:view-type-img">
         <xsl:variable name="hand" select="'font-family: Times New Roman, serif; font-size: 22px;'"/>
         <div class="tab-content">
             <xsl:choose>

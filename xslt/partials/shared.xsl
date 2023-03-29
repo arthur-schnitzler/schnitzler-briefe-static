@@ -12,7 +12,6 @@
     <xsl:import href="./commentary.xsl"/>
     <xsl:import href="./physDesc.xsl"/>
         <xsl:import href="./refs.xsl"/>
-            <xsl:import href="./LOD-idnos.xsl"/>
 
 
 
