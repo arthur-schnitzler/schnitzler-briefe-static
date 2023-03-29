@@ -8,12 +8,12 @@
     exclude-result-prefixes="xs"
     version="2.0">
 
-    <xsl:import href="./person.xsl"/>
-    <xsl:import href="./place.xsl"/>
     <xsl:import href="./biblStruct-output.xsl"/>
     <xsl:import href="./commentary.xsl"/>
     <xsl:import href="./physDesc.xsl"/>
         <xsl:import href="./refs.xsl"/>
+            <xsl:import href="./LOD-idnos.xsl"/>
+
 
 
 

@@ -3,7 +3,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:df="http://example.com/df" xmlns:mam="whatever" version="2.0"
     exclude-result-prefixes="xsl tei xs">
-    <xsl:import href="./LOD-idnos.xsl"/>
+    <xsl:import href="./shared.xsl"/>
     <xsl:key name="only-relevant-uris" match="item" use="abbr"/>
     <xsl:param name="works" select="document('../../data/indices/listwork.xml')"/>
     <xsl:key name="work-lookup" match="tei:bibl" use="tei:relatedItem/@target"/>

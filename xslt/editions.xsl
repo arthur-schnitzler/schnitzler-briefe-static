@@ -16,8 +16,7 @@
     <xsl:import href="./partials/aot-options.xsl"/>
     <xsl:import href="./partials/html_title_navigation.xsl"/>
     <xsl:import href="./partials/view-type.xsl"/>
-    <xsl:import href="./partials/person.xsl"/>
-    <xsl:import href="./partials/place.xsl"/>
+    <xsl:import href="./partials/entities.xsl"/>
     <xsl:import href="./partials/biblStruct-output.xsl"/>
     <!--<xsl:import href="./partials/commentary.xsl"/>-->
     
@@ -121,47 +120,6 @@
                         <div class="card" data-index="true">
                             <div class="card-header">
                                 <xsl:call-template name="header-nav"/>
-                                
-                                <!--<div class="row">
-                                    <div class="col-md-2 col-lg-2 col-sm-12">
-                                        <xsl:if test="ends-with($prev,'.html')">
-                                            <h1>
-                                                <a>
-                                                    <xsl:attribute name="href">
-                                                        <xsl:value-of select="$prev"/>
-                                                    </xsl:attribute>
-                                                    <i class="fas fa-chevron-left" title="prev"/>
-                                                </a>
-                                            </h1>
-                                        </xsl:if>
-                                    </div>
-                                    <div class="col-md-8 col-lg-8 col-sm-12">
-                                        <h1 align="center">
-                                            <xsl:value-of select="$doc_title"/>
-                                        </h1>
-                                        <h3 align="center">
-                                            <a href="{$teiSource}">
-                                                <i class="fas fa-download" title="show TEI source"/>
-                                            </a>
-                                        </h3>
-                                    </div>
-                                    <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right">
-                                        <xsl:if test="ends-with($next, '.html')">
-                                            <h1>
-                                                <a>
-                                                    <xsl:attribute name="href">
-                                                        <xsl:value-of select="$next"/>
-                                                    </xsl:attribute>
-                                                    <i class="fas fa-chevron-right" title="next"/>
-                                                </a>
-                                            </h1>
-                                        </xsl:if>
-                                    </div>
-                                </div>-->
-                                <div id="editor-widget">
-                                    <p>Text Editor</p>
-                                    <xsl:call-template name="annotation-options"></xsl:call-template>
-                                </div>
                             </div>
                             <div class="card-body">                                
                                 <xsl:for-each select="descendant::tei:body">
@@ -169,6 +127,97 @@
                                 </xsl:for-each>
                             </div>
                             <div class="card-footer">
+                                
+                                    <div id="editor-widget">
+                                        <xsl:call-template name="annotation-options"/>
+                                    </div>
+                                    <nav class="navbar-expand-md navbar-light bg-white box-shadow"
+                                        style="align: center">
+                                        <div>
+                                            <ul id="secondary-menu" class="navbar-nav mr-auto">
+                                                <xsl:if
+                                                    test="not(descendant::tei:teiHeader[1]/tei:revisionDesc[1]/@status = 'approved')">
+                                                    <li class="nav-item dropdown">
+                                                        <a class="nav-link" data-toggle="modal"
+                                                            data-target="#qualitaet">
+                                                            <span style="color: orange;">ENTWURF</span>
+                                                        </a>
+                                                    </li>
+                                                </xsl:if>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link" data-target="#ueberlieferung"
+                                                        role="button" data-toggle="modal"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-landmark"/> ÜBERLIEFERUNG </a>
+                                                </li>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link" data-toggle="modal"
+                                                        data-target="#zitat">
+                                                        <span id="copy-url-button">
+                                                            <i class="fas fa-quote-right"/> ZITIEREN </span>
+                                                    </a>
+                                                </li>
+                                                <xsl:variable name="datum">
+                                                    <xsl:choose>
+                                                        <xsl:when
+                                                            test="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@when">
+                                                            <xsl:value-of
+                                                                select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@when"
+                                                            />
+                                                        </xsl:when>
+                                                        <xsl:when
+                                                            test="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notBefore">
+                                                            <xsl:value-of
+                                                                select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notBefore"
+                                                            />
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <xsl:value-of
+                                                                select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notAfter"
+                                                            />
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:variable>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link">
+                                                        <xsl:attribute name="target">
+                                                            <xsl:text>_blank</xsl:text>
+                                                        </xsl:attribute>
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of
+                                                                select="concat('https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__', $datum, '.html')"
+                                                            />
+                                                        </xsl:attribute><!--<span style="color:#037a33;">-->
+                                                        <i class="fas fa-external-link-alt"/>
+                                                        TAGEBUCH<!--</span>-->
+                                                    </a>
+                                                </li>
+                                                <!--<li class="nav-item dropdown">
+                                    <span class="nav-link">
+                                        <div id="csLink" class="a.grau" data-correspondent-1-name=""
+                                            data-correspondent-1-id="all"
+                                            data-correspondent-2-name="" data-correspondent-2-id=""
+                                            data-start-date="{$datum}" data-end-date=""
+                                            data-range="50" data-selection-when="before-after"
+                                            data-selection-span="median-before-after"
+                                            data-result-max="4" data-exclude-edition=""/>
+                                    </span>
+                                </li>-->
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                
+                                <xsl:if
+                                    test="descendant::tei:note[@type = 'textConst' or @type = 'commentary']">
+                                    <div class="card-body-anhang">
+                                        <dl class="kommentarhang">
+                                            <xsl:apply-templates
+                                                select="descendant::tei:note[@type = 'textConst'] | descendant::tei:note[@type = 'commentary']"
+                                                mode="kommentaranhang"/>
+                                        </dl>
+                                    </div>
+                                </xsl:if>
+                                
                                 <p style="text-align:center;">
                                     <xsl:for-each select=".//tei:note[not(./tei:p)]">
                                         <div class="footnotes" id="{local:makeId(.)}">
