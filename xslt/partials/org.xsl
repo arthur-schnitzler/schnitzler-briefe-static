@@ -3,7 +3,6 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mam="whatever"
     xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:param name="places" select="document('../../data/indices/listplace.xml')"/>
-    <xsl:import href="./LOD-idnos.xsl"/>
     <xsl:key name="place-lookup" match="tei:place" use="@xml:id"/>
     <xsl:template match="tei:org" name="org_detail">
         <xsl:param name="showNumberOfMentions" as="xs:integer" select="50000"/>
