@@ -40,32 +40,21 @@
                             </p>
                         </div>
                     </div>
-                    <div class="footer-widget col-lg-1 col-md-2 col-sm-2 col-xs-6  ml-auto  text-center ">
-                        <div class="textwidget custom-html-widget">
-                            <a href="/"><img src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/fwf-logo_var2.jpg" class="image" alt="FWF Logo" style="max-width: 90%; height: auto;" title="ACDH Logo"/></a>
-                        </div>
-                    </div>
                     
-                    <div class="footer-widget col-lg-4 col-md-3 col-sm-4">
-                        <h6 class="font-weight-bold">FINANZIERUNG</h6>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="flex-md-row mb-4 align-items-center">
-                                        <a href="https://www.fwf.ac.at/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/fwf-logo_var2.jpg" alt="FWF Der Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" />
+                    <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
+                        <div class="row">
+                            <div class="textwidget custom-html-widget">
+                                <h6 class="font-weight-bold">FÖRDERINSTITUTION</h6>
+                                        <a href="https://www.fwf.ac.at/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/fwf-logo_var2.jpg" alt="FWF Der Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" /></a>
                                         <p/>
                                 <p>Gefördert aus Mitteln des Wissenschaftsfonds FWF, P31277 (2018–2021) und
                                 P34792 (2021–[2024])</p>
-                                        </a>
-                                        <!--<div class="card-body d-flex flex-column align-items-start">
-                                            <p class="card-text mb-auto">Project partner</p>
-                                        </div>-->
-                                    </div>
-                                </div>
-                                                              
+                                       
+                                      
                             </div>
-                        </div>
-                    </div>
+                        </div>                                          
+                     </div>
+                    
                     <!-- .footer-widget -->                       
                     <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
                         <div class="row">

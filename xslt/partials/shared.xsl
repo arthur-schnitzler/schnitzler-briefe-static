@@ -4,8 +4,19 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:local="http://dse-static.foo.bar"
+    xmlns:mam="whatever" 
     exclude-result-prefixes="xs"
     version="2.0">
+
+    <xsl:import href="./person.xsl"/>
+    <xsl:import href="./place.xsl"/>
+    <xsl:import href="./biblStruct-output.xsl"/>
+    <xsl:import href="./commentary.xsl"/>
+    <xsl:import href="./physDesc.xsl"/>
+        <xsl:import href="./refs.xsl"/>
+
+
+
     <xsl:function name="local:makeId" as="xs:string">
         <xsl:param name="currentNode" as="node()"/>
         <xsl:variable name="nodeCurrNr">
@@ -14,9 +25,56 @@
         <xsl:value-of select="concat(name($currentNode), '__', $nodeCurrNr)"/>
     </xsl:function>
     
+ <xsl:template match="tei:c[@rendition = '#langesS']">
+        <xsl:text>ſ</xsl:text>
+    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#kaufmannsund']">
+        <xsl:text>&amp;</xsl:text>
+    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#tilde']">~</xsl:template>
+    <xsl:template match="tei:c[@rendition = '#geschwungene-klammer-auf']">
+        <xsl:text>{</xsl:text>
+    </xsl:template>
+    <xsl:template match="tei:space[@unit = 'chars' and @quantity = '1']">
+        <xsl:text> </xsl:text>
+    </xsl:template>
+    <xsl:function name="mam:spaci-space">
+        <xsl:param name="anzahl"/>
+        <xsl:param name="gesamt"/>  <br/>
+        <xsl:if test="$anzahl &lt; $gesamt">
+            <xsl:value-of select="mam:spaci-space($anzahl, $gesamt)"/>
+        </xsl:if>
+    </xsl:function>
+    <xsl:template match="tei:space[@unit = 'line']">
+        <xsl:value-of select="mam:spaci-space(@quantity, @quantity)"/>
+    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#geschwungene-klammer-zu']">
+        <xsl:text>}</xsl:text>
+    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#gemination-m']">
+        <span class="gemination">m̅</span>
+    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#gemination-n']">
+        <span class="gemination">n̅</span>
+    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#prozent']">
+        <xsl:text>%</xsl:text>
+    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#dots']">
+        <xsl:value-of select="mam:dots(@n)"/>
+    </xsl:template>
+
     <xsl:template match="tei:pb">
         <span class="anchor-pb"></span>
         <span class="pb" source="{@facs}"><xsl:value-of select="./@n"/></span>
+    </xsl:template>
+    <xsl:template match="tei:space">
+        <span class="space">
+            <xsl:value-of select="
+                    string-join((for $i in 1 to @quantity
+                    return
+                        '&#x00A0;'), '')"/>
+        </span>
     </xsl:template>
     <xsl:template match="tei:unclear">
         <abbr title="unclear"><xsl:apply-templates/></abbr>
@@ -104,11 +162,14 @@
     <xsl:template match="tei:ref">
         <a class="ref {@type}" href="{@target}"><xsl:apply-templates/></a>
     </xsl:template>
-    <xsl:template match="tei:lg">
-        <p><xsl:apply-templates/></p>
+<xsl:template match="tei:lg">
+        <span style="display:block;margin: 1em 0;">
+            <xsl:apply-templates/>
+        </span>
     </xsl:template>
     <xsl:template match="tei:l">
-        <xsl:apply-templates/><br/>
+        <xsl:apply-templates/>
+        <br/>
     </xsl:template>
     <xsl:template match="tei:p">
        <p><xsl:apply-templates/></p>
