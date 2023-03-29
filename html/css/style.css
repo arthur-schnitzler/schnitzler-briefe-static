@@ -212,7 +212,7 @@ a.anchorFoot {
     background-color: #A63437;
     color: #A63437;
     border-radius: 1rem;
-    box-shadow: 4px 4px 9px 0 rgba(0, 0, 0, .1);
+    box-shadow: none !important;
     z-index: 2;
 }
 
@@ -293,7 +293,66 @@ div.dataTables_filter {
 
 .card {
     margin: 2em auto;
-    box-shadow: 4px 4px 9px 0 rgba(0, 0, 0, .1);
+    box-shadow: none !important;
+    --bs-card-border-width: 0;
+}
+
+.card-body-normalertext {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #f1f1f1;
+    padding: 1.5rem 2.5rem}
+.card-body-anhang {
+    display: block;
+    max-width: 850px;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 70px}
+.card-body-index {
+    color: #000000;
+    max-width: 750px;
+    min-height: 270px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    line-height: 1.7rem;
+    font-size: 1.1rem;
+    padding: 1.25rem;
+    border: white;
+
+}
+.card-body-place {
+    justify-content: center;
+    align-items: center}
+
+.card-body-critical {
+    display: inline-flex;
+    flex-wrap: wrap}
+.card-body-iif {
+    float: right;
+    width: 47%;
+    min-width: 450px;
+    margin: 0 auto}
+.card-body-text {
+    float: left;
+    max-width: 820px;
+    min-width: 450px;
+    margin: 0 auto;
+    border: 0;
+}
+
+.card-header {
+    background: white;
+    border: 0;
+
+}
+
+.card-footer {
+    background-color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 15px;
+    padding-bottom: 25px;
 }
 
 .img_bottom {
@@ -341,6 +400,42 @@ div.dataTables_filter {
 .card-body img {
     border-radius: .35rem .35rem 0 0;
 }
+
+
+
+.h2, h2 {
+    font-size: 1.4rem;
+    padding: 1rem 0;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.h3,
+h3 {
+    font-size: 1.2rem;
+    padding: 1rem 0;
+    font-weight: bold;
+    font-family: sans-serif}
+
+.h4,
+h4 {
+    font-size: 1rem;
+    padding: 1rem 0;
+    font-weight: bold;
+    font-family: sans-serif}
+
+.h5,
+h5 {
+    font-size: 1.4rem;
+    padding: 1rem 0;
+    font-family: sans-serif}
+
+.image-rights {
+    text-align: right;
+    color: gray;
+    font-size: 80%;
+    font-family: sans-serif}
+    
 
 .index-card .card-header {
     background-color: transparent;
@@ -539,3 +634,29 @@ low resolution
 #########################################
 */
 }
+
+/*** calendar ***/
+
+
+#years-table .btn-light:focus, #years-table .btn-light.focus {
+    background: #a63437;
+    color: #fff;
+}
+
+.yearbtn {
+padding: 2px;
+font-size: 0.9rem;
+border: none;
+background-color: transparent;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    flex-wrap: wrap;   
+    }
+
+
+/*** calendar end ***/
+
