@@ -47,10 +47,7 @@ const calendar = new Calendar('#calendar', {
       html += "<div class='modal-content'>";
       html += "<div class='modal-header'>";
       html += "<h3 class='modal-title' id='modalLabel'>Links</h3>";
-      html += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
-      html += "<span aria-hidden='true'>&times;</span>";
-      html += "</button></div>";
-      html += "<div class='modal-body'>";
+      html += "</div><div style='padding-left:18px; padding-bottom: 10px;'>";
       let numbersTitlesAndIds = new Array();
       for (let i = 0; i < entries.length; i++) {
         let linkTitle = entries[i].name;
@@ -73,9 +70,9 @@ const calendar = new Calendar('#calendar', {
       for (let k = 0; k < numbersTitlesAndIds.length; k++) {
         html += "<div class='indent'><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></div>";
       }
-      html += "</div>";
+      html += "</div></div>";
       html += "<div class='modal-footer'>";
-      html += "<button type='button' class='btn btn-secondary' data-dismiss='modal'>X</button>";
+      html += "<p>&#160;</p>";
       html += "</div></div></div></div>";
       $('#dialogForLinks').remove();
       $('#loadModal').append(html);

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:local="http://dse-static.foo.bar">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:local="http://dse-static.foo.bar" xmlns:mam="whatever">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,7 +10,7 @@
       <meta name="msapplication-TileImage" content="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" />
       <link rel="icon" type="image/svg+xml" href="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" sizes="any" />
       <link rel="profile" href="http://gmpg.org/xfn/11" />
-      <title></title>
+      <title>schnitzler-briefe</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
       <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -33,36 +33,93 @@
       <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon/android-icon-192x192.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" />
-      <style>
+      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><style>
                     .navBarNavDropdown ul li:nth-child(2) {
                         display: none !important;
-                    }
-                </style>
+                    }</style>
+      <meta name="Date of publication" class="staticSearch_date" content="1899-01-12" n="01" />
+      <meta name="docImage" class="staticSearch_docImage" content="https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_054.jpg?format=iiif&amp;param=/full/,200/0/default.jpg" />
+      <meta name="docTitle" class="staticSearch_docTitle" content="Arthur Schnitzler an Georg Brandes, 12. 1. 1899" />
+      <meta name="Places" class="staticSearch_feat" content="Wien K.K. Reichshaupt- und Residenzstadt Wien http://d-nb.info/gnd/4066009-6 Bécs Land Wien Vídeň Wenia Beč Vindobona (Wien) Vindobona Vienna Wien?" />
+      <meta name="Places" class="staticSearch_feat" content="Kopenhagen" />
+      <meta name="Places" class="staticSearch_feat" content="Berlin http://sws.geonames.org/2950159/ Hauptstadt Berlin http://d-nb.info/gnd/4005728-8 Barlīn Reichshauptstadt Berlin Berolino" />
+      <meta name="Places" class="staticSearch_feat" content="Dänemark Denmark http://sws.geonames.org/2623032/ Kingdom of Denmark" />
+      <meta name="Places" class="staticSearch_feat" content="Nordschleswig https://de.wikipedia.org/wiki/Nordschleswig" />
+      <meta name="Places" class="staticSearch_feat" content="Preußen https://de.wikipedia.org/wiki/Preußen" />
+      <meta name="Places" class="staticSearch_feat" content="Frankreich France" />
+      <meta name="Places" class="staticSearch_feat" content="Österreich Republik Österreich http://sws.geonames.org/2782113/ https://www.wikidata.org/wiki/Q40 https://bahrschnitzler.acdh.oeaw.ac.at/entity/pmb162 Republic of Austria" />
+      <meta name="Places" class="staticSearch_feat" content="Bastille" />
+      <meta name="Places" class="staticSearch_feat" content="Paris P'ariz http://d-nb.info/gnd/4044660-8 http://sws.geonames.org/6455259/ Pariž Parisius" />
+      <meta name="Places" class="staticSearch_feat" content="Polen Republic of Poland Poland" />
+      <meta name="Places" class="staticSearch_feat" content="Lviv Lwiw Lwów Lemberg" />
+      <meta name="Places" class="staticSearch_feat" content="Italien Italian Republic Republic of Italy http://sws.geonames.org/3175395/ https://schnitzler-briefe.acdh.oeaw.ac.at/A000475 https://www.wikidata.org/wiki/Q38 https://www.geonames.org/3175395 Italy" />
+      <meta name="Persons" class="staticSearch_feat" content="Schnitzler, Arthur" />
+      <meta name="Persons" class="staticSearch_feat" content="Brandes, Georg" />
+      <meta name="Persons" class="staticSearch_feat" content="V. A., " />
+      <meta name="Persons" class="staticSearch_feat" content="Beer-Hofmann, Richard" />
+      <meta name="Persons" class="staticSearch_feat" content="Beer-Hofmann, Paula" />
+      <meta name="Persons" class="staticSearch_feat" content="Beer-Hofmann, Mirjam" />
+      <meta name="Persons" class="staticSearch_feat" content="Beer-Hofmann, Naëmah" />
+      <meta name="Persons" class="staticSearch_feat" content="Wassermann, Jakob" />
+      <meta name="Persons" class="staticSearch_feat" content="Sobieski, Johann III." />
+      <meta name="Organizations" class="staticSearch_feat" content="Verein Berliner Presse" />
+      <meta name="Organizations" class="staticSearch_feat" content="Neue Freie Presse" />
+      <meta name="Literature" class="staticSearch_feat" content="Berliner Tageblatt" />
+      <meta name="Literature" class="staticSearch_feat" content="Bei Georg Brandes" />
+      <meta name="Literature" class="staticSearch_feat" content="Köllers Erfolge" />
+      <meta name="Literature" class="staticSearch_feat" content="Das Vermächtnis. Schauspiel in drei Akten" />
+      <meta name="Literature" class="staticSearch_feat" content="Die Gefährtin. Schauspiel in einem Akt" />
+      <meta name="Literature" class="staticSearch_feat" content="Paracelsus. Versspiel in einem Akt" />
+      <meta name="Literature" class="staticSearch_feat" content="Der grüne Kakadu. Groteske in einem Akt" />
+      <meta name="Literature" class="staticSearch_feat" content="Der Schleier der Beatrice. Schauspiel in fünf Akten" />
+      <meta name="Literature" class="staticSearch_feat" content="Der Tod Georgs" />
+      <meta name="Literature" class="staticSearch_feat" content="Die Juden von Zirndorf" />
+      <meta name="Literature" class="staticSearch_feat" content="Die Frau des Weisen. Novelletten" />
+      <meta name="Literature" class="staticSearch_feat" content="Brandes in Lemberg" />
+      <meta name="Literature" class="staticSearch_feat" content="Polen" />
+      <meta name="Literature" class="staticSearch_feat" content="Ungdomsvers [Jugendgedichte]" />
    </head>
    <body class="page">
       <div class="hfeed site" id="page">
-         <div class="wrapper-fluid wrapper-navbar sticky-top hide-reading" id="wrapper-navbar"><a class="skip-link screen-reader-text sr-only" href="#content">Skip to content</a><nav class="navbar navbar-expand-lg">
+         <div class="wrapper-fluid wrapper-navbar sticky-top hide-reading" id="wrapper-navbar"><a class="skip-link screen-reader-text sr-only" href="#content">Zum Inhalt</a><nav class="navbar navbar-expand-lg">
                <div class="container-fluid"><a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url"><img src="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" class="img-fluid" title="schnitzler-briefe" alt="schnitzler-briefe" itemprop="logo" /></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                      <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Projekt
-                              </a><ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="about.html">Zum Projekt</a><a class="dropdown-item" href="status.html">Projektstatus</a><a class="dropdown-item" href="editionsrichtlinien.html">Editionsrichtlinien</a><a class="dropdown-item" href="danksagung.html">Danksagung</a><a class="dropdown-item" href="kooperationen.html">Kooperationen</a><div class="dropdown-divider"></div><a class="dropdown-item" href="drucke.html">Gedruckte Briefwechsel</a><a class="dropdown-item" href="andere-drucke.html">Weitere Druckdigitalisate</a><a class="dropdown-item" href="gedruckte-korrespondenz.html">Korrespondenz-Bibliografie</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Projekt </a><ul class="dropdown-menu">
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="about.html">Zum Projekt</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="status.html">Projektstatus</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="editionsrichtlinien.html">Editionsrichtlinien</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="danksagung.html">Danksagung</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="kooperationen.html">Kooperationen</a></li>
+                              <div class="dropdown-divider"></div>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="drucke.html">Gedruckte
+                                    Briefwechsel</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="andere-drucke.html">Weitere
+                                    Druckdigitalisate</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="gedruckte-korrespondenz.html">Korrespondenz-Bibliografie</a></li>
                            </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="calendar.html">Kalender</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Index
-                              </a><div class="dropdown-menu"><a class="dropdown-item" href="listperson.html">Personen</a><a class="dropdown-item" href="listwork.html">Werke</a><a class="dropdown-item" href="listplace.html">Orte</a><a class="dropdown-item" href="listorg.html">Institutionen</a></div>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Briefe </a><ul class="dropdown-menu">
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="toc.html">Briefe</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="tocs.html">Korrespondenzen</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="correspaction.html">Versand</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="archives.html">Archive</a></li>
+                           </ul>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Briefe
-                              </a><div class="dropdown-menu"><a class="dropdown-item" href="toc.html">Briefe</a><a class="dropdown-item" href="tocs.html">Korrespondenzen</a><a class="dropdown-item" href="correspaction.html">Versand</a><a class="dropdown-item" href="archives.html">Archive</a></div>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Index </a><ul class="dropdown-menu">
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="listperson.html">Personen</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="listwork.html">Werke</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="listplace.html">Orte</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="listorg.html">Institutionen</a></li>
+                           </ul>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Technisches
-                              </a><div class="dropdown-menu"><a class="dropdown-item" href="elemente.html">Verwendete Elemente</a></div>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Technisches </a><ul class="dropdown-menu">
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="elemente.html">Verwendete Elemente</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="https://github.com/arthur-schnitzler/schnitzler-briefe-data/" target="_blank">Quelldaten auf GitHub</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="https://github.com/arthur-schnitzler/schnitzler-briefe-static/" target="_blank">App auf GitHub</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="https://github.com/arthur-schnitzler/schnitzler-briefe-data/" target="_blank">Quelldaten auf GitHub</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="https://hdl.handle.net/21.11115/0000-000E-7538-0" target="_blank">Daten in der Langzeitarchivierung ARCHE</a></li>
+                           </ul>
                         </li>
                         <li class="nav-item"><a title="Suche" class="nav-link" href="search.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
                                  <circle cx="11" cy="11" r="8"></circle>
@@ -73,18 +130,133 @@
             </nav>
          </div>
          <div class="container-fluid">
-            <div class="card" data-index="true">
-               <div class="card-header">
-                  <div class="row">
-                     <div class="col-md-2 col-lg-2 col-sm-12"></div>
-                     <div class="col-md-8 col-lg-8 col-sm-12">
-                        <h1 align="center"></h1>
-                        <h3 align="center"><a href="L00880"><i class="fas fa-download" title="show TEI source"></i></a></h3>
+            <div class="wp-transcript">
+               <div class="card" data-index="true">
+                  <div class="card-header">
+                     <div class="row" id="title-nav">
+                        <div class="col-md-2 col-lg-2 col-sm-12">
+                           <h1><a href="L00879.html"><i class="fas fa-chevron-left" title="prev"></i></a></h1>
+                        </div>
+                        <div class="col-md-8">
+                           <h1 align="center">Arthur Schnitzler an Georg Brandes, 12. 1. 1899<br /></h1>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right">
+                           <h1><a href="L00881.html"><i class="fas fa-chevron-right" title="next"></i></a></h1>
+                        </div>
                      </div>
-                     <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right"></div>
                   </div>
+                  <div id="container-resize" class="row transcript active">
+                     <div xmlns:_="urn:acdh" id="text-resize" class="row transcript active">
+                        <div id="text-resize" class="col-md-6 col-lg-6 col-sm-12 text yes-index">
+                           <div id="section">
+                              <div class="card-body">
+                                 <div class="card-body-text">
+                                    
+                                    <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_054"></span>Verehrter Herr Brandes,
+                                    <p xmlns:tei="http://www.tei-c.org/ns/1.0">geſtern hab ich Ihren Brief bekommen und aus dem erfahren, dſs Sie wieder zu
+                                       Bette liegen. Abends ſtand es in
+                                       einer  zu
+                                       leſen<a name="fna_1" href="#fn1" title="Vgl. V. A.: Bei Georg Brandes. In: Berliner Tageblatt, Jg. 28, Nr. 16, 9. 1. 1899, Abend-Ausgabe, S. 3: »Aus Kopenhagenschreibt uns unser dortiger Korrespondent: Dr. Georg Brandes muß leider wieder das Bett hüten und zwar wegen seines alten Leidens: Venenentzündung. Ich besuchte gestern den berühmten Autor. ›Und jetzt liege ich hier seit drei Wochen auf meinem Schmerzenslager,‹ sagte Brandes mit einem matten Lächeln; ›wann und wie die Aerzte mir wieder auf die Beine helfen können, wissen sie ja selber nicht.‹ Eine Besserung ist jedoch augenscheinlich eingetreten, welche hoffentlich fortschreiten wird.«."><sup>1</sup></a>, mit dem Beiſatz, dſs Sie ſich ſchon auf dem Weg der
+                                       Beſſerung befinden. Ich hoffe, daſs es ſich ſo verhält und daſs Sie bald ganz
+                                       geſund <del>iſt</del>ſind. Meine innigſten Wünſche ſind bei Ihnen, <span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_055"></span>das wiſſen Sie. Auch von Ihrem Streit mit
+                                       den Deutſchen hab ich durch die
+                                       Zeitung<a name="fna_2" href="#fn2" title="Vgl. [O. V.:] Köllers Erfolge. In: Berliner Tageblatt, Jg. 28, Nr. 9, 5. 1. 1899, Abend-Ausgabe, S. 2: »Georg Brandes, der vom ›Verein Berliner Presse‹ aufgefordert worden war, nach Berlin zu kommen, um einen Vortrag zum Besten der Hilfskasse des genannten Vereins zu halten, hat geantwortet, daß ein dänischer Autor während der gegenwärtigen Verhältnisse in Nordschleswig unmöglich Vorträge in Berlin halten könne.«"><sup>2</sup></a> erfahren; Sie ſollen irgend einen Vortrag abgeſagt
+                                       haben, im Verein »<span class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb29508">Berliner Preſſe</span>«, aus »polit.
+                                       Gründen«. Fügen Sie Ihren Antipathien gegen <del>De</del><span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb206">Preußen</span> und <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb166">Frankreich</span> nur getroſt die gegen <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41240">Oeſterreich</span> bei. Leſen Sie manchmal <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span>er Zeitungen, Parlaments- und
+                                       Gemeinderathsberichte? Es iſt ſtaunenswerth, unter was für Schweinen wir hier
+                                       leben; – und <span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_063"></span>ich denke i<span class="gemination">m̅</span>er, ſelbſt Antiſemiten müßte es doch auffallen,
+                                       daſs der Antiſemitismus – von allem andern abgeſehen – jedenfalls die ſonderbare
+                                       Kraft hat, die verlogenſten Gemeinheiten der menſchlichen Natur zu Tage zu
+                                       fördern und ſie aufs höchſte auszubilden. Wie merkwürdig, daſs ſogar die
+                                       offenbaren Mängel, Fehler, meinetwegen Verbrechen der Judenpreſſe, die man als
+                                        ſo ſpezifiſch jüdiſch hinſtellen wollte, von der Antiſemiten<span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_064"></span>preſſe ins ungeheuerliche ausgebildet worden
+                                        ſind. Aber wir wollen über dieſe widerlichen Dinge lieber gar nicht reden.</p>
+                                    <p xmlns:tei="http://www.tei-c.org/ns/1.0">Ich freue mich, dſs das »« einigen
+                                       Beifall bei Ihnen gefunden hat. Mir ſelbſt iſt nur der erſte Akt lieb; dann
+                                       gewiſſe Partien des letzten. Solange die Hauptperſon auf der Scene iſt, hab ich
+                                       das Stück nicht gern. Die iſt ganz unperſönlich geblieben find ich. Während der
+                                       Proben fiel mir mancherlei ein, wodurch ich das Stück hätte höher bringen
+                                       können; vor allem hätt ich das Kind <span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_056"></span>müſſen
+                                       am Leben laſſen; – aber es ſcheint ich bin nicht anſtändig genug, um ein Stück
+                                       noch auf der Probe zurückzuziehn, ſelbſt we<span class="gemination">n̅</span> ich
+                                       weiſs, wie es beſſer zu machen wäre. Es hat in <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> un<abbr title="unclear">d</abbr> <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span> bei der Erſtaufführung viel Erfolg gehabt;
+                                       in <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> verſchwand es bald; hier ſcheint es
+                                        ſich zu halten. Irgend eine Zukunft hat es gewiſs nicht – und wahrhaftig nicht
+                                       nur wegen ſeiner Traurigkeit –! – Nun hab ich was geſchrieben, das mir lieber
+                                       iſt; drei kleine , von denen das <span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_057"></span>eine »«, das beſte, großen
+                                       Schwierigkeiten begegnet. In <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> haben ſie
+                                       es verboten; – hier will die Hofcenſur die unmöglichſten Aenderungen. Es ſpielt
+                                       am Abend der <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb518">Baſtille</span>nerſtürmung zu <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb182">Paris</span> – aber ich ſoll den »Blutgeruch«
+                                       herausſtreichen. Auch daſs ein Herzog umgebracht wird, will den Leuten nicht
+                                       gefallen. Ich freu mich Ihnen das Ding bald zu ſchicken; es wird Sie
+                                       wahrſcheinlich amuſiren.</p>
+                                    <p xmlns:tei="http://www.tei-c.org/ns/1.0">Und jetzt bin ich mit einer ganz phantaſtiſchen <span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_061"></span>fünfactigen  beſchäftigt; mir ſcheint überhaupt als käme ich
+                                       jetzt in andere Gegenden. Wer weiſs, ob alles bisherige nicht doch nur Tagebuch
+                                       war; wenigſtens von einer gewiſſen Zeit an. (Denn früher einmal, von meinem 9.
+                                       bis zu meinem 20. Jahr hab ich geſchrieben, »wie der Vogel ſingt« – ich muſs
+                                       damals ſehr glücklich geweſen ſein; de<span class="gemination">n̅</span> ich eri<span class="gemination">n̅</span>ere mich gar nicht, wie ichs eigentlich gemacht
+                                       habe. Ich habe noch manches; Trauerſpiele und Faſtnachtsſpiele und <span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_062"></span>komiſche Romane; nahezu durchaus blödſinnig;
+                                       aber ich habe ſelbſt zu der Zeit, da ich dieſe Dinge ſchrieb, nie das Bedürfnis
+                                       gehabt, es irgend wem zu zeigen. So wird man zudringlicher, niedriger und
+                                       unfröhlicher von Jahr zu Jahr. –)</p>
+                                    <p xmlns:tei="http://www.tei-c.org/ns/1.0">Hoffentlich ſchwingt ſich <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10863">Beer-Hofma<span class="gemination">n̅</span></span> auf, Ihnen ſelbſt zu ſchreiben; faul iſt er allerdings enorm. Sie wiſſen
+                                       wahrſcheinlich nicht einmal, dſs er geheiratet<a name="fna_3" href="#fn3" title="Die Hochzeit hatte am 14. 5. 1898 in einer Synagoge in Wien stattgefunden."><sup>3</sup></a> hat, <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10860">Paula</span>, die Sie kennen <span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_058"></span>auch hat er
+                                        ſchon zwei Töchter, die <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb2668">Mirjam</span> und <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb2534">Naëmie</span> heißen. Aber ſeine neue  (was ich davon kenne
+                                       iſt wunderſchön) iſt noch nicht fertig.</p>
+                                    <p xmlns:tei="http://www.tei-c.org/ns/1.0">Iſt Ihnen ein Roman bekannt, , von <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb13055">Waſſermann</span>? Ich
+                                       glaube, das iſt derjenige Menſch, der den deutſchen
+                                       Roman vom Anfang des nächſten Jahrhunderts ſchreiben wird. Sind Ihnen die
+                                       Novelletten zugeko<span class="gemination">m̅</span>en, die ich Ihnen im Frühjahr
+                                        ſchickte? <span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_059"></span>(»«. –)</p>
+                                    <p xmlns:tei="http://www.tei-c.org/ns/1.0">Von Ihrem Ausflug nach <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb313">Polen</span> und Ihrem Empfang
+                                       haben wir hier geleſen<a name="fna_4" href="#fn4" title="Die Wiener Zeitungen hatten mehrfach über den Besuch Brandes in Lemberg berichtet, so etwa die Neue Freie Presse in der ungezeichneten Meldung Georg Brandes in Lemberg ([O. V.], Nr. 12300, 19. 11. 1898, Morgenausgabe, S. 4) »Georg Brandes, der einer Einladung nach Lemberg zu der am 20. November stattfindenden Enthüllung des Sobiesky-Denkmals Folge gegeben hat, wurde bei seiner Ankunft dasselbst von einer Deputation feierlich empfangen. Die Spitzen der Gesellschaft wetteifern in dem Bestreben, sich dem großen dänischen Schriftsteller für die in seinem ebenaso geistvollen als anregenden Werke ›Polen‹ zum Ausdrucke gebrachten Sympathien erkenntlich zu zeigen.«"><sup>4</sup></a>;
+                                       dagegen hab ich von Ihren  abſolut nichts gewußt<del>?</del>. Werden Sie ſie überſetzen<a name="fna_5" href="#fn5" title="Eine deutsche Übersetzung der Jugendgedichte erschien nicht."><sup>5</sup></a> laſſen? Sind ſie
+                                        ſchön? Haben Sie ſie gern? Wie viele Stunden hat Ihr Tag! Zu allem haben Sie
+                                       Zeit. Und alles bewahren Sie auf, das iſt das Bewunderungswürdige, und darum <span class="anchor-pb"></span><span class="pb" source="Georg_Brandes_arkiv_060"></span>ſind Sie ſo reich.</p>
+                                    <p xmlns:tei="http://www.tei-c.org/ns/1.0">Ich wünſchte, Sie würden gleich geſund, reiſten wieder nach <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb40306">Italien</span>, und blieben wieder ein paar Tage in <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span>. Ein Wort von Ihnen, wie’s Ihnen geht,
+                                       brächte mir jedenfalls viel Freude.</p>Herzlich grüßt Sie Ihr Ihnen <br xmlns:tei="http://www.tei-c.org/ns/1.0"></br>treuergebener<br xmlns:tei="http://www.tei-c.org/ns/1.0"></br>ArthurSchnitzler<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">12. 1. 99</span>.
+                                    
+                                    
+                                    
+                                    <ol class="list-for-footnotes"></ol>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div id="img-resize" class="col-md-6 col-lg-6 col-sm-12 facsimiles">
+                           <div id="viewer">
+                              <div id="container_facsimile">
+                                 <div class="card-body-iif">
+                                    <div id="openseadragon-photo" style="height:800px;"><script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.0.0/openseadragon.min.js"></script><script type="text/javascript">
+                                                var viewer = OpenSeadragon({
+                                                    id: "openseadragon-photo",
+                                                    protocol: "http://iiif.io/api/image",
+                                                    prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.0.0/images/",
+                                                    sequenceMode: true,
+                                                    showNavigationControl: true,
+                                                    referenceStripScroll: 'horizontal',
+                                                    showReferenceStrip: true,
+                                                    defaultZoomLevel: 0,
+                                                    fitHorizontally: true,tileSources:["https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_054.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_055.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_063.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_064.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_056.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_057.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_061.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_062.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_058.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_059.jp2/info.json", "https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Georg_Brandes_arkiv_060.jp2/info.json"], 
+                                                // Initial rotation angle
+                                                degrees: 0,
+                                                // Show rotation buttons
+                                                showRotationControl: true,
+                                                // Enable touch rotation on tactile devices
+                                                gestureSettingsTouch: {
+                                                    pinchRotate: true
+                                                }
+                                            });</script><div class="image-rights">Bildrechte © Det Kongelige Bibliotek, Kopenhagen</div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card-footer" style="clear: both;">
                   <div id="editor-widget">
-                     <p>Text Editor</p>
                      <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                               <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
                               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
@@ -118,1284 +290,258 @@
                         </ul>
                      </div>
                   </div>
-               </div>
-               <div class="card-body">
-                  
-                  <div id="div__326"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_054"></span>Verehrter Herr Brandes,
-                     <p id="p__117" class="yes-index">gestern hab ich Ihren Brief bekommen und aus dem erfahren, dss Sie wieder zu
-                        Bette liegen. Abendsstand es in
-                        einer  zu
-                        lesen<a name="fna_1" href="#fn1" title="Vgl. V. A.: Bei Georg Brandes. In: Berliner Tageblatt, Jg. 28, Nr. 16, 9. 1. 1899, Abend-Ausgabe, S. 3: »Aus Kopenhagenschreibt uns unser dortiger Korrespondent: Dr. Georg Brandes muß leider wieder das Bett hüten und zwar wegen seines alten Leidens: Venenentzündung. Ich besuchte gestern den berühmten Autor. ›Und jetzt liege ich hier seit drei Wochen auf meinem Schmerzenslager,‹ sagte Brandes mit einem matten Lächeln; ›wann und wie die Aerzte mir wieder auf die Beine helfen können, wissen sie ja selber nicht.‹ Eine Besserung ist jedoch augenscheinlich eingetreten, welche hoffentlich fortschreiten wird.«."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">1</sup></a>, mit dem Beisatz, dss Siesichschon auf dem Weg der
-                        Besserung befinden. Ich hoffe, dass essichso verhält und dass Sie bald ganz
-                        gesund <del xmlns:tei="http://www.tei-c.org/ns/1.0">ist</del>sind. Meine innigsten Wünschesind bei Ihnen, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_055"></span>das wissen Sie. Auch von Ihrem Streit mit
-                        den Deutschen hab ich durch die
-                        Zeitung<a name="fna_2" href="#fn2" title="Vgl. [O. V.:] Köllers Erfolge. In: Berliner Tageblatt, Jg. 28, Nr. 9, 5. 1. 1899, Abend-Ausgabe, S. 2: »Georg Brandes, der vom ›Verein Berliner Presse‹ aufgefordert worden war, nach Berlin zu kommen, um einen Vortrag zum Besten der Hilfskasse des genannten Vereins zu halten, hat geantwortet, daß ein dänischer Autor während der gegenwärtigen Verhältnisse in Nordschleswig unmöglich Vorträge in Berlin halten könne.«"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">2</sup></a> erfahren; Siesollen irgend einen Vortrag abgesagt
-                        haben, im Verein »<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb29508">Berliner Presse</span>«, aus »polit.
-                        Gründen«. Fügen Sie Ihren Antipathien gegen <del xmlns:tei="http://www.tei-c.org/ns/1.0">De</del><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb206">Preußen</span> und <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb166">Frankreich</span> nur getrost die gegen <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb41240">Oesterreich</span> bei. Lesen Sie manchmal <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span>er Zeitungen, Parlaments- und
-                        Gemeinderathsberichte? Es iststaunenswerth, unter was für Schweinen wir hier
-                        leben; – und <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_063"></span>ich denke ier,selbst Antisemiten müßte es doch auffallen,
-                        dass der Antisemitismus – von allem andern abgesehen – jedenfalls diesonderbare
-                        Kraft hat, die verlogensten Gemeinheiten der menschlichen Natur zu Tage zu
-                        fördern undsie aufs höchste auszubilden. Wie merkwürdig, dasssogar die
-                        offenbaren Mängel, Fehler, meinetwegen Verbrechen der Judenpresse, die man als
-                        sospezifisch jüdisch hinstellen wollte, von der Antisemiten<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_064"></span>presse ins ungeheuerliche ausgebildet worden
-                        sind. Aber wir wollen über diese widerlichen Dinge lieber gar nicht reden.</p>
-                     <p id="p__70" class="yes-index">Ich freue mich, dss das »« einigen
-                        Beifall bei Ihnen gefunden hat. Mirselbst ist nur der erste Akt lieb; dann
-                        gewisse Partien des letzten. Solange die Hauptperson auf der Scene ist, hab ich
-                        das Stück nicht gern. Die ist ganz unpersönlich geblieben find ich. Während der
-                        Proben fiel mir mancherlei ein, wodurch ich das Stück hätte höher bringen
-                        können; vor allem hätt ich das Kind <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_056"></span>müssen
-                        am Leben lassen; – aber esscheint ich bin nicht anständig genug, um ein Stück
-                        noch auf der Probe zurückzuziehn,selbst we ich
-                        weiss, wie es besser zu machen wäre. Es hat in <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> un<abbr xmlns:tei="http://www.tei-c.org/ns/1.0" title="unclear">d</abbr><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span> bei der Erstaufführung viel Erfolg gehabt;
-                        in <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> verschwand es bald; hierscheint es
-                        sich zu halten. Irgend eine Zukunft hat es gewiss nicht – und wahrhaftig nicht
-                        nur wegenseiner Traurigkeit –! – Nun hab ich was geschrieben, das mir lieber
-                        ist; drei kleine , von denen das <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_057"></span>eine »«, das beste, großen
-                        Schwierigkeiten begegnet. In <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> habensie
-                        es verboten; – hier will die Hofcensur die unmöglichsten Aenderungen. Esspielt
-                        am Abend der <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb518">Bastille</span>nerstürmung zu <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb182">Paris</span> – aber ichsoll den »Blutgeruch«
-                        herausstreichen. Auch dass ein Herzog umgebracht wird, will den Leuten nicht
-                        gefallen. Ich freu mich Ihnen das Ding bald zuschicken; es wird Sie
-                        wahrscheinlich amusiren.</p>
-                     <p id="p__38" class="yes-index">Und jetzt bin ich mit einer ganz phantastischen <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_061"></span>fünfactigen  beschäftigt; mirscheint überhaupt als käme ich
-                        jetzt in andere Gegenden. Wer weiss, ob alles bisherige nicht doch nur Tagebuch
-                        war; wenigstens von einer gewissen Zeit an. (Denn früher einmal, von meinem 9.
-                        bis zu meinem 20. Jahr hab ich geschrieben, »wie der Vogelsingt« – ich muss
-                        damalssehr glücklich gewesensein; de ich eriere mich gar nicht, wie ichs eigentlich gemacht
-                        habe. Ich habe noch manches; Trauerspiele und Fastnachtsspiele und <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_062"></span>komische Romane; nahezu durchaus blödsinnig;
-                        aber ich habeselbst zu der Zeit, da ich diese Dingeschrieb, nie das Bedürfnis
-                        gehabt, es irgend wem zu zeigen. So wird man zudringlicher, niedriger und
-                        unfröhlicher von Jahr zu Jahr. –)</p>
-                     <p id="p__36" class="yes-index">Hoffentlichschwingtsich <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10863">Beer-Hofma</span> auf, Ihnenselbst zuschreiben; faul ist er allerdings enorm. Sie wissen
-                        wahrscheinlich nicht einmal, dss er geheiratet<a name="fna_3" href="#fn3" title="Die Hochzeit hatte am 14. 5. 1898 in einer Synagoge in Wien stattgefunden."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">3</sup></a> hat, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10860">Paula</span>, die Sie kennen <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_058"></span>auch hat er
-                        schon zwei Töchter, die <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb2668">Mirjam</span> und <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb2534">Naëmie</span> heißen. Aberseine neue  (was ich davon kenne
-                        ist wunderschön) ist noch nicht fertig.</p>
-                     <p id="p__24" class="yes-index">Ist Ihnen ein Roman bekannt, , von <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb13055">Wassermann</span>? Ich
-                        glaube, das ist derjenige Mensch, der den deutschen
-                        Roman vom Anfang des nächsten Jahrhundertsschreiben wird. Sind Ihnen die
-                        Novelletten zugekoen, die ich Ihnen im Frühjahr
-                        schickte? <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_059"></span>(»«. –)</p>
-                     <p id="p__47" class="yes-index">Von Ihrem Ausflug nach <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb313">Polen</span> und Ihrem Empfang
-                        haben wir hier gelesen<a name="fna_4" href="#fn4" title="Die Wiener Zeitungen hatten mehrfach über den Besuch Brandes in Lemberg berichtet, so etwa die Neue Freie Presse in der ungezeichneten Meldung Georg Brandes in Lemberg ([O. V.], Nr. 12300, 19. 11. 1898, Morgenausgabe, S. 4) »Georg Brandes, der einer Einladung nach Lemberg zu der am 20. November stattfindenden Enthüllung des Sobiesky-Denkmals Folge gegeben hat, wurde bei seiner Ankunft dasselbst von einer Deputation feierlich empfangen. Die Spitzen der Gesellschaft wetteifern in dem Bestreben, sich dem großen dänischen Schriftsteller für die in seinem ebenaso geistvollen als anregenden Werke ›Polen‹ zum Ausdrucke gebrachten Sympathien erkenntlich zu zeigen.«"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">4</sup></a>;
-                        dagegen hab ich von Ihren  absolut nichts gewußt<del xmlns:tei="http://www.tei-c.org/ns/1.0">?</del>. Werden Siesie übersetzen<a name="fna_5" href="#fn5" title="Eine deutsche Übersetzung der Jugendgedichte erschien nicht."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">5</sup></a> lassen? Sindsie
-                        schön? Haben Siesie gern? Wie viele Stunden hat Ihr Tag! Zu allem haben Sie
-                        Zeit. Und alles bewahren Sie auf, das ist das Bewunderungswürdige, und darum <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Georg_Brandes_arkiv_060"></span>sind Sieso reich.</p>
-                     <p id="p__13" class="yes-index">Ich wünschte, Sie würden gleich gesund, reisten wieder nach <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb40306">Italien</span>, und blieben wieder ein paar Tage in <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span>. Ein Wort von Ihnen, wie’s Ihnen geht,
-                        brächte mir jedenfalls viel Freude.</p>Herzlich grüßt Sie Ihr Ihnen <br xmlns:tei="http://www.tei-c.org/ns/1.0"></br>treuergebener<br xmlns:tei="http://www.tei-c.org/ns/1.0"></br>ArthurSchnitzler<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">12. 1. 99</span>.</div>
-                  </div>
-               <div class="card-footer">
-                  <p style="text-align:center;">
-                     <div class="footnotes" id="note__21"><a name="fn1"><a href="#fna_1"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">1</span></a></a>Vgl. 
-                        <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-                           <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                                 <div class="modal-body">
-                                    <table class="table">
-                                       <tbody>
-                                          <tr>
-                                             <th>
-                                                Autor(en)
-                                                </th>
-                                             <td>
-                                                <ul></ul>
-                                             </td>
-                                          </tr>
-                                          <tr>
-                                             <th></th>
-                                             <td>
-                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
-                                                </td>
-                                          </tr>
-                                       </tbody>
-                                    </table>
-                                 </div>
-                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                              </div>
-                           </div>
-                        </div>: »
-                        <p id="p__6" class="yes-index">Aus <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb36300"><span>Kopenhagen</span></span>schreibt uns unser dortiger
-                           Korrespondent: Dr. <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">Georg
-                              Brandes</span> muß leider wieder das Bett hüten und zwar wegen
-                           seines alten Leidens: Venenentzündung. Ich besuchte gestern den
-                           berühmten Autor.  ›Und jetzt liege ich hier seit drei Wochen auf meinem
-                           Schmerzenslager,‹ sagte <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">Brandes</span>
-                           mit einem matten Lächeln; ›wann und wie die Aerzte mir wieder auf
-                           die Beine helfen können, wissen sie ja selber nicht.‹</p>
-                        <p id="p__3" class="yes-index"> Eine Besserung ist jedoch augenscheinlich eingetreten,
-                           welche hoffentlich fortschreiten wird.</p>«.</div>
-                     <div class="footnotes" id="note__46"><a name="fn2"><a href="#fna_2"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">2</span></a></a>Vgl. 
-                        <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-                           <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                                 <div class="modal-body">
-                                    <table class="table">
-                                       <tbody>
-                                          <tr>
-                                             <th>
-                                                Autor(en)
-                                                </th>
-                                             <td>
-                                                <ul></ul>
-                                             </td>
-                                          </tr>
-                                          <tr>
-                                             <th></th>
-                                             <td>
-                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
-                                                </td>
-                                          </tr>
-                                       </tbody>
-                                    </table>
-                                 </div>
-                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                              </div>
-                           </div>
-                        </div>: »<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992"><span>Georg Brandes</span></span>, der vom ›<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb29508"><span>Verein Berliner Presse</span></span>‹ aufgefordert worden war, nach <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> zu kommen, um einen Vortrag zum Besten der Hilfskasse
-                        des genannten Vereins zu halten, hat geantwortet, daß ein <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb43570"><span>dänischer</span></span><span xmlns:tei="http://www.tei-c.org/ns/1.0"> Autor</span> während der gegenwärtigen Verhältnisse
-                        in <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb1115">Nordschleswig</span> unmöglich Vorträge in
-                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> halten
-                        könne.«</div>
-                     <div class="footnotes" id="note__19"><a name="fn3"><a href="#fna_3"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">3</span></a></a>Die Hochzeit hatte am
-                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">14. 5. 1898</span> in einer Synagoge in <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span> stattgefunden.</div>
-                     <div class="footnotes" id="note__18"><a name="fn4"><a href="#fna_4"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">4</span></a></a>Die <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span>er Zeitungen hatten mehrfach über den Besuch <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">Brandes</span> in <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46224">Lemberg</span>
-                        berichtet, so etwa die <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb29351">Neue Freie Presse</span> in der ungezeichneten Meldung
-                        
-                        (
-                        <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-                           <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                                 <div class="modal-body">
-                                    <table class="table">
-                                       <tbody>
-                                          <tr>
-                                             <th>
-                                                Autor(en)
-                                                </th>
-                                             <td>
-                                                <ul></ul>
-                                             </td>
-                                          </tr>
-                                          <tr>
-                                             <th></th>
-                                             <td>
-                                                Anzahl der Erwähnungen limitiert, klicke <a href=".html">hier</a> für eine vollständige Auflistung
-                                                </td>
-                                          </tr>
-                                       </tbody>
-                                    </table>
-                                 </div>
-                                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                              </div>
-                           </div>
-                        </div>)
-                        »<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">Georg Brandes</span>, der einer
-                        Einladung nach <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46224">Lemberg</span> zu der am
-                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">20. November</span> stattfindenden Enthüllung des <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46234">Sobiesky</span>-Denkmals Folge gegeben hat,
-                        wurde bei seiner Ankunft dasselbst von einer Deputation feierlich
-                        empfangen. Die Spitzen der Gesellschaft wetteifern in dem Bestreben,
-                        sich dem großen <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">dänischen Schriftsteller</span> für die in seinem ebenaso geistvollen
-                        als anregenden Werke ›‹ zum
-                        Ausdrucke gebrachten Sympathien erkenntlich zu zeigen.« </div>
-                     <div class="footnotes" id="note__12"><a name="fn5"><a href="#fna_5"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">5</span></a></a>Eine deutsche
-                        Übersetzung der Jugendgedichte erschien nicht.</div>
-                     <div class="footnotes" id="note__8"><a name="fn6"><a href="#fna_6"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">6</span></a></a>Publikationsorgan &gt;&gt; Tageszeitung</div>
-                     <div class="footnotes" id="note__2"><a name="fn7"><a href="#fna_7"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">7</span></a></a>Berliner Tageblatt, 9. 1. 1899</div>
-                     <div class="footnotes" id="note__7"><a name="fn8"><a href="#fna_8"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">8</span></a></a>Feuilleton</div>
-                     <div class="footnotes" id="note__2"><a name="fn9"><a href="#fna_9"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">9</span></a></a>Berliner Tageblatt, 5. 1. 1899</div>
-                     <div class="footnotes" id="note__7"><a name="fn10"><a href="#fna_10"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">10</span></a></a>Notiz</div>
-                     <div class="footnotes" id="note__12"><a name="fn11"><a href="#fna_11"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">11</span></a></a>Drama &gt;&gt; Mehraktiges Drama</div>
-                     <div class="footnotes" id="note__12"><a name="fn12"><a href="#fna_12"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">12</span></a></a>Drama &gt;&gt; Einakter</div>
-                     <div class="footnotes" id="note__2"><a name="fn13"><a href="#fna_13"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">13</span></a></a>Cosmopolis, Jg. 3, Bd. 12, Nr. 35, November 1898</div>
-                     <div class="footnotes" id="note__3"><a name="fn14"><a href="#fna_14"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">14</span></a></a>https://www.degruyter.com/document/doi/10.1515/9783110712247/html</div>
-                     <div class="footnotes" id="note__13"><a name="fn15"><a href="#fna_15"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">15</span></a></a>Drama &gt;&gt; Einakter</div>
-                     <div class="footnotes" id="note__2"><a name="fn16"><a href="#fna_16"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">16</span></a></a>Neue Deutsche Rundschau, Jg. 10, H. 3, März 1899</div>
-                     <div class="footnotes" id="note__13"><a name="fn17"><a href="#fna_17"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">17</span></a></a>Drama &gt;&gt; Einakter</div>
-                     <div class="footnotes" id="note__3"><a name="fn18"><a href="#fna_18"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">18</span></a></a>http://anno.onb.ac.at/cgi-content/anno-buch?apm=0&amp;aid=601&amp;teil=0111&amp;seite=00000001&amp;zoom=2</div>
-                     <div class="footnotes" id="note__12"><a name="fn19"><a href="#fna_19"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">19</span></a></a>Drama &gt;&gt; Mehraktiges Drama</div>
-                     <div class="footnotes" id="note__3"><a name="fn20"><a href="#fna_20"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">20</span></a></a>https://archive.org/details/dertodgeorgs00beergoog</div>
-                     <div class="footnotes" id="note__11"><a name="fn21"><a href="#fna_21"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">21</span></a></a>Erzählung</div>
-                     <div class="footnotes" id="note__7"><a name="fn22"><a href="#fna_22"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">22</span></a></a>Roman</div>
-                     <div class="footnotes" id="note__8"><a name="fn23"><a href="#fna_23"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">23</span></a></a>Textsammlung</div>
-                     <div class="footnotes" id="note__2"><a name="fn24"><a href="#fna_24"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">24</span></a></a>http://anno.onb.ac.at/cgi-content/anno?aid=nfp&amp;datum=18981119&amp;seite=4&amp;zoom=33</div>
-                     <div class="footnotes" id="note__3"><a name="fn25"><a href="#fna_25"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">25</span></a></a>Neue Freie Presse, Nr. 12300, 19.11.1898, Morgenausgabe, S. 4</div>
-                     <div class="footnotes" id="note__7"><a name="fn26"><a href="#fna_26"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">26</span></a></a>Notiz</div>
-                     <div class="footnotes" id="note__8"><a name="fn27"><a href="#fna_27"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">27</span></a></a>Sachbuch</div>
-                     <div class="footnotes" id="note__6"><a name="fn28"><a href="#fna_28"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">28</span></a></a>Text</div>
-                     <div class="footnotes" id="note__11"><a name="fn29"><a href="#fna_29"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">29</span></a></a>
-                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">1947</span>
-                        </div>
-                     <div class="footnotes" id="note__9"><a name="fn30"><a href="#fna_30"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">30</span></a></a>
-                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">1862</span>
-                        </div>
-                     <div class="footnotes" id="note__13"><a name="fn31"><a href="#fna_31"><span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">31</span></a></a>
-                        <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">1864-09-01  – 1939-02-01</span>
-                        </div>
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="tei-back">
-            
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb2121" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Schnitzler, Arthur" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Schnitzler, Arthur</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb2121.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb10992" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Brandes, Georg" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Brandes, Georg</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb10992.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29110" data-bs-keyboard="false" tabindex="-1" aria-labelledby="V. A., " aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">V. A., </h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29110.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb10863" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Beer-Hofmann, Richard" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Beer-Hofmann, Richard</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb10863.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb10860" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Beer-Hofmann, Paula" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Beer-Hofmann, Paula</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb10860.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb2668" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Beer-Hofmann, Mirjam" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Beer-Hofmann, Mirjam</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb2668.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb2534" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Beer-Hofmann, Naëmah" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Beer-Hofmann, Naëmah</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb2534.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb13055" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Wassermann, Jakob" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Wassermann, Jakob</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb13055.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb46234" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Sobieski, Johann III." aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Sobieski, Johann III.</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb46234.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb41531" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Berliner Tageblatt</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul></ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb41531.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb33337" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Bei Georg Brandes</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb33337.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb33335" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Köllers Erfolge</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul></ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb33335.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb30219" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Das Vermächtnis. Schauspiel in drei Akten</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb30219.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29845" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Die Gefährtin. Schauspiel in einem Akt Der Wittwer</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29845.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb30403" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Paracelsus. Versspiel in einem Akt</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb30403.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29843" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Der grüne Kakadu. Groteske in einem Akt</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29843.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29857" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Der Schleier der Beatrice. Schauspiel in fünf Akten Shawl</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29857.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb31535" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Der Tod Georgs Der Götterliebling</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb31535.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb33291" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Die Juden von Zirndorf</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb33291.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb32460" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Die Frau des Weisen. Novelletten</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb32460.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb46237" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Brandes in Lemberg</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul></ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb46237.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb32065" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Polen</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb32065.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb33293" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Ungdomsvers [Jugendgedichte]</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th>
-                                    Autor(en)
-                                    </th>
-                                 <td>
-                                    <ul>
-                                       <li><a href=".html"></a></li>
-                                    </ul>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb33293.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb50" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Wien K.K. Reichshaupt- und Residenzstadt Wien http://d-nb.info/gnd/4066009-6 Bécs Land Wien Vídeň Wenia Beč Vindobona (Wien) Vindobona Vienna Wien?" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Wien K.K. Reichshaupt- und Residenzstadt Wien http://d-nb.info/gnd/4066009-6 Bécs
-                           Land Wien Vídeň Wenia Beč Vindobona (Wien) Vindobona Vienna Wien?</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb50.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb36300" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Kopenhagen" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Kopenhagen</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb36300.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb168" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Berlin http://sws.geonames.org/2950159/ Hauptstadt Berlin http://d-nb.info/gnd/4005728-8 Barlīn Reichshauptstadt Berlin Berolino" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Berlin http://sws.geonames.org/2950159/ Hauptstadt Berlin http://d-nb.info/gnd/4005728-8
-                           Barlīn Reichshauptstadt Berlin Berolino</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb168.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb43570" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Dänemark Denmark http://sws.geonames.org/2623032/ Kingdom of Denmark" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Dänemark Denmark http://sws.geonames.org/2623032/ Kingdom of Denmark</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb43570.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb1115" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Nordschleswig https://de.wikipedia.org/wiki/Nordschleswig" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Nordschleswig https://de.wikipedia.org/wiki/Nordschleswig</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb1115.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb206" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Preußen https://de.wikipedia.org/wiki/Preußen" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Preußen https://de.wikipedia.org/wiki/Preußen</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb206.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb166" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Frankreich France" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Frankreich France</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb166.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb41240" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Österreich Republik Österreich http://sws.geonames.org/2782113/ https://www.wikidata.org/wiki/Q40 https://bahrschnitzler.acdh.oeaw.ac.at/entity/pmb162 Republic of Austria" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Österreich Republik Österreich http://sws.geonames.org/2782113/ https://www.wikidata.org/wiki/Q40
-                           https://bahrschnitzler.acdh.oeaw.ac.at/entity/pmb162 Republic of Austria</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb41240.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb518" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Bastille" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Bastille</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb518.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb182" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Paris P'ariz http://d-nb.info/gnd/4044660-8 http://sws.geonames.org/6455259/ Pariž Parisius" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Paris P'ariz http://d-nb.info/gnd/4044660-8 http://sws.geonames.org/6455259/ Pariž
-                           Parisius</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb182.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb313" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Polen Republic of Poland Poland" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Polen Republic of Poland Poland</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb313.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb46224" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Lviv Lwiw Lwów Lemberg" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Lviv Lwiw Lwów Lemberg</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb46224.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb40306" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Italien Italian Republic Republic of Italy http://sws.geonames.org/3175395/ https://schnitzler-briefe.acdh.oeaw.ac.at/A000475 https://www.wikidata.org/wiki/Q38 https://www.geonames.org/3175395 Italy" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Italien Italian Republic Republic of Italy http://sws.geonames.org/3175395/ https://schnitzler-briefe.acdh.oeaw.ac.at/A000475
-                           https://www.wikidata.org/wiki/Q38 https://www.geonames.org/3175395 Italy</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb40306.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29508" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29508.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            <div xmlns:tei="http://www.tei-c.org/ns/1.0" class="modal fade" id="pmb29351" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                     <div class="modal-body">
-                        <table class="table">
-                           <tbody>
-                              <tr>
-                                 <th></th>
-                                 <td>
-                                    Anzahl der Erwähnungen limitiert, klicke <a href="pmb29351.html">hier</a> für eine vollständige Auflistung
-                                    </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-                  </div>
-               </div>
-            </div>
-            
-            </div>
-         <div class="wrapper fundament-default-footer hide-reading" id="wrapper-footer-full">
-            <div class="container-fluid" id="footer-full-content" tabindex="-1">
-               <div class="footer-separator">
-                  KONTAKT
-                  </div>
-               <div class="row">
-                  <div class="footer-widget col-lg-1 col-md-2 col-sm-2 col-xs-6  ml-auto  text-center ">
-                     <div class="textwidget custom-html-widget"><a href="/"><img src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg" class="image" alt="ACDH Logo" style="max-width: 90%; height: auto;" title="ACDH Logo" /></a></div>
-                  </div>
-                  <div class="footer-widget col-lg-4 col-md-3 col-sm-3">
-                     <div class="textwidget custom-html-widget">
-                        <p>
-                           ACDH-CH OEAW
-                           <br />
-                           Austrian Centre for Digital Humanities and Cultural Heritage
-                           <br />
-                           Austrian Academy of Sciences
-                           </p>
-                        <p>
-                           Bäckerstraße 13
-                           <br />
-                           1010 Wien
-                           </p>
-                        <p>
-                           T: +43 1 51581-2200
-                           <br />
-                           E: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at">acdh-ch-helpdesk(at)oeaw.ac.at</a></p>
-                     </div>
-                  </div>
-                  <div class="footer-widget col-lg-1 col-md-2 col-sm-2 col-xs-6  ml-auto  text-center ">
-                     <div class="textwidget custom-html-widget"><a href="/"><img src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/fwf-logo_var2.jpg" class="image" alt="FWF Logo" style="max-width: 90%; height: auto;" title="ACDH Logo" /></a></div>
-                  </div>
-                  <div class="footer-widget col-lg-4 col-md-3 col-sm-4">
-                     <h6 class="font-weight-bold">FINANZIERUNG</h6>
-                     <div class="container">
-                        <div class="row">
-                           <div class="col-lg-6 col-md-6 col-sm-12">
-                              <div class="flex-md-row mb-4 align-items-center"><a href="https://www.fwf.ac.at/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/fwf-logo_var2.jpg" alt="FWF Der Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" /><p></p>
-                                    <p>Gefördert aus Mitteln des Wissenschaftsfonds FWF, P31277 (2018–2021) und
-                                       P34792 (2021–[2024])</p></a></div>
-                           </div>
+                  <nav class="navbar navbar-expand-lg">
+                     <div class="container-fluid">
+                        <div>
+                           <ul id="secondary-menu" class="navbar-nav mb-2 mb-lg-0">
+                              <li class="nav-item">
+                                  <a href="#" data-bs-target="#ueberlieferung" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ÜBERLIEFERUNG </a> 
+                                 </li>
+                              <li class="nav-item">
+                                  <a href="#" data-bs-target="#zitat" type="button" data-bs-toggle="modal"><i class="fas fa-quote-right"></i> ZITIEREN</a> 
+                                 </li>
+                              <li class="nav-item"><a class="nav-link" target="_blank" type="button" href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__1899-01-12.html"><i class="fas fa-external-link-alt"></i>
+                                    TAGEBUCH
+                                    </a></li>
+                           </ul>
                         </div>
                      </div>
+                  </nav>
+                  <div class="card-body-anhang">
+                     <dl class="kommentarhang">
+                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L00880_1h"><span class="lemma">in … lesen] </span><span class="kommentar-text" id="K_L00880_1h">Vgl. 
+                              <div class="card-body-index">
+                                 <div id="mentions"></div>
+                                 <div id="mentions" class="mt-2"><span class="infodesc mr-2">
+                                       <legend>Erwähnungen</legend>
+                                       <ul></ul></span></div>
+                              </div>: »
+                              <p>Aus <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb36300"><span>Kopenhagen</span></span> schreibt uns unser dortiger
+                                 Korrespondent: Dr. <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">Georg
+                                    Brandes</span> muß leider wieder das Bett hüten und zwar wegen
+                                 seines alten Leidens: Venenentzündung. Ich besuchte gestern den
+                                 berühmten Autor.  .  .  .  ›Und jetzt liege ich hier seit drei Wochen auf meinem
+                                 Schmerzenslager,‹ sagte <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">Brandes</span>
+                                 mit einem matten Lächeln; ›wann und wie die Aerzte mir wieder auf
+                                 die Beine helfen können, wissen sie ja selber nicht.‹</p>
+                              <p> .  .  .  Eine Besserung ist jedoch augenscheinlich eingetreten,
+                                 welche hoffentlich fortschreiten wird.</p>«.</span></p>
+                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L00880_2h"><span class="lemma">Deutschen … Zeitung] </span><span class="kommentar-text" id="K_L00880_2h">Vgl. 
+                              <div class="card-body-index">
+                                 <div id="mentions"></div>
+                                 <div id="mentions" class="mt-2"><span class="infodesc mr-2">
+                                       <legend>Erwähnungen</legend>
+                                       <ul></ul></span></div>
+                              </div>: »<span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992"><span>Georg Brandes</span></span>, der vom ›<span class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb29508"><span>Verein Berliner Presse</span></span>‹ aufgefordert worden war, nach <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> zu kommen, um einen Vortrag zum Besten der Hilfskasse
+                              des genannten Vereins zu halten, hat geantwortet, daß ein <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb43570"><span>dänischer</span></span><span> Autor</span> während der gegenwärtigen Verhältnisse
+                              in <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb1115">Nordschleswig</span> unmöglich Vorträge in
+                              <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb168">Berlin</span> halten
+                              könne.«</span></p>
+                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L00880_3h"><span class="lemma">geheiratet] </span><span class="kommentar-text" id="K_L00880_3h">Die Hochzeit hatte am
+                              <span class="date">14. 5. 1898</span> in einer Synagoge in <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span> stattgefunden.</span></p>
+                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L00880_4h"><span class="lemma">gelesen] </span><span class="kommentar-text" id="K_L00880_4h">Die <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb50">Wien</span>er Zeitungen hatten mehrfach über den Besuch <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">Brandes</span> in <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46224">Lemberg</span>
+                              berichtet, so etwa die <span class="orgs entity " id="" data-bs-toggle="modal" data-bs-target="#pmb29351">Neue Freie Presse</span> in der ungezeichneten Meldung
+                              
+                              (
+                              <div class="card-body-index">
+                                 <div id="mentions"></div>
+                                 <div id="mentions" class="mt-2"><span class="infodesc mr-2">
+                                       <legend>Erwähnungen</legend>
+                                       <ul></ul></span></div>
+                              </div>)
+                              »<span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">Georg Brandes</span>, der einer
+                              Einladung nach <span class="places entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46224">Lemberg</span> zu der am
+                              <span class="date">20. November</span> stattfindenden Enthüllung des <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb46234">Sobiesky</span>-Denkmals Folge gegeben hat,
+                              wurde bei seiner Ankunft dasselbst von einer Deputation feierlich
+                              empfangen. Die Spitzen der Gesellschaft wetteifern in dem Bestreben,
+                              sich dem großen <span class="persons entity " id="" data-bs-toggle="modal" data-bs-target="#pmb10992">dänischen Schriftsteller</span> für die in seinem ebenaso geistvollen
+                              als anregenden Werke ›‹ zum
+                              Ausdrucke gebrachten Sympathien erkenntlich zu zeigen.« </span></p>
+                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L00880_5h"><span class="lemma">übersetzen] </span><span class="kommentar-text" id="K_L00880_5h">Eine deutsche
+                              Übersetzung der Jugendgedichte erschien nicht.</span></p>
+                     </dl>
                   </div>
-                  <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
+               </div>
+               <div class="wrapper fundament-default-footer hide-reading" id="wrapper-footer-full">
+                  <div class="container-fluid" id="footer-full-content" tabindex="-1">
+                     <div class="footer-separator">
+                        KONTAKT
+                        </div>
                      <div class="row">
-                        <div class="textwidget custom-html-widget">
-                           <h6 class="font-weight-bold">HELPDESK</h6>
-                           <p>ACDH-CH runs a helpdesk offering advice for questions related to various digital humanities
-                              topics.</p>
-                           <p><a class="helpdesk-button" href="mailto:acdh-ch-helpdesk@oeaw.ac.at">ASK US!</a></p>
+                        <div class="footer-widget col-lg-1 col-md-2 col-sm-2 col-xs-6  ml-auto  text-center ">
+                           <div class="textwidget custom-html-widget"><a href="/"><img src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg" class="image" alt="ACDH Logo" style="max-width: 90%; height: auto;" title="ACDH Logo" /></a></div>
                         </div>
-                     </div>
-                     <div class="row">
-                        <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto" style="margin-left:0 !important;">
+                        <div class="footer-widget col-lg-4 col-md-3 col-sm-3">
                            <div class="textwidget custom-html-widget">
-                              <p style="margin-bottom:0 !important;">Social: </p>
+                              <p>
+                                 ACDH-CH OEAW
+                                 <br />
+                                 Austrian Centre for Digital Humanities and Cultural Heritage
+                                 <br />
+                                 Austrian Academy of Sciences
+                                 </p>
+                              <p>
+                                 Bäckerstraße 13
+                                 <br />
+                                 1010 Wien
+                                 </p>
+                              <p>
+                                 T: +43 1 51581-2200
+                                 <br />
+                                 E: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at">acdh-ch-helpdesk(at)oeaw.ac.at</a></p>
+                           </div>
+                        </div>
+                        <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
+                           <div class="row">
+                              <div class="textwidget custom-html-widget">
+                                 <h6 class="font-weight-bold">FÖRDERINSTITUTION</h6><a href="https://www.fwf.ac.at/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/fwf-logo_var2.jpg" alt="FWF Der Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" /></a><p></p>
+                                 <p>Gefördert aus Mitteln des Wissenschaftsfonds FWF, P31277 (2018–2021) und
+                                    P34792 (2021–[2024])</p>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
+                           <div class="row">
+                              <div class="textwidget custom-html-widget">
+                                 <h6 class="font-weight-bold">HELPDESK</h6>
+                                 <p>ACDH-CH runs a helpdesk offering advice for questions related to various digital humanities
+                                    topics.</p>
+                                 <p><a class="helpdesk-button" href="mailto:acdh-ch-helpdesk@oeaw.ac.at">ASK US!</a></p>
+                              </div>
                            </div>
                            <div class="row">
-                              <div class="textwidget custom-html-widget col-md-4"><a id="github-logo" title="GitHub" href="https://github.com/arthur-schnitzler/schnitzler-briefe-static" class="nav-link" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4.466 19.59c-.405.078-.534-.171-.534-.384v-2.195c0-.747-.262-1.233-.55-1.481 1.782-.198 3.654-.875 3.654-3.947 0-.874-.312-1.588-.823-2.147.082-.202.356-1.016-.079-2.117 0 0-.671-.215-2.198.82-.64-.18-1.324-.267-2.004-.271-.68.003-1.364.091-2.003.269-1.528-1.035-2.2-.82-2.2-.82-.434 1.102-.16 1.915-.077 2.118-.512.56-.824 1.273-.824 2.147 0 3.064 1.867 3.751 3.645 3.954-.229.2-.436.552-.508 1.07-.457.204-1.614.557-2.328-.666 0 0-.423-.768-1.227-.825 0 0-.78-.01-.055.487 0 0 .525.246.889 1.17 0 0 .463 1.428 2.688.944v1.489c0 .211-.129.459-.528.385-3.18-1.057-5.472-4.056-5.472-7.59 0-4.419 3.582-8 8-8s8 3.581 8 8c0 3.533-2.289 6.531-5.466 7.59z"></path></svg></a></div>
+                              <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto" style="margin-left:0 !important;">
+                                 <div class="textwidget custom-html-widget">
+                                    <p style="margin-bottom:0 !important;">Social: </p>
+                                 </div>
+                                 <div class="row">
+                                    <div class="textwidget custom-html-widget col-md-4"><a id="github-logo" title="GitHub" href="https://github.com/arthur-schnitzler/schnitzler-briefe-static" class="nav-link" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4.466 19.59c-.405.078-.534-.171-.534-.384v-2.195c0-.747-.262-1.233-.55-1.481 1.782-.198 3.654-.875 3.654-3.947 0-.874-.312-1.588-.823-2.147.082-.202.356-1.016-.079-2.117 0 0-.671-.215-2.198.82-.64-.18-1.324-.267-2.004-.271-.68.003-1.364.091-2.003.269-1.528-1.035-2.2-.82-2.2-.82-.434 1.102-.16 1.915-.077 2.118-.512.56-.824 1.273-.824 2.147 0 3.064 1.867 3.751 3.645 3.954-.229.2-.436.552-.508 1.07-.457.204-1.614.557-2.328-.666 0 0-.423-.768-1.227-.825 0 0-.78-.01-.055.487 0 0 .525.246.889 1.17 0 0 .463 1.428 2.688.944v1.489c0 .211-.129.459-.528.385-3.18-1.057-5.472-4.056-5.472-7.59 0-4.419 3.582-8 8-8s8 3.581 8 8c0 3.533-2.289 6.531-5.466 7.59z"></path></svg></a></div>
+                                 </div>
+                              </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
+               <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
+                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div>
             </div>
          </div>
-         <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
-            © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script></div><script src="https://unpkg.com/de-micro-editor@0.2.6/dist/de-editor.min.js"></script><script type="text/javascript" src="js/run.js"></script><script type="text/javascript" src="js/osd_scroll.js"></script></body>
+      </div>
+      <div class="modal fade" id="ueberlieferung" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Arthur Schnitzler an Georg Brandes, 12. 1. 1899<br /></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+               <div class="modal-body">
+                  <table class="table table-striped">
+                     <tbody>
+                        <tr>
+                           <th> Versand: </th>
+                           <td> </td>
+                           <td>12. 1. 1899<br />Schnitzler, Arthur<br />Wien<br /></td>
+                        </tr>
+                        <tr>
+                           <th> Empfangen: </th>
+                           <td> </td>
+                           <td>[13. 1. 1899 – 17. 1. 1899?]<br />Brandes, Georg<br />Kopenhagen<br /></td>
+                        </tr>
+                     </tbody>
+                  </table><br /><div class="modal-body">
+                     <h5>TEXTZEUGE 1</h5>
+                     <table class="table table-striped">
+                        <tbody>
+                           <tr>
+                              <th>Signatur </th>
+                              <td>Dk, Kopenhagen, Det Kongelige Bibliotek, Georg Brandes Arkiv, box 125</td>
+                           </tr>
+                           <tr>
+                              <th>Beschreibung </th>
+                              <td>Brief, 3 Blätter, 11 Seiten</td>
+                           </tr>
+                           <tr xmlns:tei="http://www.tei-c.org/ns/1.0">
+                              <th>Handschrift</th>
+                              <td>schwarze Tinte, deutsche Kurrentschrift</td>
+                           </tr>
+                           <tr>
+                              <th></th>
+                              <th>Zufügungen</th>
+                           </tr>
+                           <tr xmlns:tei="http://www.tei-c.org/ns/1.0">
+                              <tr>
+                                 <th>Ordnung</th>
+                                 <td>mit Bleistift von unbekannter Hand beschriftet: »Schnitzler
+                                    <span class="date">12. 1.99</span>.« und mit Bleistift
+                                    nummeriert »13.«, das zweite Blatt mit
+                                    »2« versehen und auf dieses und das dritte
+                                    erneut das Datum vermerkt: »
+                                    <span class="date">12/1 99</span>
+                                    «</td>
+                              </tr>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <h5>DRUCK 1</h5>
+                     <table class="table table-striped">
+                        <tbody>
+                           <tr>
+                              <th></th>
+                              <td>Georg Brandes, Arthur Schnitzler: Ein Briefwechsel. Hg. Kurt Bergel. Bern: Francke
+                                 1956, S. 70–72.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <h5>DRUCK 2</h5>
+                     <table class="table table-striped">
+                        <tbody>
+                           <tr>
+                              <th></th>
+                              <td>Arthur Schnitzler: Briefe 1875–1912. Hgg. Therese Nickl und Heinrich Schnitzler. Frankfurt
+                                 am Main: S. Fischer 1981, S. 366–368.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="zitat" tabindex="-1" aria-labelledby="zitatModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Zitat</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+               <div class="modal-body">
+                  <p>Eine zitierfähige Angabe dieser Seite lautet:</p>
+                  <blockquote>Arthur Schnitzler an Georg Brandes, 12. 1. 1899. In: Arthur Schnitzler: Briefwechsel
+                     mit Autorinnen und Autoren. Digitale Edition. Hg. Martin Anton Müller, Gerd Hermann
+                     Susen und Laura Untner, https://schnitzler-briefe.acdh.oeaw.ac.at/L00880.html (Abfrage
+                     29. 3. 2023)</blockquote>
+                  <p></p>
+                  <p>Für gekürzte Zitate reicht die Angabe der
+                     Briefnummer aus, die eindeutig und persistent ist:
+                     »<b>L00880</b>«.</p>
+                  <p>Für Belege in der Wikipedia kann diese Vorlage
+                     benutzt werden:</p>
+                  <blockquote><code>{{Internetquelle |url=file:/home/runner/work/schnitzler-briefe-static/schnitzler-briefe-static/data/editions/L00880.xml |titel= |werk=Arthur Schnitzler:
+                        Briefwechsel mit Autorinnen und Autoren
+                        |hrsg=Martin Anton Müller, Gerd-Hermann Susen,
+                        Laura Untner |sprache=de |datum=1899-01-12 |abruf=2023-3-29 }} </code></blockquote>
+               </div>
+               <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="qualitaet" tabindex="-1" aria-labelledby="qualitaetModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Textqualität</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+               <div class="modal-body"></div>
+               <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
+            </div>
+         </div>
+      </div><script src="https://unpkg.com/de-micro-editor@0.2.6/dist/de-editor.min.js"></script><script type="text/javascript" src="js/run.js"></script></body>
 </html>

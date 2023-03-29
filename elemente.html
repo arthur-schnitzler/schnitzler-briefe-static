@@ -9,7 +9,7 @@
    <meta name="msapplication-TileImage" content="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" />
    <link rel="icon" type="image/svg+xml" href="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" sizes="any" />
    <link rel="profile" href="http://gmpg.org/xfn/11" />
-   <title>Verwendete TEI-Elemente</title>
+   <title>schnitzler-briefe</title>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
    <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -32,30 +32,47 @@
    <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon/android-icon-192x192.png" />
    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
    <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png" />
-   <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" />
-   <body class="page">
+   <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><body class="page">
       <div class="hfeed site" id="page">
-         <div class="wrapper-fluid wrapper-navbar sticky-top hide-reading" id="wrapper-navbar"><a class="skip-link screen-reader-text sr-only" href="#content">Skip to content</a><nav class="navbar navbar-expand-lg">
+         <div class="wrapper-fluid wrapper-navbar sticky-top hide-reading" id="wrapper-navbar"><a class="skip-link screen-reader-text sr-only" href="#content">Zum Inhalt</a><nav class="navbar navbar-expand-lg">
                <div class="container-fluid"><a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url"><img src="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" class="img-fluid" title="schnitzler-briefe" alt="schnitzler-briefe" itemprop="logo" /></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                      <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Projekt
-                              </a><ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="about.html">Zum Projekt</a><a class="dropdown-item" href="status.html">Projektstatus</a><a class="dropdown-item" href="editionsrichtlinien.html">Editionsrichtlinien</a><a class="dropdown-item" href="danksagung.html">Danksagung</a><a class="dropdown-item" href="kooperationen.html">Kooperationen</a><div class="dropdown-divider"></div><a class="dropdown-item" href="drucke.html">Gedruckte Briefwechsel</a><a class="dropdown-item" href="andere-drucke.html">Weitere Druckdigitalisate</a><a class="dropdown-item" href="gedruckte-korrespondenz.html">Korrespondenz-Bibliografie</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Projekt </a><ul class="dropdown-menu">
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="about.html">Zum Projekt</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="status.html">Projektstatus</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="editionsrichtlinien.html">Editionsrichtlinien</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="danksagung.html">Danksagung</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="kooperationen.html">Kooperationen</a></li>
+                              <div class="dropdown-divider"></div>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="drucke.html">Gedruckte
+                                    Briefwechsel</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="andere-drucke.html">Weitere
+                                    Druckdigitalisate</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="gedruckte-korrespondenz.html">Korrespondenz-Bibliografie</a></li>
                            </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="calendar.html">Kalender</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Index
-                              </a><div class="dropdown-menu"><a class="dropdown-item" href="listperson.html">Personen</a><a class="dropdown-item" href="listwork.html">Werke</a><a class="dropdown-item" href="listplace.html">Orte</a><a class="dropdown-item" href="listorg.html">Institutionen</a></div>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Briefe </a><ul class="dropdown-menu">
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="toc.html">Briefe</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="tocs.html">Korrespondenzen</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="correspaction.html">Versand</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="archives.html">Archive</a></li>
+                           </ul>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Briefe
-                              </a><div class="dropdown-menu"><a class="dropdown-item" href="toc.html">Briefe</a><a class="dropdown-item" href="tocs.html">Korrespondenzen</a><a class="dropdown-item" href="correspaction.html">Versand</a><a class="dropdown-item" href="archives.html">Archive</a></div>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Index </a><ul class="dropdown-menu">
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="listperson.html">Personen</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="listwork.html">Werke</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="listplace.html">Orte</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="listorg.html">Institutionen</a></li>
+                           </ul>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Technisches
-                              </a><div class="dropdown-menu"><a class="dropdown-item" href="elemente.html">Verwendete Elemente</a></div>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Technisches </a><ul class="dropdown-menu">
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="elemente.html">Verwendete Elemente</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="https://github.com/arthur-schnitzler/schnitzler-briefe-data/" target="_blank">Quelldaten auf GitHub</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="https://github.com/arthur-schnitzler/schnitzler-briefe-static/" target="_blank">App auf GitHub</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="https://github.com/arthur-schnitzler/schnitzler-briefe-data/" target="_blank">Quelldaten auf GitHub</a></li>
+                              <li class="nav-item dropdown-submenu"><a class="nav-link" href="https://hdl.handle.net/21.11115/0000-000E-7538-0" target="_blank">Daten in der Langzeitarchivierung ARCHE</a></li>
+                           </ul>
                         </li>
                         <li class="nav-item"><a title="Suche" class="nav-link" href="search.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
                                  <circle cx="11" cy="11" r="8"></circle>
@@ -72,22 +89,22 @@
                </div>
                <div class="card-body-index">
                   
-                  <div id="d15e62">
+                  <div id="d13e62">
                      
-                     <p id="d15e64">Hier sind die wichtigsten in den TEI-Dateien verwendeten Elemente ausgewiesen,
+                     <p id="d13e64">Hier sind die wichtigsten in den TEI-Dateien verwendeten Elemente ausgewiesen,
                         einschließlich etwaiger Normalisierungen und idiosynkratischer Verwendungen und
                         Adaptierungen. Adressiert ist die Aufstellung dabei nicht nur an Forscherinnen
                         und Forscher, die mit den Daten weiterarbeiten möchten, sondern zugleich an uns
                         selbst in der Funktion eines Style-Sheets.</p>
                      
-                     <p id="d15e66"></p>
+                     <p id="d13e66"></p>
                      </div>
                   
-                  <div id="d15e69">
+                  <div id="d13e69">
                      
                      <h2>Inhaltsverzeichnis</h2>
                      
-                     <p id="d15e73">
+                     <p id="d13e73">
                         
                         <a href="#h.wqznbeg9jono">Allgemein</a>
                         
@@ -225,13 +242,13 @@
                            </li>
                         </ul>
                      
-                     <p id="d15e277">
+                     <p id="d13e277">
                         
                         <a href="#h.z4s2wqbs2nux">TEI/@xml:id</a>
                         
                         </p>
                      
-                     <p id="d15e286">
+                     <p id="d13e286">
                         
                         <a href="#h.d1oscwegtomc">teiHeader</a>
                         
@@ -379,13 +396,13 @@
                            </li>
                         </ul>
                      
-                     <p id="d15e491">
+                     <p id="d13e491">
                         
                         <a href="#h.31hflwxr8647">facsimile</a>
                         
                         </p>
                      
-                     <p id="d15e500">
+                     <p id="d13e500">
                         
                         <a href="#h.dr8wt22vdlry">text</a>
                         
@@ -444,35 +461,35 @@
                         </ul>
                      </div>
                   
-                  <div id="d15e579">
+                  <div id="d13e579">
                      
                      <h2>Allgemein</h2>
                      
-                     <p id="d15e584">Die offiziellen Richtlinien der TEI P5 finden sich hier:</p>
+                     <p id="d13e584">Die offiziellen Richtlinien der TEI P5 finden sich hier:</p>
                      
-                     <p id="d15e586">
+                     <p id="d13e586">
                         <a href="https://tei-c.org/guidelines/P5/">https://tei-c.org/guidelines/P5/</a>
                         </p>
                      
-                     <p id="d15e592">Der Quellcode unserer Website samt aller Korrespondenzstücke als XML-Dateien
+                     <p id="d13e592">Der Quellcode unserer Website samt aller Korrespondenzstücke als XML-Dateien
                         findet sich hier:</p>
                      
-                     <p id="d15e594">
+                     <p id="d13e594">
                         <a href="https://github.com/acdh-oeaw/schnitzler-briefe">https://github.com/acdh-oeaw/schnitzler-briefe</a>
                         </p>
                      
-                     <p id="d15e601">Im Ordner <code>data/meta</code> findet sich eine Schema-Datei
+                     <p id="d13e601">Im Ordner <code>data/meta</code> findet sich eine Schema-Datei
                         <code>asbwschema.xsd</code>, die (mit geringfügigen Abweichungen) die hier
                         beschriebenen Dateien validiert.</p>
                      
-                     <p id="d15e608">Die Bildrechte sind nicht in unserem Besitz, weswegen die Faksimiles nicht
+                     <p id="d13e608">Die Bildrechte sind nicht in unserem Besitz, weswegen die Faksimiles nicht
                         heruntergeladen werden können.</p>
                      
-                     <p id="d15e610">Die folgenden wenigen Anweisungen und Hinweise auf Elemente gelten jeweils für
+                     <p id="d13e610">Die folgenden wenigen Anweisungen und Hinweise auf Elemente gelten jeweils für
                         das gesamte XML-Dokument. Im Anschluss daran folgt eine Darstellung des Aufbaus
                         eines solchen Dokuments mit den fixen Bestandteilen.</p>
                      
-                     <div id="d15e612">
+                     <div id="d13e612">
                         
                         <h2>Stilistisches</h2>
                         
@@ -506,11 +523,11 @@
                            </ul>
                         </div>
                      
-                     <div id="d15e646">
+                     <div id="d13e646">
                         
                         <h2>Umgang mit Whitespace</h2>
                         
-                        <p id="d15e651">XML ist, wenn es zu Abständen und Leerzeichen kommt, problematisch. Doppelte
+                        <p id="d13e651">XML ist, wenn es zu Abständen und Leerzeichen kommt, problematisch. Doppelte
                            Leerzeichen benötigen eine Sonderbehandlung und ebenso der Fall, dass
                            zwischen zwei Elementen ein Leerzeichen stehen soll. Wir codieren so, dass
                            wir das Leerzeichen zwischen zwei Elementen ebenfalls als Element setzen.
@@ -518,46 +535,46 @@
                            &gt; &lt; oder &gt;    &lt; aussehen, ignoriert
                            werden können.</p>
                         
-                        <div id="d15e653">
+                        <div id="d13e653">
                            
-                           <p id="d15e655">Beispiel: </p>
+                           <p id="d13e655">Beispiel: </p>
                            
-                           <p id="d15e657">
+                           <p id="d13e657">
                               <code>&lt;rs type="work" ref="#29923" subtype="implied"&gt;Leo
                                  Golowski&lt;/rs&gt;</code>
                               </p>
                            
-                           <p id="d15e662">
+                           <p id="d13e662">
                               <code>&lt;space unit="chars" quantity="1"/&gt;</code>
                               </p>
                            
-                           <p id="d15e667">
+                           <p id="d13e667">
                               <code>&lt;add place="above"&gt;jeder&lt;/add&gt;</code>
                               </p>
                            </div>
                         </div>
                      
-                     <div id="d15e674">
+                     <div id="d13e674">
                         
                         <h2>Herausgebertext</h2>
                         
-                        <div id="d15e679">
+                        <div id="d13e679">
                            
                            <h2>anchor und note</h2>
                            
-                           <p id="d15e684"><code>&lt;anchor&gt;</code> ist ein leeres Element mit einer innerhalb
+                           <p id="d13e684"><code>&lt;anchor&gt;</code> ist ein leeres Element mit einer innerhalb
                               des Projektes eindeutigen <code>@xml:id</code> und einem
                               Klassifizierungsattribut <code>@type</code> wobei einer der drei Werte
                               erlaubt ist: »label«, »textConst«, »commentary«.</p>
                            
-                           <p id="d15e692">»label« erlaubt, eine bestimmte Textstelle zu referenzieren. Die beiden
+                           <p id="d13e692">»label« erlaubt, eine bestimmte Textstelle zu referenzieren. Die beiden
                               letzteren Arten markieren den Beginn des Lemmabereichs, der mit dem
                               Element <code>note</code> endet. In diesem Fall sind die
                               zusammengehörigen Bereiche <code>anchor</code> und <code>note</code>
                               durch weitgehend idente <code>@xml:id</code> verklammert, nur die bei
                               <code>note</code> hat ein »h« als letztes Zeichen.</p>
                            
-                           <p id="d15e705">Das Element <code>note</code> enthält einen Kommentar (Achtung: Fußnoten
+                           <p id="d13e705">Das Element <code>note</code> enthält einen Kommentar (Achtung: Fußnoten
                               des Originaltexts sind als <code>footNote</code> ausgezeichnet.) Die
                               Unterscheidung von Textkonstitution (<code>@type="textConst"</code>) und
                               von Kommentar (<code>@type="commentary"</code>) geschieht entlang der
@@ -569,11 +586,11 @@
                               »commentary«-<code>note</code> schon referenziert werden. </p>
                            </div>
                         
-                        <div id="d15e722">
+                        <div id="d13e722">
                            
                            <h2>bibl</h2>
                            
-                           <p id="d15e727">Bibliografische Angaben werden in ein <code>bibl</code>-Element verpackt.
+                           <p id="d13e727">Bibliografische Angaben werden in ein <code>bibl</code>-Element verpackt.
                               In Kommentaren erfolgt die Angabe von Monografien nach dem Titelblatt,
                               an anderen Orten nach der üblichen Zitation. Ortsangaben von Verlagen
                               werden nicht ausgezeichnet. Verlage werden mit <code>&lt;rs
@@ -597,11 +614,11 @@
                               schließende Punkt wird nach dem <code>&lt;/bibl&gt;</code> gesetzt. </p>
                            </div>
                         
-                        <div id="d15e757">
+                        <div id="d13e757">
                            
                            <h2>quote</h2>
                            
-                           <p id="d15e762">Entgegen der vorgeschlagenen Verwendung von TEI verwenden wir
+                           <p id="d13e762">Entgegen der vorgeschlagenen Verwendung von TEI verwenden wir
                               <code>quote</code> nur, wenn innerhalb eines Paratexts ein Zitat
                               vorkommt. Unser Eigeninteresse besteht darin, dass es bei der Ausgabe
                               nicht zu einer ungewollten Schriftänderung kommt, etwa zur Kursivsetzung
@@ -609,108 +626,108 @@
                               umrahmt. </p>
                            </div>
                         
-                        <div id="d15e768">
+                        <div id="d13e768">
                            
                            <h2>ref</h2>
                            
-                           <p id="d15e773">Dient für Verweise. Die wichtigsten Fälle werden in Folge beschrieben.
+                           <p id="d13e773">Dient für Verweise. Die wichtigsten Fälle werden in Folge beschrieben.
                               Soweit sinnvoll, können mit dem Attribut <code>@subtype</code> genauere
                               Spezifizierungen der Beziehung vorgenommen werden, etwa »vgl./Vgl.« (<code>cf</code>, <code>Cf</code>), »siehe/Siehe« (<code>see</code>, <code>See</code>)
                               oder – am häufigsten – »date-only«. Im letzteren Fall wird in der
                               Ausgabe das Datum entsprechend der Konvention (D)D. (M)M. YYYY gesetzt
                               und ist es online als Link auswählbar.</p>
                            
-                           <p id="d15e786"><code>@type="schnitzler-briefe"</code> (Verweis auf einen Brief innerhalb
+                           <p id="d13e786"><code>@type="schnitzler-briefe"</code> (Verweis auf einen Brief innerhalb
                               der <a href="https://schnitzler-briefe.acdh.oeaw.ac.at/">Briefedition</a>) enthält in <code>@target</code> die
                               Briefnummer/den Dateinamen (ohne ».xml«).</p>
                            
-                           <p id="d15e795"><code>@type="schnitzler-tagebuch"</code> (Verweis auf die digitale
+                           <p id="d13e795"><code>@type="schnitzler-tagebuch"</code> (Verweis auf die digitale
                               Edition des <a href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/">Tagebuch</a>s) ist in <code>@target</code> mit einem ISO-Datum
                               spezifiziert.</p>
                            
-                           <p id="d15e804"><code>@type="schnitzler-lektueren"</code> (Verweis auf die digitale
+                           <p id="d13e804"><code>@type="schnitzler-lektueren"</code> (Verweis auf die digitale
                               Edition der <a href="https://schnitzler-lektueren.acdh.oeaw.ac.at/">Leseliste</a>) enthält in <code>@target</code> eine Referenz auf
                               eine Region bzw. ein Land (z. B. »Deutschsprachige Literatur«,
                               »Frankreich«).</p>
                            
-                           <p id="d15e814"><code>@type="schnitzler-bahr"</code> (Verweis auf einen Brief/Text innerhalb
+                           <p id="d13e814"><code>@type="schnitzler-bahr"</code> (Verweis auf einen Brief/Text innerhalb
                               der <a href="https://schnitzler-bahr.acdh.oeaw.ac.at/">Edition</a>) enthält in <code>@target</code> die
                               Briefnummer/den Dateinamen (ohne ».xml«).</p>
                            
-                           <p id="d15e823">Für zwei weitere Arten der Verweise siehe <code>correspContext</code>
+                           <p id="d13e823">Für zwei weitere Arten der Verweise siehe <code>correspContext</code>
                               weiter unten.</p>
                            </div>
                         
-                        <div id="d15e830">
+                        <div id="d13e830">
                            
                            <h2>supplied</h2>
                            
-                           <p id="d15e835">Ergänzung durch die Herausgeber. Das Element wird möglichst sparsam
+                           <p id="d13e835">Ergänzung durch die Herausgeber. Das Element wird möglichst sparsam
                               eingesetzt. Wichtig ist nicht die Korrektur des Originaltextes als die
                               Gewährleistung der Lesbarkeit. </p>
                            </div>
                         </div>
                      
-                     <div id="d15e840">
+                     <div id="d13e840">
                         
                         <h2>Edierter Text</h2>
                         
-                        <div id="d15e845">
+                        <div id="d13e845">
                            
                            <h2>@ref, @corresp, @key, @scribe</h2>
                            
-                           <p id="d15e850">Diese Attribute verweisen auf Bezugnahmen zu Entitäten, die im Webservice
+                           <p id="d13e850">Diese Attribute verweisen auf Bezugnahmen zu Entitäten, die im Webservice
                               PMB <a href="https://pmb.acdh.oeaw.ac.at/">https://pmb.acdh.oeaw.ac.at/</a> verzeichnet sind. Vorangestellt
                               ist jeder Nummer: »#pmb«, wobei auch mehrere, durch Leerzeichen
                               getrennte Werte erlaubt sind. </p>
                            
-                           <p id="d15e856">Die Nummern sind am Ende des Dokuments im Element <code>back</code>
+                           <p id="d13e856">Die Nummern sind am Ende des Dokuments im Element <code>back</code>
                               aufgelöst. Sie können auch, neben der allgemeinen Suche über die
                               Datenbank, durch Zugriff auf die API automatisiert in verschiedenen
                               Formaten (siehe »<code>GET</code>«) abgefragt werden. </p>
                            
-                           <div id="d15e863">
+                           <div id="d13e863">
                               
-                              <p id="d15e865">Beispiel: </p>
+                              <p id="d13e865">Beispiel: </p>
                               
-                              <p id="d15e867">
+                              <p id="d13e867">
                                  <code>&lt;rs type="person" ref="#pmb2238 #pmb12692"
                                     subtype="implied"&gt;Kindern&lt;/rs&gt;</code>
                                  </p>
                               
-                              <p id="d15e872">
+                              <p id="d13e872">
                                  <a href="https://pmb.acdh.oeaw.ac.at/entity/12692/">https://pmb.acdh.oeaw.ac.at/entity/12692/</a>
                                  </p>
                               </div>
                            </div>
                         
-                        <div id="d15e880">
+                        <div id="d13e880">
                            
                            <h2>@rend</h2>
                            
-                           <p id="d15e885">Bei allen Absatzelementen wie <code>p</code>, <code>dateline</code>,
+                           <p id="d13e885">Bei allen Absatzelementen wie <code>p</code>, <code>dateline</code>,
                               <code>salute</code> kann durch die Verwendung des Attributs
                               <code>@rend</code> mit den Werten: »right«, »center«, »inline«
                               (»left« ist zugleich der stillschweigend angenommene Fall und muss nicht
                               angegeben werden) eine Stilisierung vorgenommen werden. </p>
                            </div>
                         
-                        <div id="d15e897">
+                        <div id="d13e897">
                            
                            <h2>add</h2>
                            
-                           <p id="d15e902">Hinzufügungen in den Text werden von &lt;add&gt;…&lt;/add&gt;
+                           <p id="d13e902">Hinzufügungen in den Text werden von &lt;add&gt;…&lt;/add&gt;
                               eingeschlossen. Das Attribut <code>@place</code> gibt eine genauere
                               geografische Verortung: »above«, »below«, »inline«, »margin«, »mixed«. </p>
                            
-                           <p id="d15e907">Vgl. auch: <code>subst</code></p>
+                           <p id="d13e907">Vgl. auch: <code>subst</code></p>
                            </div>
                         
-                        <div id="d15e912">
+                        <div id="d13e912">
                            
                            <h2>damage</h2>
                            
-                           <p id="d15e917">Ummantelt eine durch Beschädigung entstandene Textstelle. Die häufigsten
+                           <p id="d13e917">Ummantelt eine durch Beschädigung entstandene Textstelle. Die häufigsten
                               Fehler sind verschmierte Tinte, Blattverlust, Lochung, Wasser
                               (<code>agent="…"</code>). Innerhalb eines <code>damage</code> ist
                               der verlorene Text immer mit <code>unclear</code> oder
@@ -718,16 +735,16 @@
                               lesbar ist oder überhaupt hergestellt werden muss. </p>
                            </div>
                         
-                        <div id="d15e930">
+                        <div id="d13e930">
                            
                            <h2>date</h2>
                            
-                           <p id="d15e935">Alle Datumsangaben werden mit <code>&lt;date&gt;…&lt;/date&gt;</code>
+                           <p id="d13e935">Alle Datumsangaben werden mit <code>&lt;date&gt;…&lt;/date&gt;</code>
                               umgeben. Das zusätzliche Attribut <code>@when</code> ist optional.
                               Derzeit handelt es sich bei dieser Attribut-Auszeichnung noch um ein
                               nicht genutztes Feature. </p>
                            
-                           <p id="d15e942">Abstände bei Datumsangaben werden im Normalfall normalisiert, wobei
+                           <p id="d13e942">Abstände bei Datumsangaben werden im Normalfall normalisiert, wobei
                               zwischen ».« und Ziffer/römischer Monatsangabe ein fixer Abstand
                               (<code>&amp;#160;</code>) kommt. Zwischen ausgeschriebenem Monat und
                               Jahr kommt dann ein ein fixer Abstand, wenn ein Zeilenumbruch einen Teil
@@ -737,7 +754,7 @@
                               dann am <code>&lt;date&gt;</code>Freitag<code>&lt;/date&gt;</code>« aber
                               natürlich nicht: »am Montag gehe ich immer ins Café«. </p>
                            
-                           <p id="d15e958"><code>@when</code>, <code>@notBefore</code>, <code>&amp;#160;</code>,
+                           <p id="d13e958"><code>@when</code>, <code>@notBefore</code>, <code>&amp;#160;</code>,
                               <code>@from</code>, <code>&amp;#160;</code> wird nach ISO-Standard
                               ausgefüllt, wobei einfach gekürzt wird, wenn etwas nicht bekannt ist,
                               wie »1904-07«. Es geht nur vom Größeren zum Kleineren. Der Fall: »Am 31.
@@ -745,66 +762,66 @@
                               vorgesehen. </p>
                            </div>
                         
-                        <div id="d15e973">
+                        <div id="d13e973">
                            
                            <h2>dateline</h2>
                            
-                           <p id="d15e978">Datumszeile. Diese ist nicht rekonstruiert, sondern dient einzig und
+                           <p id="d13e978">Datumszeile. Diese ist nicht rekonstruiert, sondern dient einzig und
                               allein der Funktion, jene Zeile innerhalb eines Korrespondenzstücks zu
                               benennen, die eine Datierung enthält. Sie steht für gewöhnlich innerhalb
                               von <code>opener</code> oder <code>postscript</code> und hat immer ein
                               Kindelement <code>date</code>. </p>
                            </div>
                         
-                        <div id="d15e988">
+                        <div id="d13e988">
                            
                            <h2>del</h2>
                            
-                           <p id="d15e993">Streichungen. Das Attribut <code>@rend</code> gibt eine genauere
+                           <p id="d13e993">Streichungen. Das Attribut <code>@rend</code> gibt eine genauere
                               Klassifizierung: »strikethrough«, »overwritten«, »erased«. </p>
                            
-                           <p id="d15e998">Vgl. auch <code>subst</code>.</p>
+                           <p id="d13e998">Vgl. auch <code>subst</code>.</p>
                            </div>
                         
-                        <div id="d15e1004">
+                        <div id="d13e1004">
                            
                            <h2>footNote</h2>
                            
-                           <p id="d15e1009">Für Fußnoten, die schon in der edierten Vorlage vorhanden sind. Der Text
+                           <p id="d13e1009">Für Fußnoten, die schon in der edierten Vorlage vorhanden sind. Der Text
                               der Fußnote kommt in ein oder mehrere <code>p</code>-Elemente. </p>
                            </div>
                         
-                        <div id="d15e1015">
+                        <div id="d13e1015">
                            
                            <h2>gap</h2>
                            
-                           <p id="d15e1020">Für Lücken im Text. </p>
+                           <p id="d13e1020">Für Lücken im Text. </p>
                            
-                           <p id="d15e1022"><code>&lt;gap quantity="2" reason="illegible" unit="chars"/&gt;</code>
+                           <p id="d13e1022"><code>&lt;gap quantity="2" reason="illegible" unit="chars"/&gt;</code>
                               bedeutet: zwei nicht entzifferte Zeichen. Möglich auch
                               <code>@unit="lines"</code> für nicht entzifferte Zeilen. (In der
                               Wiedergabe gesetzt wird ein Mal-Zeichen (»×«), nicht der Kleinbuchstabe
                               »x«) </p>
                            </div>
                         
-                        <div id="d15e1029">
+                        <div id="d13e1029">
                            
                            <h2>handShift</h2>
                            
-                           <p id="d15e1034">Markiert Schreiberwechsel. <code>&lt;handShift/&gt;</code> ohne ein
+                           <p id="d13e1034">Markiert Schreiberwechsel. <code>&lt;handShift/&gt;</code> ohne ein
                               Attribut hat als Wiedergabe »[handschriftlich:]«, etwa bei eigenhändiger
                               Unterschrift nach einem mit Schreibmasche getippten Text.</p>
                            
-                           <p id="d15e1039"><code>&lt;handShift scribe="#pmb2121"/&gt;</code> setzt »[Handschrift
+                           <p id="d13e1039"><code>&lt;handShift scribe="#pmb2121"/&gt;</code> setzt »[Handschrift
                               Arthur Schnitzler:]«, <code>&lt;handShift
                                  medium="typewriter"/&gt;</code> setzt »[maschinschriftlich:]«.</p>
                            </div>
                         
-                        <div id="d15e1047">
+                        <div id="d13e1047">
                            
                            <h2>hi[@rend]</h2>
                            
-                           <p id="d15e1052">Dient zur Auszeichnung von Schriftänderungen. Folgende Attributwerte sind
+                           <p id="d13e1052">Dient zur Auszeichnung von Schriftänderungen. Folgende Attributwerte sind
                               erlaubt: »latintype«, »underline«, »italics«, »superscript«,
                               »subscript«, »bold«, »pre-print«, »stamp«, »small_caps«, »antiqua«,
                               »spaced_out«, »capitals«. Einzig die Unterstreichung (»underline«)
@@ -812,49 +829,49 @@
                               Linien, mit denen unterstrichen wird. </p>
                            </div>
                         
-                        <div id="d15e1058">
+                        <div id="d13e1058">
                            
                            <h2>lg</h2>
                            
-                           <p id="d15e1063">Das Element <code>lg</code> dient dazu, Gedichte mit dem originalen
+                           <p id="d13e1063">Das Element <code>lg</code> dient dazu, Gedichte mit dem originalen
                               Zeilenfall auszuzeichnen. <code>&lt;lg type="poem"/&gt;</code> kann
                               entweder gleich aus den einzelnen Versen (»lines«)
                               <code>&lt;l/&gt;</code> bestehen, oder, wenn es aus Strophen
                               besteht, so kommt es innerhalb dessen noch zu einer neuerlichen
                               Differenzierung mit <code>lg</code>.</p>
                            
-                           <div id="d15e1074">
+                           <div id="d13e1074">
                               
-                              <p id="d15e1076"><code>&lt;lg type="poem"&gt;</code>
+                              <p id="d13e1076"><code>&lt;lg type="poem"&gt;</code>
                                  </p>
                               
-                              <p id="d15e1080"><code>&lt;lg type="stanza"&gt;</code>
+                              <p id="d13e1080"><code>&lt;lg type="stanza"&gt;</code>
                                  </p>
                               
-                              <p id="d15e1084"><code>&lt;l&gt; Erste Strophe, erster Vers &lt;/l&gt;</code>
+                              <p id="d13e1084"><code>&lt;l&gt; Erste Strophe, erster Vers &lt;/l&gt;</code>
                                  </p>
                               
-                              <p id="d15e1088"><code>&lt;/lg&gt;</code>
+                              <p id="d13e1088"><code>&lt;/lg&gt;</code>
                                  </p>
                               
-                              <p id="d15e1092"><code>&lt;lg type="stanza"&gt; </code></p>
+                              <p id="d13e1092"><code>&lt;lg type="stanza"&gt; </code></p>
                               
-                              <p id="d15e1096"><code>&lt;l&gt; Zweite Strophe, erster Vers &lt;/l&gt;</code>
+                              <p id="d13e1096"><code>&lt;l&gt; Zweite Strophe, erster Vers &lt;/l&gt;</code>
                                  </p>
                               
-                              <p id="d15e1100"><code>&lt;/lg&gt;</code>
+                              <p id="d13e1100"><code>&lt;/lg&gt;</code>
                                  </p>
                               
-                              <p id="d15e1104"><code>&lt;/lg&gt;</code>
+                              <p id="d13e1104"><code>&lt;/lg&gt;</code>
                                  </p>
                               </div>
                            </div>
                         
-                        <div id="d15e1110">
+                        <div id="d13e1110">
                            
                            <h2>pb</h2>
                            
-                           <p id="d15e1115">Markiert den Seitenbeginn. Das Attribut <code>@facs</code> verweist dabei
+                           <p id="d13e1115">Markiert den Seitenbeginn. Das Attribut <code>@facs</code> verweist dabei
                               auf den Dateinamen des Faksimiles. Der XPath-Befehl
                               <code>distinct-values(//pb/@facs)</code> ergibt alle innerhalb des
                               Dokumentes erwähnten Faksimiles. Gelegentlich befindet sich
@@ -865,73 +882,73 @@
                               <code>physDesc</code> verzichtet. </p>
                            </div>
                         
-                        <div id="d15e1129">
+                        <div id="d13e1129">
                            
                            <h2>rs</h2>
                            
-                           <p id="d15e1134">Verweist auf Entitäten von den Typen »person«, »work«, »place« und »org«
+                           <p id="d13e1134">Verweist auf Entitäten von den Typen »person«, »work«, »place« und »org«
                               (Organisation/Institution). Diese können geschachtelt sein und im
                               Attribut <code>@ref</code> mehrere Werte enthalten. (Siehe oben.) </p>
                            
-                           <p id="d15e1139">Als einzige Unterklassifizierung (<code>@subtype</code>) ist »implied«
+                           <p id="d13e1139">Als einzige Unterklassifizierung (<code>@subtype</code>) ist »implied«
                               vorgesehen. Das findet immer dann Anwendung, wenn nur der inhaltliche
                               Zusammenhang klärt, wer oder was gemeint ist, beispielweise »Mama« oder
                               »der neue Schnitzler« (– das alludierte Werk ist nur durch den Kontext
                               bestimmbar). </p>
                            
-                           <p id="d15e1144">Die Elementklammer bezieht sich üblicherweise auf die Entität, nicht auf
+                           <p id="d13e1144">Die Elementklammer bezieht sich üblicherweise auf die Entität, nicht auf
                               die Wortgrenze. Das heißt: »bei den
                               <code>&lt;rs&gt;</code>Schnitzlers<code>&lt;/rs&gt;</code>« (weil
                               mit dem Schluss-s noch die Ehefrau gemeint ist), aber
                               »<code>&lt;rs&gt;</code>Schnitzler<code>&lt;/rs&gt;</code>s Buch«
                               (weil das Genetiv-s nicht zum Entitätsnamen gehört). </p>
                            
-                           <div id="d15e1155">
+                           <div id="d13e1155">
                               
                               <h2>rs[@type="person"]</h2>
                               
-                              <p id="d15e1160">Akademische Titel oder Adelstitel werden nicht als Namensbestandteil
+                              <p id="d13e1160">Akademische Titel oder Adelstitel werden nicht als Namensbestandteil
                                  aufgefasst und nicht in das Element aufgenommen. </p>
                               </div>
                            
-                           <div id="d15e1164">
+                           <div id="d13e1164">
                               
                               <h2>rs[@type="place"]</h2>
                               
-                              <p id="d15e1169">Bei längeren Angaben wird nur der genaueste geografische Punkt
+                              <p id="d13e1169">Bei längeren Angaben wird nur der genaueste geografische Punkt
                                  ausgezeichnet, wobei die Auszeichnungstiefe bei der Straße, nicht
                                  der Hausnummer endet. Ein Zeilenwechsel in der Vorlage stellt eine
                                  Grenze dar, über die eine gemeinsame Beschlagwortung nicht hinüber
                                  reicht.</p>
                               
-                              <div id="d15e1171">
+                              <div id="d13e1171">
                                  
-                                 <p id="d15e1173">Beispiel:</p>
+                                 <p id="d13e1173">Beispiel:</p>
                                  
-                                 <p id="d15e1175"><code>&lt;rs type="place"&gt;Wien XII Meidlinger Hauptstr.
+                                 <p id="d13e1175"><code>&lt;rs type="place"&gt;Wien XII Meidlinger Hauptstr.
                                        56&lt;/rs&gt;</code></p>
                                  
-                                 <p id="d15e1178">Wien und der zwölfte Bezirk werden hier nicht indexiert, sondern
+                                 <p id="d13e1178">Wien und der zwölfte Bezirk werden hier nicht indexiert, sondern
                                     nur die Straße.</p>
                                  </div>
                               </div>
                            </div>
                         
-                        <div id="d15e1183">
+                        <div id="d13e1183">
                            
                            <h2>salute</h2>
                            
-                           <p id="d15e1188">Umrahmt die Begrüßungsformel. Wenn sie im Brief abgesetzt ist, dann steht
+                           <p id="d13e1188">Umrahmt die Begrüßungsformel. Wenn sie im Brief abgesetzt ist, dann steht
                               sie im <code>&lt;opener&gt;</code>-Element. Wenn sie, wie bei Postkarten
                               häufig, im Fließtext steht, dann nimmt sie noch das Komma und das
                               folgende Leerzeichen mit. </p>
                            </div>
                         
-                        <div id="d15e1194">
+                        <div id="d13e1194">
                            
                            <h2>seg</h2>
                            
-                           <p id="d15e1199">Die genaue Lokalisierung von Text auf der Fläche wird in dieser Edition
+                           <p id="d13e1199">Die genaue Lokalisierung von Text auf der Fläche wird in dieser Edition
                               nur eingeschränkt berücksichtigt und beschränkt sich zumeist auf die
                               Attributwerte von <code>@rend</code> in Absätzen (»left«, »right«,
                               »center«, »inline«). Eine Ausnahme stellt <code>seg</code> dar, mit dem
@@ -942,11 +959,11 @@
                                  </code></p>
                            </div>
                         
-                        <div id="d15e1209">
+                        <div id="d13e1209">
                            
                            <h2>subst</h2>
                            
-                           <p id="d15e1214">Ein Überschreibungsvorgang wird durch <code>&lt;subst&gt;</code>
+                           <p id="d13e1214">Ein Überschreibungsvorgang wird durch <code>&lt;subst&gt;</code>
                               markiert. Theoretisch werden nur die letzten beiden Textschichten
                               behandelt, praktisch kommt bislang auch keine weitere Schicht vor. (Der
                               Fall, in dem es vorkäme, wäre, wenn die handschriftlichen Korrekturen
@@ -962,21 +979,21 @@
                                  </li>
                               </ul>
                            
-                           <p id="d15e1230">Zu diesen siehe dort. </p>
+                           <p id="d13e1230">Zu diesen siehe dort. </p>
                            </div>
                         
-                        <div id="d15e1233">
+                        <div id="d13e1233">
                            
                            <h2>table, row, cell</h2>
                            
-                           <p id="d15e1238">Für Tabellen. </p>
+                           <p id="d13e1238">Für Tabellen. </p>
                            </div>
                         
-                        <div id="d15e1241">
+                        <div id="d13e1241">
                            
                            <h2>time</h2>
                            
-                           <p id="d15e1246">Analog zu <code>date</code>, nur gibt es kein Attribut. Hat gegenwärtig
+                           <p id="d13e1246">Analog zu <code>date</code>, nur gibt es kein Attribut. Hat gegenwärtig
                               keine Bedeutung, außer es suchbar zu machen. Häufig vorkommende
                               Sonderzeichen wie »½«, »¼«, »⅔«, werden mit fixem kurzen Abstand
                               gesetzt: »<code>½ 4</code>«.</p>
@@ -984,47 +1001,47 @@
                         </div>
                      </div>
                   
-                  <div id="d15e1256">
+                  <div id="d13e1256">
                      
                      <h2>TEI/@xml:id</h2>
                      
-                     <p id="d15e1261">Das Attribut <code>@xml:id</code> deckt sich mit dem Dateinamen und erlaubt eine
+                     <p id="d13e1261">Das Attribut <code>@xml:id</code> deckt sich mit dem Dateinamen und erlaubt eine
                         eindeutige Identifizierung des Dokuments innerhalb des Projekts. Zwar ist es
                         eine laufende Zählernummer, doch können Briefe wegfallen. Eine einmal vergebene
                         Nummer wird nicht neuerlich vergeben. </p>
                      </div>
                   
-                  <div id="d15e1267">
+                  <div id="d13e1267">
                      
                      <h2>teiHeader</h2>
                      
-                     <p id="d15e1272">Der <code>teiHeader</code> enthält vier relevante Bereiche mit wechselnden
+                     <p id="d13e1272">Der <code>teiHeader</code> enthält vier relevante Bereiche mit wechselnden
                         Informationen: <code>titleStmt</code>, <code>sourceDesc</code>,
                         <code>correspDesc</code> und <code>revisionDesc</code>.</p>
                      
-                     <div id="d15e1285">
+                     <div id="d13e1285">
                         
                         <h2>fileDesc/titleStmt</h2>
                         
-                        <div id="d15e1290">
+                        <div id="d13e1290">
                            
                            <h2>title[@level="a"]</h2>
                            
-                           <p id="d15e1295">Enthält den Titel des Korrespondenzstücks. Theoretisch könnte diese
+                           <p id="d13e1295">Enthält den Titel des Korrespondenzstücks. Theoretisch könnte diese
                               Information auch über <code>correspDesc</code> (siehe unten) weitgehend
                               konstruiert werden. In der Praxis kommt es, beispielsweise bei
                               Fragmenten oder Widmungen, zu leichten Abweichungen. </p>
                            
-                           <p id="d15e1300">Der erstgenannte Name ist auch die erste Schreibkraft des
+                           <p id="d13e1300">Der erstgenannte Name ist auch die erste Schreibkraft des
                               Korrespondenzstücks. Etwaige Wechsel der Schreibkräfte sind dann mit
                               <code>&lt;handShift/&gt;</code> ausgewiesen. </p>
                            </div>
                         
-                        <div id="d15e1306">
+                        <div id="d13e1306">
                            
                            <h2>author</h2>
                            
-                           <p id="d15e1311">Enthält die Namen der am Korrespondenzstück beteiligten Verfasser. Nur
+                           <p id="d13e1311">Enthält die Namen der am Korrespondenzstück beteiligten Verfasser. Nur
                               der erste Name ist eine relevante Position, nennt er doch den
                               Hauptschreiber. Danach folgen die weiteren Namen ohne eine besondere
                               Reihung. Dieselbe Information ist auch aus <code>correspDesc</code>
@@ -1032,21 +1049,21 @@
                            </div>
                         </div>
                      
-                     <div id="d15e1318">
+                     <div id="d13e1318">
                         
                         <h2>sourceDesc</h2>
                         
-                        <p id="d15e1323">Enthält zwei mögliche Kinder, nämlich Archivzeugen (<code>listWit</code>) und
+                        <p id="d13e1323">Enthält zwei mögliche Kinder, nämlich Archivzeugen (<code>listWit</code>) und
                            gedruckte Zeugen (<code>listBibl</code>). Hier wird eine implizite
                            Hierarchie angewandt: Der erste Eintrag von <code>listWit</code> ist der
                            edierte Zeuge. Sollte kein <code>listWit</code> vorhanden sein, so ist es
                            der erste Eintrag von <code>listBibl</code> der für die Edition relevante. </p>
                         
-                        <div id="d15e1336">
+                        <div id="d13e1336">
                            
                            <h2>listWit/witness[@n="1"]</h2>
                            
-                           <p id="d15e1341">Der erste Archivzeuge. Weitere Archivzeugen (etwa Durchschläge) sind mit
+                           <p id="d13e1341">Der erste Archivzeuge. Weitere Archivzeugen (etwa Durchschläge) sind mit
                               dem Zähler <code>@n</code> unterschieden. Das Kind <code>msDesc</code>
                               enthält Hinweise auf das Archiv und die Signatur des Objekts innerhalb
                               des Archivs. Während <code>msIdentifier</code> den Archivstandort und
@@ -1054,11 +1071,11 @@
                               Beschreibung des Objekts. (Siehe unten.) </p>
                            </div>
                         
-                        <div id="d15e1353">
+                        <div id="d13e1353">
                            
                            <h2>listBibl/biblStruct</h2>
                            
-                           <p id="d15e1358">Über verschiedene <code>biblStruct</code>-Elemente werden Drucke
+                           <p id="d13e1358">Über verschiedene <code>biblStruct</code>-Elemente werden Drucke
                               verzeichnet, die das jeweilige Korrespondenzstück bislang erhalten hat.
                               Mit einem Attribut <code>@corresp</code> sind ein paar Buchausgaben
                               gekennzeichnet, die nicht zur Gänze, sondern nur als Sigle zitiert
@@ -1066,11 +1083,11 @@
                            </div>
                         </div>
                      
-                     <div id="d15e1367">
+                     <div id="d13e1367">
                         
                         <h2>physDesc</h2>
                         
-                        <p id="d15e1372">Es handelt sich um ein Kind von <code>listWit/witness[@n="1"]/msDesc</code>
+                        <p id="d13e1372">Es handelt sich um ein Kind von <code>listWit/witness[@n="1"]/msDesc</code>
                            und enthält die Beschreibung der physischen Beschaffenheit des
                            Archivzeugens. Drei bis vier Elemente machen im Normalfall
                            <code>physDesc</code> aus: </p>
@@ -1087,54 +1104,54 @@
                               Korrespondenzstück übermittelt wurde</li>
                            </ul>
                         
-                        <div id="d15e1398">
+                        <div id="d13e1398">
                            
                            <h2>objectDesc/desc</h2>
                            
-                           <p id="d15e1403">Enthält die Angaben zur Materialität und zum Typ des Korrespondenzstücks.
+                           <p id="d13e1403">Enthält die Angaben zur Materialität und zum Typ des Korrespondenzstücks.
                               Mehrere dieser Elemente sind erlaubt. </p>
                            
-                           <div id="d15e1405">
+                           <div id="d13e1405">
                               
                               <h2>@n, @type="_blaetter" und
                                  @type="_seiten"</h2>
                               
-                              <p id="d15e1410">Für Postkarten und ähnliches ist keine Angabe nötig. Im Ausnahmefall
+                              <p id="d13e1410">Für Postkarten und ähnliches ist keine Angabe nötig. Im Ausnahmefall
                                  kann das Element auch Inhalt haben. Da dies als alternative
                                  Beschreibung verwendet wird, ist dann die komplette Angabe
                                  notwendig.</p>
                               
-                              <div id="d15e1412">
+                              <div id="d13e1412">
                                  
-                                 <p id="d15e1414">Beispiel 1: </p>
+                                 <p id="d13e1414">Beispiel 1: </p>
                                  
-                                 <p id="d15e1416">3 Blatt, 6 Seiten schauen so aus:</p>
+                                 <p id="d13e1416">3 Blatt, 6 Seiten schauen so aus:</p>
                                  
-                                 <p id="d15e1418">
+                                 <p id="d13e1418">
                                     <code>&lt;desc n="3" type="_blaetter"/&gt;</code>
                                     </p>
                                  
-                                 <p id="d15e1423">
+                                 <p id="d13e1423">
                                     <code>&lt;desc n="6" type="_seiten"/&gt;</code>
                                     </p>
                                  </div>
                               
-                              <div id="d15e1429">
+                              <div id="d13e1429">
                                  
-                                 <p id="d15e1431">Beispiel 2:</p>
+                                 <p id="d13e1431">Beispiel 2:</p>
                                  
-                                 <p id="d15e1433">
+                                 <p id="d13e1433">
                                     <code>&lt;desc n="3" type="_blaetter"&gt; 3 Blätter mit Lochung
                                        &lt;/desc&gt;</code>
                                     </p>
                                  </div>
                               </div>
                            
-                           <div id="d15e1440">
+                           <div id="d13e1440">
                               
                               <h2>@type und @subtype</h2>
                               
-                              <p id="d15e1445">Für die Klassifizierung der Korrespondenztypen sind folgende Werte
+                              <p id="d13e1445">Für die Klassifizierung der Korrespondenztypen sind folgende Werte
                                  zulässig: </p>
                               
                               <table class="table">
@@ -1227,9 +1244,9 @@
                                     </tbody>
                               </table>
                               
-                              <p id="d15e1561">Es sind mehrere Angaben erlaubt. </p>
+                              <p id="d13e1561">Es sind mehrere Angaben erlaubt. </p>
                               
-                              <p id="d15e1563">Einen theoretischen Sonderfall stellen Telegramme dar. Im Normalfall
+                              <p id="d13e1563">Einen theoretischen Sonderfall stellen Telegramme dar. Im Normalfall
                                  beschreibt <code>objectDesc</code> das Korrespondenzstück zum
                                  Zeitpunkt der Übermittlung, während spätere Veränderungen unter
                                  <code>additions</code> abgehandelt werden. Telegramme bekommen
@@ -1242,74 +1259,74 @@
                                  Übermittlung zu beziehenden Teile des Telegramms werden unter
                                  <code>additions/incident[@type="postal"]</code> behandelt. </p>
                               
-                              <div id="d15e1575">
+                              <div id="d13e1575">
                                  
-                                 <p id="d15e1577">Beispiel: </p>
+                                 <p id="d13e1577">Beispiel: </p>
                                  
-                                 <p id="d15e1579">Ein dreiseitiger Brief auf einem Blatt, der in einem Umschlag als
+                                 <p id="d13e1579">Ein dreiseitiger Brief auf einem Blatt, der in einem Umschlag als
                                     Durchschlag erhalten ist: </p>
                                  
-                                 <p id="d15e1581"><code>&lt;objectDesc&gt; </code></p>
+                                 <p id="d13e1581"><code>&lt;objectDesc&gt; </code></p>
                                  
-                                 <p id="d15e1584"><code>&lt;desc type="brief"/&gt; </code></p>
+                                 <p id="d13e1584"><code>&lt;desc type="brief"/&gt; </code></p>
                                  
-                                 <p id="d15e1587"><code>&lt;desc type="umschlag"/&gt; </code></p>
+                                 <p id="d13e1587"><code>&lt;desc type="umschlag"/&gt; </code></p>
                                  
-                                 <p id="d15e1591"><code>&lt;desc type="reproduktion" subtype="ms_abschrift"/&gt;
+                                 <p id="d13e1591"><code>&lt;desc type="reproduktion" subtype="ms_abschrift"/&gt;
                                        </code></p>
                                  
-                                 <p id="d15e1594"><code>&lt;desc n="1" type="_blaetter"/&gt; </code></p>
+                                 <p id="d13e1594"><code>&lt;desc n="1" type="_blaetter"/&gt; </code></p>
                                  
-                                 <p id="d15e1597"><code>&lt;desc n="3" type="_seiten"/&gt; </code></p>
+                                 <p id="d13e1597"><code>&lt;desc n="3" type="_seiten"/&gt; </code></p>
                                  
-                                 <p id="d15e1600"><code>&lt;/objectDesc&gt; </code></p>
+                                 <p id="d13e1600"><code>&lt;/objectDesc&gt; </code></p>
                                  </div>
                               </div>
                            </div>
                         
-                        <div id="d15e1606">
+                        <div id="d13e1606">
                            
                            <h2>handDesc</h2>
                            
-                           <p id="d15e1611">Hier findet sich die Beschreibung der verschiedenen Handschriften
+                           <p id="d13e1611">Hier findet sich die Beschreibung der verschiedenen Handschriften
                               innerhalb des Korrespondenzstücks. </p>
                            
-                           <div id="d15e1613">
+                           <div id="d13e1613">
                               
                               <h2>@hands</h2>
                               
-                              <p id="d15e1618">Sollten mehrere Personen am Brief beteiligt sein, wobei das auch eine
+                              <p id="d13e1618">Sollten mehrere Personen am Brief beteiligt sein, wobei das auch eine
                                  Schreibkraft umfassen kann, ist dieses Attribut verpflichtend und
                                  enthält die Anzahl der Schreibenden. </p>
                               
-                              <p id="d15e1620">Im Normalfall ist die Zahl der Hände ident mit der Zahl der als
+                              <p id="d13e1620">Im Normalfall ist die Zahl der Hände ident mit der Zahl der als
                                  Autoren des Briefes. Wenn der Brief von einer Schreibkraft
                                  (»unbekannte Hand«) verfasst ist, ist er um eins höher. </p>
                               
-                              <div id="d15e1622">
+                              <div id="d13e1622">
                                  
-                                 <p id="d15e1624"><code>&lt;handDesc hands="4"/&gt;</code>
+                                 <p id="d13e1624"><code>&lt;handDesc hands="4"/&gt;</code>
                                     </p>
                                  </div>
                               </div>
                            
-                           <div id="d15e1630">
+                           <div id="d13e1630">
                               
                               <h2>handNote</h2>
                               
-                              <p id="d15e1635">Beschreibt die unterschiedlichen Handschriften, die vorkommen. Das
+                              <p id="d13e1635">Beschreibt die unterschiedlichen Handschriften, die vorkommen. Das
                                  Element kann ein Kind <code>&lt;p/&gt;</code> haben. Der Inhalt
                                  dieses Elements ist eine Ergänzung zu den Attributen von
                                  <code>handNote</code> und wird in der Ausgabe zusätzlich – in runder Klammer –
                                  ausgegeben. </p>
                               
-                              <div id="d15e1645">
+                              <div id="d13e1645">
                                  
                                  <h2>@corresp</h2>
                                  
-                                 <p id="d15e1650">Gibt an, welche Handschriften innerhalb des Dokuments vorkommen. </p>
+                                 <p id="d13e1650">Gibt an, welche Handschriften innerhalb des Dokuments vorkommen. </p>
                                  
-                                 <p id="d15e1652">Wenn nur ein Autor, eine Autorin des Korrespondenzstücks
+                                 <p id="d13e1652">Wenn nur ein Autor, eine Autorin des Korrespondenzstücks
                                     vorhanden ist und diese den Brief verfasst hat, muss das
                                     Attribut nicht gesetzt werden. Ebenfalls implizit ist wird bei
                                     Telegrammen, dass akzeptiert, dass diese, sofern
@@ -1318,41 +1335,41 @@
                                     kann hier statt der Angabe einer PMB-Nummer (»#2121«) auch
                                     <code>corresp ="schreibkraft"</code> stehen. </p>
                                  
-                                 <div id="d15e1657">
+                                 <div id="d13e1657">
                                     
-                                    <p id="d15e1659">Ein Brief von Salten und Hofmannsthal: </p>
+                                    <p id="d13e1659">Ein Brief von Salten und Hofmannsthal: </p>
                                     
-                                    <p id="d15e1661"><code>&lt;handDesc hands="2"&gt; </code></p>
+                                    <p id="d13e1661"><code>&lt;handDesc hands="2"&gt; </code></p>
                                     
-                                    <p id="d15e1664"><code>&lt;handNote corresp="#2167"/&gt; </code></p>
+                                    <p id="d13e1664"><code>&lt;handNote corresp="#2167"/&gt; </code></p>
                                     
-                                    <p id="d15e1667"><code>&lt;handNote corresp="#11740"/&gt; </code></p>
+                                    <p id="d13e1667"><code>&lt;handNote corresp="#11740"/&gt; </code></p>
                                     
-                                    <p id="d15e1670"><code>&lt;/handDesc&gt; </code></p>
+                                    <p id="d13e1670"><code>&lt;/handDesc&gt; </code></p>
                                     </div>
                                  
-                                 <div id="d15e1674">
+                                 <div id="d13e1674">
                                     
-                                    <p id="d15e1676">Ein Brief von Salten, den eine Schreibkraft verfasste und den
+                                    <p id="d13e1676">Ein Brief von Salten, den eine Schreibkraft verfasste und den
                                        Salten nur unterschrieb: </p>
                                     
-                                    <p id="d15e1678"><code>&lt;handDesc hands="2"&gt;</code></p>
+                                    <p id="d13e1678"><code>&lt;handDesc hands="2"&gt;</code></p>
                                     
-                                    <p id="d15e1681"><code>&lt;handNote
+                                    <p id="d13e1681"><code>&lt;handNote
                                           corresp="#2167"&gt;&lt;p&gt;Unterschrift&lt;/p&gt;
                                           &lt;/handNote&gt; </code></p>
                                     
-                                    <p id="d15e1684"><code>&lt;handNote corresp="schreibkraft"/&gt;</code></p>
+                                    <p id="d13e1684"><code>&lt;handNote corresp="schreibkraft"/&gt;</code></p>
                                     
-                                    <p id="d15e1687"><code>&lt;/handDesc&gt;</code></p>
+                                    <p id="d13e1687"><code>&lt;/handDesc&gt;</code></p>
                                     </div>
                                  </div>
                               
-                              <div id="d15e1692">
+                              <div id="d13e1692">
                                  
                                  <h2>@medium</h2>
                                  
-                                 <p id="d15e1697">Gibt die Schreibmedien an, die im Einsatz sind. Die Angabe ist
+                                 <p id="d13e1697">Gibt die Schreibmedien an, die im Einsatz sind. Die Angabe ist
                                     verpflichtend. Als Werte sind erlaubt: </p>
                                  
                                  <ul>
@@ -1372,39 +1389,39 @@
                                     <li>anderes </li>
                                     </ul>
                                  
-                                 <p id="d15e1717">… wobei im letzteren Fall eine Angabe im Element zu machen ist: </p>
+                                 <p id="d13e1717">… wobei im letzteren Fall eine Angabe im Element zu machen ist: </p>
                                  
-                                 <p id="d15e1719"><code>&lt;handNote medium="anderes"&gt; mit Blut geschrieben
+                                 <p id="d13e1719"><code>&lt;handNote medium="anderes"&gt; mit Blut geschrieben
                                        &lt;/handNote&gt;</code></p>
                                  
-                                 <p id="d15e1723">Wenn jemand mit zwei unterschiedlichen Medien beteiligt ist, dann
+                                 <p id="d13e1723">Wenn jemand mit zwei unterschiedlichen Medien beteiligt ist, dann
                                     sind zwei Einträge anzubringen und die spezifischen Bereiche zu
                                     benennen. </p>
                                  
-                                 <p id="d15e1725"><code>&lt;handNote corresp="#pmb212"
+                                 <p id="d13e1725"><code>&lt;handNote corresp="#pmb212"
                                        medium="bleistift"&gt;Adresse&lt;/handNote&gt;</code>
                                     </p>
                                  
-                                 <p id="d15e1729"><code>&lt;handNote corresp="#pmb212"
+                                 <p id="d13e1729"><code>&lt;handNote corresp="#pmb212"
                                        medium="schwarze_tinte"/&gt;</code>
                                     </p>
                                  
-                                 <p id="d15e1733">… bedeutet, dass der Brief mit schwarzer Tinte geschrieben ist,
+                                 <p id="d13e1733">… bedeutet, dass der Brief mit schwarzer Tinte geschrieben ist,
                                     mit Ausnahme der Adresse. </p>
                                  </div>
                               
-                              <div id="d15e1736">
+                              <div id="d13e1736">
                                  
                                  <h2>@style</h2>
                                  
-                                 <p id="d15e1741">Vermerkt das verwendete Schreibsystem. Im Normalfall: Ob deutsche
+                                 <p id="d13e1741">Vermerkt das verwendete Schreibsystem. Im Normalfall: Ob deutsche
                                     oder lateinische Schreibschrift zum Einsatz kommt. Für
                                     Ausnahmefälle, etwa wenn nur ein einzelnes Korrekturzeichen oder
                                     eine Unterschrift vorhanden ist (diese werden nie den Schriften
                                     zugeordnet), ist der letzte Fall – »nicht_anzuwenden« –
                                     vorgesehen.</p>
                                  
-                                 <p id="d15e1743">Werte: </p>
+                                 <p id="d13e1743">Werte: </p>
                                  
                                  <ul>
                                     
@@ -1420,49 +1437,49 @@
                               </div>
                            </div>
                         
-                        <div id="d15e1760">
+                        <div id="d13e1760">
                            
                            <h2>typeDesc</h2>
                            
-                           <p id="d15e1765">Gibt Auskunft über maschinell erstellte Schriften und Drucke. Diese
+                           <p id="d13e1765">Gibt Auskunft über maschinell erstellte Schriften und Drucke. Diese
                               werden in einem <code>p</code>-Element wiedergegeben. </p>
                            
-                           <p id="d15e1770">Bei einem gedruckten Text kann die Angabe auch länger werden. </p>
+                           <p id="d13e1770">Bei einem gedruckten Text kann die Angabe auch länger werden. </p>
                            
-                           <div id="d15e1772">
+                           <div id="d13e1772">
                               
-                              <p id="d15e1774">Beispiel: </p>
+                              <p id="d13e1774">Beispiel: </p>
                               
-                              <p id="d15e1776"><code>&lt;typeDesc&gt;</code>
+                              <p id="d13e1776"><code>&lt;typeDesc&gt;</code>
                                  </p>
                               
-                              <p id="d15e1780"><code>&lt;p&gt;Schreibmaschine &lt;/p&gt;</code>
+                              <p id="d13e1780"><code>&lt;p&gt;Schreibmaschine &lt;/p&gt;</code>
                                  </p>
                               
-                              <p id="d15e1784"><code>&lt;/typeDesc&gt;</code>
+                              <p id="d13e1784"><code>&lt;/typeDesc&gt;</code>
                                  </p>
                               </div>
                            
-                           <div id="d15e1789">
+                           <div id="d13e1789">
                               
-                              <p id="d15e1791">Oder, für ein Telegramm: </p>
+                              <p id="d13e1791">Oder, für ein Telegramm: </p>
                               
-                              <p id="d15e1793"><code>&lt;typeDesc&gt;</code>
+                              <p id="d13e1793"><code>&lt;typeDesc&gt;</code>
                                  </p>
                               
-                              <p id="d15e1797"><code>&lt;p&gt;maschinell &lt;/p&gt;</code>
+                              <p id="d13e1797"><code>&lt;p&gt;maschinell &lt;/p&gt;</code>
                                  </p>
                               
-                              <p id="d15e1801"><code>&lt;/typeDesc&gt;</code>
+                              <p id="d13e1801"><code>&lt;/typeDesc&gt;</code>
                                  </p>
                               </div>
                            </div>
                         
-                        <div id="d15e1807">
+                        <div id="d13e1807">
                            
                            <h2>additions</h2>
                            
-                           <p id="d15e1812">Alles, was dem Korrespondenzstück nach der Fertigstellung durch den
+                           <p id="d13e1812">Alles, was dem Korrespondenzstück nach der Fertigstellung durch den
                               Verfasser, die Verfasserin hinzugefügt wurde, wird in diesem Element
                               versammelt. Dafür werden, in chronologischer Reihe vom ältesten zum
                               neuesten Ereignisse (<code>incident</code>) angelegt. Ausgenommen sind
@@ -1472,11 +1489,11 @@
                               nicht zum selben Augenblick gemacht, also sind zwei Stempel zwei
                               <code>&lt;incident type="postal"/&gt;</code>. </p>
                            
-                           <div id="d15e1821">
+                           <div id="d13e1821">
                               
                               <h2>incident</h2>
                               
-                              <p id="d15e1826">Jedes Ereignis hat ein Attribut <code>@type</code>, das es
+                              <p id="d13e1826">Jedes Ereignis hat ein Attribut <code>@type</code>, das es
                                  klassifiziert. Erlaubt sind: </p>
                               
                               <table class="table">
@@ -1540,11 +1557,11 @@
                               </table>
                               </div>
                            
-                           <div id="d15e1880">
+                           <div id="d13e1880">
                               
                               <h2>incident/desc</h2>
                               
-                              <p id="d15e1885">Jeder <code>incident</code> hat ein einziges Kind-Element
+                              <p id="d13e1885">Jeder <code>incident</code> hat ein einziges Kind-Element
                                  <code>desc</code>, das die Hinzufügung beschreibt. Zwar wird
                                  hier auf eine weitere Klassifizierung durch Elemente verzichtet,
                                  doch ist eine formelhafte Sprache bevorzugt: </p>
@@ -1576,25 +1593,25 @@
                                     hat.</li>
                                  </ul>
                               
-                              <div id="d15e1908">
+                              <div id="d13e1908">
                                  
                                  <h2>incident[@type="postal"]/desc/stamp</h2>
                                  
-                                 <p id="d15e1913">Poststempel werden jeweils als <code>incident</code> behandelt,
+                                 <p id="d13e1913">Poststempel werden jeweils als <code>incident</code> behandelt,
                                     wobei derselbe Stempel, wenn er mehrfach verwendet wurde (etwa
                                     um mehrere Briefmarken zu entwerten), nur als ein Stempel
                                     gewertet wird und die Wiedergabe einen rekonstruierten,
                                     »idealen« Fall darstellt. Nicht zuordenbare Zeichen und Kürzel
                                     werden übergangen. </p>
                                  
-                                 <p id="d15e1918">Das Attribut <code>@n</code> zählt die Stempel innerhalb des
+                                 <p id="d13e1918">Das Attribut <code>@n</code> zählt die Stempel innerhalb des
                                     Dokuments chronologisch. Ein Aufgabestempel kommt vor einem
                                     Zustellstempel. </p>
                                  
-                                 <p id="d15e1923">Die meisten Stempel sind in Blockbuchstaben geschrieben, das wird
+                                 <p id="d13e1923">Die meisten Stempel sind in Blockbuchstaben geschrieben, das wird
                                     nicht berücksichtigt. </p>
                                  
-                                 <p id="d15e1925">Ein Stempel kann aus maximal vier Elementen bestehen: </p>
+                                 <p id="d13e1925">Ein Stempel kann aus maximal vier Elementen bestehen: </p>
                                  
                                  <ul>
                                     
@@ -1610,21 +1627,21 @@
                                        </li>
                                     </ul>
                                  
-                                 <p id="d15e1950">Das <code>addSpan</code> enthält etwaige Textteile,
+                                 <p id="d13e1950">Das <code>addSpan</code> enthält etwaige Textteile,
                                     beispielsweise am häufigsten: »Bestellt«. </p>
                                  
-                                 <p id="d15e1955">Fehlende und unsicher Angaben beim Datum werden mit
+                                 <p id="d13e1955">Fehlende und unsicher Angaben beim Datum werden mit
                                     <code>&lt;supplied&gt;&lt;/supplied&gt;</code> und
                                     <code>&lt;unclear&gt;&lt;/unclear&gt;</code> ergänzt. Zum
                                     Beispiel: </p>
                                  
-                                 <p id="d15e1962"><code>&lt;date
+                                 <p id="d13e1962"><code>&lt;date
                                        when="1891-08-13"&gt;13.&lt;supplied&gt;8.&lt;/supplied&gt;9&lt;unclear&gt;1&lt;/unclear&gt;&lt;/date&gt;</code></p>
                                  
-                                 <p id="d15e1965">… heißt: Monat nicht lesbar, letzte Ziffer der Jahreszahl
+                                 <p id="d13e1965">… heißt: Monat nicht lesbar, letzte Ziffer der Jahreszahl
                                     erahnbar. </p>
                                  
-                                 <p id="d15e1967">Im Ausnahmefall ist auch gap möglich. (Zu den
+                                 <p id="d13e1967">Im Ausnahmefall ist auch gap möglich. (Zu den
                                     Abstandsregeln beim Datum siehe <code>date</code>, im Normalfall
                                     nach Punkt ein bedingtes, fixes Leerzeichen:
                                     <code>&amp;#160;</code>) </p>
@@ -1633,11 +1650,11 @@
                            </div>
                         </div>
                      
-                     <div id="d15e1981">
+                     <div id="d13e1981">
                         
                         <h2>correspDesc</h2>
                         
-                        <p id="d15e1986">Zu <code>correspDesc</code> sei, neben den allgemeinen Regeln der TEI, auch
+                        <p id="d13e1986">Zu <code>correspDesc</code> sei, neben den allgemeinen Regeln der TEI, auch
                            auf den Webservice <a href="https://correspsearch.net">https://correspsearch.net</a> verwiesen. Dort ist ebenfalls die im
                            cmif-Ordner des Projekts zu findende CMIF-Datei hinterlegt.
                            <code>correspDesc</code> enthält in standardisierter Form den
@@ -1657,22 +1674,22 @@
                            die Adressatin nicht angetroffen und von diesem oder dieser erst später in
                            Empfang genommen wurde.</p>
                         
-                        <div id="d15e2009">
+                        <div id="d13e2009">
                            
                            <h2>correspAction</h2>
                            
-                           <p id="d15e2014">Neben dem verpflichtenden Attribut <code>@type</code> gibt es drei
+                           <p id="d13e2014">Neben dem verpflichtenden Attribut <code>@type</code> gibt es drei
                               mögliche Kinderelemente: <code>persName</code>, <code>placeName</code>,
                               <code>date</code>, wobei die Angabe von <code>persName</code> und
                               <code>date</code> bei <code>@type="sent"</code>, bei
                               <code>@type="received"</code> die von <code>persName</code>
                               verpflichtend ist. </p>
                            
-                           <div id="d15e2036">
+                           <div id="d13e2036">
                               
                               <h2>correspAction/date</h2>
                               
-                              <p id="d15e2041">Dieses Element muss ein verpflichtendes Attribut aus der Reihe der
+                              <p id="d13e2041">Dieses Element muss ein verpflichtendes Attribut aus der Reihe der
                                  folgenden haben: </p>
                               
                               <ul>
@@ -1693,14 +1710,14 @@
                                     </li>
                                  </ul>
                               
-                              <p id="d15e2066">wobei die Angabe im ISO-Format (»1862-05-15«) erfolgt. Auf diesen
+                              <p id="d13e2066">wobei die Angabe im ISO-Format (»1862-05-15«) erfolgt. Auf diesen
                                  Wert wird von verschiedenster Stelle zugegriffen. </p>
                               
-                              <div id="d15e2068">
+                              <div id="d13e2068">
                                  
                                  <h2>correspAction/date/@n</h2>
                                  
-                                 <p id="d15e2073">Weiters hat <code>date/@type="sent"</code> ein zusätzliches
+                                 <p id="d13e2073">Weiters hat <code>date/@type="sent"</code> ein zusätzliches
                                     Attribut <code>@n</code>, das einem Zähler an einem bestimmten
                                     Tag entspricht. Hintergrund ist, eine genauere Granulierung der
                                     Briefe zu erreichen. Wichtig ist das in einem Fall, an dem an
@@ -1714,29 +1731,29 @@
                                     ihn, wobei hier dann die alphabetische Reihenfolge des
                                     Nachnamens des Empfängers/Senders berücksichtigt wird. </p>
                                  
-                                 <div id="d15e2086">
+                                 <div id="d13e2086">
                                     
-                                    <p id="d15e2088">Beispiel: </p>
+                                    <p id="d13e2088">Beispiel: </p>
                                     
-                                    <p id="d15e2090"><code>@n=1</code> Brief Bahrs an Schnitzler </p>
+                                    <p id="d13e2090"><code>@n=1</code> Brief Bahrs an Schnitzler </p>
                                     
-                                    <p id="d15e2094"><code>@n=2</code> Antwort von Schnitzler an Bahr </p>
+                                    <p id="d13e2094"><code>@n=2</code> Antwort von Schnitzler an Bahr </p>
                                     
-                                    <p id="d15e2098"><code>@n=3</code> Brief Schnitzlers an Beer-Hofmann </p>
+                                    <p id="d13e2098"><code>@n=3</code> Brief Schnitzlers an Beer-Hofmann </p>
                                     
-                                    <p id="d15e2102"><code>@n=4</code> Brief Schnitzlers an Wymetal </p>
+                                    <p id="d13e2102"><code>@n=4</code> Brief Schnitzlers an Wymetal </p>
                                     
-                                    <p id="d15e2107"><code>@n=5</code> Brief Hofmannsthals an Schnitzler </p>
+                                    <p id="d13e2107"><code>@n=5</code> Brief Hofmannsthals an Schnitzler </p>
                                     </div>
                                  </div>
                               </div>
                            </div>
                         
-                        <div id="d15e2115">
+                        <div id="d13e2115">
                            
                            <h2>correspContext/ref</h2>
                            
-                           <p id="d15e2120">Innerhalb von <code>correspContext</code> finden sich drei Arten von
+                           <p id="d13e2120">Innerhalb von <code>correspContext</code> finden sich drei Arten von
                               <code>ref</code>-Elementen mit dem Attribut <code>@type</code>
                               markiert. </p>
                            
@@ -1749,7 +1766,7 @@
                               <li>withinCorrespondence </li>
                               </ul>
                            
-                           <p id="d15e2138">Die Angabe »belongsToCorrespondence« ermöglicht auch Briefe Dritter über
+                           <p id="d13e2138">Die Angabe »belongsToCorrespondence« ermöglicht auch Briefe Dritter über
                               das Attribut <code>@target</code> bestimmten Korrespondenzen zuzuordnen,
                               etwa wenn Gertrud Rung für Georg Brandes einen Brief geschrieben hat, so
                               dass dieser auch Brandes zugeordnet werden kann. Die Angaben
@@ -1759,37 +1776,37 @@
                               innerhalb aller edierten Briefe (»withinCollection«) oder innerhalb
                               einer Korrespondenz (»withinCorrespondence«) zu erlauben. </p>
                            
-                           <div id="d15e2147">
+                           <div id="d13e2147">
                               
-                              <p id="d15e2149">Beispiel: </p>
+                              <p id="d13e2149">Beispiel: </p>
                               
-                              <p id="d15e2151"><code>&lt;ref type="belongsToCorrespondence"
+                              <p id="d13e2151"><code>&lt;ref type="belongsToCorrespondence"
                                     target="#pmb10992"&gt;Brandes, Georg&lt;/ref&gt; </code></p>
                               
-                              <p id="d15e2154"><code>&lt;ref subtype="previous_letter" type="withinCollection"
+                              <p id="d13e2154"><code>&lt;ref subtype="previous_letter" type="withinCollection"
                                     target="L01778"&gt;Schnitzler, Schnitzler an Beer-Hofmann,
                                     Beer-Hofmann, 26. 6. 1908&lt;/ref&gt; </code></p>
                               
-                              <p id="d15e2157"><code>&lt;ref subtype="next_letter" type="withinCollection"
+                              <p id="d13e2157"><code>&lt;ref subtype="next_letter" type="withinCollection"
                                     target="L01780"&gt;Schnitzler, Schnitzler an Bahr, 6. 7.
                                     1908&lt;/ref&gt;</code></p>
                               
-                              <p id="d15e2160"><code>&lt;ref subtype="previous_letter" type="withinCorrespondence"
+                              <p id="d13e2160"><code>&lt;ref subtype="previous_letter" type="withinCorrespondence"
                                     target="L01777"&gt;Brandes an Schnitzler, [25. 6.
                                     1908]&lt;/ref&gt; </code></p>
                               
-                              <p id="d15e2164"><code>&lt;ref subtype="next_letter" type="withinCorrespondence"
+                              <p id="d13e2164"><code>&lt;ref subtype="next_letter" type="withinCorrespondence"
                                     target="L01991"&gt;Brandes an Schnitzler, 18. 12.
                                     1910&lt;/ref&gt; </code></p>
                               </div>
                            </div>
                         </div>
                      
-                     <div id="d15e2170">
+                     <div id="d13e2170">
                         
                         <h2>revisionDesc</h2>
                         
-                        <p id="d15e2175">Enthält Informationen über den Bearbeitungszustand. Ab dem Moment, wo das
+                        <p id="d13e2175">Enthält Informationen über den Bearbeitungszustand. Ab dem Moment, wo das
                            Attribut <code>@status="approved"</code> gesetzt ist, ist die Bearbeitung
                            abgeschlossen. Darunter finden sich verschiedene
                            <code>&lt;changes&gt;</code>. Die vorkommenden Kürzel sind
@@ -1800,11 +1817,11 @@
                         </div>
                      </div>
                   
-                  <div id="d15e2194">
+                  <div id="d13e2194">
                      
                      <h2>facsimile</h2>
                      
-                     <p id="d15e2199">Zwar findet sich in vielen Dokumenten das Element <code>facsimile</code> mit den
+                     <p id="d13e2199">Zwar findet sich in vielen Dokumenten das Element <code>facsimile</code> mit den
                         Kind-Elementen <code>graphic</code>, doch wurde dieses nicht separat überprüft.
                         Bei der Erfassung wurden hier oft alle relevanten Bilddateien vermerkt, um sie
                         dann in Folge in das Seitenelement einzutragen. Wir empfehlen, die Werte aus
@@ -1813,31 +1830,31 @@
                         diese beim originalen Brief unmittelbar hinzugefügt im Archiv liegen.</p>
                      </div>
                   
-                  <div id="d15e2209">
+                  <div id="d13e2209">
                      
                      <h2>text</h2>
                      
-                     <p id="d15e2214">Das Attribut <code>@type</code> ist zwar vorhanden, aber durch die Angaben von
+                     <p id="d13e2214">Das Attribut <code>@type</code> ist zwar vorhanden, aber durch die Angaben von
                         <code>physDesc/objectDesc</code> weitgehend obsolet. Es spielt nur in den
                         wenigen Fällen eine Rolle, bei denen kein Archivzeuge überliefert ist. </p>
                      </div>
                   
-                  <div id="d15e2222">
+                  <div id="d13e2222">
                      
                      <h2>body</h2>
                      
-                     <p id="d15e2227">Im Folgenden werden häufig verwendete Elemente aufgezählt. Zuerst werden jene
+                     <p id="d13e2227">Im Folgenden werden häufig verwendete Elemente aufgezählt. Zuerst werden jene
                         Elemente behandelt, die eine bestimmte Reihenfolge haben, danach folgt,
                         alphabetisch geordnet, eine allgemeine Liste. Ein paar wenige Elemente davon,
                         etwa Verweise auf Personen oder Seitenwechsel können auch im Bereich von
                         <code>physDesc</code> zum Einsatz kommen, auch wenn sie hier behandelt
                         werden. </p>
                      
-                     <div id="d15e2232">
+                     <div id="d13e2232">
                         
                         <h2>Aufbau</h2>
                         
-                        <p id="d15e2237">Innerhalb von <code>body</code> sind nur <code>div</code>s von diesen Typen
+                        <p id="d13e2237">Innerhalb von <code>body</code> sind nur <code>div</code>s von diesen Typen
                            erlaubt: </p>
                         
                         <ul>
@@ -1849,17 +1866,17 @@
                            <li><code>div[@type="image"] </code></li>
                            </ul>
                         
-                        <p id="d15e2256"><code>address</code> darf nur einmal vorkommen und muss an erster Stelle
+                        <p id="d13e2256"><code>address</code> darf nur einmal vorkommen und muss an erster Stelle
                            stehen. <code>writingSession</code> kann es mehrere geben, diese sind dann
                            durch den Zähler <code>@n</code> zu unterscheiden. <code>image</code> ist
                            ein Erbe aus dem Vorprojekt Bahr/Schnitzler und eigentlich durch die
                            Aufnahme der Faksimile-Namen in <code>pb/@facs</code> obsolet. </p>
                         
-                        <div id="d15e2268">
+                        <div id="d13e2268">
                            
                            <h2>div[@type="address"]</h2>
                            
-                           <p id="d15e2273">Enthält Absender- und Empfangsadresse, jeweils in einem Element
+                           <p id="d13e2273">Enthält Absender- und Empfangsadresse, jeweils in einem Element
                               <code>address</code> mit mehreren <code>addrLine</code>-Elementen.
                               Eine weitere Unterscheidung, wie sie die TEI erlauben würde, wird
                               derzeit nicht vorgenommen. Bislang können folgende (impliziten) Annahmen
@@ -1867,7 +1884,7 @@
                               ist dies die Empfängeradresse. Wenn es zwei sind, ist die erste die
                               Absender-, die zweite die Empfangsadresse. </p>
                            
-                           <p id="d15e2282">Entsprechend zu den Editionsprinzipien werden Unterstreichungen in den
+                           <p id="d13e2282">Entsprechend zu den Editionsprinzipien werden Unterstreichungen in den
                               Adressen nicht aufgenommen, da ansonsten auch jene der Vordrucke
                               berücksichtigt werden müssten. Ausgezeichnet wird aber mit
                               <code>hi[@rend="latintype"]</code>, wenn Teile der Adressierung in
@@ -1875,11 +1892,11 @@
                               hingegen in <code>handNote</code> vermerkt. </p>
                            </div>
                         
-                        <div id="d15e2291">
+                        <div id="d13e2291">
                            
                            <h2>div[@type="writingSession" @n="1"]</h2>
                            
-                           <p id="d15e2296">Dies ist der wichtigste Bereich und eigentlich immer vorhanden.
+                           <p id="d13e2296">Dies ist der wichtigste Bereich und eigentlich immer vorhanden.
                               Üblicherweise ist nur eine »Schreibsitzung« ausgewiesen. Das trifft
                               nicht zu, wenn aus dem Inhalt klar hervorgeht, dass der Verfasser oder
                               die Verfasserin zu einem späteren Zeitpunkt einen Neuansatz vorgenommen
@@ -1888,7 +1905,7 @@
                               ist fließend, aber wenn zwei Schlussformeln (<code>closer</code>)
                               vorhanden sind, dürften auch zwei <code>div</code>-Bereiche vorliegen. </p>
                            
-                           <p id="d15e2303">Innerhalb eines solchen <code>div</code>s können sich folgende Teile
+                           <p id="d13e2303">Innerhalb eines solchen <code>div</code>s können sich folgende Teile
                               finden, wobei sie nicht verpflichtend sind, nur die Reihenfolge ist
                               weitgehend fixiert: </p>
                            
@@ -1907,11 +1924,11 @@
                                  </li>
                               </ul>
                            
-                           <div id="d15e2327">
+                           <div id="d13e2327">
                               
                               <h2>opener</h2>
                               
-                              <p id="d15e2332">Enthält dem eigentlichen Text vorausgehende Information. Das kann
+                              <p id="d13e2332">Enthält dem eigentlichen Text vorausgehende Information. Das kann
                                  sein: Briefkopf, Datumszeile, abgesetzte Begrüßungsformel. Bei
                                  Bildpostkartenmotiven findet sich hier auch – als gedruckt
                                  gekennzeichnet (<code>&lt;hi rend="pre-print"/&gt;</code>) der Titel
@@ -1919,7 +1936,7 @@
                                  Titel vorhanden ist, über <code>&lt;supplied
                                     type="image-description"/&gt;</code>) </p>
                               
-                              <p id="d15e2339">Folgende Kinder-Elemente sind zulässig: </p>
+                              <p id="d13e2339">Folgende Kinder-Elemente sind zulässig: </p>
                               
                               <ul>
                                  
@@ -1934,29 +1951,29 @@
                                  </ul>
                               </div>
                            
-                           <div id="d15e2358">
+                           <div id="d13e2358">
                               
                               <h2>closer</h2>
                               
-                              <p id="d15e2363">Sofern eine abgegrenzte Schlussformel vorhanden ist, wird diese in
+                              <p id="d13e2363">Sofern eine abgegrenzte Schlussformel vorhanden ist, wird diese in
                                  das Element <code>&lt;closer/&gt;</code> verpackt. Es hat vor allem
                                  <code>&lt;lb/&gt;</code> und <code>&lt;signed/&gt;</code> als
                                  Elemente. </p>
                               
-                              <div id="d15e2372">
+                              <div id="d13e2372">
                                  
                                  <h2>lb</h2>
                                  
-                                 <p id="d15e2377">Obwohl nicht nur auf <code>&lt;closer/&gt;</code> beschränkt,
+                                 <p id="d13e2377">Obwohl nicht nur auf <code>&lt;closer/&gt;</code> beschränkt,
                                     kommt es hier am häufigsten zum Einsatz. Das Element ist leer
                                     und markiert einen Zeilensprung. </p>
                                  </div>
                               
-                              <div id="d15e2383">
+                              <div id="d13e2383">
                                  
                                  <h2>signed</h2>
                                  
-                                 <p id="d15e2388">Dieses Element umfasst die Unterschrift einschließlich des
+                                 <p id="d13e2388">Dieses Element umfasst die Unterschrift einschließlich des
                                     folgenden Satzzeichens. Die Unterschriften sind soweit
                                     normalisiert, dass keine Schriftwechsel, keine Unter- oder
                                     Überstreichungen sowie Schnörkel berücksichtigt werden.
@@ -1966,11 +1983,11 @@
                                  </div>
                               </div>
                            
-                           <div id="d15e2395">
+                           <div id="d13e2395">
                               
                               <h2>postscript</h2>
                               
-                              <p id="d15e2400">Der nach dem <code>&lt;closer/&gt;</code> stehende Textteil wird in
+                              <p id="d13e2400">Der nach dem <code>&lt;closer/&gt;</code> stehende Textteil wird in
                                  verschiedene Absätze (<code>p</code>) oder Datumszeilen
                                  (<code>dateline</code>) aufgeteilt. Direkt innerhalb von
                                  <code>postscript</code> ist kein Inhalt erlaubt. </p>
@@ -2010,18 +2027,12 @@
                            E: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at">acdh-ch-helpdesk(at)oeaw.ac.at</a></p>
                      </div>
                   </div>
-                  <div class="footer-widget col-lg-1 col-md-2 col-sm-2 col-xs-6  ml-auto  text-center ">
-                     <div class="textwidget custom-html-widget"><a href="/"><img src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/fwf-logo_var2.jpg" class="image" alt="FWF Logo" style="max-width: 90%; height: auto;" title="ACDH Logo" /></a></div>
-                  </div>
-                  <div class="footer-widget col-lg-4 col-md-3 col-sm-4">
-                     <h6 class="font-weight-bold">FINANZIERUNG</h6>
-                     <div class="container">
-                        <div class="row">
-                           <div class="col-lg-6 col-md-6 col-sm-12">
-                              <div class="flex-md-row mb-4 align-items-center"><a href="https://www.fwf.ac.at/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/fwf-logo_var2.jpg" alt="FWF Der Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" /><p></p>
-                                    <p>Gefördert aus Mitteln des Wissenschaftsfonds FWF, P31277 (2018–2021) und
-                                       P34792 (2021–[2024])</p></a></div>
-                           </div>
+                  <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
+                     <div class="row">
+                        <div class="textwidget custom-html-widget">
+                           <h6 class="font-weight-bold">FÖRDERINSTITUTION</h6><a href="https://www.fwf.ac.at/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/fwf-logo_var2.jpg" alt="FWF Der Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" /></a><p></p>
+                           <p>Gefördert aus Mitteln des Wissenschaftsfonds FWF, P31277 (2018–2021) und
+                              P34792 (2021–[2024])</p>
                         </div>
                      </div>
                   </div>
@@ -2050,6 +2061,7 @@
             </div>
          </div>
          <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
-            © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script></div>
+            © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div>
+      </div>
    </body>
 </html>
