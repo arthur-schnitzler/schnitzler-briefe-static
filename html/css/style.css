@@ -10,9 +10,10 @@ a {
     color: #A63437;
 }
 
-/* a:hover {
-    color: #A63437;
-} */
+a:hover {
+    color: #d14141;
+    }
+
 
 .navbar-nav ul li a, .navbar-nav ul li a:visited {
     /* change navbar link color */
@@ -21,13 +22,15 @@ a {
 .navbar-nav ul li a:hover, .navbar-nav ul li a:active {
     /* change navbar link color */
     background-color: #A63437;
-    color: #A63437;
+    color: black;
 }
 
 .navbar-nav ul li.active a {
     /* change navbar link color */
     background-color: #A63437;
 }
+
+
 
 cite {
     font-style: normal;
@@ -401,7 +404,13 @@ div.dataTables_filter {
     border-radius: .35rem .35rem 0 0;
 }
 
-
+.h1, h1 {
+    font-size: 1.4rem;
+    padding: 1rem 0;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+}
 
 .h2, h2 {
     font-size: 1.4rem;
