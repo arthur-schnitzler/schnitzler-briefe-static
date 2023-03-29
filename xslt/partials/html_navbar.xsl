@@ -22,29 +22,39 @@
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"/>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end"
-                        id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"> Projekt </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="about.html">Zum Projekt</a>
-                                        <a class="dropdown-item" href="status.html"
-                                            >Projektstatus</a>
-                                        <a class="dropdown-item" href="editionsrichtlinien.html"
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Projekt </a>
+                                <ul class="dropdown-menu" >
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="about.html">Zum Projekt</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="status.html">Projektstatus</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="editionsrichtlinien.html"
                                             >Editionsrichtlinien</a>
-                                        <a class="dropdown-item" href="danksagung.html"
-                                            >Danksagung</a>
-                                        <a class="dropdown-item" href="kooperationen.html"
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="danksagung.html">Danksagung</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="kooperationen.html"
                                             >Kooperationen</a>
-                                        <div class="dropdown-divider"/>
-                                        <a class="dropdown-item" href="drucke.html">Gedruckte
+                                    </li>
+                                    <div class="dropdown-divider"/>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="drucke.html">Gedruckte
                                             Briefwechsel</a>
-                                        <a class="dropdown-item" href="andere-drucke.html">Weitere
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="andere-drucke.html">Weitere
                                             Druckdigitalisate</a>
-                                        <a class="dropdown-item" href="gedruckte-korrespondenz.html"
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="gedruckte-korrespondenz.html"
                                             >Korrespondenz-Bibliografie</a>
                                     </li>
                                 </ul>
@@ -53,35 +63,58 @@
                                 <a class="nav-link" href="calendar.html">Kalender</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Index </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="listperson.html">Personen</a>
-                                    <a class="dropdown-item" href="listwork.html">Werke</a>
-                                    <a class="dropdown-item" href="listplace.html">Orte</a>
-                                    <a class="dropdown-item" href="listorg.html">Institutionen</a>
-                                </div>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Briefe </a>
+                                <ul class="dropdown-menu" >
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="toc.html">Briefe</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="tocs.html">Korrespondenzen</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="correspaction.html">Versand</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="archives.html">Archive</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Briefe </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="toc.html">Briefe</a>
-                                    <a class="dropdown-item" href="tocs.html">Korrespondenzen</a>
-                                    <a class="dropdown-item" href="correspaction.html">Versand</a>
-                                    <a class="dropdown-item" href="archives.html">Archive</a>
-                                </div>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Index </a>
+                                <ul class="dropdown-menu" >
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="listperson.html">Personen</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="listwork.html">Werke</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="listplace.html">Orte</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="listorg.html">Institutionen</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Technisches </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="elemente.html">Verwendete
-                                        Elemente</a>
-                                </div>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Technisches </a>
+                                <ul class="dropdown-menu" >
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="elemente.html">Verwendete Elemente</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="https://github.com/arthur-schnitzler/schnitzler-briefe-data/" target="_blank">Quelldaten auf GitHub</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="https://github.com/arthur-schnitzler/schnitzler-briefe-static/" target="_blank">App auf GitHub</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="https://github.com/arthur-schnitzler/schnitzler-briefe-data/" target="_blank">Quelldaten auf GitHub</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="https://hdl.handle.net/21.11115/0000-000E-7538-0" target="_blank">Daten in der Langzeitarchivierung ARCHE</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a title="Suche" class="nav-link" href="search.html"><svg

@@ -31,13 +31,12 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Korrespondenz</th>
-                                            <th scope="col">An Schnitzler</th>
-                                            <th scope="col">Von Schnitzler</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <xsl:for-each select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id ='correspondence_null')]">
-                                            
+                                            <xsl:sort select="tei:persName[@role='main']/text()"/>
+                                            <xsl:variable name="nummer-des-korrespondenzpartners" select="tei:persName[@role='main']/replace(@ref, '#', '')"/>
                                             <tr>
                                                 <td>
                                                     <a>
@@ -46,17 +45,6 @@
                                                         </xsl:attribute>
                                                         <xsl:value-of select="tei:persName[@role='main']/text()"/>
                                                     </a>
-                                                </td>
-                                                <td>
-                                                    <xsl:for-each select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspContext[1]/tei:ref[@type='belongsToCorrespondence']">
-                                                        <xsl:value-of select="."/>
-                                                        <xsl:if test="not(position()=last())">
-                                                            <xsl:text>; </xsl:text>
-                                                        </xsl:if>
-                                                    </xsl:for-each>
-                                                </td>
-                                                <td>
-                                                    <xsl:value-of select="descendant::tei:titleStmt/tei:title[@type='iso-date']/text()"/>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
