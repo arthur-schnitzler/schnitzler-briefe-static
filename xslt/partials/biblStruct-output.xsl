@@ -4,6 +4,67 @@
     xmlns:mam="whatever" xmlns:tei="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xs" version="3.0">
     
+    <xsl:function name="mam:bibliografische-angabe">
+        <xsl:param name="biblStruct-input" as="node()"/>
+        <xsl:choose>
+            <!-- Zuerst Analytic -->
+            <xsl:when test="$biblStruct-input/tei:analytic">
+                <xsl:value-of select="mam:analytic-angabe($biblStruct-input)"/>
+                <xsl:text> </xsl:text>
+                <xsl:text>In: </xsl:text>
+                <xsl:value-of
+                    select="mam:monogr-angabe($biblStruct-input/tei:monogr[last()])"/>
+            </xsl:when>
+            <!-- Jetzt abfragen ob mehrere monogr -->
+            <xsl:when test="count($biblStruct-input/tei:monogr) = 2">
+                <xsl:value-of
+                    select="mam:monogr-angabe($biblStruct-input/tei:monogr[last()])"/>
+                <xsl:text>. Band</xsl:text>
+                <xsl:text>: </xsl:text>
+                <xsl:value-of
+                    select="mam:monogr-angabe($biblStruct-input/tei:monogr[1])"/>
+            </xsl:when>
+            <!-- Ansonsten ist es eine einzelne monogr -->
+            <xsl:otherwise>
+                <xsl:value-of
+                    select="mam:monogr-angabe($biblStruct-input/tei:monogr[last()])"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        <xsl:if
+            test="not(empty($biblStruct-input/tei:monogr//tei:biblScope[@unit = 'sec']))">
+            <xsl:text>, Sec. </xsl:text>
+            <xsl:value-of
+                select="$biblStruct-input/tei:monogr//tei:biblScope[@unit = 'sec']"
+            />
+        </xsl:if>
+        <xsl:if
+            test="not(empty($biblStruct-input/tei:monogr//tei:biblScope[@unit = 'pp']))">
+            <xsl:text>, S. </xsl:text>
+            <xsl:value-of
+                select="$biblStruct-input/tei:monogr//tei:biblScope[@unit = 'pp']"
+            />
+        </xsl:if>
+        <xsl:if
+            test="not(empty($biblStruct-input/tei:monogr//tei:biblScope[@unit = 'col']))">
+            <xsl:text>, Sp. </xsl:text>
+            <xsl:value-of
+                select="$biblStruct-input/tei:monogr//tei:biblScope[@unit = 'col']"
+            />
+        </xsl:if>
+        <xsl:if test="not(empty($biblStruct-input/tei:series))">
+            <xsl:text> (</xsl:text>
+            <xsl:value-of select="$biblStruct-input/tei:series/tei:title"/>
+            <xsl:if test="$biblStruct-input/tei:series/tei:biblScope">
+                <xsl:text>, </xsl:text>
+                <xsl:value-of select="$biblStruct-input/tei:series/tei:biblScope"
+                />
+            </xsl:if>
+            <xsl:text>)</xsl:text>
+        </xsl:if>
+        <xsl:text>.</xsl:text>
+        
+        
+    </xsl:function>
     
     <xsl:function name="mam:analytic-angabe">
         <xsl:param name="gedruckte-quellen" as="node()"/>

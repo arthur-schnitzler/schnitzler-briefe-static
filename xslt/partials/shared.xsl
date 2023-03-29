@@ -708,7 +708,7 @@
     <!-- <xsl:template match="tei:rs[@ref or @key]">
         <strong>
             <xsl:element name="a">
-                <xsl:attribute name="data-toggle">modal</xsl:attribute>
+                <xsl:attribute name="data-bs-toggle">modal</xsl:attribute>
                 <xsl:attribute name="data-target">
                     <xsl:value-of select="data(@ref)"/>
                 </xsl:attribute>

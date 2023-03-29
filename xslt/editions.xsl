@@ -108,50 +108,47 @@
                     <xsl:call-template name="nav_bar"/>
                     <div class="container-fluid">
                         <div class="wp-transcript">
-                        <div class="card" data-index="true">
-                            <div class="card-header">
-                                <xsl:call-template name="header-nav"/>
+                            <div class="card" data-index="true">
+                                <div class="card-header">
+                                    <xsl:call-template name="header-nav"/>
+                                </div>
+                                <div id="container-resize" class="row transcript active">
+                                    <xsl:for-each select="descendant::tei:body">
+                                        <xsl:call-template name="mam:view-type-img"/>
+                                    </xsl:for-each>
+                                </div>
                             </div>
-                            <div id="container-resize" class="row transcript active">
-                                <xsl:for-each select="descendant::tei:body">
-                                    <xsl:call-template name="mam:view-type-img"/>
-                                </xsl:for-each>
-                            </div>
-                        </div>
-                  
-                            
-                <div class="card-footer" style="clear: both;">
+                            <div class="card-footer" style="clear: both;">
                                 <div id="editor-widget">
                                     <xsl:call-template name="annotation-options"/>
                                 </div>
-                                <nav class="navbar-expand-md navbar-light bg-white box-shadow"
-                                    style="align: center">
-                                    <div>
-                                        <ul id="secondary-menu" class="navbar-nav mr-auto">
-                                            <xsl:if
-                                                test="not(descendant::tei:teiHeader[1]/tei:revisionDesc[1]/@status = 'approved')">
-                                                <li class="nav-item dropdown">
-                                                  <a class="nav-link" data-toggle="modal"
-                                                  data-target="#qualitaet">
+                                <nav class="navbar navbar-expand-lg">
+                                    <div class="container-fluid">
+                                        <div>
+                                            <ul id="secondary-menu" class="navbar-nav mb-2 mb-lg-0">
+                                                <xsl:if
+                                                  test="not(descendant::tei:teiHeader[1]/tei:revisionDesc[1]/@status = 'approved')">
+                                                  <li class="nav-item">
+                                                      &#160;<a href="#" data-bs-target="#qualitaet" type="button"
+                                                          data-bs-toggle="modal">
+                                                  <i class="fas fa-landmark"/>
                                                   <span style="color: orange;">ENTWURF</span>
-                                                  </a>
+                                                      </a>&#160;
+                                                  </li>
+                                                </xsl:if>
+                                                <li class="nav-item">
+                                                    &#160;<a href="#" data-bs-target="#ueberlieferung" type="button"
+                                                        data-bs-toggle="modal">
+                                                        <i class="fas fa-landmark"/> ÜBERLIEFERUNG </a>&#160;
                                                 </li>
-                                            </xsl:if>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link" data-target="#ueberlieferung"
-                                                  role="button" data-toggle="modal"
-                                                  aria-haspopup="true" aria-expanded="false">
-                                                  <i class="fas fa-landmark"/> ÜBERLIEFERUNG </a>
-                                            </li>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link" data-toggle="modal"
-                                                  data-target="#zitat">
-                                                  <span id="copy-url-button">
-                                                  <i class="fas fa-quote-right"/> ZITIEREN </span>
-                                                </a>
-                                            </li>
-                                            <xsl:variable name="datum">
-                                                <xsl:choose>
+                                                <li class="nav-item">
+                                                    &#160;<a href="#" data-bs-target="#zitat" type="button"
+                                                        data-bs-toggle="modal">
+                                                        <i class="fas fa-quote-right"/> ZITIEREN</a>&#160;
+                                                </li>
+                                                <li class="nav-item">
+                                                  <xsl:variable name="datum">
+                                                  <xsl:choose>
                                                   <xsl:when
                                                   test="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@when">
                                                   <xsl:value-of
@@ -169,13 +166,15 @@
                                                   select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notAfter"
                                                   />
                                                   </xsl:otherwise>
-                                                </xsl:choose>
-                                            </xsl:variable>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link">
+                                                  </xsl:choose>
+                                                  </xsl:variable>
+                                                  <a class="nav-link">
                                                   <xsl:attribute name="target">
                                                   <xsl:text>_blank</xsl:text>
                                                   </xsl:attribute>
+                                                      <xsl:attribute name="type">
+                                                          <xsl:text>button</xsl:text>
+                                                      </xsl:attribute>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat('https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__', $datum, '.html')"
@@ -183,9 +182,9 @@
                                                   </xsl:attribute><!--<span style="color:#037a33;">-->
                                                   <i class="fas fa-external-link-alt"/>
                                                   TAGEBUCH<!--</span>-->
-                                                </a>
-                                            </li>
-                                            <!--<li class="nav-item dropdown">
+                                                  </a>
+                                                </li>
+                                                <!--<li class="nav-item dropdown">
                                     <span class="nav-link">
                                         <div id="csLink" class="a.grau" data-correspondent-1-name=""
                                             data-correspondent-1-id="all"
@@ -196,7 +195,8 @@
                                             data-result-max="4" data-exclude-edition=""/>
                                     </span>
                                 </li>-->
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </nav>
                                 <xsl:if
@@ -204,39 +204,214 @@
                                     <div class="card-body-anhang">
                                         <dl class="kommentarhang">
                                             <xsl:apply-templates
-                                                select="descendant::tei:note[@type = 'textConst'] | descendant::tei:note[@type = 'commentary']"
+                                                select="descendant::tei:note[@type = 'textConst' or @type = 'commentary']"
                                                 mode="kommentaranhang"/>
                                         </dl>
                                     </div>
                                 </xsl:if>
-                                <p style="text-align:center;">
-                                    <xsl:for-each select=".//tei:note[not(./tei:p)]">
-                                        <div class="footnotes" id="{local:makeId(.)}">
-                                            <xsl:element name="a">
-                                                <xsl:attribute name="name">
-                                                  <xsl:text>fn</xsl:text>
-                                                  <xsl:number level="any" format="1"
-                                                  count="tei:note"/>
-                                                </xsl:attribute>
-                                                <a>
-                                                  <xsl:attribute name="href">
-                                                  <xsl:text>#fna_</xsl:text>
-                                                  <xsl:number level="any" format="1"
-                                                  count="tei:note"/>
-                                                  </xsl:attribute>
-                                                  <span
-                                                  style="font-size:7pt;vertical-align:super; margin-right: 0.4em">
-                                                  <xsl:number level="any" format="1"
-                                                  count="tei:note"/>
-                                                  </span>
-                                                </a>
-                                            </xsl:element>
-                                            <xsl:apply-templates/>
-                                        </div>
-                                    </xsl:for-each>
-                                </p>
                             </div>
-                    <xsl:call-template name="html_footer"/>
+                            <xsl:call-template name="html_footer"/>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="ueberlieferung" tabindex="-1"
+                    aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                    <xsl:for-each
+                                        select="//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a']">
+                                        <xsl:apply-templates/>
+                                        <br/>
+                                    </xsl:for-each>
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"/>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <xsl:for-each select="//tei:correspAction">
+                                            <tr>
+                                                <th>
+                                                  <xsl:choose>
+                                                  <xsl:when test="@type = 'sent'"> Versand: </xsl:when>
+                                                  <xsl:when test="@type = 'received'"> Empfangen: </xsl:when>
+                                                  <xsl:when test="@type = 'forwarded'">
+                                                  Weitergeleitet: </xsl:when>
+                                                  <xsl:when test="@type = 'redirected'"> Umgeleitet: </xsl:when>
+                                                  <xsl:when test="@type = 'delivered'"> Zustellung: </xsl:when>
+                                                  <xsl:when test="@type = 'transmitted'">
+                                                  Übermittelt: </xsl:when>
+                                                  </xsl:choose>
+                                                </th>
+                                                <td> </td>
+                                                <td>
+                                                  <xsl:if test="./tei:date">
+                                                  <xsl:value-of select="./tei:date"/>
+                                                  <br/>
+                                                  </xsl:if>
+                                                  <xsl:if test="./tei:persName">
+                                                  <xsl:value-of select="./tei:persName"
+                                                  separator="; "/>
+                                                  <br/>
+                                                  </xsl:if>
+                                                  <xsl:if test="./tei:placeName">
+                                                  <xsl:value-of select="./tei:placeName"
+                                                  separator="; "/>
+                                                  <br/>
+                                                  </xsl:if>
+                                                </td>
+                                            </tr>
+                                        </xsl:for-each>
+                                    </tbody>
+                                </table>
+                                <br/>
+                                <!-- Modal Überlieferung -->
+                                <div class="modal-body">
+                                    <xsl:for-each select="//tei:witness">
+                                        <h5>TEXTZEUGE <xsl:value-of select="@n"/>
+                                        </h5>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                <xsl:if test="tei:msDesc/tei:msIdentifier">
+                                                  <tr>
+                                                  <th>Signatur </th>
+                                                  <td>
+                                                  <xsl:for-each
+                                                  select="tei:msDesc/tei:msIdentifier/child::*">
+                                                  <xsl:value-of select="."/>
+                                                  <xsl:if test="not(position() = last())">
+                                                  <xsl:text>, </xsl:text>
+                                                  </xsl:if>
+                                                  </xsl:for-each>
+                                                  </td>
+                                                  </tr>
+                                                </xsl:if>
+                                                <xsl:if test="//tei:physDesc">
+                                                  <tr>
+                                                  <th>Beschreibung </th>
+                                                  <td>
+                                                  <xsl:apply-templates
+                                                  select="tei:msDesc/tei:physDesc/tei:objectDesc"/>
+                                                  </td>
+                                                  </tr>
+                                                  <xsl:if
+                                                  test="tei:msDesc/tei:physDesc/tei:typeDesc">
+                                                  <xsl:apply-templates
+                                                  select="tei:msDesc/tei:physDesc/tei:typeDesc"/>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="tei:msDesc/tei:physDesc/tei:handDesc">
+                                                  <xsl:apply-templates
+                                                  select="tei:msDesc/tei:physDesc/tei:handDesc"/>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="tei:msDesc/tei:physDesc/tei:additions">
+                                                  <tr>
+                                                  <th/>
+                                                  <th>Zufügungen</th>
+                                                  </tr>
+                                                  <xsl:apply-templates
+                                                  select="tei:msDesc/tei:physDesc/tei:additions"/>
+                                                  </xsl:if>
+                                                </xsl:if>
+                                            </tbody>
+                                        </table>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="//tei:biblStruct">
+                                        <h5>DRUCK <xsl:value-of select="position()"/>
+                                        </h5>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                <tr>
+                                                  <th/>
+                                                  <td>
+                                                  <xsl:value-of
+                                                  select="mam:bibliografische-angabe(.)"/>
+                                                  </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </xsl:for-each>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Schließen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Zitat -->
+                <div class="modal fade" id="zitat" tabindex="-1"
+                    aria-labelledby="zitatModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"
+                                    >Zitat</h5>
+                                <button type="button" class="btn-close"
+                                    data-bs-dismiss="modal" aria-label="Close"/>
+                            </div>
+                            <div class="modal-body">
+                                <p>Eine zitierfähige Angabe dieser Seite lautet:</p>
+                                <blockquote>
+                                    <xsl:value-of select="$quotationString"/>
+                                </blockquote>
+                                <p/>
+                                <p>Für gekürzte Zitate reicht die Angabe der
+                                    Briefnummer aus, die eindeutig und persistent ist:
+                                    »<b><xsl:value-of
+                                        select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"
+                                    /></b>«.</p>
+                                <p>Für Belege in der Wikipedia kann diese Vorlage
+                                    benutzt werden:</p>
+                                <blockquote>
+                                    <code>{{Internetquelle |url=<xsl:value-of
+                                        select="base-uri()"/> |titel=<xsl:value-of
+                                            select="$doc_title"/> |werk=Arthur Schnitzler:
+                                        Briefwechsel mit Autorinnen und Autoren
+                                        |hrsg=Martin Anton Müller, Gerd-Hermann Susen,
+                                        Laura Untner |sprache=de |datum=<xsl:value-of
+                                            select="//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso"
+                                        /> |abruf=<xsl:value-of
+                                            select="format-date(current-date(), '[Y4]-[M2]-[D2]')"
+                                        /> }} </code>
+                                </blockquote>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Schließen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Qualität -->
+                <div class="modal fade" id="qualitaet" tabindex="-1"
+                    aria-labelledby="qualitaetModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"
+                                    >Textqualität</h5>
+                                <button type="button" class="btn-close"
+                                    data-bs-dismiss="modal" aria-label="Close"/>
+                            </div>
+                            <div class="modal-body">
+                                <!-- <p>Diese Abschrift wurde noch nicht ausreichend mit
+                                                  dem Original abgeglichen. Sie sollte derzeit nicht
+                                                  – oder nur durch eigenen Abgleich mit dem
+                                                  Faksimile, falls vorliegend – als Zitatvorlage
+                                                  dienen.</p>-->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Schließen</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -245,16 +420,5 @@
             </body>
         </html>
     </xsl:template>
-    <xsl:template match="tei:p">
-        <p id="{local:makeId(.)}" class="yes-index">
-            <xsl:apply-templates/>
-        </p>
-    </xsl:template>
-    <xsl:template match="tei:div">
-        <div id="{local:makeId(.)}">
-            <xsl:apply-templates/>
-        </div>
-    </xsl:template>
-    
     <xsl:template match="tei:back"/>
 </xsl:stylesheet>

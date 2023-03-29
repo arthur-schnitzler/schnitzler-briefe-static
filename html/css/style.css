@@ -1,3 +1,14 @@
+/* change the colors */
+$primary: rebeccapurple;
+$danger: #dd0000;
+$success: lime;
+$warning: orange;
+$info: aqua;
+
+$body-bg: #f3f3f0;
+
+@import "bootstrap";
+
 *, :after, :before {
     box-sizing: border-box;
 }
@@ -666,4 +677,6 @@ background-color: transparent;
 
 
 /*** calendar end ***/
+
+
 
