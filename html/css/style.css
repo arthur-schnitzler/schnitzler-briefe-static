@@ -135,9 +135,7 @@ a {
 }
 
 #viewer {
-    position: sticky;
-    top: 10%;
-    padding: 2em;
+    padding-left: 1em;
 }
 
 /* entities */

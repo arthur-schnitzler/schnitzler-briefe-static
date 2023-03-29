@@ -25,7 +25,6 @@
                 select="concat(descendant::tei:correspDesc/tei:correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]/@target, '.html')"
             />
         </xsl:variable>
-        <div class="card card-header border-0">
             <div class="row" id="title-nav">
                     <div class="col-md-2 col-lg-2 col-sm-12">
                         <xsl:if test="ends-with($prev,'.html')">
@@ -61,7 +60,7 @@
                     </xsl:if>
                 </div>
             </div>
-        </div>
+        
         <!-- .row -->
         <!-- .card-header -->
     </xsl:template>
