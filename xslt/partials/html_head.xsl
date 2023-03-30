@@ -47,7 +47,23 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
         <script src="js/listStopProp.js"></script>
         <script src="js/navScroll.js"></script>
-        
+            <script src="js/dt.js"></script>
+                        <script src="js/dt-panes.js"></script>
 
+  <!-- Matomo -->
+            <script type="text/javascript">
+                var _paq = _paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                var u="https://matomo.acdh.oeaw.ac.at/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '171']); <!-- 171 is Matomo Code schnitzler-briefe -->
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script>
+            <!-- End Matomo Code -->
     </xsl:template>
 </xsl:stylesheet>
