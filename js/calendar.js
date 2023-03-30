@@ -42,12 +42,13 @@ const calendar = new Calendar('#calendar', {
     });
     //window.location = ids.join();
     if (entries.length > 1) {
-      let html = "<div class='modal' id='dialogForLinks' tabindex='-1' role='dialog' aria-labelledby='modalLabel' aria-hidden='true'>";
+      let html = "<div class='modal fade' id='dialogForLinks' tabindex='-1' aria-labelledby='modalLabel' aria-hidden='true'>";
       html += "<div class='modal-dialog' role='document'>";
       html += "<div class='modal-content'>";
       html += "<div class='modal-header'>";
-      html += "<h3 class='modal-title' id='modalLabel'>Links</h3>";
-      html += "</div><div style='padding-left:18px; padding-bottom: 10px;'>";
+      html += "<h5 class='modal-title' id='modalLabel'>Links</h5>";
+      html += "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
+      html += "</div><div class='modal-body'>";
       let numbersTitlesAndIds = new Array();
       for (let i = 0; i < entries.length; i++) {
         let linkTitle = entries[i].name;
@@ -70,9 +71,9 @@ const calendar = new Calendar('#calendar', {
       for (let k = 0; k < numbersTitlesAndIds.length; k++) {
         html += "<div class='indent'><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></div>";
       }
-      html += "</div></div>";
+      html += "</div>";
       html += "<div class='modal-footer'>";
-      html += "<p>&#160;</p>";
+      html += "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Schließen</button>";
       html += "</div></div></div></div>";
       $('#dialogForLinks').remove();
       $('#loadModal').append(html);
