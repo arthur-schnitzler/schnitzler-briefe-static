@@ -25,6 +25,9 @@ a:hover {
     color: #d14141;
     }
 
+.ais-RefinementList-labelText::before { content: "\00a0 "; }
+.ais-RefinementList-labelText::after { content: "\00a0 "; }
+
 
 .navbar-nav ul li a, .navbar-nav ul li a:visited {
     /* change navbar link color */

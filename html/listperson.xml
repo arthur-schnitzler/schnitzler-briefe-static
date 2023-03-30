@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0"
-     xmlns:tei="http://www.tei-c.org/ns/1.0"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://www.tei-c.org/ns/1.0        http://diglib.hab.de/rules/schema/tei/P5/v2.3.0/tei-p5-transcr.xsd">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tei-c.org/ns/1.0        http://diglib.hab.de/rules/schema/tei/P5/v2.3.0/tei-p5-transcr.xsd">
    <tei:teiHeader>
       <tei:fileDesc>
          <tei:titleStmt>
@@ -95,9 +91,7 @@
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/46027/</idno>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/4409610-0</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1153">in Bezug zu</term>
                      <orgName key="29677">Franz-Grillparzer-Preis</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29677.html</idno>
@@ -117,24 +111,18 @@
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/39399/</idno>
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb39399</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1919-01-01"
-                               when-iso="1919-07-02"
-                               notAfter-iso="1919-12-31">
+                  <affiliation notBefore-iso="1919-01-01" when-iso="1919-07-02" notAfter-iso="1919-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29594">Deutschösterreichischer Autorenverband</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29594/</idno>
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29594</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1918-01-01"
-                               when-iso="1918-07-02"
-                               notAfter-iso="1918-12-31">
+                  <affiliation notBefore-iso="1918-01-01" when-iso="1918-07-02" notAfter-iso="1918-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="60307">Freiwillige Schutzwache des 18. und 19. Bezirks</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/60307/</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1880-01-01"
-                               when-iso="1880-07-01"
-                               notAfter-iso="1880-12-31">
+                  <affiliation notBefore-iso="1880-01-01" when-iso="1880-07-01" notAfter-iso="1880-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29401">Wiener Medizinische Presse</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29401/</idno>
@@ -1402,7 +1390,8 @@
                      <bibl type="collections" n="11">ÖBL nach 1850 geboren</bibl>
                      <bibl type="collections" n="12">Fackel</bibl>
                   </listBibl>
-               </person>
+               <tei:note target="L00002.xml" type="mentions">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</tei:note><tei:note target="L03036.xml" type="mentions">Arthur Schnitzler an Felix Salten, [17. 12. 1896?]</tei:note><tei:note target="L03038.xml" type="mentions">Arthur Schnitzler an Felix Salten, [10. 6. 1901?]</tei:note><tei:note target="L00001.xml" type="mentions">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</tei:note><tei:note target="L03040.xml" type="mentions">Arthur Schnitzler an Felix Salten, [2. 5. 1895?]</tei:note><tei:note target="L03037.xml" type="mentions">Arthur Schnitzler an Felix Salten, [26. 10. 1893–2. 5. 1894?]</tei:note><tei:note target="L00004.xml" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</tei:note><tei:note target="L03035.xml" type="mentions">Arthur Schnitzler an Felix Salten, [vor dem 16. 11. 1901?]</tei:note><tei:note target="L03034.xml" type="mentions">Arthur Schnitzler an Felix Salten, [27. 1. 1898?]</tei:note><tei:note target="L03039.xml" type="mentions">Arthur Schnitzler an Felix Salten, [9. 6. 1896?]</tei:note><tei:note target="L03033.xml" type="mentions">Arthur Schnitzler an Felix Salten, [10. 11. 1898?]</tei:note><tei:note target="L00005.xml" type="mentions">Arthur Schnitzler an Wilhelm Bölsche, [Anfang September] 1890</tei:note><tei:note target="L00007.xml" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 25. 10. 1890</tei:note><tei:note target="L00003.xml" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</tei:note><tei:note target="L00006.xml" type="mentions">Arthur Schnitzler an Wilhelm Bölsche, 14. 10. 1890</tei:note><tei:note target="L00008.xml" type="mentions">Michael Georg Conrad an Arthur Schnitzler,
+                    14. 11. 1890</tei:note></person>
                <person xml:id="pmb2124">
                   <persName>
                      <forename>Josef Svatopluk</forename>
@@ -1674,9 +1663,7 @@
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29720/</idno>
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29720</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1892-01-01"
-                               when-iso="1892-07-01"
-                               notAfter-iso="1892-12-31">
+                  <affiliation notBefore-iso="1892-01-01" when-iso="1892-07-01" notAfter-iso="1892-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29414">Neues Wiener Tagblatt</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29414.html</idno>
@@ -1832,9 +1819,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb2161</idno>
                   <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/personen/pmb2161</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q55675091</idno>
-                  <affiliation notBefore-iso="1889-01-01"
-                               when-iso="1889-07-02"
-                               notAfter-iso="1889-12-31">
+                  <affiliation notBefore-iso="1889-01-01" when-iso="1889-07-02" notAfter-iso="1889-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36430">Volkstheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/146313-5</idno>
@@ -1951,9 +1936,7 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29670</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q2568834</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1904-01-01"
-                               when-iso="1904-07-01"
-                               notAfter-iso="1904-12-31">
+                  <affiliation notBefore-iso="1904-01-01" when-iso="1904-07-01" notAfter-iso="1904-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29626">Die Zeit</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29626.html</idno>
@@ -1961,9 +1944,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29626</idno>
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29626</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1905-01-01"
-                               when-iso="1905-07-02"
-                               notAfter-iso="1905-12-31">
+                  <affiliation notBefore-iso="1905-01-01" when-iso="1905-07-02" notAfter-iso="1905-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29702">B.Z. am Mittag</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29702.html</idno>
@@ -1971,9 +1952,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29702</idno>
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29702</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1906-01-01"
-                               when-iso="1906-07-02"
-                               notAfter-iso="1906-12-31">
+                  <affiliation notBefore-iso="1906-01-01" when-iso="1906-07-02" notAfter-iso="1906-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29626">Die Zeit</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29626.html</idno>
@@ -2140,7 +2119,7 @@
                      <bibl type="collections" n="11">ÖBL nach 1850 geboren</bibl>
                      <bibl type="collections" n="12">Fackel</bibl>
                   </listBibl>
-               </person>
+               <tei:note target="L03036.xml" type="mentions">Arthur Schnitzler an Felix Salten, [17. 12. 1896?]</tei:note><tei:note target="L03038.xml" type="mentions">Arthur Schnitzler an Felix Salten, [10. 6. 1901?]</tei:note><tei:note target="L03040.xml" type="mentions">Arthur Schnitzler an Felix Salten, [2. 5. 1895?]</tei:note><tei:note target="L03035.xml" type="mentions">Arthur Schnitzler an Felix Salten, [vor dem 16. 11. 1901?]</tei:note><tei:note target="L03034.xml" type="mentions">Arthur Schnitzler an Felix Salten, [27. 1. 1898?]</tei:note><tei:note target="L03039.xml" type="mentions">Arthur Schnitzler an Felix Salten, [9. 6. 1896?]</tei:note><tei:note target="L03033.xml" type="mentions">Arthur Schnitzler an Felix Salten, [10. 11. 1898?]</tei:note><tei:note target="L03037.xml" type="mentions">Arthur Schnitzler an Felix Salten, [26. 10. 1893–2. 5. 1894?]</tei:note></person>
                <person xml:id="pmb2170">
                   <persName>
                      <forename>Friedrich</forename>
@@ -2724,9 +2703,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29414</idno>
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29414</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1880-01-01"
-                               when-iso="1880-07-01"
-                               notAfter-iso="1880-12-31">
+                  <affiliation notBefore-iso="1880-01-01" when-iso="1880-07-01" notAfter-iso="1880-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29351">Neue Freie Presse</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29351.html</idno>
@@ -2844,23 +2821,17 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb2211</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp38321</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q529001</idno>
-                  <affiliation notBefore-iso="1888-01-01"
-                               when-iso="1888-07-01"
-                               notAfter-iso="1888-12-31">
+                  <affiliation notBefore-iso="1888-01-01" when-iso="1888-07-01" notAfter-iso="1888-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="88609">Théâtre Libre</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/88609/</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1897-01-01"
-                               when-iso="1897-07-02"
-                               notAfter-iso="1897-12-31">
+                  <affiliation notBefore-iso="1897-01-01" when-iso="1897-07-02" notAfter-iso="1897-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="88613">Théâtre Antoine</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/88613/</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1896-01-01"
-                               when-iso="1896-07-01"
-                               notAfter-iso="1896-12-31">
+                  <affiliation notBefore-iso="1896-01-01" when-iso="1896-07-01" notAfter-iso="1896-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="93494">Odéon</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93494/</idno>
@@ -3949,9 +3920,7 @@
                   <persName type="namensvariante">Ilona</persName>
                   <persName type="person_ehename">Scharff</persName>
                   <birth>
-                     <date notBefore-iso="1888-01-01"
-                           when-iso="1888-07-01"
-                           notAfter-iso="1888-12-31">1888</date>
+                     <date notBefore-iso="1888-01-01" when-iso="1888-07-01" notAfter-iso="1888-12-31">1888</date>
                      <settlement key="49163">
                         <placeName type="pref">Eisenstadt</placeName>
                         <location>
@@ -4026,9 +3995,7 @@
                   <persName type="person_geburtsname_nachname">Hesse</persName>
                   <persName type="person_rufname">Moppchen</persName>
                   <birth>
-                     <date notBefore-iso="1868-01-01"
-                           when-iso="1868-07-01"
-                           notAfter-iso="1868-12-31">1868</date>
+                     <date notBefore-iso="1868-01-01" when-iso="1868-07-01" notAfter-iso="1868-12-31">1868</date>
                      <settlement key="140">
                         <placeName type="pref">Halle an der Saale</placeName>
                         <location>
@@ -4363,9 +4330,7 @@
                   <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb2353.html</idno>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/2353/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb2353</idno>
-                  <affiliation notBefore-iso="1889-01-01"
-                               when-iso="1889-07-02"
-                               notAfter-iso="1889-12-31">
+                  <affiliation notBefore-iso="1889-01-01" when-iso="1889-07-02" notAfter-iso="1889-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36430">Volkstheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/146313-5</idno>
@@ -4374,9 +4339,7 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb36430</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q113044679</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1897-01-01"
-                               when-iso="1897-07-02"
-                               notAfter-iso="1897-12-31">
+                  <affiliation notBefore-iso="1897-01-01" when-iso="1897-07-02" notAfter-iso="1897-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="63031">Carl-Theater</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/63031/</idno>
@@ -4763,9 +4726,7 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29670</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q2568834</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1895-01-01"
-                               when-iso="1895-07-02"
-                               notAfter-iso="1895-12-31">
+                  <affiliation notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29320">Neues Wiener Journal</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29320.html</idno>
@@ -5281,9 +5242,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/2473/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb2473</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q55855801</idno>
-                  <affiliation notBefore-iso="1860-01-01"
-                               when-iso="1860-07-01"
-                               notAfter-iso="1860-12-31">
+                  <affiliation notBefore-iso="1860-01-01" when-iso="1860-07-01" notAfter-iso="1860-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="29401">Wiener Medizinische Presse</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29401/</idno>
@@ -5836,9 +5795,7 @@
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/61746/</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q45408100</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1889-01-01"
-                               when-iso="1889-07-02"
-                               notAfter-iso="1889-12-31">
+                  <affiliation notBefore-iso="1889-01-01" when-iso="1889-07-02" notAfter-iso="1889-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29351">Neue Freie Presse</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29351.html</idno>
@@ -6085,17 +6042,13 @@
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp47098</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x00281fa7</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q86314</idno>
-                  <affiliation notBefore-iso="1893-01-01"
-                               when-iso="1893-07-02"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="42649">Saisontheater Ischl</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/42649/</idno>
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb42649</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1899-01-01"
-                               when-iso="1899-07-02"
-                               notAfter-iso="1899-12-31">
+                  <affiliation notBefore-iso="1899-01-01" when-iso="1899-07-02" notAfter-iso="1899-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="39689">Theater in der Josefstadt</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/251387-0</idno>
@@ -6311,24 +6264,18 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/2674/</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp41150</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q57358</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="56040">Städtisches Konservatorium</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/56040/</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q21041502</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="56043">Oper Straßburg</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/56043/</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="56046">Straßburger Philharmoniker</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/56046/</idno>
@@ -6513,9 +6460,7 @@
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29596/</idno>
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29596</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36687">Staatsoper</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/16101345-4</idno>
@@ -6707,9 +6652,7 @@
                      <orgName key="55506">Nachtlicht</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/55506/</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1921-01-01"
-                               when-iso="1921-07-02"
-                               notAfter-iso="1921-12-31">
+                  <affiliation notBefore-iso="1921-01-01" when-iso="1921-07-02" notAfter-iso="1921-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29320">Neues Wiener Journal</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29320.html</idno>
@@ -7315,9 +7258,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/2910/</idno>
                   <idno type="URL" subtype="schnitzler-tagebuch">https://schnitzler-tagebuch.acdh.oeaw.ac.at/entity/person_18353</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q4898939</idno>
-                  <affiliation notBefore-iso="1917-01-01"
-                               when-iso="1917-07-02"
-                               notAfter-iso="1917-12-31">
+                  <affiliation notBefore-iso="1917-01-01" when-iso="1917-07-02" notAfter-iso="1917-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="58660">Betty Nansen-Teatret</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/58660/</idno>
@@ -7611,9 +7552,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb2968</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp37806</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q19125438</idno>
-                  <affiliation notBefore-iso="1905-01-01"
-                               when-iso="1905-07-02"
-                               notAfter-iso="1905-12-31">
+                  <affiliation notBefore-iso="1905-01-01" when-iso="1905-07-02" notAfter-iso="1905-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29702">B.Z. am Mittag</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29702.html</idno>
@@ -8189,9 +8128,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/3159/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb3159</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q94907886</idno>
-                  <affiliation notBefore-iso="1918-01-01"
-                               when-iso="1918-07-02"
-                               notAfter-iso="1918-12-31">
+                  <affiliation notBefore-iso="1918-01-01" when-iso="1918-07-02" notAfter-iso="1918-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="60307">Freiwillige Schutzwache des 18. und 19. Bezirks</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/60307/</idno>
@@ -8368,7 +8305,7 @@
                      <bibl type="collections" n="3">Manuell angelegt</bibl>
                      <bibl type="collections" n="12">Fackel</bibl>
                   </listBibl>
-               </person>
+               <tei:note target="L00005.xml" type="mentions">Arthur Schnitzler an Wilhelm Bölsche, [Anfang September] 1890</tei:note></person>
                <person xml:id="pmb3233">
                   <persName>
                      <forename>Lilly</forename>
@@ -8695,9 +8632,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/3382/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb3382</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q710383</idno>
-                  <affiliation notBefore-iso="1876-01-01"
-                               when-iso="1876-07-01"
-                               notAfter-iso="1876-12-31">
+                  <affiliation notBefore-iso="1876-01-01" when-iso="1876-07-01" notAfter-iso="1876-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29329">Berliner Tageblatt</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29329.html</idno>
@@ -8774,9 +8709,7 @@
                      <surname>Schönhoff</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1853-01-01"
-                           when-iso="1853-07-02"
-                           notAfter-iso="1853-12-31">1853</date>
+                     <date notBefore-iso="1853-01-01" when-iso="1853-07-02" notAfter-iso="1853-12-31">1853</date>
                      <settlement key="49840">
                         <placeName type="pref">Vyškov</placeName>
                         <location>
@@ -9092,9 +9025,7 @@
                      <orgName key="62887">Landtag von Niederösterreich</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/62887/</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1534">unterstützt</term>
                      <orgName key="118210">Guido-von-List-Gesellschaft</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/118210/</idno>
@@ -11176,9 +11107,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/4501/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb4501</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q560091</idno>
-                  <affiliation notBefore-iso="1880-01-01"
-                               when-iso="1880-07-01"
-                               notAfter-iso="1880-12-31">
+                  <affiliation notBefore-iso="1880-01-01" when-iso="1880-07-01" notAfter-iso="1880-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="44112">Königliche Hof- und Nationaltheater München</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/44112/</idno>
@@ -11883,9 +11812,7 @@
                      <surname>Müller</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1859-01-01"
-                           when-iso="1859-07-02"
-                           notAfter-iso="1859-12-31">1859</date>
+                     <date notBefore-iso="1859-01-01" when-iso="1859-07-02" notAfter-iso="1859-12-31">1859</date>
                   </birth>
                   <death>
                      <date when-iso="1932-06-06">1932-06-06</date>
@@ -12207,7 +12134,7 @@
                      <bibl type="collections" n="11">ÖBL nach 1850 geboren</bibl>
                      <bibl type="collections" n="12">Fackel</bibl>
                   </listBibl>
-               </person>
+               <tei:note target="L00001.xml" type="mentions">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</tei:note></person>
                <person xml:id="pmb4996">
                   <persName>
                      <forename>Johann Gottfried von</forename>
@@ -13229,9 +13156,7 @@
                      <surname>Bodmer</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1876-01-01"
-                           when-iso="1876-07-01"
-                           notAfter-iso="1876-12-31">1876</date>
+                     <date notBefore-iso="1876-01-01" when-iso="1876-07-01" notAfter-iso="1876-12-31">1876</date>
                   </birth>
                   <death>
                      <date when-iso="1940-07-01" notAfter-iso="1940-12-31">1940</date>
@@ -16076,9 +16001,7 @@
                      <surname>Belisar</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="505-01-01"
-                           when-iso="505-07-02"
-                           notAfter-iso="505-12-31">505</date>
+                     <date notBefore-iso="505-01-01" when-iso="505-07-02" notAfter-iso="505-12-31">505</date>
                   </birth>
                   <death>
                      <date when-iso="565-07-02" notAfter-iso="565-12-31">0565</date>
@@ -16425,9 +16348,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb5925</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x00280dc3</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q152393</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="44439">Wiener psychoanalytische Vereinigung</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/44439/</idno>
@@ -16954,9 +16875,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/6621/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb6621</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q19502446</idno>
-                  <affiliation notBefore-iso="1904-01-01"
-                               when-iso="1904-07-01"
-                               notAfter-iso="1904-12-31">
+                  <affiliation notBefore-iso="1904-01-01" when-iso="1904-07-01" notAfter-iso="1904-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="51421">Kurtheater in Aussee</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/51421/</idno>
@@ -17603,9 +17522,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb40016</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q241338</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1903-01-01"
-                               when-iso="1903-07-02"
-                               notAfter-iso="1903-12-31">
+                  <affiliation notBefore-iso="1903-01-01" when-iso="1903-07-02" notAfter-iso="1903-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="52449">Sanatorium Purkersdorf</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/52449/</idno>
@@ -19474,17 +19391,13 @@
                   <idno type="URL" subtype="schnitzler-lektueren">https://schnitzler-lektueren.acdh.oeaw.ac.at/pmb10574.html</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp43967</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q3087958</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="44439">Wiener psychoanalytische Vereinigung</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/44439/</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q685872</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="45285">Cottage-Sanatorium für Nerven- und Stoffwechselkranke</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/45285/</idno>
@@ -19956,9 +19869,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/10809/</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp38657</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q89426</idno>
-                  <affiliation notBefore-iso="1880-01-01"
-                               when-iso="1880-07-01"
-                               notAfter-iso="1880-12-31">
+                  <affiliation notBefore-iso="1880-01-01" when-iso="1880-07-01" notAfter-iso="1880-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29351">Neue Freie Presse</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29351.html</idno>
@@ -21095,9 +21006,7 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb36247</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q308720</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1900-01-01"
-                               when-iso="1900-07-02"
-                               notAfter-iso="1900-12-31">
+                  <affiliation notBefore-iso="1900-01-01" when-iso="1900-07-02" notAfter-iso="1900-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="45530">Deutsches Schauspielhaus in Hamburg</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/45530/</idno>
@@ -21371,9 +21280,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb10928</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp50974</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q64001</idno>
-                  <affiliation notBefore-iso="1901-01-01"
-                               when-iso="1901-07-02"
-                               notAfter-iso="1901-12-31">
+                  <affiliation notBefore-iso="1901-01-01" when-iso="1901-07-02" notAfter-iso="1901-12-31">
                      <term key="1153">in Bezug zu</term>
                      <orgName key="61673">Trianon-Theater</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/61673/</idno>
@@ -21546,9 +21453,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb10959</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp39304</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q94505</idno>
-                  <affiliation notBefore-iso="1893-01-01"
-                               when-iso="1893-07-02"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36246">Kaiserlich-Königliches Hof-Burgtheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/122950-3</idno>
@@ -21767,7 +21672,7 @@
                      <bibl type="collections" n="5">legalkraus</bibl>
                      <bibl type="collections" n="12">Fackel</bibl>
                   </listBibl>
-               </person>
+               <tei:note target="L00004.xml" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</tei:note></person>
                <person xml:id="pmb10992">
                   <persName>
                      <forename>Georg</forename>
@@ -21978,9 +21883,7 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb36247</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q308720</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29677">Franz-Grillparzer-Preis</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29677.html</idno>
@@ -22176,7 +22079,7 @@
                      <bibl type="collections" n="3">Manuell angelegt</bibl>
                      <bibl type="collections" n="12">Fackel</bibl>
                   </listBibl>
-               </person>
+               <tei:note target="L00005.xml" type="mentions">Arthur Schnitzler an Wilhelm Bölsche, [Anfang September] 1890</tei:note><tei:note target="L00004.xml" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</tei:note><tei:note target="L00006.xml" type="mentions">Arthur Schnitzler an Wilhelm Bölsche, 14. 10. 1890</tei:note><tei:note target="L00007.xml" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 25. 10. 1890</tei:note></person>
                <person xml:id="pmb11068">
                   <persName>
                      <forename>Pedro</forename>
@@ -22263,7 +22166,8 @@
                      <bibl type="collections" n="3">Manuell angelegt</bibl>
                      <bibl type="collections" n="12">Fackel</bibl>
                   </listBibl>
-               </person>
+               <tei:note target="L00006.xml" type="mentions">Arthur Schnitzler an Wilhelm Bölsche, 14. 10. 1890</tei:note><tei:note target="L00008.xml" type="mentions">Michael Georg Conrad an Arthur Schnitzler,
+                    14. 11. 1890</tei:note></person>
                <person xml:id="pmb11110">
                   <persName>
                      <forename>Charles de</forename>
@@ -23348,9 +23252,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb11284</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp44389</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q108057</idno>
-                  <affiliation notBefore-iso="1920-01-01"
-                               when-iso="1920-07-01"
-                               notAfter-iso="1920-12-31">
+                  <affiliation notBefore-iso="1920-01-01" when-iso="1920-07-01" notAfter-iso="1920-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="61824">Kleines Schauspielhaus</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/61824/</idno>
@@ -23442,9 +23344,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb11312</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x00281560</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q24700967</idno>
-                  <affiliation notBefore-iso="1903-01-01"
-                               when-iso="1903-07-02"
-                               notAfter-iso="1903-12-31">
+                  <affiliation notBefore-iso="1903-01-01" when-iso="1903-07-02" notAfter-iso="1903-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="44466">Synagoge Währing</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/44466/</idno>
@@ -23495,9 +23395,7 @@
                   <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/personen/pmb11324</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp37584</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q95541</idno>
-                  <affiliation notBefore-iso="1886-01-01"
-                               when-iso="1886-07-02"
-                               notAfter-iso="1886-12-31">
+                  <affiliation notBefore-iso="1886-01-01" when-iso="1886-07-02" notAfter-iso="1886-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="29639">S. Fischer Verlag</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29639.html</idno>
@@ -23823,9 +23721,7 @@
                   <idno type="URL" subtype="dritte-walpurgisnacht">https://kraus1933.ace.oeaw.ac.at/Gesamt.xml?template=register_personen.html&amp;letter=F#DWpers0066</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x0028164c</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q9215</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="44439">Wiener psychoanalytische Vereinigung</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/44439/</idno>
@@ -24097,9 +23993,7 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29670</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q2568834</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1892-01-01"
-                               when-iso="1892-07-01"
-                               notAfter-iso="1892-12-31">
+                  <affiliation notBefore-iso="1892-01-01" when-iso="1892-07-01" notAfter-iso="1892-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="48930">Fremden-Blatt</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29600.html</idno>
@@ -24388,9 +24282,7 @@
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp45710</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x0028180d</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q94764103</idno>
-                  <affiliation notBefore-iso="1894-01-01"
-                               when-iso="1894-07-02"
-                               notAfter-iso="1894-12-31">
+                  <affiliation notBefore-iso="1894-01-01" when-iso="1894-07-02" notAfter-iso="1894-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29717">Extrapost</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29717.html</idno>
@@ -24540,9 +24432,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29442</idno>
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29442</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1890-01-01"
-                               when-iso="1890-07-02"
-                               notAfter-iso="1890-12-31">
+                  <affiliation notBefore-iso="1890-01-01" when-iso="1890-07-02" notAfter-iso="1890-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29351">Neue Freie Presse</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29351.html</idno>
@@ -24550,9 +24440,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29351</idno>
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29351</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1902-01-01"
-                               when-iso="1902-07-02"
-                               notAfter-iso="1902-12-31">
+                  <affiliation notBefore-iso="1902-01-01" when-iso="1902-07-02" notAfter-iso="1902-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29351">Neue Freie Presse</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29351.html</idno>
@@ -24617,7 +24505,7 @@
                      <bibl type="collections" n="11">ÖBL nach 1850 geboren</bibl>
                      <bibl type="collections" n="12">Fackel</bibl>
                   </listBibl>
-               </person>
+               <tei:note target="L00002.xml" type="mentions">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</tei:note><tei:note target="L00001.xml" type="mentions">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</tei:note></person>
                <person xml:id="pmb11491">
                   <persName>
                      <forename>Adalbert von</forename>
@@ -24800,17 +24688,13 @@
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp49927</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x003a260d</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q84559</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="44439">Wiener psychoanalytische Vereinigung</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/44439/</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q685872</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1921-01-01"
-                               when-iso="1921-07-02"
-                               notAfter-iso="1921-12-31">
+                  <affiliation notBefore-iso="1921-01-01" when-iso="1921-07-02" notAfter-iso="1921-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29320">Neues Wiener Journal</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29320.html</idno>
@@ -24969,9 +24853,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29644</idno>
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29644</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1913-01-01"
-                               when-iso="1913-07-02"
-                               notAfter-iso="1913-12-31">
+                  <affiliation notBefore-iso="1913-01-01" when-iso="1913-07-02" notAfter-iso="1913-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29681">Ullstein Verlag</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29681.html</idno>
@@ -25031,9 +24913,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/11536/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb11536</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q1698745</idno>
-                  <affiliation notBefore-iso="1909-01-01"
-                               when-iso="1909-07-02"
-                               notAfter-iso="1909-12-31">
+                  <affiliation notBefore-iso="1909-01-01" when-iso="1909-07-02" notAfter-iso="1909-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="60453">Apollon</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/60453/</idno>
@@ -25181,9 +25061,7 @@
                   <idno type="URL" subtype="schnitzler-lektueren">https://schnitzler-lektueren.acdh.oeaw.ac.at/pmb11565.html</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp49931</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q65042</idno>
-                  <affiliation notBefore-iso="1895-01-01"
-                               when-iso="1895-07-02"
-                               notAfter-iso="1895-12-31">
+                  <affiliation notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="49228">Intimes Theater für dramatische Experimente</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/49228/</idno>
@@ -25550,7 +25428,7 @@
                      <bibl type="collections" n="10">Karl Kraus 1933: Dritte Walpurgisnacht</bibl>
                      <bibl type="collections" n="12">Fackel</bibl>
                   </listBibl>
-               </person>
+               <tei:note target="L00003.xml" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</tei:note></person>
                <person xml:id="pmb11621">
                   <persName>
                      <forename>Margarete</forename>
@@ -25750,9 +25628,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb11646</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp46331</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q3142398</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="44439">Wiener psychoanalytische Vereinigung</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/44439/</idno>
@@ -25872,9 +25748,7 @@
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp56293</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x00281ddc</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q1402307</idno>
-                  <affiliation notBefore-iso="1904-01-01"
-                               when-iso="1904-07-01"
-                               notAfter-iso="1904-12-31">
+                  <affiliation notBefore-iso="1904-01-01" when-iso="1904-07-01" notAfter-iso="1904-12-31">
                      <term key="1153">in Bezug zu</term>
                      <orgName key="29675">Bauernfeld-Preis</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29675.html</idno>
@@ -25930,9 +25804,7 @@
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp41891</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x00281de3</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q44003</idno>
-                  <affiliation notBefore-iso="1891-10-01"
-                               when-iso="1891-10-16"
-                               notAfter-iso="1891-10-31">
+                  <affiliation notBefore-iso="1891-10-01" when-iso="1891-10-16" notAfter-iso="1891-10-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29351">Neue Freie Presse</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29351.html</idno>
@@ -26023,9 +25895,7 @@
                   <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/personen/pmb11687</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp49299</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q86534</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29677">Franz-Grillparzer-Preis</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29677.html</idno>
@@ -26229,9 +26099,7 @@
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29270/</idno>
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29270</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1891-01-01"
-                               when-iso="1891-07-02"
-                               notAfter-iso="1891-12-31">
+                  <affiliation notBefore-iso="1891-01-01" when-iso="1891-07-02" notAfter-iso="1891-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29525">Wiener Sonn- und Montagszeitung</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29525.html</idno>
@@ -27459,9 +27327,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb11848</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x002820be</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q18625374</idno>
-                  <affiliation notBefore-iso="1889-01-01"
-                               when-iso="1889-07-02"
-                               notAfter-iso="1889-12-31">
+                  <affiliation notBefore-iso="1889-01-01" when-iso="1889-07-02" notAfter-iso="1889-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36430">Volkstheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/146313-5</idno>
@@ -27470,9 +27336,7 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb36430</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q113044679</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="63031">Carl-Theater</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/63031/</idno>
@@ -27694,18 +27558,14 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb11867</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp47448</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q1597948</idno>
-                  <affiliation notBefore-iso="1894-01-01"
-                               when-iso="1894-07-02"
-                               notAfter-iso="1894-12-31">
+                  <affiliation notBefore-iso="1894-01-01" when-iso="1894-07-02" notAfter-iso="1894-12-31">
                      <term key="1153">in Bezug zu</term>
                      <orgName key="29209">Die Zeit. Wiener Wochenschrift</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29209.html</idno>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29209/</idno>
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29209</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1902-01-01"
-                               when-iso="1902-07-02"
-                               notAfter-iso="1902-12-31">
+                  <affiliation notBefore-iso="1902-01-01" when-iso="1902-07-02" notAfter-iso="1902-12-31">
                      <term key="1153">in Bezug zu</term>
                      <orgName key="29626">Die Zeit</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29626.html</idno>
@@ -27713,9 +27573,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29626</idno>
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29626</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1902-01-01"
-                               when-iso="1902-07-02"
-                               notAfter-iso="1902-12-31">
+                  <affiliation notBefore-iso="1902-01-01" when-iso="1902-07-02" notAfter-iso="1902-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="29626">Die Zeit</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29626.html</idno>
@@ -27723,9 +27581,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29626</idno>
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29626</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1892-01-01"
-                               when-iso="1892-07-01"
-                               notAfter-iso="1892-12-31">
+                  <affiliation notBefore-iso="1892-01-01" when-iso="1892-07-01" notAfter-iso="1892-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29442">Frankfurter Zeitung</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29442.html</idno>
@@ -28292,9 +28148,7 @@
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x00282450</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q106287778</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q115028</idno>
-                  <affiliation notBefore-iso="1918-01-01"
-                               when-iso="1918-07-02"
-                               notAfter-iso="1918-12-31">
+                  <affiliation notBefore-iso="1918-01-01" when-iso="1918-07-02" notAfter-iso="1918-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="37080">Neues Deutsches Theater</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/37080/</idno>
@@ -28562,9 +28416,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb12019</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp56377</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q15440107</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29644">Arbeiter-Zeitung</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29644.html</idno>
@@ -28942,9 +28794,7 @@
                   <idno type="URL" subtype="schnitzler-lektueren">https://schnitzler-lektueren.acdh.oeaw.ac.at/pmb12078.html</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp51225</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q86886</idno>
-                  <affiliation notBefore-iso="1887-01-01"
-                               when-iso="1887-07-02"
-                               notAfter-iso="1887-12-31">
+                  <affiliation notBefore-iso="1887-01-01" when-iso="1887-07-02" notAfter-iso="1887-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29329">Berliner Tageblatt</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29329.html</idno>
@@ -28953,17 +28803,13 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29329</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q455014</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1877-01-01"
-                               when-iso="1877-07-02"
-                               notAfter-iso="1877-12-31">
+                  <affiliation notBefore-iso="1877-01-01" when-iso="1877-07-02" notAfter-iso="1877-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="34269">Nord und Süd</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/1123300100</idno>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/34269/</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1900-01-01"
-                               when-iso="1900-07-02"
-                               notAfter-iso="1900-12-31">
+                  <affiliation notBefore-iso="1900-01-01" when-iso="1900-07-02" notAfter-iso="1900-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29380">Berliner Theater</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29380/</idno>
@@ -29703,9 +29549,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb40016</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q241338</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1909-01-01"
-                               when-iso="1909-07-02"
-                               notAfter-iso="1909-12-31">
+                  <affiliation notBefore-iso="1909-01-01" when-iso="1909-07-02" notAfter-iso="1909-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29626">Die Zeit</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29626.html</idno>
@@ -29952,9 +29796,7 @@
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp46699</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x00283046</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q94661</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29677">Franz-Grillparzer-Preis</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29677.html</idno>
@@ -30498,9 +30340,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb12341</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp38258</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q78288</idno>
-                  <affiliation notBefore-iso="1885-01-01"
-                               when-iso="1885-07-02"
-                               notAfter-iso="1885-12-31">
+                  <affiliation notBefore-iso="1885-01-01" when-iso="1885-07-02" notAfter-iso="1885-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="37080">Neues Deutsches Theater</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/37080/</idno>
@@ -31570,17 +31410,13 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb35597</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q703955</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1902-01-01"
-                               when-iso="1902-07-02"
-                               notAfter-iso="1902-12-31">
+                  <affiliation notBefore-iso="1902-01-01" when-iso="1902-07-02" notAfter-iso="1902-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="45417">Reinhardt-Bühnen</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/45417/</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q2141170</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1909-01-01"
-                               when-iso="1909-07-02"
-                               notAfter-iso="1909-12-31">
+                  <affiliation notBefore-iso="1909-01-01" when-iso="1909-07-02" notAfter-iso="1909-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="47607">Münchner Künstlertheater</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/47607/</idno>
@@ -32001,9 +31837,7 @@
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp38450</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x002842fd</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q215647</idno>
-                  <affiliation notBefore-iso="1882-01-01"
-                               when-iso="1882-07-02"
-                               notAfter-iso="1882-12-31">
+                  <affiliation notBefore-iso="1882-01-01" when-iso="1882-07-02" notAfter-iso="1882-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="51780">Rosé-Quartett</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/51780/</idno>
@@ -32702,9 +32536,7 @@
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb36247</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q308720</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29677">Franz-Grillparzer-Preis</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29677.html</idno>
@@ -32719,9 +32551,7 @@
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29561</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q1453924</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1886-01-01"
-                               when-iso="1886-07-02"
-                               notAfter-iso="1886-12-31">
+                  <affiliation notBefore-iso="1886-01-01" when-iso="1886-07-02" notAfter-iso="1886-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29331">Vossische Zeitung</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29331.html</idno>
@@ -32805,9 +32635,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb12678</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp42766</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q72966</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29677">Franz-Grillparzer-Preis</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29677.html</idno>
@@ -32868,9 +32696,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb12689</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x0028439d</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q370800</idno>
-                  <affiliation notBefore-iso="1918-01-01"
-                               when-iso="1918-07-02"
-                               notAfter-iso="1918-12-31">
+                  <affiliation notBefore-iso="1918-01-01" when-iso="1918-07-02" notAfter-iso="1918-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="60307">Freiwillige Schutzwache des 18. und 19. Bezirks</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/60307/</idno>
@@ -32919,9 +32745,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/12692/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb12692</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q1598804</idno>
-                  <affiliation notBefore-iso="1957-01-01"
-                               when-iso="1957-07-02"
-                               notAfter-iso="1957-12-31">
+                  <affiliation notBefore-iso="1957-01-01" when-iso="1957-07-02" notAfter-iso="1957-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="39689">Theater in der Josefstadt</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/251387-0</idno>
@@ -33029,9 +32853,7 @@
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb12695</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp46937</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q86302</idno>
-                  <affiliation notBefore-iso="1887-01-01"
-                               when-iso="1887-07-02"
-                               notAfter-iso="1887-12-31">
+                  <affiliation notBefore-iso="1887-01-01" when-iso="1887-07-02" notAfter-iso="1887-12-31">
                      <term key="1153">in Bezug zu</term>
                      <orgName key="39399">Internationale klinische Rundschau</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/39399/</idno>
@@ -33043,9 +32865,7 @@
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/41367/</idno>
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb41367</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1860-01-01"
-                               when-iso="1860-07-01"
-                               notAfter-iso="1860-12-31">
+                  <affiliation notBefore-iso="1860-01-01" when-iso="1860-07-01" notAfter-iso="1860-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="29401">Wiener Medizinische Presse</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29401/</idno>
@@ -33939,9 +33759,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/12796/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb12796</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp53591</idno>
-                  <affiliation notBefore-iso="1880-01-01"
-                               when-iso="1880-07-01"
-                               notAfter-iso="1880-12-31">
+                  <affiliation notBefore-iso="1880-01-01" when-iso="1880-07-01" notAfter-iso="1880-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29670">Wiener Allgemeine Zeitung</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29670.html</idno>
@@ -34575,9 +34393,7 @@
                   <idno type="URL" subtype="schnitzler-lektueren">https://schnitzler-lektueren.acdh.oeaw.ac.at/pmb12906.html</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp39159</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q18456</idno>
-                  <affiliation notBefore-iso="1891-01-01"
-                               when-iso="1891-07-02"
-                               notAfter-iso="1891-12-31">
+                  <affiliation notBefore-iso="1891-01-01" when-iso="1891-07-02" notAfter-iso="1891-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="59056">Österreichische Gesellschaft der Friedensfreunde</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/59056/</idno>
@@ -34657,9 +34473,7 @@
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp46351</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x0031110b</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q73355</idno>
-                  <affiliation notBefore-iso="1918-01-01"
-                               when-iso="1918-07-02"
-                               notAfter-iso="1918-12-31">
+                  <affiliation notBefore-iso="1918-01-01" when-iso="1918-07-02" notAfter-iso="1918-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="60307">Freiwillige Schutzwache des 18. und 19. Bezirks</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/60307/</idno>
@@ -35432,9 +35246,7 @@
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp46707</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x003afbb2</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q60369</idno>
-                  <affiliation notBefore-iso="1898-01-01"
-                               when-iso="1898-07-02"
-                               notAfter-iso="1898-12-31">
+                  <affiliation notBefore-iso="1898-01-01" when-iso="1898-07-02" notAfter-iso="1898-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29442">Frankfurter Zeitung</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29442.html</idno>
@@ -36327,9 +36139,7 @@
                   <idno type="URL" subtype="schnitzler-lektueren">https://schnitzler-lektueren.acdh.oeaw.ac.at/pmb13169.html</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp42860</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q85414</idno>
-                  <affiliation notBefore-iso="1908-01-01"
-                               when-iso="1908-07-01"
-                               notAfter-iso="1908-12-31">
+                  <affiliation notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">
                      <term key="1534">unterstützt</term>
                      <orgName key="118210">Guido-von-List-Gesellschaft</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/118210/</idno>
@@ -38447,9 +38257,7 @@
                   <idno type="URL" subtype="schnitzler-lektueren">https://schnitzler-lektueren.acdh.oeaw.ac.at/pmb15323.html</idno>
                   <idno type="URL" subtype="oebl">https://doi.org/10.1553/0x002812be</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q986949</idno>
-                  <affiliation notBefore-iso="1895-01-01"
-                               when-iso="1895-07-02"
-                               notAfter-iso="1895-12-31">
+                  <affiliation notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="49228">Intimes Theater für dramatische Experimente</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/49228/</idno>
@@ -40338,9 +40146,7 @@
                   <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb18567.html</idno>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/18567/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb18567</idno>
-                  <affiliation notBefore-iso="1902-01-01"
-                               when-iso="1902-07-02"
-                               notAfter-iso="1902-12-31">
+                  <affiliation notBefore-iso="1902-01-01" when-iso="1902-07-02" notAfter-iso="1902-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36687">Staatsoper</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/16101345-4</idno>
@@ -40387,7 +40193,7 @@
                </person>
                <person xml:id="pmb18870">
                   <error type="person">1887028812</error>
-               </person>
+               <tei:note target="L00002.xml" type="mentions">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</tei:note></person>
                <person xml:id="pmb18900">
                   <persName>
                      <forename>Clara</forename>
@@ -41487,9 +41293,7 @@
                      <surname>Mantegna</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1431-01-01"
-                           when-iso="1431-07-02"
-                           notAfter-iso="1431-12-31">1431</date>
+                     <date notBefore-iso="1431-01-01" when-iso="1431-07-02" notAfter-iso="1431-12-31">1431</date>
                   </birth>
                   <death>
                      <date when-iso="1506-09-13">13.09.1506</date>
@@ -41516,9 +41320,7 @@
                   </persName>
                   <persName type="person_rufname">Sissy</persName>
                   <birth>
-                     <date notBefore-iso="1887-01-01"
-                           when-iso="1887-07-02"
-                           notAfter-iso="1887-12-31">1887</date>
+                     <date notBefore-iso="1887-01-01" when-iso="1887-07-02" notAfter-iso="1887-12-31">1887</date>
                      <settlement key="224">
                         <placeName type="pref">London</placeName>
                         <location>
@@ -41691,9 +41493,7 @@
                   <occupation key="103">Theaterleiter/Theaterleiterin</occupation>
                   <idno type="URL" subtype="schnitzler-tagebuch">https://schnitzler-tagebuch.acdh.oeaw.ac.at/entity/person_17946</idno>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/21119/</idno>
-                  <affiliation notBefore-iso="1901-01-01"
-                               when-iso="1901-07-02"
-                               notAfter-iso="1901-12-31">
+                  <affiliation notBefore-iso="1901-01-01" when-iso="1901-07-02" notAfter-iso="1901-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="45434">Neues Theater</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/45434/</idno>
@@ -41887,9 +41687,7 @@
                      <surname>Metzl</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1882-01-01"
-                           when-iso="1882-07-02"
-                           notAfter-iso="1882-12-31">1882</date>
+                     <date notBefore-iso="1882-01-01" when-iso="1882-07-02" notAfter-iso="1882-12-31">1882</date>
                      <settlement key="869">
                         <placeName type="pref">Moskau</placeName>
                         <location>
@@ -42282,9 +42080,7 @@
                   <idno type="URL" subtype="schnitzler-tagebuch">https://schnitzler-tagebuch.acdh.oeaw.ac.at/entity/person_18296</idno>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/21716/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb21716</idno>
-                  <affiliation notBefore-iso="1904-01-01"
-                               when-iso="1904-07-01"
-                               notAfter-iso="1904-12-31">
+                  <affiliation notBefore-iso="1904-01-01" when-iso="1904-07-01" notAfter-iso="1904-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="51421">Kurtheater in Aussee</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/51421/</idno>
@@ -43679,9 +43475,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/23918/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb23918</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp57237</idno>
-                  <affiliation notBefore-iso="1891-01-01"
-                               when-iso="1891-07-02"
-                               notAfter-iso="1891-12-31">
+                  <affiliation notBefore-iso="1891-01-01" when-iso="1891-07-02" notAfter-iso="1891-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36247">Burgtheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/38633-9</idno>
@@ -44412,9 +44206,7 @@
                   <occupation key="294">Pädagoge/Pädagogin</occupation>
                   <idno type="URL" subtype="schnitzler-tagebuch">https://schnitzler-tagebuch.acdh.oeaw.ac.at/entity/person_19991</idno>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/24658/</idno>
-                  <affiliation notBefore-iso="1901-01-01"
-                               when-iso="1901-07-02"
-                               notAfter-iso="1901-12-31">
+                  <affiliation notBefore-iso="1901-01-01" when-iso="1901-07-02" notAfter-iso="1901-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="65209">Schwarzwald-Schule</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/65209/</idno>
@@ -46093,16 +45885,12 @@
                   <occupation key="97">Mediziner/Medizinerin</occupation>
                   <idno type="URL" subtype="schnitzler-tagebuch">https://schnitzler-tagebuch.acdh.oeaw.ac.at/entity/person_21194</idno>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/26860/</idno>
-                  <affiliation notBefore-iso="1885-01-01"
-                               when-iso="1885-07-02"
-                               notAfter-iso="1885-12-31">
+                  <affiliation notBefore-iso="1885-01-01" when-iso="1885-07-02" notAfter-iso="1885-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29401">Wiener Medizinische Presse</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29401/</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1887-01-01"
-                               when-iso="1887-07-02"
-                               notAfter-iso="1887-12-31">
+                  <affiliation notBefore-iso="1887-01-01" when-iso="1887-07-02" notAfter-iso="1887-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="39399">Internationale klinische Rundschau</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/39399/</idno>
@@ -46277,9 +46065,7 @@
                   <idno type="URL" subtype="gnd">https://d-nb.info/gnd/118771663</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q79178</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp55458</idno>
-                  <affiliation notBefore-iso="1901-01-01"
-                               when-iso="1901-07-02"
-                               notAfter-iso="1901-12-31">
+                  <affiliation notBefore-iso="1901-01-01" when-iso="1901-07-02" notAfter-iso="1901-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36687">Staatsoper</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/16101345-4</idno>
@@ -46684,9 +46470,7 @@
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/27473/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb27473</idno>
                   <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/personen/pmb27473</idno>
-                  <affiliation notBefore-iso="1910-01-01"
-                               when-iso="1910-07-02"
-                               notAfter-iso="1910-12-31">
+                  <affiliation notBefore-iso="1910-01-01" when-iso="1910-07-02" notAfter-iso="1910-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="37214">Neue Wiener Bühne</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/37214/</idno>
@@ -46901,9 +46685,7 @@
                      <surname>Heller</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1854-01-01"
-                           when-iso="1854-07-02"
-                           notAfter-iso="1854-12-31">1854</date>
+                     <date notBefore-iso="1854-01-01" when-iso="1854-07-02" notAfter-iso="1854-12-31">1854</date>
                   </birth>
                   <death>
                      <date when-iso="1935-02-28">1935-02-28</date>
@@ -46997,9 +46779,7 @@
                      <surname>?? [Regimentsarzt]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1893-01-01"
-                           when-iso="1893-07-02"
-                           notAfter-iso="1893-12-31">1893</date>
+                     <date notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">1893</date>
                   </birth>
                   <death>
                      <date when-iso="1893-07-02" notAfter-iso="1893-12-31">1893</date>
@@ -47018,9 +46798,7 @@
                      <surname>?? [Hausmeisterin von Arthur Schnitzler]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1896-01-01"
-                           when-iso="1896-07-01"
-                           notAfter-iso="1896-12-31">1896</date>
+                     <date notBefore-iso="1896-01-01" when-iso="1896-07-01" notAfter-iso="1896-12-31">1896</date>
                   </birth>
                   <death>
                      <date when-iso="1896-07-01" notAfter-iso="1896-12-31">1896</date>
@@ -47082,9 +46860,7 @@
                      <surname>?? [Autografensammlerin]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1897-01-01"
-                           when-iso="1897-07-02"
-                           notAfter-iso="1897-12-31">1897</date>
+                     <date notBefore-iso="1897-01-01" when-iso="1897-07-02" notAfter-iso="1897-12-31">1897</date>
                   </birth>
                   <death>
                      <date when-iso="1897-07-02" notAfter-iso="1897-12-31">1897</date>
@@ -47103,9 +46879,7 @@
                      <surname>?? [Bittstellerin]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1901-01-01"
-                           when-iso="1901-07-02"
-                           notAfter-iso="1901-12-31">1901</date>
+                     <date notBefore-iso="1901-01-01" when-iso="1901-07-02" notAfter-iso="1901-12-31">1901</date>
                   </birth>
                   <death>
                      <date when-iso="1901-07-02" notAfter-iso="1901-12-31">1901</date>
@@ -47136,9 +46910,7 @@
                      <surname>?? [Fotograf in Paris]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1912-01-01"
-                           when-iso="1912-07-01"
-                           notAfter-iso="1912-12-31">1912</date>
+                     <date notBefore-iso="1912-01-01" when-iso="1912-07-01" notAfter-iso="1912-12-31">1912</date>
                   </birth>
                   <sex value="male"/>
                   <occupation key="145">Bildender Künstler/Bildende Künstlerin &gt;&gt; Fotograf/Fotografin</occupation>
@@ -47153,9 +46925,7 @@
                      <surname>?? [Schwede, mit dem Arthur Schnitzler über den Nobelpreis spricht]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1914-01-01"
-                           when-iso="1914-07-02"
-                           notAfter-iso="1914-12-31">1914</date>
+                     <date notBefore-iso="1914-01-01" when-iso="1914-07-02" notAfter-iso="1914-12-31">1914</date>
                   </birth>
                   <sex value="male"/>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/27748/</idno>
@@ -47169,9 +46939,7 @@
                      <surname>?? [Russischer Flüchtling in Stockholm]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1914-01-01"
-                           when-iso="1914-07-02"
-                           notAfter-iso="1914-12-31">1914</date>
+                     <date notBefore-iso="1914-01-01" when-iso="1914-07-02" notAfter-iso="1914-12-31">1914</date>
                   </birth>
                   <sex value="male"/>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/27749/</idno>
@@ -47185,9 +46953,7 @@
                      <surname>?? [Dänischer Journalist]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1915-01-01"
-                           when-iso="1915-07-02"
-                           notAfter-iso="1915-12-31">1915</date>
+                     <date notBefore-iso="1915-01-01" when-iso="1915-07-02" notAfter-iso="1915-12-31">1915</date>
                   </birth>
                   <sex value="male"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
@@ -47202,9 +46968,7 @@
                      <surname>?? [Korrespondent aus Russland]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1914-01-01"
-                           when-iso="1914-07-02"
-                           notAfter-iso="1914-12-31">1914</date>
+                     <date notBefore-iso="1914-01-01" when-iso="1914-07-02" notAfter-iso="1914-12-31">1914</date>
                   </birth>
                   <sex value="male"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
@@ -47231,9 +46995,7 @@
                      <surname>?? [Kusine von Gertrud Rung]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1925-01-01"
-                           when-iso="1925-07-02"
-                           notAfter-iso="1925-12-31">1925</date>
+                     <date notBefore-iso="1925-01-01" when-iso="1925-07-02" notAfter-iso="1925-12-31">1925</date>
                   </birth>
                   <sex value="female"/>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/27753/</idno>
@@ -47259,9 +47021,7 @@
                      <surname>?? [Studienkollege von Albert Ehrenstein]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1909-01-01"
-                           when-iso="1909-07-02"
-                           notAfter-iso="1909-12-31">1909</date>
+                     <date notBefore-iso="1909-01-01" when-iso="1909-07-02" notAfter-iso="1909-12-31">1909</date>
                   </birth>
                   <sex value="male"/>
                   <occupation key="651">Student/Studentin</occupation>
@@ -47276,9 +47036,7 @@
                      <surname>?? [Postmeister in Zistersdorf]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1915-01-01"
-                           when-iso="1915-07-02"
-                           notAfter-iso="1915-12-31">1915</date>
+                     <date notBefore-iso="1915-01-01" when-iso="1915-07-02" notAfter-iso="1915-12-31">1915</date>
                   </birth>
                   <sex value="male"/>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/27756/</idno>
@@ -47327,17 +47085,13 @@
                      <surname>?? [Präsident der Akademischen Vereinigung]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1893-01-01"
-                           when-iso="1893-07-02"
-                           notAfter-iso="1893-12-31">1893</date>
+                     <date notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">1893</date>
                   </birth>
                   <sex value="male"/>
                   <occupation key="225">Vereinspräsident/Vereinspräsidentin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/27760/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb27760</idno>
-                  <affiliation notBefore-iso="1893-01-01"
-                               when-iso="1893-07-02"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29614">Wiener Akademische Vereinigung</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29614/</idno>
@@ -47364,9 +47118,7 @@
                      <surname>?? [Badekabinenvermieterin in Strobl]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1893-01-01"
-                           when-iso="1893-07-02"
-                           notAfter-iso="1893-12-31">1893</date>
+                     <date notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">1893</date>
                   </birth>
                   <death>
                      <date when-iso="1893-07-02" notAfter-iso="1893-12-31">1893</date>
@@ -48073,9 +47825,7 @@
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29749/</idno>
                      <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29749</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1896-01-01"
-                               when-iso="1896-07-01"
-                               notAfter-iso="1896-12-31">
+                  <affiliation notBefore-iso="1896-01-01" when-iso="1896-07-01" notAfter-iso="1896-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29749">Wiener Rundschau</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29749.html</idno>
@@ -48093,9 +47843,7 @@
                   </persName>
                   <persName type="person_rufname">Jenny</persName>
                   <birth>
-                     <date notBefore-iso="1877-01-01"
-                           when-iso="1877-07-02"
-                           notAfter-iso="1877-12-31">1877</date>
+                     <date notBefore-iso="1877-01-01" when-iso="1877-07-02" notAfter-iso="1877-12-31">1877</date>
                      <settlement key="40029">
                         <placeName type="pref">Levoča</placeName>
                         <location>
@@ -48421,9 +48169,7 @@
                   </persName>
                   <persName type="person_pseudonym">Gruzinskij</persName>
                   <birth>
-                     <date notBefore-iso="1861-01-01"
-                           when-iso="1861-07-02"
-                           notAfter-iso="1861-12-31">1861</date>
+                     <date notBefore-iso="1861-01-01" when-iso="1861-07-02" notAfter-iso="1861-12-31">1861</date>
                   </birth>
                   <death>
                      <date when-iso="1927-07-02" notAfter-iso="1927-12-31">1927</date>
@@ -48495,9 +48241,7 @@
                   <occupation key="127">Theaterkritiker/Theaterkritikerin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29099/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb29099</idno>
-                  <affiliation notBefore-iso="1893-12-01"
-                               when-iso="1893-12-16"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-12-01" when-iso="1893-12-16" notAfter-iso="1893-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29488">Das Vaterland</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29488/</idno>
@@ -52061,9 +51805,7 @@
                      <surname>Schwarz</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1828-01-01"
-                           when-iso="1828-07-01"
-                           notAfter-iso="1828-12-31">1828</date>
+                     <date notBefore-iso="1828-01-01" when-iso="1828-07-01" notAfter-iso="1828-12-31">1828</date>
                      <settlement key="40817">
                         <placeName type="pref">Boskovice</placeName>
                         <location>
@@ -52165,9 +51907,7 @@
                      <surname>?? [Übersetzer Deutsch zu Ungarisch]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1910-01-01"
-                           when-iso="1910-07-02"
-                           notAfter-iso="1910-12-31">1910</date>
+                     <date notBefore-iso="1910-01-01" when-iso="1910-07-02" notAfter-iso="1910-12-31">1910</date>
                   </birth>
                   <death>
                      <date when-iso="1910-07-02" notAfter-iso="1910-12-31">1910</date>
@@ -52420,7 +52160,7 @@
                   <note type="references">https://anno.onb.ac.at/cgi-content/anno-plus?aid=asz&amp;datum=19110004&amp;query=((text:%22michael+konstantin%22))&amp;ref=anno-search&amp;seite=680
 
 https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den-schotten/01-53/?pg=117</note>
-               </person>
+               <tei:note target="L00003.xml" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</tei:note></person>
                <person xml:id="pmb41373">
                   <persName>
                      <forename>Johanna</forename>
@@ -52856,9 +52596,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="577">Postbeamter/Postbeamtin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/41816/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb41816</idno>
-                  <affiliation notBefore-iso="1894-01-01"
-                               when-iso="1894-07-02"
-                               notAfter-iso="1894-12-31">
+                  <affiliation notBefore-iso="1894-01-01" when-iso="1894-07-02" notAfter-iso="1894-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="37025">Telegraphendirektion für Wien, Niederösterreich und Burgenland</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/37025/</idno>
@@ -53085,9 +52823,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/41894/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb41894</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp53920</idno>
-                  <affiliation notBefore-iso="1894-01-01"
-                               when-iso="1894-07-02"
-                               notAfter-iso="1894-12-31">
+                  <affiliation notBefore-iso="1894-01-01" when-iso="1894-07-02" notAfter-iso="1894-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29717">Extrapost</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29717.html</idno>
@@ -53103,9 +52839,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>?? [Vermieter von F. M. Fels]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1893-01-01"
-                           when-iso="1893-07-02"
-                           notAfter-iso="1893-12-31">1893</date>
+                     <date notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">1893</date>
                   </birth>
                   <death>
                      <date when-iso="1894-07-02" notAfter-iso="1894-12-31">1894</date>
@@ -53123,9 +52857,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>?? [Bote von Friedrich M. Fels]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1893-01-01"
-                           when-iso="1893-07-02"
-                           notAfter-iso="1893-12-31">1893</date>
+                     <date notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">1893</date>
                   </birth>
                   <sex value="male"/>
                   <occupation key="1383">Bote/Botin</occupation>
@@ -53165,9 +52897,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp46693</idno>
                   <idno type="URL" subtype="gnd">https://d-nb.info/gnd/117523720</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q94857773</idno>
-                  <affiliation notBefore-iso="1870-01-01"
-                               when-iso="1870-07-02"
-                               notAfter-iso="1870-12-31">
+                  <affiliation notBefore-iso="1870-01-01" when-iso="1870-07-02" notAfter-iso="1870-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="41913">Montags-Revue</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/41913/</idno>
@@ -53222,9 +52952,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>?? [Vermieterin von F. M. Fels]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1893-01-01"
-                           when-iso="1893-07-02"
-                           notAfter-iso="1893-12-31">1893</date>
+                     <date notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">1893</date>
                   </birth>
                   <death>
                      <date when-iso="1893-07-02" notAfter-iso="1893-12-31">1893</date>
@@ -53370,9 +53098,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>?? [Ungarischer Student in Zürich]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1895-01-01"
-                           when-iso="1895-07-02"
-                           notAfter-iso="1895-12-31">1895</date>
+                     <date notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
                   </birth>
                   <death>
                      <date when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
@@ -53510,9 +53236,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Windberg</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1895-01-01"
-                           when-iso="1895-07-02"
-                           notAfter-iso="1895-12-31">1895</date>
+                     <date notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
                   </birth>
                   <death>
                      <date when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
@@ -53719,9 +53443,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="105">Schauspieler/Schauspielerin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/42356/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb42356</idno>
-                  <affiliation notBefore-iso="1892-01-01"
-                               when-iso="1892-07-01"
-                               notAfter-iso="1892-12-31">
+                  <affiliation notBefore-iso="1892-01-01" when-iso="1892-07-01" notAfter-iso="1892-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36430">Volkstheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/146313-5</idno>
@@ -53779,9 +53501,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>?? [Amerikanische Studentin in Zürich 1]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1895-01-01"
-                           when-iso="1895-07-02"
-                           notAfter-iso="1895-12-31">1895</date>
+                     <date notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
                   </birth>
                   <death>
                      <date when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
@@ -53799,9 +53519,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>?? [Amerikanische Studentin in Zürich 2]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1895-01-01"
-                           when-iso="1895-07-02"
-                           notAfter-iso="1895-12-31">1895</date>
+                     <date notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
                   </birth>
                   <death>
                      <date when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
@@ -53848,9 +53566,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="593">Kassier/Kassierin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/42452/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb42452</idno>
-                  <affiliation notBefore-iso="1895-01-01"
-                               when-iso="1895-07-02"
-                               notAfter-iso="1895-12-31">
+                  <affiliation notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36247">Burgtheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/38633-9</idno>
@@ -54027,9 +53743,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Krejči</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1896-01-01"
-                           when-iso="1896-07-01"
-                           notAfter-iso="1896-12-31">1896</date>
+                     <date notBefore-iso="1896-01-01" when-iso="1896-07-01" notAfter-iso="1896-12-31">1896</date>
                   </birth>
                   <death>
                      <date when-iso="1896-07-01" notAfter-iso="1896-12-31">1896</date>
@@ -54130,9 +53844,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/42803/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb42803</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp52832</idno>
-                  <affiliation notBefore-iso="1897-01-01"
-                               when-iso="1897-07-02"
-                               notAfter-iso="1897-12-31">
+                  <affiliation notBefore-iso="1897-01-01" when-iso="1897-07-02" notAfter-iso="1897-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36430">Volkstheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/146313-5</idno>
@@ -54151,9 +53863,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Bombast von Hohenheim</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1457-01-01"
-                           when-iso="1457-07-02"
-                           notAfter-iso="1457-12-31">1457</date>
+                     <date notBefore-iso="1457-01-01" when-iso="1457-07-02" notAfter-iso="1457-12-31">1457</date>
                   </birth>
                   <death>
                      <date when-iso="1534-07-02" notAfter-iso="1534-12-31">1534</date>
@@ -54345,9 +54055,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Albrecht</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1895-01-01"
-                           when-iso="1895-07-02"
-                           notAfter-iso="1895-12-31">1895</date>
+                     <date notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
                   </birth>
                   <death>
                      <date when-iso="1895-07-02" notAfter-iso="1895-12-31">1895</date>
@@ -54366,9 +54074,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Ott</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1850-01-01"
-                           when-iso="1850-07-02"
-                           notAfter-iso="1850-12-31">1850</date>
+                     <date notBefore-iso="1850-01-01" when-iso="1850-07-02" notAfter-iso="1850-12-31">1850</date>
                      <settlement key="43174">
                         <placeName type="pref">Pfäffikon</placeName>
                         <location>
@@ -54391,9 +54097,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   </persName>
                   <persName type="person_geburtsname_nachname">Hauser</persName>
                   <birth>
-                     <date notBefore-iso="1861-01-01"
-                           when-iso="1861-07-02"
-                           notAfter-iso="1861-12-31">1861</date>
+                     <date notBefore-iso="1861-01-01" when-iso="1861-07-02" notAfter-iso="1861-12-31">1861</date>
                      <settlement key="34339">
                         <placeName type="pref">Fällanden</placeName>
                         <location>
@@ -54851,9 +54555,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Johannes XXII.</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1244-01-01"
-                           when-iso="1244-07-01"
-                           notAfter-iso="1244-12-31">1244</date>
+                     <date notBefore-iso="1244-01-01" when-iso="1244-07-01" notAfter-iso="1244-12-31">1244</date>
                   </birth>
                   <death>
                      <date when-iso="1334-12-03">1334-12-03</date>
@@ -54877,9 +54579,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <persName type="person_geburtsname-vorname">Jacobus</persName>
                   <persName type="person_geburtsname_nachname">Novelli</persName>
                   <birth>
-                     <date notBefore-iso="1285-01-01"
-                           when-iso="1285-07-02"
-                           notAfter-iso="1285-12-31">1285</date>
+                     <date notBefore-iso="1285-01-01" when-iso="1285-07-02" notAfter-iso="1285-12-31">1285</date>
                   </birth>
                   <death>
                      <date when-iso="1342-04-25">1342-04-25</date>
@@ -54934,9 +54634,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Carpaccio</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1465-01-01"
-                           when-iso="1465-07-02"
-                           notAfter-iso="1465-12-31">1465</date>
+                     <date notBefore-iso="1465-01-01" when-iso="1465-07-02" notAfter-iso="1465-12-31">1465</date>
                      <settlement key="462">
                         <placeName type="pref">Venedig</placeName>
                         <location>
@@ -55140,9 +54838,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Sieß</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1733-01-01"
-                           when-iso="1733-07-02"
-                           notAfter-iso="1733-12-31">1733</date>
+                     <date notBefore-iso="1733-01-01" when-iso="1733-07-02" notAfter-iso="1733-12-31">1733</date>
                      <settlement key="47419">
                         <placeName type="pref">Ratschings</placeName>
                         <location>
@@ -55405,9 +55101,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="593">Kassier/Kassierin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/45149/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb45149</idno>
-                  <affiliation notBefore-iso="1898-01-01"
-                               when-iso="1898-07-02"
-                               notAfter-iso="1898-12-31">
+                  <affiliation notBefore-iso="1898-01-01" when-iso="1898-07-02" notAfter-iso="1898-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36247">Burgtheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/38633-9</idno>
@@ -55734,9 +55428,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Langer</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1864-01-01"
-                           when-iso="1864-07-01"
-                           notAfter-iso="1864-12-31">1864</date>
+                     <date notBefore-iso="1864-01-01" when-iso="1864-07-01" notAfter-iso="1864-12-31">1864</date>
                   </birth>
                   <death>
                      <date when-iso="1928-07-01" notAfter-iso="1928-12-31">1928</date>
@@ -55771,9 +55463,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="1271">Sozialdemokrat/Sozialdemokratin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/46089/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb46089</idno>
-                  <affiliation notBefore-iso="1906-01-01"
-                               when-iso="1906-07-02"
-                               notAfter-iso="1906-12-31">
+                  <affiliation notBefore-iso="1906-01-01" when-iso="1906-07-02" notAfter-iso="1906-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29569">Wiener Freie Volksbühne</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29569/</idno>
@@ -55812,9 +55502,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <idno type="URL" subtype="gnd">https://d-nb.info/gnd/1026702755</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb46144</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q60322615</idno>
-                  <affiliation notBefore-iso="1910-01-01"
-                               when-iso="1910-07-02"
-                               notAfter-iso="1910-12-31">
+                  <affiliation notBefore-iso="1910-01-01" when-iso="1910-07-02" notAfter-iso="1910-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="37214">Neue Wiener Bühne</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/37214/</idno>
@@ -56035,9 +55723,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb47291</idno>
                   <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/personen/pmb47291</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q76358</idno>
-                  <affiliation notBefore-iso="1924-01-01"
-                               when-iso="1924-07-01"
-                               notAfter-iso="1924-12-31">
+                  <affiliation notBefore-iso="1924-01-01" when-iso="1924-07-01" notAfter-iso="1924-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="37544">Das Tage-Buch</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/37544/</idno>
@@ -56045,9 +55731,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb37544</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q1170490</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1926-01-01"
-                               when-iso="1926-07-02"
-                               notAfter-iso="1926-12-31">
+                  <affiliation notBefore-iso="1926-01-01" when-iso="1926-07-02" notAfter-iso="1926-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29348">Die Schaubühne / Die Weltbühne</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29348.html</idno>
@@ -56355,9 +56039,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="1506">Drucker/Druckerin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/48802/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb48802</idno>
-                  <affiliation notBefore-iso="1891-01-01"
-                               when-iso="1891-07-02"
-                               notAfter-iso="1891-12-31">
+                  <affiliation notBefore-iso="1891-01-01" when-iso="1891-07-02" notAfter-iso="1891-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29612">Carl Steinhardt &amp; Co.</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29612/</idno>
@@ -56372,9 +56054,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <idno type="URL" subtype="legalkraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29670</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q2568834</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1884-01-01"
-                               when-iso="1884-07-01"
-                               notAfter-iso="1884-12-31">
+                  <affiliation notBefore-iso="1884-01-01" when-iso="1884-07-01" notAfter-iso="1884-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29351">Neue Freie Presse</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29351.html</idno>
@@ -56765,9 +56445,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="367">Sekretär/Sekretärin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/50560/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb50560</idno>
-                  <affiliation notBefore-iso="1901-01-01"
-                               when-iso="1901-07-02"
-                               notAfter-iso="1901-12-31">
+                  <affiliation notBefore-iso="1901-01-01" when-iso="1901-07-02" notAfter-iso="1901-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="50552">Wiener Frauenakademie</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/50552/</idno>
@@ -56816,9 +56494,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Melozzo da Forlì</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1438-01-01"
-                           when-iso="1438-07-02"
-                           notAfter-iso="1438-12-31">1438</date>
+                     <date notBefore-iso="1438-01-01" when-iso="1438-07-02" notAfter-iso="1438-12-31">1438</date>
                      <settlement key="50778">
                         <placeName type="pref">Forlì</placeName>
                         <location>
@@ -57007,9 +56683,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="male"/>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/51024/</idno>
                   <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb51024</idno>
-                  <affiliation notBefore-iso="1904-01-01"
-                               when-iso="1904-07-01"
-                               notAfter-iso="1904-12-31">
+                  <affiliation notBefore-iso="1904-01-01" when-iso="1904-07-01" notAfter-iso="1904-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="45038">Kollegium Kalksburg</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/45038/</idno>
@@ -57315,9 +56989,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Leibl</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1854-01-01"
-                           when-iso="1854-07-02"
-                           notAfter-iso="1854-12-31">1854</date>
+                     <date notBefore-iso="1854-01-01" when-iso="1854-07-02" notAfter-iso="1854-12-31">1854</date>
                   </birth>
                   <death>
                      <date when-iso="1921-08-27">1921-08-27</date>
@@ -57509,9 +57181,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>?? [Haushaltshilfe von Beer-Hofmann]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1907-01-01"
-                           when-iso="1907-07-02"
-                           notAfter-iso="1907-12-31">1907</date>
+                     <date notBefore-iso="1907-01-01" when-iso="1907-07-02" notAfter-iso="1907-12-31">1907</date>
                   </birth>
                   <death>
                      <date when-iso="1907-07-02" notAfter-iso="1907-12-31">1907</date>
@@ -57532,9 +57202,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <persName type="person_ehename">Korneck</persName>
                   <persName type="person_geburtsname_nachname">Wirthschaft</persName>
                   <birth>
-                     <date notBefore-iso="1871-01-01"
-                           when-iso="1871-07-02"
-                           notAfter-iso="1871-12-31">1871</date>
+                     <date notBefore-iso="1871-01-01" when-iso="1871-07-02" notAfter-iso="1871-12-31">1871</date>
                   </birth>
                   <death>
                      <date when-iso="1945-03-26">1945-03-26</date>
@@ -57552,9 +57220,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>?? [Schneider von Olga Schnitzler]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1908-01-01"
-                           when-iso="1908-07-01"
-                           notAfter-iso="1908-12-31">1908</date>
+                     <date notBefore-iso="1908-01-01" when-iso="1908-07-01" notAfter-iso="1908-12-31">1908</date>
                   </birth>
                   <death>
                      <date when-iso="1908-07-01" notAfter-iso="1908-12-31">1908</date>
@@ -58167,9 +57833,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Altdorfer</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1480-01-01"
-                           when-iso="1480-07-01"
-                           notAfter-iso="1480-12-31">1480</date>
+                     <date notBefore-iso="1480-01-01" when-iso="1480-07-01" notAfter-iso="1480-12-31">1480</date>
                   </birth>
                   <death>
                      <date when-iso="1538-02-12">1538-02-12</date>
@@ -58206,9 +57870,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <idno type="URL" subtype="gnd">https://d-nb.info/gnd/11874318X</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp51909</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q76696</idno>
-                  <affiliation notBefore-iso="1927-01-01"
-                               when-iso="1927-07-02"
-                               notAfter-iso="1927-12-31">
+                  <affiliation notBefore-iso="1927-01-01" when-iso="1927-07-02" notAfter-iso="1927-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="29679">Nobelpreis</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29679.html</idno>
@@ -58398,9 +58060,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Meunier</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1864-01-01"
-                           when-iso="1864-07-01"
-                           notAfter-iso="1864-12-31">1864</date>
+                     <date notBefore-iso="1864-01-01" when-iso="1864-07-01" notAfter-iso="1864-12-31">1864</date>
                   </birth>
                   <death>
                      <date when-iso="1894-03-22">1894-03-22</date>
@@ -58445,9 +58105,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Schwitzer</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1850-01-01"
-                           when-iso="1850-07-02"
-                           notAfter-iso="1850-12-31">1850</date>
+                     <date notBefore-iso="1850-01-01" when-iso="1850-07-02" notAfter-iso="1850-12-31">1850</date>
                   </birth>
                   <death>
                      <date when-iso="1937-07-02" notAfter-iso="1937-12-31">1937</date>
@@ -58455,9 +58113,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="male"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/87963/</idno>
-                  <affiliation notBefore-iso="1893-01-01"
-                               when-iso="1893-07-02"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29351">Neue Freie Presse</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29351.html</idno>
@@ -58529,18 +58185,14 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="male"/>
                   <occupation key="932">Claqueur/Claqueuse</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/88046/</idno>
-                  <affiliation notBefore-iso="1894-01-01"
-                               when-iso="1894-07-02"
-                               notAfter-iso="1894-12-31">
+                  <affiliation notBefore-iso="1894-01-01" when-iso="1894-07-02" notAfter-iso="1894-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="39666">Raimund-Theater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/4538143-4</idno>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/39666/</idno>
                      <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q688568</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1902-01-01"
-                               when-iso="1902-07-02"
-                               notAfter-iso="1902-12-31">
+                  <affiliation notBefore-iso="1902-01-01" when-iso="1902-07-02" notAfter-iso="1902-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="36247">Burgtheater</orgName>
                      <idno type="URL" subtype="gnd">https://d-nb.info/gnd/38633-9</idno>
@@ -58965,9 +58617,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   </persName>
                   <persName type="person_geburtsname_nachname">Jürgens</persName>
                   <birth>
-                     <date notBefore-iso="1860-01-01"
-                           when-iso="1860-07-01"
-                           notAfter-iso="1860-12-31">1860</date>
+                     <date notBefore-iso="1860-01-01" when-iso="1860-07-01" notAfter-iso="1860-12-31">1860</date>
                   </birth>
                   <death>
                      <date when-iso="1911-07-02" notAfter-iso="1911-12-31">1911</date>
@@ -58976,9 +58626,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="105">Schauspieler/Schauspielerin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/88364/</idno>
                   <idno type="URL" subtype="gnd">https://d-nb.info/gnd/1023503034</idno>
-                  <affiliation notBefore-iso="1887-01-01"
-                               when-iso="1887-07-02"
-                               notAfter-iso="1887-12-31">
+                  <affiliation notBefore-iso="1887-01-01" when-iso="1887-07-02" notAfter-iso="1887-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="55522">Schauspielhaus Berlin</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/55522/</idno>
@@ -59096,9 +58744,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Mamroth</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1888-01-01"
-                           when-iso="1888-07-01"
-                           notAfter-iso="1888-12-31">1888</date>
+                     <date notBefore-iso="1888-01-01" when-iso="1888-07-01" notAfter-iso="1888-12-31">1888</date>
                      <settlement key="677">
                         <placeName type="pref">Breslau</placeName>
                         <location>
@@ -59426,9 +59072,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Spitzer</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1865-01-01"
-                           when-iso="1865-07-02"
-                           notAfter-iso="1865-12-31">1865</date>
+                     <date notBefore-iso="1865-01-01" when-iso="1865-07-02" notAfter-iso="1865-12-31">1865</date>
                   </birth>
                   <death>
                      <date when-iso="1913-06-28">1913-06-28</date>
@@ -59443,9 +59087,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="99">Journalist/Journalistin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/88866/</idno>
                   <idno type="URL" subtype="fackel">https://fackel.oeaw.ac.at/?p=fackelp48845</idno>
-                  <affiliation notBefore-iso="1891-01-01"
-                               when-iso="1891-07-02"
-                               notAfter-iso="1891-12-31">
+                  <affiliation notBefore-iso="1891-01-01" when-iso="1891-07-02" notAfter-iso="1891-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29442">Frankfurter Zeitung</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29442.html</idno>
@@ -59494,9 +59136,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <persName type="person_geburtsname-vorname">Babette</persName>
                   <persName type="person_geburtsname_nachname">Benedikt</persName>
                   <birth>
-                     <date notBefore-iso="1841-01-01"
-                           when-iso="1841-07-02"
-                           notAfter-iso="1841-12-31">1841</date>
+                     <date notBefore-iso="1841-01-01" when-iso="1841-07-02" notAfter-iso="1841-12-31">1841</date>
                   </birth>
                   <death>
                      <date when-iso="1895-11-04">1895-11-04</date>
@@ -59827,9 +59467,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="144">Verleger/Verlegerin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/89393/</idno>
                   <idno type="URL" subtype="gnd">https://d-nb.info/gnd/11701527X</idno>
-                  <affiliation notBefore-iso="1876-01-01"
-                               when-iso="1876-07-01"
-                               notAfter-iso="1876-12-31">
+                  <affiliation notBefore-iso="1876-01-01" when-iso="1876-07-01" notAfter-iso="1876-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="89394">S. Schottländer</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/89394/</idno>
@@ -59968,9 +59606,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>?? [Partnerin von Paul Goldmann und später Felix Salten]</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1890-01-01"
-                           when-iso="1890-07-02"
-                           notAfter-iso="1890-12-31">1890</date>
+                     <date notBefore-iso="1890-01-01" when-iso="1890-07-02" notAfter-iso="1890-12-31">1890</date>
                   </birth>
                   <death>
                      <date when-iso="1891-07-02" notAfter-iso="1891-12-31">1891</date>
@@ -60132,9 +59768,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="male"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/89857/</idno>
-                  <affiliation notBefore-iso="1887-01-01"
-                               when-iso="1887-07-02"
-                               notAfter-iso="1887-12-31">
+                  <affiliation notBefore-iso="1887-01-01" when-iso="1887-07-02" notAfter-iso="1887-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29442">Frankfurter Zeitung</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29442.html</idno>
@@ -60165,9 +59799,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="not-set"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/89980/</idno>
-                  <affiliation notBefore-iso="1893-12-01"
-                               when-iso="1893-12-16"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-12-01" when-iso="1893-12-16" notAfter-iso="1893-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29698">An der schönen blauen Donau</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29698.html</idno>
@@ -60207,9 +59839,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/89987/</idno>
                   <idno type="URL" subtype="gnd">https://d-nb.info/gnd/116682434</idno>
                   <idno type="URL" subtype="wikidata">https://www.wikidata.org/entity/Q1874528</idno>
-                  <affiliation notBefore-iso="1893-12-01"
-                               when-iso="1893-12-16"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-12-01" when-iso="1893-12-16" notAfter-iso="1893-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29414">Neues Wiener Tagblatt</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29414.html</idno>
@@ -60229,9 +59859,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="not-set"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/89999/</idno>
-                  <affiliation notBefore-iso="1893-12-01"
-                               when-iso="1893-12-16"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-12-01" when-iso="1893-12-16" notAfter-iso="1893-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="90000">Deutsches Volksblatt</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/90000/</idno>
@@ -60737,9 +60365,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29525.html</idno>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29525/</idno>
                   </affiliation>
-                  <affiliation notBefore-iso="1892-01-01"
-                               when-iso="1892-07-01"
-                               notAfter-iso="1892-12-31">
+                  <affiliation notBefore-iso="1892-01-01" when-iso="1892-07-01" notAfter-iso="1892-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29698">An der schönen blauen Donau</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29698.html</idno>
@@ -60833,9 +60459,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="female"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93196/</idno>
-                  <affiliation notBefore-iso="1893-01-01"
-                               when-iso="1893-07-02"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="93197">La Vie Parisienne</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93197/</idno>
@@ -60923,9 +60547,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="not-set"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93225/</idno>
-                  <affiliation notBefore-iso="1895-01-01"
-                               when-iso="1895-07-02"
-                               notAfter-iso="1895-12-31">
+                  <affiliation notBefore-iso="1895-01-01" when-iso="1895-07-02" notAfter-iso="1895-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29637">Reichspost</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29637.html</idno>
@@ -61209,9 +60831,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="119">Herausgeber/Herausgeberin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93458/</idno>
                   <idno type="URL" subtype="gnd">https://d-nb.info/gnd/1045261815</idno>
-                  <affiliation notBefore-iso="1893-01-01"
-                               when-iso="1893-07-02"
-                               notAfter-iso="1893-12-31">
+                  <affiliation notBefore-iso="1893-01-01" when-iso="1893-07-02" notAfter-iso="1893-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="40684">La Semaine Littéraire</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/40684/</idno>
@@ -61510,9 +61130,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="95">Politiker/Politikerin</occupation>
                   <occupation key="1472">Beamter/Beamte</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93756/</idno>
-                  <affiliation notBefore-iso="1890-01-01"
-                               when-iso="1890-07-02"
-                               notAfter-iso="1890-12-31">
+                  <affiliation notBefore-iso="1890-01-01" when-iso="1890-07-02" notAfter-iso="1890-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="93754">Ministère du Commerce, de l’Industrie et des Colonies</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93754/</idno>
@@ -61528,9 +61146,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="male"/>
                   <occupation key="113">Beamter/Beamte &gt;&gt; Ministerialbeamter/Ministerialbeamte</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93760/</idno>
-                  <affiliation notBefore-iso="1895-12-01"
-                               when-iso="1895-12-16"
-                               notAfter-iso="1895-12-31">
+                  <affiliation notBefore-iso="1895-12-01" when-iso="1895-12-16" notAfter-iso="1895-12-31">
                      <term key="1182">arbeitet für</term>
                      <orgName key="93754">Ministère du Commerce, de l’Industrie et des Colonies</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93754/</idno>
@@ -61601,9 +61217,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <occupation key="90">Schriftsteller/Schriftstellerin</occupation>
                   <occupation key="334">Aktivist/Aktivistin &gt;&gt; Frauenrechtler/Frauenrechtlerin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/93814/</idno>
-                  <affiliation notBefore-iso="1879-01-01"
-                               when-iso="1879-07-02"
-                               notAfter-iso="1879-12-31">
+                  <affiliation notBefore-iso="1879-01-01" when-iso="1879-07-02" notAfter-iso="1879-12-31">
                      <term key="1409">besitzt</term>
                      <orgName key="34277">Nouvelle Revue</orgName>
                      <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/34277/</idno>
@@ -61817,9 +61431,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Leudet</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1858-01-01"
-                           when-iso="1858-07-02"
-                           notAfter-iso="1858-12-31">1858</date>
+                     <date notBefore-iso="1858-01-01" when-iso="1858-07-02" notAfter-iso="1858-12-31">1858</date>
                   </birth>
                   <sex value="male"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
@@ -61874,9 +61486,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                      <surname>Brüsewitz</surname>
                   </persName>
                   <birth>
-                     <date notBefore-iso="1862-01-01"
-                           when-iso="1862-07-02"
-                           notAfter-iso="1862-12-31">1862</date>
+                     <date notBefore-iso="1862-01-01" when-iso="1862-07-02" notAfter-iso="1862-12-31">1862</date>
                   </birth>
                   <death>
                      <date when-iso="1900-01-24">1900-01-24</date>
@@ -62086,9 +61696,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   <sex value="male"/>
                   <occupation key="99">Journalist/Journalistin</occupation>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/118038/</idno>
-                  <affiliation notBefore-iso="1896-11-01"
-                               when-iso="1896-11-15"
-                               notAfter-iso="1896-11-30">
+                  <affiliation notBefore-iso="1896-11-01" when-iso="1896-11-15" notAfter-iso="1896-11-30">
                      <term key="1182">arbeitet für</term>
                      <orgName key="29706">Le Figaro</orgName>
                      <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29706.html</idno>
@@ -62127,9 +61735,7 @@ https://data.matricula-online.eu/de/oesterreich/wien/01-unsere-liebe-frau-zu-den
                   </persName>
                   <persName type="person_geburtsname_nachname">Davidsohn</persName>
                   <birth>
-                     <date notBefore-iso="1838-01-01"
-                           when-iso="1838-07-02"
-                           notAfter-iso="1838-12-31">1838</date>
+                     <date notBefore-iso="1838-01-01" when-iso="1838-07-02" notAfter-iso="1838-12-31">1838</date>
                   </birth>
                   <sex value="female"/>
                   <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/118064/</idno>

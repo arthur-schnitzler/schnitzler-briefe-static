@@ -79,6 +79,19 @@ search.addWidgets([
         `,
       }
   }),
+  instantsearch.widgets.rangeInput({
+    container: "#range-input",
+    attribute: "year",
+    templates: {
+      separatorText: 'bis',
+      submitText: 'Suchen',
+    },
+    cssClasses: {
+      form: 'form-inline',
+      input: 'form-control',
+      submit: 'btn'
+    }
+  }),
 
     instantsearch.widgets.refinementList({
         container: '#refinement-list-places',
@@ -93,7 +106,7 @@ search.addWidgets([
           list: 'list-unstyled',
           count: 'badge ml-2 bg-info',
           label: 'd-flex align-items-center text-capitalize',
-          checkbox: 'mr-2',
+          checkbox: 'form-check'
         }
     }),
 
@@ -110,7 +123,7 @@ search.addWidgets([
           list: 'list-unstyled',
           count: 'badge ml-2 bg-secondary',
           label: 'd-flex align-items-center text-capitalize',
-          checkbox: 'mr-2',
+          checkbox: 'form-check'
         }
     }),
 
@@ -127,23 +140,26 @@ search.addWidgets([
           list: 'list-unstyled',
           count: 'badge ml-2 bg-success',
           label: 'd-flex align-items-center text-capitalize',
-          checkbox: 'mr-2',
+          checkbox: 'flexCheckDefaultf'
         }
     }),
-    
-    instantsearch.widgets.rangeInput({
-        container: "#range-input",
-        attribute: "year",
-        templates: {
-          separatorText: 'bis',
-          submitText: 'Suchen',
-        },
-        cssClasses: {
-          form: 'form-inline',
-          input: 'form-control',
-          submit: 'btn'
-        }
-      }),
+
+    instantsearch.widgets.refinementList({
+      container: '#refinement-list-orgs',
+      attribute: 'orgs',
+      searchable: true,
+      searchablePlaceholder: 'Suche',
+      cssClasses: {
+        searchableInput: 'form-control form-control-sm mb-2 border-light-2',
+        searchableSubmit: 'd-none',
+        searchableReset: 'd-none',
+        showMore: 'btn btn-secondary btn-sm align-content-center',
+        list: 'list-unstyled',
+        count: 'badge ml-2 bg-info',
+        label: 'd-flex align-items-center text-capitalize',
+        checkbox: 'form-check-label'
+      }
+  }),
 
     instantsearch.widgets.pagination({
         container: '#pagination',
