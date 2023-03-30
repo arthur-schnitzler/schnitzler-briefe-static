@@ -25,7 +25,6 @@
         </xsl:for-each-group>
     </xsl:function>-->
     <xsl:template name="mam:view-type-img">
-        <xsl:variable name="hand" select="'font-family: Times New Roman, serif;'"/>
         <xsl:choose>
             <xsl:when
                 test="descendant::tei:pb[1]/@facs and not(starts-with(descendant::tei:pb[1]/@facs, 'http') or starts-with(descendant::tei:pb[1]/@facs, 'www.')) and not(contains(descendant::tei:pb[1]/@facs, '.pdf'))">

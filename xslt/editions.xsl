@@ -48,7 +48,11 @@
                 <style>
                     .navBarNavDropdown ul li:nth-child(2) {
                         display: none !important;
-                    }</style>
+                    }
+                    
+a {
+    color: black;
+}</style>
                 <meta name="Date of publication" class="staticSearch_date">
                     <xsl:attribute name="content">
                         <xsl:value-of
@@ -106,6 +110,9 @@
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
+                    <div id="editor-widget">
+                        <xsl:call-template name="annotation-options"/>
+                    </div>
                     <div class="container-fluid">
                         <div class="wp-transcript">
                             <div class="card" data-index="true">
@@ -119,9 +126,7 @@
                                 </div>
                             </div>
                             <div class="card-footer" style="clear: both;">
-                                <div id="editor-widget">
-                                    <xsl:call-template name="annotation-options"/>
-                                </div>
+                                
                                 <nav class="navbar navbar-expand-lg">
                                     <div class="container-fluid">
                                         <div>
@@ -740,91 +745,31 @@
             </div>
         </h3>
     </xsl:template>
+    
     <xsl:template match="tei:hi">
+        <xsl:element name="span">
+            <xsl:attribute name="class">
         <xsl:choose>
-            <xsl:when test="@rend = 'subscript'">
-                <span class="subscript">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
-            <xsl:when test="@rend = 'superscript'">
-                <span class="superscript">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
-            <xsl:when test="@rend = 'italics'">
-                <span class="italics">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
             <xsl:when test="@rend = 'underline'">
                 <xsl:choose>
                     <xsl:when test="@n = '1'">
-                        <span class="underline">
-                            <xsl:apply-templates/>
-                        </span>
+                        <xsl:text>underline</xsl:text>
                     </xsl:when>
                     <xsl:when test="@n = '2'">
-                        <span class="doubleUnderline">
-                            <xsl:apply-templates/>
-                        </span>
+                        <xsl:text>doubleUnderline</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
-                        <span class="tripleUnderline">
-                            <xsl:apply-templates/>
-                        </span>
+                        <xsl:text>tripleUnderline</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="@rend = 'pre-print'">
-                <span class="pre-print">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
-            <xsl:when test="@rend = 'bold'">
-                <strong>
-                    <xsl:apply-templates/>
-                </strong>
-            </xsl:when>
-            <xsl:when test="@rend = 'stamp'">
-                <span class="stamp">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
-            <xsl:when test="@rend = 'small_caps'">
-                <span class="small_caps">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
-            <xsl:when test="@rend = 'capitals'">
-                <span class="uppercase">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
-            <xsl:when test="@rend = 'spaced_out'">
-                <span class="spaced_out">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
-            <xsl:when test="@rend = 'latintype'">
-                <span class="latintype">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
-            <xsl:when test="@rend = 'antiqua'">
-                <span class="antiqua">
-                    <xsl:apply-templates/>
-                </span>
-            </xsl:when>
             <xsl:otherwise>
-                <span>
-                    <xsl:attribute name="class">
-                        <xsl:value-of select="@rend"/>
-                    </xsl:attribute>
-                    <xsl:apply-templates/>
-                </span>
+                <xsl:value-of select="@rend"/>
             </xsl:otherwise>
         </xsl:choose>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
     </xsl:template>
     <xsl:template match="tei:item">
         <li>
@@ -995,7 +940,7 @@
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:quote">
-        <xsl:apply-templates/>
+    <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:row">
         <xsl:element name="tr">
@@ -1145,4 +1090,6 @@
             <xsl:value-of select="mam:dots($anzahl - 1)"/>
         </xsl:if>
     </xsl:function>
+    <xsl:strip-space elements="tei:quote"/>
+    
 </xsl:stylesheet>

@@ -11,7 +11,7 @@ a {
 }
 
 a:hover {
-    color: #d14141;
+    color: #A63437;
     }
 
 .ais-RefinementList-labelText::before { content: "\00a0 "; }
@@ -215,8 +215,7 @@ a.anchorFoot {
     right: 10%;
     max-width: 100px;
     padding: .5em;
-    background-color: #A63437;
-    color: #A63437;
+    background-color: white;
     border-radius: 1rem;
     box-shadow: none !important;
     z-index: 2;
@@ -303,11 +302,7 @@ div.dataTables_filter {
     --bs-card-border-width: 0;
 }
 
-.card-body-normalertext {
-    max-width: 850px;
-    margin: 0 auto;
-    background: #f1f1f1;
-    padding: 1.5rem 2.5rem}
+
 .card-body-anhang {
     display: block;
     max-width: 850px;
@@ -345,6 +340,9 @@ div.dataTables_filter {
     min-width: 450px;
     margin: 0 auto;
     border: 0;
+    color: black;
+    font-family: serif;
+    font-size: larger; 
 }
 
 .card-header {
@@ -673,6 +671,30 @@ background-color: transparent;
 /*** calendar end ***/
 
 /*** Anpassungen für editions ***/
+.add {
+}
+
+
+.address {
+   padding-bottom: 1rem;
+   width: 50%;
+}
+
+.addrLine {
+    line-height: 1.5;
+}
+
+.address-div {
+margin-bottom: 3rem;
+}
+
+
+
+.antiqua {
+    font-variant: small-caps;
+}
+
+
 .salute {
     clear: both;
     display: inline-block;

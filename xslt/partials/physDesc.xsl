@@ -654,5 +654,4 @@
         <xsl:text>XXXX desc-Fehler</xsl:text>
     </xsl:template>
 
-
 </xsl:stylesheet>
