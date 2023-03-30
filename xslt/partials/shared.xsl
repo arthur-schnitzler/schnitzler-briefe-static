@@ -94,7 +94,7 @@
         <br/>
     </xsl:template>
 
-    <xsl:template match="tei:note">
+   <!--  <xsl:template match="tei:note">
         <xsl:element name="a">
             <xsl:attribute name="name">
                 <xsl:text>fna_</xsl:text>
@@ -111,7 +111,7 @@
                 <xsl:number level="any" format="1" count="tei:note"/>
             </sup>
         </xsl:element>
-    </xsl:template>
+    </xsl:template> -->
 
     <xsl:template match="tei:list[@type='unordered']">
         <xsl:choose>

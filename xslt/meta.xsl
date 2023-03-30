@@ -107,8 +107,8 @@
             <xsl:apply-templates/>
         </h3>
     </xsl:template>
-    <xsl:template match="tei:footNote">
-        <xsl:if test="preceding-sibling::*[1][name() = 'footNote']">
+    <xsl:template match="tei:note[@type='footnote']">
+        <xsl:if test="preceding-sibling::*[1][self::tei:note[@type='footnote']]">
             <!-- Sonderregel für zwei Fußnoten in Folge -->
             <sup>
                 <xsl:text>,</xsl:text>

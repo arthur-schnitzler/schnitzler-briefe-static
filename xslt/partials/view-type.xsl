@@ -46,7 +46,7 @@
                                         </xsl:element>
                                     </div>
                                 </div>
-                                <xsl:if test="//tei:note[@type = 'footnote']">
+                                <!--<xsl:if test="//tei:note[@type = 'footnote']">
                                     <div class="card-footer">
                                         <a class="anchor" id="footnotes"/>
                                         <ul class="footnotes">
@@ -65,7 +65,7 @@
                                             </xsl:for-each>
                                         </ul>
                                     </div>
-                                </xsl:if>
+                                </xsl:if>-->
                             </div>
                         </div>
                         <div id="img-resize" class="col-md-6 col-lg-6 col-sm-12 facsimiles">

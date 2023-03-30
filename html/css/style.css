@@ -1,14 +1,3 @@
-/* change the colors */
-$primary: rebeccapurple;
-$danger: #dd0000;
-$success: lime;
-$warning: orange;
-$info: aqua;
-
-$body-bg: #f3f3f0;
-
-@import "bootstrap";
-
 *, :after, :before {
     box-sizing: border-box;
 }
@@ -45,6 +34,9 @@ a:hover {
 }
 
 
+.capitalize {
+    text-transform: capitalize;
+}
 
 cite {
     font-style: normal;
@@ -131,7 +123,7 @@ a {
     max-width: 1200px;
 }
 
-.italic {
+.italic, .italics {
     font-style: italic;
 }
   
@@ -680,5 +672,142 @@ background-color: transparent;
 
 /*** calendar end ***/
 
+/*** Anpassungen für editions ***/
+.salute {
+    clear: both;
+    display: inline-block;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.seg-right{
+    float:right;
+}
+
+.seg-left{
+    float:left;
+}
+
+.signed   { 
+ text-align: right;
+ }
+ 
+.small_caps {
+    font-variant: small-caps;
+}
+
+.uppercase {
+    text-transform:uppercase;
+}
 
 
+.spaced_out {
+ letter-spacing: 5px;   
+}
+
+.stamp {
+color: #A23B72;
+}
+
+.sticky-navbar {
+    z-index: 1001;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.subst-add {
+}
+
+.gemination {
+    text-decoration: none;
+}
+
+.illegible {
+    color: #bcc2c0;
+}
+
+.latintype {
+    font-variant:small-caps;
+}
+
+.lemma {
+    font-weight: bold;
+  }
+
+  .indent {
+    padding-left: 1em;
+text-indent: -0.5em;
+}
+
+.opener {
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .outOfScope {
+    color: #bcc2c0;
+}
+
+.poem
+{
+}
+
+.poem ul
+{
+    list-style-type: none;
+}
+
+.poem li
+{
+list-style-type: none;
+}
+
+.pre-print {
+/*border-style: none;
+border-bottom-style: solid;
+ textcolor: rgba(0,0,0,0.4);
+ border-color: #2E86AB;
+ border-width: 2px; */
+ color:  #2E86AB;
+}
+
+.reference {
+    cursor: pointer;
+    color: #A63437;
+}
+
+.reference-black {
+    cursor: pointer;
+    color: black;    
+}
+
+.tripleUnderline {
+	border-bottom: 3px double;
+	line-height: 1.9em;
+}
+
+
+.underline {
+    border-bottom: 1px solid #000;
+}
+
+code{
+    background-color: #D3D3D3;
+    color: black;
+}
+
+.div ul {
+    list-style: none; /* Remove HTML bullets */
+    padding-left: .7em; 
+  }
+  
+  .div li { 
+    padding-left: -.7em; 
+  }
+  
+  .div li::before {
+    content: "–"; /* Insert content that looks like bullets */
+    padding-right: 8px;
+  }

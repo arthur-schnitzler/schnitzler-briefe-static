@@ -618,6 +618,9 @@
         </div>
     </xsl:template>
     <xsl:template match="tei:back"/>
+    <xsl:template match="tei:text//tei:note[@type = 'commentary' or @type = 'textConst']//tei:bibl">
+        <xsl:apply-templates/>
+    </xsl:template>
     <xsl:template match="tei:c[@rendition = '#langesS']">
         <xsl:text>ſ</xsl:text>
     </xsl:template>
@@ -834,54 +837,6 @@
     </xsl:template>
     <xsl:template match="tei:lb">
         <br/>
-        <xsl:if test="ancestor::tei:p">
-            <a>
-                <xsl:variable name="para" as="xs:int">
-                    <xsl:number level="any" from="tei:body" count="tei:p"/>
-                </xsl:variable>
-                <xsl:variable name="lines" as="xs:int">
-                    <xsl:number level="any" from="tei:body"/>
-                </xsl:variable>
-                <xsl:attribute name="href">
-                    <xsl:text>#</xsl:text>
-                    <xsl:value-of select="ancestor::tei:div/@xml:id"/>
-                    <xsl:text>__p</xsl:text>
-                    <xsl:value-of select="$para"/>
-                    <xsl:text>__lb</xsl:text>
-                    <xsl:value-of select="$lines"/>
-                </xsl:attribute>
-                <xsl:attribute name="name">
-                    <xsl:value-of select="ancestor::tei:div/@xml:id"/>
-                    <xsl:text>__p</xsl:text>
-                    <xsl:value-of select="$para"/>
-                    <xsl:text>__lb</xsl:text>
-                    <xsl:value-of select="$lines"/>
-                </xsl:attribute>
-                <xsl:attribute name="id">
-                    <xsl:value-of select="ancestor::tei:div/@xml:id"/>
-                    <xsl:text>__p</xsl:text>
-                    <xsl:value-of select="$para"/>
-                    <xsl:text>__lb</xsl:text>
-                    <xsl:value-of select="$lines"/>
-                </xsl:attribute>
-                <xsl:choose>
-                    <xsl:when test="($lines mod 5) = 0">
-                        <xsl:attribute name="class">
-                            <xsl:text>linenumbersVisible linenumbers</xsl:text>
-                        </xsl:attribute>
-                        <xsl:attribute name="data-lbnr">
-                            <xsl:value-of select="$lines"/>
-                        </xsl:attribute>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:attribute name="class">
-                            <xsl:text>linenumbersTransparent linenumbers</xsl:text>
-                        </xsl:attribute>
-                    </xsl:otherwise>
-                </xsl:choose>
-                <xsl:value-of select="format-number($lines, '0000')"/>
-            </a>
-        </xsl:if>
     </xsl:template>
     <xsl:template match="tei:lg">
         <span style="display:block;margin: 1em 0;">
@@ -889,14 +844,14 @@
         </span>
     </xsl:template>
     <xsl:template match="tei:lg[@type = 'poem' and not(descendant::lg[@type = 'stanza'])]">
-        <div class="poem editionText">
+        <div class="poem ">
             <ul>
                 <xsl:apply-templates/>
             </ul>
         </div>
     </xsl:template>
     <xsl:template match="tei:lg[@type = 'poem' and descendant::lg[@type = 'stanza']]">
-        <div class="poem editionText">
+        <div class="poem ">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
@@ -941,7 +896,7 @@
         match="tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(ancestor::tei:footNote) and not(ancestor::tei:caption) and not(parent::tei:bibl) and not(parent::tei:quote) and not(child::tei:space[@dim])] | tei:dateline | tei:closer">
         <xsl:choose>
             <xsl:when test="child::tei:seg">
-                <div class="editionText">
+                <div class="">
                     <span class="seg-left">
                         <xsl:apply-templates select="tei:seg[@rend = 'left']"/>
                     </span>
@@ -952,27 +907,27 @@
                 </div>
             </xsl:when>
             <xsl:when test="@rend = 'right'">
-                <div align="right" class="editionText">
+                <div align="right" class="">
                     <xsl:apply-templates/>
                 </div>
             </xsl:when>
             <xsl:when test="@rend = 'left'">
-                <div align="left" class="editionText">
+                <div align="left" class="">
                     <xsl:apply-templates/>
                 </div>
             </xsl:when>
             <xsl:when test="@rend = 'center'">
-                <div align="center" class="editionText">
+                <div align="center" class="">
                     <xsl:apply-templates/>
                 </div>
             </xsl:when>
             <xsl:when test="@rend = 'inline'">
-                <div class="inline editionText">
+                <div class="inline ">
                     <xsl:apply-templates/>
                 </div>
             </xsl:when>
             <xsl:otherwise>
-                <div class="editionText">
+                <div class="">
                     <xsl:apply-templates/>
                 </div>
             </xsl:otherwise>
@@ -1107,13 +1062,18 @@
     </xsl:template>
     <xsl:template match="tei:salute[parent::tei:opener]">
         <p>
-            <div class="editionText salute">
+            <div class="salute">
                 <xsl:apply-templates/>
             </div>
         </p>
     </xsl:template>
+    <xsl:template match="tei:salute[not(parent::tei:opener)]">
+        <div class="salute">
+            <xsl:apply-templates/>
+        </div>
+    </xsl:template>
     <xsl:template match="tei:signed">
-        <div class="signed editionText">
+        <div class="signed ">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
@@ -1173,7 +1133,7 @@
                 </xsl:attribute>
             </xsl:if>
             <xsl:attribute name="class">
-                <xsl:text>table editionText</xsl:text>
+                <xsl:text>table </xsl:text>
             </xsl:attribute>
             <xsl:element name="tbody">
                 <xsl:apply-templates/>
