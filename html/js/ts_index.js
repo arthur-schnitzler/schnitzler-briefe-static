@@ -41,18 +41,18 @@ search.addWidgets([
           item: `
               <h4><a href="{{ id }}.html">{{ title }}</a></h4>
               <p>{{#helpers.snippet}}{ "attribute": "full_text" }{{/helpers.snippet}}</p>
-              <h5><span class="badge badge-primary">{{ project }}</span></h5>
+              <h5><span class="badge bg-primary">{{ project }}</span></h5>
               <div>
               {{#persons}}
-              <span class="badge badge-secondary">{{ . }}</span>
+              <span class="badge bg-secondary">{{ . }}</span>
               {{/persons}}
               </div>
               {{#works}}
-              <span class="badge badge-success">{{ . }}</span>
+              <span class="badge bg-success">{{ . }}</span>
               {{/works}}
               <div>
               {{#places}}
-              <span class="badge badge-info">{{ . }}</span>
+              <span class="badge bg-info">{{ . }}</span>
               {{/places}}
               </div>
               </div>
@@ -91,7 +91,7 @@ search.addWidgets([
           searchableReset: 'd-none',
           showMore: 'btn btn-secondary btn-sm align-content-center',
           list: 'list-unstyled',
-          count: 'badge ml-2 badge-info',
+          count: 'badge ml-2 bg-info',
           label: 'd-flex align-items-center text-capitalize',
           checkbox: 'mr-2',
         }
@@ -108,7 +108,7 @@ search.addWidgets([
           searchableReset: 'd-none',
           showMore: 'btn btn-secondary btn-sm align-content-center',
           list: 'list-unstyled',
-          count: 'badge ml-2 badge-secondary',
+          count: 'badge ml-2 bg-secondary',
           label: 'd-flex align-items-center text-capitalize',
           checkbox: 'mr-2',
         }
@@ -125,7 +125,7 @@ search.addWidgets([
           searchableReset: 'd-none',
           showMore: 'btn btn-secondary btn-sm align-content-center',
           list: 'list-unstyled',
-          count: 'badge ml-2 badge-success',
+          count: 'badge ml-2 bg-success',
           label: 'd-flex align-items-center text-capitalize',
           checkbox: 'mr-2',
         }
