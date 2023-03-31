@@ -9,7 +9,7 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
-    <xsl:import href="./partials/aot-options.xsl"/>
+    <!--<xsl:import href="./partials/aot-options.xsl"/>-->
     <xsl:import href="./partials/html_title_navigation.xsl"/>
     <xsl:import href="./partials/view-type.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
@@ -50,9 +50,9 @@
                         display: none !important;
                     }
                     
-a {
-    color: black;
-}</style>
+                    a {
+                        color: black;
+                    }</style>
                 <meta name="Date of publication" class="staticSearch_date">
                     <xsl:attribute name="content">
                         <xsl:value-of
@@ -110,9 +110,6 @@ a {
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <div id="editor-widget">
-                        <xsl:call-template name="annotation-options"/>
-                    </div>
                     <div class="container-fluid">
                         <div class="wp-transcript">
                             <div class="card" data-index="true">
@@ -126,7 +123,6 @@ a {
                                 </div>
                             </div>
                             <div class="card-footer" style="clear: both;">
-                                
                                 <nav class="navbar navbar-expand-lg">
                                     <div class="container-fluid">
                                         <div>
@@ -140,6 +136,10 @@ a {
                                                   </a>&#160; </li>
                                                 </xsl:if>
                                                 <li class="nav-item"> &#160;<a href="#"
+                                                  data-bs-target="#editor-widget" type="button"
+                                                  data-bs-toggle="modal"><i class="fas fa-solid fa-screwdriver-wrench"></i>
+                                                  EINSTELLUNGEN </a>&#160; </li>
+                                                <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#ueberlieferung" type="button"
                                                   data-bs-toggle="modal">
                                                   <i class="fas fa-landmark"/> ÜBERLIEFERUNG
@@ -147,7 +147,8 @@ a {
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#entitaeten" type="button"
                                                   data-bs-toggle="modal">
-                                                  <i class="fas fa-landmark"/> ENTITÄTEN </a>&#160; </li>
+                                                    <i class="fas fa-sharp fa-solid fa-people-group"></i>
+                                                  ENTITÄTEN </a>&#160; </li>
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#zitat" type="button"
                                                   data-bs-toggle="modal">
@@ -452,7 +453,7 @@ a {
                                                 </xsl:choose>
                                             </xsl:variable>
                                             <li>
-                                                <a>
+                                                <a class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -470,7 +471,7 @@ a {
                                             <xsl:for-each select=".//tei:back/tei:listBibl/tei:bibl">
                                                 <xsl:sort select="child::tei:title[1]"/>
                                                 <li>
-                                                  <a>
+                                                    <a  class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -528,7 +529,7 @@ a {
                                             <xsl:for-each select=".//tei:listOrg//tei:org">
                                                 <xsl:sort select="child::tei:orgName[1]"/>
                                                 <li>
-                                                  <a>
+                                                    <a class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -547,7 +548,7 @@ a {
                                             <xsl:for-each select=".//tei:listPlace/tei:place">
                                                 <xsl:sort select="child::tei:placeName[1]"/>
                                                 <li>
-                                                  <a>
+                                                    <a class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -569,6 +570,7 @@ a {
                                                   </xsl:if>
                                                   <xsl:if
                                                   test="child::tei:location[@type = 'coords']">
+                                                      <xsl:text> </xsl:text>
                                                   <xsl:variable name="mlat"
                                                   select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[1], ',', '.')"
                                                   as="xs:string"/>
@@ -580,7 +582,7 @@ a {
                                                   as="xs:string"/>
                                                   <xsl:variable name="openstreetmapurl"
                                                   select="concat('https://www.openstreetmap.org/?', $mappin, '#map=12/', $mlat, '/', $mlong)"/>
-                                                  <a>
+                                                      <a class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="$openstreetmapurl"/>
                                                   </xsl:attribute>
@@ -597,6 +599,41 @@ a {
                                             </xsl:for-each>
                                         </ul>
                                     </xsl:if>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Schließen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Einstellungen Modal -->
+                <div class="modal fade" id="editor-widget" tabindex="-1"
+                    aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle"
+                                    >Einstellungen</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"/>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <image-switch opt="es"/>
+                                </div>
+                                <div>
+                                    <legend>Entitäten markieren</legend>
+                                    <ul>
+                                        <li>
+                                            <annotation-slider opt="ef"/>
+                                        </li>
+                                        <li>
+                                            <annotation-slider opt="prs"/> &#160; &#160; &#160;  &#160; <annotation-slider opt="wrk"/>
+                                            &#160; &#160; &#160;  &#160; <annotation-slider opt="plc"/>  &#160; &#160; &#160;  &#160; <annotation-slider opt="org"/>   &#160; &#160; &#160; &#160; 
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -745,28 +782,27 @@ a {
             </div>
         </h3>
     </xsl:template>
-    
     <xsl:template match="tei:hi">
         <xsl:element name="span">
             <xsl:attribute name="class">
-        <xsl:choose>
-            <xsl:when test="@rend = 'underline'">
                 <xsl:choose>
-                    <xsl:when test="@n = '1'">
-                        <xsl:text>underline</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@n = '2'">
-                        <xsl:text>doubleUnderline</xsl:text>
+                    <xsl:when test="@rend = 'underline'">
+                        <xsl:choose>
+                            <xsl:when test="@n = '1'">
+                                <xsl:text>underline</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@n = '2'">
+                                <xsl:text>doubleUnderline</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>tripleUnderline</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:text>tripleUnderline</xsl:text>
+                        <xsl:value-of select="@rend"/>
                     </xsl:otherwise>
                 </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="@rend"/>
-            </xsl:otherwise>
-        </xsl:choose>
             </xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
@@ -940,7 +976,7 @@ a {
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:quote">
-    <xsl:apply-templates/>
+        <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:row">
         <xsl:element name="tr">
@@ -1091,5 +1127,4 @@ a {
         </xsl:if>
     </xsl:function>
     <xsl:strip-space elements="tei:quote"/>
-    
 </xsl:stylesheet>

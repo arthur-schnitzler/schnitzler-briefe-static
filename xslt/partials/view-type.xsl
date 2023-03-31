@@ -30,7 +30,7 @@
                 test="descendant::tei:pb[1]/@facs and not(starts-with(descendant::tei:pb[1]/@facs, 'http') or starts-with(descendant::tei:pb[1]/@facs, 'www.')) and not(contains(descendant::tei:pb[1]/@facs, '.pdf'))">
                 <div id="text-resize" class="row transcript active">
                     <xsl:for-each select="//tei:body">
-                        <div id="text-resize" class="col-md-6 col-lg-6 col-sm-12 text yes-index">
+                        <div id="text-resize" class="col-md-6 col-lg-6 col-sm-12 text yes-index" >
                             <div id="section">
                                 <div class="card-body">
                                     <div class="card-body-text">

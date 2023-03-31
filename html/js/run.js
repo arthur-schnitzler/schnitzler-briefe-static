@@ -54,7 +54,7 @@ var editor = new LoadEditor({
         {
           opt: "org",
           color: "red",
-          title: "Inst.",
+          title: "Institutionen",
           html_class: "orgs",
           css_class: "org",
           hide: {
@@ -98,15 +98,15 @@ var editor = new LoadEditor({
       variants: [
         {
           opt: "fs",
-          title: "Font Size",
+          title: "Schriftgröße",
           urlparam: "fs",
           chg_citation: "citation-url",
           sizes: {
-            default: "default",
-            font_size_14: "14",
-            font_size_18: "18",
-            font_size_22: "22",
-            font_size_26: "26",
+            default: "Standard",
+            font_size_14: "Klein",
+            font_size_18: "Groß",
+            font_size_22: "Größer",
+            font_size_26: "Riesig",
           },
           paragraph: ".yes-index",
           p_class: "",
@@ -140,7 +140,7 @@ var editor = new LoadEditor({
             class_parent: "transcript",
             resize: "resize-hide",
           },
-          image_size: "400px",
+          image_size: "40px",
         },
       ],
       active_class: "active",
