@@ -11,7 +11,7 @@
       <link rel="icon" type="image/svg+xml" href="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" sizes="any" />
       <link rel="profile" href="http://gmpg.org/xfn/11" />
       <title>schnitzler-briefe</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
       <link rel="stylesheet" href="css/style.css" type="text/css" />
       <link rel="stylesheet" href="css/micro-editor.css" type="text/css" />
@@ -33,9 +33,25 @@
       <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon/android-icon-192x192.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><style>
+      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><script src="js/dt.js"></script><script src="js/dt-panes.js"></script><script type="text/javascript">
+                var _paq = _paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                var u="https://matomo.acdh.oeaw.ac.at/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '171']); 
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script><style>
                     .navBarNavDropdown ul li:nth-child(2) {
                         display: none !important;
+                    }
+                    
+                    a {
+                        color: black;
                     }</style>
       <meta name="Date of publication" class="staticSearch_date" content="1895-09-17" n="01" />
       <meta name="docImage" class="staticSearch_docImage" content="https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/MS-SCHNITZLER-B-0008-B-00001-000-00143.jpg?format=iiif&amp;param=/full/,200/0/default.jpg" />
@@ -140,33 +156,34 @@
                                     
                                     <div class="div">
                                        <div class="opener">
-                                          <div align="right" class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00001-000-00143"></span><span class="places"><a href="pmb759.html">Schönberg</a></span> 17/IX 95 Abends</div>
+                                          <div align="right" class=""><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00001-000-00143"></span><span class="places"><a href="pmb759.html">Schönberg</a></span> 17/IX 95 Abends</div>
                                        </div>
-                                       <div class="editionText">Lieber Arthur! <span class="underline">Soeben</span> erhalte ich Ihren Brief. Ich bin wirklich in
+                                       <div class="">
+                                          <div class="salute">Lieber Arthur! </div><span class="underline">Soeben</span> erhalte ich Ihren Brief. Ich bin wirklich in
                                           guter Sti<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>ung; hoffentlich merken Sie es an Manchem wenn
                                           ich nach <span class="places"><a href="pmb50.html">Wien</a></span> zurückko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>e<span class="supplied fade">[.]</span> Daß ich seit <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">Sonntag</span> Früh allein bin wissen Sie wol. Wie das Alleinreisen von <span class="persons"><a href="pmb10762.html">L.</a></span> aufgeno<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>en wurde?
                                           Zu schwierig in Worte zu kleiden. Nur vorläufig: Sie geht nicht nach <span class="places"><a href="pmb36300.html">Kopenhagen</a></span> – sagt sie. Aber das ist nicht offiziell. <span class="del fade">Hier will ich bis Freitag</span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">Samstag</span> Früh will ich von <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00001-000-00144"></span>hier fort nach
                                           <span class="places"><a href="pmb465.html">Riva</a></span>, – einen Tag dort bleiben und dann nach <span class="places"><a href="pmb39611.html">Salò</a></span>, Südwestende des <span class="places"><a href="pmb39975.html">Gardasees</a></span>. Vielleicht gefällt es mir aber dort nicht, dann vielleicht <span class="places"><a href="pmb44153.html">Verona</a></span>, das ich nicht kenne. Jedenfalls erwarte ich
                                           noch einen Brief hieher, einen nach <span class="places"><a href="pmb465.html"><span class="underline">Riva</span></a></span> <span class="underline">Poste restante</span>.</div>
-                                       <div class="editionText"><span class="persons"><a href="pmb18523.html">Paul Horn</a></span> ist mir in der Erinnerung widerlich,
+                                       <div class=""><span class="persons"><a href="pmb18523.html">Paul Horn</a></span> ist mir in der Erinnerung widerlich,
                                           Mann mit »lustigen Streichen« in der Jugend, kein Mensch.</div>
-                                       <div class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00001-000-00144"></span>Wozu Brosamen wie »Alles erkundigt
+                                       <div class=""><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00001-000-00144"></span>Wozu Brosamen wie »Alles erkundigt
                                           sich«? Wer verübelt uns übrigens daß wir nicht fort Litteratur reden?</div>
-                                       <div class="editionText">Wie kommt <span class="persons"><a href="pmb12816.html">Speidel</a></span> zu <span class="persons"><a href="pmb2157.html">Ebermann</a></span>? Momentan bin ich <span class="underline">der</span>,
+                                       <div class="">Wie kommt <span class="persons"><a href="pmb12816.html">Speidel</a></span> zu <span class="persons"><a href="pmb2157.html">Ebermann</a></span>? Momentan bin ich <span class="underline">der</span>,
                                           der einzige Gast im <span class="places"><a href="pmb43323.html">Wirtshaus</a></span>.
                                           Ich »lebe u genieße«. Nochmals: Wann <span class="underline">frühestens</span> kann
                                           »<span class="works"><a href="pmb29917.html">Liebelei</a></span>« ko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>en,
                                           denn vielleicht verzögert sich ja meine Ankunft, in den <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">October</span>
                                           hinein.</div>
-                                       <div class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00001-000-00143"></span>Adieu, ich will noch vor der
-                                          Dunkelheit ein wenig spazieren. Die Zirbelkiefer die an der Strasse steht, ko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>t in <span class="persons"><a href="pmb11461.html">Goethes</a></span> <span class="works"><a href="pmb34308.html">italienischer Reise</a></span> vor. (Reise über den <span class="places"><a href="pmb608.html">Brenner</a></span>) »Bei <span class="places"><a href="pmb759.html">Schemberg</a></span>« etc. das weiß ich aus dem <span class="works"><a href="pmb40461.html">Meyer</a></span><a name="fna_1" href="#fn1" title="»Dagegen gelangt man auf dem alten, r. abgehenden (schlechten) Fahrweg, den sogen. Alten Schönberg (dessen Zirben schon Goethe in seiner ›Italienischer Reise‹ erwähnt; bei einer ›Goethebank‹ schöne Aussicht) hinan«. (Meyers Reisebücher. Deutsche Alpen. Erster Teil: Bayerisches Hochland, Allgäu, Vorarlberg, Tirol, Brennerbahn, Ötztaler-, Stubaier-, und Ortlergruppe, Bozen, Schlern und Rosengarten, Meran, Brenta- und Adamellogruppe; Bergamasker Alpen, Gardasee. Fünfte Auflage. Mit 23 Karten, 4 Plänen und 12 Panoramen. Leipzig, Wien: Bibliographisches Institut1896, S. 217.)"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">1</sup></a>. Werden uns je Bäume irgendwo wachsen
+                                       <div class=""><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-0008-B-00001-000-00143"></span>Adieu, ich will noch vor der
+                                          Dunkelheit ein wenig spazieren. Die Zirbelkiefer die an der Strasse steht, ko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>t in <span class="persons"><a href="pmb11461.html">Goethes</a></span> <span class="works"><a href="pmb34308.html">italienischer Reise</a></span> vor. (Reise über den <span class="places"><a href="pmb608.html">Brenner</a></span>) »Bei <span class="places"><a href="pmb759.html">Schemberg</a></span>« etc. das weiß ich aus dem <span class="works"><a href="pmb40461.html">Meyer</a></span>. Werden uns je Bäume irgendwo wachsen
                                           – bei <span class="works"><a href="pmb40219.html">Meyer</a></span>?</div>
-                                       <div class="editionText">»Laßt uns lächeln.«</div>
-                                       <div class="editionText">Herzlichst Ihr<br /><div class="signed editionText">Richard</div>
+                                       <div class="">»Laßt uns lächeln.«</div>
+                                       <div class="">Herzlichst Ihr<br /><div class="signed ">Richard</div>
                                        </div>
-                                       <div class="editionText">Ich freu mich so sehr mit Ihren Briefen</div>
-                                       <div class="editionText">»schreiben Sie
-                                          augenscharf<a name="fna_2" href="#fn2" title="offenbar ein stehender Ausdruck der Gruppe, der sich auch im Briefwechsel zwischen Salten und Hofmannsthal nachweisen lässt."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">2</sup></a>«</div>
+                                       <div class="">Ich freu mich so sehr mit Ihren Briefen</div>
+                                       <div class="">»schreiben Sie
+                                          augenscharf«</div>
                                     </div>
                                     
                                     
@@ -209,47 +226,16 @@
                   </div>
                </div>
                <div class="card-footer" style="clear: both;">
-                  <div id="editor-widget">
-                     <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
-                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
-                           <li class="dropdown-item">
-                              <full-size opt="fls"></full-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <image-switch opt="es"></image-switch>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-size opt="fs"></font-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-family opt="ff"></font-family>
-                           </li>
-                           <li class="dropdown-item" style="border-top: 5px dashed lightgrey !important;">
-                              <annotation-slider opt="ef"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="prs"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="plc"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="wrk"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="org"></annotation-slider>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
                   <nav class="navbar navbar-expand-lg">
                      <div class="container-fluid">
                         <div>
                            <ul id="secondary-menu" class="navbar-nav mb-2 mb-lg-0">
+                              <li class="nav-item">  <a href="#" data-bs-target="#editor-widget" type="button" data-bs-toggle="modal"><i class="fas fa-solid fa-screwdriver-wrench"></i>
+                                    EINSTELLUNGEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#ueberlieferung" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ÜBERLIEFERUNG
                                     </a>  </li>
-                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ENTITÄTEN </a>  </li>
+                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-sharp fa-solid fa-people-group"></i>
+                                    ENTITÄTEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#zitat" type="button" data-bs-toggle="modal"><i class="fas fa-quote-right"></i> ZITIEREN</a>  </li>
                               <li class="nav-item">  <a target="_blank" type="button" href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__1895-09-17.html"><i class="fas fa-external-link-alt"></i>
                                     TAGEBUCH
@@ -262,13 +248,12 @@
                      <dl class="kommentarhang">
                         <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L00486_1h"><span class="lemma">Meyer] </span><span class="kommentar-text" id="K_L00486_1h">»Dagegen gelangt man <span xmlns="http://www.w3.org/1999/xhtml" class="outOfScope">[…]</span> auf dem <span xmlns="http://www.w3.org/1999/xhtml" class="italics">alten</span>, r. abgehenden (schlechten) Fahrweg, <span xmlns="http://www.w3.org/1999/xhtml" class="outOfScope">[…]</span> den sogen. <span xmlns="http://www.w3.org/1999/xhtml" class="italics">Alten
                                  Schönberg</span> (dessen Zirben schon <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb11461.html">Goethe</a></span> in seiner ›<span xmlns="http://www.w3.org/1999/xhtml" class="works"><a href="pmb34308.html">Italienischer
-                                    Reise</a></span>‹ erwähnt; bei einer ›<span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb11461.html">Goethe</a></span>bank‹ schöne Aussicht) hinan«. (
-                              <div class="card-body-index">
-                                 <div id="mentions"></div>
-                                 <div id="mentions" class="mt-2"><span class="infodesc mr-2">
-                                       <legend>Erwähnungen</legend>
-                                       <ul></ul></span></div>
-                              </div>.)</span></p>
+                                    Reise</a></span>‹ erwähnt; bei einer ›<span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb11461.html">Goethe</a></span>bank‹ schöne Aussicht) hinan«. (<span xmlns="http://www.w3.org/1999/xhtml" class="works"><a href="pmb40219.html"><span class="works " id=""><span class="italics">Meyers Reisebücher</span></span></a></span>. <span xmlns="http://www.w3.org/1999/xhtml" class="works"><a href="pmb40461.html"><span class="works " id=""><span class="italics">Deutsche Alpen. Erster Teil: Bayerisches Hochland, Allgäu,
+                                          Vorarlberg, Tirol, Brennerbahn, Ötztaler-, Stubaier-, und Ortlergruppe,
+                                          Bozen, Schlern und Rosengarten, Meran, Brenta- und Adamellogruppe;
+                                          Bergamasker Alpen, Gardasee.</span></span></a></span> Fünfte Auflage. Mit 23 Karten, 4 Plänen
+                              und 12 Panoramen. Leipzig, Wien: <span xmlns="http://www.w3.org/1999/xhtml" class="orgs"><a href="pmb40458.html">Bibliographisches
+                                    Institut</a></span> <span class="date">1896</span>, S. 217.)</span></p>
                         <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L00486_2h"><span class="lemma">schreiben Sie augenscharf] </span><span class="kommentar-text" id="K_L00486_2h">offenbar ein
                               stehender Ausdruck der Gruppe, der sich auch im Briefwechsel zwischen <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb2167.html">Salten</a></span> und <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb11740.html">Hofmannsthal</a></span> nachweisen lässt.</span></p>
                      </dl>
@@ -337,7 +322,7 @@
                   </div>
                </div>
                <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
-                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script></div>
+                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script></div>
          </div>
       </div>
       <div class="modal fade" id="ueberlieferung" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
@@ -413,7 +398,7 @@
                   <blockquote>Richard Beer-Hofmann an Arthur Schnitzler, 17. 9. 1895. In: Arthur Schnitzler: Briefwechsel
                      mit Autorinnen und Autoren. Digitale Edition. Hg. Martin Anton Müller, Gerd Hermann
                      Susen und Laura Untner, https://schnitzler-briefe.acdh.oeaw.ac.at/L00486.html (Abfrage
-                     30. 3. 2023)</blockquote>
+                     31. 3. 2023)</blockquote>
                   <p></p>
                   <p>Für gekürzte Zitate reicht die Angabe der Briefnummer aus, die
                      eindeutig und persistent ist: »<b>L00486</b>«.</p>
@@ -423,7 +408,7 @@
                         |titel= |werk=Arthur
                         Schnitzler: Briefwechsel mit Autorinnen und Autoren
                         |hrsg=Martin Anton Müller, Gerd-Hermann Susen, Laura Untner
-                        |sprache=de |datum=1895-09-17 |abruf=2023-3-30
+                        |sprache=de |datum=1895-09-17 |abruf=2023-3-31
                         }} </code></blockquote>
                </div>
                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
@@ -455,44 +440,73 @@
                   <div>
                      <legend>Personen</legend>
                      <ul>
-                        <li><a href="pmb10762.html">Andreas-Salomé Lou</a></li>
-                        <li><a href="pmb10863.html">Beer-Hofmann Richard</a></li>
-                        <li><a href="pmb2157.html">Ebermann Leo</a></li>
-                        <li><a href="pmb11461.html">Goethe Johann Wolfgang von</a></li>
-                        <li><a href="pmb11740.html">Hofmannsthal Hugo von</a></li>
-                        <li><a href="pmb18523.html">Horn Paul</a></li>
-                        <li><a href="pmb2167.html">Salten Felix</a></li>
-                        <li><a href="pmb2121.html">Schnitzler Arthur</a></li>
-                        <li><a href="pmb12816.html">Speidel Ludwig</a></li>
+                        <li><a class="theme-color" href="pmb10762.html">Andreas-Salomé Lou</a></li>
+                        <li><a class="theme-color" href="pmb10863.html">Beer-Hofmann Richard</a></li>
+                        <li><a class="theme-color" href="pmb2157.html">Ebermann Leo</a></li>
+                        <li><a class="theme-color" href="pmb11461.html">Goethe Johann Wolfgang von</a></li>
+                        <li><a class="theme-color" href="pmb11740.html">Hofmannsthal Hugo von</a></li>
+                        <li><a class="theme-color" href="pmb18523.html">Horn Paul</a></li>
+                        <li><a class="theme-color" href="pmb2167.html">Salten Felix</a></li>
+                        <li><a class="theme-color" href="pmb2121.html">Schnitzler Arthur</a></li>
+                        <li><a class="theme-color" href="pmb12816.html">Speidel Ludwig</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Werke</legend>
                      <ul>
-                        <li><a href="pmb40461.html">Deutsche Alpen</a></li>
-                        <li><a href="pmb34308.html">Goethe, Johann Wolfgang von: Italienische Reise</a></li>
-                        <li><a href="pmb29917.html">Schnitzler, Arthur: Liebelei. Schauspiel in drei Akten</a></li>
-                        <li><a href="pmb40219.html">Meyers Reisebücher</a></li>
+                        <li><a class="theme-color" href="pmb40461.html">Deutsche Alpen</a></li>
+                        <li><a class="theme-color" href="pmb34308.html">Goethe, Johann Wolfgang von: Italienische Reise</a></li>
+                        <li><a class="theme-color" href="pmb29917.html">Schnitzler, Arthur: Liebelei. Schauspiel in drei Akten</a></li>
+                        <li><a class="theme-color" href="pmb40219.html">Meyers Reisebücher</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Institutionen</legend>
                      <ul>
-                        <li><a href="pmb40458.html">Bibliographisches Institut</a></li>
+                        <li><a class="theme-color" href="pmb40458.html">Bibliographisches Institut</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Orte</legend>
                      <ul>
-                        <li><a href="pmb608.html">Brenner</a><a href="https://www.openstreetmap.org/?mlat=47.00528&amp;mlon=11.50836#map=12/47.00528/11.50836" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb43323.html">Gasthaus Jagerhof</a><a href="https://www.openstreetmap.org/?mlat=47.18732&amp;mlon=11.40657#map=12/47.18732/11.40657" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb36300.html">Kopenhagen</a><a href="https://www.openstreetmap.org/?mlat=55.67594&amp;mlon=12.56553#map=12/55.67594/12.56553" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb39975.html">Lago di Garda</a><a href="https://www.openstreetmap.org/?mlat=45.6316&amp;mlon=10.660517#map=12/45.6316/10.660517" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb465.html">Riva del Garda</a><a href="https://www.openstreetmap.org/?mlat=45.88576&amp;mlon=10.84118#map=12/45.88576/10.84118" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb39611.html">Salò</a><a href="https://www.openstreetmap.org/?mlat=45.60685&amp;mlon=10.5205#map=12/45.60685/10.5205" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb759.html">Schönberg im Stubaital</a><a href="https://www.openstreetmap.org/?mlat=47.18333&amp;mlon=11.41667#map=12/47.18333/11.41667" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb44153.html">Verona</a><a href="https://www.openstreetmap.org/?mlat=45.4299&amp;mlon=10.98444#map=12/45.4299/10.98444" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna)<a href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb608.html">Brenner</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.00528&amp;mlon=11.50836#map=12/47.00528/11.50836" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb43323.html">Gasthaus Jagerhof</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.18732&amp;mlon=11.40657#map=12/47.18732/11.40657" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb36300.html">Kopenhagen</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=55.67594&amp;mlon=12.56553#map=12/55.67594/12.56553" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb39975.html">Lago di Garda</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=45.6316&amp;mlon=10.660517#map=12/45.6316/10.660517" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb465.html">Riva del Garda</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=45.88576&amp;mlon=10.84118#map=12/45.88576/10.84118" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb39611.html">Salò</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=45.60685&amp;mlon=10.5205#map=12/45.60685/10.5205" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb759.html">Schönberg im Stubaital</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.18333&amp;mlon=11.41667#map=12/47.18333/11.41667" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb44153.html">Verona</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=45.4299&amp;mlon=10.98444#map=12/45.4299/10.98444" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="editor-widget" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Einstellungen</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+               <div class="modal-body">
+                  <div>
+                     <image-switch opt="es"></image-switch>
+                  </div>
+                  <div>
+                     <legend>Entitäten markieren</legend>
+                     <ul>
+                        <li>
+                           <annotation-slider opt="ef"></annotation-slider>
+                        </li>
+                        <li>
+                           <annotation-slider opt="prs"></annotation-slider>          
+                           <annotation-slider opt="wrk"></annotation-slider>
+                                    
+                           <annotation-slider opt="plc"></annotation-slider>           
+                           <annotation-slider opt="org"></annotation-slider>           
+                           </li>
                      </ul>
                   </div>
                </div>

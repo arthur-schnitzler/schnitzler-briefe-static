@@ -11,7 +11,7 @@
       <link rel="icon" type="image/svg+xml" href="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" sizes="any" />
       <link rel="profile" href="http://gmpg.org/xfn/11" />
       <title>schnitzler-briefe</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
       <link rel="stylesheet" href="css/style.css" type="text/css" />
       <link rel="stylesheet" href="css/micro-editor.css" type="text/css" />
@@ -33,9 +33,25 @@
       <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon/android-icon-192x192.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><style>
+      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><script src="js/dt.js"></script><script src="js/dt-panes.js"></script><script type="text/javascript">
+                var _paq = _paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                var u="https://matomo.acdh.oeaw.ac.at/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '171']); 
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script><style>
                     .navBarNavDropdown ul li:nth-child(2) {
                         display: none !important;
+                    }
+                    
+                    a {
+                        color: black;
                     }</style>
       <meta name="Date of publication" class="staticSearch_date" content="1904-02-22" n="01" />
       <meta name="docImage" class="staticSearch_docImage" content="https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/https://www.theatermuseum.at/de/object/368b9b6dc0/.jpg?format=iiif&amp;param=/full/,200/0/default.jpg" />
@@ -133,32 +149,33 @@
                         
                         <div class="div">
                            <div class="opener">
-                              <div align="right" class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span><span class="places"><a href="pmb50.html">Wien</a></span>, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">22. 2. 904</span></div>
+                              <div align="right" class=""><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span><span class="places"><a href="pmb50.html">Wien</a></span>, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">22. 2. 904</span></div>
                            </div>
-                           <div class="editionText">mein lieber Hermann, wir waren eben in <span class="places"><a href="pmb63.html">Hietzing</a></span>, mit <a class="reference-black" data-toggle="modal" data-target="#pmb2292 pmb11740">Hugo’s</a> u <a class="reference-black" data-toggle="modal" data-target="#pmb10860 pmb10863">Richards</a> u <span class="persons"><a href="pmb2219.html">Karg</a></span> zuſammen, u da hab ich mit großer Freude gehört, daſs du dich viel
+                           <div class="">
+                              <div class="salute">mein lieber Hermann, </div>wir waren eben in <span class="places"><a href="pmb63.html">Hietzing</a></span>, mit <a class="reference-black" data-toggle="modal" data-target="#pmb2292 pmb11740">Hugo’s</a> u <a class="reference-black" data-toggle="modal" data-target="#pmb10860 pmb10863">Richards</a> u <span class="persons"><a href="pmb2219.html">Karg</a></span> zuſammen, u da hab ich mit großer Freude gehört, daſs du dich viel
                               wohler befindeſt. Nun möchte ich aber gern recht bald ein Wort von dir ſelbſt
                               vernehmen, und wiſſen, wie es mit deinen Plänen für die nächſte Zeit ſteht. Ich bin
-                              seit Freitag Abend<a name="fna_1" href="#fn1" title="eigentlich schon seit dem abends (einem Donnerstag)"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">1</sup></a> wieder in <span class="places"><a href="pmb50.html">Wien</a></span>; wir (<span class="persons"><a href="pmb2173.html">Olga</a></span> u ich) waren
+                              seit Freitag Abend wieder in <span class="places"><a href="pmb50.html">Wien</a></span>; wir (<span class="persons"><a href="pmb2173.html">Olga</a></span> u ich) waren
                               <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span>auf der Rückreise
                               einen Tag in <span class="places"><a href="pmb866.html">Dresden</a></span> und haben allzukurze Stunden in
                               der <span class="places"><a href="pmb5.html">Galerie</a></span> verbracht.</div>
-                           <div class="editionText">Über den <span class="works"><a href="pmb29985.html">Einſamen Weg</a></span> haſt du wohl, ſoweit es ſich
+                           <div class="">Über den <span class="works"><a href="pmb29985.html">Einſamen Weg</a></span> haſt du wohl, ſoweit es ſich
                               um den äußerlichen Verlauf des erſten Abends handelt, das weſentliche geleſen. Es war
                               ein leidlicher Abfall, Huſten und Unruhe von Anbeginn, matter Beifall nach 2. u 3.
                               Akt mit Widerſpruch; Gelächter und ſtarker Beifall nach dem 4. Akt, viel Applaus und
                               viel Ziſchen am <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span>Schluſs. Der 2. Abend, ausverkauft, ging beträchtlich beſſer – und nun ſcheint
                                ſich, wie ich aus <span class="places"><a href="pmb168.html">Berlin</a></span> höre, das Stück, das bei
                               einem Theil der Kritik ſehr lebhafte Anerkennung fand, doch einige Zeit halten zu
-                              wollen. In <span class="places"><a href="pmb50.html">Wien</a></span> war eigentlich nur das <span class="persons"><a href="pmb11485.html">Goldmann</a></span>’ſche <span class="works"><a href="pmb31277.html">Telegra<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span></a></span><a name="fna_2" href="#fn2" title="[O. V.:] Schnitzlers »Einsamer Weg« (Telegramm der »Neuen Freien Presse«). In: Neue Freie Presse, Nr. 14178, 14. 2. 1904, S. 12."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">2</sup></a>
+                              wollen. In <span class="places"><a href="pmb50.html">Wien</a></span> war eigentlich nur das <span class="persons"><a href="pmb11485.html">Goldmann</a></span>’ſche <span class="works"><a href="pmb31277.html">Telegra<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span></a></span>
                               wirklich ſchlecht – was er mir perſönlich über das <span class="works"><a href="pmb29985.html">Stück</a></span> zu ſagen wußte, waren nur die folgenden Worte, als
-                              ich ihn ein paar Tage nach der Première zum Abſchied <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span>beſuchte<span class="steuerzeichen fade">↑</span><span class="superscript fade">,</span><span class="subst-add">:</span><span class="steuerzeichen fade">↓</span> »Ich ſchreibe eben das <span class="works"><a href="pmb31281.html">Feuillet</a></span><a name="fna_3" href="#fn3" title="Paul Goldmann: Berliner Theater. »Der einsame Weg«. Von Arthur Schnitzler. In: Neue Freie Presse, Nr. 14187, 23. 2. 1904, S. 1–3."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">3</sup></a> über den <span class="works"><a href="pmb29985.html">E. W.</a></span> – Du wirſt keine Freude daran haben.« – Die Fehler des <span class="works"><a href="pmb29985.html">Stücks</a></span> ſpür ich jetzt wie mir vorko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>t ſehr genau: Das Verhältnis zwiſchen <span class="works"><a href="pmb29985.html">Sala</a></span> u <span class="latintype">Johann<abbr xmlns:tei="http://www.tei-c.org/ns/1.0" title="unclear">a</abbr></span> müßte ſchon zu Beginn völlig declarirt sein – das iſt ein techniſcher Fehler, de<span class="steuerzeichen fade">↑</span><span class="superscript fade">r</span><span class="subst-add">n</span><span class="steuerzeichen fade">↓</span> gutzumachen in meinen Kräften ſtände. Andres aber dürfte in den Mängeln
+                              ich ihn ein paar Tage nach der Première zum Abſchied <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span>beſuchte<span class="steuerzeichen fade">↑</span><span class="superscript fade">,</span><span class="subst-add">:</span><span class="steuerzeichen fade">↓</span> »Ich ſchreibe eben das <span class="works"><a href="pmb31281.html">Feuillet</a></span> über den <span class="works"><a href="pmb29985.html">E. W.</a></span> – Du wirſt keine Freude daran haben.« – Die Fehler des <span class="works"><a href="pmb29985.html">Stücks</a></span> ſpür ich jetzt wie mir vorko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>t ſehr genau: Das Verhältnis zwiſchen <span class="works"><a href="pmb29985.html">Sala</a></span> u <span class="latintype">Johann<abbr xmlns:tei="http://www.tei-c.org/ns/1.0" title="unclear">a</abbr></span> müßte ſchon zu Beginn völlig declarirt sein – das iſt ein techniſcher Fehler, de<span class="steuerzeichen fade">↑</span><span class="superscript fade">r</span><span class="subst-add">n</span><span class="steuerzeichen fade">↓</span> gutzumachen in meinen Kräften ſtände. Andres aber dürfte in den Mängeln
                               meiner Begabung begründet ſein – ſo insbeſondre eine gewiſſe Steifigkeit im Weſen <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span>Julians. Immerhin
                               bleibt es eine ſchwierige Sache von einer Perſon die Meinung verbreiten zu wollen –
                                ſie ſei einmal ein Genie geweſen. Ja we<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">n̅</span> man das Bild
                               ins Foyer hängen könnte, das <span class="works"><a href="pmb29985.html">Julian</a></span> vor 25 Jahren gemalt und das ihn berühmt gemacht hat! Übrigens –
                               vielleicht wäre es auch im Augenblick vergeſſen, da man ſich wieder ins Parket
                               begibt.</div>
-                           <div class="editionText">Was ich ſelbſt an dem <span class="works"><a href="pmb29985.html">Stück</a></span>
+                           <div class="">Was ich ſelbſt an dem <span class="works"><a href="pmb29985.html">Stück</a></span>
                               wirklich liebe, iſt der fünfte Akt und die <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span>Geſtalt des <span class="works"><a href="pmb29985.html">Sala</a></span>, der gegenüber ich mich,
                               eigentlich das erſte Mal in meinem Leben, als eine Art von Schöpfer fühle. Und der
                               fünfte Akt bedeutet mir zuweilen etwas mehr als der Abschluſs eines Dramas – ja nicht
@@ -166,12 +183,12 @@
                               etwas weniger zerſtreut, und mit <span class="del fade"><span class="illegible">××××</span>-</span> wahrer Intenſität
                               begabt wäre, nach dem ſonſtigen Stande meines Innern, eigentlich gelingen
                               müßte. –</div>
-                           <div class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span>– Wir haben in <span class="places"><a href="pmb168.html">Berlin</a></span> oft von dir geſprochen und alle Leute die du
+                           <div class=""><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="https://www.theatermuseum.at/de/object/368b9b6dc0/"></span>– Wir haben in <span class="places"><a href="pmb168.html">Berlin</a></span> oft von dir geſprochen und alle Leute die du
                               kennſt laſſen dich grüßen. Meine <span class="places"><a href="pmb451.html">sicilianiſchen</a></span> und
                               <span class="places"><a href="pmb41212.html">korfioliſchen</a></span> Pläne weben weiter – wirſt du
                               auch  ſüdlicher wandern und werden wir uns ſehen? Meine <span class="persons"><a href="pmb2173.html">Frau</a></span> grüßt dich herzlich, ich desgleichen und wir wären
                                ſehr froh, wenn wir bald noch beſſeres, ganz gutes von dir hörten.</div>
-                           <div class="editionText">Dein<br /><div class="signed editionText">Arthur</div>
+                           <div class="">Dein<br /><div class="signed ">Arthur</div>
                            </div>
                         </div>
                         
@@ -180,47 +197,16 @@
                   </div>
                </div>
                <div class="card-footer" style="clear: both;">
-                  <div id="editor-widget">
-                     <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
-                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
-                           <li class="dropdown-item">
-                              <full-size opt="fls"></full-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <image-switch opt="es"></image-switch>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-size opt="fs"></font-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-family opt="ff"></font-family>
-                           </li>
-                           <li class="dropdown-item" style="border-top: 5px dashed lightgrey !important;">
-                              <annotation-slider opt="ef"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="prs"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="plc"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="wrk"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="org"></annotation-slider>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
                   <nav class="navbar navbar-expand-lg">
                      <div class="container-fluid">
                         <div>
                            <ul id="secondary-menu" class="navbar-nav mb-2 mb-lg-0">
+                              <li class="nav-item">  <a href="#" data-bs-target="#editor-widget" type="button" data-bs-toggle="modal"><i class="fas fa-solid fa-screwdriver-wrench"></i>
+                                    EINSTELLUNGEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#ueberlieferung" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ÜBERLIEFERUNG
                                     </a>  </li>
-                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ENTITÄTEN </a>  </li>
+                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-sharp fa-solid fa-people-group"></i>
+                                    ENTITÄTEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#zitat" type="button" data-bs-toggle="modal"><i class="fas fa-quote-right"></i> ZITIEREN</a>  </li>
                               <li class="nav-item">  <a target="_blank" type="button" href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__1904-02-22.html"><i class="fas fa-external-link-alt"></i>
                                     TAGEBUCH
@@ -233,20 +219,11 @@
                      <dl class="kommentarhang">
                         <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L01376_1h"><span class="lemma">Freitag Abend] </span><span class="kommentar-text" id="K_L01376_1h">eigentlich schon seit dem
                               <a class="ref schnitzler-tagebuch" href="1904-02-19"></a> abends (einem Donnerstag)</span></p>
-                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L01376_2h"><span class="lemma">Telegramm] </span><span class="kommentar-text" id="K_L01376_2h">
-                              <div class="card-body-index">
-                                 <div id="mentions"></div>
-                                 <div id="mentions" class="mt-2"><span class="infodesc mr-2">
-                                       <legend>Erwähnungen</legend>
-                                       <ul></ul></span></div>
-                              </div>.</span></p>
-                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L01376_3h"><span class="lemma">Feuillet] </span><span class="kommentar-text" id="K_L01376_3h">
-                              <div class="card-body-index">
-                                 <div id="mentions"></div>
-                                 <div id="mentions" class="mt-2"><span class="infodesc mr-2">
-                                       <legend>Erwähnungen</legend>
-                                       <ul></ul></span></div>
-                              </div>.</span></p>
+                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L01376_2h"><span class="lemma">Telegramm] </span><span class="kommentar-text" id="K_L01376_2h">[O. V.:] <span xmlns="http://www.w3.org/1999/xhtml" class="works"><a href="pmb31277.html"><span class="works " id=""><span class="italics">Schnitzlers »Einsamer Weg« (Telegramm
+                                          der »Neuen Freien Presse«)</span></span></a></span>. In: <span xmlns="http://www.w3.org/1999/xhtml" class="works"><a href="pmb36374.html"><span class="works " id=""><span class="italics">Neue Freie
+                                          Presse</span></span></a></span>, Nr. 14178, <span class="date">14. 2. 1904</span>, S. 12.</span></p>
+                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L01376_3h"><span class="lemma">Feuillet] </span><span class="kommentar-text" id="K_L01376_3h"><span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb11485.html">Paul Goldmann</a></span>: <span xmlns="http://www.w3.org/1999/xhtml" class="works"><a href="pmb31281.html"><span class="works " id=""><span class="italics">Berliner Theater. »Der einsame Weg«. Von Arthur Schnitzler</span></span></a></span>. In: <span xmlns="http://www.w3.org/1999/xhtml" class="works"><a href="pmb36374.html"><span class="works " id=""><span class="italics">Neue Freie Presse</span></span></a></span>, Nr. 14187,
+                              <span class="date">23. 2. 1904</span>, S. 1–3.</span></p>
                      </dl>
                   </div>
                </div>
@@ -313,7 +290,7 @@
                   </div>
                </div>
                <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
-                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script></div>
+                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script></div>
          </div>
       </div>
       <div class="modal fade" id="ueberlieferung" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
@@ -392,7 +369,7 @@
                   <blockquote>Arthur Schnitzler an Hermann Bahr, 22. 2. 1904. In: Arthur Schnitzler: Briefwechsel
                      mit Autorinnen und Autoren. Digitale Edition. Hg. Martin Anton Müller, Gerd Hermann
                      Susen und Laura Untner, https://schnitzler-briefe.acdh.oeaw.ac.at/L01376.html (Abfrage
-                     30. 3. 2023)</blockquote>
+                     31. 3. 2023)</blockquote>
                   <p></p>
                   <p>Für gekürzte Zitate reicht die Angabe der Briefnummer aus, die
                      eindeutig und persistent ist: »<b>L01376</b>«.</p>
@@ -402,7 +379,7 @@
                         |titel= |werk=Arthur
                         Schnitzler: Briefwechsel mit Autorinnen und Autoren
                         |hrsg=Martin Anton Müller, Gerd-Hermann Susen, Laura Untner
-                        |sprache=de |datum=1904-02-22 |abruf=2023-3-30
+                        |sprache=de |datum=1904-02-22 |abruf=2023-3-31
                         }} </code></blockquote>
                </div>
                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
@@ -434,37 +411,66 @@
                   <div>
                      <legend>Personen</legend>
                      <ul>
-                        <li><a href="pmb10815.html">Bahr Hermann</a></li>
-                        <li><a href="pmb10860.html">Beer-Hofmann Paula</a></li>
-                        <li><a href="pmb10863.html">Beer-Hofmann Richard</a></li>
-                        <li><a href="pmb11485.html">Goldmann Paul</a></li>
-                        <li><a href="pmb2292.html">Hofmannsthal Gertrude von</a></li>
-                        <li><a href="pmb11740.html">Hofmannsthal Hugo von</a></li>
-                        <li><a href="pmb2219.html">Karg-Bebenburg Edgar von</a></li>
-                        <li><a href="pmb2121.html">Schnitzler Arthur</a></li>
-                        <li><a href="pmb2173.html">Schnitzler Olga</a></li>
+                        <li><a class="theme-color" href="pmb10815.html">Bahr Hermann</a></li>
+                        <li><a class="theme-color" href="pmb10860.html">Beer-Hofmann Paula</a></li>
+                        <li><a class="theme-color" href="pmb10863.html">Beer-Hofmann Richard</a></li>
+                        <li><a class="theme-color" href="pmb11485.html">Goldmann Paul</a></li>
+                        <li><a class="theme-color" href="pmb2292.html">Hofmannsthal Gertrude von</a></li>
+                        <li><a class="theme-color" href="pmb11740.html">Hofmannsthal Hugo von</a></li>
+                        <li><a class="theme-color" href="pmb2219.html">Karg-Bebenburg Edgar von</a></li>
+                        <li><a class="theme-color" href="pmb2121.html">Schnitzler Arthur</a></li>
+                        <li><a class="theme-color" href="pmb2173.html">Schnitzler Olga</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Werke</legend>
                      <ul>
-                        <li><a href="pmb31281.html">Goldmann, Paul: Berliner Theater. »Der einsame Weg«. Von Arthur Schnitzler</a></li>
-                        <li><a href="pmb29985.html">Schnitzler, Arthur: Der einsame Weg. Schauspiel in fünf Akten</a></li>
-                        <li><a href="pmb36374.html">Neue Freie Presse</a></li>
-                        <li><a href="pmb31277.html">Schnitzlers »Einsamer Weg« (Telegramm der »Neuen Freien Presse«)</a></li>
+                        <li><a class="theme-color" href="pmb31281.html">Goldmann, Paul: Berliner Theater. »Der einsame Weg«. Von Arthur Schnitzler</a></li>
+                        <li><a class="theme-color" href="pmb29985.html">Schnitzler, Arthur: Der einsame Weg. Schauspiel in fünf Akten</a></li>
+                        <li><a class="theme-color" href="pmb36374.html">Neue Freie Presse</a></li>
+                        <li><a class="theme-color" href="pmb31277.html">Schnitzlers »Einsamer Weg« (Telegramm der »Neuen Freien Presse«)</a></li>
                      </ul>
                   </div>
                   <div></div>
                   <div>
                      <legend>Orte</legend>
                      <ul>
-                        <li><a href="pmb168.html">Berlin</a> (Hauptstadt Berlin, Barlīn, Reichshauptstadt Berlin, Berolino)<a href="https://www.openstreetmap.org/?mlat=52.52437&amp;mlon=13.41053#map=12/52.52437/13.41053" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb866.html">Dresden</a> (Landeshauptstadt Dresden)<a href="https://www.openstreetmap.org/?mlat=51.0833&amp;mlon=13.7666#map=12/51.0833/13.7666" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb5.html">Gemäldegalerie Alte Meister</a><a href="https://www.openstreetmap.org/?mlat=51.053528&amp;mlon=13.734861#map=12/51.053528/13.734861" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb41212.html">Korfu</a> (Corcyra (Insel))<a href="https://www.openstreetmap.org/?mlat=39.598055&amp;mlon=19.852222#map=12/39.598055/19.852222" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb451.html">Sizilien</a><a href="https://www.openstreetmap.org/?mlat=37.75&amp;mlon=14.25#map=12/37.75/14.25" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna)<a href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb63.html">XIII., Hietzing</a><a href="https://www.openstreetmap.org/?mlat=48.17547&amp;mlon=16.29101#map=12/48.17547/16.29101" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb168.html">Berlin</a> (Hauptstadt Berlin, Barlīn, Reichshauptstadt Berlin, Berolino) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=52.52437&amp;mlon=13.41053#map=12/52.52437/13.41053" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb866.html">Dresden</a> (Landeshauptstadt Dresden) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=51.0833&amp;mlon=13.7666#map=12/51.0833/13.7666" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb5.html">Gemäldegalerie Alte Meister</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=51.053528&amp;mlon=13.734861#map=12/51.053528/13.734861" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb41212.html">Korfu</a> (Corcyra (Insel)) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=39.598055&amp;mlon=19.852222#map=12/39.598055/19.852222" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb451.html">Sizilien</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=37.75&amp;mlon=14.25#map=12/37.75/14.25" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb63.html">XIII., Hietzing</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.17547&amp;mlon=16.29101#map=12/48.17547/16.29101" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="editor-widget" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Einstellungen</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+               <div class="modal-body">
+                  <div>
+                     <image-switch opt="es"></image-switch>
+                  </div>
+                  <div>
+                     <legend>Entitäten markieren</legend>
+                     <ul>
+                        <li>
+                           <annotation-slider opt="ef"></annotation-slider>
+                        </li>
+                        <li>
+                           <annotation-slider opt="prs"></annotation-slider>          
+                           <annotation-slider opt="wrk"></annotation-slider>
+                                    
+                           <annotation-slider opt="plc"></annotation-slider>           
+                           <annotation-slider opt="org"></annotation-slider>           
+                           </li>
                      </ul>
                   </div>
                </div>

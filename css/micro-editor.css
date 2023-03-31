@@ -20,6 +20,7 @@
   /* opacity: 0; */
   width: 0;
   height: 0;
+  visibility: hidden;
 }
 
 /* The slider */
@@ -78,7 +79,7 @@ input:checked + .i-slider:before {
   margin-left:3em;
 }
 
-.bi-pencil-square {
+.bi-bi-sliders {
   color: #A63437;
 }
 

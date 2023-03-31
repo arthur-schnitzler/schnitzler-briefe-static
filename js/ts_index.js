@@ -41,10 +41,10 @@ search.addWidgets([
           item: `
               <h4><a href="{{ id }}.html">{{ title }}</a></h4>
               <p>{{#helpers.snippet}}{ "attribute": "full_text" }{{/helpers.snippet}}</p>
-              <h5><span class="badge bg-primary">{{ project }}</span></h5>
+              <h5><span class="badge bg-warning">{{ project }}</span></h5>
               <div>
               {{#persons}}
-              <span class="badge bg-secondary">{{ . }}</span>
+              <span class="badge bg-primary">{{ . }}</span>
               {{/persons}}
               </div>
               {{#works}}
@@ -54,6 +54,11 @@ search.addWidgets([
               {{#places}}
               <span class="badge bg-info">{{ . }}</span>
               {{/places}}
+              </div>
+              <div>
+              {{#orgs}}
+              <span class="badge bg-warning">{{ . }}</span>
+              {{/orgs}}
               </div>
               </div>
           `
@@ -121,7 +126,7 @@ search.addWidgets([
           searchableReset: 'd-none',
           showMore: 'btn btn-secondary btn-sm align-content-center',
           list: 'list-unstyled',
-          count: 'badge ml-2 bg-secondary',
+          count: 'badge ml-2 bg-primary',
           label: 'd-flex align-items-center text-capitalize',
           checkbox: 'form-check'
         }
@@ -155,7 +160,7 @@ search.addWidgets([
         searchableReset: 'd-none',
         showMore: 'btn btn-secondary btn-sm align-content-center',
         list: 'list-unstyled',
-        count: 'badge ml-2 bg-info',
+        count: 'badge ml-2 bg-warning',
         label: 'd-flex align-items-center text-capitalize',
         checkbox: 'form-check-label'
       }

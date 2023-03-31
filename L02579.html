@@ -11,7 +11,7 @@
       <link rel="icon" type="image/svg+xml" href="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" sizes="any" />
       <link rel="profile" href="http://gmpg.org/xfn/11" />
       <title>schnitzler-briefe</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
       <link rel="stylesheet" href="css/style.css" type="text/css" />
       <link rel="stylesheet" href="css/micro-editor.css" type="text/css" />
@@ -33,9 +33,25 @@
       <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon/android-icon-192x192.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><style>
+      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><script src="js/dt.js"></script><script src="js/dt-panes.js"></script><script type="text/javascript">
+                var _paq = _paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                var u="https://matomo.acdh.oeaw.ac.at/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '171']); 
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script><style>
                     .navBarNavDropdown ul li:nth-child(2) {
                         display: none !important;
+                    }
+                    
+                    a {
+                        color: black;
                     }</style>
       <meta name="Date of publication" class="staticSearch_date" content="1905-09-24" n="01" />
       <meta name="docImage" class="staticSearch_docImage" content="https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/DLA_85.1.4821_00023.jpg?format=iiif&amp;param=/full/,200/0/default.jpg" />
@@ -148,31 +164,34 @@
                                     
                                     <div class="div">
                                        <div class="opener">
-                                          <div align="center" class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="DLA_85.1.4821_00024"></span><span class="pre-print"><span class="places"><a href="pmb462.html"><span class="uppercase">Venezia</span></a></span> – <span class="orgs"><a href="pmb44602.html">Accademia di Belle Arti</a></span> – <span class="works"><a href="pmb59953.html">La Presentazione della Vergine</a></span> – <span class="persons"><a href="pmb26079.html">Tiziano</a></span></span></div>
+                                          <div align="center" class=""><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="DLA_85.1.4821_00024"></span><span class="pre-print"><span class="places"><a href="pmb462.html"><span class="capitals">Venezia</span></a></span> – <span class="orgs"><a href="pmb44602.html">Accademia di Belle Arti</a></span> – <span class="works"><a href="pmb59953.html">La Presentazione della Vergine</a></span> – <span class="persons"><a href="pmb26079.html">Tiziano</a></span></span></div>
                                        </div>
-                                       <div class="editionText">Lieber Arthur, <span class="underline">erst</span> heute schreib ich Ihnen, aber nicht weil ich an
+                                       <div class="">
+                                          <div class="salute">Lieber Arthur, </div><span class="underline">erst</span> heute schreib ich Ihnen, aber nicht weil ich an
                                           Sie vergessen habe, sondern weil ich mich freue Sie bald wieder zu sehen und von den
-                                          »<a class="reference-black" data-toggle="modal" data-target="#pmb29903 pmb29905">Sünderinnen</a><a name="fna_1" href="#fn1" title="Es dürfte sich um eine gemeinsame Bezeichnung für die zwei Stücke Zwischenspiel und Der Ruf des Lebens handeln, die, noch ohne finalen Titel weitgehend fertig gestellt waren, was in mehreren Zeitungen gemeldet worden war. Van-Jung kannte sie beide, da Schnitzler sie ihm am vorgelesen hatte."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">1</sup></a>« zu hören. Einige Zeitungsnotizen haben mich sehr neugierig gemacht.
+                                          »<a class="reference-black" data-toggle="modal" data-target="#pmb29903 pmb29905">Sünderinnen</a>« zu hören. Einige Zeitungsnotizen haben mich sehr neugierig gemacht.
                                           Handkuss der lieben Frau Olga und die allerherzlichsten Grüsse Ihnen von Ihrem</div>
-                                       <div class="editionText">
-                                          <div class="signed editionText">Leo.</div>
+                                       <div class="">
+                                          <div class="signed ">Leo.</div>
                                        </div>
                                     </div>
                                     
                                     <div class="div">
-                                       <div class="editionText">Lieber Dr. und liebſte Olga! Ich bleibe noch einige Tage hier und
+                                       <div class="">
+                                          <div class="salute">Lieber Dr. und liebſte Olga! </div>Ich bleibe noch einige Tage hier und
                                           werde den lieben Brief Olga’s morgen beantworten. Für heute tauſend Grüße von Ihrer
                                           alten 
-                                          <div class="signed editionText">Fanny Mütter</div>
+                                          <div class="signed ">Fanny Mütter</div>
                                        </div>
                                     </div>
                                     
                                     <div class="div">
-                                       <div class="editionText">Lieber Arthur! Wir sind – hoffe ich <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">Mittwoch</span> oder <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">Donnerstag</span><a name="fna_2" href="#fn2" title="Der Poststempel dieser Karte ist nur bei der Jahresangabe verlässlich zu entziffern. Eine grobe Einordnung lässt sich mit Beer-Hofmanns Zusammentstellung seiner Lebensdaten treffen: »Ende August, über Bozen an den Lido (Hôtel des Bains), Bella Vengerova, Arthur Kaufmann, Leo Van Jung kommen nach.« Die Tagesangabe des Poststempels ist zweistellig und beginnt mit einer »2«, so dass die Karte Ende August oder Ende September anzusiedeln ist. Letzteres wiederum ist wahrscheinlicher, da es bis zum zu keinem gemeinsamen Treffen kam."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">2</sup></a>
+                                       <div class="">
+                                          <div class="salute">Lieber Arthur! </div>Wir sind – hoffe ich <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">Mittwoch</span> oder <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">Donnerstag</span>
                                           in <span class="places"><a href="pmb173.html">Rodaun</a></span></div>
-                                       <div class="editionText">Freuen uns Sie bald zu sehen.</div>
-                                       <div class="editionText">Ihr 
-                                          <div class="signed editionText">Richard</div>
+                                       <div class="">Freuen uns Sie bald zu sehen.</div>
+                                       <div class="">Ihr 
+                                          <div class="signed ">Richard</div>
                                        </div>
                                     </div>
                                     
@@ -216,47 +235,16 @@
                   </div>
                </div>
                <div class="card-footer" style="clear: both;">
-                  <div id="editor-widget">
-                     <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
-                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
-                           <li class="dropdown-item">
-                              <full-size opt="fls"></full-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <image-switch opt="es"></image-switch>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-size opt="fs"></font-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-family opt="ff"></font-family>
-                           </li>
-                           <li class="dropdown-item" style="border-top: 5px dashed lightgrey !important;">
-                              <annotation-slider opt="ef"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="prs"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="plc"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="wrk"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="org"></annotation-slider>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
                   <nav class="navbar navbar-expand-lg">
                      <div class="container-fluid">
                         <div>
                            <ul id="secondary-menu" class="navbar-nav mb-2 mb-lg-0">
+                              <li class="nav-item">  <a href="#" data-bs-target="#editor-widget" type="button" data-bs-toggle="modal"><i class="fas fa-solid fa-screwdriver-wrench"></i>
+                                    EINSTELLUNGEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#ueberlieferung" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ÜBERLIEFERUNG
                                     </a>  </li>
-                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ENTITÄTEN </a>  </li>
+                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-sharp fa-solid fa-people-group"></i>
+                                    ENTITÄTEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#zitat" type="button" data-bs-toggle="modal"><i class="fas fa-quote-right"></i> ZITIEREN</a>  </li>
                               <li class="nav-item">  <a target="_blank" type="button" href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__1905-09-24.html"><i class="fas fa-external-link-alt"></i>
                                     TAGEBUCH
@@ -347,7 +335,7 @@
                   </div>
                </div>
                <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
-                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script></div>
+                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script></div>
          </div>
       </div>
       <div class="modal fade" id="ueberlieferung" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
@@ -426,7 +414,7 @@
                   <blockquote>Leo Van-Jung, Fanny Mütter, Richard Beer-Hofmann an Arthur und Olga Schnitzler, [24. 9.?] 1905.
                      In: Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition.
                      Hg. Martin Anton Müller, Gerd Hermann Susen und Laura Untner, https://schnitzler-briefe.acdh.oeaw.ac.at/L02579.html
-                     (Abfrage 30. 3. 2023)</blockquote>
+                     (Abfrage 31. 3. 2023)</blockquote>
                   <p></p>
                   <p>Für gekürzte Zitate reicht die Angabe der Briefnummer aus, die
                      eindeutig und persistent ist: »<b>L02579</b>«.</p>
@@ -436,7 +424,7 @@
                         |titel= |werk=Arthur
                         Schnitzler: Briefwechsel mit Autorinnen und Autoren
                         |hrsg=Martin Anton Müller, Gerd-Hermann Susen, Laura Untner
-                        |sprache=de |datum=1905-09-24 |abruf=2023-3-30
+                        |sprache=de |datum=1905-09-24 |abruf=2023-3-31
                         }} </code></blockquote>
                </div>
                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
@@ -468,12 +456,12 @@
                   <div>
                      <legend>Personen</legend>
                      <ul>
-                        <li><a href="pmb10863.html">Beer-Hofmann Richard</a></li>
-                        <li><a href="pmb2496.html">Kaufmann Arthur</a></li>
-                        <li><a href="pmb21766.html">Mütter Franziska</a></li>
-                        <li><a href="pmb2121.html">Schnitzler Arthur</a></li>
-                        <li><a href="pmb2173.html">Schnitzler Olga</a></li>
-                        <li><a href="pmb26079.html">
+                        <li><a class="theme-color" href="pmb10863.html">Beer-Hofmann Richard</a></li>
+                        <li><a class="theme-color" href="pmb2496.html">Kaufmann Arthur</a></li>
+                        <li><a class="theme-color" href="pmb21766.html">Mütter Franziska</a></li>
+                        <li><a class="theme-color" href="pmb2121.html">Schnitzler Arthur</a></li>
+                        <li><a class="theme-color" href="pmb2173.html">Schnitzler Olga</a></li>
+                        <li><a class="theme-color" href="pmb26079.html">
                               
                               Tizian
                               
@@ -503,35 +491,64 @@
                               https://schnitzler-briefe.acdh.oeaw.ac.at/pages/hits.html?searchkey=pmb26079
                               https://kraus.wienbibliothek.at/register/personen/pmb26079
                               </a></li>
-                        <li><a href="pmb26392.html">Van-Jung Leo</a></li>
-                        <li><a href="pmb3068.html">Vengerova Isabella</a></li>
+                        <li><a class="theme-color" href="pmb26392.html">Van-Jung Leo</a></li>
+                        <li><a class="theme-color" href="pmb3068.html">Vengerova Isabella</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Werke</legend>
                      <ul>
-                        <li><a href="pmb29905.html">Schnitzler, Arthur: Der Ruf des Lebens. Schauspiel in drei Akten</a></li>
-                        <li><a href="pmb59953.html">Tizian: La presentazione della Vergine al Tempio</a></li>
-                        <li><a href="pmb29903.html">Schnitzler, Arthur: Zwischenspiel. Komödie in drei Akten</a></li>
+                        <li><a class="theme-color" href="pmb29905.html">Schnitzler, Arthur: Der Ruf des Lebens. Schauspiel in drei Akten</a></li>
+                        <li><a class="theme-color" href="pmb59953.html">Tizian: La presentazione della Vergine al Tempio</a></li>
+                        <li><a class="theme-color" href="pmb29903.html">Schnitzler, Arthur: Zwischenspiel. Komödie in drei Akten</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Institutionen</legend>
                      <ul>
-                        <li><a href="pmb44602.html">Accademia di belle arti di Venezia</a></li>
+                        <li><a class="theme-color" href="pmb44602.html">Accademia di belle arti di Venezia</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Orte</legend>
                      <ul>
-                        <li><a href="pmb40260.html">Bozen</a> (Bolzano)<a href="https://www.openstreetmap.org/?mlat=46.49067&amp;mlon=11.33982#map=12/46.49067/11.33982" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb133.html">Edmund-Weiß-Gasse</a><a href="https://www.openstreetmap.org/?mlat=48.219883621255&amp;mlon=16.25565018043#map=12/48.219883621255/16.25565018043" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40983.html">Grand Hotel des Bains</a><a href="https://www.openstreetmap.org/?mlat=45.413333&amp;mlon=12.374722#map=12/45.413333/12.374722" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb259.html">Lido</a><a href="https://www.openstreetmap.org/?mlat=45.38333&amp;mlon=12.35#map=12/45.38333/12.35" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb173.html">Rodaun</a><a href="https://www.openstreetmap.org/?mlat=48.132793312328&amp;mlon=16.256152195922#map=12/48.132793312328/16.256152195922" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb462.html">Venedig</a><a href="https://www.openstreetmap.org/?mlat=45.43713&amp;mlon=12.33265#map=12/45.43713/12.33265" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna)<a href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb41240.html">Österreich</a> (Republik Österreich, Republic of Austria)<a href="https://www.openstreetmap.org/?mlat=47.33333&amp;mlon=13.33333#map=12/47.33333/13.33333" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40260.html">Bozen</a> (Bolzano) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.49067&amp;mlon=11.33982#map=12/46.49067/11.33982" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb133.html">Edmund-Weiß-Gasse</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.219883621255&amp;mlon=16.25565018043#map=12/48.219883621255/16.25565018043" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40983.html">Grand Hotel des Bains</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=45.413333&amp;mlon=12.374722#map=12/45.413333/12.374722" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb259.html">Lido</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=45.38333&amp;mlon=12.35#map=12/45.38333/12.35" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb173.html">Rodaun</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.132793312328&amp;mlon=16.256152195922#map=12/48.132793312328/16.256152195922" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb462.html">Venedig</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=45.43713&amp;mlon=12.33265#map=12/45.43713/12.33265" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb41240.html">Österreich</a> (Republik Österreich, Republic of Austria) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.33333&amp;mlon=13.33333#map=12/47.33333/13.33333" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="editor-widget" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Einstellungen</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+               <div class="modal-body">
+                  <div>
+                     <image-switch opt="es"></image-switch>
+                  </div>
+                  <div>
+                     <legend>Entitäten markieren</legend>
+                     <ul>
+                        <li>
+                           <annotation-slider opt="ef"></annotation-slider>
+                        </li>
+                        <li>
+                           <annotation-slider opt="prs"></annotation-slider>          
+                           <annotation-slider opt="wrk"></annotation-slider>
+                                    
+                           <annotation-slider opt="plc"></annotation-slider>           
+                           <annotation-slider opt="org"></annotation-slider>           
+                           </li>
                      </ul>
                   </div>
                </div>

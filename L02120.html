@@ -11,7 +11,7 @@
       <link rel="icon" type="image/svg+xml" href="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" sizes="any" />
       <link rel="profile" href="http://gmpg.org/xfn/11" />
       <title>schnitzler-briefe</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
       <link rel="stylesheet" href="css/style.css" type="text/css" />
       <link rel="stylesheet" href="css/micro-editor.css" type="text/css" />
@@ -33,9 +33,25 @@
       <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon/android-icon-192x192.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><style>
+      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><script src="js/dt.js"></script><script src="js/dt-panes.js"></script><script type="text/javascript">
+                var _paq = _paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                var u="https://matomo.acdh.oeaw.ac.at/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '171']); 
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script><style>
                     .navBarNavDropdown ul li:nth-child(2) {
                         display: none !important;
+                    }
+                    
+                    a {
+                        color: black;
                     }</style>
       <meta name="Date of publication" class="staticSearch_date" content="1913-04-15" n="02" />
       <meta name="docImage" class="staticSearch_docImage" content="https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/MS-SCHNITZLER-B-00002-000-00033.jpg?format=iiif&amp;param=/full/,200/0/default.jpg" />
@@ -131,53 +147,53 @@
                                     <div class="div">
                                        <div class="opener">
                                           <p>
-                                             <div class="editionText salute"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00033"></span>Lieber lieber Herr <span class="latintype">D<span class="superscript">r</span></span> Arthur Schnitzler,</div>
+                                             <div class="salute"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00033"></span>Lieber lieber Herr <span class="latintype">D<span class="superscript">r</span></span> Arthur Schnitzler,</div>
                                           </p>
                                        </div>
-                                       <div class="editionText">ein Verlorener, Zuſammengeſtürzter, unmittelbar nach einem paradieſiſchen <span class="places"><a href="pmb189.html">Semmering</a></span>-Jahr <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">1912</span>, ein <span class="tripleUnderline">tiefſt</span> Verzweifelter, wendet ſich an Sie als
+                                       <div class="">ein Verlorener, Zuſammengeſtürzter, unmittelbar nach einem paradieſiſchen <span class="places"><a href="pmb189.html">Semmering</a></span>-Jahr <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">1912</span>, ein <span class="tripleUnderline">tiefſt</span> Verzweifelter, wendet ſich an Sie als
                                           Menſchenfreundlichen und Dichter vor allem, dann als Kollegen und langjährigen
                                           litterariſchen Genoſſen – – – Hilfe, Rettung, Erbarmen, in einer ſo <span class="underline">ſchauerlichen</span> Situation, die noch nie, noch nie, noch nie,
                                           ein Dichter, ein Künſtler-Menſch erlitten hat! <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00034"></span>Der ſüßen unentbehrlichen Freiheit
                                           beraubt, verbringe ich meine Tage u. Nächte in unermeſslichen Qualen, eingefangen,
                                           kontrollirt wie ein <span class="underline">böſes gefährliches giftiges
                                              Reptil</span>!</div>
-                                       <div class="editionText">Hilfe, Errettung, <span class="works"><a href="pmb29923.html">Weg ins Freie</a></span><a name="fna_1" href="#fn1" title="Vermutlich Mitte April 1913schrieb Altenberg an Hermann Bahr und, separat, an dessen Gattin Anna Bahr-Mildenburg (Korrespondenz von Peter Altenberg an Hermann Bahr (1895–1913). Hgg. Heinz Lunzer, Victoria Lunzer-Talos. In: Jeanne Bennay, Alfred Pfabigan, Hgg.: Hermann Bahr – Für eine andere Moderne. Bern: Peter Lang2004, S. 249-262, hier S. 259–262.) In Folge dessen schrieb Bahr am 16. 4. 1913 an Schnitzler über den »verworrenen Brief«. Dieser antwortete zwei Tage später, er habe gleichfalls einen Brief Altenbergs erhalten. Die sprachliche Entsprechung von Formulierungen, wie »Hilfe, Errettung, Erbarmen!!!« an Bahr legen die zeitliche Unmittelbarkeit der beiden Korrespondenzstücke an Bahr und Schnitzler nahe."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">1</sup></a>!!!</div>
-                                       <div class="editionText">Auch geht es mir ökonomiſch ſchlecht, und bitte ich Sie und <span class="persons"><a href="pmb11740.html">Hofmannsthal</a></span> um die mir <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00033"></span>zugeſagten <span class="underline">20</span> Kr. monatlich ſeit <span class="underline">November 1912</span>, da ich
+                                       <div class="">Hilfe, Errettung, <span class="works"><a href="pmb29923.html">Weg ins Freie</a></span>!!!</div>
+                                       <div class="">Auch geht es mir ökonomiſch ſchlecht, und bitte ich Sie und <span class="persons"><a href="pmb11740.html">Hofmannsthal</a></span> um die mir <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00033"></span>zugeſagten <span class="underline">20</span> Kr. monatlich ſeit <span class="underline">November 1912</span>, da ich
                                           gerade damals zuſammenbrach und nicht mehr denken konnte!</div>
-                                       <div class="editionText"><span class="tripleUnderline">Hilfe</span>, um Gotteswillen, ehe ich ganz zerſtört
+                                       <div class=""><span class="tripleUnderline">Hilfe</span>, um Gotteswillen, ehe ich ganz zerſtört
                                           bin!</div>
-                                       <div class="editionText">Ich möchte auf dem <span class="places"><a href="pmb189.html">Semmering</a></span> ruhig vegetiren, in
+                                       <div class="">Ich möchte auf dem <span class="places"><a href="pmb189.html">Semmering</a></span> ruhig vegetiren, in
                                           Freiheit und Frieden! Hilfe von <span class="tripleUnderline">Bruder</span>-Seelen!
                                           Dichter, Künſtler, Menſchen, helft mir!!!</div>
-                                       <div class="editionText">
-                                          <div class="signed editionText">Peter Altenberg</div>
+                                       <div class="">
+                                          <div class="signed ">Peter Altenberg</div>
                                        </div>
-                                       <div class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00034"></span>Adreſſe<a name="fna_2" href="#fn2" title="Hier wechselt die Schreibrichtung und das Blatt ist entlang des Mittelfalzes beschrieben."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">2</sup></a>: <a class="reference-black" data-toggle="modal" data-target="#pmb153___pmb153">XIII/12Villa AustriaPavillon der
+                                       <div class=""><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00034"></span>Adreſſe: <a class="reference-black" data-toggle="modal" data-target="#pmb153___pmb153">XIII/12Villa AustriaPavillon der
                                              Landesnervenheilanstalt Am Steinhof.</a></div>
-                                       <div class="editionText">Leſen Sie mein letztes Buch:</div>
-                                       <div align="center" class="editionText">»<span class="works"><a href="pmb32550.html">Semmering 1912</a></span>«</div>
-                                       <div class="editionText">und denken Sie, wie dem Autor zumute iſt, der nun wie ein wildes Tier eingeſperrt
+                                       <div class="">Leſen Sie mein letztes Buch:</div>
+                                       <div align="center" class="">»<span class="works"><a href="pmb32550.html">Semmering 1912</a></span>«</div>
+                                       <div class="">und denken Sie, wie dem Autor zumute iſt, der nun wie ein wildes Tier eingeſperrt
                                            ſchmachtet, ſeit <span class="underline">5</span> Monaten!!!</div>
-                                       <div class="editionText">Ihr<br /><a href="#__p10__lb1" name="__p10__lb1" id="__p10__lb1" class="linenumbersTransparent linenumbers">0001</a><div class="signed editionText">PA</div>
+                                       <div class="">Ihr<br /><div class="signed ">PA</div>
                                        </div>
                                     </div>
                                     
                                     <div class="div">
                                        <div class="opener">
-                                          <div class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00027"></span><span class="underline">Zur Aufklärung</span>. <span class="latintype">(Diskret!)</span></div>
+                                          <div class=""><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00027"></span><span class="underline">Zur Aufklärung</span>. <span class="latintype">(Diskret!)</span></div>
                                           <p>
-                                             <div class="editionText salute">Sehr geehrter Herr.</div>
+                                             <div class="salute">Sehr geehrter Herr.</div>
                                           </p>
                                        </div>
-                                       <div class="editionText">Am <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">10 Dec. v. J.</span> mußte ich meinen Bruder in einem erbarmungswürdigen <span class="latintype">Nerven-Zustand</span> auf den <span class="places"><a href="pmb153.html"><span class="latintype">Steinhof</span></a></span> überführen.</div>
-                                       <div class="editionText">Nun erſt ſeit 3 <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00028"></span>Wochen ko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>t er allmählich zum <span class="latintype">Bewusstsein</span> &amp; iſt empört über den Zwang den Ärzte &amp; Pfleger auf ihn ausüben &amp;
+                                       <div class="">Am <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">10 Dec. v. J.</span> mußte ich meinen Bruder in einem erbarmungswürdigen <span class="latintype">Nerven-Zustand</span> auf den <span class="places"><a href="pmb153.html"><span class="latintype">Steinhof</span></a></span> überführen.</div>
+                                       <div class="">Nun erſt ſeit 3 <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00028"></span>Wochen ko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>t er allmählich zum <span class="latintype">Bewusstsein</span> &amp; iſt empört über den Zwang den Ärzte &amp; Pfleger auf ihn ausüben &amp;
                                           will durchaus entfliehen. Ärztliche <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="MS-SCHNITZLER-B-00002-000-00028"></span>Freunde finden aber auch jetzt noch ſeinen Kopf &amp; <span class="latintype">Nervenzustand</span> ſo labil daſs ſie auch nur einige Tage
                                           Freiheit ſchon für ſeine Gesundheit als <span class="latintype">katastrophal</span>
                                           befürchten.</div>
-                                       <div class="editionText">Hochachtend<br /><div class="signed editionText">G. Engländer</div>
+                                       <div class="">Hochachtend<br /><div class="signed ">G. Engländer</div>
                                        </div>
-                                       <div class="editionText"><span class="places"><a href="pmb730.html">III <span class="latintype">Seidlgasse</span> 23</a></span>.</div>
-                                       <div class="editionText">P.S. Seine <span class="latintype">Correſp</span>. wird mir von der <span class="places"><a href="pmb153.html"><span class="latintype">Anstalt</span></a></span> offen zugeſandt!!</div>
+                                       <div class=""><span class="places"><a href="pmb730.html">III <span class="latintype">Seidlgasse</span> 23</a></span>.</div>
+                                       <div class="">P.S. Seine <span class="latintype">Correſp</span>. wird mir von der <span class="places"><a href="pmb153.html"><span class="latintype">Anstalt</span></a></span> offen zugeſandt!!</div>
                                     </div>
                                     
                                     
@@ -220,47 +236,16 @@
                   </div>
                </div>
                <div class="card-footer" style="clear: both;">
-                  <div id="editor-widget">
-                     <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
-                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
-                           <li class="dropdown-item">
-                              <full-size opt="fls"></full-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <image-switch opt="es"></image-switch>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-size opt="fs"></font-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-family opt="ff"></font-family>
-                           </li>
-                           <li class="dropdown-item" style="border-top: 5px dashed lightgrey !important;">
-                              <annotation-slider opt="ef"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="prs"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="plc"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="wrk"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="org"></annotation-slider>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
                   <nav class="navbar navbar-expand-lg">
                      <div class="container-fluid">
                         <div>
                            <ul id="secondary-menu" class="navbar-nav mb-2 mb-lg-0">
+                              <li class="nav-item">  <a href="#" data-bs-target="#editor-widget" type="button" data-bs-toggle="modal"><i class="fas fa-solid fa-screwdriver-wrench"></i>
+                                    EINSTELLUNGEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#ueberlieferung" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ÜBERLIEFERUNG
                                     </a>  </li>
-                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ENTITÄTEN </a>  </li>
+                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-sharp fa-solid fa-people-group"></i>
+                                    ENTITÄTEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#zitat" type="button" data-bs-toggle="modal"><i class="fas fa-quote-right"></i> ZITIEREN</a>  </li>
                               <li class="nav-item">  <a target="_blank" type="button" href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__1913-04-15.html"><i class="fas fa-external-link-alt"></i>
                                     TAGEBUCH
@@ -272,13 +257,10 @@
                   <div class="card-body-anhang">
                      <dl class="kommentarhang">
                         <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L02120_1h"><span class="lemma">Hilfe, … Freie] </span><span class="kommentar-text" id="K_L02120_1h">Vermutlich <span class="date">Mitte April 1913</span> schrieb <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb2147.html">Altenberg</a></span> an <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb10815.html">Hermann Bahr</a></span> und,
-                              separat, an dessen Gattin <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb10818.html">Anna Bahr-Mildenburg</a></span> (
-                              <div class="card-body-index">
-                                 <div id="mentions"></div>
-                                 <div id="mentions" class="mt-2"><span class="infodesc mr-2">
-                                       <legend>Erwähnungen</legend>
-                                       <ul></ul></span></div>
-                              </div>) In Folge dessen schrieb
+                              separat, an dessen Gattin <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb10818.html">Anna Bahr-Mildenburg</a></span> (Korrespondenz von Peter Altenberg an Hermann Bahr
+                              (1895–1913). Hgg. Heinz Lunzer, Victoria Lunzer-Talos. In: Jeanne
+                              Bennay, Alfred Pfabigan, Hgg.: Hermann Bahr – Für eine andere
+                              Moderne. Bern: Peter Lang <span class="date">2004</span>, S. 249-262, hier S. 259–262.) In Folge dessen schrieb
                               <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb10815.html">Bahr</a></span> am <span class="date">16. 4. 1913</span> an <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb2121.html">Schnitzler</a></span> über den »verworrenen
                               Brief«. Dieser antwortete zwei Tage später, er habe gleichfalls einen
                               Brief <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb2147.html">Altenberg</a></span>s erhalten. Die sprachliche
@@ -356,7 +338,7 @@
                   </div>
                </div>
                <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
-                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script></div>
+                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script></div>
          </div>
       </div>
       <div class="modal fade" id="ueberlieferung" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
@@ -408,9 +390,7 @@
                            <tr xmlns:tei="http://www.tei-c.org/ns/1.0">
                               <tr>
                                  <th>Schnitzler</th>
-                                 <td>1) mit Bleistift erstes Blatt beschriftet: »
-                                    <span xmlns="http://www.w3.org/1999/xhtml" class="latintype">Altenberg</span>
-                                    « und datiert: »April 1913«</td>
+                                 <td>1) mit Bleistift erstes Blatt beschriftet: »<span xmlns="http://www.w3.org/1999/xhtml" class="latintype">Altenberg</span>« und datiert: »April 1913«</td>
                               </tr>
                            </tr>
                            <tr xmlns:tei="http://www.tei-c.org/ns/1.0">
@@ -450,9 +430,7 @@
                            <tr xmlns:tei="http://www.tei-c.org/ns/1.0">
                               <tr>
                                  <th>Schnitzler</th>
-                                 <td>mit Bleistift beschriftet: »
-                                    <span xmlns="http://www.w3.org/1999/xhtml" class="latintype">Engländer</span>
-                                    « und datiert: »1914/1915«</td>
+                                 <td>mit Bleistift beschriftet: »<span xmlns="http://www.w3.org/1999/xhtml" class="latintype">Engländer</span>« und datiert: »1914/1915«</td>
                               </tr>
                            </tr>
                            <tr xmlns:tei="http://www.tei-c.org/ns/1.0">
@@ -501,7 +479,7 @@
                   <blockquote>Peter Altenberg und Georg Engländer an Arthur Schnitzler, [Mitte April] 1913. In:
                      Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition. Hg.
                      Martin Anton Müller, Gerd Hermann Susen und Laura Untner, https://schnitzler-briefe.acdh.oeaw.ac.at/L02120.html
-                     (Abfrage 30. 3. 2023)</blockquote>
+                     (Abfrage 31. 3. 2023)</blockquote>
                   <p></p>
                   <p>Für gekürzte Zitate reicht die Angabe der Briefnummer aus, die
                      eindeutig und persistent ist: »<b>L02120</b>«.</p>
@@ -511,7 +489,7 @@
                         |titel= |werk=Arthur
                         Schnitzler: Briefwechsel mit Autorinnen und Autoren
                         |hrsg=Martin Anton Müller, Gerd-Hermann Susen, Laura Untner
-                        |sprache=de |datum=1913-04-15 |abruf=2023-3-30
+                        |sprache=de |datum=1913-04-15 |abruf=2023-3-31
                         }} </code></blockquote>
                </div>
                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
@@ -543,29 +521,58 @@
                   <div>
                      <legend>Personen</legend>
                      <ul>
-                        <li><a href="pmb2147.html">Altenberg Peter</a></li>
-                        <li><a href="pmb10818.html">Bahr-Mildenburg Anna</a></li>
-                        <li><a href="pmb10815.html">Bahr Hermann</a></li>
-                        <li><a href="pmb2260.html">Engländer Georg</a></li>
-                        <li><a href="pmb11740.html">Hofmannsthal Hugo von</a></li>
-                        <li><a href="pmb2121.html">Schnitzler Arthur</a></li>
+                        <li><a class="theme-color" href="pmb2147.html">Altenberg Peter</a></li>
+                        <li><a class="theme-color" href="pmb10818.html">Bahr-Mildenburg Anna</a></li>
+                        <li><a class="theme-color" href="pmb10815.html">Bahr Hermann</a></li>
+                        <li><a class="theme-color" href="pmb2260.html">Engländer Georg</a></li>
+                        <li><a class="theme-color" href="pmb11740.html">Hofmannsthal Hugo von</a></li>
+                        <li><a class="theme-color" href="pmb2121.html">Schnitzler Arthur</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Werke</legend>
                      <ul>
-                        <li><a href="pmb29923.html">Schnitzler, Arthur: Der Weg ins Freie. Roman</a></li>
-                        <li><a href="pmb32550.html">Altenberg, Peter: »Semmering 1912«</a></li>
+                        <li><a class="theme-color" href="pmb29923.html">Schnitzler, Arthur: Der Weg ins Freie. Roman</a></li>
+                        <li><a class="theme-color" href="pmb32550.html">Altenberg, Peter: »Semmering 1912«</a></li>
                      </ul>
                   </div>
                   <div></div>
                   <div>
                      <legend>Orte</legend>
                      <ul>
-                        <li><a href="pmb153.html">Otto-Wagner-Spital</a> (Steinhof)<a href="https://www.openstreetmap.org/?mlat=48.20875&amp;mlon=16.27962#map=12/48.20875/16.27962" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb730.html">Seidlgasse</a><a href="https://www.openstreetmap.org/?mlat=48.206786325191&amp;mlon=16.389660949005#map=12/48.206786325191/16.389660949005" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb189.html">Semmering</a> (Gemeinde Semmering, Semmering-Semmering-Kurort, Kurort Semmering, Semmering-Kurort, Heilklimatischer Höhenluftkurort Semmering, Semmering- Kurort Semmering)<a href="https://www.openstreetmap.org/?mlat=47.64224&amp;mlon=15.8241#map=12/47.64224/15.8241" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna)<a href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb153.html">Otto-Wagner-Spital</a> (Steinhof) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.20875&amp;mlon=16.27962#map=12/48.20875/16.27962" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb730.html">Seidlgasse</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.206786325191&amp;mlon=16.389660949005#map=12/48.206786325191/16.389660949005" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb189.html">Semmering</a> (Gemeinde Semmering, Semmering-Semmering-Kurort, Kurort Semmering, Semmering-Kurort, Heilklimatischer Höhenluftkurort Semmering, Semmering- Kurort Semmering) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.64224&amp;mlon=15.8241#map=12/47.64224/15.8241" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="editor-widget" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Einstellungen</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+               <div class="modal-body">
+                  <div>
+                     <image-switch opt="es"></image-switch>
+                  </div>
+                  <div>
+                     <legend>Entitäten markieren</legend>
+                     <ul>
+                        <li>
+                           <annotation-slider opt="ef"></annotation-slider>
+                        </li>
+                        <li>
+                           <annotation-slider opt="prs"></annotation-slider>          
+                           <annotation-slider opt="wrk"></annotation-slider>
+                                    
+                           <annotation-slider opt="plc"></annotation-slider>           
+                           <annotation-slider opt="org"></annotation-slider>           
+                           </li>
                      </ul>
                   </div>
                </div>

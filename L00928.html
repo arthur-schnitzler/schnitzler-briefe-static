@@ -11,7 +11,7 @@
       <link rel="icon" type="image/svg+xml" href="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" sizes="any" />
       <link rel="profile" href="http://gmpg.org/xfn/11" />
       <title>schnitzler-briefe</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
       <link rel="stylesheet" href="css/style.css" type="text/css" />
       <link rel="stylesheet" href="css/micro-editor.css" type="text/css" />
@@ -33,9 +33,25 @@
       <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon/android-icon-192x192.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><style>
+      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><script src="js/dt.js"></script><script src="js/dt-panes.js"></script><script type="text/javascript">
+                var _paq = _paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                var u="https://matomo.acdh.oeaw.ac.at/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '171']); 
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script><style>
                     .navBarNavDropdown ul li:nth-child(2) {
                         display: none !important;
+                    }
+                    
+                    a {
+                        color: black;
                     }</style>
       <meta name="Date of publication" class="staticSearch_date" content="1899-06-21" n="01" />
       <meta name="docImage" class="staticSearch_docImage" content="https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/AS_Beer-Hofmann_Abschrift_00369.jpg?format=iiif&amp;param=/full/,200/0/default.jpg" />
@@ -148,9 +164,10 @@
                                     
                                     <div class="div">
                                        <div class="opener">
-                                          <div align="right" class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="AS_Beer-Hofmann_Abschrift_00369"></span><span class="places"><a href="pmb50.html">Wien</a></span>, 21. 6. 99.</div>
+                                          <div align="right" class=""><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="AS_Beer-Hofmann_Abschrift_00369"></span><span class="places"><a href="pmb50.html">Wien</a></span>, 21. 6. 99.</div>
                                        </div>
-                                       <div class="editionText">Lieber Richard, ich habe gestern Abend mit <span class="persons"><a href="pmb21236.html">Mayer</a></span> gesprochen. Wir schlagen folgendes vor: dass wir etwa
+                                       <div class="">
+                                          <div class="salute">Lieber Richard, </div>ich habe gestern Abend mit <span class="persons"><a href="pmb21236.html">Mayer</a></span> gesprochen. Wir schlagen folgendes vor: dass wir etwa
                                           <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">Mitte Juli</span> zu Ihnen kommen und Sie von dort mitnehmen (etwa 5 Tage
                                           später). Wohin? Mir wäre ebenso wie <span class="persons"><a href="pmb21236.html">Mayer</a></span> eine
                                           Tour im <span class="places"><a href="pmb969.html">südtirol</a></span>ischen am sympathischesten (eine
@@ -164,20 +181,20 @@
                                           Aber im Ernst, was haben Sie? – Mir scheint nun einmal, dass Sie selbst einfach durch
                                           Willen einiges dazu thun könnten, um wohl zu sein. Sie lassen sich gehn. Freilich,
                                           auch dagegen scheinen Sie keine Gewalt zu haben.</div>
-                                       <div class="editionText">Was mich anbelangt, so fühle ich jenes Unglück<a name="fna_1" href="#fn1" title="der Tod Marie Reinhards am 18. 3. 1899"><sup xmlns:tei="http://www.tei-c.org/ns/1.0">1</sup></a> mit <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="AS_Beer-Hofmann_Abschrift_00370"></span>jedem Tag tiefer; der Sommer hat so seine
+                                       <div class="">Was mich anbelangt, so fühle ich jenes Unglück mit <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="AS_Beer-Hofmann_Abschrift_00370"></span>jedem Tag tiefer; der Sommer hat so seine
                                           eigenen Qualen. – Zu arbeiten hab ich versucht. – Mit <span class="persons"><a href="pmb11740.html">Hugo</a></span> hab ich gestern eine schöne Radpartie gemacht: <span class="places"><a href="pmb714.html">Edlacher Hof</a></span> – <span class="places"><a href="pmb40527.html">Singerin</a></span> – <span class="places"><a href="pmb1036.html">Gutenstein</a></span> – <span class="places"><a href="pmb40112.html">Pottenstein</a></span> – <span class="places"><a href="pmb992.html">Vöslau</a></span>.</div>
-                                       <div class="editionText">Morgen Abend fahr ich nach <span class="places"><a href="pmb40529.html">Slavonien</a></span><a name="fna_2" href="#fn2" title="Am reiste Schnitzler nach Belišće, blieb 2 Tage, dann weiter nach Orahovica, wo er ebenfalls für zwei Tage blieb. Über Budapest reiste er am retour."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">2</sup></a> und wünsche
+                                       <div class="">Morgen Abend fahr ich nach <span class="places"><a href="pmb40529.html">Slavonien</a></span> und wünsche
                                           in den letzten <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">Junitagen</span> wieder hier zu sein. Dann bleib ich etwa 10–12
                                           Tage hier.</div>
-                                       <div class="editionText"><span class="persons"><a href="pmb11485.html">Paul Goldmann</a></span>s Adresse einfach <span class="orgs"><a href="pmb29442.html">Frankfurter Zeitung</a></span>.</div>
-                                       <div class="editionText">Die <a class="reference-black" data-toggle="modal" data-target="#pmb423 pmb969">tirolische</a> Tour ist ungefähr; oder wäre:
-                                          <span class="places"><a href="pmb40556.html">Niederdorf</a></span> – <span class="places"><a href="pmb44317.html">Schluderbach</a></span> – <span class="places"><a href="pmb40563.html">Tre Croci<a name="fna_3" href="#fn3" title="In der Abschrift steht: »Croce«."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">3</sup></a></a></span> – <span class="places"><a href="pmb34199.html">Cortina</a></span> – <span class="places"><a href="pmb40574.html">Caprile</a></span> – <span class="places"><a href="pmb40577.html">Fedaja</a></span><a name="fna_4" href="#fn4" title="In der Abschrift steht: »Tevaja«."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">4</sup></a> – <span class="places"><a href="pmb40371.html">Karersee</a></span><a name="fna_5" href="#fn5" title="In der Abschrift steht »Karrersee«."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">5</sup></a> – <span class="places"><a href="pmb40578.html">Rollepass</a></span> – <span class="places"><a href="pmb44311.html">Martino</a></span> – <span class="places"><a href="pmb954.html">Trient</a></span>.</div>
-                                       <div class="editionText">Einfacher: <span class="places"><a href="pmb40260.html">Bozen</a></span> – <span class="places"><a href="pmb40371.html">Karersee</a></span><a name="fna_6" href="#fn6" title="In der Abschrift steht »Karrersee«."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">6</sup></a> u. s. w.</div>
-                                       <div class="editionText">Leben Sie wohl, grüssen Sie <span class="persons"><a href="pmb10860.html">Weib</a></span> und <a class="reference-black" data-toggle="modal" data-target="#pmb2668 pmb2534">Kind</a>.</div>
-                                       <div class="editionText">Herzlich der Ihre 
-                                          <div class="signed editionText">Arthur.</div>
+                                       <div class=""><span class="persons"><a href="pmb11485.html">Paul Goldmann</a></span>s Adresse einfach <span class="orgs"><a href="pmb29442.html">Frankfurter Zeitung</a></span>.</div>
+                                       <div class="">Die <a class="reference-black" data-toggle="modal" data-target="#pmb423 pmb969">tirolische</a> Tour ist ungefähr; oder wäre:
+                                          <span class="places"><a href="pmb40556.html">Niederdorf</a></span> – <span class="places"><a href="pmb44317.html">Schluderbach</a></span> – <span class="places"><a href="pmb40563.html">Tre Croci</a></span> – <span class="places"><a href="pmb34199.html">Cortina</a></span> – <span class="places"><a href="pmb40574.html">Caprile</a></span> – <span class="places"><a href="pmb40577.html">Fedaja</a></span> – <span class="places"><a href="pmb40371.html">Karersee</a></span> – <span class="places"><a href="pmb40578.html">Rollepass</a></span> – <span class="places"><a href="pmb44311.html">Martino</a></span> – <span class="places"><a href="pmb954.html">Trient</a></span>.</div>
+                                       <div class="">Einfacher: <span class="places"><a href="pmb40260.html">Bozen</a></span> – <span class="places"><a href="pmb40371.html">Karersee</a></span> u. s. w.</div>
+                                       <div class="">Leben Sie wohl, grüssen Sie <span class="persons"><a href="pmb10860.html">Weib</a></span> und <a class="reference-black" data-toggle="modal" data-target="#pmb2668 pmb2534">Kind</a>.</div>
+                                       <div class="">Herzlich der Ihre 
+                                          <div class="signed ">Arthur.</div>
                                        </div>
-                                       <div class="editionText">(nach <span class="places"><a href="pmb34824.html">Seeboden</a></span>)</div>
+                                       <div class="">(nach <span class="places"><a href="pmb34824.html">Seeboden</a></span>)</div>
                                     </div>
                                     
                                     
@@ -220,47 +237,16 @@
                   </div>
                </div>
                <div class="card-footer" style="clear: both;">
-                  <div id="editor-widget">
-                     <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
-                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
-                           <li class="dropdown-item">
-                              <full-size opt="fls"></full-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <image-switch opt="es"></image-switch>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-size opt="fs"></font-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-family opt="ff"></font-family>
-                           </li>
-                           <li class="dropdown-item" style="border-top: 5px dashed lightgrey !important;">
-                              <annotation-slider opt="ef"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="prs"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="plc"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="wrk"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="org"></annotation-slider>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
                   <nav class="navbar navbar-expand-lg">
                      <div class="container-fluid">
                         <div>
                            <ul id="secondary-menu" class="navbar-nav mb-2 mb-lg-0">
+                              <li class="nav-item">  <a href="#" data-bs-target="#editor-widget" type="button" data-bs-toggle="modal"><i class="fas fa-solid fa-screwdriver-wrench"></i>
+                                    EINSTELLUNGEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#ueberlieferung" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ÜBERLIEFERUNG
                                     </a>  </li>
-                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ENTITÄTEN </a>  </li>
+                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-sharp fa-solid fa-people-group"></i>
+                                    ENTITÄTEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#zitat" type="button" data-bs-toggle="modal"><i class="fas fa-quote-right"></i> ZITIEREN</a>  </li>
                               <li class="nav-item">  <a target="_blank" type="button" href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__1899-06-21.html"><i class="fas fa-external-link-alt"></i>
                                     TAGEBUCH
@@ -350,7 +336,7 @@
                   </div>
                </div>
                <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
-                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script></div>
+                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script></div>
          </div>
       </div>
       <div class="modal fade" id="ueberlieferung" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
@@ -426,7 +412,7 @@
                   <blockquote>Arthur Schnitzler an Richard Beer-Hofmann, 21. 6. 1899. In: Arthur Schnitzler: Briefwechsel
                      mit Autorinnen und Autoren. Digitale Edition. Hg. Martin Anton Müller, Gerd Hermann
                      Susen und Laura Untner, https://schnitzler-briefe.acdh.oeaw.ac.at/L00928.html (Abfrage
-                     30. 3. 2023)</blockquote>
+                     31. 3. 2023)</blockquote>
                   <p></p>
                   <p>Für gekürzte Zitate reicht die Angabe der Briefnummer aus, die
                      eindeutig und persistent ist: »<b>L00928</b>«.</p>
@@ -436,7 +422,7 @@
                         |titel= |werk=Arthur
                         Schnitzler: Briefwechsel mit Autorinnen und Autoren
                         |hrsg=Martin Anton Müller, Gerd-Hermann Susen, Laura Untner
-                        |sprache=de |datum=1899-06-21 |abruf=2023-3-30
+                        |sprache=de |datum=1899-06-21 |abruf=2023-3-31
                         }} </code></blockquote>
                </div>
                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
@@ -468,48 +454,77 @@
                   <div>
                      <legend>Personen</legend>
                      <ul>
-                        <li><a href="pmb2668.html">Beer-Hofmann Mirjam</a></li>
-                        <li><a href="pmb2534.html">Beer-Hofmann Naëmah</a></li>
-                        <li><a href="pmb10860.html">Beer-Hofmann Paula</a></li>
-                        <li><a href="pmb10863.html">Beer-Hofmann Richard</a></li>
-                        <li><a href="pmb11485.html">Goldmann Paul</a></li>
-                        <li><a href="pmb11740.html">Hofmannsthal Hugo von</a></li>
-                        <li><a href="pmb21236.html">Mayer Oskar</a></li>
-                        <li><a href="pmb2378.html">Reinhard Marie</a></li>
-                        <li><a href="pmb2121.html">Schnitzler Arthur</a></li>
+                        <li><a class="theme-color" href="pmb2668.html">Beer-Hofmann Mirjam</a></li>
+                        <li><a class="theme-color" href="pmb2534.html">Beer-Hofmann Naëmah</a></li>
+                        <li><a class="theme-color" href="pmb10860.html">Beer-Hofmann Paula</a></li>
+                        <li><a class="theme-color" href="pmb10863.html">Beer-Hofmann Richard</a></li>
+                        <li><a class="theme-color" href="pmb11485.html">Goldmann Paul</a></li>
+                        <li><a class="theme-color" href="pmb11740.html">Hofmannsthal Hugo von</a></li>
+                        <li><a class="theme-color" href="pmb21236.html">Mayer Oskar</a></li>
+                        <li><a class="theme-color" href="pmb2378.html">Reinhard Marie</a></li>
+                        <li><a class="theme-color" href="pmb2121.html">Schnitzler Arthur</a></li>
                      </ul>
                   </div>
                   <div></div>
                   <div>
                      <legend>Institutionen</legend>
                      <ul>
-                        <li><a href="pmb29442.html">Frankfurter Zeitung</a></li>
+                        <li><a class="theme-color" href="pmb29442.html">Frankfurter Zeitung</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Orte</legend>
                      <ul>
-                        <li><a href="pmb40574.html">Alleghe</a><a href="https://www.openstreetmap.org/?mlat=46.40718&amp;mlon=12.02336#map=12/46.40718/12.02336" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb992.html">Bad Vöslau</a><a href="https://www.openstreetmap.org/?mlat=47.96533&amp;mlon=16.21359#map=12/47.96533/16.21359" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40260.html">Bozen</a> (Bolzano)<a href="https://www.openstreetmap.org/?mlat=46.49067&amp;mlon=11.33982#map=12/46.49067/11.33982" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb44317.html">Carbonin</a><a href="https://www.openstreetmap.org/?mlat=46.62111&amp;mlon=12.21722#map=12/46.62111/12.21722" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb34199.html">Cortina d'Ampezzo</a> (Cortina d’Ampezzo)<a href="https://www.openstreetmap.org/?mlat=46.5369&amp;mlon=12.13903#map=12/46.5369/12.13903" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40527.html">Gasthof zur Singerin</a><a href="https://www.openstreetmap.org/?mlat=47.77289&amp;mlon=15.730571#map=12/47.77289/15.730571" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb1036.html">Gutenstein</a><a href="https://www.openstreetmap.org/?mlat=47.875833333333&amp;mlon=15.889166666667#map=12/47.875833333333/15.889166666667" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb714.html">Hotel Edlacherhof</a><a href="https://www.openstreetmap.org/?mlat=47.605239&amp;mlon=15.707639#map=12/47.605239/15.707639" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40371.html">Karersee</a><a href="https://www.openstreetmap.org/?mlat=46.409167&amp;mlon=11.575#map=12/46.409167/11.575" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40556.html">Niederdorf</a><a href="https://www.openstreetmap.org/?mlat=46.73813&amp;mlon=12.17139#map=12/46.73813/12.17139" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40577.html">Passo Fedaia</a><a href="https://www.openstreetmap.org/?mlat=46.456667&amp;mlon=11.879722#map=12/46.456667/11.879722" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40578.html">Passo Rolle</a><a href="https://www.openstreetmap.org/?mlat=46.296389&amp;mlon=11.786944#map=12/46.296389/11.786944" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40112.html">Pottenstein</a><a href="https://www.openstreetmap.org/?mlat=47.9582&amp;mlon=16.0948#map=12/47.9582/16.0948" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb44311.html">San Martino di Castrozza</a><a href="https://www.openstreetmap.org/?mlat=46.26667&amp;mlon=11.8#map=12/46.26667/11.8" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb34824.html">Seeboden</a> (Seeboden am Millstätter See)<a href="https://www.openstreetmap.org/?mlat=46.83649&amp;mlon=13.52346#map=12/46.83649/13.52346" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40529.html">Slavonija</a><a href="https://www.openstreetmap.org/?mlat=45.45&amp;mlon=18.0#map=12/45.45/18.0" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb969.html">Südtirol</a> (Autonome Provinz Bozen)<a href="https://www.openstreetmap.org/?mlat=46.71667&amp;mlon=11.5#map=12/46.71667/11.5" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb423.html">Tirol</a><a href="https://www.openstreetmap.org/?mlat=47.25&amp;mlon=11.33333#map=12/47.25/11.33333" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40563.html">Tre Croci</a><a href="https://www.openstreetmap.org/?mlat=46.5562&amp;mlon=12.2045#map=12/46.5562/12.2045" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb954.html">Trient</a><a href="https://www.openstreetmap.org/?mlat=46.06787&amp;mlon=11.12108#map=12/46.06787/11.12108" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna)<a href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40574.html">Alleghe</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.40718&amp;mlon=12.02336#map=12/46.40718/12.02336" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb992.html">Bad Vöslau</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.96533&amp;mlon=16.21359#map=12/47.96533/16.21359" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40260.html">Bozen</a> (Bolzano) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.49067&amp;mlon=11.33982#map=12/46.49067/11.33982" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb44317.html">Carbonin</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.62111&amp;mlon=12.21722#map=12/46.62111/12.21722" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb34199.html">Cortina d'Ampezzo</a> (Cortina d’Ampezzo) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.5369&amp;mlon=12.13903#map=12/46.5369/12.13903" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40527.html">Gasthof zur Singerin</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.77289&amp;mlon=15.730571#map=12/47.77289/15.730571" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb1036.html">Gutenstein</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.875833333333&amp;mlon=15.889166666667#map=12/47.875833333333/15.889166666667" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb714.html">Hotel Edlacherhof</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.605239&amp;mlon=15.707639#map=12/47.605239/15.707639" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40371.html">Karersee</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.409167&amp;mlon=11.575#map=12/46.409167/11.575" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40556.html">Niederdorf</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.73813&amp;mlon=12.17139#map=12/46.73813/12.17139" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40577.html">Passo Fedaia</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.456667&amp;mlon=11.879722#map=12/46.456667/11.879722" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40578.html">Passo Rolle</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.296389&amp;mlon=11.786944#map=12/46.296389/11.786944" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40112.html">Pottenstein</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.9582&amp;mlon=16.0948#map=12/47.9582/16.0948" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb44311.html">San Martino di Castrozza</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.26667&amp;mlon=11.8#map=12/46.26667/11.8" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb34824.html">Seeboden</a> (Seeboden am Millstätter See) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.83649&amp;mlon=13.52346#map=12/46.83649/13.52346" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40529.html">Slavonija</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=45.45&amp;mlon=18.0#map=12/45.45/18.0" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb969.html">Südtirol</a> (Autonome Provinz Bozen) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.71667&amp;mlon=11.5#map=12/46.71667/11.5" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb423.html">Tirol</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.25&amp;mlon=11.33333#map=12/47.25/11.33333" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40563.html">Tre Croci</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.5562&amp;mlon=12.2045#map=12/46.5562/12.2045" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb954.html">Trient</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.06787&amp;mlon=11.12108#map=12/46.06787/11.12108" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="editor-widget" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Einstellungen</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+               <div class="modal-body">
+                  <div>
+                     <image-switch opt="es"></image-switch>
+                  </div>
+                  <div>
+                     <legend>Entitäten markieren</legend>
+                     <ul>
+                        <li>
+                           <annotation-slider opt="ef"></annotation-slider>
+                        </li>
+                        <li>
+                           <annotation-slider opt="prs"></annotation-slider>          
+                           <annotation-slider opt="wrk"></annotation-slider>
+                                    
+                           <annotation-slider opt="plc"></annotation-slider>           
+                           <annotation-slider opt="org"></annotation-slider>           
+                           </li>
                      </ul>
                   </div>
                </div>

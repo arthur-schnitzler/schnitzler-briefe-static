@@ -11,7 +11,7 @@
       <link rel="icon" type="image/svg+xml" href="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" sizes="any" />
       <link rel="profile" href="http://gmpg.org/xfn/11" />
       <title>schnitzler-briefe</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
       <link rel="stylesheet" href="css/style.css" type="text/css" />
       <link rel="stylesheet" href="css/micro-editor.css" type="text/css" />
@@ -33,9 +33,25 @@
       <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon/android-icon-192x192.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><style>
+      <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" /><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="js/navScroll.js"></script><script src="js/dt.js"></script><script src="js/dt-panes.js"></script><script type="text/javascript">
+                var _paq = _paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                var u="https://matomo.acdh.oeaw.ac.at/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '171']); 
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script><style>
                     .navBarNavDropdown ul li:nth-child(2) {
                         display: none !important;
+                    }
+                    
+                    a {
+                        color: black;
                     }</style>
       <meta name="Date of publication" class="staticSearch_date" content="1897-05-06" n="01" />
       <meta name="docImage" class="staticSearch_docImage" content="https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Hs-30885,13a_001.jpg?format=iiif&amp;param=/full/,200/0/default.jpg" />
@@ -160,19 +176,20 @@
                                     
                                     
                                     <div class="div">
-                                       <div class="editionText"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Hs-30885,13a_001"></span>Mein lieber Hugo, <span class="persons"><a href="pmb11324.html">Fiſcher</a></span> hat den Satz von <span class="works"><a href="pmb34096.html">Mimi</a></span> auf meinen Wunſch bereits ablegen laſſen, und ſo iſt die
+                                       <div class="">
+                                          <div class="salute"><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Hs-30885,13a_001"></span>Mein lieber Hugo, </div><span class="persons"><a href="pmb11324.html">Fiſcher</a></span> hat den Satz von <span class="works"><a href="pmb34096.html">Mimi</a></span> auf meinen Wunſch bereits ablegen laſſen, und ſo iſt die
                                           letzte Gefahr geſchwunden. Ich hoffe, Sie haben meinen vorigen, zweiten Brief, in dem
                                           ich Ihnen auf Ihr diesbezügliches Erſuchen geantwortet, erhalten? – Iſt es ruhig
                                           geworden im Hauſe <a class="reference-black" data-toggle="modal" data-target="#pmb28299 pmb20548">Loeb</a>? – Wie geht es der
                                           geſchädigten <span class="persons"><a href="pmb12435.html">Verfaſſerin</a></span> der
                                           <span class="works"><a href="pmb34096.html">Scenen aus einem
                                                 Mädchenleben</a></span>?</div>
-                                       <div class="editionText">– Die <span class="persons"><a href="pmb15313.html">Delna</a></span> hab ich ſchon gehört; gerade am Abend
+                                       <div class="">– Die <span class="persons"><a href="pmb15313.html">Delna</a></span> hab ich ſchon gehört; gerade am Abend
                                           bevor Ihr Brief kam, als <span class="works"><a href="pmb34253.html">Orpheus</a></span>.
                                           Sie hat eine <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Hs-30885,13a_002"></span>mächtige, nicht immer edle Stimme; eine
                                           beſondre Höhe der Darſtellung und des Geſangs erreicht ſie am Schluſs; da bin ich
                                           tief ergriffen geweſen – bis dahin hatt’ ich die <span class="persons"><a href="pmb4249.html">Papier</a></span> nicht vergeſſen können. –</div>
-                                       <div class="editionText">Jetzt eben ko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>e ich von einer <span class="latintype">Matinée</span> im <span class="places"><a href="pmb554.html"><span class="latintype">Français</span></a></span>, wo man den <span class="works"><a href="pmb34332.html"><span class="latintype">Misanthropen</span></a></span> gegeben hat. Um hier der abſoluten Größe inne zu werden, muſs man ſich doch
+                                       <div class="">Jetzt eben ko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>e ich von einer <span class="latintype">Matinée</span> im <span class="places"><a href="pmb554.html"><span class="latintype">Français</span></a></span>, wo man den <span class="works"><a href="pmb34332.html"><span class="latintype">Misanthropen</span></a></span> gegeben hat. Um hier der abſoluten Größe inne zu werden, muſs man ſich doch
                                           erſt hiſtoriſch montieren, was weder bei <span class="persons"><a href="pmb2693.html"><span class="latintype">Sophokles</span></a></span> noch bei <span class="persons"><a href="pmb2412.html"><span class="latintype">Shakespeare</span></a></span> notwendig iſt. Erſt im letzten Akt, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Hs-30885,13a_002"></span>wo nicht mehr
                                           <span class="latintype"><span class="underline">le</span> misanthrope</span>, ſondern <span class="latintype"><span class="underline">un</span> misanthrope</span> vor einem ſteht, ſpürt man was
                                           ewig menſchliches. Es liegt wohl daran, daſs alles, was in dieſem <span class="works"><a href="pmb34332.html">Stück</a></span> vorgeht, einfach die Anſicht des Helden
@@ -182,33 +199,33 @@
                                           Menſchenfeindſchaft nichts <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Hs-30885,13a_001"></span>iſt als Sehnſucht nach guten
                                           Menſchen, die er jetzt ein für alle Mal ſelbſt zu etwas unerfüllbarem macht; denn er
                                           wird niemanden mehr kennen lernen. –</div>
-                                       <div class="editionText">Tröſten Sie ſich wegen des gemiſchten Hausbrotes: Wochenlang hab ich ein weißes
+                                       <div class="">Tröſten Sie ſich wegen des gemiſchten Hausbrotes: Wochenlang hab ich ein weißes
                                           trocknes gegeſſen (<span class="works"><a href="pmb34334.html">wer nie ſein Brod mit Thränen
                                                 aſs</a></span>– !); und auch jetzt nehm ich meine Mahlzeiten in einer <span class="places"><a href="pmb166.html">ſtockfranzöſiſchen</a></span> Familie ein, wo keine heimatlichen <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Hs-30885,13b_001"></span>Gulyasdüfte aufſteigen. Sie ahnen nicht, wie viel »ganz
                                           andres« ich eſſe. Die hieſige Einteilung 12 Uhr Dejeuner, 7 Diner, 9 Theater, behagt
                                           mir außerordentlich.</div>
-                                       <div class="editionText">Schöne Radpartien? Z. B. fahren Sie von der <span class="persons"><a href="pmb24686.html">Tini</a></span>
+                                       <div class="">Schöne Radpartien? Z. B. fahren Sie von der <span class="persons"><a href="pmb24686.html">Tini</a></span>
                                           aus über <span class="places"><a href="pmb939.html">Heiligenkreuz</a></span> – <span class="places"><a href="pmb44715.html">Alland</a></span> – <span class="places"><a href="pmb47414.html"><span class="underline">Neuhaus</span></a></span> (bei <span class="places"><a href="pmb34350.html">Nöſtach</a></span>) – <span class="places"><a href="pmb40112.html">Pottenſtein</a></span> – <span class="places"><a href="pmb992.html">Vöslau</a></span>. Oder: <span class="places"><a href="pmb456.html">Rohrerhütte</a></span> – <span class="places"><a href="pmb34354.html">Königſtetten</a></span> (ſehr bergig, ſchieben!) – <span class="places"><a href="pmb41239.html">Tulln</a></span>, dann an der Donau zurück nach <span class="places"><a href="pmb44392.html">Kloſterneuburg</a></span>. – Sehr hübſch auch die kleine Tour
                                           <span class="places"><a href="pmb41239.html">Tulln</a></span> – <span class="places"><a href="pmb54769.html">Stockerau</a></span>. <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Hs-30885,13b_002"></span>Oder: <span class="places"><a href="pmb54767.html">Rekawinkel</a></span> – <span class="places"><a href="pmb271.html">Hütteldorf</a></span> (Weſtbahnſtrecke.)
                                           Od: <span class="places"><a href="pmb587.html">Wiener Neuſtadt</a></span> – <span class="places"><a href="pmb483.html">Reichenau</a></span>. – Ich freue mich ſehr, we<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">n̅</span> wir
                                           zuſa<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>en fahren werden.</div>
-                                       <div class="editionText">Wie lang bleiben Sie de<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">n̅</span> in <span class="places"><a href="pmb50.html">Wien</a></span>? Und wie wird heuer der Sommer werden? Ich möchte ſo gern zum Arbeiten
+                                       <div class="">Wie lang bleiben Sie de<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">n̅</span> in <span class="places"><a href="pmb50.html">Wien</a></span>? Und wie wird heuer der Sommer werden? Ich möchte ſo gern zum Arbeiten
                                           ko<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">m̅</span>en; hier ſpiele ich höchſtens mit Plänen; aber
-                                          möglicherweiſe iſt <span class="steuerzeichen fade">↑</span><span class="superscript fade">mehr</span><span class="subst-add">mir</span><span class="steuerzeichen fade">↓</span> durch ein merkwürdiges Zuſammenfließen zweier Pläne<a name="fna_1" href="#fn1" title="Am überlegte Schnitzler, die Stoffe »Die Entrüsteten« und »Rettung« zusammenzufügen. Ersteres handelte vom Zusammenleben ohne zu heiraten (in Anlehnung an sein Leben mit Marie Reinhard), sodass der zweite in Beziehung mit Hermine Benedict steht. Aus dem Projekt, das in diesem Stadium noch als Stück gedacht war, entwickelte sich im nächsten Jahrzehnt der Roman Der Weg ins Freie."><sup xmlns:tei="http://www.tei-c.org/ns/1.0">1</sup></a>, worunter einer der mit
+                                          möglicherweiſe iſt <span class="steuerzeichen fade">↑</span><span class="superscript fade">mehr</span><span class="subst-add">mir</span><span class="steuerzeichen fade">↓</span> durch ein merkwürdiges Zuſammenfließen zweier Pläne, worunter einer der mit
                                           der <span class="persons"><a href="pmb24033.html">Minni</a></span>, etwas gutes <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Hs-30885,13b_002"></span>eingefallen. –</div>
-                                       <div class="editionText">Den <span class="works"><a href="pmb31535.html">Götterliebling</a></span> hoff ich ganz fertig
+                                       <div class="">Den <span class="works"><a href="pmb31535.html">Götterliebling</a></span> hoff ich ganz fertig
                                           anzutreffen. Bei dem <span class="works"><a href="pmb30474.html">Stück</a></span> von
                                           <span class="persons"><a href="pmb11701.html">Hirſchf.</a></span> zweifle ich gar nicht daran. – Iſt
                                           bei <a class="reference-black" data-toggle="modal" data-target="#pmb13970 pmb13973">Ben.</a> nach mir gefragt worden? –</div>
-                                       <div class="editionText"><span class="persons"><a href="pmb11485.html">Paul Goldma<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">n̅</span></a></span> hat unglaublich viel zu thun, u. we<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">n̅</span> ich ihn nicht
+                                       <div class=""><span class="persons"><a href="pmb11485.html">Paul Goldma<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">n̅</span></a></span> hat unglaublich viel zu thun, u. we<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="gemination">n̅</span> ich ihn nicht
                                           gerade auf ſeinen Excurſionen zwiſchen Bureau u. Telegraphenamt begleite, wie z. B.
                                           geſtern, wo das Brandunglück im <span class="orgs"><a href="pmb29248.html"><span class="latintype">Bazar de la Charité</span></a></span> den Zeitungen ſo <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="anchor-pb"></span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pb" source="Hs-30885,13a_001"></span>viel zu thun gab, hab ich
                                           eigentlich wenig von ihm. Aber ſein Weſen macht mir ſehr viel Freude; und er gehört
                                           zu den wenigen, an denen ich mich erhole, von denen aus mir der Weg zu mir ſelbſt am
                                           freieſten und klarſten daliegt.</div>
-                                       <div class="editionText">Herzlich der Ihre<br /><div class="signed editionText">Arth</div>
+                                       <div class="">Herzlich der Ihre<br /><div class="signed ">Arth</div>
                                        </div>
-                                       <div class="editionText"><span class="places"><a href="pmb182.html">Paris</a></span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">6. 5. 97</span>.</div>
+                                       <div class=""><span class="places"><a href="pmb182.html">Paris</a></span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="date">6. 5. 97</span>.</div>
                                     </div>
                                     
                                     
@@ -251,47 +268,16 @@
                   </div>
                </div>
                <div class="card-footer" style="clear: both;">
-                  <div id="editor-widget">
-                     <div id="aot-navBarNavDropdown" class="navBarNavDropdown dropstart"><a title="Annotationen" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
-                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a><ul class="dropdown-menu">
-                           <li class="dropdown-item">
-                              <full-size opt="fls"></full-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <image-switch opt="es"></image-switch>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-size opt="fs"></font-size>
-                           </li>
-                           <li class="dropdown-item">
-                              <font-family opt="ff"></font-family>
-                           </li>
-                           <li class="dropdown-item" style="border-top: 5px dashed lightgrey !important;">
-                              <annotation-slider opt="ef"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="prs"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="plc"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="wrk"></annotation-slider>
-                           </li>
-                           <li class="dropdown-item">
-                              <annotation-slider opt="org"></annotation-slider>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
                   <nav class="navbar navbar-expand-lg">
                      <div class="container-fluid">
                         <div>
                            <ul id="secondary-menu" class="navbar-nav mb-2 mb-lg-0">
+                              <li class="nav-item">  <a href="#" data-bs-target="#editor-widget" type="button" data-bs-toggle="modal"><i class="fas fa-solid fa-screwdriver-wrench"></i>
+                                    EINSTELLUNGEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#ueberlieferung" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ÜBERLIEFERUNG
                                     </a>  </li>
-                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ENTITÄTEN </a>  </li>
+                              <li class="nav-item">  <a href="#" data-bs-target="#entitaeten" type="button" data-bs-toggle="modal"><i class="fas fa-sharp fa-solid fa-people-group"></i>
+                                    ENTITÄTEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#zitat" type="button" data-bs-toggle="modal"><i class="fas fa-quote-right"></i> ZITIEREN</a>  </li>
                               <li class="nav-item">  <a target="_blank" type="button" href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__1897-05-06.html"><i class="fas fa-external-link-alt"></i>
                                     TAGEBUCH
@@ -373,7 +359,7 @@
                   </div>
                </div>
                <div class="footer-imprint-bar text-light hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;background-color:#00122f;">
-                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script></div>
+                  © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a></div><script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script><script src="js/listStopProp.js"></script><script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script></div>
          </div>
       </div>
       <div class="modal fade" id="ueberlieferung" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
@@ -420,9 +406,7 @@
                                  <th>Ordnung</th>
                                  <td>von Schnitzler mutmaßlich bei der Durchsicht der Korrespondenz
                                     <span class="date">1929</span> auf dem ersten und zweiten Blatt mit Bleistift
-                                    datiert: »
-                                    6/5 97
-                                    «</td>
+                                    datiert: »6/5 97«</td>
                               </tr>
                            </tr>
                         </tbody>
@@ -453,7 +437,7 @@
                   <blockquote>Arthur Schnitzler an Hugo von Hofmannsthal, 6. 5. 1897. In: Arthur Schnitzler: Briefwechsel
                      mit Autorinnen und Autoren. Digitale Edition. Hg. Martin Anton Müller, Gerd Hermann
                      Susen und Laura Untner, https://schnitzler-briefe.acdh.oeaw.ac.at/L00674.html (Abfrage
-                     30. 3. 2023)</blockquote>
+                     31. 3. 2023)</blockquote>
                   <p></p>
                   <p>Für gekürzte Zitate reicht die Angabe der Briefnummer aus, die
                      eindeutig und persistent ist: »<b>L00674</b>«.</p>
@@ -463,7 +447,7 @@
                         |titel= |werk=Arthur
                         Schnitzler: Briefwechsel mit Autorinnen und Autoren
                         |hrsg=Martin Anton Müller, Gerd-Hermann Susen, Laura Untner
-                        |sprache=de |datum=1897-05-06 |abruf=2023-3-30
+                        |sprache=de |datum=1897-05-06 |abruf=2023-3-31
                         }} </code></blockquote>
                </div>
                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
@@ -495,23 +479,23 @@
                   <div>
                      <legend>Personen</legend>
                      <ul>
-                        <li><a href="pmb13970.html">Benedict Marianne</a></li>
-                        <li><a href="pmb13973.html">Benedict Markus</a></li>
-                        <li><a href="pmb15313.html">Delna Marie</a></li>
-                        <li><a href="pmb11324.html">Fischer Samuel</a></li>
-                        <li><a href="pmb11485.html">Goldmann Paul</a></li>
-                        <li><a href="pmb11701.html">Hirschfeld Georg</a></li>
-                        <li><a href="pmb11740.html">Hofmannsthal Hugo von</a></li>
-                        <li><a href="pmb20548.html">Loeb Louis</a></li>
-                        <li><a href="pmb28299.html">Loeb Regina</a></li>
-                        <li><a href="pmb4249.html">Papier Rosa</a></li>
-                        <li><a href="pmb12435.html">Pollaczek Clara Katharina</a></li>
-                        <li><a href="pmb2378.html">Reinhard Marie</a></li>
-                        <li><a href="pmb24033.html">Schaffgotsch Hermine von</a></li>
-                        <li><a href="pmb2121.html">Schnitzler Arthur</a></li>
-                        <li><a href="pmb24686.html">Schönberger Christine</a></li>
-                        <li><a href="pmb2412.html">Shakespeare William</a></li>
-                        <li><a href="pmb2693.html">
+                        <li><a class="theme-color" href="pmb13970.html">Benedict Marianne</a></li>
+                        <li><a class="theme-color" href="pmb13973.html">Benedict Markus</a></li>
+                        <li><a class="theme-color" href="pmb15313.html">Delna Marie</a></li>
+                        <li><a class="theme-color" href="pmb11324.html">Fischer Samuel</a></li>
+                        <li><a class="theme-color" href="pmb11485.html">Goldmann Paul</a></li>
+                        <li><a class="theme-color" href="pmb11701.html">Hirschfeld Georg</a></li>
+                        <li><a class="theme-color" href="pmb11740.html">Hofmannsthal Hugo von</a></li>
+                        <li><a class="theme-color" href="pmb20548.html">Loeb Louis</a></li>
+                        <li><a class="theme-color" href="pmb28299.html">Loeb Regina</a></li>
+                        <li><a class="theme-color" href="pmb4249.html">Papier Rosa</a></li>
+                        <li><a class="theme-color" href="pmb12435.html">Pollaczek Clara Katharina</a></li>
+                        <li><a class="theme-color" href="pmb2378.html">Reinhard Marie</a></li>
+                        <li><a class="theme-color" href="pmb24033.html">Schaffgotsch Hermine von</a></li>
+                        <li><a class="theme-color" href="pmb2121.html">Schnitzler Arthur</a></li>
+                        <li><a class="theme-color" href="pmb24686.html">Schönberger Christine</a></li>
+                        <li><a class="theme-color" href="pmb2412.html">Shakespeare William</a></li>
+                        <li><a class="theme-color" href="pmb2693.html">
                               
                               Sophokles
                               
@@ -547,43 +531,72 @@
                   <div>
                      <legend>Werke</legend>
                      <ul>
-                        <li><a href="pmb30474.html">Hirschfeld, Georg: Agnes Jordan. Schauspiel in fünf Akten</a></li>
-                        <li><a href="pmb34332.html">Molière: Der Menschenfeind</a></li>
-                        <li><a href="pmb31535.html">Beer-Hofmann, Richard: Der Tod Georgs</a></li>
-                        <li><a href="pmb29923.html">Schnitzler, Arthur: Der Weg ins Freie. Roman</a></li>
-                        <li><a href="pmb34096.html">Mimi</a></li>
-                        <li><a href="pmb34253.html">Gluck, Christoph Willibald: Orpheus und Eurydike</a></li>
-                        <li><a href="pmb34334.html">Goethe, Johann Wolfgang von: Wer nie sein Brod mit Thränen as</a></li>
+                        <li><a class="theme-color" href="pmb30474.html">Hirschfeld, Georg: Agnes Jordan. Schauspiel in fünf Akten</a></li>
+                        <li><a class="theme-color" href="pmb34332.html">Molière: Der Menschenfeind</a></li>
+                        <li><a class="theme-color" href="pmb31535.html">Beer-Hofmann, Richard: Der Tod Georgs</a></li>
+                        <li><a class="theme-color" href="pmb29923.html">Schnitzler, Arthur: Der Weg ins Freie. Roman</a></li>
+                        <li><a class="theme-color" href="pmb34096.html">Mimi</a></li>
+                        <li><a class="theme-color" href="pmb34253.html">Gluck, Christoph Willibald: Orpheus und Eurydike</a></li>
+                        <li><a class="theme-color" href="pmb34334.html">Goethe, Johann Wolfgang von: Wer nie sein Brod mit Thränen as</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Institutionen</legend>
                      <ul>
-                        <li><a href="pmb29248.html">Bazar de la Charité</a></li>
+                        <li><a class="theme-color" href="pmb29248.html">Bazar de la Charité</a></li>
                      </ul>
                   </div>
                   <div>
                      <legend>Orte</legend>
                      <ul>
-                        <li><a href="pmb44715.html">Alland</a><a href="https://www.openstreetmap.org/?mlat=48.05829&amp;mlon=16.07901#map=12/48.05829/16.07901" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb992.html">Bad Vöslau</a><a href="https://www.openstreetmap.org/?mlat=47.96533&amp;mlon=16.21359#map=12/47.96533/16.21359" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb554.html">Comédie française</a><a href="https://www.openstreetmap.org/?mlat=48.863611&amp;mlon=2.335833#map=12/48.863611/2.335833" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb166.html">Frankreich</a> (France)<a href="https://www.openstreetmap.org/?mlat=46.0&amp;mlon=2.0#map=12/46.0/2.0" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb939.html">Heiligenkreuz</a><a href="https://www.openstreetmap.org/?mlat=48.04261&amp;mlon=16.15292#map=12/48.04261/16.15292" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb271.html">Hütteldorf</a><a href="https://www.openstreetmap.org/?mlat=48.201667&amp;mlon=16.258056#map=12/48.201667/16.258056" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb34354.html">Königstetten</a><a href="https://www.openstreetmap.org/?mlat=48.30198&amp;mlon=16.14492#map=12/48.30198/16.14492" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb47414.html">Neuhaus</a><a href="https://www.openstreetmap.org/?mlat=47.99521&amp;mlon=16.04588#map=12/47.99521/16.04588" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb34350.html">Nöstach</a><a href="https://www.openstreetmap.org/?mlat=48.02702&amp;mlon=16.02339#map=12/48.02702/16.02339" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb182.html">Paris</a> (P'ariz, Pariž, Parisius)<a href="https://www.openstreetmap.org/?mlat=48.85341&amp;mlon=2.3488#map=12/48.85341/2.3488" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb40112.html">Pottenstein</a><a href="https://www.openstreetmap.org/?mlat=47.9582&amp;mlon=16.0948#map=12/47.9582/16.0948" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb483.html">Reichenau an der Rax</a><a href="https://www.openstreetmap.org/?mlat=47.7&amp;mlon=15.83333#map=12/47.7/15.83333" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb54767.html">Rekawinkel</a><a href="https://www.openstreetmap.org/?mlat=48.17936&amp;mlon=16.02433#map=12/48.17936/16.02433" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb456.html">Rohrerhütte</a><a href="https://www.openstreetmap.org/?mlat=48.24616&amp;mlon=16.26269#map=12/48.24616/16.26269" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb54769.html">Stockerau</a><a href="https://www.openstreetmap.org/?mlat=48.38333&amp;mlon=16.21667#map=12/48.38333/16.21667" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb41239.html">Tulln an der Donau</a><a href="https://www.openstreetmap.org/?mlat=48.33327&amp;mlon=16.06409#map=12/48.33327/16.06409" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb44392.html">Weidling</a><a href="https://www.openstreetmap.org/?mlat=48.291&amp;mlon=16.30865#map=12/48.291/16.30865" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna)<a href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="pmb587.html">Wiener Neustadt</a><a href="https://www.openstreetmap.org/?mlat=47.8&amp;mlon=16.25#map=12/47.8/16.25" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb44715.html">Alland</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.05829&amp;mlon=16.07901#map=12/48.05829/16.07901" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb992.html">Bad Vöslau</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.96533&amp;mlon=16.21359#map=12/47.96533/16.21359" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb554.html">Comédie française</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.863611&amp;mlon=2.335833#map=12/48.863611/2.335833" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb166.html">Frankreich</a> (France) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=46.0&amp;mlon=2.0#map=12/46.0/2.0" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb939.html">Heiligenkreuz</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.04261&amp;mlon=16.15292#map=12/48.04261/16.15292" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb271.html">Hütteldorf</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.201667&amp;mlon=16.258056#map=12/48.201667/16.258056" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb34354.html">Königstetten</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.30198&amp;mlon=16.14492#map=12/48.30198/16.14492" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb47414.html">Neuhaus</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.99521&amp;mlon=16.04588#map=12/47.99521/16.04588" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb34350.html">Nöstach</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.02702&amp;mlon=16.02339#map=12/48.02702/16.02339" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb182.html">Paris</a> (P'ariz, Pariž, Parisius) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.85341&amp;mlon=2.3488#map=12/48.85341/2.3488" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb40112.html">Pottenstein</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.9582&amp;mlon=16.0948#map=12/47.9582/16.0948" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb483.html">Reichenau an der Rax</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.7&amp;mlon=15.83333#map=12/47.7/15.83333" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb54767.html">Rekawinkel</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.17936&amp;mlon=16.02433#map=12/48.17936/16.02433" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb456.html">Rohrerhütte</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.24616&amp;mlon=16.26269#map=12/48.24616/16.26269" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb54769.html">Stockerau</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.38333&amp;mlon=16.21667#map=12/48.38333/16.21667" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb41239.html">Tulln an der Donau</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.33327&amp;mlon=16.06409#map=12/48.33327/16.06409" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb44392.html">Weidling</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.291&amp;mlon=16.30865#map=12/48.291/16.30865" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb50.html">Wien</a> (K.K. Reichshaupt- und Residenzstadt Wien, Bécs, Land Wien, Vídeň, Wenia, Beč, Vindobona (Wien), Vienna) <a class="theme-color" href="https://www.openstreetmap.org/?mlat=48.2066&amp;mlon=16.37341#map=12/48.2066/16.37341" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                        <li><a class="theme-color" href="pmb587.html">Wiener Neustadt</a> <a class="theme-color" href="https://www.openstreetmap.org/?mlat=47.8&amp;mlon=16.25#map=12/47.8/16.25" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="editor-widget" tabindex="-1" aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Einstellungen</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+               <div class="modal-body">
+                  <div>
+                     <image-switch opt="es"></image-switch>
+                  </div>
+                  <div>
+                     <legend>Entitäten markieren</legend>
+                     <ul>
+                        <li>
+                           <annotation-slider opt="ef"></annotation-slider>
+                        </li>
+                        <li>
+                           <annotation-slider opt="prs"></annotation-slider>          
+                           <annotation-slider opt="wrk"></annotation-slider>
+                                    
+                           <annotation-slider opt="plc"></annotation-slider>           
+                           <annotation-slider opt="org"></annotation-slider>           
+                           </li>
                      </ul>
                   </div>
                </div>
