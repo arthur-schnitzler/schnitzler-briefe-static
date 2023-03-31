@@ -1042,16 +1042,11 @@
         </span>
     </xsl:template>
     <xsl:template match="tei:salute[parent::tei:opener]">
-        <p>
-            <div class="salute">
-                <xsl:apply-templates/>
-            </div>
-        </p>
+        <p class="salute"><xsl:apply-templates/></p>
+            
     </xsl:template>
     <xsl:template match="tei:salute[not(parent::tei:opener)]">
-        <div class="salute">
             <xsl:apply-templates/>
-        </div>
     </xsl:template>
     <xsl:template match="tei:signed">
         <div class="signed ">
