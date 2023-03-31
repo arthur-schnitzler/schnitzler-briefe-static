@@ -24,9 +24,7 @@
         <xsl:value-of select="concat(name($currentNode), '__', $nodeCurrNr)"/>
     </xsl:function>
     
- <xsl:template match="tei:c[@rendition = '#langesS']">
-        <xsl:text>ſ</xsl:text>
-    </xsl:template>
+ 
     <xsl:template match="tei:c[@rendition = '#kaufmannsund']">
         <xsl:text>&amp;</xsl:text>
     </xsl:template>

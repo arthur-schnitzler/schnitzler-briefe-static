@@ -821,3 +821,13 @@ code{
     content: "–"; /* Insert content that looks like bullets */
     padding-right: 8px;
   }
+  
+  /* textkritisch */
+  
+.css-class-feature1 {
+display: none;
+}
+
+.css-class-feature1:after {
+    content: "ſll";
+    }

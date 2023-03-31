@@ -635,6 +635,9 @@
                                         </li>
                                     </ul>
                                 </div>
+                                <div>
+                                    <annotation-slider opt="feature1"></annotation-slider>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
@@ -664,7 +667,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:c[@rendition = '#langesS']">
-        <xsl:text>ſ</xsl:text>
+        <span class="langess">ſ</span>
     </xsl:template>
     <xsl:template match="tei:c[@rendition = '#kaufmannsund']">
         <xsl:text>&amp;</xsl:text>
