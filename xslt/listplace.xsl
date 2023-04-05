@@ -26,48 +26,7 @@
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
                             </div>
-                            <div class="card-body">
-                                <table class="table table-striped display" id="tocTable"
-                                    style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Ortsname</th>
-                                            <th scope="col">Längen-/Breitengrad</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <xsl:for-each select="descendant::tei:place">
-                                            <xsl:variable name="id">
-                                                <xsl:value-of select="data(@xml:id)"/>
-                                            </xsl:variable>
-                                            <tr>
-                                                <td>
-                                                  <a>
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of select="concat($id, '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of
-                                                  select="descendant::tei:placeName[1]/text()"/>
-                                                  </a>
-                                                </td>
-                                                <td>
-                                                  <xsl:if test="descendant::tei:geo[1]">
-                                                  <xsl:variable name="lat"
-                                                  select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"
-                                                  as="xs:string"/>
-                                                  <xsl:variable name="long"
-                                                  select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"
-                                                  as="xs:string"/>
-                                                  <xsl:value-of
-                                                  select="concat(foo:grad-kuerzen($lat), '/', foo:grad-kuerzen($long))"
-                                                  />
-                                                  </xsl:if>
-                                                </td>
-                                            </tr>
-                                        </xsl:for-each>
-                                    </tbody>
-                                </table>
-                            </div>
+                            
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>

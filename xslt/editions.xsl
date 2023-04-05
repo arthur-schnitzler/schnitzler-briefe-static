@@ -137,7 +137,8 @@
                                                 </xsl:if>
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#editor-widget" type="button"
-                                                  data-bs-toggle="modal"><i class="fas fa-solid fa-screwdriver-wrench"></i>
+                                                  data-bs-toggle="modal"><i
+                                                  class="fas fa-solid fa-screwdriver-wrench"/>
                                                   EINSTELLUNGEN </a>&#160; </li>
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#ueberlieferung" type="button"
@@ -147,7 +148,7 @@
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#entitaeten" type="button"
                                                   data-bs-toggle="modal">
-                                                    <i class="fas fa-sharp fa-solid fa-people-group"></i>
+                                                  <i class="fas fa-sharp fa-solid fa-people-group"/>
                                                   ENTITÄTEN </a>&#160; </li>
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#zitat" type="button"
@@ -471,7 +472,7 @@
                                             <xsl:for-each select=".//tei:back/tei:listBibl/tei:bibl">
                                                 <xsl:sort select="child::tei:title[1]"/>
                                                 <li>
-                                                    <a  class="theme-color">
+                                                  <a class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -529,7 +530,7 @@
                                             <xsl:for-each select=".//tei:listOrg//tei:org">
                                                 <xsl:sort select="child::tei:orgName[1]"/>
                                                 <li>
-                                                    <a class="theme-color">
+                                                  <a class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -548,7 +549,7 @@
                                             <xsl:for-each select=".//tei:listPlace/tei:place">
                                                 <xsl:sort select="child::tei:placeName[1]"/>
                                                 <li>
-                                                    <a class="theme-color">
+                                                  <a class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -570,7 +571,7 @@
                                                   </xsl:if>
                                                   <xsl:if
                                                   test="child::tei:location[@type = 'coords']">
-                                                      <xsl:text> </xsl:text>
+                                                  <xsl:text> </xsl:text>
                                                   <xsl:variable name="mlat"
                                                   select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[1], ',', '.')"
                                                   as="xs:string"/>
@@ -582,7 +583,7 @@
                                                   as="xs:string"/>
                                                   <xsl:variable name="openstreetmapurl"
                                                   select="concat('https://www.openstreetmap.org/?', $mappin, '#map=12/', $mlat, '/', $mlong)"/>
-                                                      <a class="theme-color">
+                                                  <a class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="$openstreetmapurl"/>
                                                   </xsl:attribute>
@@ -623,6 +624,20 @@
                                 <div>
                                     <image-switch opt="es"/>
                                 </div>
+                                
+                                <div>
+                                    <legend>Textkritische Auszeichnungen</legend>
+                                    <ul>
+                                        <li>
+                                            <annotation-slider opt="ef2"/>
+                                        </li>
+                                        <li>
+                                            <annotation-slider opt="ls"/> &#160; &#160; &#160;
+                                            &#160; <annotation-slider opt="gem-m"/> &#160; &#160;
+                                            &#160; &#160; <annotation-slider opt="gem-n"/>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <div>
                                     <legend>Entitäten markieren</legend>
                                     <ul>
@@ -630,13 +645,12 @@
                                             <annotation-slider opt="ef"/>
                                         </li>
                                         <li>
-                                            <annotation-slider opt="prs"/> &#160; &#160; &#160;  &#160; <annotation-slider opt="wrk"/>
-                                            &#160; &#160; &#160;  &#160; <annotation-slider opt="plc"/>  &#160; &#160; &#160;  &#160; <annotation-slider opt="org"/>   &#160; &#160; &#160; &#160; 
-                                        </li>
+                                            <annotation-slider opt="prs"/> &#160; &#160; &#160;
+                                            &#160; <annotation-slider opt="wrk"/> &#160; &#160;
+                                            &#160; &#160; <annotation-slider opt="plc"/> &#160;
+                                            &#160; &#160; &#160; <annotation-slider opt="org"/>
+                                            &#160; &#160; &#160; &#160; </li>
                                     </ul>
-                                </div>
-                                <div>
-                                    <annotation-slider opt="feature1"></annotation-slider>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -665,9 +679,6 @@
     <xsl:template match="tei:back"/>
     <xsl:template match="tei:text//tei:note[@type = 'commentary' or @type = 'textConst']//tei:bibl">
         <xsl:apply-templates/>
-    </xsl:template>
-    <xsl:template match="tei:c[@rendition = '#langesS']">
-        <span class="langess">ſ</span>
     </xsl:template>
     <xsl:template match="tei:c[@rendition = '#kaufmannsund']">
         <xsl:text>&amp;</xsl:text>
@@ -1045,11 +1056,12 @@
         </span>
     </xsl:template>
     <xsl:template match="tei:salute[parent::tei:opener]">
-        <p class="salute"><xsl:apply-templates/></p>
-            
+        <p class="salute">
+            <xsl:apply-templates/>
+        </p>
     </xsl:template>
     <xsl:template match="tei:salute[not(parent::tei:opener)]">
-            <xsl:apply-templates/>
+        <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:signed">
         <div class="signed ">
