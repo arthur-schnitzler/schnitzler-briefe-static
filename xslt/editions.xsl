@@ -624,7 +624,6 @@
                                 <div>
                                     <image-switch opt="es"/>
                                 </div>
-                                
                                 <div>
                                     <legend>Textkritische Auszeichnungen</legend>
                                     <ul>
