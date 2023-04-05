@@ -1,8 +1,7 @@
 var editor = new LoadEditor({
     aot: {
         title: "Entitäten",
-        variants:[ 
-        {
+        variants:[ {
             opt: "ef",
             opt_slider: "entities-features-slider",
             title: "Alle",
@@ -18,20 +17,68 @@ var editor = new LoadEditor({
                 all: true,
                 class: "features-1",
             },
-        }, 
-        {
-                opt: "feature1",
-                opt_slider: "feature1-slider",
-                title: "Feature 1",
-                color: "color-feature1",
-                html_class: "html-class-feature1",
-                css_class: "css-class-feature1",
-                features: {
-                    all: false,
-                    class: "all-features"
-                }
+        }, {
+            opt: "ef2",
+            opt_slider: "entities-features-slider",
+            title: "Alle",
+            color: "green",
+            html_class: "undefined",
+            css_class: "undefined",
+            chg_citation: "citation-url",
+            hide: {
+                hidden: false,
+                class: "undefined",
             },
-        {
+            features: {
+                all: true,
+                class: "features-2",
+            },
+        }, {
+            opt: "ls",
+            opt_slider: "langes-s-slider",
+            title: "Langes-s (ſ)",
+            color: "undefined",
+            html_class: "langes-s",
+            hide: {
+                hidden: true,
+                class: "langes-s-rplMe"
+            },
+            css_class: "langes-s-rplMe",
+            features: {
+                all: false,
+                class: "features-2"
+            }
+        }, {
+            opt: "gem-m",
+            opt_slider: "gemination-m-slider",
+            title: "Gemination m (m̅)",
+            color: "undefined",
+            html_class: "gemination-m",
+            hide: {
+                hidden: true,
+                class: "gemination-m-rplMe"
+            },
+            css_class: "gemination-m-rplMe",
+            features: {
+                all: false,
+                class: "features-2"
+            }
+        }, {
+            opt: "gem-n",
+            opt_slider: "gemination-n-slider",
+            title: "Gemination n (n̅̅)",
+            color: "undefined",
+            html_class: "gemination-n",
+            hide: {
+                hidden: true,
+                class: "gemination-n-rplMe"
+            },
+            css_class: "gemination-n-rplMe",
+            features: {
+                all: false,
+                class: "features-2"
+            }
+        }, {
             opt: "prs",
             color: "red",
             title: "Personen",

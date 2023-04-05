@@ -824,10 +824,32 @@ code{
   
   /* textkritisch */
   
-.css-class-feature1 {
-display: none;
+.langes-s-rplMe {
+    visibility: hidden;
 }
 
-.css-class-feature1:after {
-    content: "ſll";
-    }
+.langes-s-rplMe:after {
+    visibility: visible;
+    content: 'ſ';
+    margin-left: -8px;
+}
+
+.gemination-m-rplMe {
+    visibility: hidden;
+}
+
+.gemination-m-rplMe:after {
+    visibility: visible;
+    content: 'm̅';
+    margin-left: -30px;
+}
+
+.gemination-n-rplMe {
+    visibility: hidden;
+}
+
+.gemination-n-rplMe:after {
+    visibility: visible;
+    content: 'n̅';
+    margin-left: -19px;
+}
