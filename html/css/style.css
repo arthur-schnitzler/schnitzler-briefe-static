@@ -85,9 +85,6 @@ cite {
     padding: .5em .5em .5em 0;
 }
 
-.custom-logo-link {
-    margin-bottom: -2em;
-}
 
 body {
     border-top-width: 0;
@@ -261,7 +258,16 @@ div.dataTables_filter {
     border-bottom: 5px solid #A63437;
     background-color: #fff;
     height: 7vh;
+    z-index: 99;
 }
+
+.navbar .navbar-brand {
+    padding-right: 0}
+
+.navbar .navbar-brand img {
+    height: 5rem;
+    max-height: unset}
+
 
 .dataTables_info {
   text-align: center;
@@ -285,10 +291,12 @@ div.dataTables_filter {
 /**** Font Aweseome ***/
 .far {
     font-family: "Font Awesome 6 Free" !important;
+    color: #A63437;
 }
 
 .img-fluid {
-    max-width: 6rem !important;
+    max-width: 160% !important;
+    max-height: 160% !important;
 }
 
 .card {
@@ -551,8 +559,10 @@ resolution
         margin-top: .5rem;
     }
     .img-fluid {
-        max-width: 3.5rem !important;
+        max-width: 130% !important;
+        max-height: 130% !important;
     }
+    
 /* 
 #########################################
 add rules for smallest tablet high
@@ -587,8 +597,10 @@ resolution or low resolution screens
         padding: 1em 0;
     }
     .img-fluid {
-        max-width: 2rem !important;
+        max-width: 120% !important;
+        max-height: 120% !important;
     }
+    
     .custom-logo-link {
         margin-bottom: 0;
     }
@@ -712,10 +724,6 @@ margin-bottom: 3rem;
 
 .stamp {
 color: #A23B72;
-}
-
-.sticky-navbar {
-    z-index: 1001;
 }
 
 .strikethrough {
@@ -847,4 +855,11 @@ code{
     visibility: visible;
     content: 'n̅';
     margin-left: -19px;
+}
+
+/* Seitenzahlen blättern, aktive Seite */
+
+.page-link {
+    background-color: #A63437;
+    font-weight: bolder;
 }

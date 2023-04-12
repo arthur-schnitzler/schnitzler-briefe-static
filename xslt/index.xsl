@@ -21,29 +21,46 @@
             <body class="page" style="background-color:#f1f1f1;">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <!-- ******************* The Hero Area ******************* -->
-                    <div class="wrapper" id="wrapper-hero-content"
-                        style="background-image:url(https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/hero-bg.jpg);">
-                        <div class="container-fluid-empty hero-light" id="wrapper-hero-inner"
-                            tabindex="-1">
-                            <div>
-                                <h3 class="mt-3">Arthur Schnitzler</h3>
-                                <h1 class="mt-3">Briefwechsel mit Autorinnen und Autoren </h1>
-                                <h3 class="mt-3">1888–1931</h3>
+                    <div class="container">
+                        <div class="row intro">
+                            <div class="col-md-6 col-lg-6 col-sm-12 wp-intro_left">
+                                <div class="intro_left">
+                                    <h3 class="mt-3">Arthur Schnitzler</h3>
+                                    <h1 class="mt-3" style="text-align: left;">Briefwechsel mit Autorinnen und Autoren </h1>
+                                    <h3 class="mt-3">1888–1931</h3>
+                                    <h4 style="font-style: italic">Herausgegeben von Martin Anton Müller, Gerd-Hermann Susen und Laura Untner, Wien 2018–[2024]</h4>
+                                    
+                                    <div style="text-align: right"><a href="#body">
+                                        <button class="btn btn-round">Weiter</button>
+                                    </a></div>
+                                </div>
                             </div>
-                            <p class="mt-3">Diese Website bringt 44 vollständige Korrespondenzen mit
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="intro_right wrapper">
+                                    <img
+                                        src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/hero-bg.jpg"
+                                        class="d-block w-100" style="max-width=30%;"
+                                        alt="Arthur Schnitzer, gezeichnet von Léandre"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid" style="margin:2em auto;" id="body">
+                        <div style="max-width: 650px; margin: auto;" >
+                            <p class="mt-3">Diese Website enthält zur Zeit 44 vollständige Korrespondenzen mit
                                 über 3.000 Briefen von und an Arthur Schnitzler (1862–1931). Viele
                                 davon werden erstmals veröffentlicht. Alle sind nach den Originalen
                                 in Archiven in Europa und Amerika durchgesehen und korrigiert.</p>
-                            <p class="mt-3" style="padding-bottom: 50px;">Die 45. Korrespondenz, jene mit Paul Goldmann, wird
-                                derzeit ediert, 300 Briefe sind bereits aufgenommen. Von der 46. Korrespondenz liegen die
-                            Briefe Schnitzlers vor.</p>
+                            <p class="mt-3" style="padding-bottom: 50px;">Die 45. Korrespondenz,
+                                jene mit Paul Goldmann, ist bislang bis zum Jahr 1900 vollständig ediert. Das sind derzeit 300 Briefe. Von der 46. Korrespondenz, 
+                                dem Austausch mit Felix Salten, liegen die überlieferten Briefe Schnitzlers zur Gänze (knapp über 100 Stück)
+                                vor.</p>
                             <a href="L00001.html">
                                 <button class="btn btn-round">Lesen</button>
                             </a>
-                            <span>&#160;&#160;</span>
+                            <span>&#160;&#160;&#160;&#160;</span>
                             <a href="about.html">
-                                <button class="btn btn-round">Weiter</button>
+                                <button class="btn btn-round">Zum Projekt</button>
                             </a>
                         </div>
                     </div>
@@ -59,8 +76,7 @@
                                                 alt="Schnitzlers Arbeitstisch"/>
                                         </div>
                                         <div class="card-header">
-                                            <h4>Korrespondenzen
-                                            </h4>
+                                            <h4>Korrespondenzen </h4>
                                             <p>Auswahl anhand der Korrespondenzpartnerinnen und
                                                 -partner.</p>
                                         </div>
@@ -88,7 +104,7 @@
                                 <a href="calendar.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img  class="d-block w-100"
+                                            <img class="d-block w-100"
                                                 src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/calendar.jpg"
                                                 title="Detail aus http://www.ifm-wolfen.de/index.php?id=110005000534 CC BY-NC-SA"
                                                 alt="Kalenderdetail"/>
@@ -112,8 +128,7 @@
                                         </div>
                                         <div class="card-header">
                                             <h4>Personen</h4>
-                                            <p>In den Korrespondenzstücken erwähnte
-                                                Personen.</p>
+                                            <p>In den Korrespondenzstücken erwähnte Personen.</p>
                                         </div>
                                     </div>
                                 </a>
@@ -125,13 +140,13 @@
                                             <img class="d-block w-100"
                                                 src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/werke.jpg"
                                                 title="Nahaufnahme von Buchrücken CC BY 0"
-                                                alt="Nahaufnahme von Buchrücken"
-                                            />
+                                                alt="Nahaufnahme von Buchrücken"/>
                                         </div>
                                         <div class="card-header">
                                             <h4>Werkverzeichnis</h4>
-                                            <p>Erwähnungen von Werken der Literatur und der bildenden Kunst, von Gebrauchstexten
-                                                und von Periodika.</p>
+                                            <p>Erwähnungen von Werken der Literatur und der
+                                                bildenden Kunst, von Gebrauchstexten und von
+                                                Periodika.</p>
                                         </div>
                                     </div>
                                 </a>
@@ -140,7 +155,7 @@
                                 <a href="listplace.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img  class="d-block w-100"
+                                            <img class="d-block w-100"
                                                 src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/places.jpg"
                                                 alt="Stadtplan von Wien innerhalb des Gürtels, Beilage zum Meyers Konversationslexikon von 1905."
                                                 title="Stadtplan von Wien innerhalb des Gürtels, Beilage zum Meyers Konversationslexikon von 1905."
@@ -148,8 +163,8 @@
                                         </div>
                                         <div class="card-header">
                                             <h4>Orte</h4>
-                                            <p>Erwähnte geografische Orte. Diese sind auch über ihre Koordinaten
-                                                erschlossen.</p>
+                                            <p>Erwähnte geografische Orte. Diese sind auch über ihre
+                                                Koordinaten erschlossen.</p>
                                         </div>
                                     </div>
                                 </a>
@@ -160,24 +175,25 @@
                                         <div class="card-body">
                                             <img class="d-block w-100"
                                                 src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/org.jpg"
-                                                title="Briefkopf d’Ora" alt="Briefkopf d’Ora"
-                                            ></img>
+                                                title="Briefkopf d’Ora" alt="Briefkopf d’Ora"/>
                                         </div>
                                         <div class="card-header">
                                             <h4>Institutionen und Organisationen</h4>
-                                            <p>Vorkommende Verlage, Redaktionen, Institutionen, 
+                                            <p>Vorkommende Verlage, Redaktionen, Institutionen,
                                                 Gesellschaften, Firmen, Preise…</p>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-6 col-lg-6 col-sm-12">
-                                <a href="https://schnitzler.acdh.oeaw.ac.at/" class="index-link" target="_blank">
+                                <a href="https://schnitzler.acdh.oeaw.ac.at/" class="index-link"
+                                    target="_blank">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img  class="d-block w-100"
+                                            <img class="d-block w-100"
                                                 src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/schnitzler-acdh.jpg"
-                                                title="Schnitzler am ACDH-CH" alt="Schnitzler am ACDH-CH"/>
+                                                title="Schnitzler am ACDH-CH"
+                                                alt="Schnitzler am ACDH-CH"/>
                                         </div>
                                         <div class="card-header">
                                             <p>Schnitzler am ACDH-CH</p>
@@ -189,9 +205,10 @@
                                 <a href="https://github.com/arthur-schnitzler" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img  class="d-block w-100"
+                                            <img class="d-block w-100"
                                                 src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/schnitzler-github.jpg"
-                                                title="Schnitzler Repositories auf Github" alt="Schnitzler Repositories auf Github"/>
+                                                title="Schnitzler Repositories auf Github"
+                                                alt="Schnitzler Repositories auf Github"/>
                                         </div>
                                         <div class="card-header">
                                             <p>Quelldaten dieser Website auf Github</p>
@@ -199,8 +216,6 @@
                                     </div>
                                 </a>
                             </div>
-                            
-                            
                             <!--<div class="col-md-6 col-lg-6 col-sm-12">
                                 <a href="search.html" class="index-link">
                                     <div class="card index-card">

@@ -32,7 +32,7 @@ function createDataTable(containerElement, title) {
             {
                 extend: 'copyHtml5',
                 text: '<i class="far fa-copy"/>',
-                titleAttr: 'Copy',
+                titleAttr: 'Kopieren',
                 className: 'btn-link',
                 init: function (api, node, config) {
                     $(node).removeClass('btn-secondary')

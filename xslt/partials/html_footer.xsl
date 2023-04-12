@@ -26,7 +26,7 @@
                                 <br/>
                                 Austrian Centre for Digital Humanities and Cultural Heritage
                                 <br/>
-                                Austrian Academy of Sciences
+                                Österreichische Akademie der Wissenschaften
                             </p>
                             <p>
                                 Bäckerstraße 13
@@ -60,9 +60,9 @@
                         <div class="row">
                             <div class="textwidget custom-html-widget">
                                 <h6 class="font-weight-bold">HELPDESK</h6>
-                                <p>ACDH-CH runs a helpdesk offering advice for questions related to various digital humanities topics.</p>
+                                <p>Bei Fragen, Anmerkungen, Kritik, aber gerne auch Lob, wenden Sie sich bitte an den ACDH-CH Helpdesk.</p>
                                 <p>
-                                    <a class="helpdesk-button" href="mailto:acdh-ch-helpdesk@oeaw.ac.at">ASK US!</a>
+                                    <a class="helpdesk-button" href="mailto:acdh-ch-helpdesk@oeaw.ac.at">e-Mail</a>
                                 </p>
                             </div>
                         </div>
