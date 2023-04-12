@@ -637,23 +637,18 @@ low resolution
 
 
 #years-table .btn-light:focus, #years-table .btn-light.focus {
-    background: #a63437;
-    color: #fff;
+    background: #A63437;
+    text-decoration-thickness: 4px;
+    color: white;
+    font-weight: bolder;
 }
 
 .yearbtn {
-padding: 2px;
-font-size: 0.9rem;
-border: none;
-background-color: transparent;
+    padding: 2px;
+    font-size: 0.9rem;
+    border: none;
+    background-color: transparent;
 }
-
-.row {
-    margin-left: 0;
-    margin-right: 0;
-    display: flex;
-    flex-wrap: wrap;   
-    }
 
 
 /*** calendar end ***/
