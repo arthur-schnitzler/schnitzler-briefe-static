@@ -257,7 +257,7 @@ div.dataTables_filter {
 .navbar {
     border-bottom: 5px solid #A63437;
     background-color: #fff;
-    height: 7vh;
+    height: 100vh;
     z-index: 99;
 }
 
