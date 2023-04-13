@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -19,7 +20,8 @@
                 <publisher>Austrian Centre for Digital Humanities and Cultural Heritage
                     (ACDH-CH)</publisher>
                 <date>2022-03-20</date>
-                <idno type="URI">https://id.acdh.oeaw.ac.at/arthur-schnitzler-briefe/v1/indices/listcorrespondence.xml</idno>
+                <idno type="URI"
+                    >https://id.acdh.oeaw.ac.at/arthur-schnitzler-briefe/v1/indices/listcorrespondence.xml</idno>
             </publicationStmt>
             <sourceDesc>
                 <p>Liste der Korrespondenzen der Schnitzler-Briefe.</p>
