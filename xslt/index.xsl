@@ -31,7 +31,7 @@
                                     <h4 style="font-style: italic">Herausgegeben von Martin Anton Müller, Gerd-Hermann Susen und Laura Untner, Wien 2018–[2024]</h4>
                                     
                                     <div style="text-align: right"><a href="#body">
-                                        <button class="btn btn-round">Weiter</button>
+                                        <button class="btn btn-round" style="background-color: #A63437; color: white;">Weiter</button>
                                     </a></div>
                                 </div>
                             </div>
@@ -46,7 +46,9 @@
                         </div>
                     </div>
                     <div class="container-fluid" style="margin:2em auto;" id="body">
-                        <div style="max-width: 650px; margin: auto;" >
+                        <div style="max-width: 650px; margin: auto;" ><span style="display: block;
+                                position: relative;
+                                top: -250px; visibility: hidden" id="body"/>
                             <p class="mt-3">Diese Website enthält zur Zeit 44 vollständige Korrespondenzen mit
                                 über 3.000 Briefen von und an Arthur Schnitzler (1862–1931). Viele
                                 davon werden erstmals veröffentlicht. Alle sind nach den Originalen
