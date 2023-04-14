@@ -160,42 +160,11 @@
                                                   data-bs-target="#zitat" type="button"
                                                   data-bs-toggle="modal">
                                                   <i class="fas fa-quote-right"/> ZITIEREN</a>&#160; </li>
-                                                <li class="nav-item">
-                                                  <xsl:variable name="datum">
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@when">
-                                                  <xsl:value-of
-                                                  select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@when"
-                                                  />
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notBefore">
-                                                  <xsl:value-of
-                                                  select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notBefore"
-                                                  />
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of
-                                                  select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notAfter"
-                                                  />
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  </xsl:variable> &#160;<a>
-                                                  <xsl:attribute name="target">
-                                                  <xsl:text>_blank</xsl:text>
-                                                  </xsl:attribute>
-                                                  <xsl:attribute name="type">
-                                                  <xsl:text>button</xsl:text>
-                                                  </xsl:attribute>
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat('https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__', $datum, '.html')"
-                                                  />
-                                                  </xsl:attribute><!--<span style="color:#037a33;">-->
-                                                  <i class="fas fa-external-link-alt"/>
-                                                  TAGEBUCH<!--</span>-->
-                                                  </a>&#160; </li>
+                                                <li class="nav-item"> &#160;<a href="#"
+                                                    data-bs-target="#tagfuertag" type="button"
+                                                    data-bs-toggle="modal">
+                                                    <i class="fas fa-quote-right"/> TAG</a>&#160; </li>
+                                                
                                                 <!--<li class="nav-item dropdown">
                                     <span class="nav-link">
                                         <div id="csLink" class="a.grau" data-correspondent-1-name=""
@@ -245,7 +214,7 @@
                                     </xsl:for-each>
                                 </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"/>
+                                    aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
                                 <table class="table table-striped">
@@ -370,7 +339,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Zitat</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"/>
+                                    aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
                                 <p>Eine zitierfähige Angabe dieser Seite lautet:</p>
@@ -411,7 +380,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Textqualität</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"/>
+                                    aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
                                 <p>Diese Abschrift wurde noch nicht ausreichend mit dem Original
@@ -435,7 +404,7 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Erwähnte
                                     Entitäten</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"/>
+                                    aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
                                 <div>
@@ -629,7 +598,7 @@
                                 <h5 class="modal-title" id="exampleModalLongTitle"
                                     >Einstellungen</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"/>
+                                    aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
                                 <div>
@@ -670,6 +639,134 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Modal Tag -->
+                <div class="modal fade" id="tagfuertag" tabindex="-1"
+                    aria-labelledby="downloadModalLabel2" aria-hidden="true">
+                    <xsl:variable name="datum">
+                        <xsl:choose>
+                            <xsl:when
+                                test="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@when">
+                                <xsl:value-of
+                                    select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@when"
+                                />
+                            </xsl:when>
+                            <xsl:when
+                                test="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notBefore">
+                                <xsl:value-of
+                                    select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notBefore"
+                                />
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of
+                                    select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notAfter"
+                                />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle"
+                                    ><xsl:value-of select="$datum"/></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Schließen"/>
+                            </div>
+                            <div class="modal-body">
+                                <div id="tag-fuer-tag-modal-body"></div>
+                                <script type="text/javascript">
+                                    fetch('https://schnitzler-tage.acdh.oeaw.ac.at/1927-11-07.json').then(function (response) {
+                                    return response.json();
+                                    }).then(function (data) {
+                                    appendData(data);
+                                    }). catch (function (err) {
+                                    console.log('error: ' + err);
+                                    });
+                                    
+                                    function appendData(data) {
+                                    let mainContainer = document.getElementById("tag-fuer-tag-modal-body");
+                                    for (let i in data) {
+                                    let div = document.createElement("div");
+                                    div.classList.add(data[i].type)
+                                    let typebutton = document.createElement("span");
+                                    typebutton.setAttribute("class", "badge rounded-pill");
+                                    typebutton.setAttribute("style", "color: white; background-color: darkblue;");
+                                    typebutton.innerHTML = data[i].type;
+                                    div.appendChild(typebutton);
+                                    let head = document.createElement("h5");
+                                    let headlink = document.createElement("a");
+                                    headlink.setAttribute("href", data[i].idno);
+                                    headlink.setAttribute("target", "_blank");
+                                    
+                                    
+                                    headlink.innerHTML = data[i].head;
+                                    head.appendChild(headlink);
+                                    div.appendChild(head);
+                                    mainContainer.appendChild(div);
+                                    
+                                    if (data[i].desc) {
+                                    let descUl = document.createElement("ul");
+                                    if (data[i].desc.listPerson) {
+                                    let personLi = document.createElement("li");
+                                    listperson = data[i].desc.listPerson;
+                                    for (let j in listperson) {
+                                    let personButton = document.createElement("button");
+                                    personButton.setAttribute("class", "tage_button");
+                                    let personButtonA = document.createElement("a");
+                                    personButtonA.setAttribute("target", "_blank");
+                                    if (listperson[j].ref.includes('/gnd/')) {
+                                    const correspSearchURL = listperson[j].ref.slice(listperson[j].ref.indexOf('/gnd/') + 5);
+                                    personButtonA.setAttribute("href", 'https://correspsearch.net/de/suche.html?s=' + correspSearchURL);
+                                    } else {
+                                    if (listperson[j].ref.startsWith('http') || listperson[j].ref.startsWith('doi')) {
+                                    personButtonA.setAttribute("href", listperson[j].ref);
+                                    } else {
+                                    if (listperson[j].ref.startsWith('pmb') || listperson[j].ref.startsWith('person_')) {
+                                    personButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listperson[j].ref + '.html');
+                                    }
+                                    }
+                                    }
+                                    let spacy = ' ';
+                                    personButtonA.innerHTML = (listperson[j].persName);
+                                    personButton.appendChild(personButtonA);
+                                    
+                                    personLi.appendChild(personButton);
+                                    descUl.appendChild(personLi);
+                                    }
+                                    div.appendChild(descUl)
+                                    if (data[i].desc.listBibl) {
+                                    let biblLi = document.createElement("li");
+                                    listBibl = data[i].desc.listBibl;
+                                    for (let j in listBibl) {
+                                    let biblButton = document.createElement("button");
+                                    biblButton.setAttribute("class", "tage_button");
+                                    let biblButtonA = document.createElement("a");
+                                    biblButtonA.setAttribute("target", "_blank");
+                                    if (listBibl[j].ref.startsWith('pmb')) {
+                                    biblButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listBibl[j].ref + '.html');
+                                    }
+                                    let spacy = ' ';
+                                    biblButtonA.innerHTML = (listBibl[j].title);
+                                    biblButton.appendChild(biblButtonA);
+                                    
+                                    biblLi.appendChild(biblButton);
+                                    descUl.appendChild(biblLi);
+                                    }
+                                    div.appendChild(descUl)
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }</script>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Schließen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Download Modal -->
                 <div class="modal fade" id="downloadModal" tabindex="-1"
                     aria-labelledby="downloadModalLabel" aria-hidden="true">
@@ -679,24 +776,22 @@
                                 <h5 class="modal-title" id="exampleModalLongTitle"
                                     >Downloadmöglichkeiten</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"/>
+                                    aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <li class="nav-item">
-                                    <a class="ml-3" data-toggle="tooltip" title="Brief als PDF">
+                                <p><a class="ml-3" data-toggle="tooltip" title="Brief als PDF">
                                         <xsl:attribute name="href">
                                             <xsl:value-of select="$source_pdf"/>
                                         </xsl:attribute>
-                                        <i class="fa-lg far fa-file-pdf"/> PDF </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="ml-3" data-toggle="tooltip"
+                                        <i class="fa-lg far fa-file-pdf"/> PDF </a></p>
+                                <p><a class="ml-3" data-toggle="tooltip"
                                         title="Brief als TEI-Datei">
                                         <xsl:attribute name="href">
                                             <xsl:value-of select="$teiDoc"/>
                                         </xsl:attribute>
                                         <i class="fa-lg far fa-file-code"/> TEI </a>
-                                </li>
+                                </p>
+                                    
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"

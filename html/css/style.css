@@ -257,7 +257,7 @@ div.dataTables_filter {
 .navbar {
     border-bottom: 5px solid #A63437;
     background-color: #fff;
-    height: 100vh;
+    height: 85px;
     z-index: 99;
 }
 
@@ -666,8 +666,6 @@ low resolution
 /*** calendar end ***/
 
 /*** Anpassungen für editions ***/
-.add {
-}
 
 
 .address {
@@ -826,7 +824,25 @@ code{
   }
   
   /* textkritisch */
+.add {
+}
+
+.add-rplMe:after {
+    visibility: visible;
+    content: 'v';
+    margin-left: -8px;
+}
+
+.add-rplMe:before {
+    visibility: visible;
+    content: 'v';
+    margin-left: -8px;
+}
+
+
   
+
+
 .langes-s-rplMe {
     visibility: hidden;
 }

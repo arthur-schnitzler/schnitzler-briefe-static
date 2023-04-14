@@ -79,6 +79,51 @@ var editor = new LoadEditor({
                 class: "features-2"
             }
         }, {
+            opt: "del",
+            opt_slider: "delete-slider",
+            title: "Streichungen",
+            color: "undefined",
+            html_class: "streichung",
+            hide: {
+                hidden: false,
+                class: "strikethrough"
+            },
+            css_class: "strikethrough",
+            features: {
+                all: false,
+                class: "features-2"
+            }
+        }, {
+            opt: "add",
+            opt_slider: "addition-slider",
+            title: "Hinzufügungen",
+            color: "undefined",
+            html_class: "addition",
+            hide: {
+                hidden: false,
+                class: "add-rplMe"
+            },
+            css_class: "add-rplMe",
+            features: {
+                all: false,
+                class: "features-2"
+            }
+        }, {
+            opt: "subst",
+            opt_slider: "subst-slider",
+            title: "Ersetzungen",
+            color: "undefined",
+            html_class: "subst",
+            hide: {
+                hidden: false,
+                class: "subst-rplMe"
+            },
+            css_class: "subst-rplMe",
+            features: {
+                all: false,
+                class: "features-2"
+            }
+        }, {
             opt: "prs",
             color: "red",
             title: "Personen",

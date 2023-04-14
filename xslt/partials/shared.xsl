@@ -77,10 +77,52 @@
         </span>
     </xsl:template>
     <xsl:template match="tei:unclear">
-        <abbr title="unclear"><xsl:apply-templates/></abbr>
+        <xsl:element name="span">
+            <xsl:attribute name="class">
+                <xsl:text>unclear</xsl:text>
+            </xsl:attribute>
+        <xsl:apply-templates/>
+        </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:del">
-        <del><xsl:apply-templates/></del>
+    <xsl:template match="tei:del[not(parent::tei:subst)]">
+        <xsl:element name="del">
+            <xsl:attribute name="class">
+                <xsl:text>streichung</xsl:text>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    <xsl:template match="tei:add[not(parent::tei:subst)]">
+        <xsl:element name="add">
+            <xsl:attribute name="class">
+                <xsl:text>add</xsl:text>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    <xsl:template match="tei:del[(parent::tei:subst)]">
+        <xsl:element name="del">
+            <xsl:attribute name="class">
+                <xsl:text>subst-streichung</xsl:text>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    <xsl:template match="tei:add[(parent::tei:subst)]">
+        <xsl:element name="span">
+            <xsl:attribute name="class">
+                <xsl:text>subst-add</xsl:text>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    <xsl:template match="tei:subst">
+        <xsl:element name="span">
+            <xsl:attribute name="class">
+                <xsl:text>subst</xsl:text>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
     </xsl:template>
     <xsl:template match="tei:cit">
         <cite><xsl:apply-templates/></cite>
@@ -196,12 +238,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:unclear">
-        <abbr title="unclear"><xsl:apply-templates/></abbr>
-    </xsl:template>
-    <xsl:template match="tei:del">
-        <del><xsl:apply-templates/></del>
-    </xsl:template>
+
     <xsl:template match="tei:rs">
         <xsl:choose>
             <xsl:when test="count(tokenize(@ref, ' ')) > 1">
