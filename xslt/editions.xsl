@@ -201,6 +201,26 @@
                                             data-result-max="4" data-exclude-edition=""/>
                                     </span>
                                 </li>-->
+                                                <li class="nav-item">
+                                                  <xsl:variable name="source_pdf">
+                                                      <!-- <xsl:value-of
+                                                         select="concat($source_base_url, $source_volume, 's', $source_page_nr, '.pdf')"/>-->
+                                                  </xsl:variable>
+                                                  <a class="ml-3" data-toggle="tooltip"
+                                                  title="Brief als PDF">
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="$source_pdf"/>
+                                                  </xsl:attribute>
+                                                  <i class="fa-lg far fa-file-pdf"/> PDF </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                  <a class="ml-3" data-toggle="tooltip"
+                                                  title="Brief als TEI-Datei">
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="$teiSource"/>
+                                                  </xsl:attribute>
+                                                  <i class="fa-lg far fa-file-code"/> TEI </a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
