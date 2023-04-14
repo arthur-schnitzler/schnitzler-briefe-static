@@ -658,45 +658,46 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- Download Modal -->
-                            <div class="modal fade" id="editor-widget" tabindex="-1"
-                                aria-labelledby="ueberlieferungLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle"
-                                                >Einstellungen</h5>
-                                            <button type="button" class="btn-close"
-                                                data-bs-dismiss="modal" aria-label="Close"/>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div>
-                                                <image-switch opt="es"/>
-                                            </div>
-                                            <li class="nav-item">
-                                                <xsl:variable name="source_pdf">
-                                                  <xsl:value-of
-                                                  select="concat($pdf-leseansicht-dir, @xml:id, '.pdf')"
-                                                  />
-                                                </xsl:variable>
-                                                <a class="ml-3" data-toggle="tooltip"
-                                                  title="Brief als PDF">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of select="$source_pdf"/>
-                                                  </xsl:attribute>
-                                                  <i class="fa-lg far fa-file-pdf"/> PDF </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="ml-3" data-toggle="tooltip"
-                                                  title="Brief als TEI-Datei">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of select="$teiSource"/>
-                                                  </xsl:attribute>
-                                                  <i class="fa-lg far fa-file-code"/> TEI </a>
-                                            </li>
-                                        </div>
-                                    </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Schließen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Download Modal -->
+                <div class="modal fade" id="editor-widget" tabindex="-1"
+                    aria-labelledby="ueberlieferungLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Download</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"/>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <image-switch opt="es"/>
                                 </div>
+                                <li class="nav-item">
+                                    <xsl:variable name="source_pdf">
+                                        <xsl:value-of
+                                            select="concat($pdf-leseansicht-dir, @xml:id, '.pdf')"/>
+                                    </xsl:variable>
+                                    <a class="ml-3" data-toggle="tooltip" title="Brief als PDF">
+                                        <xsl:attribute name="href">
+                                            <xsl:value-of select="$source_pdf"/>
+                                        </xsl:attribute>
+                                        <i class="fa-lg far fa-file-pdf"/> PDF </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ml-3" data-toggle="tooltip"
+                                        title="Brief als TEI-Datei">
+                                        <xsl:attribute name="href">
+                                            <xsl:value-of select="$teiSource"/>
+                                        </xsl:attribute>
+                                        <i class="fa-lg far fa-file-code"/> TEI </a>
+                                </li>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
