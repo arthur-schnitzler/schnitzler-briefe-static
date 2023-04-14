@@ -664,11 +664,65 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
+                    <xsl:variable name="datum-written" select="format-date($datum, '[D1].&#160;[M1].&#160;[Y0001]',
+                        'en',
+                        'AD',
+                        'EN')"/>
+                    <xsl:variable name="wochentag">
+                        <xsl:choose>
+                            <xsl:when test="format-date($datum, '[F]',
+                                'en',
+                                'AD',
+                                'EN') = 'Monday'">
+                                <xsl:text>Montag</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="format-date($datum, '[F]',
+                                'en',
+                                'AD',
+                                'EN') = 'Tuesday'">
+                                <xsl:text>Dienstag</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="format-date($datum, '[F]',
+                                'en',
+                                'AD',
+                                'EN') = 'Wednesday'">
+                                <xsl:text>Mittwoch</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="format-date($datum, '[F]',
+                                'en',
+                                'AD',
+                                'EN') = 'Thursday'">
+                                <xsl:text>Donnerstag</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="format-date($datum, '[F]',
+                                'en',
+                                'AD',
+                                'EN') = 'Friday'">
+                                <xsl:text>Freitag</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="format-date($datum, '[F]',
+                                'en',
+                                'AD',
+                                'EN') = 'Saturday'">
+                                <xsl:text>Samstag</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="format-date($datum, '[F]',
+                                'en',
+                                'AD',
+                                'EN') = 'Sunday'">
+                                <xsl:text>Sonntag</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>DATUMSFEHLER</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle"
-                                    ><xsl:value-of select="$datum"/></h5>
+                                    ><xsl:value-of select="concat($wochentag, ', ', $datum-written)"/>
+                                        </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Schließen"/>
                             </div>
@@ -716,7 +770,7 @@
                                     personButtonA.setAttribute("target", "_blank");
                                     if (listperson[j].ref.includes('/gnd/')) {
                                     const correspSearchURL = listperson[j].ref.slice(listperson[j].ref.indexOf('/gnd/') + 5);
-                                    personButtonA.setAttribute("href", 'https://correspsearch.net/de/suche.html?s=' + correspSearchURL);
+                                    personButtonA.setAttribute("href", 'https://correspsearch.net/de/suche.html?s=http://d-nb.info/gnd/' + correspSearchURL);
                                     } else {
                                     if (listperson[j].ref.startsWith('http') || listperson[j].ref.startsWith('doi')) {
                                     personButtonA.setAttribute("href", listperson[j].ref);
@@ -754,10 +808,111 @@
                                     }
                                     div.appendChild(descUl)
                                     }
+                                    if (data[i].desc.listOrg) {
+                                    let orgLi = document.createElement("li");
+                                    listOrg = data[i].desc.listOrg;
+                                    for (let j in listOrg) {
+                                    let orgButton = document.createElement("button");
+                                    orgButton.setAttribute("class", "tage_button");
+                                    let orgButtonA = document.createElement("a");
+                                    orgButtonA.setAttribute("target", "_blank");
+                                    if (listOrg[j].ref.startsWith('pmb')) {
+                                    orgButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listOrg[j].ref + '.html');
+                                    }
+                                    let spacy = ' ';
+                                    orgButtonA.innerHTML = (listOrg[j].orgName);
+                                    orgButton.appendChild(orgButtonA);
+                                    
+                                    orgLi.appendChild(orgButton);
+                                    descUl.appendChild(orgLi);
+                                    }
+                                    div.appendChild(descUl)
+                                    }
+                                    if (data[i].desc.listPlace) {
+                                    let placeLi = document.createElement("li");
+                                    listPlace = data[i].desc.listPlace;
+                                    for (let j in listPlace) {
+                                    let placeButton = document.createElement("button");
+                                    placeButton.setAttribute("class", "tage_button");
+                                    let placeButtonA = document.createElement("a");
+                                    placeButtonA.setAttribute("target", "_blank");
+                                    if (listPlace[j].ref.startsWith('pmb')) {
+                                    placeButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listPlace[j].ref + '.html');
+                                    }
+                                    let spacy = ' ';
+                                    placeButtonA.innerHTML = (listPlace[j].placeName);
+                                    placeButton.appendChild(placeButtonA);
+                                    
+                                    placeLi.appendChild(placeButton);
+                                    descUl.appendChild(placeLi);
+                                    }
+                                    div.appendChild(descUl)
+                                    }
                                     }
                                     }
                                     }
                                     }</script>
+                                <div class="weiteres" style="margin-top:2.5em;">
+                                    <h3>Weiteres</h3>
+                                    <ul>
+                                        <li>
+                                            <xsl:text>Zeitungen vom </xsl:text>
+                                            <xsl:element name="a">
+                                                <xsl:attribute name="href">
+                                                    <xsl:value-of
+                                                        select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace(ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level = 'a'][1]/@when-iso, '-', ''))"
+                                                    />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="target">
+                                                    <xsl:text>_blank</xsl:text>
+                                                </xsl:attribute>
+                                                <xsl:value-of
+                                                    select="$datum-written"
+                                                />
+                                            </xsl:element>
+                                            <xsl:text> bei </xsl:text>
+                                            <xsl:element name="a">
+                                                <xsl:attribute name="href">
+                                                    <xsl:value-of
+                                                        select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace(ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level = 'a'][1]/@when-iso, '-', ''))"
+                                                    />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="target">
+                                                    <xsl:text>_blank</xsl:text>
+                                                </xsl:attribute>
+                                                <xsl:text>ANNO</xsl:text>
+                                            </xsl:element>
+                                        </li>
+                                        <li>
+                                            <xsl:text>Briefe vom </xsl:text>
+                                            <xsl:element name="a">
+                                                <xsl:attribute name="href">
+                                                    <xsl:value-of
+                                                        select="concat('https://correspsearch.net/de/suche.html?d=', ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level='a'][1]/@when-iso, '&amp;x=1&amp;w=0')"
+                                                    />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="target">
+                                                    <xsl:text>_blank</xsl:text>
+                                                </xsl:attribute>
+                                                <xsl:value-of
+                                                    select="$datum-written"
+                                                />
+                                            </xsl:element>
+                                            <xsl:text> bei </xsl:text>
+                                            <xsl:element name="a">
+                                                <xsl:attribute name="href">
+                                                    <xsl:value-of
+                                                        select="concat('https://correspsearch.net/de/suche.html?d=', ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level='a'][1]/@when-iso, '&amp;x=1&amp;w=0')"
+                                                    />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="target">
+                                                    <xsl:text>_blank</xsl:text>
+                                                </xsl:attribute>
+                                                <xsl:text>correspSearch</xsl:text>
+                                            </xsl:element>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
