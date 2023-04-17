@@ -1,8 +1,8 @@
-
-
-function appendData(data) {
+function appendData(data, filename) {
     let mainContainer = document.getElementById("tag-fuer-tag-modal-body");
     for (let i in data) {
+    if (filename != data[i].filename) {
+
         let div = document.createElement("div");
         div.classList.add(data[i].type)
         let typebutton = document.createElement("span");
@@ -13,27 +13,27 @@ function appendData(data) {
             typebutton.setAttribute("style", "color: white; background-color: darkgrey;")
         };
         
-        typebutton.innerHTML = data[i].type;
+        typebutton.innerHTML = data[i].caption;
         div.appendChild(typebutton);
         let head = document.createElement("p");
         let headlink = document.createElement("a");
         headlink.setAttribute("href", data[i].idno);
         headlink.setAttribute("target", "_blank");
         headlink.setAttribute("style", "color:" + data[i].color);
-        
-        
-        
         headlink.innerHTML = data[i].head;
         head.appendChild(headlink);
         div.appendChild(head);
         mainContainer.appendChild(div);
-        
         if (data[i].text) {
             let textP = document.createElement("p");
             textP.innerHTML = (data[i].text);
             div.appendChild(textP);
         }
-        
+        if (data[i].bibl) {
+            let textP = document.createElement("p");
+            textP.innerHTML = ('Quelle: ' +data[i].text);
+            div.appendChild(textP);
+        }
         if (data[i].desc) {
             let descUl = document.createElement("ul");
             if (data[i].desc.listPerson) {
@@ -58,10 +58,8 @@ function appendData(data) {
                             }
                         }
                     }
-                    
                     personButtonA.innerHTML = (listperson[j].persName);
                     personButton.appendChild(personButtonA);
-                    
                     personLi.appendChild(personButton);
                     descUl.appendChild(personLi);
                 }
@@ -139,6 +137,7 @@ function appendData(data) {
                 }
             }
         }
+        }
     }
 }
 
@@ -176,9 +175,5 @@ function icon(typ) {
     let icon = document.createElement("span");
     icon.appendChild(ic);
     icon.appendChild(leerspan);
-    
-    
-    
-    
     return (icon)
 }
