@@ -879,3 +879,7 @@ code{
     background-color: #A63437;
     font-weight: bolder;
 }
+
+.tage_item_span::after {
+    content: '  ';
+}
