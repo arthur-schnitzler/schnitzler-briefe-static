@@ -161,10 +161,9 @@
                                                   data-bs-toggle="modal">
                                                   <i class="fas fa-quote-right"/> ZITIEREN</a>&#160; </li>
                                                 <li class="nav-item"> &#160;<a href="#"
-                                                    data-bs-target="#tagfuertag" type="button"
-                                                    data-bs-toggle="modal">
-                                                    <i class="fas fa-quote-right"/> TAG</a>&#160; </li>
-                                                
+                                                  data-bs-target="#tagfuertag" type="button"
+                                                  data-bs-toggle="modal">
+                                                  <i class="fas fa-quote-right"/> TAG</a>&#160; </li>
                                                 <!--<li class="nav-item dropdown">
                                     <span class="nav-link">
                                         <div id="csLink" class="a.grau" data-correspondent-1-name=""
@@ -179,8 +178,8 @@
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#downloadModal" type="button"
                                                   data-bs-toggle="modal"><i
-                                                  class="fas fa-solid fa-download"/>
-                                                  DOWNLOAD </a>&#160; </li>
+                                                  class="fas fa-solid fa-download"/> DOWNLOAD
+                                                  </a>&#160; </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -206,7 +205,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                <h5 class="modal-title" id="exampleModalLongTitle1">
                                     <xsl:for-each
                                         select="//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a']">
                                         <xsl:apply-templates/>
@@ -595,7 +594,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle"
+                                <h5 class="modal-title" id="exampleModalLongTitle2"
                                     >Einstellungen</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Schließen"/>
@@ -639,7 +638,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <!-- Modal Tag -->
                 <div class="modal fade" id="tagfuertag" tabindex="-1"
                     aria-labelledby="downloadModalLabel2" aria-hidden="true">
@@ -664,52 +662,60 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
-                    <xsl:variable name="datum-written" select="format-date($datum, '[D1].&#160;[M1].&#160;[Y0001]',
-                        'en',
-                        'AD',
-                        'EN')"/>
+                    <xsl:variable name="datum-written" select="
+                            format-date($datum, '[D1].&#160;[M1].&#160;[Y0001]',
+                            'en',
+                            'AD',
+                            'EN')"/>
                     <xsl:variable name="wochentag">
                         <xsl:choose>
-                            <xsl:when test="format-date($datum, '[F]',
-                                'en',
-                                'AD',
-                                'EN') = 'Monday'">
+                            <xsl:when test="
+                                    format-date($datum, '[F]',
+                                    'en',
+                                    'AD',
+                                    'EN') = 'Monday'">
                                 <xsl:text>Montag</xsl:text>
                             </xsl:when>
-                            <xsl:when test="format-date($datum, '[F]',
-                                'en',
-                                'AD',
-                                'EN') = 'Tuesday'">
+                            <xsl:when test="
+                                    format-date($datum, '[F]',
+                                    'en',
+                                    'AD',
+                                    'EN') = 'Tuesday'">
                                 <xsl:text>Dienstag</xsl:text>
                             </xsl:when>
-                            <xsl:when test="format-date($datum, '[F]',
-                                'en',
-                                'AD',
-                                'EN') = 'Wednesday'">
+                            <xsl:when test="
+                                    format-date($datum, '[F]',
+                                    'en',
+                                    'AD',
+                                    'EN') = 'Wednesday'">
                                 <xsl:text>Mittwoch</xsl:text>
                             </xsl:when>
-                            <xsl:when test="format-date($datum, '[F]',
-                                'en',
-                                'AD',
-                                'EN') = 'Thursday'">
+                            <xsl:when test="
+                                    format-date($datum, '[F]',
+                                    'en',
+                                    'AD',
+                                    'EN') = 'Thursday'">
                                 <xsl:text>Donnerstag</xsl:text>
                             </xsl:when>
-                            <xsl:when test="format-date($datum, '[F]',
-                                'en',
-                                'AD',
-                                'EN') = 'Friday'">
+                            <xsl:when test="
+                                    format-date($datum, '[F]',
+                                    'en',
+                                    'AD',
+                                    'EN') = 'Friday'">
                                 <xsl:text>Freitag</xsl:text>
                             </xsl:when>
-                            <xsl:when test="format-date($datum, '[F]',
-                                'en',
-                                'AD',
-                                'EN') = 'Saturday'">
+                            <xsl:when test="
+                                    format-date($datum, '[F]',
+                                    'en',
+                                    'AD',
+                                    'EN') = 'Saturday'">
                                 <xsl:text>Samstag</xsl:text>
                             </xsl:when>
-                            <xsl:when test="format-date($datum, '[F]',
-                                'en',
-                                'AD',
-                                'EN') = 'Sunday'">
+                            <xsl:when test="
+                                    format-date($datum, '[F]',
+                                    'en',
+                                    'AD',
+                                    'EN') = 'Sunday'">
                                 <xsl:text>Sonntag</xsl:text>
                             </xsl:when>
                             <xsl:otherwise>
@@ -720,138 +726,27 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle"
-                                    ><xsl:value-of select="concat($wochentag, ', ', $datum-written)"/>
-                                        </h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle3">
+                                    <xsl:value-of select="concat($wochentag, ', ', $datum-written)"
+                                    />
+                                </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <div id="tag-fuer-tag-modal-body"></div>
+                                <xsl:variable name="fetchUrl"
+                                    select="concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.json')"/>
+                                <div id="tag-fuer-tag-modal-body"/>
+                                <script type="text/javascript" src="js/schnitzler-tage.js" charset="UTF-8"/>
                                 <script type="text/javascript">
-                                    fetch('https://schnitzler-tage.acdh.oeaw.ac.at/1927-11-07.json').then(function (response) {
+                                    fetch('<xsl:value-of select="$fetchUrl"/>
+                                    ').then(function (response) {
                                     return response.json();
-                                    }).then(function (data) {
+                                }).then(function (data) {
                                     appendData(data);
-                                    }). catch (function (err) {
+                                }). catch (function (err) {
                                     console.log('error: ' + err);
-                                    });
-                                    
-                                    function appendData(data) {
-                                    let mainContainer = document.getElementById("tag-fuer-tag-modal-body");
-                                    for (let i in data) {
-                                    let div = document.createElement("div");
-                                    div.classList.add(data[i].type)
-                                    let typebutton = document.createElement("span");
-                                    typebutton.setAttribute("class", "badge rounded-pill");
-                                    typebutton.setAttribute("style", "color: white; background-color: darkblue;");
-                                    typebutton.innerHTML = data[i].type;
-                                    div.appendChild(typebutton);
-                                    let head = document.createElement("h5");
-                                    let headlink = document.createElement("a");
-                                    headlink.setAttribute("href", data[i].idno);
-                                    headlink.setAttribute("target", "_blank");
-                                    
-                                    
-                                    headlink.innerHTML = data[i].head;
-                                    head.appendChild(headlink);
-                                    div.appendChild(head);
-                                    mainContainer.appendChild(div);
-                                    
-                                    if (data[i].desc) {
-                                    let descUl = document.createElement("ul");
-                                    if (data[i].desc.listPerson) {
-                                    let personLi = document.createElement("li");
-                                    listperson = data[i].desc.listPerson;
-                                    for (let j in listperson) {
-                                    let personButton = document.createElement("button");
-                                    personButton.setAttribute("class", "tage_button");
-                                    let personButtonA = document.createElement("a");
-                                    personButtonA.setAttribute("target", "_blank");
-                                    if (listperson[j].ref.includes('/gnd/')) {
-                                    const correspSearchURL = listperson[j].ref.slice(listperson[j].ref.indexOf('/gnd/') + 5);
-                                    personButtonA.setAttribute("href", 'https://correspsearch.net/de/suche.html?s=http://d-nb.info/gnd/' + correspSearchURL);
-                                    } else {
-                                    if (listperson[j].ref.startsWith('http') || listperson[j].ref.startsWith('doi')) {
-                                    personButtonA.setAttribute("href", listperson[j].ref);
-                                    } else {
-                                    if (listperson[j].ref.startsWith('pmb') || listperson[j].ref.startsWith('person_')) {
-                                    personButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listperson[j].ref + '.html');
-                                    }
-                                    }
-                                    }
-                                    let spacy = ' ';
-                                    personButtonA.innerHTML = (listperson[j].persName);
-                                    personButton.appendChild(personButtonA);
-                                    
-                                    personLi.appendChild(personButton);
-                                    descUl.appendChild(personLi);
-                                    }
-                                    div.appendChild(descUl)
-                                    if (data[i].desc.listBibl) {
-                                    let biblLi = document.createElement("li");
-                                    listBibl = data[i].desc.listBibl;
-                                    for (let j in listBibl) {
-                                    let biblButton = document.createElement("button");
-                                    biblButton.setAttribute("class", "tage_button");
-                                    let biblButtonA = document.createElement("a");
-                                    biblButtonA.setAttribute("target", "_blank");
-                                    if (listBibl[j].ref.startsWith('pmb')) {
-                                    biblButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listBibl[j].ref + '.html');
-                                    }
-                                    let spacy = ' ';
-                                    biblButtonA.innerHTML = (listBibl[j].title);
-                                    biblButton.appendChild(biblButtonA);
-                                    
-                                    biblLi.appendChild(biblButton);
-                                    descUl.appendChild(biblLi);
-                                    }
-                                    div.appendChild(descUl)
-                                    }
-                                    if (data[i].desc.listOrg) {
-                                    let orgLi = document.createElement("li");
-                                    listOrg = data[i].desc.listOrg;
-                                    for (let j in listOrg) {
-                                    let orgButton = document.createElement("button");
-                                    orgButton.setAttribute("class", "tage_button");
-                                    let orgButtonA = document.createElement("a");
-                                    orgButtonA.setAttribute("target", "_blank");
-                                    if (listOrg[j].ref.startsWith('pmb')) {
-                                    orgButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listOrg[j].ref + '.html');
-                                    }
-                                    let spacy = ' ';
-                                    orgButtonA.innerHTML = (listOrg[j].orgName);
-                                    orgButton.appendChild(orgButtonA);
-                                    
-                                    orgLi.appendChild(orgButton);
-                                    descUl.appendChild(orgLi);
-                                    }
-                                    div.appendChild(descUl)
-                                    }
-                                    if (data[i].desc.listPlace) {
-                                    let placeLi = document.createElement("li");
-                                    listPlace = data[i].desc.listPlace;
-                                    for (let j in listPlace) {
-                                    let placeButton = document.createElement("button");
-                                    placeButton.setAttribute("class", "tage_button");
-                                    let placeButtonA = document.createElement("a");
-                                    placeButtonA.setAttribute("target", "_blank");
-                                    if (listPlace[j].ref.startsWith('pmb')) {
-                                    placeButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listPlace[j].ref + '.html');
-                                    }
-                                    let spacy = ' ';
-                                    placeButtonA.innerHTML = (listPlace[j].placeName);
-                                    placeButton.appendChild(placeButtonA);
-                                    
-                                    placeLi.appendChild(placeButton);
-                                    descUl.appendChild(placeLi);
-                                    }
-                                    div.appendChild(descUl)
-                                    }
-                                    }
-                                    }
-                                    }
-                                    }</script>
+                                });</script>
                                 <div class="weiteres" style="margin-top:2.5em;">
                                     <h3>Weiteres</h3>
                                     <ul>
@@ -859,26 +754,24 @@
                                             <xsl:text>Zeitungen vom </xsl:text>
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
-                                                    <xsl:value-of
-                                                        select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace(ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level = 'a'][1]/@when-iso, '-', ''))"
-                                                    />
+                                                  <xsl:value-of
+                                                  select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace(ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level = 'a'][1]/@when-iso, '-', ''))"
+                                                  />
                                                 </xsl:attribute>
                                                 <xsl:attribute name="target">
-                                                    <xsl:text>_blank</xsl:text>
+                                                  <xsl:text>_blank</xsl:text>
                                                 </xsl:attribute>
-                                                <xsl:value-of
-                                                    select="$datum-written"
-                                                />
+                                                <xsl:value-of select="$datum-written"/>
                                             </xsl:element>
                                             <xsl:text> bei </xsl:text>
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
-                                                    <xsl:value-of
-                                                        select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace(ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level = 'a'][1]/@when-iso, '-', ''))"
-                                                    />
+                                                  <xsl:value-of
+                                                  select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace(ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level = 'a'][1]/@when-iso, '-', ''))"
+                                                  />
                                                 </xsl:attribute>
                                                 <xsl:attribute name="target">
-                                                    <xsl:text>_blank</xsl:text>
+                                                  <xsl:text>_blank</xsl:text>
                                                 </xsl:attribute>
                                                 <xsl:text>ANNO</xsl:text>
                                             </xsl:element>
@@ -887,26 +780,24 @@
                                             <xsl:text>Briefe vom </xsl:text>
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
-                                                    <xsl:value-of
-                                                        select="concat('https://correspsearch.net/de/suche.html?d=', ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level='a'][1]/@when-iso, '&amp;x=1&amp;w=0')"
-                                                    />
+                                                  <xsl:value-of
+                                                  select="concat('https://correspsearch.net/de/suche.html?d=', ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level='a'][1]/@when-iso, '&amp;x=1&amp;w=0')"
+                                                  />
                                                 </xsl:attribute>
                                                 <xsl:attribute name="target">
-                                                    <xsl:text>_blank</xsl:text>
+                                                  <xsl:text>_blank</xsl:text>
                                                 </xsl:attribute>
-                                                <xsl:value-of
-                                                    select="$datum-written"
-                                                />
+                                                <xsl:value-of select="$datum-written"/>
                                             </xsl:element>
                                             <xsl:text> bei </xsl:text>
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
-                                                    <xsl:value-of
-                                                        select="concat('https://correspsearch.net/de/suche.html?d=', ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level='a'][1]/@when-iso, '&amp;x=1&amp;w=0')"
-                                                    />
+                                                  <xsl:value-of
+                                                  select="concat('https://correspsearch.net/de/suche.html?d=', ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level='a'][1]/@when-iso, '&amp;x=1&amp;w=0')"
+                                                  />
                                                 </xsl:attribute>
                                                 <xsl:attribute name="target">
-                                                    <xsl:text>_blank</xsl:text>
+                                                  <xsl:text>_blank</xsl:text>
                                                 </xsl:attribute>
                                                 <xsl:text>correspSearch</xsl:text>
                                             </xsl:element>
@@ -921,32 +812,33 @@
                         </div>
                     </div>
                 </div>
-                
                 <!-- Download Modal -->
                 <div class="modal fade" id="downloadModal" tabindex="-1"
                     aria-labelledby="downloadModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle"
+                                <h5 class="modal-title" id="exampleModalLongTitle4"
                                     >Downloadmöglichkeiten</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <p><a class="ml-3" data-toggle="tooltip" title="Brief als PDF">
+                                <p>
+                                    <a class="ml-3" data-toggle="tooltip" title="Brief als PDF">
                                         <xsl:attribute name="href">
                                             <xsl:value-of select="$source_pdf"/>
                                         </xsl:attribute>
-                                        <i class="fa-lg far fa-file-pdf"/> PDF </a></p>
-                                <p><a class="ml-3" data-toggle="tooltip"
+                                        <i class="fa-lg far fa-file-pdf"/> PDF </a>
+                                </p>
+                                <p>
+                                    <a class="ml-3" data-toggle="tooltip"
                                         title="Brief als TEI-Datei">
                                         <xsl:attribute name="href">
                                             <xsl:value-of select="$teiDoc"/>
                                         </xsl:attribute>
                                         <i class="fa-lg far fa-file-code"/> TEI </a>
                                 </p>
-                                    
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
