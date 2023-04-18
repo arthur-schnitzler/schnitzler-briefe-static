@@ -1,8 +1,9 @@
-function appendData(data, filename) {
+function appendData(data
+, filename) {
     let mainContainer = document.getElementById("tag-fuer-tag-modal-body");
     for (let i in data) {
     if (filename != data[i].filename) {
-
+   
         let div = document.createElement("div");
         div.classList.add(data[i].type)
         let typebutton = document.createElement("span");
@@ -12,8 +13,18 @@ function appendData(data, filename) {
         } else {
             typebutton.setAttribute("style", "color: white; background-color: darkgrey;")
         };
-        
-        typebutton.innerHTML = data[i].caption;
+
+        let pillLink = document.createElement("a");
+        pillLink.setAttribute("href", data[i].idno);
+        pillLink.setAttribute("target", "_blank");
+        if (data[i].color) {
+            pillLink.setAttribute("style", "color: white; background-color: " + data[i].color)
+        } else {
+            pillLink.setAttribute("style", "color: white; background-color: darkgrey;")
+        };
+        pillLink.innerHTML = data[i].caption;
+        typebutton.appendChild(pillLink);
+
         div.appendChild(typebutton);
         let head = document.createElement("p");
         let headlink = document.createElement("a");
@@ -29,9 +40,10 @@ function appendData(data, filename) {
             textP.innerHTML = (data[i].text);
             div.appendChild(textP);
         }
-        if (data[i].bibl) {
+
+        if (data[i].source) {
             let textP = document.createElement("p");
-            textP.innerHTML = ('Quelle: ' +data[i].text);
+            textP.innerHTML = ('Quelle: ' +data[i].source);
             div.appendChild(textP);
         }
         if (data[i].desc) {
@@ -138,6 +150,7 @@ function appendData(data, filename) {
             }
         }
         }
+        
     }
 }
 
