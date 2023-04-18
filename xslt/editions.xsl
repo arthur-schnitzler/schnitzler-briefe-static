@@ -739,10 +739,9 @@
                                 <div id="tag-fuer-tag-modal-body"/>
                                 <script type="text/javascript" src="js/schnitzler-tage.js" charset="UTF-8"/>
                                 <script type="text/javascript">
-                                    fetch('<xsl:value-of select="$fetchUrl"/>').then(function (response) {
-                                    return response.json();
-                                }).then(function (data) {
-                                appendData(data, '<xsl:value-of select="$teiSource"/>');
+                                    fetch('<xsl:value-of select="$fetchUrl"/>').then(function (response) {return response.json();
+                                    }).then(function (data) {
+                                    appendData(data, '<xsl:value-of select="$teiSource"/>');
                                 }). catch (function (err) {
                                     console.log('error: ' + err);
                                 });</script>
