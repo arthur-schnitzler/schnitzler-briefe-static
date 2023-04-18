@@ -883,3 +883,10 @@ code{
 .tage_item_span::after {
     content: '  ';
 }
+
+.modal-dialog {
+    background-color: darkgray;
+}
+.modal-content {
+    background-color: #F1F1F1;
+}

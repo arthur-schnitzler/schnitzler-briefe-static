@@ -26,13 +26,19 @@
                             <div class="col-md-6 col-lg-6 col-sm-12 wp-intro_left">
                                 <div class="intro_left">
                                     <h3 class="mt-3">Arthur Schnitzler</h3>
-                                    <h1 class="mt-3" style="text-align: left;">Briefwechsel mit Autorinnen und Autoren </h1>
+                                    <h1 class="mt-3" style="text-align: left;">Briefwechsel mit
+                                        Autorinnen und Autoren </h1>
                                     <h3 class="mt-3">1888–1931</h3>
-                                    <h4 style="font-style: italic">Herausgegeben von Martin Anton Müller, Gerd-Hermann Susen und Laura Untner, Wien 2018–[2024]</h4>
-                                    
-                                    <div style="text-align: right"><a href="#body">
-                                        <button class="btn btn-round" style="background-color: #A63437; color: white;">Weiter</button>
-                                    </a></div>
+                                    <h4 style="font-style: italic">Herausgegeben von Martin Anton
+                                        Müller, Gerd-Hermann Susen und Laura Untner, Wien
+                                        2018–[2024]</h4>
+                                    <div style="text-align: right">
+                                        <a href="#body">
+                                            <button class="btn btn-round"
+                                                style="background-color: #A63437; color: white;"
+                                                >Weiter</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6 col-sm-12">
@@ -46,17 +52,21 @@
                         </div>
                     </div>
                     <div class="container-fluid" style="margin:2em auto;" id="body">
-                        <div style="max-width: 650px; margin: auto;" ><span style="display: block;
+                        <div style="max-width: 650px; margin: auto;">
+                            <span style="display: block;
                                 position: relative;
-                                top: -250px; visibility: hidden" id="body"/>
-                            <p class="mt-3">Diese Website enthält zur Zeit 44 vollständige Korrespondenzen mit
-                                über 3.000 Briefen von und an Arthur Schnitzler (1862–1931). Viele
-                                davon werden erstmals veröffentlicht. Alle sind nach den Originalen
-                                in Archiven in Europa und Amerika durchgesehen und korrigiert.</p>
-                            <p class="mt-3" style="padding-bottom: 50px;">Die 45. Korrespondenz,
-                                jene mit Paul Goldmann, ist bislang bis zum Jahr 1900 vollständig ediert. Das sind derzeit 300 Briefe. Von der 46. Korrespondenz, 
-                                dem Austausch mit Felix Salten, liegen die überlieferten Briefe Schnitzlers zur Gänze (knapp über 100 Stück)
-                                vor.</p>
+                                top: -250px; visibility: hidden"
+                                id="body"/>
+                            <p class="mt-3">Diese Website enthält zur Zeit 43 vollständige
+                                Korrespondenzen mit über 3.000 Briefen von und an Arthur Schnitzler
+                                (1862–1931). Viele davon werden erstmals veröffentlicht. Alle sind
+                                nach den Originalen in Archiven in Europa und Amerika durchgesehen
+                                und korrigiert.</p>
+                            <p class="mt-3" style="padding-bottom: 50px;">Die 44. Korrespondenz,
+                                jene mit Paul Goldmann, ist bislang bis zum Jahr 1900 vollständig
+                                ediert. Das sind derzeit 300 Briefe. Von der 45. Korrespondenz, dem
+                                Austausch mit Felix Salten, liegen die überlieferten Briefe
+                                Schnitzlers zur Gänze (knapp über 100 Stück) vor.</p>
                             <a href="L00001.html">
                                 <button class="btn btn-round">Lesen</button>
                             </a>

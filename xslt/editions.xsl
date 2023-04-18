@@ -160,6 +160,11 @@
                                                   data-bs-target="#zitat" type="button"
                                                   data-bs-toggle="modal">
                                                   <i class="fas fa-quote-right"/> ZITIEREN</a>&#160; </li>
+                                                  <li class="nav-item"> &#160;<a href="#"
+                                                  data-bs-target="#downloadModal" type="button"
+                                                  data-bs-toggle="modal"><i
+                                                  class="fas fa-solid fa-download"/> DOWNLOAD
+                                                  </a>&#160; </li>
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#tagfuertag" type="button"
                                                   data-bs-toggle="modal">
@@ -175,11 +180,7 @@
                                             data-result-max="4" data-exclude-edition=""/>
                                     </span>
                                 </li>-->
-                                                <li class="nav-item"> &#160;<a href="#"
-                                                  data-bs-target="#downloadModal" type="button"
-                                                  data-bs-toggle="modal"><i
-                                                  class="fas fa-solid fa-download"/> DOWNLOAD
-                                                  </a>&#160; </li>
+                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -726,10 +727,14 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
+                    
                                 <h5 class="modal-title" id="exampleModalLongTitle3">
-                                    <xsl:value-of select="concat($wochentag, ', ', $datum-written)"
-                                    />
+                                
+                                    <a href="{concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.html')}" target='_blank'  style="color: #C67F53"><xsl:value-of select="concat($wochentag, ', ', $datum-written)"
+                                    /></a>
+
                                 </h5>
+
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Schließen"/>
                             </div>
@@ -779,7 +784,7 @@
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                  select="concat('https://correspsearch.net/de/suche.html?d=', ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level='a'][1]/@when-iso, '&amp;x=1&amp;w=0')"
+                                                  select="concat('https://correspsearch.net/de/suche.html?d=', $datum, '&amp;x=1&amp;w=0')"
                                                   />
                                                 </xsl:attribute>
                                                 <xsl:attribute name="target">
@@ -791,7 +796,7 @@
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                  select="concat('https://correspsearch.net/de/suche.html?d=', ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level='a'][1]/@when-iso, '&amp;x=1&amp;w=0')"
+                                                      select="concat('https://correspsearch.net/de/suche.html?d=', $datum, '&amp;x=1&amp;w=0')"
                                                   />
                                                 </xsl:attribute>
                                                 <xsl:attribute name="target">
