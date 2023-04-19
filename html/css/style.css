@@ -681,7 +681,13 @@ low resolution
 margin-bottom: 3rem;
 }
 
+.add-zeichen {
+    color: black;
+    vertical-align: super;
+    font-size: x-small;
+    font-weight: bold;
 
+}
 
 .antiqua {
     font-variant: small-caps;
@@ -728,8 +734,15 @@ color: #A23B72;
     text-decoration: line-through;
 }
 
+
 .subst-add {
+    color: #88dbdf;
 }
+
+.subst-del {
+    color:chartreuse;
+}
+
 
 .gemination {
     text-decoration: none;
@@ -824,20 +837,7 @@ code{
   }
   
   /* textkritisch */
-.add {
-}
 
-.add-rplMe:after {
-    visibility: visible;
-    content: 'v';
-    margin-left: -8px;
-}
-
-.add-rplMe:before {
-    visibility: visible;
-    content: 'v';
-    margin-left: -8px;
-}
 
 
   
@@ -872,6 +872,7 @@ code{
     content: 'n̅';
     margin-left: -19px;
 }
+
 
 /* Seitenzahlen blättern, aktive Seite */
 

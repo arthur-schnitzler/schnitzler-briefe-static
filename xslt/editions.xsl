@@ -169,7 +169,8 @@
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#tagfuertag" type="button"
                                                   data-bs-toggle="modal">
-                                                  <i class="fas fa-calendar-day"/> KALENDERTAG</a>&#160; </li>
+                                                  <i class="fas fa-calendar-day"/>
+                                                  KALENDERTAG</a>&#160; </li>
                                                 <!--<li class="nav-item dropdown">
                                     <span class="nav-link">
                                         <div id="csLink" class="a.grau" data-correspondent-1-name=""
@@ -614,7 +615,10 @@
                                         <li>
                                             <annotation-slider opt="ls"/> &#160; &#160; &#160;
                                             &#160; <annotation-slider opt="gem-m"/> &#160; &#160;
-                                            &#160; &#160; <annotation-slider opt="gem-n"/>
+                                            &#160; &#160; <annotation-slider opt="gem-n"/> &#160;
+                                            &#160; &#160; &#160; <annotation-slider opt="del"/>
+                                            &#160; &#160; &#160; &#160; <annotation-slider opt="add"
+                                            /> &#160; &#160; &#160; &#160; 
                                         </li>
                                     </ul>
                                 </div>
@@ -730,10 +734,12 @@
                             <div class="modal-header">
                     
                                 <h5 class="modal-title" id="exampleModalLongTitle3">
-                                
-                                    <a href="{concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.html')}" target='_blank'  style="color: #C67F53"><xsl:value-of select="concat($wochentag, ', ', $datum-written)"
-                                    /></a>
-
+                                    <a
+                                        href="{concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.html')}"
+                                        target="_blank" style="color: #C67F53">
+                                        <xsl:value-of
+                                            select="concat($wochentag, ', ', $datum-written)"/>
+                                    </a>
                                 </h5>
 
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -755,7 +761,7 @@
                                     <h3>Weiteres</h3>
                                     <ul>
                                         <li>
-                                            <xsl:text>Zeitungen vom </xsl:text>
+                                            <xsl:text>Zeitungen vom </xsl:text>xwx
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -884,7 +890,7 @@
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:damage">
-        <span class="damage-critical fade">
+        <span class="damage-critical">
             <xsl:apply-templates/>
         </span>
     </xsl:template>
@@ -892,20 +898,6 @@
         <!-- <abbr><xsl:attribute name="title"><xsl:value-of select="data(./@*)"/></xsl:attribute>-->
         <xsl:apply-templates/>
         <!--</abbr>-->
-    </xsl:template>
-    <!-- Streichung -->
-    <xsl:template match="tei:del">
-        <span class="del fade">
-            <xsl:apply-templates/>
-        </span>
-    </xsl:template>
-    <xsl:template match="tei:del[not(parent::tei:subst)]">
-        <span class="del fade">
-            <xsl:apply-templates/>
-        </span>
-    </xsl:template>
-    <xsl:template match="tei:del[parent::tei:subst]">
-        <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:div[not(@type = 'address')]">
         <div class="div">
@@ -1288,24 +1280,7 @@
             </xsl:attribute>
         </xsl:element>
     </xsl:template>
-    <!-- Substi -->
-    <xsl:template match="tei:subst">
-        <span class="steuerzeichen fade">↑</span>
-        <span class="superscript fade">
-            <xsl:apply-templates select="tei:del"/>
-        </span>
-        <span class="subst-add">
-            <xsl:apply-templates select="tei:add"/>
-        </span>
-        <span class="steuerzeichen fade">↓</span>
-    </xsl:template>
-    <xsl:template match="tei:supplied">
-        <span class="supplied fade">
-            <xsl:text>[</xsl:text>
-            <xsl:apply-templates/>
-            <xsl:text>]</xsl:text>
-        </span>
-    </xsl:template>
+  
     <!-- Tabellen -->
     <xsl:template match="tei:table">
         <xsl:element name="table">

@@ -80,13 +80,13 @@ var editor = new LoadEditor({
             }
         }, {
             opt: "del",
-            opt_slider: "delete-slider",
-            title: "Streichungen",
-            color: "undefined",
-            html_class: "streichung",
+            opt_slider: "deleted-slider",
+            title: "Streichung",
+            color: "black",
+            html_class: "del",
             hide: {
-                hidden: false,
-                class: "strikethrough"
+                hidden: true,
+                class: "del"
             },
             css_class: "strikethrough",
             features: {
@@ -98,27 +98,12 @@ var editor = new LoadEditor({
             opt_slider: "addition-slider",
             title: "Hinzufügungen",
             color: "undefined",
-            html_class: "addition",
+            html_class: "add",
             hide: {
-                hidden: false,
-                class: "add-rplMe"
+                hidden: true,
+                class: "add-zeichen"
             },
-            css_class: "add-rplMe",
-            features: {
-                all: false,
-                class: "features-2"
-            }
-        }, {
-            opt: "subst",
-            opt_slider: "subst-slider",
-            title: "Ersetzungen",
-            color: "undefined",
-            html_class: "subst",
-            hide: {
-                hidden: false,
-                class: "subst-rplMe"
-            },
-            css_class: "subst-rplMe",
+            css_class: "add-zeichen",
             features: {
                 all: false,
                 class: "features-2"
@@ -193,30 +178,6 @@ var editor = new LoadEditor({
             slider_class: "i-slider round",
         },
     },
-    
-    
-    
-    fos: {
-        name: "Schriftgröße",
-        variants:[ {
-            opt: "fs",
-            title: "Schriftgröße",
-            urlparam: "fs",
-            chg_citation: "citation-url",
-            sizes: {
-                default: "12",
-                font_size_14: "14",
-                font_size_18: "18",
-                font_size_22: "22",
-                font_size_26: "26",
-            },
-            paragraph: ".yes-index",
-            p_class: "",
-            css_class: "font-size-",
-        },],
-        active_class: "active",
-        html_class: "form-select",
-    },
     is: {
         name: "Faksimile",
         variants:[ {
@@ -240,12 +201,12 @@ var editor = new LoadEditor({
                 class_parent: "transcript",
                 resize: "resize-hide",
             },
-            image_size: "400px",
+            image_size: "40px",
         },],
         active_class: "active",
         rendered_element: {
             a_class: "nav-link btn btn-round",
-            svg: "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-image' viewBox='0 0 16 16'><path d='M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'/><path d='M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z'/></svg>",
+            svg: "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-image' viewBox='0 0 16 16'><path d='M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'/><path d='M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z'/></svg>",
         },
     },
     wr: false,

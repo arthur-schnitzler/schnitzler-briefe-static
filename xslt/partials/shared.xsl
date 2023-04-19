@@ -84,46 +84,24 @@
         <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:del[not(parent::tei:subst)]">
-        <xsl:element name="del">
-            <xsl:attribute name="class">
-                <xsl:text>streichung</xsl:text>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
+    <xsl:template match="tei:del">
+        <span class="del" style="display:none;"><xsl:apply-templates/></span>      
     </xsl:template>
-    <xsl:template match="tei:add[not(parent::tei:subst)]">
-        <xsl:element name="add">
-            <xsl:attribute name="class">
-                <xsl:text>add</xsl:text>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
+<xsl:template match="tei:add">
+        <span class="add-zeichen" >↓</span>
+        <span class="add-content"><xsl:apply-templates/></span>  
+        <span class="add-zeichen">↓</span>
     </xsl:template>
-    <xsl:template match="tei:del[(parent::tei:subst)]">
-        <xsl:element name="del">
-            <xsl:attribute name="class">
-                <xsl:text>subst-streichung</xsl:text>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="tei:add[(parent::tei:subst)]">
-        <xsl:element name="span">
-            <xsl:attribute name="class">
-                <xsl:text>subst-add</xsl:text>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
+      <!-- Substi -->
     <xsl:template match="tei:subst">
-        <xsl:element name="span">
-            <xsl:attribute name="class">
-                <xsl:text>subst</xsl:text>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
+        <!--<span class="steuerzeichen">↑</span>-->
+        <sup>
+        <xsl:apply-templates select="tei:del"/>
+        </sup>
+        <xsl:apply-templates select="tei:add"/>
     </xsl:template>
+
+    
     <xsl:template match="tei:cit">
         <cite><xsl:apply-templates/></cite>
     </xsl:template>
@@ -216,7 +194,13 @@
     <xsl:template match="tei:p">
        <p><xsl:apply-templates/></p>
     </xsl:template>
-    
+    <xsl:template match="tei:supplied">
+        <span class="supplied">
+            <xsl:text>[</xsl:text>
+            <xsl:apply-templates/>
+            <xsl:text>]</xsl:text>
+        </span>
+    </xsl:template>
     <xsl:template match="tei:table">
         <xsl:element name="table">
             <xsl:attribute name="class">
@@ -444,7 +428,7 @@
                                 <xsl:if test="./tei:country">
                                 <tr>
                                     <th>
-                                        Country
+                                        Land
                                     </th>
                                     <td>
                                         <xsl:value-of select="./tei:country"/>
