@@ -6,6 +6,7 @@
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
     <xsl:import href="./partials/shared.xsl"/>
+    <xsl:import href="./partials/refs.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
@@ -168,7 +169,7 @@
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#tagfuertag" type="button"
                                                   data-bs-toggle="modal">
-                                                  <i class="fas fa-quote-right"/> TAG</a>&#160; </li>
+                                                  <i class="fas fa-calendar-day"/> KALENDERTAG</a>&#160; </li>
                                                 <!--<li class="nav-item dropdown">
                                     <span class="nav-link">
                                         <div id="csLink" class="a.grau" data-correspondent-1-name=""
