@@ -22,20 +22,6 @@ a:hover {
 .ais-RefinementList-labelText::after { content: "\00a0 "; }
 
 
-.navbar-nav ul li a, .navbar-nav ul li a:visited {
-    /* change navbar link color */
-}
-
-.navbar-nav ul li a:hover, .navbar-nav ul li a:active {
-    /* change navbar link color */
-    background-color: #A63437;
-    color: black;
-}
-
-.navbar-nav ul li.active a {
-    /* change navbar link color */
-    background-color: #A63437;
-}
 
 
 .capitalize {
@@ -213,11 +199,6 @@ a.anchorFoot {
 
 
 
-.navBarNavDropdown {
-    position: relative;
-    display: block;
-    text-align: center;
-}
 
 .fas {
     color: #A63437;
@@ -227,14 +208,6 @@ a.anchorFoot {
     min-height: 600px;
 }
 
-.navBarNavDropdown a {
-    position: relative;
-    display: block;
-}
-
-.navBarNavDropdown ul li {
-    margin: .5em auto;
-}
 
 #staticSearch {
     padding: 2em;
@@ -254,19 +227,6 @@ div.dataTables_filter {
   text-align: right;
 }
 
-.navbar {
-    border-bottom: 5px solid #A63437;
-    background-color: #fff;
-    height: 85px;
-    z-index: 99;
-}
-
-.navbar .navbar-brand {
-    padding-right: 0}
-
-.navbar .navbar-brand img {
-    height: 5rem;
-    max-height: unset}
 
 
 .dataTables_info {
@@ -552,12 +512,10 @@ resolution
 */
 }
 
+
+
 @media (max-width: 1024px) {
-    .navbar .navbar-collapse {
-        border-top: 1px solid rgba(0,0,0,.075);
-        padding-top: 2rem;
-        margin-top: .5rem;
-    }
+    
     .img-fluid {
         max-width: 130% !important;
         max-height: 130% !important;
@@ -574,9 +532,6 @@ resolution or low resolution screens
 @media (max-width: 768px) {
     .facsimiles {
         display: none;
-    }
-    .navBarNavDropdown ul li:nth-child(-n + 2) {
-        display: none !important;
     }
     .text {
         padding-left: 0;
@@ -620,10 +575,6 @@ high resolution or tablet regular resolution
     li a br {
         display: block !important;
     }
-    .dropdown-menu li a {
-        max-width: 500px;
-        overflow: hidden;
-    }
 /* 
 #########################################
 add rules for smallest smartphones 
@@ -633,10 +584,7 @@ regular resolution
 }
 
 @media (max-width: 480px) {
-    .dropdown-menu li a {
-        max-width: 400px;
-        overflow: hidden;
-    }
+
 /* 
 #########################################
 add rules for smallest smartphones 
@@ -877,8 +825,8 @@ code{
 /* Seitenzahlen blättern, aktive Seite */
 
 .page-link {
-    background-color: #A63437;
-    font-weight: bolder;
+    background-color: white;
+    color: black;
 }
 
 .tage_item_span::after {
@@ -891,3 +839,77 @@ code{
 .modal-content {
     background-color: #F1F1F1;
 }
+
+/* Navbar (zur Gänze kopiert aus Exist-DB) */
+
+.navbar {
+    border-bottom: 5px solid #A63437;
+    background-color: #fff;
+    box-shadow: 0 0.3rem 1.2rem 0 rgb(5 10 15 / 10%);
+    z-index: 99;
+}
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .4rem .9rem;
+    clear: both;
+    font-weight: 400;
+    color: #444;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #eeeeee
+}
+.dropdown-item.active,
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #6c757d;
+}
+.dropdown-item.disabled,
+.dropdown-item:disabled {
+    color: #6c757d;
+    background-color: transparent
+}
+.dropdown-toggle:after {
+    margin-left: .2em;
+    vertical-align: .15em;
+}
+.navbar .dropdown-menu {
+    padding: .3rem 0 .3rem 0;
+    border-radius: .2rem;
+    border: 1px solid rgba(0,0,0,.1);
+    left: 0;
+    box-shadow: 0 0.3rem 1.2rem 0 rgb(5 10 15 / 10%);
+}
+
+nav {
+    display: table;
+    font-size: 95%;
+}
+
+.navbar {
+    padding-left: 0;
+    padding-right: 0;
+    border-width: 3px;
+}
+
+.navbar .navbar-brand {
+    padding-right: 0px;
+}
+
+.navbar .navbar-brand img {
+    max-height: unset;
+    height: 5rem ;
+}
+
+.sticky-navbar {
+    z-index: 1001;
+}
+
