@@ -31,6 +31,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Korrespondenz</th>
+                                            <th scope="col">Anzahl edierter Objekte</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,7 +47,12 @@
                                                         <xsl:value-of select="tei:persName[@role='main']/text()"/>
                                                     </a>
                                                 </td>
+                                                <td>
+                                                    <xsl:value-of select="count(document(concat('../data/tocs/toc_', replace($nummer-des-korrespondenzpartners, 'pmb', ''), '.xml'))/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:list[1]/tei:item)"/>
+                                                </td>
+                                            
                                             </tr>
+                                            
                                         </xsl:for-each>
                                     </tbody>
                                 </table>
