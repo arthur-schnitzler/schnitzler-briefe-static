@@ -761,7 +761,7 @@
                                     <h3>Weiteres</h3>
                                     <ul>
                                         <li>
-                                            <xsl:text>Zeitungen vom </xsl:text>xwx
+                                            <xsl:text>Zeitungen vom </xsl:text>
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
                                                   <xsl:value-of
