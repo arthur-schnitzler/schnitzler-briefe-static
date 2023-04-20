@@ -28,9 +28,14 @@
                                         <a class="nav-link" href="editionsrichtlinien.html"
                                             >Editionsrichtlinien</a>
                                     </li>
+                                                                        <li class="nav-item dropdown-submenu">
+                                        <a class="nav-link" href="ansichten.html"
+                                            >Ansichten</a>
+                                    </li>
+
                                     <li class="nav-item dropdown-submenu">
                                         <a class="nav-link" href="danksagung.html">Danksagung</a>
-                                    </li>10
+                                    </li>
                                     <li class="nav-item dropdown-submenu">
                                         <a class="nav-link" href="kooperationen.html"
                                             >Kooperationen</a>
