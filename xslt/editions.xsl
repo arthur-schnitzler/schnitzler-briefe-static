@@ -765,7 +765,7 @@
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                  select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace(ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level = 'a'][1]/@when-iso, '-', ''))"
+                                                  select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace($datum, '-', ''))"
                                                   />
                                                 </xsl:attribute>
                                                 <xsl:attribute name="target">
@@ -777,7 +777,7 @@
                                             <xsl:element name="a">
                                                 <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                  select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace(ancestor::tei:TEI/descendant::tei:titleStmt/tei:title[@level = 'a'][1]/@when-iso, '-', ''))"
+                                                  select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace($datum, '-', ''))"
                                                   />
                                                 </xsl:attribute>
                                                 <xsl:attribute name="target">
