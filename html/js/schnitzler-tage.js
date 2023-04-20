@@ -145,8 +145,8 @@ function appendData(data, filename) {
                         let biblButtonA = document.createElement("a");
                         biblButtonA.setAttribute("target", "_blank");
                         if (data[i].type === 'pmb') {
-                            const pmbURL = listBibl[j].ref.slice(listBibl[j].ref.indexOf('pmb') + 3);
-                            biblButtonA.setAttribute("href", 'https://pmb.acdh.oeaw.ac.at/entity/' + pmbURL)
+                            const pmbBiblURL = listBibl[j].ref.slice(listBibl[j].ref.indexOf('pmb') + 3);
+                            biblButtonA.setAttribute("href", 'https://pmb.acdh.oeaw.ac.at/entity/' + pmbBiblURL)
                         } else {
                         if (listBibl[j].ref.startsWith('pmb')) {
                             biblButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listBibl[j].ref + '.html');
@@ -172,8 +172,8 @@ function appendData(data, filename) {
                         let orgButtonA = document.createElement("a");
                         orgButtonA.setAttribute("target", "_blank");
                         if (data[i].type === 'pmb') {
-                            const pmbURL = listOrg[j].ref.slice(listOrg[j].ref.indexOf('pmb') + 3);
-                            orgButtonA.setAttribute("href", 'https://pmb.acdh.oeaw.ac.at/entity/' + pmbURL)
+                            const pmbOrgURL = listOrg[j].ref.slice(listOrg[j].ref.indexOf('pmb') + 3);
+                            orgButtonA.setAttribute("href", 'https://pmb.acdh.oeaw.ac.at/entity/' + pmbOrgURL)
                         } else {
                         if (listOrg[j].ref.startsWith('pmb')) {
                             orgButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listOrg[j].ref + '.html');
@@ -200,8 +200,8 @@ function appendData(data, filename) {
                         let placeButtonA = document.createElement("a");
                         placeButtonA.setAttribute("target", "_blank");
                         if (data[i].type === 'pmb') {
-                            const pmbURL = listPlace[j].ref.slice(listPlace[j].ref.indexOf('pmb') + 3);
-                            placeButtonA.setAttribute("href", 'https://pmb.acdh.oeaw.ac.at/entity/' + pmbURL)
+                            const pmbPlaceURL = listPlace[j].ref.slice(listPlace[j].ref.indexOf('pmb') + 3);
+                            placeButtonA.setAttribute("href", 'https://pmb.acdh.oeaw.ac.at/entity/' + pmbPlaceURL)
                         } else {
                         if (listPlace[j].ref.startsWith('pmb')) {
                             placeButtonA.setAttribute("href", 'https://' + data[i].type + '.acdh.oeaw.ac.at/' + listPlace[j].ref + '.html');
