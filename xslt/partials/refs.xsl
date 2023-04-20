@@ -137,7 +137,7 @@
                     <xsl:attribute name="href">
                         <xsl:value-of select="$ref-mit-endung"/>
                     </xsl:attribute>
-                    <xsl:value-of select="document(concat($type-url, replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:title[@level='a']/text()"/>
+                    <xsl:value-of select="document(concat($type-url, replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:titleSmt[1]/tei:title[@level='a'][1]/text()"/>
                 </a>
             </xsl:otherwise>
         </xsl:choose>
