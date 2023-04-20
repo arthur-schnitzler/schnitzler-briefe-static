@@ -130,11 +130,11 @@
                                 </div>
                             </div>
                             <div class="card-footer" style="clear: both;">
-                                <nav class="navbar navbar-expand-lg">
+                                <nav class="navbar navbar-expand-lg" style="box-shadow: none;">
                                     <div class="container-fluid">
-                                        <div>
-                                            <ul id="secondary-menu" class="navbar-nav mb-2 mb-lg-0">
-                                                <xsl:if
+                <div id="navbarSupportedContent">
+               <ul class="navbar-nav mb-2 mb-lg-0" id="secondary-menu" >
+                                             <xsl:if
                                                   test="not(descendant::tei:teiHeader[1]/tei:revisionDesc[1]/@status = 'approved')">
                                                   <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#qualitaet" type="button"

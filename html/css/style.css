@@ -913,3 +913,7 @@ nav {
     z-index: 1001;
 }
 
+#wrapper-navbar {
+    border-top-width: 0rem;
+    border-top-color: #6c757d;
+}
