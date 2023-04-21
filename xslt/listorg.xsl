@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    version="2.0" exclude-result-prefixes="xsl tei xs">
-    <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes" omit-xml-declaration="yes"/>
-    
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="xsl tei xs">
+    <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
+        omit-xml-declaration="yes"/>
+
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
     <xsl:template match="/">
-        <xsl:variable name="doc_title" select="'Erwähnte Institutionen, Einrichtungen und Redaktionen'"/>
+        <xsl:variable name="doc_title"
+            select="'Verzeichnis erwähnter Institutionen und Organisationen'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
         <html lang="de">
             <xsl:call-template name="html_head">
@@ -20,16 +20,17 @@
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    
-                    <div class="container-fluid">                        
+
+                    <div class="container-fluid">
                         <div class="card">
                             <div class="card-header" style="text-align:center">
                                 <h1>
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
                             </div>
-                            <div class="card-body">                                
-                                <table class="table table-striped display" id="tocTable" style="width:100%">
+                            <div class="card-body">
+                                <table class="table table-striped display" id="tocTable"
+                                    style="width:100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Name</th>
@@ -44,51 +45,60 @@
                                             </xsl:variable>
                                             <tr>
                                                 <td>
-                                                    <a>
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of select="concat($id, '.html')"/>
-                                                        </xsl:attribute>
-                                                    <xsl:value-of select="child::tei:orgName[1]/text()"/></a>
-                                                    <xsl:if test="child::tei:orgName[@type='alternative-name']">
-                                                        <xsl:text> (</xsl:text>
-                                                        <xsl:for-each select="child::tei:orgName[@type='alternative-name']">
-                                                            <xsl:value-of select="."/>
-                                                            <xsl:if test="not(position()=last())">
-                                                                <xsl:text>, </xsl:text>
-                                                            </xsl:if>
-                                                        </xsl:for-each>
-                                                        <xsl:text>)</xsl:text>
-                                                    </xsl:if>
+                                                  <a>
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="concat($id, '.html')"/>
+                                                  </xsl:attribute>
+                                                  <xsl:value-of
+                                                  select="child::tei:orgName[1]/text()"/>
+                                                  </a>
+                                                  <xsl:if
+                                                  test="child::tei:orgName[@type = 'alternative-name']">
+                                                  <xsl:text> (</xsl:text>
+                                                  <xsl:for-each
+                                                  select="child::tei:orgName[@type = 'alternative-name']">
+                                                  <xsl:value-of select="."/>
+                                                  <xsl:if test="not(position() = last())">
+                                                  <xsl:text>, </xsl:text>
+                                                  </xsl:if>
+                                                  </xsl:for-each>
+                                                  <xsl:text>)</xsl:text>
+                                                  </xsl:if>
                                                 </td>
                                                 <td>
-                                                    <xsl:for-each select="distinct-values(tei:location[@type='located_in_place']/tei:placeName[1])">
-                                                        <xsl:value-of select="."/>
-                                                        <xsl:if test="not(position()=last())">
-                                                            <xsl:text>, </xsl:text>
-                                                        </xsl:if>
-                                                    </xsl:for-each>
+                                                  <xsl:for-each
+                                                  select="distinct-values(tei:location[@type = 'located_in_place']/tei:placeName[1])">
+                                                  <xsl:value-of select="."/>
+                                                  <xsl:if test="not(position() = last())">
+                                                  <xsl:text>, </xsl:text>
+                                                  </xsl:if>
+                                                  </xsl:for-each>
                                                 </td>
                                                 <td>
-                                                    <xsl:choose>
-                                                        <xsl:when test="contains(tei:desc[@type='entity_type'], '&gt;&gt;')">
-                                                            <xsl:value-of select="tokenize(tei:desc[@type='entity_type'], '&gt;&gt;')[last()]"/>
-                                                        </xsl:when>
-                                                        <xsl:otherwise>
-                                                            <xsl:value-of select="tei:desc[@type='entity_type']"/>
-                                                        </xsl:otherwise>
-                                                    </xsl:choose>
-                                                    
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="contains(tei:desc[@type = 'entity_type'], '&gt;&gt;')">
+                                                  <xsl:value-of
+                                                  select="tokenize(tei:desc[@type = 'entity_type'], '&gt;&gt;')[last()]"
+                                                  />
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:value-of
+                                                  select="tei:desc[@type = 'entity_type']"/>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>                       
+                        </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"></script>
-                    <script type="text/javascript" src="js/dt.js"></script>
+                    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"/>
+                    <script type="text/javascript" src="js/dt.js"/>
                     <script>
                         $(document).ready(function () {
                         createDataTable('tocTable')
@@ -112,7 +122,11 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h1 align="center">
-                                            <xsl:value-of select="$name"/><xsl:text> </xsl:text><small><xsl:text> (Institution)</xsl:text></small>
+                                            <xsl:value-of select="$name"/>
+                                            <xsl:text> </xsl:text>
+                                            <small>
+                                                <xsl:text> (Institution)</xsl:text>
+                                            </small>
                                         </h1>
                                     </div>
                                     <div class="card-body">
@@ -125,8 +139,8 @@
                     </body>
                 </html>
             </xsl:result-document>
-            
+
         </xsl:for-each>
     </xsl:template>
-    
+
 </xsl:stylesheet>
