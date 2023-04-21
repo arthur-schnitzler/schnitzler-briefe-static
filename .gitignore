@@ -50,3 +50,4 @@ html/search.html
 html/*.js
 secret.sh
 html/js-data/*.js
+html/faulty.csv

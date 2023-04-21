@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "check and delete faulty files"
+python delete_faulty_files.py
+
 echo "add mentions"
 python add_mentions.py
 
