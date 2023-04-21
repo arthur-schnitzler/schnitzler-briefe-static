@@ -98,7 +98,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false"> Technisches </a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="elemente.html">Verwendete Elemente</a>
+                                    <a class="nav-link" href="elemente.html">Kodierungsrichtlinien</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link"
