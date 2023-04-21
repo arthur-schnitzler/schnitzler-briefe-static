@@ -24,7 +24,7 @@
                                     <a class="nav-link" href="about.html">Zum Projekt</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="status.html">Projektstatus</a>
+                                    <a class="nav-link" href="status.html">Projektstand</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="editionsrichtlinien.html"
@@ -98,7 +98,8 @@
                                 data-bs-toggle="dropdown" aria-expanded="false"> Technisches </a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="elemente.html">Kodierungsrichtlinien</a>
+                                    <a class="nav-link" href="elemente.html"
+                                        >Kodierungsrichtlinien</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link"
