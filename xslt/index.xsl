@@ -57,16 +57,17 @@
                                 position: relative;
                                 top: -250px; visibility: hidden"
                                 id="body"/>
-                            <p class="mt-3">Diese Website enthält zur Zeit 43 vollständige
-                                Korrespondenzen mit über 3.000 Briefen von und an Arthur Schnitzler
-                                (1862–1931). Viele davon werden erstmals veröffentlicht. Alle sind
-                                nach den Originalen in Archiven in Europa und Amerika durchgesehen
-                                und korrigiert.</p>
+                            <p class="mt-3">Diese Webseite enthält zur Zeit 45 (davon 43
+                                vollständige) Korrespondenzen mit über 3.000 Briefen von und an
+                                Arthur Schnitzler (1862–1931). Viele davon werden erstmals
+                                veröffentlicht. Alle sind nach den Originalen in Archiven in Europa
+                                und Amerika durchgesehen und korrigiert.</p>
                             <p class="mt-3" style="padding-bottom: 50px;">Die 44. Korrespondenz,
                                 jene mit Paul Goldmann, ist bislang bis zum Jahr 1900 vollständig
                                 ediert. Das sind derzeit 300 Briefe. Von der 45. Korrespondenz, dem
                                 Austausch mit Felix Salten, liegen die überlieferten Briefe
-                                Schnitzlers zur Gänze (knapp über 100 Stück) vor.</p>
+                                Schnitzlers zur Gänze (knapp über 100 Stück) vor. Beide
+                                Korrespondenzen werden fortlaufend erweitert.</p>
                             <a href="L00001.html">
                                 <button class="btn btn-round">Lesen</button>
                             </a>
@@ -156,9 +157,8 @@
                                         </div>
                                         <div class="card-header">
                                             <h4>Werkverzeichnis</h4>
-                                            <p>Erwähnungen von Werken der Literatur und der
-                                                bildenden Kunst, von Gebrauchstexten und von
-                                                Periodika.</p>
+                                            <p>In den Korrespondenzstücken erwähnte literarische wie
+                                                nicht-literarische Werke.</p>
                                         </div>
                                     </div>
                                 </a>
@@ -175,8 +175,9 @@
                                         </div>
                                         <div class="card-header">
                                             <h4>Orte</h4>
-                                            <p>Erwähnte geografische Orte. Diese sind auch über ihre
-                                                Koordinaten erschlossen.</p>
+                                            <p>In den Korrespondenzstücken erwähnte geografische
+                                                Orte. Diese sind auch über ihre Koordinaten
+                                                erschlossen.</p>
                                         </div>
                                     </div>
                                 </a>
@@ -191,8 +192,9 @@
                                         </div>
                                         <div class="card-header">
                                             <h4>Institutionen und Organisationen</h4>
-                                            <p>Vorkommende Verlage, Redaktionen, Institutionen,
-                                                Gesellschaften, Firmen, Preise…</p>
+                                            <p>In den Korrespondenzstücken erwähnte Verlage,
+                                                Redaktionen, Vereine, Gesellschaften, Firmen, Preise
+                                                …</p>
                                         </div>
                                     </div>
                                 </a>
@@ -223,7 +225,7 @@
                                                 alt="Schnitzler Repositories auf Github"/>
                                         </div>
                                         <div class="card-header">
-                                            <p>Quelldaten dieser Website auf Github</p>
+                                            <p>Quelldaten dieser Webseite auf GitHub</p>
                                         </div>
                                     </div>
                                 </a>
