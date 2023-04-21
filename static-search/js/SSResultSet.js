@@ -34,7 +34,7 @@ class SSResultSet{
   *              feature and user configuration to turn it on.
   * @param {RegExp} reKwicTruncateStr A pre-constructed regular 
   *              expression that will remove leading and trailing 
-  *              ellipses (whatever form these take, configured by
+  *              ellipses (whatever form these take, cond by
   *              the user) from a KWIC form before using it to create
   *              a scroll-to-text-fragment link.
   */

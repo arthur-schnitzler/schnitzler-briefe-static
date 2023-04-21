@@ -13,16 +13,16 @@
     </doc>
     <xsl:template name="header-nav">
         <xsl:variable name="doc_title">
-            <xsl:value-of select=".//tei:title[@level = 'a'][1]/text()"/>
+            <xsl:value-of select="descendant::tei:titleSmt/tei:title[@level = 'a'][1]/text()"/>
         </xsl:variable>
         <xsl:variable name="prev">
             <xsl:value-of
-                select="concat(descendant::tei:correspDesc/tei:correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]/@target, '.html')"
+                select="concat(descendant::tei:correspDesc[1]/tei:correspContext[1]/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]/@target, '.html')"
             />
         </xsl:variable>
         <xsl:variable name="next">
             <xsl:value-of
-                select="concat(descendant::tei:correspDesc/tei:correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]/@target, '.html')"
+                select="concat(descendant::tei:correspDesc[1]/tei:correspContext[1]/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]/@target, '.html')"
             />
         </xsl:variable>
             <div class="row" id="title-nav">
