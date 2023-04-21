@@ -120,8 +120,7 @@
                                     <li class="nav-item dropdown-submenu">
                                         <a class="nav-link"
                                             href="https://hdl.handle.net/21.11115/0000-000E-7538-0"
-                                            target="_blank">Daten in der Langzeitarchivierung
-                                            ARCHE</a>
+                                            target="_blank">Langzeitarchivierte Daten (ARCHE)</a>
                                     </li>
                                 </ul>
                             </li>
