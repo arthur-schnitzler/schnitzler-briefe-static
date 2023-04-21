@@ -7,7 +7,7 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="partials/html_footer.xsl"/>
-        <xsl:import href="partials/shared.xsl"/>
+    <xsl:import href="partials/shared.xsl"/>
 
     <!--<xsl:import href="partials/tei-facsimile.xsl"/>-->
     <xsl:template match="/">
@@ -50,6 +50,11 @@
                 </div>
             </body>
         </html>
+    </xsl:template>
+    <xsl:template match="tei:p[@rend = 'center']">
+        <p align="center">
+            <xsl:apply-templates/>
+        </p>
     </xsl:template>
     <xsl:template match="tei:p">
         <p id="{generate-id()}">
@@ -109,8 +114,8 @@
             <xsl:apply-templates/>
         </h3>
     </xsl:template>
-    <xsl:template match="tei:note[@type='footnote']">
-        <xsl:if test="preceding-sibling::*[1][self::tei:note[@type='footnote']]">
+    <xsl:template match="tei:note[@type = 'footnote']">
+        <xsl:if test="preceding-sibling::*[1][self::tei:note[@type = 'footnote']]">
             <!-- Sonderregel für zwei Fußnoten in Folge -->
             <sup>
                 <xsl:text>,</xsl:text>
