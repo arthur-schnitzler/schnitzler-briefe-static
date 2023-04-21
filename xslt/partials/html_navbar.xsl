@@ -62,7 +62,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false"> Briefe </a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="toc.html">Briefe</a>
+                                    <a class="nav-link" href="toc.html">Alle Briefe</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="tocs.html">Korrespondenzen</a>
