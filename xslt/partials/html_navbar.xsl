@@ -50,7 +50,7 @@
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="gedruckte-korrespondenz.html"
-                                        >Korrespondenz-Bibliografie</a>
+                                        >Korrespondenzverzeichnisse</a>
                                 </li>
                             </ul>
                         </li>
