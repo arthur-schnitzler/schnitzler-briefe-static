@@ -431,7 +431,7 @@
                                                   <xsl:value-of select="child::tei:surname[1]"/>
                                                   </xsl:when>
                                                   <xsl:otherwise>
-                                                  <xsl:value-of select="."/>
+                                                  <xsl:value-of select="normalize-space(tei:persName)"/>
                                                   </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:variable>
