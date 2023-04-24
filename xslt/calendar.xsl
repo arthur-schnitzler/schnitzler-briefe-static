@@ -38,7 +38,7 @@
                                         data-bs-toggle="modal" data-target="#exampleModal"/>
                                 </a>
                                 <a style="padding-left:5px;" href="js-data/calendarData.js">
-                                    <i class="fas fa-download" title="Data"/>
+                                    <i class="fas fa-download" title="Kalenderdaten herunterladen"/>
                                 </a>
                             </div>
                             <div class="card-body containingloader">
