@@ -35,15 +35,15 @@
         <!-- BEINECKE -->
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Beinecke')]">
           <xsl:choose>
-            <xsl:when test="descendant::tei:pb/@facs[starts-with(., 'ASanRBH')]">
+            <xsl:when test="descendant::tei:pb[1]/@facs[starts-with(., 'ASanRBH')]">
               <xsl:text>Beinecke_ASanRBH</xsl:text>
             </xsl:when>
             <xsl:when
-              test="descendant::tei:pb/@facs[starts-with(., 'Foto-Innen')]">
+              test="descendant::tei:pb[1]/@facs[starts-with(., 'Foto-Innen')]">
               <xsl:text>Beinecke_RBH_Foto-Innen</xsl:text>
             </xsl:when>
             <xsl:when
-              test="descendant::tei:pb/@facs[starts-with(., 'undatiert')]">
+              test="descendant::tei:pb[1]/@facs[starts-with(., 'undatiert')]">
               <xsl:text>Beinecke_undatiert</xsl:text>
             </xsl:when>
           </xsl:choose>
