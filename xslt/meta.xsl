@@ -32,14 +32,14 @@
                             <div class="card-body-index">
                                 <xsl:apply-templates select=".//tei:body"/>
                             </div>
-                            <xsl:if test="descendant::tei:footNote">
+                            <xsl:if test="descendant::tei:note[@type='footnote']">
                                 <div class="card-body-index">
                                     <p/>
                                     <xsl:element name="ol">
                                         <xsl:attribute name="class">
-                                            <xsl:text>list-for-footnotes-meta</xsl:text>
+                                            <xsl:text>list-for-footnotes</xsl:text>
                                         </xsl:attribute>
-                                        <xsl:apply-templates select="descendant::tei:footNote"
+                                        <xsl:apply-templates select="descendant::tei:note[@type='footnote']"
                                             mode="footnote"/>
                                     </xsl:element>
                                 </div>
@@ -127,21 +127,21 @@
             </xsl:attribute>
             <xsl:attribute name="href">
                 <xsl:text>#footnote</xsl:text>
-                <xsl:number level="any" count="tei:footNote" format="1"/>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
             </xsl:attribute>
             <sup>
-                <xsl:number level="any" count="tei:footNote" format="1"/>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
             </sup>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:footNote" mode="footnote">
+    <xsl:template match="tei:note[@type='footnote']" mode="footnote">
         <xsl:element name="li">
             <xsl:attribute name="id">
                 <xsl:text>footnote</xsl:text>
-                <xsl:number level="any" count="tei:footNote" format="1"/>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
             </xsl:attribute>
             <sup>
-                <xsl:number level="any" count="tei:footNote" format="1"/>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
             </sup>
             <xsl:text> </xsl:text>
             <xsl:apply-templates/>
