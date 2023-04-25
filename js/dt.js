@@ -32,7 +32,7 @@ function createDataTable(containerElement, title) {
             {
                 extend: 'copyHtml5',
                 text: '<i class="far fa-copy"/>',
-                titleAttr: 'Kopieren',
+                titleAttr: 'Daten kopieren',
                 className: 'btn-link',
                 init: function (api, node, config) {
                     $(node).removeClass('btn-secondary')
@@ -41,7 +41,7 @@ function createDataTable(containerElement, title) {
             {
                 extend: 'excelHtml5',
                 text: '<i class="far fa-file-excel"/>',
-                titleAttr: 'Excel',
+                titleAttr: 'Daten als Excel-Tabelle herunterladen',
                 className: 'btn-link',
                 init: function (api, node, config) {
                     $(node).removeClass('btn-secondary')

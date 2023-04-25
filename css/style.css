@@ -308,6 +308,14 @@ div.dataTables_filter {
     font-size: larger; 
 }
 
+
+.card-body-normalertext {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #f1f1f1;
+    padding: 1.5rem 2.5rem;
+    }
+
 .card-header {
     background: white;
     border: 0;
@@ -916,4 +924,15 @@ nav {
 #wrapper-navbar {
     border-top-width: 0rem;
     border-top-color: #6c757d;
+}
+
+.editionText { 
+    margin: 0 !important;
+    line-height: 1.75; 
+    font-size: 1.3rem;
+    font-family:serif;
+    color:#000;
+    border :0px;
+    table-layout: fixed;
+    width: inherit !important;
 }
