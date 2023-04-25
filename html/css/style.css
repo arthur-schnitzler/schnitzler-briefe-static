@@ -936,3 +936,18 @@ nav {
     table-layout: fixed;
     width: inherit !important;
 }
+
+.pagebreak{
+    position: relative; bottom: -0.2em;
+    font-weight: bold; 
+   color:#A63437;
+}
+.list-for-footnotes {
+    color: black;
+    font-family: serif;
+    list-style-type: none;
+     padding-inline-start: 0em;
+}
+ol.list-for-footnotes p {
+    display: inline;
+}
