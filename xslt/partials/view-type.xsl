@@ -46,8 +46,10 @@
               test="descendant::tei:pb[1]/@facs[starts-with(., 'undatiert')]">
               <xsl:text>Beinecke_undatiert</xsl:text>
             </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="concat('Beinecke_', substring(descendant::tei:pb[1]/@facs, 1, 4))"/>
+            </xsl:otherwise>
           </xsl:choose>
-          <xsl:value-of select="concat('Beinecke_', substring(descendant::tei:pb[1]/@facs, 1, 4))"/>
         </xsl:when>
         <!-- BSB -->
         <xsl:when
