@@ -34,11 +34,9 @@
                                         <xsl:value-of select="$prev"/>
                                     </xsl:attribute>
                                     <xsl:attribute name="title">
-                                    <xsl:value-of select="document(concat($prev, '.xml'))/descendant::tei:titleStmt[1]/tei:title[@level='a'][1]"/>
-
-
+                                    <xsl:value-of select="document(concat('../', replace($prev, '.html', '.xml')))/descendant::tei:titleStmt[1]/tei:title[@level='a'][1]"/>
                                     </xsl:attribute>
-                                    <i class="fas fa-chevron-left" title="prev"/>
+                                    <i class="fas fa-chevron-left"/>
                                 </a>
                             </h1>
                         </xsl:if>
@@ -60,11 +58,9 @@
                                     <xsl:value-of select="$next"/>
                                 </xsl:attribute>
                                  <xsl:attribute name="title">
-                                    <xsl:value-of select="document(concat($next, '.xml'))/descendant::tei:titleStmt[1]/tei:title[@level='a'][1]"/>
-
-
+                                     <xsl:value-of select="document(concat('../', replace($next, '.html', '.xml')))/descendant::tei:titleStmt[1]/tei:title[@level='a'][1]"/>
                                     </xsl:attribute>
-                                <i class="fas fa-chevron-right" title="next"/>
+                                <i class="fas fa-chevron-right"/>
                             </a>
                         </h1>
                     </xsl:if>
