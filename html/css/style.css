@@ -951,3 +951,8 @@ nav {
 ol.list-for-footnotes p {
     display: inline;
 }
+
+.navbar-previous-next {
+    border-bottom: none;
+    box-shadow: none;
+}
