@@ -25,7 +25,9 @@
         </xsl:for-each-group>
     </xsl:function>-->
   <xsl:template name="mam:view-type-img">
-    <xsl:variable name="msIdentifier" select="ancestor::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[@n='1']/tei:msDesc[1]/tei:msIdentifier[1]" as="node()?"/>
+    <xsl:variable name="msIdentifier"
+      select="ancestor::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[@n = '1']/tei:msDesc[1]/tei:msIdentifier[1]"
+      as="node()?"/>
     <xsl:variable name="facs-folder" as="xs:string?">
       <xsl:choose>
         <!-- DRUCKE -->
@@ -38,22 +40,20 @@
             <xsl:when test="descendant::tei:pb[1]/@facs[starts-with(., 'ASanRBH')]">
               <xsl:text>Beinecke_ASanRBH</xsl:text>
             </xsl:when>
-            <xsl:when
-              test="descendant::tei:pb[1]/@facs[starts-with(., 'Foto-Innen')]">
+            <xsl:when test="descendant::tei:pb[1]/@facs[starts-with(., 'Foto-Innen')]">
               <xsl:text>Beinecke_RBH_Foto-Innen</xsl:text>
             </xsl:when>
-            <xsl:when
-              test="descendant::tei:pb[1]/@facs[starts-with(., 'undatiert')]">
+            <xsl:when test="descendant::tei:pb[1]/@facs[starts-with(., 'undatiert')]">
               <xsl:text>Beinecke_undatiert</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="concat('Beinecke_', substring(descendant::tei:pb[1]/@facs, 1, 4))"/>
+              <xsl:value-of
+                select="concat('Beinecke_', substring(descendant::tei:pb[1]/@facs, 1, 4))"/>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
         <!-- BSB -->
-        <xsl:when
-          test="$msIdentifier/tei:repository[contains(., 'Bayerische Staatsbibliothek')]">
+        <xsl:when test="$msIdentifier/tei:repository[contains(., 'Bayerische Staatsbibliothek')]">
           <xsl:text>BSB</xsl:text>
         </xsl:when>
         <!-- BURGERBIBLIOTHEK -->
@@ -65,9 +65,9 @@
         <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Cambridge')]">
           <xsl:variable name="Folder-Number">
             <xsl:choose>
-              <xsl:when test="descendant::tei:idno[contains(., 'B-')]">
+              <xsl:when test="descendant::tei:pb[1]/@facs[contains(., 'B-')]">
                 <xsl:value-of
-                  select="replace(tokenize(descendant::tei:idno/substring-after(., 'B-')[1], '-')[1], '^0+', '')"
+                  select="replace(tokenize(substring-after(descendant::tei:pb[1]/@facs, '-B-0')[1], '-')[1], '^0+', '')"
                 />
               </xsl:when>
               <xsl:otherwise>
@@ -91,7 +91,6 @@
         <xsl:when test="$msIdentifier/tei:settlement = 'Marbach am Neckar'">
           <xsl:value-of select="concat('DLA_', substring(descendant::tei:pb[1]/@facs, 1, 5))"/>
         </xsl:when>
-        
         <!-- HOCHSTIFT -->
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Hochstift')]">
           <xsl:text>Hochstift</xsl:text>
@@ -117,13 +116,11 @@
           <xsl:text>National_Library_Israel</xsl:text>
         </xsl:when>
         <!-- NDL KIEL -->
-        <xsl:when
-          test="$msIdentifier/tei:repository[contains(., 'Christian-Albrechts')]">
+        <xsl:when test="$msIdentifier/tei:repository[contains(., 'Christian-Albrechts')]">
           <xsl:text>NDL_Kiel</xsl:text>
         </xsl:when>
         <!-- ÖGL -->
-        <xsl:when
-          test="$msIdentifier/tei:repository[contains(., 'Gesellschaft für Literatur')]">
+        <xsl:when test="$msIdentifier/tei:repository[contains(., 'Gesellschaft für Literatur')]">
           <xsl:text>OGL</xsl:text>
         </xsl:when>
         <!-- ÖNB -->
@@ -140,8 +137,7 @@
           <xsl:text>Privatbesitz_Reinhard_Urbach</xsl:text>
         </xsl:when>
         <!-- SBB -->
-        <xsl:when
-          test="$msIdentifier/tei:repository[contains(., 'Staatsbibliothek Berlin')]">
+        <xsl:when test="$msIdentifier/tei:repository[contains(., 'Staatsbibliothek Berlin')]">
           <xsl:text>SBB</xsl:text>
         </xsl:when>
         <!-- SUB HAMBURG -->
@@ -220,7 +216,6 @@
                         select="distinct-values(descendant::tei:pb[not(starts-with(@facs, 'http') or starts-with(@facs, 'www.') or @facs = '' or empty(@facs)) and not(preceding-sibling::tei:tp/@facs = @facs) or (not(@facs))]/@facs)"
                       />
                     </xsl:variable>
-                    
                     <xsl:variable name="url-of-facsimile">
                       <xsl:for-each select="tokenize($facsimiles, ' ')">
                         <xsl:text>"https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/</xsl:text>
