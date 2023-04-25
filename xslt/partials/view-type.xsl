@@ -758,7 +758,9 @@
                                                   <xsl:text>WBR</xsl:text>
                                                 </xsl:when>
                                                 <!-- otherwise -->
-                                                <xsl:otherwise/>
+                                                <xsl:otherwise>
+                                                  <xsl:value-of select="descendant::tei:repository/replace(.,' ', '_')"/>
+                                                </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:variable>
                                         <xsl:variable name="url-of-facsimile">
@@ -815,8 +817,16 @@
                 </div>
             </xsl:when>
             <xsl:otherwise>
+              <div class="card-body">
                 <div class="card-body-normalertext">
                     <xsl:apply-templates select="//tei:text"/>
+                  <xsl:element name="ol">
+                    <xsl:attribute name="class">
+                      <xsl:text>list-for-footnotes</xsl:text>
+                    </xsl:attribute>
+                    <xsl:apply-templates select="//tei:note[@type='footnote']" mode="footnote"/>
+                  </xsl:element>
+                </div>
                 </div>
             </xsl:otherwise>
         </xsl:choose>

@@ -900,9 +900,8 @@
         <!--</abbr>-->
     </xsl:template>
     <xsl:template match="tei:div[not(@type = 'address')]">
-        <div class="div">
             <xsl:apply-templates/>
-        </div>
+        
     </xsl:template>
     <xsl:template match="tei:div[@type = 'address']">
         <div class="address-div">
@@ -1074,7 +1073,7 @@
         match="tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(ancestor::tei:footNote) and not(ancestor::tei:caption) and not(parent::tei:bibl) and not(parent::tei:quote) and not(child::tei:space[@dim])] | tei:dateline | tei:closer">
         <xsl:choose>
             <xsl:when test="child::tei:seg">
-                <div class="">
+                <div class="editionText">
                     <span class="seg-left">
                         <xsl:apply-templates select="tei:seg[@rend = 'left']"/>
                     </span>
@@ -1085,27 +1084,27 @@
                 </div>
             </xsl:when>
             <xsl:when test="@rend = 'right'">
-                <div align="right" class="">
+                <div align="right" class="editionText">
                     <xsl:apply-templates/>
                 </div>
             </xsl:when>
             <xsl:when test="@rend = 'left'">
-                <div align="left" class="">
+                <div align="left" class="editionText">
                     <xsl:apply-templates/>
                 </div>
             </xsl:when>
             <xsl:when test="@rend = 'center'">
-                <div align="center" class="">
+                <div align="center" class="editionText">
                     <xsl:apply-templates/>
                 </div>
             </xsl:when>
             <xsl:when test="@rend = 'inline'">
-                <div class="inline ">
+                <div class="inline editionText">
                     <xsl:apply-templates/>
                 </div>
             </xsl:when>
             <xsl:otherwise>
-                <div class="">
+                <div class="editionText">
                     <xsl:apply-templates/>
                 </div>
             </xsl:otherwise>
@@ -1239,7 +1238,7 @@
         </span>
     </xsl:template>
     <xsl:template match="tei:salute[parent::tei:opener]">
-        <p class="salute">
+        <p class="salute editionText">
             <xsl:apply-templates/>
         </p>
     </xsl:template>
@@ -1247,7 +1246,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:signed">
-        <div class="signed ">
+        <div class="signed editionText">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
@@ -1303,4 +1302,41 @@
         </xsl:if>
     </xsl:function>
     <xsl:strip-space elements="tei:quote"/>
+
+<xsl:template match="tei:note[@type='footnote']">
+        <xsl:if test="preceding-sibling::*[1][name() = 'note' and @type='footnote']">
+            <!-- Sonderregel für zwei Fußnoten in Folge -->
+            <sup>
+                <xsl:text>,</xsl:text>
+            </sup>
+        </xsl:if>
+        <xsl:element name="a">
+            <xsl:attribute name="class">
+                <xsl:text>reference-black</xsl:text>
+            </xsl:attribute>
+            <xsl:attribute name="href">
+                <xsl:text>#footnote</xsl:text>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+            </xsl:attribute>
+            <sup>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+            </sup>
+        </xsl:element>
+    </xsl:template>
+
+
+<xsl:template match="tei:note[@type='footnote']" mode="footnote">
+        <xsl:element name="li">
+            <xsl:attribute name="id">
+                <xsl:text>footnote</xsl:text>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+            </xsl:attribute>
+            <sup>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+            </sup>
+            <xsl:text> </xsl:text>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+
 </xsl:stylesheet>
