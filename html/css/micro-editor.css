@@ -90,9 +90,9 @@ input:checked + .i-slider:before {
 .whitespace {
 }
 
-.underline {
+/*  .underline {
   text-decoration: underline;
-}
+} */
 
 .italic {
   font-style: italic;
