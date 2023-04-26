@@ -3,7 +3,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
     <xsl:template match="/" name="nav_bar">
-        <nav class="navbar navbar-expand-md" style="height: 100px;">
+        <nav class="navbar navbar-expand-md" style="height: 1">
             <div class="container-fluid">
                 <a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url">
                     <img src="{$project_logo}" class="img-fluid" title="{$project_short_title}"
@@ -11,7 +11,7 @@
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    aria-label="Toggle navigation" style="border: none;">
                     <span class="navbar-toggler-icon"/>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
