@@ -8,7 +8,6 @@
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="partials/html_footer.xsl"/>
     <xsl:import href="partials/shared.xsl"/>
-
     <!--<xsl:import href="partials/tei-facsimile.xsl"/>-->
     <xsl:template match="/">
         <xsl:variable name="doc_title">
@@ -32,14 +31,16 @@
                             <div class="card-body-index">
                                 <xsl:apply-templates select=".//tei:body"/>
                             </div>
-                            <xsl:if test="descendant::tei:note[@type='footnote']">
+                            <xsl:if test="descendant::tei:note[@type = 'footnote']">
                                 <div class="card-body-index">
                                     <p/>
+                                    <h3>Fussnoten</h3>
                                     <xsl:element name="ol">
                                         <xsl:attribute name="class">
-                                            <xsl:text>list-for-footnotes</xsl:text>
+                                            <xsl:text>list-for-footnotes-meta</xsl:text>
                                         </xsl:attribute>
-                                        <xsl:apply-templates select="descendant::tei:note[@type='footnote']"
+                                        <xsl:apply-templates
+                                            select="descendant::tei:note[@type = 'footnote']"
                                             mode="footnote"/>
                                     </xsl:element>
                                 </div>
@@ -115,37 +116,67 @@
         </h3>
     </xsl:template>
     <xsl:template match="tei:note[@type = 'footnote']">
-        <xsl:if test="preceding-sibling::*[1][self::tei:note[@type = 'footnote']]">
-            <!-- Sonderregel für zwei Fußnoten in Folge -->
+        <!--<xsl:if test="preceding-sibling::*[1][self::tei:note and @type = 'footnote']">
+            <!-\- Sonderregel für zwei Fußnoten in Folge -\->
             <sup>
                 <xsl:text>,</xsl:text>
             </sup>
-        </xsl:if>
+        </xsl:if>-->
+        <xsl:variable name="fussnotennummer">
+            <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
+        </xsl:variable>
         <xsl:element name="a">
             <xsl:attribute name="class">
                 <xsl:text>reference-black</xsl:text>
             </xsl:attribute>
             <xsl:attribute name="href">
-                <xsl:text>#footnote</xsl:text>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+                <xsl:value-of select="concat('#footnote', $fussnotennummer)"/>
             </xsl:attribute>
             <sup>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+                <xsl:attribute name="id">
+                    <xsl:value-of select="concat('fussnote-im-text', $fussnotennummer)"/>
+                </xsl:attribute>
+                <xsl:value-of select="$fussnotennummer"/>
             </sup>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:note[@type='footnote']" mode="footnote">
+    <xsl:template match="tei:note[@type = 'footnote']" mode="footnote">
+        <xsl:variable name="fussnotennummer" as="xs:integer">
+            <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
+        </xsl:variable>
         <xsl:element name="li">
             <xsl:attribute name="id">
+                <xsl:value-of select="concat('footnote', $fussnotennummer)"/>
+            </xsl:attribute>
+            <xsl:attribute name="class">
                 <xsl:text>footnote</xsl:text>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
             </xsl:attribute>
             <sup>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+                <xsl:element name="a">
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="concat('#fussnote-im-text', $fussnotennummer)"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="$fussnotennummer"/>
+                </xsl:element>
             </sup>
             <xsl:text> </xsl:text>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="footnote"/>
         </xsl:element>
+    </xsl:template>
+    <xsl:template match="tei:p" mode="footnote">
+        <xsl:choose>
+            <xsl:when test="not(preceding-sibling::*[1][self::tei:p])">
+                <xsl:apply-templates mode="footnote"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <p>
+                    <xsl:apply-templates mode="footnote"/>
+                </p>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:bibl" mode="footnote">
+        <xsl:value-of select="."/>
     </xsl:template>
     <xsl:template match="tei:ref">
         <xsl:element name="a">

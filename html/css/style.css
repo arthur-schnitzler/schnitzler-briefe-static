@@ -948,8 +948,18 @@ nav {
     list-style-type: none;
      padding-inline-start: 0em;
 }
+
+.list-for-footnotes-meta {
+    color: black;
+    font-family: sans-serif;
+    list-style-type: none;
+    padding-inline-start: 0em;
+}
 ol.list-for-footnotes p {
     display: inline;
+}
+.footnote {
+    font-size: smaller;
 }
 
 .navbar-previous-next {

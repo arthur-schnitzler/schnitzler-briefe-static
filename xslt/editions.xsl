@@ -1048,24 +1048,44 @@
         </ul>
     </xsl:template>
     <!--    footnotes -->
-    <xsl:template match="tei:note[@type = 'footnote']">
+   
+<xsl:template match="tei:note[@type='footnote']">
+        <xsl:if test="preceding-sibling::*[1][name() = 'note' and @type='footnote']">
+            <!-- Sonderregel für zwei Fußnoten in Folge -->
+            <sup>
+                <xsl:text>,</xsl:text>
+            </sup>
+        </xsl:if>
         <xsl:element name="a">
-            <xsl:attribute name="name">
-                <xsl:text>fna_</xsl:text>
-                <xsl:number level="any" format="1" count="tei:note[@type = 'footnote']"/>
+            <xsl:attribute name="class">
+                <xsl:text>reference-black</xsl:text>
             </xsl:attribute>
             <xsl:attribute name="href">
-                <xsl:text>#fn</xsl:text>
-                <xsl:number level="any" format="1" count="tei:note[@type = 'footnote']"/>
-            </xsl:attribute>
-            <xsl:attribute name="title">
-                <xsl:value-of select="normalize-space(.)"/>
+                <xsl:text>#footnote</xsl:text>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
             </xsl:attribute>
             <sup>
-                <xsl:number level="any" format="1" count="tei:note[@type = 'footnote'][./tei:p]"/>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
             </sup>
         </xsl:element>
     </xsl:template>
+
+
+<xsl:template match="tei:note[@type='footnote']" mode="footnote">
+        <xsl:element name="li">
+            <xsl:attribute name="id">
+                <xsl:text>footnote</xsl:text>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+            </xsl:attribute>
+            <sup>
+                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+            </sup>
+            <xsl:text> </xsl:text>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+
+
     <xsl:template match="tei:opener">
         <div class="opener">
             <xsl:apply-templates/>
@@ -1323,41 +1343,7 @@
     </xsl:function>
     <xsl:strip-space elements="tei:quote"/>
 
-<xsl:template match="tei:note[@type='footnote']">
-        <xsl:if test="preceding-sibling::*[1][name() = 'note' and @type='footnote']">
-            <!-- Sonderregel für zwei Fußnoten in Folge -->
-            <sup>
-                <xsl:text>,</xsl:text>
-            </sup>
-        </xsl:if>
-        <xsl:element name="a">
-            <xsl:attribute name="class">
-                <xsl:text>reference-black</xsl:text>
-            </xsl:attribute>
-            <xsl:attribute name="href">
-                <xsl:text>#footnote</xsl:text>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
-            </xsl:attribute>
-            <sup>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
-            </sup>
-        </xsl:element>
-    </xsl:template>
 
-
-<xsl:template match="tei:note[@type='footnote']" mode="footnote">
-        <xsl:element name="li">
-            <xsl:attribute name="id">
-                <xsl:text>footnote</xsl:text>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
-            </xsl:attribute>
-            <sup>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
-            </sup>
-            <xsl:text> </xsl:text>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
 
     <xsl:template match="tei:pb">
         <xsl:choose>
