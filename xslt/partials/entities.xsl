@@ -148,13 +148,13 @@
             <div class="werke">
                 <xsl:variable name="author-ref"
                     select="replace(replace(@xml:id, 'person__', ''), 'pmb', '')"/>
-                <xsl:if test="key('authorwork-lookup', $author-ref, $works)[1]">
-                    <span class="infodesc mr-2">
-                        <legend>Werke</legend>
-                    </span>
-                </xsl:if>
-                <p/>
+                
                 <ul class="dashed">
+                    <xsl:if test="key('authorwork-lookup', $author-ref, $works)[1]">
+                        <span class="infodesc mr-2">
+                            <legend>Werke</legend>
+                        </span>
+                    </xsl:if>
                     <xsl:for-each select="key('authorwork-lookup', $author-ref, $works)">
                         <li>
                             <xsl:if test="@role = 'editor' or @role = 'hat-herausgegeben'">
@@ -278,8 +278,9 @@
             </div>
             <div id="mentions" class="mt-2">
                 <span class="infodesc mr-2">
-                    <legend>Erwähnungen</legend>
+                    
                     <ul>
+                        <legend>Erwähnungen</legend>
                         <xsl:for-each select=".//tei:note[@type = 'mentions']">
                             <xsl:variable name="linkToDocument">
                                 <xsl:value-of
@@ -521,7 +522,9 @@
                 <div id="erscheinungsdatum" class="mt-2">
                     <p>
                         <xsl:if test="tei:date[1]">
-                            <legend>Erschienen</legend>
+                            <ul>
+                                <legend>Erschienen</legend>
+                                <li>
                             <xsl:choose>
                                 <xsl:when test="contains(tei:date[1], '-')">
                                     <xsl:choose>
@@ -545,6 +548,7 @@
                             <xsl:if test="not(ends-with(tei:date[1], '.'))">
                                 <xsl:text>.</xsl:text>
                             </xsl:if>
+                                </li></ul>
                         </xsl:if>
                     </p>
                 </div>
@@ -661,8 +665,9 @@
                     <div class="card"> </div>
                 </xsl:if>
                 <xsl:if test="count(.//tei:placeName[contains(@type, 'namensvariante')]) gt 1">
-                    <legend>Namensvarianten</legend>
+                    
                     <ul>
+                        <legend>Namensvarianten</legend>
                         <xsl:for-each select=".//tei:placeName[contains(@type, 'namensvariante')]">
                             <li>
                                 <xsl:value-of select="./text()"/>
@@ -672,8 +677,9 @@
                 </xsl:if>
                 <div id="mentions" class="mt-2">
                     <span class="infodesc mr-2">
-                        <legend>Erwähnungen</legend>
+                        
                         <ul>
+                            <legend>Erwähnungen</legend>
                             <xsl:for-each select=".//tei:note[@type = 'mentions']">
                                 <xsl:variable name="linkToDocument">
                                     <xsl:value-of
@@ -750,8 +756,10 @@
             </xsl:if>
             <xsl:if test="tei:location">
                 <div>
-                    <legend>Orte</legend>
-                    <p>
+                    
+                    <ul>
+                        <legend>Orte</legend>
+                        <li>
                         <xsl:for-each
                             select="tei:location/tei:placeName[not(. = preceding-sibling::tei:placeName)]">
                             <xsl:variable name="key-or-ref" as="xs:string?">
@@ -775,14 +783,15 @@
                             <xsl:if test="not(position() = last())">
                                 <xsl:text>, </xsl:text>
                             </xsl:if>
-                        </xsl:for-each>
-                    </p>
+                        </xsl:for-each></li>
+                    </ul>
                 </div>
             </xsl:if>
             <div id="mentions" class="mt-2">
                 <span class="infodesc mr-2">
-                    <legend>Erwähnungen</legend>
+                    
                     <ul>
+                        <legend>Erwähnungen</legend>
                         <xsl:for-each select=".//tei:note[@type = 'mentions']">
                             <xsl:variable name="linkToDocument">
                                 <xsl:value-of
