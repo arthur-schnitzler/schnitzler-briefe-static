@@ -282,6 +282,7 @@
                     <ul>
                         <legend>Erwähnungen</legend>
                         <xsl:for-each select=".//tei:note[@type = 'mentions']">
+                            <xsl:sort select="replace(@corresp,'-','')" order="ascending" data-type="number"/>
                             <xsl:variable name="linkToDocument">
                                 <xsl:value-of
                                     select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"
@@ -584,9 +585,11 @@
             </xsl:if>
             <div id="mentions" class="mt-2">
                 <span class="infodesc mr-2">
-                    <legend>Erwähnungen</legend>
-                    <ul>
+                    
+                    <ul><legend>Erwähnungen</legend>
+                        
                         <xsl:for-each select=".//tei:note[@type = 'mentions']">
+                            <xsl:sort select="replace(@corresp,'-','')" order="ascending" data-type="number"/>
                             <xsl:variable name="linkToDocument">
                                 <xsl:value-of
                                     select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"
@@ -681,6 +684,7 @@
                         <ul>
                             <legend>Erwähnungen</legend>
                             <xsl:for-each select=".//tei:note[@type = 'mentions']">
+                                <xsl:sort select="replace(@corresp,'-','')" order="ascending" data-type="number"/>
                                 <xsl:variable name="linkToDocument">
                                     <xsl:value-of
                                         select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"
@@ -793,6 +797,7 @@
                     <ul>
                         <legend>Erwähnungen</legend>
                         <xsl:for-each select=".//tei:note[@type = 'mentions']">
+                            <xsl:sort select="replace(@corresp,'-','')" order="ascending" data-type="number"/>
                             <xsl:variable name="linkToDocument">
                                 <xsl:value-of
                                     select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"
