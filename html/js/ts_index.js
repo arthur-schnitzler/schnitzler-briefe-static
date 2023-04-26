@@ -41,7 +41,6 @@ search.addWidgets([
           item: `
               <h4><a href="{{ id }}.html">{{ title }}</a></h4>
               <p>{{#helpers.snippet}}{ "attribute": "full_text" }{{/helpers.snippet}}</p>
-              <h5><span class="badge bg-warning">{{ project }}</span></h5>
               <div>
               {{#persons}}
               <span class="badge bg-primary">{{ . }}</span>
@@ -61,6 +60,8 @@ search.addWidgets([
               {{/orgs}}
               </div>
               </div>
+              <h5><span class="badge bg-warning">{{ project }}</span></h5>
+
           `
       }
     }),
