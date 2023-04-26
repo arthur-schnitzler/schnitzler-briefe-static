@@ -3,56 +3,37 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:mam="whatever" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     exclude-result-prefixes="xsl tei xs" version="3.0">
-    <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
-        <desc>
-            <h1>Widget add_header-navigation-custom-title.</h1>
-            <p>Contact person: daniel.stoxreiter@oeaw.ac.at</p>
-            <p>Applied in html:body.</p>
-            <p>The template "add_header-navigation-custom-title" creates a custom header without
-                using tei:title but includes prev and next urls.</p>
-        </desc>
-    </doc>
+    <!-- The template "add_header-navigation-custom-title" creates a custom header without
+                using tei:title but includes prev and next urls. -->
     <xsl:template name="header-nav">
         <xsl:variable name="doc_title">
             <xsl:value-of select="descendant::tei:titleSmt/tei:title[@level = 'a'][1]/text()"/>
         </xsl:variable>
-        <xsl:variable name="prev">
-            <xsl:value-of
-                select="concat(descendant::tei:correspDesc[1]/tei:correspContext[1]/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]/@target, '.html')"
-            />
-        </xsl:variable>
-        <xsl:variable name="next">
-            <xsl:value-of
-                select="concat(descendant::tei:correspDesc[1]/tei:correspContext[1]/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]/@target, '.html')"
-            />
-        </xsl:variable>
+        <xsl:variable name="correspContext" as="node()?" select="descendant::tei:correspDesc[1]/tei:correspContext"/>
         <div class="row" id="title-nav">
             <div class="col-md-2 col-lg-2 col-sm-12">
-                <xsl:if test="ends-with($prev, '.html')">
+                <xsl:if test="$correspContext/tei:ref/@subtype='previous_letter'">
                     <h1>
                         <nav class="navbar navbar-previous-next">
-                            <i class="fas fa-chevron-left nav-link" href="#"
-                                id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            <i class="fas fa-chevron-left nav-link float-start" href="#"
+                                id="navbarDropdownLeft" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false"/>
-                            <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                </a>-->
                             <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
                                 <xsl:if
-                                    test="descendant::tei:correspDesc[1]/tei:correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]">
+                                    test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]">
                                     <span class="dropdown-item-text">In der Sammlung </span>
                                     <xsl:for-each
-                                        select="descendant::tei:correspDesc[1]/tei:correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter']">
+                                        select="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
                                             <xsl:with-param name="eintrag" select="."/>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:if>
                                 <xsl:if
-                                    test="descendant::tei:correspDesc[1]/tei:correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter'][1]">
+                                    test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter'][1]">
                                     <span class="dropdown-item-text">In der Korrespondenz</span>
                                     <xsl:for-each
-                                        select="descendant::tei:correspDesc[1]/tei:correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter']">
+                                        select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
                                             <xsl:with-param name="eintrag" select="."/>
                                         </xsl:call-template>
@@ -69,32 +50,28 @@
                 </h1>
             </div>
             <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right">
-                <xsl:if test="ends-with($next, '.html')">
+                <xsl:if test="$correspContext/tei:ref/@subtype='next_letter'">
                     <h1>
-                        <nav class="navbar navbar-previous-next">
-                            <span style="position: absolute;
-                                left: 80%;"><i class="fas fa-chevron-right nav-link" href="#"
-                                id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false"/></span>
-                            <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                </a>-->
+                        <nav class="navbar navbar-previous-next float-end">
+                            <i class="fas fa-chevron-right nav-link" href="#"
+                                id="navbarDropdownRight" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"/>
                             <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
                                 <xsl:if
-                                    test="descendant::tei:correspDesc[1]/tei:correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]">
+                                    test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]">
                                     <span class="dropdown-item-text">In der Sammlung </span>
                                     <xsl:for-each
-                                        select="descendant::tei:correspDesc[1]/tei:correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter']">
+                                        select="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
                                             <xsl:with-param name="eintrag" select="."/>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:if>
                                 <xsl:if
-                                    test="descendant::tei:correspDesc[1]/tei:correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter'][1]">
+                                    test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter'][1]">
                                     <span class="dropdown-item-text">In der Korrespondenz</span>
                                     <xsl:for-each
-                                        select="descendant::tei:correspDesc[1]/tei:correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter']">
+                                        select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
                                             <xsl:with-param name="eintrag" select="."/>
                                         </xsl:call-template>
