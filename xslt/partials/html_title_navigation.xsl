@@ -14,7 +14,7 @@
             <div class="col-md-2 col-lg-2 col-sm-12">
                 <xsl:if test="$correspContext/tei:ref/@subtype='previous_letter'">
                     <h1>
-                        <nav class="navbar navbar-previous-next">
+                        <nav class="navbar navbar-previous-next" style="text-indent: 1em;">
                             <i class="fas fa-chevron-left nav-link float-start" href="#"
                                 id="navbarDropdownLeft" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false"/>
