@@ -21,7 +21,7 @@
                             <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
                                 <xsl:if
                                     test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]">
-                                    <span class="dropdown-item-text">In der Sammlung </span>
+                                    <span class="dropdown-item-text">Nächster Brief </span>
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
@@ -31,7 +31,7 @@
                                 </xsl:if>
                                 <xsl:if
                                     test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter'][1]">
-                                    <span class="dropdown-item-text">In der Korrespondenz</span>
+                                    <span class="dropdown-item-text">… in der Korrespondenz</span>
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
@@ -52,14 +52,14 @@
             <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right">
                 <xsl:if test="$correspContext/tei:ref/@subtype='next_letter'">
                     <h1>
-                        <nav class="navbar navbar-previous-next float-end">
+                        <nav class="navbar navbar-previous-next float-end dropstart">
                             <i class="fas fa-chevron-right nav-link" href="#"
                                 id="navbarDropdownRight" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false"/>
-                            <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <xsl:if
                                     test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]">
-                                    <span class="dropdown-item-text">In der Sammlung </span>
+                                    <span class="dropdown-item-text">Nächster Brief </span>
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
@@ -69,7 +69,7 @@
                                 </xsl:if>
                                 <xsl:if
                                     test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter'][1]">
-                                    <span class="dropdown-item-text">In der Korrespondenz</span>
+                                    <span class="dropdown-item-text">… in der Korrespondenz</span>
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
@@ -91,7 +91,7 @@
                 <xsl:attribute name="class">
                     <xsl:text>dropdown-item</xsl:text>
                 </xsl:attribute>
-                <xsl:attribute name="target">
+                <xsl:attribute name="href">
                     <xsl:value-of select="concat($eintrag/@target, '.html')"/>
                 </xsl:attribute>
                 <xsl:choose>
