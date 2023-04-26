@@ -648,22 +648,24 @@
                 <div class="modal fade" id="tagfuertag" tabindex="-1"
                     aria-labelledby="downloadModalLabel2" aria-hidden="true">
                     <xsl:variable name="datum">
+                       
+                        <xsl:variable name="date" select="descendant::tei:correspDesc/tei:correspAction[@type = 'sent'][1]/tei:date" as="node()?"/>
                         <xsl:choose>
                             <xsl:when
-                                test="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@when">
+                                test="$date/@when">
                                 <xsl:value-of
-                                    select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@when"
+                                    select="$date/@when"
                                 />
                             </xsl:when>
                             <xsl:when
-                                test="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notBefore">
+                                test="$date/@notBefore">
                                 <xsl:value-of
-                                    select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notBefore"
+                                    select="$date/@notBefore"
                                 />
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of
-                                    select="//tei:correspDesc/tei:correspAction[@type = 'sent']/tei:date/@notAfter"
+                                    select="$date/@notAfter"
                                 />
                             </xsl:otherwise>
                         </xsl:choose>
@@ -1204,10 +1206,28 @@
             <xsl:attribute name="class">
                 <xsl:value-of select="$entity-typ"/>
             </xsl:attribute>
+            
             <xsl:element name="a">
                 <xsl:attribute name="href">
                     <xsl:value-of select="concat(replace(@ref, '#', ''), '.html')"/>
                 </xsl:attribute>
+                <xsl:choose>
+                    <xsl:when test="ancestor::tei:hi[@rend='pre-print']">
+                        <xsl:attribute name="class">
+                            <xsl:text>pre-print</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                    <xsl:when test="ancestor::tei:hi[@rend='stamp']">
+                        <xsl:attribute name="class">
+                            <xsl:text>stamp</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                    <xsl:when test="ancestor::tei:damage">
+                        <xsl:attribute name="class">
+                            <xsl:text>damage</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                </xsl:choose>
                 <xsl:apply-templates/>
             </xsl:element>
         </span>
