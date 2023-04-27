@@ -583,6 +583,11 @@ high resolution or tablet regular resolution
     li a br {
         display: block !important;
     }
+
+    .card-footer {
+        padding-left: 0em;
+        padding-right: 0em;
+    }
 /* 
 #########################################
 add rules for smallest smartphones 
@@ -966,3 +971,31 @@ ol.list-for-footnotes p {
     border-bottom: none;
     box-shadow: none;
 }
+
+table {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.table td {
+    padding:0.3rem;
+    border-bottom-width: none;
+
+}
+
+tbody {
+    border-color: none;
+    border-style: none;
+}
+
+
+.tripleUnderline {
+	border-bottom: 3px double;
+	line-height: 1.9em;
+}
+
+.doubleUnderline {
+    text-decoration:underline;
+    border-bottom: 1px solid #000;
+}
+
