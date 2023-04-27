@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
    <teiHeader>
       <fileDesc>
@@ -1849,7 +1848,7 @@
                   <bibl type="collections" n="1">ASBW</bibl>
                   <bibl type="collections" n="2">Erster Import</bibl>
                </listBibl>
-            </org>
+            <note target="L00003.xml" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00002.xml" type="mentions">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</note><note target="L00002.xml" type="mentions" corresp="1890-09-01">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</note><note target="L00003.xml" type="mentions" corresp="1890-09-01">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00002.xml" type="mentions" corresp="1890-09-01">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</note><note target="L00003.xml" type="mentions" corresp="1890-09-01">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00002.xml" type="mentions">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</note><note target="L00003.xml" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00002.xml" type="mentions">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</note><note target="L00002.xml" type="mentions" corresp="['1890-01-31']">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</note><note target="L00003.xml" type="mentions" corresp="['1890-05-22']">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" corresp="['1890-05-22']" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00002.xml" corresp="['1890-01-31']" type="mentions">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</note><note target="L00003.xml" corresp="[]" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00002.xml" corresp="[]" type="mentions">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</note><note target="L00002.xml" corresp="1890-01-31" type="mentions">Jaques Joachim an Arthur Schnitzler, 31. 1. 1890</note><note target="L00003.xml" corresp="1890-05-22" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note></org>
             <org xml:id="pmb29421">
                <orgName>Österreichische Volks-Zeitung</orgName>
                <desc type="entity_type">Tageszeitungsredaktion</desc>
@@ -1972,7 +1971,7 @@
                <note type="apis_dates">
                   <date to-iso="1943-01-01">1856  – 1943</date>
                </note>
-            </org>
+            <note target="L00001.xml" type="mentions">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</note><note target="L00001.xml" type="mentions" corresp="1890-09-01">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</note><note target="L00001.xml" type="mentions" corresp="1890-09-01">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</note><note target="L00001.xml" type="mentions">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</note><note target="L00001.xml" type="mentions">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</note><note target="L00001.xml" type="mentions" corresp="['1889-08-02']">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</note><note target="L00001.xml" corresp="['1889-08-02']" type="mentions">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</note><note target="L00001.xml" corresp="[]" type="mentions">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</note><note target="L00001.xml" corresp="1889-08-02" type="mentions">Fedor Mamroth an Arthur Schnitzler, 2. 8. 1889</note></org>
             <org xml:id="pmb29444">
                <orgName>Raimund-Preis</orgName>
                <desc type="entity_type">Literaturpreis</desc>
@@ -4268,7 +4267,7 @@
                <note type="apis_dates">
                   <date notBefore-iso="1886-01-01" when-iso="1886-07-02">1886</date>
                </note>
-            </org>
+            <note target="L00004.xml" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</note><note target="L00004.xml" type="mentions" corresp="1890-09-01">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</note><note target="L00004.xml" type="mentions" corresp="1890-09-01">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</note><note target="L00004.xml" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</note><note target="L00004.xml" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</note><note target="L00004.xml" type="mentions" corresp="['1890-09-17']">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</note><note target="L00004.xml" corresp="['1890-09-17']" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</note><note target="L00004.xml" corresp="[]" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</note><note target="L00004.xml" corresp="1890-09-17" type="mentions">Wilhelm Bölsche an Arthur Schnitzler, 17. 9. 1890</note></org>
             <org xml:id="pmb29644">
                <orgName>Arbeiter-Zeitung</orgName>
                <orgName type="werk_link-anno">http://anno.onb.ac.at/info/aze_info.htm</orgName>
@@ -8228,7 +8227,7 @@
                <note type="apis_dates">
                   <date when-iso="1884-07-01" notAfter-iso="1884-12-31">1884</date>
                </note>
-            </org>
+            <note target="L00003.xml" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" type="mentions" corresp="1890-09-01">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" type="mentions" corresp="1890-09-01">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" type="mentions" corresp="['1890-05-22']">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" corresp="['1890-05-22']" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" corresp="[]" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note><note target="L00003.xml" corresp="1890-05-22" type="mentions">Michael Konstantin an Arthur Schnitzler, 22. 5. 1890</note></org>
             <org xml:id="pmb41793">
                <orgName>Dr. A. Gude GmbH.</orgName>
                <desc type="entity_type">Pharmahersteller</desc>

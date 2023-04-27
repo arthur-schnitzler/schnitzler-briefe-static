@@ -10,7 +10,7 @@
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
     <xsl:template match="/">
-        <xsl:variable name="doc_title" select="'Verzeichnis erwähnter Orte'"/>
+        <xsl:variable name="doc_title" select="'Erwähnte Orte'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
         <html lang="de">
             <xsl:call-template name="html_head">
@@ -26,7 +26,48 @@
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
                             </div>
-                            
+                            <div class="card-body">
+                                <table class="table table-striped display" id="tocTable"
+                                    style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Ortsname</th>
+                                            <th scope="col">Längen-/Breitengrad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <xsl:for-each select="descendant::tei:place">
+                                            <xsl:variable name="id">
+                                                <xsl:value-of select="data(@xml:id)"/>
+                                            </xsl:variable>
+                                            <tr>
+                                                <td>
+                                                    <a>
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of select="concat($id, '.html')"/>
+                                                        </xsl:attribute>
+                                                        <xsl:value-of
+                                                            select="descendant::tei:placeName[1]/text()"/>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <xsl:if test="descendant::tei:geo[1]">
+                                                        <xsl:variable name="lat"
+                                                            select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"
+                                                            as="xs:string"/>
+                                                        <xsl:variable name="long"
+                                                            select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"
+                                                            as="xs:string"/>
+                                                        <xsl:value-of
+                                                            select="concat(foo:grad-kuerzen($lat), '/', foo:grad-kuerzen($long))"
+                                                        />
+                                                    </xsl:if>
+                                                </td>
+                                            </tr>
+                                        </xsl:for-each>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>

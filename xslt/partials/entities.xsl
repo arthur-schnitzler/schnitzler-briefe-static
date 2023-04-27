@@ -261,7 +261,7 @@
                                 </xsl:choose>
                                 <xsl:text>)</xsl:text>
                             </xsl:if>
-                            <xsl:text> </xsl:text>
+                            <!--<xsl:text> </xsl:text>
                             <xsl:variable name="idnos-of-current" as="node()">
                                 <xsl:element name="nodeset_person">
                                     <xsl:for-each select="tei:idno">
@@ -271,7 +271,7 @@
                             </xsl:variable>
                             <xsl:call-template name="mam:idnosToLinks">
                                 <xsl:with-param name="idnos-of-current" select="$idnos-of-current"/>
-                            </xsl:call-template>
+                            </xsl:call-template>-->
                         </li>
                     </xsl:for-each>
                 </ul>
