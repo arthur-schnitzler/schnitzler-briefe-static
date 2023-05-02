@@ -7,7 +7,7 @@ function appendData(data, filename) {
     for (let i in data) {
         
         // If the current object's filename property doesn't match the filename parameter, continue to the next object
-        if (filename != data[i].filename) {
+        if (filename != data[i].filename || data[i].filename === undefined) {
             
             // Create a new div element
             let div = document.createElement("div");
