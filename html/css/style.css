@@ -999,3 +999,14 @@ tbody {
     border-bottom: 1px solid #000;
 }
 
+.damage-critical{
+    border-style: none;
+  border-bottom-style: solid;
+  border-color: #F18F01;
+  }
+  
+  .damage{
+    border-style: none;
+  }
+  
+

@@ -777,6 +777,31 @@
             </div>
         </div>
     </xsl:template>
+    <xsl:template match="tei:hi">
+        <xsl:element name="span">
+            <xsl:attribute name="class">
+                <xsl:choose>
+                    <xsl:when test="@rend = 'underline'">
+                        <xsl:choose>
+                            <xsl:when test="@n = '1'">
+                                <xsl:text>underline</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@n = '2'">
+                                <xsl:text>doubleUnderline</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>tripleUnderline</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="@rend"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
     <!-- <xsl:template match="tei:rs[@ref or @key]">
         <strong>
             <xsl:element name="a">
@@ -788,4 +813,10 @@
             </xsl:element>
         </strong>
     </xsl:template> -->
+    
+    <xsl:template match="tei:damage">
+        <span class="damage-critical">
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
 </xsl:stylesheet>

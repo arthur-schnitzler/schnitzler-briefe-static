@@ -891,11 +891,7 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:damage">
-        <span class="damage-critical">
-            <xsl:apply-templates/>
-        </span>
-    </xsl:template>
+    
     <xsl:template match="tei:date[@*]">
         <!-- <abbr><xsl:attribute name="title"><xsl:value-of select="data(./@*)"/></xsl:attribute>-->
         <xsl:apply-templates/>
@@ -980,31 +976,7 @@
             </div>
         </h3>
     </xsl:template>
-    <xsl:template match="tei:hi">
-        <xsl:element name="span">
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="@rend = 'underline'">
-                        <xsl:choose>
-                            <xsl:when test="@n = '1'">
-                                <xsl:text>underline</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="@n = '2'">
-                                <xsl:text>doubleUnderline</xsl:text>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text>tripleUnderline</xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="@rend"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
+    
     <xsl:template match="tei:item">
         <li>
             <xsl:apply-templates/>
@@ -1244,7 +1216,7 @@
                     </xsl:when>
                     <xsl:when test="ancestor::tei:damage">
                         <xsl:attribute name="class">
-                            <xsl:text>damage</xsl:text>
+                            <xsl:text>damage-critical</xsl:text>
                         </xsl:attribute>
                     </xsl:when>
                 </xsl:choose>

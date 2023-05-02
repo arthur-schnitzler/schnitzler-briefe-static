@@ -100,7 +100,7 @@ function appendData(data, filename) {
                     for (let j in listperson) {
                         let personButton = document.createElement("span");
                         personButton.setAttribute("class", "tage_item_span");
-                        personButton.appendChild(farbirgerPunkt(data[i].color));
+                        personButton.appendChild(farbigerPunkt(data[i].color));
                         let personButtonA = document.createElement("a");
                         personButtonA.setAttribute("target", "_blank");
                         if (listperson[j].ref.includes('/gnd/')) {
@@ -140,7 +140,7 @@ function appendData(data, filename) {
                     for (let j in listBibl) {
                         let biblButton = document.createElement("span");
                         biblButton.setAttribute("class", "tage_item_span");
-                        biblButton.appendChild(farbirgerPunkt(data[i].color));
+                        biblButton.appendChild(farbigerPunkt(data[i].color));
                         
                         let biblButtonA = document.createElement("a");
                         biblButtonA.setAttribute("target", "_blank");
@@ -167,7 +167,7 @@ function appendData(data, filename) {
                     for (let j in listOrg) {
                         let orgButton = document.createElement("span");
                         orgButton.setAttribute("class", "tage_item_span");
-                        orgButton.appendChild(farbirgerPunkt(data[i].color));
+                        orgButton.appendChild(farbigerPunkt(data[i].color));
                         
                         let orgButtonA = document.createElement("a");
                         orgButtonA.setAttribute("target", "_blank");
@@ -196,7 +196,7 @@ function appendData(data, filename) {
                         
                         placeButton.setAttribute("class", "tage_item_span");
                         
-                        placeButton.appendChild(farbirgerPunkt(data[i].color));
+                        placeButton.appendChild(farbigerPunkt(data[i].color));
                         let placeButtonA = document.createElement("a");
                         placeButtonA.setAttribute("target", "_blank");
                         if (data[i].type === 'pmb') {
@@ -221,12 +221,12 @@ function appendData(data, filename) {
 }
 }
 
-function farbirgerPunkt(color) {
-let farbirgerPunkt = document.createElement("span");
-farbirgerPunkt.style.color = color;
+function farbigerPunkt(color) {
+let farbigerPunkt = document.createElement("span");
+farbigerPunkt.style.color = color;
 let fixesLeerzeichen = '\u{00A0}';
-farbirgerPunkt.textContent = "■" + fixesLeerzeichen;
-return (farbirgerPunkt)
+farbigerPunkt.textContent = "■" + fixesLeerzeichen;
+return (farbigerPunkt)
 }
 
 function icon(typ) {
