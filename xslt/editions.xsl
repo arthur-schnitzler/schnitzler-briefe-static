@@ -14,6 +14,7 @@
     <xsl:import href="./partials/html_title_navigation.xsl"/>
     <xsl:import href="./partials/view-type.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
+    <xsl:import href="./partials/schnitzler-tage.xsl"/>
     <xsl:variable name="quotationURL">
         <xsl:value-of
             select="concat('https://schnitzler-briefe.acdh.oeaw.ac.at/', replace(tokenize(base-uri(), '/')[last()], '.xml', '.html'))"
@@ -748,74 +749,24 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <xsl:variable name="fetchUrl"
-                                    select="concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.json')"/>
+                                
                                 <div id="tag-fuer-tag-modal-body"/>
-                                <script type="text/javascript" src="js/schnitzler-tage.js" charset="UTF-8"/>
+                                <xsl:call-template name="mam:schnitzler-tage">
+                                    <xsl:with-param name="datum-iso" select="$datum"/>
+                                    <xsl:with-param name="teiSource" select="$teiSource"/>
+                                </xsl:call-template>
+                                
+                                <!--
+                                    <xsl:variable name="fetchUrl"
+                                    select="concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.json')"/>
+                                    <script type="text/javascript" src="js/schnitzler-tage.js" charset="UTF-8"/>
                                 <script type="text/javascript">
                                     fetch('<xsl:value-of select="$fetchUrl"/>').then(function (response) {return response.json();
                                     }).then(function (data) {
                                     appendData(data, '<xsl:value-of select="$teiSource"/>');
                                 }). catch (function (err) {
                                     console.log('error: ' + err);
-                                });</script>
-                                <div class="weiteres" style="margin-top:2.5em;">
-                                    <h3>Weiteres</h3>
-                                    <ul>
-                                        <li>
-                                            <xsl:text>Zeitungen vom </xsl:text>
-                                            <xsl:element name="a">
-                                                <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace($datum, '-', ''))"
-                                                  />
-                                                </xsl:attribute>
-                                                <xsl:attribute name="target">
-                                                  <xsl:text>_blank</xsl:text>
-                                                </xsl:attribute>
-                                                <xsl:value-of select="$datum-written"/>
-                                            </xsl:element>
-                                            <xsl:text> bei </xsl:text>
-                                            <xsl:element name="a">
-                                                <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat('https://anno.onb.ac.at/cgi-content/anno?datum=', replace($datum, '-', ''))"
-                                                  />
-                                                </xsl:attribute>
-                                                <xsl:attribute name="target">
-                                                  <xsl:text>_blank</xsl:text>
-                                                </xsl:attribute>
-                                                <xsl:text>ANNO</xsl:text>
-                                            </xsl:element>
-                                        </li>
-                                        <li>
-                                            <xsl:text>Briefe vom </xsl:text>
-                                            <xsl:element name="a">
-                                                <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat('https://correspsearch.net/de/suche.html?d=', $datum, '&amp;x=1&amp;w=0')"
-                                                  />
-                                                </xsl:attribute>
-                                                <xsl:attribute name="target">
-                                                  <xsl:text>_blank</xsl:text>
-                                                </xsl:attribute>
-                                                <xsl:value-of select="$datum-written"/>
-                                            </xsl:element>
-                                            <xsl:text> bei </xsl:text>
-                                            <xsl:element name="a">
-                                                <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                      select="concat('https://correspsearch.net/de/suche.html?d=', $datum, '&amp;x=1&amp;w=0')"
-                                                  />
-                                                </xsl:attribute>
-                                                <xsl:attribute name="target">
-                                                  <xsl:text>_blank</xsl:text>
-                                                </xsl:attribute>
-                                                <xsl:text>correspSearch</xsl:text>
-                                            </xsl:element>
-                                        </li>
-                                    </ul>
-                                </div>
+                                });</script>-->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
