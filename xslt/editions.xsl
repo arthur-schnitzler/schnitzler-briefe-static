@@ -133,9 +133,9 @@
                             <div class="card-footer" style="clear: both;">
                                 <nav class="navbar navbar-expand-lg" style="box-shadow: none;">
                                     <div class="container-fluid">
-                <div id="navbarSupportedContent">
-               <ul class="navbar-nav mb-2 mb-lg-0" id="secondary-menu" >
-                                             <xsl:if
+                                        <div id="navbarSupportedContent">
+                                            <ul class="navbar-nav mb-2 mb-lg-0" id="secondary-menu">
+                                                <xsl:if
                                                   test="not(descendant::tei:teiHeader[1]/tei:revisionDesc[1]/@status = 'approved')">
                                                   <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#qualitaet" type="button"
@@ -162,7 +162,7 @@
                                                   data-bs-target="#zitat" type="button"
                                                   data-bs-toggle="modal">
                                                   <i class="fas fa-quote-right"/> ZITIEREN</a>&#160; </li>
-                                                  <li class="nav-item"> &#160;<a href="#"
+                                                <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#downloadModal" type="button"
                                                   data-bs-toggle="modal"><i
                                                   class="fas fa-solid fa-download"/> DOWNLOAD
@@ -183,7 +183,6 @@
                                             data-result-max="4" data-exclude-edition=""/>
                                     </span>
                                 </li>-->
-                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -619,8 +618,7 @@
                                             &#160; &#160; <annotation-slider opt="gem-n"/> &#160;
                                             &#160; &#160; &#160; <annotation-slider opt="del"/>
                                             &#160; &#160; &#160; &#160; <annotation-slider opt="add"
-                                            /> &#160; &#160; &#160; &#160; 
-                                        </li>
+                                            /> &#160; &#160; &#160; &#160; </li>
                                     </ul>
                                 </div>
                                 <div>
@@ -649,25 +647,18 @@
                 <div class="modal fade" id="tagfuertag" tabindex="-1"
                     aria-labelledby="downloadModalLabel2" aria-hidden="true">
                     <xsl:variable name="datum">
-                       
-                        <xsl:variable name="date" select="descendant::tei:correspDesc/tei:correspAction[@type = 'sent'][1]/tei:date" as="node()?"/>
+                        <xsl:variable name="date"
+                            select="descendant::tei:correspDesc/tei:correspAction[@type = 'sent'][1]/tei:date"
+                            as="node()?"/>
                         <xsl:choose>
-                            <xsl:when
-                                test="$date/@when">
-                                <xsl:value-of
-                                    select="$date/@when"
-                                />
+                            <xsl:when test="$date/@when">
+                                <xsl:value-of select="$date/@when"/>
                             </xsl:when>
-                            <xsl:when
-                                test="$date/@notBefore">
-                                <xsl:value-of
-                                    select="$date/@notBefore"
-                                />
+                            <xsl:when test="$date/@notBefore">
+                                <xsl:value-of select="$date/@notBefore"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:value-of
-                                    select="$date/@notAfter"
-                                />
+                                <xsl:value-of select="$date/@notAfter"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
@@ -735,7 +726,6 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                    
                                 <h5 class="modal-title" id="exampleModalLongTitle3">
                                     <a
                                         href="{concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.html')}"
@@ -744,18 +734,15 @@
                                             select="concat($wochentag, ', ', $datum-written)"/>
                                     </a>
                                 </h5>
-
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                
                                 <div id="tag-fuer-tag-modal-body"/>
                                 <xsl:call-template name="mam:schnitzler-tage">
                                     <xsl:with-param name="datum-iso" select="$datum"/>
                                     <xsl:with-param name="teiSource" select="$teiSource"/>
                                 </xsl:call-template>
-                                
                                 <!--
                                     <xsl:variable name="fetchUrl"
                                     select="concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.json')"/>
@@ -842,15 +829,13 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    
     <xsl:template match="tei:date[@*]">
         <!-- <abbr><xsl:attribute name="title"><xsl:value-of select="data(./@*)"/></xsl:attribute>-->
         <xsl:apply-templates/>
         <!--</abbr>-->
     </xsl:template>
     <xsl:template match="tei:div[not(@type = 'address')]">
-            <xsl:apply-templates/>
-        
+        <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:div[@type = 'address']">
         <div class="address-div">
@@ -927,7 +912,6 @@
             </div>
         </h3>
     </xsl:template>
-    
     <xsl:template match="tei:item">
         <li>
             <xsl:apply-templates/>
@@ -971,9 +955,8 @@
         </ul>
     </xsl:template>
     <!--    footnotes -->
-   
-<xsl:template match="tei:note[@type='footnote']">
-        <xsl:if test="preceding-sibling::*[1][name() = 'note' and @type='footnote']">
+    <xsl:template match="tei:note[@type = 'footnote']">
+        <xsl:if test="preceding-sibling::*[1][name() = 'note' and @type = 'footnote']">
             <!-- Sonderregel für zwei Fußnoten in Folge -->
             <sup>
                 <xsl:text>,</xsl:text>
@@ -985,37 +968,33 @@
             </xsl:attribute>
             <xsl:attribute name="href">
                 <xsl:text>#footnote</xsl:text>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+                <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
             </xsl:attribute>
             <sup>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+                <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
             </sup>
         </xsl:element>
     </xsl:template>
-
-
-<xsl:template match="tei:note[@type='footnote']" mode="footnote">
+    <xsl:template match="tei:note[@type = 'footnote']" mode="footnote">
         <xsl:element name="li">
             <xsl:attribute name="id">
                 <xsl:text>footnote</xsl:text>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+                <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
             </xsl:attribute>
             <sup>
-                <xsl:number level="any" count="tei:note[@type='footnote']" format="1"/>
+                <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
             </sup>
             <xsl:text> </xsl:text>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-
-
     <xsl:template match="tei:opener">
         <div class="opener">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
     <xsl:template
-        match="tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(ancestor::tei:note[@type='footnote']) and not(ancestor::tei:caption) and not(parent::tei:bibl) and not(parent::tei:quote) and not(child::tei:space[@dim])] | tei:dateline | tei:closer">
+        match="tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(ancestor::tei:note[@type = 'footnote']) and not(ancestor::tei:caption) and not(parent::tei:bibl) and not(parent::tei:quote) and not(child::tei:space[@dim])] | tei:dateline | tei:closer">
         <xsl:choose>
             <xsl:when test="child::tei:seg">
                 <div class="editionText">
@@ -1149,18 +1128,17 @@
             <xsl:attribute name="class">
                 <xsl:value-of select="$entity-typ"/>
             </xsl:attribute>
-            
             <xsl:element name="a">
                 <xsl:attribute name="href">
                     <xsl:value-of select="concat(replace(@ref, '#', ''), '.html')"/>
                 </xsl:attribute>
                 <xsl:choose>
-                    <xsl:when test="ancestor::tei:hi[@rend='pre-print']">
+                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print']">
                         <xsl:attribute name="class">
                             <xsl:text>pre-print</xsl:text>
                         </xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="ancestor::tei:hi[@rend='stamp']">
+                    <xsl:when test="ancestor::tei:hi[@rend = 'stamp']">
                         <xsl:attribute name="class">
                             <xsl:text>stamp</xsl:text>
                         </xsl:attribute>
@@ -1242,7 +1220,6 @@
             </xsl:attribute>
         </xsl:element>
     </xsl:template>
-  
     <!-- Tabellen -->
     <xsl:template match="tei:table">
         <xsl:element name="table">
@@ -1265,39 +1242,4 @@
         </xsl:if>
     </xsl:function>
     <xsl:strip-space elements="tei:quote"/>
-
-
-
-    <xsl:template match="tei:pb">
-        <xsl:choose>
-            <xsl:when test="starts-with(@facs, 'http') or starts-with(@facs, 'www.')">
-                <xsl:element name="a">
-                    <xsl:variable name="href">
-                        <xsl:choose>
-                            <xsl:when test="not(starts-with(@facs, 'http'))">
-                                <xsl:value-of select="concat('https://', @facs)"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="@facs"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:variable>
-                    <xsl:attribute name="href">
-                        <xsl:value-of select="$href"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="target">
-                        <xsl:text>_blank</xsl:text>
-                    </xsl:attribute>
-                    <i class="fas fa-external-link-alt"/>
-                </xsl:element>
-            </xsl:when>
-            <xsl:otherwise>
-                <span class="pagebreak" title="Seitenbeginn">
-                    <xsl:text>|</xsl:text>
-                </span>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-
 </xsl:stylesheet>

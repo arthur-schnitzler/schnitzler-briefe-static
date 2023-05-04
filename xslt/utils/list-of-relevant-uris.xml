@@ -7,7 +7,7 @@ are but links to pdfs etc. an URL can be added
 <list>
     <item type="current-edition">
         <abbr>schnitzler-briefe</abbr>
-        <caption>Briefe</caption>
+        <caption>Briefe mit Autorinnen und Autoren</caption>
         <color>#A63437</color>
     </item>
     <item>
@@ -16,14 +16,14 @@ are but links to pdfs etc. an URL can be added
         <color>#037a33</color>
     </item>
     <item>
-        <abbr>schnitzler-interviews</abbr>
-        <caption>Interviews, Meinungen, Proteste</caption>
-        <color>#3D5A80</color>
-    </item>
-    <item>
         <abbr>schnitzler-lektueren</abbr>
         <caption>Leseliste</caption>
         <color>#022954</color>
+    </item>
+    <item>
+        <abbr>schnitzler-interviews</abbr>
+        <caption>Interviews, Meinungen, Proteste</caption>
+        <color>#3D5A80</color>
     </item>
     <!--<item >
         <abbr>schnitzler-kino</abbr>
@@ -51,9 +51,14 @@ are but links to pdfs etc. an URL can be added
         <color>#C67F53</color>
     </item>
     <item>
-        <abbr>schnitzler-digital</abbr>
-        <caption>Schnitzler digital</caption>
+        <abbr>Arthur-Schnitzler-digital</abbr>
+        <caption>Arthur Schnitzler digital (Werke 1905–1931)</caption>
         <color>#801e23</color>
+    </item>
+    <item>
+        <abbr>kalliope-verbund</abbr>
+        <caption>Kalliope Verbundkatalog</caption>
+        <color>#003574</color>
     </item>
     <item>
         <abbr>fackel</abbr>
@@ -64,11 +69,6 @@ are but links to pdfs etc. an URL can be added
         <abbr>legalkraus</abbr>
         <caption>Rechtsakten</caption>
         <color>#c85545</color>
-    </item>
-    <item>
-        <abbr>kalliope-verbund</abbr>
-        <caption>Kalliope Verbundkatalog</caption>
-        <color>#003574</color>
     </item>
     <!--<item>
         <abbr>dritte-walpurgisnacht</abbr>
@@ -121,6 +121,11 @@ are but links to pdfs etc. an URL can be added
         <caption>geoNames</caption>
         <color>#363</color>
     </item>
+    <item type="print">
+        <abbr>schnitzler-cmif</abbr>
+        <caption>Gedruckte Briefwechsel</caption>
+        <color>#654321</color>
+    </item>
     
-   
+    
 </list>

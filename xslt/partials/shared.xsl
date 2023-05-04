@@ -819,4 +819,35 @@
             <xsl:apply-templates/>
         </span>
     </xsl:template>
+    
+    <xsl:template match="tei:pb">
+        <xsl:choose>
+            <xsl:when test="starts-with(@facs, 'http') or starts-with(@facs, 'www.')">
+                <xsl:element name="a">
+                    <xsl:variable name="href">
+                        <xsl:choose>
+                            <xsl:when test="not(starts-with(@facs, 'http'))">
+                                <xsl:value-of select="concat('https://', @facs)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="@facs"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="$href"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="target">
+                        <xsl:text>_blank</xsl:text>
+                    </xsl:attribute>
+                    <i class="fas fa-external-link-alt"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <span class="pagebreak" title="Seitenbeginn">
+                    <xsl:text>|</xsl:text>
+                </span>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 </xsl:stylesheet>
