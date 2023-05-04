@@ -65,9 +65,9 @@
         <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Cambridge')]">
           <xsl:variable name="Folder-Number">
             <xsl:choose>
-              <xsl:when test="descendant::tei:pb[1]/@facs[contains(., 'B-')]">
+              <xsl:when test="descendant::tei:pb[1]/@facs[contains(., '-')]">
                 <xsl:value-of
-                  select="replace(tokenize(substring-after(descendant::tei:pb[1]/@facs, '-B-0')[1], '-')[1], '^0+', '')"
+                  select="replace(tokenize(substring-after(descendant::tei:pb[1]/@facs, '-0')[1], '-')[1], '^0+', '')"
                 />
               </xsl:when>
               <xsl:otherwise>
