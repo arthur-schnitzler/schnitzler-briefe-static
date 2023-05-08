@@ -196,11 +196,11 @@
             <xsl:apply-templates/>
         </span>
     </xsl:template>
-    <xsl:template match="tei:ref">
+    <!--<xsl:template match="tei:ref">
         <a class="ref {@type}" href="{@target}">
             <xsl:apply-templates/>
         </a>
-    </xsl:template>
+    </xsl:template>-->
     <xsl:template match="tei:lg">
         <span style="display:block;margin: 1em 0;">
             <xsl:apply-templates/>

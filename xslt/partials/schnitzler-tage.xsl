@@ -539,8 +539,7 @@
                                 <xsl:choose><!-- Titel werden nur bis 50 Zeichen wiedergegeben -->
                                     <xsl:when test="string-length(normalize-space(.)) &gt; 50">
                                         <xsl:value-of select="substring(normalize-space(.), 1, 50)"
-                                        /><xsl:text>…</xsl:text>
-                                    </xsl:when>
+                                        /><xsl:text>…</xsl:text>                                    </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:value-of select="."/>
                                     </xsl:otherwise>

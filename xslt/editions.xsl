@@ -985,9 +985,16 @@
                 <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
             </sup>
             <xsl:text> </xsl:text>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="footnote"/>
         </xsl:element>
     </xsl:template>
+    <xsl:template match="tei:p[parent::tei:note]" mode="footnote">
+        <xsl:if test="not(position()=1)">
+            <br/>
+        </xsl:if>
+        <xsl:apply-templates/>
+    </xsl:template>
+    
     <xsl:template match="tei:opener">
         <div class="opener">
             <xsl:apply-templates/>

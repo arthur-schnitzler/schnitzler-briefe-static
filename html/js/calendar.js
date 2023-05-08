@@ -1,6 +1,7 @@
 function getYear(item) {
-  return item['startDate'].split('-')[0]
+  return item.startDate.split('-')[0];
 }
+
 
 function createyearcell(val) {
   return (val !== undefined) ? `<div class="col-xs-6" style="width: auto;">\
