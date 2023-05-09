@@ -163,7 +163,7 @@
             </xsl:when>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="tei:hi">
+    <!--<xsl:template match="tei:hi">
         <span>
             <xsl:choose>
                 <xsl:when test="@rendition = '#em'">
@@ -189,7 +189,7 @@
             </xsl:choose>
             <xsl:apply-templates/>
         </span>
-    </xsl:template>
+    </xsl:template>-->
     <!--<xsl:template match="tei:ref">
         <a class="ref {@type}" href="{@target}">
             <xsl:apply-templates/>
