@@ -18,7 +18,7 @@
             select="document(concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum-iso, '.xml'))"
             as="node()?"/>-->
         <xsl:variable name="fetchUrl"
-            select="document(concat('./chronik-data/', $datum-iso, '.xml'))"
+            select="document(concat('../../chronik-data/', $datum-iso, '.xml'))"
             as="node()?"/>
         <xsl:if test="$fetchUrl/*[1]">
             <xsl:variable name="fetchURLohneTeiSource" as="node()">
