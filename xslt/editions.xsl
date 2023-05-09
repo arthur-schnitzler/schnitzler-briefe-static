@@ -14,7 +14,7 @@
     <xsl:import href="./partials/html_title_navigation.xsl"/>
     <xsl:import href="./partials/view-type.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
-    <xsl:import href="./partials/schnitzler-tage.xsl"/>
+    <xsl:import href="./partials/schnitzler-chronik.xsl"/>
     <xsl:variable name="quotationURL">
         <xsl:value-of
             select="concat('https://schnitzler-briefe.acdh.oeaw.ac.at/', replace(tokenize(base-uri(), '/')[last()], '.xml', '.html'))"
@@ -174,7 +174,7 @@
                                                   data-bs-target="#tagfuertag" type="button"
                                                   data-bs-toggle="modal">
                                                   <i class="fas fa-calendar-day"/>
-                                                  KALENDERTAG</a>&#160; </li>
+                                                  CHRONIK</a>&#160; </li>
                                                 <!--<li class="nav-item dropdown">
                                     <span class="nav-link">
                                         <div id="csLink" class="a.grau" data-correspondent-1-name=""
@@ -740,15 +740,15 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <div id="tag-fuer-tag-modal-body"/>
-                                <xsl:call-template name="mam:schnitzler-tage">
+                                <div id="chronik-modal-body"/>
+                                <xsl:call-template name="mam:schnitzler-chronik">
                                     <xsl:with-param name="datum-iso" select="$datum"/>
                                     <xsl:with-param name="teiSource" select="$teiSource"/>
                                 </xsl:call-template>
                                 <!--
                                     <xsl:variable name="fetchUrl"
-                                    select="concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.json')"/>
-                                    <script type="text/javascript" src="js/schnitzler-tage.js" charset="UTF-8"/>
+                                    select="concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum, '.json')"/>
+                                    <script type="text/javascript" src="js/schnitzler-chronik.js" charset="UTF-8"/>
                                 <script type="text/javascript">
                                     fetch('<xsl:value-of select="$fetchUrl"/>').then(function (response) {return response.json();
                                     }).then(function (data) {
