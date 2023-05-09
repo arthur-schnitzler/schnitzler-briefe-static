@@ -210,5 +210,5 @@ var editor = new LoadEditor({
         },
     },
     wr: false,
-    up: true,
+    up: false,
 });
