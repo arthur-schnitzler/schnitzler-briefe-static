@@ -1,5 +1,7 @@
 # bin/bash
 
+# get schnitzler-briefe-data
+
 rm -rf data
 wget https://github.com/arthur-schnitzler/schnitzler-briefe-data/archive/refs/heads/main.zip
 unzip main
@@ -9,11 +11,23 @@ rm -rf ./data/xslts
 rm main.zip
 rm -rf ./schnitzler-briefe-data-main
 
+# get schnitzler-tage
+
+rm -rf tage-data
+wget https://github.com/arthur-schnitzler/schnitzler-tage/archive/refs/heads/main.zip
+unzip main
+
+mv ./schnitzler-tage-main/editions/data .tage-data
+rm main.zip
+rm -rf ./schnitzler-tage-main
+
 # echo "delete schema reference"
 # find ./data/editions/ -type f -name "*.xml"  -print0 | xargs -0 sed -i -e 's@xsi:schemaLocation="http://www.tei-c.org/ns/1.0 ../meta/asbwschema.xsd"@@g'
 
 # echo "fixing entity ids"
 # find ./data/indices/ -type f -name "*.xml"  -print0 | xargs -0 sed -i -e 's@<person xml:id="person__@<person xml:id="pmb@g'
+
+# get schnitzler-briefe-tex
 
 rm -rf .html/L*.pdf
 wget https://github.com/arthur-schnitzler/schnitzler-briefe-tex/archive/refs/heads/main.zip
