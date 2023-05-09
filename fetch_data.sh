@@ -16,7 +16,8 @@ rm -rf chronik-data
 wget https://github.com/arthur-schnitzler/schnitzler-chronik-data/archive/refs/heads/main.zip
 unzip main
 
-mv ./schnitzler-chronik-data-main/editions/data .chronik-data
+mkdir "chronik-data"
+mv ./schnitzler-chronik-data-main/editions/data ./chronik-data
 rm main.zip
 rm -rf ./schnitzler-chronik-data
 
