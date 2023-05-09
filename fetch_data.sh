@@ -12,14 +12,18 @@ rm main.zip
 rm -rf ./schnitzler-briefe-data-main
 
 # get schnitzler-chronik-data
-rm -rf chronik-data
-wget https://github.com/arthur-schnitzler/schnitzler-chronik-data/archive/refs/heads/main.zip
-unzip main
 
-mkdir "chronik-data"
-mv ./schnitzler-chronik-data-main/editions/data ./chronik-data
+# Download XML files from GitHub repository
+wget https://github.com/arthur-schnitzler/schnitzler-chronik-data/archive/refs/heads/main.zip
+rm -rf chronik-data
+unzip main.zip
+
+mv schnitzler-chronik-data-main/editions/data chronik-data/
+rm -rf schnitzler-chronik-data-main
+
 rm main.zip
-rm -rf ./schnitzler-chronik-data
+
+
 
 # echo "delete schema reference"
 # find ./data/editions/ -type f -name "*.xml"  -print0 | xargs -0 sed -i -e 's@xsi:schemaLocation="http://www.tei-c.org/ns/1.0 ../meta/asbwschema.xsd"@@g'
@@ -29,10 +33,10 @@ rm -rf ./schnitzler-chronik-data
 
 # get schnitzler-briefe-tex
 
-rm -rf .html/L*.pdf
-wget https://github.com/arthur-schnitzler/schnitzler-briefe-tex/archive/refs/heads/main.zip
-unzip main
+# rm -rf .html/L*.pdf
+# wget https://github.com/arthur-schnitzler/schnitzler-briefe-tex/archive/refs/heads/main.zip
+# unzip main
 
-mv ./schnitzler-briefe-tex-main/pdf-leseansicht/L*.pdf ./html
-rm main.zip
-rm -rf ./schnitzler-briefe-tex-main
+# mv ./schnitzler-briefe-tex-main/pdf-leseansicht/L*.pdf ./html
+# rm main.zip
+# rm -rf ./schnitzler-briefe-tex-main
