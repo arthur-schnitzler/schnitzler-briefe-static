@@ -43,6 +43,9 @@
     <xsl:variable name="doc_title">
         <xsl:value-of select=".//tei:titleSmt/tei:title[@level = 'a'][1]/text()"/>
     </xsl:variable>
+    <xsl:param name="chronik-dir">../chronik-data</xsl:param>
+    <xsl:variable name="chronik-data"
+        select="collection(concat($chronik-dir, '/?select=L0*.xml;recurse=yes'))"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title">
             <xsl:value-of select=".//tei:titleSmt/tei:title[@level = 'a'][1]/text()"/>
@@ -727,9 +730,8 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle3">
-                                    <a
-                                        href="{concat('https://schnitzler-tage.acdh.oeaw.ac.at/', $datum, '.html')}"
-                                        target="_blank" style="color: #C67F53">
+                                    <a href="{concat($chronik-data, $datum, '.html')}" target="_blank"
+                                        style="color: #C67F53">
                                         <xsl:value-of
                                             select="concat($wochentag, ', ', $datum-written)"/>
                                     </a>
@@ -989,12 +991,12 @@
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:p[parent::tei:note]" mode="footnote">
-        <xsl:if test="not(position()=1)">
+        <xsl:if test="not(position() = 1)">
             <br/>
         </xsl:if>
         <xsl:apply-templates/>
     </xsl:template>
-    
+
     <xsl:template match="tei:opener">
         <div class="opener">
             <xsl:apply-templates/>

@@ -11,15 +11,14 @@ rm -rf ./data/xslts
 rm main.zip
 rm -rf ./schnitzler-briefe-data-main
 
-# get schnitzler-tage
-
-rm -rf tage-data
-wget https://github.com/arthur-schnitzler/schnitzler-tage/archive/refs/heads/main.zip
+# get schnitzler-chronik-data
+rm -rf chronik-data
+wget https://github.com/arthur-schnitzler/schnitzler-chronik-data/archive/refs/heads/main.zip
 unzip main
 
-mv ./schnitzler-tage-main/editions/data .tage-data
+mv ./schnitzler-chronik-data-main/editions/data .chronik-data
 rm main.zip
-rm -rf ./schnitzler-tage-main
+rm -rf ./schnitzler-chronik-data
 
 # echo "delete schema reference"
 # find ./data/editions/ -type f -name "*.xml"  -print0 | xargs -0 sed -i -e 's@xsi:schemaLocation="http://www.tei-c.org/ns/1.0 ../meta/asbwschema.xsd"@@g'
