@@ -14,8 +14,11 @@
         <xsl:variable name="link">
             <xsl:value-of select="replace($teiSource, '.xml', '.html')"/>
         </xsl:variable>
-        <xsl:variable name="fetchUrl"
+        <!--<xsl:variable name="fetchUrl"
             select="document(concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum-iso, '.xml'))"
+            as="node()?"/>-->
+        <xsl:variable name="fetchUrl"
+            select="document(concat('./chronik-data/', $datum-iso, '.xml'))"
             as="node()?"/>
         <xsl:if test="$fetchUrl/*[1]">
             <xsl:variable name="fetchURLohneTeiSource" as="node()">
