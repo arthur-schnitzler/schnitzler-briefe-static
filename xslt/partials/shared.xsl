@@ -75,12 +75,6 @@
             </img>
         </div>
     </xsl:template>
-    <xsl:template match="tei:pb">
-        <span class="anchor-pb"/>
-        <span class="pb" source="{@facs}">
-            <xsl:value-of select="./@n"/>
-        </span>
-    </xsl:template>
     <xsl:template match="tei:space">
         <span class="space">
             <xsl:value-of select="
