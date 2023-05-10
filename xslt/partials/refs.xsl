@@ -35,8 +35,8 @@
                         />
                     </xsl:attribute>
                     <xsl:choose>
-                        <xsl:when test=". = ''">
-                            <xsl:value-of select="."/>
+                        <xsl:when test="@target = ''">
+                            <xsl:text>FEHLER</xsl:text>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="format-date(@target, '[D].&#160;[M].&#160;[Y]')"/>
@@ -139,9 +139,19 @@
                     <xsl:attribute name="href">
                         <xsl:value-of select="$ref-mit-endung"/>
                     </xsl:attribute>
-                    <xsl:value-of
-                        select="document(concat($type-url, replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:titleSmt[1]/tei:title[@level = 'a'][1]/text()"
-                    />
+                    <xsl:variable name="dateiname-xml"
+                        select="concat('https://arthur-schnitzler.github.io/schnitzler-briefe-static/', replace($ref-mit-endung, '.html', '.xml'))" as="xs:string"/>
+                   <xsl:choose>
+                       <xsl:when test="file:exists($dateiname-xml)">
+                           <xsl:value-of
+                               select="document($dateiname-xml)/descendant::tei:titleStmt[1]/tei:title[@level = 'a'][1]/text()"
+                           />
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:value-of select="$dateiname-xml"/>
+                       </xsl:otherwise>
+                   </xsl:choose>
+                    
                 </a>
             </xsl:otherwise>
         </xsl:choose>
