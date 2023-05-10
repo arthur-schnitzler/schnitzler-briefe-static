@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:local="http://dse-static.foo.bar" exclude-result-prefixes="xs" version="2.0">
+    xmlns:local="http://dse-static.foo.bar" exclude-result-prefixes="xs" version="3.0">
     <xsl:template
         match="tei:ref[not(@type = 'schnitzler-tagebuch') and not(@type = 'schnitzler-briefe') and not(@type = 'schnitzler-bahr') and not(@type = 'schnitzler-lektueren')]">
         <xsl:choose>
@@ -142,7 +142,7 @@
                     <xsl:variable name="dateiname-xml"
                         select="concat('https://arthur-schnitzler.github.io/schnitzler-briefe-static/', replace($ref-mit-endung, '.html', '.xml'))" as="xs:string"/>
                    <xsl:choose>
-                       <xsl:when test="file:exists($dateiname-xml)">
+                       <xsl:when test="document($dateiname-xml)/child::*[1]">
                            <xsl:value-of
                                select="document($dateiname-xml)/descendant::tei:titleStmt[1]/tei:title[@level = 'a'][1]/text()"
                            />
