@@ -18,8 +18,7 @@
             select="document(concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum-iso, '.xml'))"
             as="node()?"/>-->
         <xsl:variable name="fetchUrl"
-            select="document(concat('../../chronik-data/', $datum-iso, '.xml'))"
-            as="node()?"/>
+            select="document(concat('../../chronik-data/', $datum-iso, '.xml'))" as="node()?"/>
         <xsl:if test="$fetchUrl/*[1]">
             <xsl:variable name="fetchURLohneTeiSource" as="node()">
                 <xsl:element name="listEvent" namespace="http://www.tei-c.org/ns/1.0">
@@ -297,7 +296,7 @@
             </xsl:choose>
         </xsl:variable>
         <li>
-            <i class="fa-regular fa-users" title="Erwähnte Personen"/>&#160; <xsl:for-each
+            <i class="fa-solid fa-users" title="Erwähnte Personen"/>&#160; <xsl:for-each
                 select="tei:person/tei:persName">
                 <xsl:choose>
                     <xsl:when
@@ -380,7 +379,7 @@
             </xsl:choose>
         </xsl:variable>
         <li>
-            <i class="fa-regular fa-building-columns" title="Erwähnte Organisationen"/>&#160;
+            <i class="fa-solid fa-building-columns" title="Erwähnte Organisationen"/>&#160;
                 <xsl:for-each select="tei:org/tei:orgName">
                 <xsl:choose>
                     <xsl:when
@@ -463,7 +462,7 @@
             </xsl:choose>
         </xsl:variable>
         <li>
-            <i title="Erwähnte Orte" class="fa-regular fa-map-location-dot"/>&#160; <xsl:for-each
+            <i title="Erwähnte Orte" class="fa-solid fa-map-location-dot"/>&#160; <xsl:for-each
                 select="tei:place/tei:placeName">
                 <xsl:choose>
                     <xsl:when test="starts-with(@ref, 'pmb')">
@@ -517,7 +516,7 @@
             </xsl:choose>
         </xsl:variable>
         <li>
-            <i title="Erwähnte Werke" class="fa-regular fa-image"/>&#160; <xsl:for-each
+            <i title="Erwähnte Werke" class="fa-solid fa-image"/>&#160; <xsl:for-each
                 select="descendant::tei:title">
                 <xsl:choose>
                     <xsl:when test="starts-with(@ref, 'pmb')">
