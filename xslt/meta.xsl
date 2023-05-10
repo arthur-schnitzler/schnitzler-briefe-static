@@ -29,7 +29,7 @@
                                 </h2>
                             </div>
                             <div class="card-body-index">
-                                <xsl:apply-templates select=".//tei:body"/>
+                                <xsl:apply-templates select="descendant::tei:body"/>
                             </div>
                             <xsl:if test="descendant::tei:note[@type = 'footnote']">
                                 <div class="card-body-index">
@@ -51,6 +51,79 @@
                 </div>
             </body>
         </html>
+    </xsl:template>
+    <xsl:template match="tei:body">
+        <xsl:if test="descendant::tei:div[starts-with(@type, 'level')]">
+            <xsl:element name="nav">
+                <xsl:attribute name="style">
+                    <xsl:text>z-index: 0</xsl:text>
+                </xsl:attribute>
+                <xsl:attribute name="id">
+                    <xsl:text>page-toc</xsl:text>
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:text>navbar navbar-light</xsl:text>
+                </xsl:attribute>
+                <div class="container">
+                    <a class="navbar-brand" href="#">Inhaltsverzeichnis</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#verticalNavbar" aria-controls="verticalNavbar"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"/>
+                    </button>
+                    <div class="collapse navbar-collapse" id="verticalNavbar">
+                        <!-- Wenn es divs mit level gibt, Inhaltsverzeichnis am Anfang der Seite -->
+                        <xsl:element name="ul">
+                            <xsl:attribute name="class">
+                                <xsl:text>navbar-nav</xsl:text>
+                            </xsl:attribute>
+                            <xsl:apply-templates select="child::tei:div[@type = 'level1']"
+                                mode="nav"/>
+                        </xsl:element>
+                    </div>
+                </div>
+            </xsl:element>
+        </xsl:if>
+        <xsl:apply-templates/>
+    </xsl:template>
+    <xsl:template match="tei:div[@type = 'level1']" mode="nav">
+        <xsl:apply-templates select="child::tei:head" mode="nav"/>
+        <xsl:if test="child::tei:div">
+            <xsl:element name="li">
+                <xsl:attribute name="class">
+                    <xsl:text>nav-item</xsl:text>
+                </xsl:attribute>
+                <xsl:apply-templates select="child::tei:div" mode="nav"/>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template match="tei:div[not(@type = 'level1')]" mode="nav">
+        <xsl:element name="ul">
+            <xsl:attribute name="class">
+                <xsl:text>navbar-nav</xsl:text>
+            </xsl:attribute>
+            <xsl:apply-templates select="child::tei:head" mode="nav"/>
+            <xsl:if test="child::tei:div">
+                <xsl:element name="li">
+                    <xsl:attribute name="class">
+                        <xsl:text>nav-item</xsl:text>
+                    </xsl:attribute>
+                    <xsl:apply-templates select="child::tei:div" mode="nav"/>
+                </xsl:element>
+            </xsl:if>
+        </xsl:element>
+    </xsl:template>
+    <!-- Match the head element -->
+    <xsl:template match="tei:head" mode="nav">
+        <xsl:variable name="linktarget" select="concat('#', @xml:id)"/>
+        <li>
+            <xsl:attribute name="class">
+                <xsl:text>nav-item</xsl:text>
+            </xsl:attribute>
+            <a href="{$linktarget}">
+                <xsl:value-of select="normalize-space(.)"/>
+            </a>
+        </li>
     </xsl:template>
     <xsl:template match="tei:p[@rend = 'center']">
         <p align="center">
@@ -107,11 +180,21 @@
     </xsl:template>
     <xsl:template match="tei:head[not(@type = 'sub')]">
         <h2>
+            <xsl:if test="@xml:id">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="@xml:id"/>
+                </xsl:attribute>
+            </xsl:if>
             <xsl:apply-templates/>
         </h2>
     </xsl:template>
     <xsl:template match="tei:head[(@type = 'sub')]">
         <h3>
+            <xsl:if test="@xml:id">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="@xml:id"/>
+                </xsl:attribute>
+            </xsl:if>
             <xsl:apply-templates/>
         </h3>
     </xsl:template>
