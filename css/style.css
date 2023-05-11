@@ -296,7 +296,7 @@ div.dataTables_filter {
 .card-body-iiif {
     float: right;
     width: 100%;
-    min-width: 450px;
+    min-width: 320px;
     margin: 10px auto}
 .card-body-text {
     float: left;
