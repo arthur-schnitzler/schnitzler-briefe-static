@@ -328,6 +328,9 @@ div.dataTables_filter {
     padding-right: 1rem;
     padding-top: 15px;
     padding-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .img_bottom {
