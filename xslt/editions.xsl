@@ -803,6 +803,7 @@
                 </div>
                 <script src="https://unpkg.com/de-micro-editor@0.2.83/dist/de-editor.min.js"/>
                 <script type="text/javascript" src="js/run.js"/>
+                <script type="text/javascript" src="js/prev-next-urlupdate.js"/>
             </body>
         </html>
     </xsl:template>

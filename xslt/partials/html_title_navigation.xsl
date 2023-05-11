@@ -9,10 +9,11 @@
         <xsl:variable name="doc_title">
             <xsl:value-of select="descendant::tei:titleSmt/tei:title[@level = 'a'][1]/text()"/>
         </xsl:variable>
-        <xsl:variable name="correspContext" as="node()?" select="descendant::tei:correspDesc[1]/tei:correspContext"/>
+        <xsl:variable name="correspContext" as="node()?"
+            select="descendant::tei:correspDesc[1]/tei:correspContext"/>
         <div class="row" id="title-nav">
             <div class="col-md-2 col-lg-2 col-sm-12">
-                <xsl:if test="$correspContext/tei:ref/@subtype='previous_letter'">
+                <xsl:if test="$correspContext/tei:ref/@subtype = 'previous_letter'">
                     <h1>
                         <nav class="navbar navbar-previous-next" style="text-indent: 1em;">
                             <i class="fas fa-chevron-left nav-link float-start" href="#"
@@ -26,6 +27,7 @@
                                         select="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
                                             <xsl:with-param name="eintrag" select="."/>
+                                            <xsl:with-param name="direction" select="'prev-doc'"/>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:if>
@@ -36,6 +38,7 @@
                                         select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
                                             <xsl:with-param name="eintrag" select="."/>
+                                            <xsl:with-param name="direction" select="'prev-doc2'"/>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:if>
@@ -50,7 +53,7 @@
                 </h1>
             </div>
             <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right">
-                <xsl:if test="$correspContext/tei:ref/@subtype='next_letter'">
+                <xsl:if test="$correspContext/tei:ref/@subtype = 'next_letter'">
                     <h1>
                         <nav class="navbar navbar-previous-next float-end dropstart">
                             <i class="fas fa-chevron-right nav-link" href="#"
@@ -64,6 +67,7 @@
                                         select="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
                                             <xsl:with-param name="eintrag" select="."/>
+                                            <xsl:with-param name="direction" select="'next-doc'"/>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:if>
@@ -74,6 +78,7 @@
                                         select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
                                             <xsl:with-param name="eintrag" select="."/>
+                                            <xsl:with-param name="direction" select="'next-doc2'"/>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:if>
@@ -86,8 +91,12 @@
     </xsl:template>
     <xsl:template name="mam:nav-li-item">
         <xsl:param name="eintrag" as="node()"/>
+        <xsl:param name="direction"/>
         <xsl:element name="li">
             <xsl:element name="a">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$direction"/>
+                </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:text>dropdown-item</xsl:text>
                 </xsl:attribute>
