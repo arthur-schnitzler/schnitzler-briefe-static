@@ -966,8 +966,16 @@
         </xsl:if>
         <xsl:element name="a">
             <xsl:attribute name="class">
-                <xsl:text>reference-black</xsl:text>
+            <xsl:choose>
+                <xsl:when test="ancestor::tei:hi[@rend='pre-print']">
+                    <xsl:text>pre-print</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>reference-black</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
             </xsl:attribute>
+                
             <xsl:attribute name="href">
                 <xsl:text>#footnote</xsl:text>
                 <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
@@ -982,6 +990,16 @@
             <xsl:attribute name="id">
                 <xsl:text>footnote</xsl:text>
                 <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
+            </xsl:attribute>
+            <xsl:attribute name="class">
+                <xsl:choose>
+                    <xsl:when test="ancestor::tei:hi[@rend='pre-print']">
+                        <xsl:text>pre-print</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>reference-black</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:attribute>
             <sup>
                 <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
