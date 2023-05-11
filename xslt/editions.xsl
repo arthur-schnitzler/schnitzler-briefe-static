@@ -361,7 +361,7 @@
                                 <p>Für Belege in der Wikipedia kann diese Vorlage benutzt
                                     werden:</p>
                                 <blockquote>
-                                    <code>{{Internetquelle |url=<xsl:value-of select="base-uri()"/>
+                                    <code>{{Internetquelle |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of select="replace($teiSource, '.xml', '.html')"/>
                                             |titel=<xsl:value-of select="$doc_title"/> |werk=Arthur
                                         Schnitzler: Briefwechsel mit Autorinnen und Autoren
                                         |hrsg=Martin Anton Müller, Gerd-Hermann Susen, Laura Untner
