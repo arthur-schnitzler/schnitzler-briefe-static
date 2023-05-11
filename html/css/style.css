@@ -301,7 +301,7 @@ div.dataTables_filter {
 .card-body-text {
     float: left;
     max-width: 820px;
-    min-width: 450px;
+    min-width: 320px;
     margin: 0 auto;
     border: 0;
     color: black;
@@ -546,7 +546,7 @@ resolution or low resolution screens
         padding-left: 0;
     }
     .wp-transcript {
-        padding: 0 2em;
+        padding: 0 1em;
     }
     .img_bottom {
         padding: 1em;

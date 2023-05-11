@@ -138,8 +138,20 @@
                     <xsl:attribute name="href">
                         <xsl:value-of select="$ref-mit-endung"/>
                     </xsl:attribute>
-                    <xsl:variable name="dateiname-xml"
-                        select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))" as="xs:string"/>
+                    <xsl:variable name="dateiname-xml" as="xs:string?">
+                        <xsl:choose>
+                            <xsl:when test="@type = 'schnitzler-briefe'">
+                                <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"/>
+                            </xsl:when>
+                            <xsl:when test="@type = 'schnitzler-bahr'">
+                                <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"/>
+                            </xsl:when>
+                            <xsl:when test="@type = 'schnitzler-lektueren'">
+                                <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-lektueren/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"/>
+                            </xsl:when>
+                        </xsl:choose>
+                        
+                    </xsl:variable>
                    <xsl:choose>
                        <xsl:when test="document($dateiname-xml)/child::*[1]">
                            <xsl:value-of
