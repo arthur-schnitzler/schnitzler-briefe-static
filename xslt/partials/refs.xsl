@@ -77,7 +77,7 @@
         <xsl:variable name="type-url" as="xs:string">
             <xsl:choose>
                 <xsl:when test="@type = 'schnitzler-briefe'">
-                    <!-- später einfach leer lassen -->
+                    <xsl:text/>
                 </xsl:when>
                 <xsl:when test="@type = 'schnitzler-bahr'">
                     <xsl:text>https://schnitzler-bahr.acdh.oeaw.ac.at/</xsl:text>
