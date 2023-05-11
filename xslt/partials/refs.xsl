@@ -77,7 +77,6 @@
         <xsl:variable name="type-url" as="xs:string">
             <xsl:choose>
                 <xsl:when test="@type = 'schnitzler-briefe'">
-                    <xsl:text>https://arthur-schnitzler.github.io/schnitzler-briefe-static/</xsl:text>
                     <!-- später einfach leer lassen -->
                 </xsl:when>
                 <xsl:when test="@type = 'schnitzler-bahr'">
@@ -140,7 +139,7 @@
                         <xsl:value-of select="$ref-mit-endung"/>
                     </xsl:attribute>
                     <xsl:variable name="dateiname-xml"
-                        select="concat('https://github.com/arthur-schnitzler/schnitzler-briefe-data/blob/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))" as="xs:string"/>
+                        select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))" as="xs:string"/>
                    <xsl:choose>
                        <xsl:when test="document($dateiname-xml)/child::*[1]">
                            <xsl:value-of
