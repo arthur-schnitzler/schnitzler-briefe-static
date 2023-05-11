@@ -799,7 +799,7 @@
                         </div>
                     </div>
                 </div>
-                <script src="https://unpkg.com/de-micro-editor@0.2.6/dist/de-editor.min.js"/>
+                <script src="https://unpkg.com/de-micro-editor@0.2.83/dist/de-editor.min.js"/>
                 <script type="text/javascript" src="js/run.js"/>
             </body>
         </html>
