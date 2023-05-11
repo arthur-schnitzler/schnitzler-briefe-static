@@ -140,7 +140,7 @@
                         <xsl:value-of select="$ref-mit-endung"/>
                     </xsl:attribute>
                     <xsl:variable name="dateiname-xml"
-                        select="concat('https://arthur-schnitzler.github.io/schnitzler-briefe-static/', replace($ref-mit-endung, '.html', '.xml'))" as="xs:string"/>
+                        select="concat('https://github.com/arthur-schnitzler/schnitzler-briefe-data/blob/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))" as="xs:string"/>
                    <xsl:choose>
                        <xsl:when test="document($dateiname-xml)/child::*[1]">
                            <xsl:value-of
