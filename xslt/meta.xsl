@@ -143,12 +143,15 @@
     <xsl:template match="tei:lb">
         <br/>
     </xsl:template>
-    <xsl:template match="tei:unclear">
-        <abbr title="unclear">
+<xsl:template match="tei:unclear">
+        <xsl:element name="span">
+            <xsl:attribute name="class">
+                <xsl:text>unclear</xsl:text>
+            </xsl:attribute>
             <xsl:apply-templates/>
-        </abbr>
+        </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:del">
+        <xsl:template match="tei:del">
         <del>
             <xsl:apply-templates/>
         </del>

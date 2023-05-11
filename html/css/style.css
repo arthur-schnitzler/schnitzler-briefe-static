@@ -1009,4 +1009,7 @@ tbody {
     border-style: none;
   }
   
+  .unclear {
+    color: gray;
+}
 
