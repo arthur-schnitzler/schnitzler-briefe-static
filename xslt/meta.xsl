@@ -56,7 +56,8 @@
         <xsl:if test="descendant::tei:div[starts-with(@type, 'level')]">
             <xsl:element name="nav">
                 <xsl:attribute name="style">
-                    <xsl:text>z-index: 0</xsl:text>
+                    <xsl:text>z-index: 0;</xsl:text>
+                    <xsl:text>margin: 3em;</xsl:text>
                 </xsl:attribute>
                 <xsl:attribute name="id">
                     <xsl:text>page-toc</xsl:text>
