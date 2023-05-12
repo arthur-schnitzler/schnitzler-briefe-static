@@ -5,6 +5,7 @@
     xmlns:mam="whatever" version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
+    <xsl:strip-space elements="tei:quote"/>
     <xsl:import href="./partials/shared.xsl"/>
     <xsl:import href="./partials/refs.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
@@ -38,7 +39,7 @@
         <xsl:value-of select="concat(tei:TEI/@xml:id, '.pdf')"/>
     </xsl:variable>
     <xsl:variable name="link">
-        <xsl:value-of select="replace($teiSource, '.xml', '.html')"/>
+        <xsl:value-of select="concat(replace($teiSource, '.xml', ''), '.html')"/>
     </xsl:variable>
     <xsl:variable name="doc_title">
         <xsl:value-of select=".//tei:titleSmt/tei:title[@level = 'a'][1]/text()"/>
@@ -361,7 +362,7 @@
                                 <p>Für Belege in der Wikipedia kann diese Vorlage benutzt
                                     werden:</p>
                                 <blockquote>
-                                    <code>{{Internetquelle |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of select="replace($teiSource, '.xml', '.html')"/>
+                                    <code>{{Internetquelle |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of select="$link"/>
                                             |titel=<xsl:value-of select="$doc_title"/> |werk=Arthur
                                         Schnitzler: Briefwechsel mit Autorinnen und Autoren
                                         |hrsg=Martin Anton Müller, Gerd-Hermann Susen, Laura Untner
@@ -1271,5 +1272,30 @@
             <xsl:value-of select="mam:dots($anzahl - 1)"/>
         </xsl:if>
     </xsl:function>
-    <xsl:strip-space elements="tei:quote"/>
+    
+    
+    <!-- Wechsel der Schreiber <handShift -->
+    <xsl:template match="tei:handShift[not(@scribe)]">
+        <xsl:choose>
+            <xsl:when test="@medium = 'typewriter'">
+                <span class="typewriter">
+                <xsl:text>[maschinenschriftlich:] </xsl:text>
+                </span>
+            </xsl:when>
+            <xsl:otherwise>
+                <span class="handschriftlich">
+                <xsl:text>[handschriftlich:] </xsl:text>
+                </span>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:handShift[@scribe]">
+        <xsl:variable name="scribe">
+            <xsl:value-of select="@scribe"/>
+        </xsl:variable>
+        <span class="handschriftlich">
+        <xsl:text>[handschriftlich </xsl:text>
+        <xsl:value-of select="mam:vorname-vor-nachname(ancestor::tei:TEI/descendant::tei:correspDesc//tei:persName[@ref = $scribe])"/>
+        <xsl:text>:] </xsl:text></span>
+    </xsl:template>
 </xsl:stylesheet>
