@@ -369,7 +369,7 @@
                                         |sprache=de |datum=<xsl:value-of
                                             select="//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso"
                                         /> |abruf=<xsl:value-of
-                                            select="format-date(current-date(), '[Y4]-[M2]-[D2]')"/>
+                                            select="format-date(current-date(), '[Y4]-[M02]-[D02]')"/>
                                         }} </code>
                                 </blockquote>
                             </div>
