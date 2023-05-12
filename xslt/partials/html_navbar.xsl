@@ -52,6 +52,10 @@
                                     <a class="nav-link" href="gedruckte-korrespondenz.html"
                                         >Korrespondenzverzeichnisse</a>
                                 </li>
+                                <li class="nav-item dropdown-submenu">
+                                    <a title="Schnitzler am ACDH-CH" href="https://schnitzler.acdh.oeaw.ac.at"
+                                        class="nav-link" target="_blank">Schnitzler am ACDH-CH</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">

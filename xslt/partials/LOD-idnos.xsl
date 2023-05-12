@@ -84,7 +84,7 @@
                                     <xsl:text>black; </xsl:text>
                                 </xsl:otherwise>
                             </xsl:choose>
-                            <xsl:text> color: white</xsl:text>
+                            <xsl:text> color: white; margin-top: 4px;</xsl:text>
                         </xsl:attribute>
                         <xsl:choose>
                             <xsl:when test="$abbr = 'wikidata'">

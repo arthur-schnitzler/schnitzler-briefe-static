@@ -42,14 +42,14 @@
         <xsl:value-of select="concat(replace($teiSource, '.xml', ''), '.html')"/>
     </xsl:variable>
     <xsl:variable name="doc_title">
-        <xsl:value-of select=".//tei:titleSmt/tei:title[@level = 'a'][1]/text()"/>
+        <xsl:value-of select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"/>
     </xsl:variable>
     <xsl:param name="chronik-dir">../chronik-data</xsl:param>
     <xsl:variable name="chronik-data"
         select="collection(concat($chronik-dir, '/?select=L0*.xml;recurse=yes'))"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title">
-            <xsl:value-of select=".//tei:titleSmt/tei:title[@level = 'a'][1]/text()"/>
+            <xsl:value-of select=".//tei:titleStmt/tei:title[@level = 'a'][1]/text()"/>
         </xsl:variable>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
         <html>
