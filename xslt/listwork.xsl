@@ -89,6 +89,12 @@
                                                             test="@role = 'illustrator' or @role = 'hat-illustriert'">
                                                             <xsl:text> (Illustrationen)</xsl:text>
                                                         </xsl:if>
+                                                        <xsl:if test="@role = 'hat-einen-beitrag-geschaffen-zu'">
+                                                            <xsl:text> (Beitrag)</xsl:text>
+                                                        </xsl:if>
+                                                        <xsl:if test="@role = 'hat-ein-vorwortnachwort-verfasst-zu'">
+                                                            <xsl:text> (Vor-/Nachwort)</xsl:text>
+                                                        </xsl:if>
                                                     </td>
                                                     <td>
                                                         <xsl:value-of select="$datum"/>
