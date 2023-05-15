@@ -26,17 +26,17 @@ rm main.zip
 
 
 # echo "delete schema reference"
-# find ./data/editions/ -type f -name "*.xml"  -print0 | xargs -0 sed -i -e 's@xsi:schemaLocation="http://www.tei-c.org/ns/1.0 ../meta/asbwschema.xsd"@@g'
+find ./data/editions/ -type f -name "*.xml"  -print0 | xargs -0 sed -i -e 's@xsi:schemaLocation="http://www.tei-c.org/ns/1.0 ../meta/asbwschema.xsd"@@g'
 
 # echo "fixing entity ids"
-# find ./data/indices/ -type f -name "*.xml"  -print0 | xargs -0 sed -i -e 's@<person xml:id="person__@<person xml:id="pmb@g'
+find ./data/indices/ -type f -name "*.xml"  -print0 | xargs -0 sed -i -e 's@<person xml:id="person__@<person xml:id="pmb@g'
 
 # get schnitzler-briefe-tex
 
-# rm -rf .html/L*.pdf
-# wget https://github.com/arthur-schnitzler/schnitzler-briefe-tex/archive/refs/heads/main.zip
-# unzip main
+rm -rf .html/L*.pdf
+wget https://github.com/arthur-schnitzler/schnitzler-briefe-tex/archive/refs/heads/main.zip
+unzip main
 
-# mv ./schnitzler-briefe-tex-main/pdf-leseansicht/L*.pdf ./html
-# rm main.zip
-# rm -rf ./schnitzler-briefe-tex-main
+mv ./schnitzler-briefe-tex-main/pdf-leseansicht/L*.pdf ./html
+rm main.zip
+rm -rf ./schnitzler-briefe-tex-main
