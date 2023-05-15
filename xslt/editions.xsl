@@ -176,8 +176,7 @@
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#tagfuertag" type="button"
                                                   data-bs-toggle="modal">
-                                                  <i class="fas fa-calendar-day"/>
-                                                  CHRONIK</a>&#160; </li>
+                                                  <i class="fas fa-calendar-day"/> CHRONIK</a>&#160; </li>
                                                 <!--<li class="nav-item dropdown">
                                     <span class="nav-link">
                                         <div id="csLink" class="a.grau" data-correspondent-1-name=""
@@ -362,15 +361,17 @@
                                 <p>Für Belege in der Wikipedia kann diese Vorlage benutzt
                                     werden:</p>
                                 <blockquote>
-                                    <code>{{Internetquelle |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of select="$link"/>
-                                            |titel=<xsl:value-of select="$doc_title"/> |werk=Arthur
-                                        Schnitzler: Briefwechsel mit Autorinnen und Autoren
-                                        |hrsg=Martin Anton Müller, Gerd-Hermann Susen, Laura Untner
-                                        |sprache=de |datum=<xsl:value-of
+                                    <code>{{Internetquelle
+                                            |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of
+                                            select="$link"/> |titel=<xsl:value-of
+                                            select="$doc_title"/> |werk=Arthur Schnitzler:
+                                        Briefwechsel mit Autorinnen und Autoren |hrsg=Martin Anton
+                                        Müller, Gerd-Hermann Susen, Laura Untner |sprache=de
+                                            |datum=<xsl:value-of
                                             select="//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso"
                                         /> |abruf=<xsl:value-of
-                                            select="format-date(current-date(), '[Y4]-[M02]-[D02]')"/>
-                                        }} </code>
+                                            select="format-date(current-date(), '[Y4]-[M02]-[D02]')"
+                                        /> }} </code>
                                 </blockquote>
                             </div>
                             <div class="modal-footer">
@@ -733,7 +734,8 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle3">
-                                    <a href="{concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum, '.html')}"
+                                    <a
+                                        href="{concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum, '.html')}"
                                         target="_blank" style="color: #C67F53">
                                         <xsl:value-of
                                             select="concat($wochentag, ', ', $datum-written)"/>
@@ -779,13 +781,15 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <p>
-                                    <a class="ml-3" data-toggle="tooltip" title="Brief als PDF">
-                                        <xsl:attribute name="href">
-                                            <xsl:value-of select="$source_pdf"/>
-                                        </xsl:attribute>
-                                        <i class="fa-lg far fa-file-pdf"/> PDF </a>
-                                </p>
+                                <xsl:if test="$source_pdf">
+                                    <p>
+                                        <a class="ml-3" data-toggle="tooltip" title="Brief als PDF">
+                                            <xsl:attribute name="href">
+                                                <xsl:value-of select="$source_pdf"/>
+                                            </xsl:attribute>
+                                            <i class="fa-lg far fa-file-pdf"/> PDF </a>
+                                    </p>
+                                </xsl:if>
                                 <p>
                                     <a class="ml-3" data-toggle="tooltip"
                                         title="Brief als TEI-Datei">
@@ -970,16 +974,16 @@
         </xsl:if>
         <xsl:element name="a">
             <xsl:attribute name="class">
-            <xsl:choose>
-                <xsl:when test="ancestor::tei:hi[@rend='pre-print']">
-                    <xsl:text>pre-print</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:text>reference-black</xsl:text>
-                </xsl:otherwise>
-            </xsl:choose>
+                <xsl:choose>
+                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print']">
+                        <xsl:text>pre-print</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>reference-black</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:attribute>
-                
+
             <xsl:attribute name="href">
                 <xsl:text>#footnote</xsl:text>
                 <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
@@ -997,7 +1001,7 @@
             </xsl:attribute>
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="ancestor::tei:hi[@rend='pre-print']">
+                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print']">
                         <xsl:text>pre-print</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
@@ -1272,19 +1276,19 @@
             <xsl:value-of select="mam:dots($anzahl - 1)"/>
         </xsl:if>
     </xsl:function>
-    
-    
+
+
     <!-- Wechsel der Schreiber <handShift -->
     <xsl:template match="tei:handShift[not(@scribe)]">
         <xsl:choose>
             <xsl:when test="@medium = 'typewriter'">
                 <span class="typewriter">
-                <xsl:text>[maschinenschriftlich:] </xsl:text>
+                    <xsl:text>[maschinenschriftlich:] </xsl:text>
                 </span>
             </xsl:when>
             <xsl:otherwise>
                 <span class="handschriftlich">
-                <xsl:text>[handschriftlich:] </xsl:text>
+                    <xsl:text>[handschriftlich:] </xsl:text>
                 </span>
             </xsl:otherwise>
         </xsl:choose>
@@ -1294,8 +1298,10 @@
             <xsl:value-of select="@scribe"/>
         </xsl:variable>
         <span class="handschriftlich">
-        <xsl:text>[handschriftlich </xsl:text>
-        <xsl:value-of select="mam:vorname-vor-nachname(ancestor::tei:TEI/descendant::tei:correspDesc//tei:persName[@ref = $scribe])"/>
-        <xsl:text>:] </xsl:text></span>
+            <xsl:text>[handschriftlich </xsl:text>
+            <xsl:value-of
+                select="mam:vorname-vor-nachname(ancestor::tei:TEI/descendant::tei:correspDesc//tei:persName[@ref = $scribe])"/>
+            <xsl:text>:] </xsl:text>
+        </span>
     </xsl:template>
 </xsl:stylesheet>
