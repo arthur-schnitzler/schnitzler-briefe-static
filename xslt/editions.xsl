@@ -781,7 +781,9 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <xsl:if test="$source_pdf">
+                                <xsl:variable name="id-ohne-l"
+                                    select="number(substring-after(tei:TEI/@xml:id, 'L'))"/>
+                                <xsl:if test="$id-ohne-l &lt; 2900">
                                     <p>
                                         <a class="ml-3" data-toggle="tooltip" title="Brief als PDF">
                                             <xsl:attribute name="href">
@@ -1304,4 +1306,5 @@
             <xsl:text>:] </xsl:text>
         </span>
     </xsl:template>
+
 </xsl:stylesheet>
