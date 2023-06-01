@@ -67,9 +67,8 @@
                                 ediert. Das sind 300 Briefe. Von der 45. Korrespondenz, dem
                                 Austausch mit Felix Salten, liegen die überlieferten Briefe
                                 Schnitzlers zur Gänze vor (knapp über 100 Stück). Beide
-                                Korrespondenzen werden fortlaufend erweitert. (<ref type="URL"
-                                    target="https://schnitzler-briefe.acdh.oeaw.ac.at/status.html"
-                                    >zum Projektstand</ref>)</p>
+                                Korrespondenzen werden fortlaufend erweitert. (<a href="status.html"
+                                    >Projektstand</a>)</p>
                             <a href="L00001.html">
                                 <button class="btn btn-round">Lesen</button>
                             </a>
