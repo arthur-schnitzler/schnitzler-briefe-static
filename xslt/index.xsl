@@ -64,10 +64,12 @@
                                 und Amerika durchgesehen und korrigiert.</p>
                             <p class="mt-3" style="padding-bottom: 50px;">Die 44. Korrespondenz,
                                 jene mit Paul Goldmann, ist bislang bis zum Jahr 1900 vollständig
-                                ediert. Das sind derzeit 300 Briefe. Von der 45. Korrespondenz, dem
+                                ediert. Das sind 300 Briefe. Von der 45. Korrespondenz, dem
                                 Austausch mit Felix Salten, liegen die überlieferten Briefe
-                                Schnitzlers zur Gänze (knapp über 100 Stück) vor. Beide
-                                Korrespondenzen werden fortlaufend erweitert.</p>
+                                Schnitzlers zur Gänze vor (knapp über 100 Stück). Beide
+                                Korrespondenzen werden fortlaufend erweitert. (<ref type="URL"
+                                    target="https://schnitzler-briefe.acdh.oeaw.ac.at/status.html"
+                                    >zum Projektstand</ref>)</p>
                             <a href="L00001.html">
                                 <button class="btn btn-round">Lesen</button>
                             </a>
