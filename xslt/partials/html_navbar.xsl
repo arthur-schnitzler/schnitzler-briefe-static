@@ -18,7 +18,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Projekt </a>
+                                data-bs-toggle="dropdown" aria-expanded="false">Projekt</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="about.html">Zum Projekt</a>
@@ -41,20 +41,16 @@
                                 </li>
                                 <div class="dropdown-divider"/>
                                 <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="drucke.html">Gedruckte
-                                        Briefwechsel</a>
-                                </li>
-                                <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="andere-drucke.html">Weitere
-                                        Druckdigitalisate</a>
+                                    <a class="nav-link" href="drucke.html">Druckausgaben</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="gedruckte-korrespondenz.html"
                                         >Korrespondenzverzeichnisse</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
-                                    <a title="Schnitzler am ACDH-CH" href="https://schnitzler.acdh.oeaw.ac.at"
-                                        class="nav-link" target="_blank">Schnitzler am ACDH-CH</a>
+                                    <a title="Schnitzler am ACDH-CH"
+                                        href="https://schnitzler.acdh.oeaw.ac.at" class="nav-link"
+                                        target="_blank">Schnitzler am ACDH-CH</a>
                                 </li>
                             </ul>
                         </li>
@@ -81,7 +77,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Index </a>
+                                data-bs-toggle="dropdown" aria-expanded="false">Index</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="listperson.html">Personen</a>
@@ -99,7 +95,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Technisches </a>
+                                data-bs-toggle="dropdown" aria-expanded="false">Technisches</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="elemente.html"
