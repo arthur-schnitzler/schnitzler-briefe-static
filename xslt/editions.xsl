@@ -434,11 +434,11 @@
                                                   test="child::tei:persName[1]/tei:forename[1]">
                                                   <xsl:value-of select="child::tei:forename[1]"/>
                                                   </xsl:when>
-                                                  <xsl:when test="child::tei:surname[1]">
-                                                  <xsl:value-of select="child::tei:surname[1]"/>
+                                                    <xsl:when test="child::tei:persName[1]/tei:surname[1]">
+                                                        <xsl:value-of select="child::tei:persName[1]/tei:surname[1]"/>
                                                   </xsl:when>
                                                   <xsl:otherwise>
-                                                  <xsl:value-of select="normalize-space(.)"/>
+                                                      <xsl:value-of select="normalize-space(child::tei:persName)"/>
                                                   </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:variable>
