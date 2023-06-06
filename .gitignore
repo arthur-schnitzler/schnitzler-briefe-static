@@ -45,7 +45,9 @@ html/dist/
 saxon/
 html/*.html
 html/*.xml
+html/*.rdf
 html/*.txt
+html/*.pdf
 html/search.html
 html/*.js
 secret.sh
