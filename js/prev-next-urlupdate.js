@@ -35,25 +35,25 @@ function nextPrevUrl() {
   } else {
     path = "";
   }
-  if (prev) {
+  if (prev && urlparam.size > 0) {
     var prev_href = prev.getAttribute("href");
     var new_prev = new URL(`${domain}/${path}/${prev_href}?${urlparam}`);
     prev.setAttribute("href", new_prev);
   }
-  if (next) {
+  if (next && urlparam.size > 0) {
     var next_href = next.getAttribute("href");
     var new_next = new URL(`${domain}/${path}/${next_href}?${urlparam}`);
     next.setAttribute("href", new_next);
   }
-  if (prev2) {
-    var prev_href2 = prev2.getAttribute("href");
-    var new_prev2 = new URL(`${domain}/${path}/${prev_href2}?${urlparam}`);
-    prev2.setAttribute("href", new_prev2);
+  if (prev2 && urlparam.size > 0) {
+    var prev_href = prev2.getAttribute("href");
+    var new_prev = new URL(`${domain}/${path}/${prev_href}?${urlparam}`);
+    prev2.setAttribute("href", new_prev);
   }
-  if (next2) {
-    var next_href2 = next2.getAttribute("href");
-    var new_next2 = new URL(`${domain}/${path}/${next_href2}?${urlparam}`);
-    next2.setAttribute("href", new_next2);
+  if (next2 && urlparam.size > 0) {
+    var next_href = next2.getAttribute("href");
+    var new_next = new URL(`${domain}/${path}/${next_href}?${urlparam}`);
+    next2.setAttribute("href", new_next);
   }
 }
 
@@ -64,51 +64,47 @@ function nextPrevUrlUpdate() {
   var next2 = document.getElementById(next_btn2);
   var urlparam = new URLSearchParams(document.location.search);
   if (prev) {
-    var prev_href = new URL(prev.getAttribute("href"));
-    var old_prev_search = new URLSearchParams(prev_href.search);
-    urlparam.forEach((value, key) => {
-      old_prev_search.set(key, value);
-    });
+    if (urlparam.size > 0) {
+      var new_href = `${prev.getAttribute("href").replace(/\?.+/, '')}?${urlparam.toString()}`;
+    } else {
+      var new_href = `${prev.getAttribute("href").replace(/\?.+/, '')}`;
+    }
     prev.setAttribute(
       "href",
-      `${prev_href.origin}${prev_href.pathname}?${old_prev_search.toString()}`
+      new_href
     );
   }
   if (prev2) {
-    var prev_href2 = new URL(prev.getAttribute("href"));
-    var old_prev_search2 = new URLSearchParams(prev_href2.search);
-    urlparam.forEach((value, key) => {
-      old_prev_search2.set(key, value);
-    });
+    if (urlparam.size > 0) {
+      var new_href = `${prev2.getAttribute("href").replace(/\?.+/, '')}?${urlparam.toString()}`;
+    } else {
+      var new_href = `${prev2.getAttribute("href").replace(/\?.+/, '')}`;
+    }
     prev2.setAttribute(
       "href",
-      `${prev_href2.origin}${
-        prev_href2.pathname
-      }?${old_prev_search2.toString()}`
+      new_href
     );
   }
   if (next) {
-    var next_href = new URL(next.getAttribute("href"));
-    var old_next_search = new URLSearchParams(next_href.search);
-    urlparam.forEach((value, key) => {
-      old_next_search.set(key, value);
-    });
+    if (urlparam.size > 0) {
+      var new_href = `${next.getAttribute("href").replace(/\?.+/, '')}?${urlparam.toString()}`;
+    } else {
+      var new_href = `${next.getAttribute("href").replace(/\?.+/, '')}`;
+    }
     next.setAttribute(
       "href",
-      `${next_href.origin}${next_href.pathname}?${old_next_search.toString()}`
+      new_href
     );
   }
   if (next2) {
-    var next_href2 = new URL(next.getAttribute("href"));
-    var old_next_search2 = new URLSearchParams(next_href2.search);
-    urlparam.forEach((value, key) => {
-      old_next_search2.set(key, value);
-    });
+    if (urlparam.size > 0) {
+      var new_href = `${next2.getAttribute("href").replace(/\?.+/, '')}?${urlparam.toString()}`;
+    } else {
+      var new_href = `${next2.getAttribute("href").replace(/\?.+/, '')}`;
+    }
     next2.setAttribute(
       "href",
-      `${next_href2.origin}${
-        next_href2.pathname
-      }?${old_next_search2.toString()}`
+      new_href
     );
   }
 }
