@@ -25,7 +25,7 @@ a:hover {
 
 
 .capitals {
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
 
 cite {
