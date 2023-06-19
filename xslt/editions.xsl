@@ -1242,6 +1242,31 @@
     <xsl:template match="tei:space[@unit = 'chars' and @quantity = '1']" mode="verschachtelteA">
         <xsl:text>&#x00A0;</xsl:text>
     </xsl:template>
+    <xsl:template match="tei:hi" mode="verschachtelteA">
+        <xsl:element name="span">
+            <xsl:attribute name="class">
+                <xsl:choose>
+                    <xsl:when test="@rend = 'underline'">
+                        <xsl:choose>
+                            <xsl:when test="@n = '1'">
+                                <xsl:text>underline</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@n = '2'">
+                                <xsl:text>doubleUnderline</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>tripleUnderline</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="@rend"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
     <xsl:template match="tei:space[@unit = 'line']">
         <xsl:value-of select="mam:spaci-space(@quantity, @quantity)"/>
     </xsl:template>
