@@ -1204,7 +1204,7 @@
             <xsl:attribute name="data-target">
                 <xsl:value-of select="concat('#', $modalId)"/>
             </xsl:attribute>
-            <xsl:value-of select="."/>
+            <xsl:apply-templates mode="verschachtelteA"/>
         </xsl:element>
     </xsl:template>
     <xsl:template
@@ -1237,6 +1237,9 @@
         </span>
     </xsl:template>-->
     <xsl:template match="tei:space[@unit = 'chars' and @quantity = '1']">
+        <xsl:text>&#x00A0;</xsl:text>
+    </xsl:template>
+    <xsl:template match="tei:space[@unit = 'chars' and @quantity = '1']" mode="verschachtelteA">
         <xsl:text>&#x00A0;</xsl:text>
     </xsl:template>
     <xsl:template match="tei:space[@unit = 'line']">
