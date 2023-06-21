@@ -107,7 +107,7 @@
                     <xsl:choose>
                         <xsl:when test="@type = 'schnitzler-briefe'">
                             <xsl:value-of
-                                select="document(concat($type-url, replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:correspAction[1]/tei:date[1]/text()"
+                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/text()"
                             />
                         </xsl:when>
                         <xsl:when test="@type = 'schnitzler-bahr'">
