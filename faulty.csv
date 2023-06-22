@@ -1,2 +1,12 @@
 path,error
-no faulty files found,good job!
+L03056.xml,"ID XXXX already defined, line 136, column 133 (L03056.xml, line 136)"
+L03061.xml,"ID XXXX already defined, line 124, column 89 (L03061.xml, line 124)"
+L03066.xml,"ID XXXX already defined, line 123, column 113 (L03066.xml, line 123)"
+L03077.xml,"ID XXXX already defined, line 125, column 99 (L03077.xml, line 125)"
+L03085.xml,"ID XXXX already defined, line 127, column 136 (L03085.xml, line 127)"
+L03088.xml,"ID XXXX already defined, line 125, column 198 (L03088.xml, line 125)"
+L03091.xml,"ID XXXX already defined, line 148, column 112 (L03091.xml, line 148)"
+L03092.xml,"ID XXXX already defined, line 132, column 114 (L03092.xml, line 132)"
+L03093.xml,"ID XXXX already defined, line 132, column 103 (L03093.xml, line 132)"
+L03095.xml,"ID XXXX already defined, line 131, column 89 (L03095.xml, line 131)"
+L03097.xml,"ID XXXX already defined, line 136, column 188 (L03097.xml, line 136)"
