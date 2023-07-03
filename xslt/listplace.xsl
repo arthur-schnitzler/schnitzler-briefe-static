@@ -27,12 +27,20 @@
                                 </h1>
                             </div>
                             <div class="card-body">
-                                <table class="table table-striped display" id="tocTable"
+                                <div id="map"/>
+                                <table class="table table-striped display" id="myTable"
                                     style="width:100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Ortsname</th>
-                                            <th scope="col">Längen-/Breitengrad</th>
+                                            <th scope="col">Erwähnungen</th>
+                                            <th scope="col">Geonames</th>
+                                            <th scope="col">Lat</th>
+                                            <th scope="col">Long</th>
+                                            <th scope="col">ID</th>
+                                            
+                                            <!--<th scope="col">Ortsname</th>
+                                            <th scope="col">Längen-/Breitengrad</th>-->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,18 +59,49 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <xsl:if test="descendant::tei:geo[1]">
-                                                        <xsl:variable name="lat"
-                                                            select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"
-                                                            as="xs:string"/>
-                                                        <xsl:variable name="long"
-                                                            select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"
-                                                            as="xs:string"/>
-                                                        <xsl:value-of
-                                                            select="concat(foo:grad-kuerzen($lat), '/', foo:grad-kuerzen($long))"
-                                                        />
-                                                    </xsl:if>
+                                                    <xsl:value-of select="count(descendant::tei:note[@type='mentions'])"/>
                                                 </td>
+                                                <td>
+                                                    <xsl:choose>
+                                                        <xsl:when test="descendant::tei:idno[@subtype='geonames']/text()">
+                                                            <a>
+                                                                <xsl:attribute name="href"><xsl:value-of select=".//tei:idno[@subtype='geonames']/text()"/></xsl:attribute><xsl:value-of select=".//tei:idno[@type='GEONAMES']/text()"/>
+                                                            </a>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            keine ID
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
+                                                </td>
+                                                <td>
+                                                    <xsl:choose>
+                                                        <xsl:when test="descendant::tei:location/tei:geo[1]">
+                                                            <xsl:variable name="lat"
+                                                                select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"
+                                                                as="xs:string"/>
+                                                            <xsl:value-of select="foo:grad-kuerzen($lat)"/>
+                                                        </xsl:when>
+                                                    </xsl:choose>
+                                                </td>
+                                                <td>
+                                                    <xsl:choose>
+                                                        <xsl:when test="descendant::tei:location/tei:geo[1]">
+                                                            <xsl:variable name="long"
+                                                                select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"
+                                                                as="xs:string"/>
+                                                            <xsl:value-of select="foo:grad-kuerzen($long)"/>
+                                                        </xsl:when>
+                                                    </xsl:choose>
+                                                </td>
+                                                <td>
+                                                    <a>
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of select="concat($id, '.html')"/>
+                                                        </xsl:attribute>
+                                                        <xsl:value-of select="$id"/>
+                                                    </a> 
+                                                </td>
+                                                
                                             </tr>
                                         </xsl:for-each>
                                     </tbody>
@@ -71,12 +110,25 @@
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"></script>
+                  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"></script>
                     <script type="text/javascript" src="js/dt.js"></script>
-                    <script>
+                    <!--<script>
                         $(document).ready(function () {
-                        createDataTable('tocTable')
+                        createDataTable('myTable')
                         });
+                    </script>-->
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+                        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+                        crossorigin=""/>
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+                    <!-- ############### leaflet script ################ -->
+                    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                        crossorigin=""></script>
+                    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+                    <script src="js/dt_map.js">
+                        
                     </script>
                 </div>
             </body>

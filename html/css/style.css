@@ -1018,4 +1018,6 @@ tbody {
     font-variant: small-caps;
 }
 
-
+.myTable_filter {
+    margin-top:1em;
+}
