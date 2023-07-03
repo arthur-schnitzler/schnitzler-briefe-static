@@ -1018,6 +1018,6 @@ tbody {
     font-variant: small-caps;
 }
 
-.myTable_filter {
+.dataTables_filter {
     margin-top:1em;
 }

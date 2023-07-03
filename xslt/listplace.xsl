@@ -33,11 +33,11 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Ortsname</th>
-                                            <th scope="col">Erwähnungen</th>
-                                            <th scope="col">Geonames</th>
+                                          <!--  <th scope="col">Erwähnungen</th>
+                                            <th scope="col">Geonames</th>-->
                                             <th scope="col">Lat</th>
                                             <th scope="col">Long</th>
-                                            <th scope="col">ID</th>
+                                            <!--<th scope="col">ID</th>-->
                                             
                                             <!--<th scope="col">Ortsname</th>
                                             <th scope="col">Längen-/Breitengrad</th>-->
@@ -59,21 +59,6 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <xsl:value-of select="count(descendant::tei:note[@type='mentions'])"/>
-                                                </td>
-                                                <td>
-                                                    <xsl:choose>
-                                                        <xsl:when test="descendant::tei:idno[@subtype='geonames']/text()">
-                                                            <a>
-                                                                <xsl:attribute name="href"><xsl:value-of select=".//tei:idno[@subtype='geonames']/text()"/></xsl:attribute><xsl:value-of select=".//tei:idno[@type='GEONAMES']/text()"/>
-                                                            </a>
-                                                        </xsl:when>
-                                                        <xsl:otherwise>
-                                                            keine ID
-                                                        </xsl:otherwise>
-                                                    </xsl:choose>
-                                                </td>
-                                                <td>
                                                     <xsl:choose>
                                                         <xsl:when test="descendant::tei:location/tei:geo[1]">
                                                             <xsl:variable name="lat"
@@ -93,15 +78,6 @@
                                                         </xsl:when>
                                                     </xsl:choose>
                                                 </td>
-                                                <td>
-                                                    <a>
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of select="concat($id, '.html')"/>
-                                                        </xsl:attribute>
-                                                        <xsl:value-of select="$id"/>
-                                                    </a> 
-                                                </td>
-                                                
                                             </tr>
                                         </xsl:for-each>
                                     </tbody>

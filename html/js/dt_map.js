@@ -114,7 +114,7 @@ function getTableData(table) {
     // loop table rows
     table.rows({ search: "applied" }).every(function () {
         const data = this.data();
-        if (data[3]) {
+        if (data[1]) {
             placesArray.push(data);
         }
     });
@@ -132,8 +132,8 @@ function createGeoJson(data) {
         geojson.geometry = {
             "type": "Point",
             "coordinates": [
-                element[4],
-                element[3]
+                element[2],
+                element[1]
             ]
         };
         geojson.properties = {
