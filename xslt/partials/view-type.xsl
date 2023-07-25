@@ -56,11 +56,15 @@
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Bayerische Staatsbibliothek')]">
           <xsl:text>BSB</xsl:text>
         </xsl:when>
+        <!-- ADK -->
+        <xsl:when
+          test="$msIdentifier/tei:repository[contains(., 'Akademie der Künste')] and $msIdentifier/tei:settlement = 'Berlin'">
+          <xsl:text>ADK</xsl:text>
+        </xsl:when>
         <!-- BURGERBIBLIOTHEK -->
-        <!--<xsl:when
-                                                  test="descendant::tei:repository[contains(., 'Burgerbibliothek')]">
-                                                  <xsl:text>Burgerbibliothek</xsl:text>
-                                                </xsl:when>-->
+        <xsl:when test="descendant::tei:repository[contains(., 'Burgerbibliothek')]">
+          <xsl:text>Burgerbibliothek</xsl:text>
+        </xsl:when>
         <!-- CUL -->
         <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Cambridge')]">
           <xsl:variable name="Folder-Number">
