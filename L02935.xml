@@ -29,7 +29,6 @@
                <name>Müller, Martin Anton</name>
                <name>Untner, Laura</name>
             </respStmt>
-            <idno type="asbw" n="02935"/>
          </editionStmt>
          <publicationStmt>
             <publisher>Austrian Centre for Digital Humanities and Cultural Heritage</publisher>
@@ -69,6 +68,7 @@
          <sourceDesc>
             <listWit>
                <witness n="1">
+                  <objectType corresp="brief"/>
                   <msDesc>
                      <msIdentifier>
                         <country>D</country>
@@ -78,9 +78,12 @@
                      </msIdentifier>
                      <physDesc>
                         <objectDesc>
-                           <desc type="brief"/>
-                           <desc type="_blaetter" n="1"/>
-                           <desc type="_seiten" n="3"/>
+                           <supportDesc>
+                              <extent>
+                                 <measure unit="blatt" quantity="1"/>
+                                 <measure unit="seite" quantity="3"/>
+                              </extent>
+                           </supportDesc>
                         </objectDesc>
                         <handDesc>
                            <handNote medium="blaue_tinte" style="deutsche-kurrent"/>
@@ -92,8 +95,7 @@
                            <incident type="receiver">
                               <desc>mit Bleistift das Jahr »<quote>
                                     <date when="1900">
-                                       <supplied>1</supplied>900</date>
-                                 </quote>« vermerkt</desc>
+                                       <supplied>1</supplied>900</date>.</quote>« vermerkt</desc>
                            </incident>
                            <incident type="receiver">
                               <desc>mit rotem Buntstift zwei Unterstreichungen</desc>
@@ -134,8 +136,11 @@
             </correspContext>
          </correspDesc>
       </profileDesc>
-      <revisionDesc status="proposed">
+      <revisionDesc status="approved">
          <change who="LU" when="2023-02-02">Angelegt</change>
+         <change who="MAM" when="2023-06-22">Durchsicht</change>
+         <change who="MAM" when="2023-06-22">Index check</change>
+         <change who="LU" when="2023-08-16">Durchsicht</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
