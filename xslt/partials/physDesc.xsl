@@ -440,12 +440,13 @@
             <xsl:variable name="rest-unit-order" select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string"/>
             <xsl:variable name="kommakomma" as="xs:string?">
             <xsl:for-each select="tokenize($rest-unit-order, ' ')">
-                <xsl:if test="$measures/tei:measure[@unit= .]">
+                <xsl:variable name="unit" select="." as="xs:string"/>
+                <xsl:if test="$measures/tei:measure[@unit= $unit]">
                     <xsl:text>b</xsl:text>
                 </xsl:if>
             </xsl:for-each>
             </xsl:variable>
-            <xsl:if test="starts-with($kommakomma, 'b')">
+            <xsl:if test="contains($kommakomma, 'b')">
                 <xsl:text>, </xsl:text>
             </xsl:if>
         </xsl:for-each>
