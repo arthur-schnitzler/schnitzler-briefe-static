@@ -432,20 +432,29 @@
         </xsl:if>
     </xsl:template>
     <xsl:template match="tei:extent">
-        <xsl:if test="tei:measure/@unit = 'blatt' and tei:measure[not(@unit = 'blatt')]">
-            <xsl:apply-templates select="tei:measure[@unit = 'blatt']"/>
-            <xsl:text>, </xsl:text>
-        </xsl:if>
-        <xsl:if
-            test="tei:measure/@unit = 'seite' and tei:measure[not(@unit = 'blatt') and not(@unit = 'seite')]">
-            <xsl:apply-templates select="tei:measure[@unit = 'seite']"/>
-            <xsl:text>, </xsl:text>
-        </xsl:if>
-        <xsl:if
-            test="tei:measure/@unit = 'umschlag' and tei:measure[not(@unit = 'blatt') and not(@unit = 'seite') and not(@unit = 'umschlag')]">
-            <xsl:apply-templates select="tei:measure[@unit = 'umschlag']"/>
-            <xsl:text>, </xsl:text>
-        </xsl:if>
+        <xsl:variable name="unitOrder" select="'blatt seite karte kartenbrief widmung umschlag'"/>
+        <xsl:variable name="measures" select="tei:measure" as="node()"/>
+        <xsl:for-each select="tokenize($unitOrder, ' ')">
+            <xsl:variable name="unit" select="." as="text()"/>
+            <xsl:variable name="matchingMeasure" select="$measures[@unit = $unit][1]" as="node()"/>
+            <xsl:if test="$matchingMeasure">
+                <xsl:apply-templates select="$matchingMeasure"/>
+                <xsl:variable name="remainingMeasures" select="$measures except $matchingMeasure"
+                    as="node()"/>
+                <xsl:variable name="measures" select="$remainingMeasures" as="node()"/>
+                <xsl:variable name="noch-ein-wert" as="xs:boolean">
+                    <xsl:value-of select="false()"/>
+                    <xsl:for-each select="substring-after($unitOrder, $unit)">
+                        <xsl:if test="$remainingMeasures[@unit = .]">
+                            <xsl:value-of select="true()"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:if test="$noch-ein-wert">
+                    <xsl:text>, </xsl:text>
+                </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
     </xsl:template>
     <xsl:template match="tei:measure">
         <xsl:choose>
