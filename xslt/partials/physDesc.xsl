@@ -415,7 +415,7 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:if>
-        <xsl:apply-templates/>
+        <xsl:apply-templates select="tei:supportDesc"/>
     </xsl:template>
     <xsl:template match="tei:supportDesc">
         <xsl:choose>
@@ -425,65 +425,64 @@
             </xsl:when>
         </xsl:choose>
         <xsl:if test="tei:support">
-            <xsl:apply-templates select="tei:supportDesc"/>
+            <xsl:apply-templates select="tei:support"/>
         </xsl:if>
         <xsl:if test="tei:condition/@ana = 'fragment'">
             <xsl:text>, Fragment</xsl:text>
         </xsl:if>
     </xsl:template>
     <xsl:template match="tei:extent">
-        <xsl:if test="tei:measure/@unit='blatt' and tei:measure[not(@unit='blatt')]">
-            <xsl:apply-templates select="tei:measure/@unit='blatt'"/>
+        <xsl:if test="tei:measure/@unit = 'blatt' and tei:measure[not(@unit = 'blatt')]">
+            <xsl:apply-templates select="tei:measure[@unit = 'blatt']"/>
             <xsl:text>, </xsl:text>
         </xsl:if>
-        <xsl:if test="tei:measure/@unit='seite' and tei:measure[not(@unit='blatt') and not(@unit='seite')]">
-            <xsl:apply-templates select="tei:measure/@unit='seite'"/>
+        <xsl:if
+            test="tei:measure/@unit = 'seite' and tei:measure[not(@unit = 'blatt') and not(@unit = 'seite')]">
+            <xsl:apply-templates select="tei:measure[@unit = 'seite']"/>
             <xsl:text>, </xsl:text>
         </xsl:if>
-        <xsl:if test="tei:measure/@unit='umschlag' and tei:measure[not(@unit='blatt') and not(@unit='seite') and not(@unit='umschlag')]">
-            <xsl:apply-templates select="tei:measure/@unit='umschlag'"/>
+        <xsl:if
+            test="tei:measure/@unit = 'umschlag' and tei:measure[not(@unit = 'blatt') and not(@unit = 'seite') and not(@unit = 'umschlag')]">
+            <xsl:apply-templates select="tei:measure[@unit = 'umschlag']"/>
             <xsl:text>, </xsl:text>
         </xsl:if>
-        
-        
     </xsl:template>
     <xsl:template match="tei:measure">
         <xsl:choose>
-            <xsl:when test="@unit='seite' and @n='1'">
+            <xsl:when test="@unit = 'seite' and @n = '1'">
                 <xsl:text>1&#160;Seite</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit='blatt' and @n='1'">
+            <xsl:when test="@unit = 'blatt' and @n = '1'">
                 <xsl:text>1&#160;Blatt</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit='umschlag' and @n='1'">
+            <xsl:when test="@unit = 'umschlag' and @n = '1'">
                 <xsl:text>Umschlag</xsl:text>
             </xsl:when>
             <!-- hier fehlen die Varianten für »widmung«, »kartenbrief« oder »karte«  und @n='1' -->
-            <xsl:when test="@unit='seite'">
+            <xsl:when test="@unit = 'seite'">
                 <xsl:value-of select="@n"/>
                 <xsl:text>&#160;Seiten</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit='blatt'">
+            <xsl:when test="@unit = 'blatt'">
                 <xsl:value-of select="@n"/>
                 <xsl:text>&#160;Blätter</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit='umschlag'">
+            <xsl:when test="@unit = 'umschlag'">
                 <xsl:value-of select="@n"/>
                 <xsl:text>&#160;Umschläge</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit='widmung' and not(@n='1')">
+            <xsl:when test="@unit = 'widmung' and not(@n = '1')">
                 <xsl:value-of select="@n"/>
                 <xsl:text>&#160;Widmungen</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit='kartenbrief' and not(@n='1')">
+            <xsl:when test="@unit = 'kartenbrief' and not(@n = '1')">
                 <xsl:value-of select="@n"/>
                 <xsl:text>&#160;Kartenbriefe</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit='karte'  and not(@n='1')">
+            <xsl:when test="@unit = 'karte' and not(@n = '1')">
                 <xsl:value-of select="@n"/>
                 <xsl:text>&#160;Karten</xsl:text>
             </xsl:when>
         </xsl:choose>
-        
     </xsl:template>
 </xsl:stylesheet>
