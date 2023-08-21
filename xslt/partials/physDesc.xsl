@@ -433,10 +433,10 @@
     </xsl:template>
     <xsl:template match="tei:extent">
         <xsl:variable name="unitOrder" select="'blatt seite karte kartenbrief widmung umschlag'"/>
-        <xsl:variable name="measures" select="tei:measure" as="node()"/>
+        <xsl:variable name="measures" select="." as="node()"/>
         <xsl:for-each select="tokenize($unitOrder, ' ')">
             <xsl:variable name="unit" select="." as="xs:string"/>
-            <xsl:apply-templates select="$measures[@unit = $unit][1]"/>
+            <xsl:apply-templates select="$measures/tei:measure[@unit = $unit][1]"/>
             <xsl:variable name="rest-unit-order" select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string"/>
             <xsl:variable name="kommakomma" as="xs:string">
             <xsl:for-each select="tokenize($rest-unit-order, ' ')">
