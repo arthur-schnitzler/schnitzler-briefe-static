@@ -436,23 +436,17 @@
         <xsl:variable name="measures" select="tei:measure" as="node()"/>
         <xsl:for-each select="tokenize($unitOrder, ' ')">
             <xsl:variable name="unit" select="." as="xs:string"/>
-            <xsl:variable name="matchingMeasure" select="$measures[@unit = $unit][1]" as="node()"/>
-            <xsl:if test="$matchingMeasure">
-                <xsl:apply-templates select="$matchingMeasure"/>
-                <xsl:variable name="remainingMeasures" select="$measures except $matchingMeasure"
-                    as="node()"/>
-                <xsl:variable name="measures" select="$remainingMeasures" as="node()"/>
-                <xsl:variable name="noch-ein-wert" as="xs:boolean">
-                    <xsl:value-of select="false()"/>
-                    <xsl:for-each select="substring-after($unitOrder, $unit)">
-                        <xsl:if test="$remainingMeasures[@unit = .]">
-                            <xsl:value-of select="true()"/>
-                        </xsl:if>
-                    </xsl:for-each>
-                </xsl:variable>
-                <xsl:if test="$noch-ein-wert">
-                    <xsl:text>, </xsl:text>
+            <xsl:apply-templates select="$measures[@unit = $unit][1]"/>
+            <xsl:variable name="rest-unit-order" select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string"/>
+            <xsl:variable name="kommakomma" as="xs:string">
+            <xsl:for-each select="tokenize($rest-unit-order, ' ')">
+                <xsl:if test="$measures/tei:measure[@unit= .]">
+                    <xsl:text>b</xsl:text>
                 </xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+            <xsl:if test="starts-with($kommakomma, 'b')">
+                <xsl:text>, </xsl:text>
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
