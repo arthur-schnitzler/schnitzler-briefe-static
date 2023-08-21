@@ -439,12 +439,14 @@
             <xsl:apply-templates select="$measures/tei:measure[@unit = $unit][1]"/>
             <xsl:variable name="rest-unit-order" select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string"/>
             <xsl:variable name="kommakomma" as="xs:boolean">
-            <xsl:for-each select="tokenize($rest-unit-order, ' ')">
-                <xsl:variable name="unit" select="." as="xs:string"/>
-                <xsl:if test="$measures/tei:measure[@unit= $unit]">
-                    <xsl:value-of select="true()"/>
-                </xsl:if>
-            </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="tokenize($rest-unit-order, ' ') ! ($measures/tei:measure[@unit = .])">
+                        <xsl:value-of select="true()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="false()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:variable>
             <xsl:if test="$kommakomma">
                 <xsl:text>, </xsl:text>
