@@ -440,7 +440,7 @@
             <xsl:variable name="rest-unit-order" select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string"/>
             <xsl:variable name="kommakomma" as="xs:boolean">
                 <xsl:choose>
-                    <xsl:when test="tokenize($rest-unit-order, ' ') ! ($measures/tei:measure[@unit = .])">
+                    <xsl:when test="$measures/tei:measure[@unit = tokenize($rest-unit-order, ' ')])">
                         <xsl:value-of select="true()"/>
                     </xsl:when>
                     <xsl:otherwise>
