@@ -2,8 +2,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:mam="whatever" exclude-result-prefixes="xs" version="2.0">
-  
- <!-- Ergänzungen für neues physDesc -->
     <xsl:template match="tei:incident/tei:desc/tei:stamp">
         <xsl:text>Stempel </xsl:text>
         <xsl:value-of select="@n"/>
@@ -396,262 +394,96 @@
             <xsl:text>)</xsl:text>
         </xsl:if>
     </xsl:function>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = '_blaetter']">
-        <xsl:choose>
-            <xsl:when test="parent::tei:objectDesc/tei:desc/@type = 'karte'">
-                <xsl:choose>
-                    <xsl:when test="@n = '1'">
-                        <xsl:value-of select="concat(@n, ' Karte')"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="concat(@n, ' Karten')"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:choose>
-                    <xsl:when test="@n = '1'">
-                        <xsl:value-of select="concat(@n, ' Blatt')"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="concat(@n, ' Blätter')"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if test="string-length(.) &gt; 1">
-            <xsl:text> (</xsl:text>
-            <xsl:value-of select="normalize-space(.)"/>
-            <xsl:text>)</xsl:text>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = '_seiten']">
-        <xsl:text>, </xsl:text>
-        <xsl:choose>
-            <xsl:when test="@n = '1'">
-                <xsl:value-of select="concat(@n, ' Seite')"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="concat(@n, ' Seiten')"/>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if test="string-length(.) &gt; 1">
-            <xsl:text> (</xsl:text>
-            <xsl:value-of select="normalize-space(.)"/>
-            <xsl:text>)</xsl:text>
-        </xsl:if>
-        <xsl:if
-            test="preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'entwurf' or @type = 'reproduktion'] or following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'entwurf' or @type = 'reproduktion']">
-            <xsl:text>, </xsl:text>
-        </xsl:if>
-    </xsl:template>
     <xsl:template match="tei:objectDesc">
-        <xsl:apply-templates
-            select="tei:desc[@type = 'karte' or @type = 'bild' or @type = 'kartenbrief' or @type = 'brief' or @type = 'telegramm' or @type = 'widmung' or @type = 'anderes']"/>
-        <xsl:apply-templates select="tei:desc[@type = '_blaetter']"/>
-        <xsl:apply-templates select="tei:desc[@type = '_seiten']"/>
-        <xsl:apply-templates select="tei:desc[@type = 'umschlag']"/>
-        <xsl:apply-templates select="tei:desc[@type = 'reproduktion']"/>
-        <xsl:apply-templates select="tei:desc[@type = 'entwurf']"/>
-        <xsl:apply-templates select="tei:desc[@type = 'fragment']"/>
+        <!-- VVV -->
+        <xsl:if test="@form">
+            <xsl:choose>
+                <xsl:when test="@form = 'durchschlag'">
+                    <xsl:text>Durchschlag</xsl:text>
+                </xsl:when>
+                <xsl:when test="@form = 'fotografische_vervielfaeltigung'">
+                    <xsl:text>Fotografische Vervielfältigung</xsl:text>
+                </xsl:when>
+                <xsl:when test="@form = 'fotokopie'">
+                    <xsl:text>Fotokopie</xsl:text>
+                </xsl:when>
+                <xsl:when test="@form = 'hs_abschrift'">
+                    <xsl:text>Handschriftliche Abschrift</xsl:text>
+                </xsl:when>
+                <xsl:when test="@form = 'ms_abschrift'">
+                    <xsl:text>Maschinenschriftliche Abschrift</xsl:text>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:if>
+        <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'karte']">
+    <xsl:template match="tei:supportDesc">
         <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
+            <xsl:when test="tei:extent/tei:measure[2] or not(tei:extent/tei:measure/@n = 1)">
+                <!-- das übergeht Widmung, Kartenbrief und Karte, wenn nur eine Angabe -->
+                <xsl:apply-templates select="tei:extent"/>
             </xsl:when>
-            <xsl:when test="@subtype = 'bildpostkarte'">
-                <xsl:text>Bildpostkarte</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'postkarte'">
-                <xsl:text>Postkarte</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'briefkarte'">
-                <xsl:text>Briefkarte</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'visitenkarte'">
-                <xsl:text>Visitenkarte</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>Karte</xsl:text>
-            </xsl:otherwise>
         </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type = '_seiten']) or (preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type = '_seiten'])">
-            <xsl:text>, </xsl:text>
+        <xsl:if test="tei:support">
+            <xsl:apply-templates select="tei:support"/>
+        </xsl:if>
+        <xsl:if test="tei:condition/@ana = 'fragment'">
+            <xsl:text>, Fragment</xsl:text>
         </xsl:if>
     </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'reproduktion']">
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
-            </xsl:when>
-            <xsl:when test="@subtype = 'fotokopie'">
-                <xsl:text>Fotokopie</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'fotografische_vervielfaeltigung'">
-                <xsl:text>Fotografische Vervielfältigung</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'ms_abschrift'">
-                <xsl:text>maschinelle Abschrift</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'hs_abschrift'">
-                <xsl:text>handschriftliche Abschrift</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'durchschlag'">
-                <xsl:text>maschineller Durchschlag</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>Reproduktion</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type = '_seiten']) or (preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type = '_seiten'])">
+    <xsl:template match="tei:extent">
+        <xsl:if test="tei:measure/@unit='blatt' and tei:measure[not(@unit='blatt')]">
+            <xsl:apply-templates select="tei:measure/@unit='blatt'"/>
             <xsl:text>, </xsl:text>
         </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'widmung']">
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
-            </xsl:when>
-            <xsl:when test="@subtype = 'widmung_vorsatzblatt'">
-                <xsl:text>Widmung am Vorsatzblatt</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'widmung_titelblatt'">
-                <xsl:text>Widmung am Titelblatt</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'widmung_vortitel'">
-                <xsl:text>Widmung am Vortitel</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'widmung_schmutztitel'">
-                <xsl:text>Widmung am Schmutztitel</xsl:text>
-            </xsl:when>
-            <xsl:when test="@subtype = 'widmung_umschlag'">
-                <xsl:text>Widmung am Umschlag</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>Widmung</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf']) or (preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf'])">
+        <xsl:if test="tei:measure/@unit='seite' and tei:measure[not(@unit='blatt') and not(@unit='seite')]">
+            <xsl:apply-templates select="tei:measure/@unit='seite'"/>
             <xsl:text>, </xsl:text>
         </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'brief']">
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>Brief</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type='_seiten']) or (preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter'])">
+        <xsl:if test="tei:measure/@unit='umschlag' and tei:measure[not(@unit='blatt') and not(@unit='seite') and not(@unit='umschlag')]">
+            <xsl:apply-templates select="tei:measure/@unit='umschlag'"/>
             <xsl:text>, </xsl:text>
         </xsl:if>
+        
+        
     </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'bild']">
+    <xsl:template match="tei:measure">
         <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
+            <xsl:when test="@unit='seite' and @n='1'">
+                <xsl:text>1&#160;Seite</xsl:text>
             </xsl:when>
-            <xsl:when test="@subtype = 'fotografie'">
-                <xsl:text>Fotografie</xsl:text>
+            <xsl:when test="@unit='blatt' and @n='1'">
+                <xsl:text>1&#160;Blatt</xsl:text>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>Bild</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type = '_seiten']) or (preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type = '_seiten'])">
-            <xsl:text>, </xsl:text>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'kartenbrief']">
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>Kartenbrief</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type = '_seiten']) or (preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type = '_seiten'])">
-            <xsl:text>, </xsl:text>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'umschlag']">
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
-            </xsl:when>
-            <xsl:otherwise>
+            <xsl:when test="@unit='umschlag' and @n='1'">
                 <xsl:text>Umschlag</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf']) or (preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf'  or @type = '_blaetter' or @type='_seiten'])">
-            <xsl:text>, </xsl:text>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'telegramm']">
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>Telegramm</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf'  or @type = '_blaetter' or @type='_seiten']) or (preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type='_seiten'])">
-            <xsl:text>, </xsl:text>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'anderes']">
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
+            <!-- hier fehlen die Varianten für »widmung«, »kartenbrief« oder »karte«  und @n='1' -->
+            <xsl:when test="@unit='seite'">
+                <xsl:value-of select="@n"/>
+                <xsl:text>&#160;Seiten</xsl:text>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>XXXXAnderes</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type = '_seiten']) or (preceding-sibling::tei:desc[@type = 'umschlag' or @type = 'fragment' or @type = 'reproduktion' or @type = 'entwurf' or @type = '_blaetter' or @type='_seiten'])">
-            <xsl:text>, </xsl:text>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'entwurf']">
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
+            <xsl:when test="@unit='blatt'">
+                <xsl:value-of select="@n"/>
+                <xsl:text>&#160;Blätter</xsl:text>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>Entwurf</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if
-            test="(following-sibling::tei:desc[@type = 'fragment']) or (preceding-sibling::tei:desc[@type = 'fragment'])">
-            <xsl:text>, </xsl:text>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[@type = 'fragment']">
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space(.)) &gt; 1">
-                <xsl:value-of select="normalize-space(.)"/>
+            <xsl:when test="@unit='umschlag'">
+                <xsl:value-of select="@n"/>
+                <xsl:text>&#160;Umschläge</xsl:text>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>Fragment</xsl:text>
-            </xsl:otherwise>
+            <xsl:when test="@unit='widmung' and not(@n='1')">
+                <xsl:value-of select="@n"/>
+                <xsl:text>&#160;Widmungen</xsl:text>
+            </xsl:when>
+            <xsl:when test="@unit='kartenbrief' and not(@n='1')">
+                <xsl:value-of select="@n"/>
+                <xsl:text>&#160;Kartenbriefe</xsl:text>
+            </xsl:when>
+            <xsl:when test="@unit='karte'  and not(@n='1')">
+                <xsl:value-of select="@n"/>
+                <xsl:text>&#160;Karten</xsl:text>
+            </xsl:when>
         </xsl:choose>
+        
     </xsl:template>
-    <xsl:template match="tei:objectDesc/tei:desc[not(@type)]">
-        <xsl:text>XXXX desc-Fehler</xsl:text>
-    </xsl:template>
-
 </xsl:stylesheet>

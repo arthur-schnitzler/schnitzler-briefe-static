@@ -283,7 +283,14 @@
                                                   </td>
                                                   </tr>
                                                 </xsl:if>
-                                                <xsl:if test="//tei:physDesc">
+                                                <xsl:if test="descendant::tei:objectType"><!-- VVV -->
+                                                    <tr>
+                                                        <th>Typ</th>
+                                                        <td><xsl:apply-templates select="tei:objectType"/>
+                                                        </td>
+                                                    </tr>
+                                                </xsl:if><!-- AAA -->
+                                                <xsl:if test="tei:msDesc/tei:physDesc">
                                                   <tr>
                                                   <th>Beschreibung </th>
                                                   <td>
@@ -1334,5 +1341,81 @@
             <xsl:text>:] </xsl:text>
         </span>
     </xsl:template>
+    
+    <xsl:template match="tei:objectType"><!-- VVV -->
+        <xsl:choose>
+            <xsl:when test="text() != ''"> <!-- für den Fall, dass Textinhalt, wird einfach dieser ausgegeben -->
+                <xsl:value-of select="normalize-space(.)"/>
+            </xsl:when>
+            <xsl:when test="@ana">
+                <xsl:choose>
+                    <xsl:when test="@ana='fotografie'">
+                        <xsl:text>Fotografie</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@ana='entwurf' and @corresp='brief'">
+                        <xsl:text>Briefentwurf</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@ana='entwurf' and @corresp='telegramm'">
+                        <xsl:text>Telegrammentwurf</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@ana='bildpostkarte'">
+                        <xsl:text>Bildpostkarte</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@ana='postkarte'">
+                        <xsl:text>Postkarte</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@ana='briefkarte'">
+                        <xsl:text>Briefkarte</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@ana='visitenkarte'">
+                        <xsl:text>Visitenkarte</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@corresp='widmung'">
+                        <xsl:choose>
+                            <xsl:when test="@ana='widmung_vorsatzblatt'">
+                                <xsl:text>Widmung am Vorsatzblatt</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@ana='widmung_titelblatt'">
+                                <xsl:text>Widmung am Titelblatt</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@ana='widmung_schmutztitel'">
+                                <xsl:text>Widmung am Schmutztitel</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@ana='widmung_umschlag'">
+                                <xsl:text>Widmung am Umschlag</xsl:text>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:when>
+            <!-- ab hier ist nurmehr @corresp zu berücksichtigen, alle @ana-Fälle sind erledigt -->
+            <xsl:when test="@corresp='anderes'">
+                <xsl:text>Sonderfall</xsl:text>
+            </xsl:when>
+            <xsl:when test="@corresp='bild'">
+                <xsl:text>Bild</xsl:text>
+            </xsl:when>
+            <xsl:when test="@corresp='brief'">
+                <xsl:text>Brief</xsl:text>
+            </xsl:when>
+            <xsl:when test="@corresp='karte'">
+                <xsl:text>Karte</xsl:text>
+            </xsl:when>
+            <xsl:when test="@corresp='kartenbrief'">
+                <xsl:text>Kartenbrief</xsl:text>
+            </xsl:when>
+            <xsl:when test="@corresp='telegramm'">
+                <xsl:text>Telegramm</xsl:text>
+            </xsl:when>
+            <xsl:when test="@corresp='umschlag'">
+                <xsl:text>Umschlag</xsl:text>
+            </xsl:when>
+            <xsl:when test="@corresp='widmung'">
+                <xsl:text>Widmung</xsl:text>
+            </xsl:when>
+            
+        </xsl:choose>
+        
+    </xsl:template> <!-- AAA -->
 
 </xsl:stylesheet>
