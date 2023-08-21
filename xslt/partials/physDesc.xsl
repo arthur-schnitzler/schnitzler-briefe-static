@@ -438,7 +438,7 @@
             <xsl:variable name="unit" select="." as="xs:string"/>
             <xsl:apply-templates select="$measures/tei:measure[@unit = $unit][1]"/>
             <xsl:variable name="rest-unit-order" select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string"/>
-            <xsl:variable name="kommakomma" as="xs:string">
+            <xsl:variable name="kommakomma" as="xs:string?">
             <xsl:for-each select="tokenize($rest-unit-order, ' ')">
                 <xsl:if test="$measures/tei:measure[@unit= .]">
                     <xsl:text>b</xsl:text>
