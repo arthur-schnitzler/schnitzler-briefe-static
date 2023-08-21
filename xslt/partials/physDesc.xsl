@@ -419,7 +419,7 @@
     </xsl:template>
     <xsl:template match="tei:supportDesc">
         <xsl:choose>
-            <xsl:when test="tei:extent/tei:measure[2] or not(tei:extent/tei:measure/@n = 1)">
+            <xsl:when test="tei:extent/tei:measure[2] or not(tei:extent/tei:measure/@quantity = 1)">
                 <!-- das übergeht Widmung, Kartenbrief und Karte, wenn nur eine Angabe -->
                 <xsl:apply-templates select="tei:extent"/>
             </xsl:when>
@@ -449,38 +449,38 @@
     </xsl:template>
     <xsl:template match="tei:measure">
         <xsl:choose>
-            <xsl:when test="@unit = 'seite' and @n = '1'">
+            <xsl:when test="@unit = 'seite' and @quantity = '1'">
                 <xsl:text>1&#160;Seite</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit = 'blatt' and @n = '1'">
+            <xsl:when test="@unit = 'blatt' and @quantity = '1'">
                 <xsl:text>1&#160;Blatt</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit = 'umschlag' and @n = '1'">
+            <xsl:when test="@unit = 'umschlag' and @quantity = '1'">
                 <xsl:text>Umschlag</xsl:text>
             </xsl:when>
-            <!-- hier fehlen die Varianten für »widmung«, »kartenbrief« oder »karte«  und @n='1' -->
+            <!-- hier fehlen die Varianten für »widmung«, »kartenbrief« oder »karte«  und @quantity='1' -->
             <xsl:when test="@unit = 'seite'">
-                <xsl:value-of select="@n"/>
+                <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Seiten</xsl:text>
             </xsl:when>
             <xsl:when test="@unit = 'blatt'">
-                <xsl:value-of select="@n"/>
+                <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Blätter</xsl:text>
             </xsl:when>
             <xsl:when test="@unit = 'umschlag'">
-                <xsl:value-of select="@n"/>
+                <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Umschläge</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit = 'widmung' and not(@n = '1')">
-                <xsl:value-of select="@n"/>
+            <xsl:when test="@unit = 'widmung' and not(@quantity = '1')">
+                <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Widmungen</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit = 'kartenbrief' and not(@n = '1')">
-                <xsl:value-of select="@n"/>
+            <xsl:when test="@unit = 'kartenbrief' and not(@quantity = '1')">
+                <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Kartenbriefe</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit = 'karte' and not(@n = '1')">
-                <xsl:value-of select="@n"/>
+            <xsl:when test="@unit = 'karte' and not(@quantity = '1')">
+                <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Karten</xsl:text>
             </xsl:when>
         </xsl:choose>
