@@ -435,7 +435,7 @@
         <xsl:variable name="unitOrder" select="'blatt seite karte kartenbrief widmung umschlag'"/>
         <xsl:variable name="measures" select="tei:measure" as="node()"/>
         <xsl:for-each select="tokenize($unitOrder, ' ')">
-            <xsl:variable name="unit" select="." as="text()"/>
+            <xsl:variable name="unit" select="." as="xs:string"/>
             <xsl:variable name="matchingMeasure" select="$measures[@unit = $unit][1]" as="node()"/>
             <xsl:if test="$matchingMeasure">
                 <xsl:apply-templates select="$matchingMeasure"/>
