@@ -425,7 +425,7 @@
             </xsl:when>
         </xsl:choose>
         <xsl:if test="tei:support">
-            <xsl:apply-templates select="tei:support"/>
+            <xsl:apply-templates select="tei:supportDesc"/>
         </xsl:if>
         <xsl:if test="tei:condition/@ana = 'fragment'">
             <xsl:text>, Fragment</xsl:text>
