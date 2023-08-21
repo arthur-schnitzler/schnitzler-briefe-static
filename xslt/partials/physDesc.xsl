@@ -438,15 +438,15 @@
             <xsl:variable name="unit" select="." as="xs:string"/>
             <xsl:apply-templates select="$measures/tei:measure[@unit = $unit][1]"/>
             <xsl:variable name="rest-unit-order" select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string"/>
-            <xsl:variable name="kommakomma" as="xs:string?">
+            <xsl:variable name="kommakomma" as="xs:boolean">
             <xsl:for-each select="tokenize($rest-unit-order, ' ')">
                 <xsl:variable name="unit" select="." as="xs:string"/>
                 <xsl:if test="$measures/tei:measure[@unit= $unit]">
-                    <xsl:text>b</xsl:text>
+                    <xsl:value-of select="true()"/>
                 </xsl:if>
             </xsl:for-each>
             </xsl:variable>
-            <xsl:if test="contains($kommakomma, 'b')">
+            <xsl:if test="$kommakomma">
                 <xsl:text>, </xsl:text>
             </xsl:if>
         </xsl:for-each>
@@ -488,5 +488,10 @@
                 <xsl:text>&#160;Karten</xsl:text>
             </xsl:when>
         </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:support">
+        <xsl:text> (</xsl:text>
+        <xsl:apply-templates></xsl:apply-templates>
+        <xsl:text>)</xsl:text>
     </xsl:template>
 </xsl:stylesheet>
