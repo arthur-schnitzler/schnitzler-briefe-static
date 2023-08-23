@@ -1021,3 +1021,8 @@ tbody {
 .dataTables_filter {
     margin-top:1em;
 }
+
+.superscript {
+    vertical-align: super;
+    font-size: smaller; /* Optional: Kann die Schriftgröße anpassen, um den hochgestellten Text etwas kleiner zu machen */
+}
