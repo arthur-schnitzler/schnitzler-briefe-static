@@ -80,107 +80,82 @@
                                                 </td>
                                                 <td>
                                                   <xsl:variable name="sortentyp"
-                                                  select="child::tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[1]/tei:msDesc[1]/tei:physDesc[1]/tei:objectDesc[1]"
+                                                  select="child::tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[1]/tei:objectType[1]"
                                                   as="node()?"/>
-                                                  <xsl:for-each
-                                                  select="$sortentyp/tei:desc[not(starts-with(@type,'_'))]">
-                                                  <xsl:choose>
-                                                  <xsl:when test="@type = 'anderes'">
-                                                  <xsl:text>Anderes</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="@type = 'bild' and @subtype = 'fotografie'">
-                                                  <xsl:text>Bild (Fotografie)</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'bild'">
-                                                  <xsl:text>Bild</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'brief'">
-                                                  <xsl:text>Brief</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'entwurf'">
-                                                  <xsl:text>Entwurf</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'fragment'">
-                                                  <xsl:text>Fragment</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'karte'">
-                                                  <xsl:text>Karte</xsl:text>
-                                                  <xsl:choose>
-                                                  <xsl:when test="@subtype = 'postkarte'">
-                                                  <xsl:text> (Postkarte)</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@subtype = 'bildpostkarte'">
-                                                  <xsl:text> (Bildpostkarte)</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@subtype = 'briefkarte'">
-                                                  <xsl:text> (Briefkarte)</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@subtype = 'visitenkarte'">
-                                                  <xsl:text> (Vistenkarte)</xsl:text>
-                                                  </xsl:when>
-                                                  </xsl:choose>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'kartenbrief'">
-                                                  <xsl:text>Kartenbrief</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'reproduktion'">
-                                                  <xsl:text>Reproduktion</xsl:text>
-                                                  <xsl:choose>
-                                                  <xsl:when test="@subtype = 'fotokopie'">
-                                                  <xsl:text> (Fotokopie)</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="@subtype = 'fotografische_vervielfaeltigung'">
-                                                  <xsl:text> (Fotografische Vervielfältigung)</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@subtype = 'ms_abschrift'">
-                                                  <xsl:text> (maschinelle Abschrift)</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@subtype = 'hs_abschrift'">
-                                                  <xsl:text> (handschriftliche Abschrift)</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@subtype = 'durchschlag'">
-                                                  <xsl:text> (Durchschlag)</xsl:text>
-                                                  </xsl:when>
-                                                  </xsl:choose>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'telegramm'">
-                                                  <xsl:text>Telegramm</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'umschlag'">
-                                                  <xsl:text>Umschlag</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:when test="@type = 'widmung'">
-                                                  <xsl:text>Widmung</xsl:text>
-                                                      <xsl:choose>
-                                                          <xsl:when test="@subtype = 'widmung_vorsatzblatt'">
-                                                              <xsl:text> (Vorsatzblatt)</xsl:text>
-                                                          </xsl:when>
-                                                          <xsl:when
-                                                              test="@subtype = 'widmung_titelblatt'">
-                                                              <xsl:text> (Titelblatt)</xsl:text>
-                                                          </xsl:when>
-                                                          <xsl:when test="@subtype = 'widmung_vortitel'">
-                                                              <xsl:text> (Vortitel)</xsl:text>
-                                                          </xsl:when>
-                                                          <xsl:when test="@subtype = 'widmung_schmutztitel'">
-                                                              <xsl:text> (Schmutztitel)</xsl:text>
-                                                          </xsl:when>
-                                                          <xsl:when test="@subtype = 'Umschlag'">
-                                                              <xsl:text> (Umschlag)</xsl:text>
-                                                          </xsl:when>
-                                                      </xsl:choose>
-                                                      
-                                                  </xsl:when>
-                                                  </xsl:choose>
-                                                      <xsl:if test="not(position()=last())">
-                                                          <xsl:text>, </xsl:text>
-                                                      </xsl:if>
-                                                  </xsl:for-each>
-                                                    <xsl:if test="empty($sortentyp) and child::tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listBibl[1]/tei:biblStruct[1]">
-                                                        <xsl:text>Druck</xsl:text>
-                                                    </xsl:if>
+                                                    <xsl:choose>
+                                                        <xsl:when test="$sortentyp/text() != ''"> <!-- für den Fall, dass Textinhalt, wird einfach dieser ausgegeben -->
+                                                            <xsl:value-of select="normalize-space(.)"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="$sortentyp/@ana">
+                                                            <xsl:choose>
+                                                                <xsl:when test="$sortentyp/@ana='fotografie'">
+                                                                    <xsl:text>Fotografie</xsl:text>
+                                                                </xsl:when>
+                                                                <xsl:when test="$sortentyp/@ana='entwurf' and $sortentyp/@corresp='brief'">
+                                                                    <xsl:text>Briefentwurf</xsl:text>
+                                                                </xsl:when>
+                                                                <xsl:when test="$sortentyp/@ana='entwurf' and $sortentyp/@corresp='telegramm'">
+                                                                    <xsl:text>Telegrammentwurf</xsl:text>
+                                                                </xsl:when>
+                                                                <xsl:when test="$sortentyp/@ana='bildpostkarte'">
+                                                                    <xsl:text>Bildpostkarte</xsl:text>
+                                                                </xsl:when>
+                                                                <xsl:when test="$sortentyp/@ana='postkarte'">
+                                                                    <xsl:text>Postkarte</xsl:text>
+                                                                </xsl:when>
+                                                                <xsl:when test="$sortentyp/@ana='briefkarte'">
+                                                                    <xsl:text>Briefkarte</xsl:text>
+                                                                </xsl:when>
+                                                                <xsl:when test="$sortentyp/@ana='visitenkarte'">
+                                                                    <xsl:text>Visitenkarte</xsl:text>
+                                                                </xsl:when>
+                                                                <xsl:when test="$sortentyp/@corresp='widmung'">
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="$sortentyp/@ana='widmung_vorsatzblatt'">
+                                                                            <xsl:text>Widmung am Vorsatzblatt</xsl:text>
+                                                                        </xsl:when>
+                                                                        <xsl:when test="$sortentyp/@ana='widmung_titelblatt'">
+                                                                            <xsl:text>Widmung am Titelblatt</xsl:text>
+                                                                        </xsl:when>
+                                                                        <xsl:when test="$sortentyp/@ana='widmung_schmutztitel'">
+                                                                            <xsl:text>Widmung am Schmutztitel</xsl:text>
+                                                                        </xsl:when>
+                                                                        <xsl:when test="$sortentyp/@ana='widmung_umschlag'">
+                                                                            <xsl:text>Widmung am Umschlag</xsl:text>
+                                                                        </xsl:when>
+                                                                    </xsl:choose>
+                                                                </xsl:when>
+                                                            </xsl:choose>
+                                                        </xsl:when>
+                                                        <!-- ab hier ist nurmehr @corresp zu berücksichtigen, alle @ana-Fälle sind erledigt -->
+                                                        <xsl:when test="$sortentyp/@corresp='anderes'">
+                                                            <xsl:text>Sonderfall</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:when test="$sortentyp/@corresp='bild'">
+                                                            <xsl:text>Bild</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:when test="$sortentyp/@corresp='brief'">
+                                                            <xsl:text>Brief</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:when test="$sortentyp/@corresp='karte'">
+                                                            <xsl:text>Karte</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:when test="$sortentyp/@corresp='kartenbrief'">
+                                                            <xsl:text>Kartenbrief</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:when test="$sortentyp/@corresp='telegramm'">
+                                                            <xsl:text>Telegramm</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:when test="$sortentyp/@corresp='umschlag'">
+                                                            <xsl:text>Umschlag</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:when test="$sortentyp/@corresp='widmung'">
+                                                            <xsl:text>Widmung</xsl:text>
+                                                        </xsl:when>
+                                                        
+                                                    </xsl:choose>
+                                                  
+                                                    
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
