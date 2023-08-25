@@ -83,7 +83,7 @@
                                                   select="child::tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[1]/tei:objectType[1]"
                                                   as="node()?"/>
                                                     <xsl:choose>
-                                                        <xsl:when test="$sortentyp/text() != ''"> <!-- für den Fall, dass Textinhalt, wird einfach dieser ausgegeben -->
+                                                        <xsl:when test="($sortentyp/text() != '') and not(normalize-space(.)='')"> <!-- für den Fall, dass Textinhalt, wird einfach dieser ausgegeben -->
                                                             <xsl:value-of select="normalize-space(.)"/>
                                                         </xsl:when>
                                                         <xsl:when test="$sortentyp/@ana">
