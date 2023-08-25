@@ -44,7 +44,7 @@
                                                   <sortdate hidden="true">
                                                   <xsl:value-of
                                                   select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()"
-                                                  />
+                                                  /><xsl:text>;</xsl:text>
                                                   </sortdate>
                                                   <a>
                                                   <xsl:attribute name="href">
@@ -84,7 +84,7 @@
                                                   as="node()?"/>
                                                     <xsl:choose>
                                                         <xsl:when test="($sortentyp/text() != '') and not(normalize-space(.)='')"> <!-- für den Fall, dass Textinhalt, wird einfach dieser ausgegeben -->
-                                                            <xsl:value-of select="normalize-space(.)"/>
+                                                            <xsl:value-of select="normalize-space($sortentyp)"/>
                                                         </xsl:when>
                                                         <xsl:when test="$sortentyp/@ana">
                                                             <xsl:choose>
