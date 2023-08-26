@@ -283,7 +283,6 @@
             </div>
             <div id="mentions" class="mt-2">
                 <span class="infodesc mr-2">
-                    
                     <ul>
                         <legend>Erwähnungen</legend>
                         <xsl:for-each select=".//tei:note[@type = 'mentions']">
@@ -316,7 +315,7 @@
         </div>
     </xsl:template>
     <!-- WORK -->
-    <xsl:template match="tei:bibl" name="work_detail">
+    <xsl:template match="tei:listBibl/tei:bibl" name="work_detail">
         <xsl:param name="showNumberOfMentions" as="xs:integer" select="50000"/>
         <xsl:variable name="selfLink">
             <xsl:value-of select="concat(data(@xml:id), '.html')"/>
