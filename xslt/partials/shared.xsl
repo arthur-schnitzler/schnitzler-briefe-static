@@ -622,10 +622,10 @@
             </div>
         </div>
     </xsl:template>
-    <xsl:template match="tei:listBibl">
+    <xsl:template match="tei:listBibl|tei:bibl[not(parent::tei:listBibl)]">
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:bibl">
+    <xsl:template match="tei:listBibl/tei:bibl">
         <xsl:param name="showNumberOfMentions" as="xs:integer" select="5"/>
         <xsl:variable name="selfLink">
             <xsl:value-of select="concat(data(@xml:id), '.html')"/>
