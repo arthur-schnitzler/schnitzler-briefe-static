@@ -446,22 +446,20 @@
         <xsl:for-each select="tokenize($unitOrder, ' ')">
             <xsl:variable name="unit" select="." as="xs:string"/>
             <xsl:apply-templates select="$measures/tei:measure[@unit = $unit][1]"/>
-            <xsl:variable name="rest-unit-order"
-                select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string?"/>
+            <xsl:variable name="rest-unit-order" select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string?"/>
             <xsl:variable name="kommakomma" as="xs:boolean">
                 <xsl:choose>
-                    <xsl:when test="
-                            (
-                            contains($rest-unit-order, 'seite') and $measures/tei:measure[@unit = 'seite'][1]
-                            ) or (
-                            contains($rest-unit-order, 'karte') and $measures/tei:measure[@unit = 'karte'][1]
-                            ) or (
-                            contains($rest-unit-order, 'kartenbrief') and $measures/tei:measure[@unit = 'kartenbrief'][1]
-                            ) or (
-                            contains($rest-unit-order, 'widmung') and $measures/tei:measure[@unit = 'widmung'][1]
-                            ) or (
-                            contains($rest-unit-order, 'umschlag') and $measures/tei:measure[@unit = 'umschlag'][1]
-                            )">
+                    <xsl:when test="(
+                        contains($rest-unit-order, 'seite') and $measures/tei:measure[@unit = 'seite'][1]
+                        ) or (
+                        contains($rest-unit-order, 'karte') and $measures/tei:measure[@unit = 'karte'][1]
+                        ) or (
+                        contains($rest-unit-order, 'kartenbrief') and $measures/tei:measure[@unit = 'kartenbrief'][1]
+                        ) or (
+                        contains($rest-unit-order, 'widmung') and $measures/tei:measure[@unit = 'widmung'][1]
+                        ) or (
+                        contains($rest-unit-order, 'umschlag') and $measures/tei:measure[@unit = 'umschlag'][1]
+                        )">
                         <xsl:value-of select="true()"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -470,7 +468,7 @@
                 </xsl:choose>
             </xsl:variable>
             <xsl:if test="$kommakomma">
-                <xsl:text>a, </xsl:text>
+                <xsl:text>, </xsl:text>
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
@@ -504,7 +502,8 @@
             </xsl:when>
             <xsl:when test="@unit = 'kartenbrief' and not(@quantity = '1')">
                 <xsl:value-of select="@quantity"/>
-                <xsl:text>&#160;Kartenbriefe</xsl:text>f </xsl:when>
+                <xsl:text>&#160;Kartenbriefe</xsl:text>f
+            </xsl:when>
             <xsl:when test="@unit = 'karte' and not(@quantity = '1')">
                 <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Karten</xsl:text>
@@ -513,7 +512,9 @@
     </xsl:template>
     <xsl:template match="tei:support">
         <xsl:text> (</xsl:text>
-        <xsl:apply-templates/>
+        <xsl:apply-templates></xsl:apply-templates>
         <xsl:text>)</xsl:text>
     </xsl:template>
+    
+    
 </xsl:stylesheet>
