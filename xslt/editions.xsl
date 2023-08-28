@@ -264,7 +264,7 @@
                                 <br/>
                                 <!-- Modal Überlieferung -->
                                 <div class="modal-body">
-                                    <xsl:for-each select="//tei:witness">
+                                    <xsl:for-each select="descendant::tei:witness">
                                         <h5>TEXTZEUGE <xsl:value-of select="@n"/>
                                         </h5>
                                         <table class="table table-striped">
@@ -283,19 +283,19 @@
                                                   </td>
                                                   </tr>
                                                 </xsl:if>
-                                                <xsl:if test="descendant::tei:objectType">
+                                                <xsl:if test="child::tei:objectType">
                                                     <tr>
                                                         <th>Typ</th>
                                                         <td><xsl:apply-templates select="tei:objectType"/>
                                                         </td>
                                                     </tr>
                                                 </xsl:if>
-                                                <xsl:if test="tei:msDesc/tei:physDesc">
+                                                <xsl:if test="child::tei:msDesc/tei:physDesc">
                                                   <tr>
                                                   <th>Beschreibung </th>
                                                   <td>
                                                   <xsl:apply-templates
-                                                  select="tei:msDesc/tei:physDesc/tei:objectDesc"/>
+                                                  select="child::tei:msDesc/tei:physDesc/tei:objectDesc"/>
                                                   </td>
                                                   </tr>
                                                   <xsl:if
@@ -1417,32 +1417,7 @@
         </xsl:choose>
         
     </xsl:template> 
-    <xsl:template match="tei:objectDesc">
-        <!-- VVV -->
-        <xsl:if test="@form">
-            <xsl:choose>
-                <xsl:when test="@form = 'durchschlag'">
-                    <xsl:text>Durchschlag</xsl:text>
-                </xsl:when>
-                <xsl:when test="@form = 'fotografische_vervielfaeltigung'">
-                    <xsl:text>Fotografische Vervielfältigung</xsl:text>
-                </xsl:when>
-                <xsl:when test="@form = 'fotokopie'">
-                    <xsl:text>Fotokopie</xsl:text>
-                </xsl:when>
-                <xsl:when test="@form = 'hs_abschrift'">
-                    <xsl:text>Handschriftliche Abschrift</xsl:text>
-                </xsl:when>
-                <xsl:when test="@form = 'ms_abschrift'">
-                    <xsl:text>Maschinenschriftliche Abschrift</xsl:text>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:if>
-        <xsl:if test="tei:supportDesc">
-            <xsl:text>, </xsl:text>
-            <xsl:apply-templates select="tei:supportDesc"/>
-        </xsl:if>
-    </xsl:template>
+    
     <xsl:template match="tei:supportDesc">
         <xsl:choose>
             <xsl:when test="tei:extent/tei:measure[2] or not(tei:extent/tei:measure/@quantity = 1)">

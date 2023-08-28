@@ -395,7 +395,6 @@
         </xsl:if>
     </xsl:function>
     <xsl:template match="tei:objectDesc">
-        <!-- VVV -->
         <xsl:if test="@form">
             <xsl:choose>
                 <xsl:when test="@form = 'durchschlag'">
@@ -414,13 +413,18 @@
                     <xsl:text>Maschinenschriftliche Abschrift</xsl:text>
                 </xsl:when>
             </xsl:choose>
-            <xsl:if test="tei:supportDesc">
+            <xsl:if test="child::tei:supportDesc[not(child::*[2])]/tei:extent[not(child::*[2])]/tei:measure/@quantity = 1">
                 <xsl:text>, </xsl:text>
             </xsl:if>
         </xsl:if>
-        <xsl:if test="tei:supportDesc">
-            <xsl:apply-templates select="tei:supportDesc"/>
-        </xsl:if>
+        <xsl:choose>
+            <xsl:when test="child::tei:supportDesc[not(child::*[2])]/tei:extent[not(child::*[2])]/tei:measure/@quantity = 1">
+                <!-- das übergeht Widmung, Kartenbrief und Karte, wenn nur eine Angabe, 1. TEIL -->
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:apply-templates select="child::tei:supportDesc"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:supportDesc">
         <xsl:choose>
@@ -466,7 +470,7 @@
                 </xsl:choose>
             </xsl:variable>
             <xsl:if test="$kommakomma">
-                <xsl:text>, </xsl:text>
+                <xsl:text>a, </xsl:text>
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
