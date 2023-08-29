@@ -47,6 +47,7 @@
     <xsl:param name="chronik-dir">../chronik-data</xsl:param>
     <xsl:variable name="chronik-data"
         select="collection(concat($chronik-dir, '/?select=L0*.xml;recurse=yes'))"/>
+    <xsl:param name="back" select="tei:TEI/tei:text/tei:back" as="node()?"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title">
             <xsl:value-of select=".//tei:titleStmt/tei:title[@level = 'a'][1]/text()"/>
@@ -284,18 +285,20 @@
                                                   </tr>
                                                 </xsl:if>
                                                 <xsl:if test="child::tei:objectType">
-                                                    <tr>
-                                                        <th>Typ</th>
-                                                        <td><xsl:apply-templates select="tei:objectType"/>
-                                                        </td>
-                                                    </tr>
+                                                  <tr>
+                                                  <th>Typ</th>
+                                                  <td>
+                                                  <xsl:apply-templates select="tei:objectType"/>
+                                                  </td>
+                                                  </tr>
                                                 </xsl:if>
                                                 <xsl:if test="child::tei:msDesc/tei:physDesc">
                                                   <tr>
                                                   <th>Beschreibung </th>
                                                   <td>
                                                   <xsl:apply-templates
-                                                  select="child::tei:msDesc/tei:physDesc/tei:objectDesc"/>
+                                                  select="child::tei:msDesc/tei:physDesc/tei:objectDesc"
+                                                  />
                                                   </td>
                                                   </tr>
                                                   <xsl:if
@@ -441,11 +444,14 @@
                                                   test="child::tei:persName[1]/tei:forename[1]">
                                                   <xsl:value-of select="child::tei:forename[1]"/>
                                                   </xsl:when>
-                                                    <xsl:when test="child::tei:persName[1]/tei:surname[1]">
-                                                        <xsl:value-of select="child::tei:persName[1]/tei:surname[1]"/>
+                                                  <xsl:when
+                                                  test="child::tei:persName[1]/tei:surname[1]">
+                                                  <xsl:value-of
+                                                  select="child::tei:persName[1]/tei:surname[1]"/>
                                                   </xsl:when>
                                                   <xsl:otherwise>
-                                                      <xsl:value-of select="normalize-space(child::tei:persName)"/>
+                                                  <xsl:value-of
+                                                  select="normalize-space(child::tei:persName)"/>
                                                   </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:variable>
@@ -792,7 +798,8 @@
                                     select="number(substring-after(tei:TEI/@xml:id, 'L'))"/>
                                 <xsl:if test="$id-ohne-l &lt; 2900">
                                     <p>
-                                        <a class="ml-3" data-toggle="tooltip" title="Brief als PDF">
+                                        <a class="ml-3" data-bs-toggle="tooltip"
+                                            title="Brief als PDF">
                                             <xsl:attribute name="href">
                                                 <xsl:value-of select="$source_pdf"/>
                                             </xsl:attribute>
@@ -800,7 +807,7 @@
                                     </p>
                                 </xsl:if>
                                 <p>
-                                    <a class="ml-3" data-toggle="tooltip"
+                                    <a class="ml-3" data-bs-toggle="tooltip"
                                         title="Brief als TEI-Datei">
                                         <xsl:attribute name="href">
                                             <xsl:value-of select="$teiDoc"/>
@@ -815,6 +822,20 @@
                         </div>
                     </div>
                 </div>
+                <!-- Hier die Modals für mehrere rs/@refs in einem -->
+                <xsl:for-each select="descendant::tei:rs[contains(@ref, ' ') or descendant::tei:rs]">
+                    <xsl:variable name="modalId1" as="xs:string">
+                        <xsl:value-of select="string-join(.//@ref, '')"/>
+                    </xsl:variable>
+                    <xsl:variable name="modalId">
+                        <xsl:value-of
+                            select="xs:string(replace(replace($modalId1, ' #', ''), '#', ''))"/>
+                    </xsl:variable>
+                    <xsl:call-template name="rsmodal">
+                        <xsl:with-param name="modalId" select="replace($modalId, '#', '')"/>
+                        <xsl:with-param name="back" select="$back"/>
+                    </xsl:call-template>
+                </xsl:for-each>
                 <script src="https://unpkg.com/de-micro-editor@0.2.83/dist/de-editor.min.js"/>
                 <script type="text/javascript" src="js/run.js"/>
                 <script type="text/javascript" src="js/prev-next-urlupdate.js"/>
@@ -992,7 +1013,6 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-
             <xsl:attribute name="href">
                 <xsl:text>#footnote</xsl:text>
                 <xsl:number level="any" count="tei:note[@type = 'footnote']" format="1"/>
@@ -1031,7 +1051,6 @@
         </xsl:if>
         <xsl:apply-templates/>
     </xsl:template>
-
     <xsl:template match="tei:opener">
         <div class="opener">
             <xsl:apply-templates/>
@@ -1197,18 +1216,22 @@
             </xsl:element>
         </span>
     </xsl:template>
-    <xsl:template match="tei:rs[.//tei:rs or contains(@ref, ' ')]">
+    <xsl:template match="tei:rs[descendant::tei:rs or contains(@ref, ' ')]">
+        <xsl:variable name="modalId1" as="xs:string">
+            <!--<xsl:value-of
+                select="normalize-space(replace(normalize-space(string-join(.//@ref[starts-with(., '#')], '___')), '#', ''))"
+            />-->
+            <xsl:value-of select="string-join(.//@ref, '')"/>
+        </xsl:variable>
         <xsl:variable name="modalId">
-            <xsl:value-of
-                select="replace(normalize-space(string-join(.//@ref[starts-with(., '#')], '___')), '#', '')"
-            />
+            <xsl:value-of select="xs:string(replace(replace($modalId1, ' #', ''), '#', ''))"/>
         </xsl:variable>
         <xsl:element name="a">
             <xsl:attribute name="class">
                 <xsl:text>reference-black</xsl:text>
             </xsl:attribute>
-            <xsl:attribute name="data-toggle">modal</xsl:attribute>
-            <xsl:attribute name="data-target">
+            <xsl:attribute name="data-bs-toggle">modal</xsl:attribute>
+            <xsl:attribute name="data-bs-target">
                 <xsl:value-of select="concat('#', $modalId)"/>
             </xsl:attribute>
             <xsl:apply-templates mode="verschachtelteA"/>
@@ -1313,8 +1336,6 @@
             <xsl:value-of select="mam:dots($anzahl - 1)"/>
         </xsl:if>
     </xsl:function>
-
-
     <!-- Wechsel der Schreiber <handShift -->
     <xsl:template match="tei:handShift[not(@scribe)]">
         <xsl:choose>
@@ -1341,47 +1362,48 @@
             <xsl:text>:] </xsl:text>
         </span>
     </xsl:template>
-    
-    <xsl:template match="tei:objectType"><!-- VVV -->
+    <xsl:template match="tei:objectType">
+        <!-- VVV -->
         <xsl:choose>
-            <xsl:when test="text() != ''"> <!-- für den Fall, dass Textinhalt, wird einfach dieser ausgegeben -->
+            <xsl:when test="text() != ''">
+                <!-- für den Fall, dass Textinhalt, wird einfach dieser ausgegeben -->
                 <xsl:value-of select="normalize-space(.)"/>
             </xsl:when>
             <xsl:when test="@ana">
                 <xsl:choose>
-                    <xsl:when test="@ana='fotografie'">
+                    <xsl:when test="@ana = 'fotografie'">
                         <xsl:text>Fotografie</xsl:text>
                     </xsl:when>
-                    <xsl:when test="@ana='entwurf' and @corresp='brief'">
+                    <xsl:when test="@ana = 'entwurf' and @corresp = 'brief'">
                         <xsl:text>Briefentwurf</xsl:text>
                     </xsl:when>
-                    <xsl:when test="@ana='entwurf' and @corresp='telegramm'">
+                    <xsl:when test="@ana = 'entwurf' and @corresp = 'telegramm'">
                         <xsl:text>Telegrammentwurf</xsl:text>
                     </xsl:when>
-                    <xsl:when test="@ana='bildpostkarte'">
+                    <xsl:when test="@ana = 'bildpostkarte'">
                         <xsl:text>Bildpostkarte</xsl:text>
                     </xsl:when>
-                    <xsl:when test="@ana='postkarte'">
+                    <xsl:when test="@ana = 'postkarte'">
                         <xsl:text>Postkarte</xsl:text>
                     </xsl:when>
-                    <xsl:when test="@ana='briefkarte'">
+                    <xsl:when test="@ana = 'briefkarte'">
                         <xsl:text>Briefkarte</xsl:text>
                     </xsl:when>
-                    <xsl:when test="@ana='visitenkarte'">
+                    <xsl:when test="@ana = 'visitenkarte'">
                         <xsl:text>Visitenkarte</xsl:text>
                     </xsl:when>
-                    <xsl:when test="@corresp='widmung'">
+                    <xsl:when test="@corresp = 'widmung'">
                         <xsl:choose>
-                            <xsl:when test="@ana='widmung_vorsatzblatt'">
+                            <xsl:when test="@ana = 'widmung_vorsatzblatt'">
                                 <xsl:text>Widmung am Vorsatzblatt</xsl:text>
                             </xsl:when>
-                            <xsl:when test="@ana='widmung_titelblatt'">
+                            <xsl:when test="@ana = 'widmung_titelblatt'">
                                 <xsl:text>Widmung am Titelblatt</xsl:text>
                             </xsl:when>
-                            <xsl:when test="@ana='widmung_schmutztitel'">
+                            <xsl:when test="@ana = 'widmung_schmutztitel'">
                                 <xsl:text>Widmung am Schmutztitel</xsl:text>
                             </xsl:when>
-                            <xsl:when test="@ana='widmung_umschlag'">
+                            <xsl:when test="@ana = 'widmung_umschlag'">
                                 <xsl:text>Widmung am Umschlag</xsl:text>
                             </xsl:when>
                         </xsl:choose>
@@ -1389,35 +1411,88 @@
                 </xsl:choose>
             </xsl:when>
             <!-- ab hier ist nurmehr @corresp zu berücksichtigen, alle @ana-Fälle sind erledigt -->
-            <xsl:when test="@corresp='anderes'">
+            <xsl:when test="@corresp = 'anderes'">
                 <xsl:text>Sonderfall</xsl:text>
             </xsl:when>
-            <xsl:when test="@corresp='bild'">
+            <xsl:when test="@corresp = 'bild'">
                 <xsl:text>Bild</xsl:text>
             </xsl:when>
-            <xsl:when test="@corresp='brief'">
+            <xsl:when test="@corresp = 'brief'">
                 <xsl:text>Brief</xsl:text>
             </xsl:when>
-            <xsl:when test="@corresp='karte'">
+            <xsl:when test="@corresp = 'karte'">
                 <xsl:text>Karte</xsl:text>
             </xsl:when>
-            <xsl:when test="@corresp='kartenbrief'">
+            <xsl:when test="@corresp = 'kartenbrief'">
                 <xsl:text>Kartenbrief</xsl:text>
             </xsl:when>
-            <xsl:when test="@corresp='telegramm'">
+            <xsl:when test="@corresp = 'telegramm'">
                 <xsl:text>Telegramm</xsl:text>
             </xsl:when>
-            <xsl:when test="@corresp='umschlag'">
+            <xsl:when test="@corresp = 'umschlag'">
                 <xsl:text>Umschlag</xsl:text>
             </xsl:when>
-            <xsl:when test="@corresp='widmung'">
+            <xsl:when test="@corresp = 'widmung'">
                 <xsl:text>Widmung</xsl:text>
             </xsl:when>
-            
         </xsl:choose>
-        
-    </xsl:template> 
-    
-    
-
+    </xsl:template>
+    <xsl:template name="rsmodal">
+        <xsl:param name="modalId" as="xs:string"/>
+        <xsl:param name="back" as="node()?"/>
+        <div class="modal fade" id="{$modalId}" tabindex="-1" aria-labelledby="{$modalId}"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle4">Auswahl</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Schließen"/>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <xsl:for-each select="tokenize($modalId, 'pmb')">
+                                <xsl:variable name="current" select="concat('pmb', .)"
+                                    as="xs:string"/>
+                                <xsl:if test=". != ''">
+                                    <li>
+                                        <xsl:variable name="eintrag"
+                                            select="$back//tei:*[@xml:id = $current][1]" as="node()?"/>
+                                        <xsl:variable name="typ" select="$eintrag/name()"
+                                            as="xs:string?"/>
+                                        <xsl:element name="a">
+                                            <xsl:attribute name="href">
+                                                <xsl:value-of select="concat($current, '.html')"/>
+                                            </xsl:attribute>
+                                            <xsl:choose>
+                                                <xsl:when test="$typ = 'place'">
+                                                  <xsl:value-of select="$eintrag/tei:placeName[1]"/>
+                                                </xsl:when>
+                                                <xsl:when test="$typ = 'bibl'">
+                                                  <xsl:value-of select="$eintrag/tei:title[1]"/>
+                                                </xsl:when>
+                                                <xsl:when test="$typ = 'org'">
+                                                  <xsl:value-of select="$eintrag/tei:orgName[1]"/>
+                                                </xsl:when>
+                                                <xsl:when test="$typ = 'person'">
+                                                  <xsl:value-of select="$eintrag/tei:persName[1]"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                  <xsl:text>offen</xsl:text>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:element>
+                                    </li>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            >Schließen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </xsl:template>
 </xsl:stylesheet>
