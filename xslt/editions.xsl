@@ -823,9 +823,25 @@
                     </div>
                 </div>
                 <!-- Hier die Modals für mehrere rs/@refs in einem -->
-                <xsl:for-each select="descendant::tei:rs[contains(@ref, ' ') or descendant::tei:rs]">
+                <xsl:for-each
+                    select="descendant::tei:rs[(not(ancestor::tei:note) and contains(@ref, ' ')) or descendant::tei:rs[not(ancestor::tei:note)]]">
                     <xsl:variable name="modalId1" as="xs:string">
-                        <xsl:value-of select="string-join(.//@ref, '')"/>
+                        <xsl:value-of select="string-join(.//@ref[not(ancestor::tei:note)], '')"/>
+                    </xsl:variable>
+                    <xsl:variable name="modalId">
+                        <xsl:value-of
+                            select="xs:string(replace(replace($modalId1, ' #', ''), '#', ''))"/>
+                    </xsl:variable>
+                    <xsl:call-template name="rsmodal">
+                        <xsl:with-param name="modalId" select="replace($modalId, '#', '')"/>
+                        <xsl:with-param name="back" select="$back"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!--  rs/@refs in notes brauchen eigenes modal -->
+                <xsl:for-each
+                    select="descendant::tei:rs[((ancestor::tei:note) and contains(@ref, ' ')) or descendant::tei:rs[(ancestor::tei:note)]]">
+                    <xsl:variable name="modalId1" as="xs:string">
+                        <xsl:value-of select="string-join(.//@ref[(ancestor::tei:note)], '')"/>
                     </xsl:variable>
                     <xsl:variable name="modalId">
                         <xsl:value-of
@@ -1166,8 +1182,60 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:rs[(@ref or @key) and (ancestor::tei:rs)]">
+    
+    
+    <xsl:template match="tei:rs[(@ref or @key) and (ancestor::tei:rs) and not(ancestor::tei:note)]">
         <xsl:apply-templates/>
+    </xsl:template>
+    <xsl:template match="tei:rs[(@ref or @key) and (ancestor::tei:rs[ancestor::tei:note]) and ancestor::tei:note]">
+        <xsl:apply-templates/>
+    </xsl:template>
+    <xsl:template match="tei:rs[(@ref or @key) and not(ancestor::tei:rs[ancestor::tei:note]) and ancestor::tei:note]">
+        
+        <xsl:variable name="entity-typ" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="@type = 'person'">
+                    <xsl:text>persons</xsl:text>
+                </xsl:when>
+                <xsl:when test="@type = 'work'">
+                    <xsl:text>works</xsl:text>
+                </xsl:when>
+                <xsl:when test="@type = 'place'">
+                    <xsl:text>places</xsl:text>
+                </xsl:when>
+                <xsl:when test="@type = 'org'">
+                    <xsl:text>orgs</xsl:text>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+        <span>
+            <xsl:attribute name="class">
+                <xsl:value-of select="$entity-typ"/>
+            </xsl:attribute>
+            <xsl:element name="a">
+                <xsl:attribute name="href">
+                    <xsl:value-of select="concat(replace(@ref, '#', ''), '.html')"/>
+                </xsl:attribute>
+                <xsl:choose>
+                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print']">
+                        <xsl:attribute name="class">
+                            <xsl:text>pre-print</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                    <xsl:when test="ancestor::tei:hi[@rend = 'stamp']">
+                        <xsl:attribute name="class">
+                            <xsl:text>stamp</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                    <xsl:when test="ancestor::tei:damage">
+                        <xsl:attribute name="class">
+                            <xsl:text>damage-critical</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                </xsl:choose>
+                <xsl:apply-templates/>
+            </xsl:element>
+        </span>
     </xsl:template>
     <xsl:template
         match="tei:rs[not(ancestor::tei:rs) and not(descendant::tei:rs) and not(contains(@ref, ' '))] | tei:persName | tei:author | tei:placeName | tei:orgName">
@@ -1216,12 +1284,10 @@
             </xsl:element>
         </span>
     </xsl:template>
-    <xsl:template match="tei:rs[descendant::tei:rs or contains(@ref, ' ')]">
+    <xsl:template
+        match="tei:rs[descendant::tei:rs[not(ancestor::tei:note) and contains(@ref, ' ')] or descendant::tei:rs[not(ancestor::tei:note)]]">
         <xsl:variable name="modalId1" as="xs:string">
-            <!--<xsl:value-of
-                select="normalize-space(replace(normalize-space(string-join(.//@ref[starts-with(., '#')], '___')), '#', ''))"
-            />-->
-            <xsl:value-of select="string-join(.//@ref, '')"/>
+            <xsl:value-of select=".//@ref[not(ancestor::tei:note)]"/>
         </xsl:variable>
         <xsl:variable name="modalId">
             <xsl:value-of select="xs:string(replace(replace($modalId1, ' #', ''), '#', ''))"/>
@@ -1237,6 +1303,42 @@
             <xsl:apply-templates mode="verschachtelteA"/>
         </xsl:element>
     </xsl:template>
+    <xsl:template
+        match="tei:rs[descendant::tei:rs[(ancestor::tei:note) and contains(@ref, ' ')] or descendant::tei:rs[(ancestor::tei:note)]]">
+        <xsl:variable name="modalId1" as="xs:string">
+            <xsl:value-of select=".//@ref[(ancestor::tei:note)]"/>
+        </xsl:variable>
+        <xsl:variable name="modalId">
+            <xsl:value-of select="xs:string(replace(replace($modalId1, ' #', ''), '#', ''))"/>
+        </xsl:variable>
+        <span>
+            <xsl:attribute name="class">
+                <xsl:if test="@type = 'person'">
+                    <xsl:text>persons</xsl:text>
+                </xsl:if>
+                <xsl:if test="@type = 'work'">
+                    <xsl:text>works</xsl:text>
+                </xsl:if>
+                <xsl:if test="@type = 'place'">
+                    <xsl:text>places</xsl:text>
+                </xsl:if>
+                <xsl:if test="@type = 'org'">
+                    <xsl:text>orgs</xsl:text>
+                </xsl:if>
+            </xsl:attribute>
+            <xsl:element name="a">
+                <xsl:attribute name="class">
+                    <xsl:text>reference-black</xsl:text>
+                </xsl:attribute>
+                <xsl:attribute name="data-bs-toggle">modal</xsl:attribute>
+                <xsl:attribute name="data-bs-target">
+                    <xsl:value-of select="concat('#', $modalId)"/>
+                </xsl:attribute>
+                <xsl:apply-templates mode="verschachtelteA"/>
+            </xsl:element>
+        </span>
+    </xsl:template>
+    <xsl:template match="tei:note" mode="verschachtelteA"/>
     <xsl:template
         match="tei:rs[@type = 'work' and not(ancestor::tei:quote) and ancestor::tei:note and not(@subtype = 'implied')]/text()">
         <span class="works {substring-after(@rendition, '#')}" id="{@xml:id}">
@@ -1457,7 +1559,8 @@
                                 <xsl:if test=". != ''">
                                     <li>
                                         <xsl:variable name="eintrag"
-                                            select="$back//tei:*[@xml:id = $current][1]" as="node()?"/>
+                                            select="$back//tei:*[@xml:id = $current][1]"
+                                            as="node()?"/>
                                         <xsl:variable name="typ" select="$eintrag/name()"
                                             as="xs:string?"/>
                                         <xsl:element name="a">
