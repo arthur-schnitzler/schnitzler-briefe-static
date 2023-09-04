@@ -106,7 +106,7 @@
     <!-- Substi -->
     <xsl:template match="tei:subst">
         <!--<span class="steuerzeichen">↑</span>-->
-        <sup><xsl:text>5</xsl:text>
+        <sup>
             <xsl:apply-templates select="tei:del"/>
         </sup>
         <xsl:apply-templates select="tei:add"/>
