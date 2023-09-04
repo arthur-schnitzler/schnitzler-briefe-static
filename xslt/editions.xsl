@@ -1486,7 +1486,7 @@
     <!-- zweiter Fall: rs ist nicht in einem note und hat entweder mehrere Werte im @ref oder einen Nachkommen,
     der ebenfalls ein @ref hat (und auch nicht im note steht) -->
     <xsl:template
-        match="tei:rs[descendant::tei:rs[not(ancestor::tei:note) and contains(@ref, ' ')] or descendant::tei:rs[not(ancestor::tei:note)]]">
+        match="tei:rs[not(ancestor::tei:note) and contains(@ref, ' ') or descendant::tei:rs[not(ancestor::tei:note)]]">
         <xsl:variable name="modalId1" as="xs:string">
             <xsl:value-of select=".//@ref[not(ancestor::tei:note)]"/>
         </xsl:variable>
