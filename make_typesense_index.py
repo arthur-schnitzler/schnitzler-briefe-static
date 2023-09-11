@@ -70,7 +70,7 @@ current_schema = {
             'facet': True,
             'optional': True
         },
-    ]
+    ],
     'default_sorting_field': 'date',
 }
 
