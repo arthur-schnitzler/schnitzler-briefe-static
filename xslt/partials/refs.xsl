@@ -73,7 +73,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template
-        match="tei:ref[@type = 'schnitzler-briefe' or @type = 'schnitzler-bahr' or @type = 'schnitzler-lektueren']">
+        match="tei:ref[@type = 'schnitzler-briefe' or @type = 'schnitzler-bahr' or @type = 'schnitzler-lektueren' or @type='schnitzler-interviews']">
         <xsl:variable name="type-url" as="xs:string">
             <xsl:choose>
                 <xsl:when test="@type = 'schnitzler-briefe'">
@@ -84,6 +84,9 @@
                 </xsl:when>
                 <xsl:when test="@type = 'schnitzler-lektueren'">
                     <xsl:text>https://schnitzler-lektueren.acdh.oeaw.ac.at/</xsl:text>
+                </xsl:when>
+                <xsl:when test="@type = 'schnitzler-interviews'">
+                    <xsl:text>https://schnitzler-interviews.acdh.oeaw.ac.at/</xsl:text>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
@@ -110,11 +113,18 @@
                                 select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/text()"
                             />
                         </xsl:when>
+                        <xsl:when test="@type = 'schnitzler-interviews'">
+                            <xsl:value-of
+                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-static/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:titleStmt[1]/tei:title[@type='iso-date'][1]/text()"
+                            />
+                        </xsl:when>
                         <xsl:when test="@type = 'schnitzler-bahr'">
                             <xsl:value-of
                                 select="document(concat($type-url, replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:dateSender[1]/tei:date[1]/text()"
                             />
                         </xsl:when>
+                        
+                        
                     </xsl:choose>
                 </a>
             </xsl:when>
