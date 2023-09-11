@@ -36,11 +36,6 @@ current_schema = {
             'type': 'string'
         },
         {
-            'name': 'date',
-            'type': 'int64',
-            'facet': True
-        },
-        {
             'name': 'year',
             'type': 'int32',
             'optional': True,
@@ -70,8 +65,7 @@ current_schema = {
             'facet': True,
             'optional': True
         },
-    ],
-    'default_sorting_field': 'date',
+    ]
 }
 
 client.collections.create(current_schema)
@@ -96,18 +90,12 @@ for x in tqdm(files, total=len(files)):
         date_str = doc.any_xpath('//tei:titleStmt/tei:title[@type="iso-date"]/@when-iso')[0]
     except IndexError:
         date_str = "1000"
+
     try:
         record['year'] = int(date_str[:4])
         cfts_record['year'] = int(date_str[:4])
     except ValueError:
         pass
-    try:
-        ts = ciso8601.parse_datetime(date_str)
-    except ValueError:
-        ts = ciso8601.parse_datetime('1800-01-01')
-
-    record['date'] = int(time.mktime(ts.timetuple()))
-    cfts_record['date'] = record['date']
     record['persons'] = [
         " ".join(" ".join(x.xpath('.//text()')).split()) for x in doc.any_xpath('.//tei:back//tei:person/tei:persName[1]')
     ]
