@@ -22,7 +22,7 @@
                             <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
                                 <xsl:if
                                     test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]">
-                                    <span class="dropdown-item-text">Nächster Brief </span>
+                                    <span class="dropdown-item-text">Vorheriger Brief </span>
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
