@@ -122,6 +122,95 @@
                <date evidence="conjecture" notBefore="1902-01-26" notAfter="1902-01-30">[26. 1. 1902
                   – 30. 1. 1902?]</date>
             </correspAction>
+            <correspContext>
+               <ref type="belongsToCorrespondence" target="correspondence_11485">Goldmann,
+                  Paul</ref>
+               <ab type="entitaeten">
+                  <listPerson>
+                     <person>
+                        <persName ref="pmb11485">Paul Goldmann</persName>
+                     </person>
+                     <person>
+                        <persName ref="pmb11673">Theodor Herzl</persName>
+                     </person>
+                     <person>
+                        <persName ref="pmb4986">Fedor Mamroth</persName>
+                     </person>
+                     <person>
+                        <persName ref="pmb2161">Emerich von Bukovics</persName>
+                     </person>
+                     <person>
+                        <persName ref="pmb2173">Olga Schnitzler</persName>
+                     </person>
+                     <person>
+                        <persName ref="pmb10863">Richard Beer-Hofmann</persName>
+                     </person>
+                     <person>
+                        <persName ref="pmb11867">Heinrich Kanner</persName>
+                     </person>
+                  </listPerson>
+                  <listBibl>
+                     <bibl>
+                        <title ref="pmb144122">Berliner Theater. (»Lebendige Stunden« von Arthur
+                           Schnitzler.)</title>
+                     </bibl>
+                     <bibl>
+                        <title ref="pmb36374">Neue Freie Presse</title>
+                     </bibl>
+                     <bibl>
+                        <title ref="pmb29863">Lebendige Stunden. Vier Einakter</title>
+                     </bibl>
+                     <bibl>
+                        <title ref="pmb29857">Der Schleier der Beatrice. Schauspiel in fünf
+                           Akten</title>
+                     </bibl>
+                     <bibl>
+                        <title ref="pmb33243">Tagebuch</title>
+                     </bibl>
+                  </listBibl>
+                  <listOrg>
+                     <org>
+                        <orgName ref="pmb35597">Deutsches Theater Berlin</orgName>
+                     </org>
+                     <org>
+                        <orgName ref="pmb36430">Volkstheater</orgName>
+                     </org>
+                     <org>
+                        <orgName ref="pmb36247">Burgtheater</orgName>
+                     </org>
+                     <org>
+                        <orgName ref="pmb29626">Die Zeit</orgName>
+                     </org>
+                  </listOrg>
+                  <listPlace>
+                     <place>
+                        <placeName ref="pmb168">Berlin</placeName>
+                     </place>
+                     <place>
+                        <placeName ref="pmb50">Wien</placeName>
+                     </place>
+                     <place>
+                        <placeName ref="pmb40583">Dessauer Straße</placeName>
+                     </place>
+                     <place>
+                        <placeName ref="pmb166">Frankreich</placeName>
+                     </place>
+                     <place>
+                        <placeName ref="pmb173">Rodaun</placeName>
+                     </place>
+                     <place>
+                        <placeName ref="pmb146">Frankfurt am Main</placeName>
+                     </place>
+                  </listPlace>
+               </ab>
+               <ref subtype="previous_letter" type="withinCollection" target="L01199">Schnitzler an
+                  Bahr, 25. 1. 1902</ref>
+               <ref subtype="next_letter" type="withinCollection" target="L03196">Goldmann an
+                  Schnitzler, 2. 2. [1902]</ref>
+               <ref subtype="previous_letter" type="withinCorrespondence" source="correspondence_11485" target="L03194">Goldmann an Schnitzler,
+                  20. 1. [1902]</ref>
+               <ref subtype="next_letter" type="withinCorrespondence" source="correspondence_11485" target="L03196">Goldmann an Schnitzler, 2. 2. [1902]</ref>
+            </correspContext>
          </correspDesc>
       </profileDesc>
       <revisionDesc status="proposed">
@@ -139,7 +228,7 @@
    </facsimile>
    <text>
       <body>
-         <div type="writingSession" n="1"><opener><p rend="right"><pb facs="HS.NZ85.1.3172_0010-1"/><rs type="place" ref="#pmb40583"><hi rend="pre-print"><hi rend="capitals">Dessauerstrasse</hi> 19</hi></rs></p><dateline rend="left"><rs type="place" ref="#pmb168">Berlin</rs>, <date when="1902-01-25">25. Januar</date>.</dateline><salute rend="center">Mein lieber Freund,</salute></opener><p>Wir wollen die Debatte<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>chließen. Nur Eines noch: Ich habe Dir nicht vorgeworfen, daß
+         <div type="writingSession" n="1"><opener><p rend="right"><pb facs="HS.NZ85.1.3172_0010-1"/><rs type="place" ref="#pmb40583"><hi rend="pre-print"><hi rend="capitals">Dessauerstrasse 19</hi></hi></rs></p><dateline rend="left"><rs type="place" ref="#pmb168">Berlin</rs>, <date when="1902-01-25">25. Januar</date>.</dateline><salute rend="center">Mein lieber Freund,</salute></opener><p>Wir wollen die Debatte<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>chließen. Nur Eines noch: Ich habe Dir nicht vorgeworfen, daß
                Du von Dir mehr erfüllt bi<c rendition="#langesS">s</c>t, als von mir. Es i<c rendition="#langesS">s</c>t<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>elb<c rendition="#langesS">s</c>tver<c rendition="#langesS">s</c>tändlich, daß Jeder von
               <space unit="chars" quantity="1"/><c rendition="#langesS">s</c>ich mehr erfüllt i<c rendition="#langesS">s</c>t als von einem Anderen. Ich meine nur, daß <del rend="strikethrough"><unclear>ich in Deinen</unclear></del> weil Du von Dir bedeutend mehr erfüllt bi<c rendition="#langesS">s</c>t, als es die Regel i<c rendition="#langesS">s</c>t, der Platz,
                den ich in Deinem Denken und Empfinden einnehme, auch bedeutend geringer i<c rendition="#langesS">s</c>t, als ein
@@ -180,13 +269,14 @@
                zu erreichen. Ich hätte das auch in meinem <rs type="work" subtype="implied" ref="#pmb144122">Feuilleton</rs><del rend="strikethrough">mehr</del> ausgeführt, wenn ich auf der gewählten Spalte
                noch Platz gehabt hätte zu die<c rendition="#langesS">s</c>er Ausführung. Wenn Dich demnäch<c rendition="#langesS">s</c>t wieder Leute
                fragen, ob ich Deine Werke der letzten Jahre denn nicht kenne,<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>o bitte ich Dich,
-               ihnen das zu<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>agen.</p><p>Von <hi rend="latintype"><rs type="person" ref="#pmb11673">Herzl</rs></hi> erhielt ich einen <anchor type="commentary" xml:id="K_L03195-12"/>Brief<note type="commentary" xml:id="K_L03195-12h">XXXX Antwortbrief von Goldmann vmtl. im
-                  Zionist Archive (in Kontakt)</note>, den ich Dir nicht<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>chicken kann, weil ich ihn
-               der Curio<c rendition="#langesS">s</c>ität halber meinem <rs type="person" subtype="implied" ref="#pmb4986">Onkel</rs> ge<c rendition="#langesS">s</c>andt habe. Ich citire aus dem Gedächtniß folgenden Satz: »Die
+               ihnen das zu<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>agen.</p><p>Von <hi rend="latintype"><rs type="person" ref="#pmb11673">Herzl</rs></hi> erhielt ich einen Brief, den ich Dir nicht<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>chicken kann, weil ich ihn der
+               Curio<c rendition="#langesS">s</c>ität halber meinem <rs type="person" subtype="implied" ref="#pmb4986">Onkel</rs> ge<c rendition="#langesS">s</c>andt habe. Ich citire aus dem Gedächtniß folgenden Satz: »Die
                Grenzlinie (in meinem <rs type="work" subtype="implied" ref="#pmb144122">Feuilleton</rs> über »<rs type="work" ref="#pmb29863">Lebendige Stunden</rs>«)
                zwi<c rendition="#langesS">s</c>chen aufrichtiger und ge<c rendition="#langesS">s</c>chriebener Meinung <pb facs="HS.NZ85.1.3172_0012-1"/>habe ich<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>ehr wohl bemerkt; <subst><del rend="strikethrough">aber</del><add place="above">aber</add></subst> (wenn irgendeine Unaufrichtigkeit ent<c rendition="#langesS">s</c>chuldbar i<c rendition="#langesS">s</c>t,<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>o i<c rendition="#langesS">s</c>t es die durch eine
                alte Freund<c rendition="#langesS">s</c>chaft gebotene.« Ich habe die<c rendition="#langesS">s</c>en un<c rendition="#langesS">s</c>innigen Vorwurf der Unaufrichtigkeit
-                  <add place="above">in einem Briefe</add> mit Ent<c rendition="#langesS">s</c>chiedenheit zurückgewie<c rendition="#langesS">s</c>en.</p><p>Zu meiner Freude<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>ehe ich »<rs type="work" ref="#pmb29863">Lebendige Stunden</rs>«
+                  <add place="above">in einem
+                  Briefe<!-- unklar, wo sich dieser befindet, jedenfalls in Zionist Archive nicht vorhanden --></add>
+               mit Ent<c rendition="#langesS">s</c>chiedenheit zurückgewie<c rendition="#langesS">s</c>en.</p><p>Zu meiner Freude<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>ehe ich »<rs type="work" ref="#pmb29863">Lebendige Stunden</rs>«
               <space unit="chars" quantity="1"/><c rendition="#langesS">s</c>tändig auf dem <rs type="org" ref="#pmb35597">Theater</rs>zettel. Ich hoffe, daß
                dies einen Ka<c rendition="#langesS">s</c><c rendition="#langesS">s</c>enerfolg bedeutet. Haben <anchor type="commentary" xml:id="K_L03195-123"/>andere deut<c rendition="#langesS">s</c>che Bühnen<note type="commentary" xml:id="K_L03195-123h">Im Herbst <date when="1901">1901</date> hatte das <rs type="place" ref="#pmb50">Wien</rs>er <rs type="org" ref="#pmb36430">Volkstheater</rs> unter der Leitung von <rs type="person" ref="#pmb2161">Emerich von Bukovics</rs> die <rs type="work" subtype="implied" ref="#pmb29863">Stücke</rs> angenommen. Die Premiere fand am <ref type="schnitzler-tagebuch" target="1903-03-14" subtype="date-only"/>
                   statt.</note> die <rs type="work" subtype="implied" ref="#pmb29863">Stücke</rs>

@@ -120,6 +120,29 @@
                <placeName ref="#pmb50">Wien?</placeName>
                <date evidence="conjecture" notBefore="1902-07-31" notAfter="1902-08-04">[31. 7. 1902 – 4. 8. 1902?]</date>
             </correspAction>
+            <correspContext>
+               <ref type="belongsToCorrespondence" target="correspondence_11485">Goldmann,
+                  Paul</ref>
+               <ab type="entitaeten">
+                  <listPerson>
+                     <person>
+                        <persName ref="pmb2167">Felix Salten</persName>
+                     </person>
+                  </listPerson>
+                  <listPlace>
+                     <place>
+                        <placeName ref="pmb50">Wien</placeName>
+                     </place>
+                  </listPlace>
+               </ab>
+               <ref subtype="previous_letter" type="withinCollection" target="L03214">Goldmann an
+                  Schnitzler, 25. 7. [1902]</ref>
+               <ref subtype="next_letter" type="withinCollection" target="L03216">Goldmann an
+                  Schnitzler, 31. 7. 1902</ref>
+               <ref subtype="previous_letter" type="withinCorrespondence" source="correspondence_11485" target="L03214">Goldmann an Schnitzler,
+                  25. 7. [1902]</ref>
+               <ref subtype="next_letter" type="withinCorrespondence" source="correspondence_11485" target="L03216">Goldmann an Schnitzler, 31. 7. 1902</ref>
+            </correspContext>
          </correspDesc>
       </profileDesc>
       <revisionDesc status="proposed">
@@ -143,7 +166,7 @@
                     der glänzende Humori<c rendition="#langesS">s</c>t <del rend="strikethrough">i<unclear>mm</unclear></del> immer<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>ein wollte<c rendition="#langesS">s</c>t, <del rend="strikethrough">d<unclear>e</unclear></del> der Du bi<c rendition="#langesS">s</c>t! Einen Stoff<unclear>e</unclear> humori<c rendition="#langesS">s</c>ti<c rendition="#langesS">s</c>ch <rs type="work" ref="">behandeln</rs> heißt<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>ich über ihn erheben. Ich glaube, das<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>ollte in
                     den Jahren der Reife das höch<c rendition="#langesS">s</c>te Ziel<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>ein. </p><closer>Bitte, grüße mir <hi rend="latintype"><rs type="person" ref="">Richard</rs></hi>. Es thut mir unendlich leid, daß ich <pb facs="HS.NZ85.1.3172_0057-0"/>
                     Dich und <rs type="person" ref="">ihn</rs> jetzt nicht<space unit="chars" quantity="1"/><c rendition="#langesS">s</c>ehen werde. <lb/>Viel
-                    treue Grüße!</closer><closer><lb/>Dein</closer><closer><lb/><signed>Paul Goldmann</signed></closer><p><postscript>Grüße an die <rs type="place" ref="">Hinterbrühl</rs>.</postscript><postscript>Was i<c rendition="#langesS">s</c>t mit der</postscript><postscript>»<hi rend="latintype"><rs type="work" ref="">Beatrice</rs></hi>«? </postscript></p></div>
+                    treue Grüße!</closer><closer><lb/>Dein</closer><closer><lb/><signed>Paul Goldmann</signed></closer><p><postscript>Grüße an die <rs type="place" ref="">Hinterbrühl</rs>.</postscript><postscript>Was i<c rendition="#langesS">s</c>t mit der</postscript><postscript>»<hi rend="latintype"><rs type="work" ref="#pmb29857">Beatrice</rs></hi>«? </postscript></p></div>
       </body>
       <back>
          <listPerson>

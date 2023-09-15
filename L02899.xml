@@ -122,6 +122,35 @@
             <correspContext>
                <ref type="belongsToCorrespondence" target="correspondence_11485">Goldmann,
                   Paul</ref>
+               <ab type="entitaeten">
+                  <listPerson>
+                     <person>
+                        <persName ref="pmb11485">Paul Goldmann</persName>
+                     </person>
+                     <person>
+                        <persName ref="pmb11910">Alfred Kerr</persName>
+                     </person>
+                     <person>
+                        <persName ref="pmb11640">Heinrich Heine</persName>
+                     </person>
+                  </listPerson>
+                  <listBibl>
+                     <bibl>
+                        <title ref="pmb36344">Frankfurter Zeitung</title>
+                     </bibl>
+                     <bibl>
+                        <title ref="pmb140924">Heine</title>
+                     </bibl>
+                  </listBibl>
+                  <listPlace>
+                     <place>
+                        <placeName ref="pmb146">Frankfurt am Main</placeName>
+                     </place>
+                     <place>
+                        <placeName ref="pmb50">Wien</placeName>
+                     </place>
+                  </listPlace>
+               </ab>
                <ref subtype="previous_letter" type="withinCollection" target="L02898">Goldmann an
                   Schnitzler, 11. 12. [1899]</ref>
                <ref subtype="next_letter" type="withinCollection" target="L01005">Beer-Hofmann an
@@ -147,7 +176,7 @@
       <body>
          <div type="writingSession" n="1"><opener><dateline rend="right"><pb facs="HS.NZ85.1.3169_0065-1"/><rs type="place" ref="#pmb146">Frankfurt</rs>, <date when="1899-12-13">13. Dezember</date>.</dateline><salute rend="center">Mein lieber Freund,</salute></opener><p>Da Du wohl nicht die »<rs type="work" ref="#pmb36344">Frankfurter Zeitung</rs>«
                lie<c rendition="#langesS">s</c>t, <anchor type="commentary" xml:id="K_L02899-1"/><c rendition="#langesS">s</c>ende ich Dir anbei das <date when="1899-12-12">ge<c rendition="#langesS">s</c>tern</date> er<c rendition="#langesS">s</c>chienene <rs type="work" subtype="implied" ref="#pmb140924">Feuilleton</rs> von <hi rend="latintype"><rs type="person" ref="#pmb11910">Kerr</rs></hi> über <hi rend="latintype"><rs type="person" ref="#pmb11640">Heine</rs></hi><note type="commentary" xml:id="K_L02899-1h"><bibl><rs type="person" ref="#pmb11910">Alfred Kerr</rs>: <rs type="work" ref="#pmb140924">Heine</rs>. In: <rs type="work" ref="#pmb36344">Frankfurter
-                        Zeitung</rs>, Jg. XXXX, Nr. 345, <date when="1899-12-13">13. 12. 1899</date>, S. XXXX</bibl>. <rs type="person" ref="#pmb2121">Schnitzler</rs> hatte den Brief spätestens am <date>15. 12. 1899</date> in den
+                        Zeitung</rs>, Jg. 44, Nr. 345, <date when="1899-12-13">13. 12. 1899</date>, Erstes Morgenblatt, S. 1–2</bibl>. <rs type="person" ref="#pmb2121">Schnitzler</rs> hatte den Brief spätestens am <date>15. 12. 1899</date> in den
                   Händen, da schrieb er an <rs type="person" ref="#pmb11910">Kerr</rs>:
                      »<quote>Lieber Herr <rs type="person" ref="#pmb11910">Kerr</rs>, ich muss Ihnen
                      diesen Brief meines Freundes <rs type="person" ref="#pmb11485">Goldmann</rs>
