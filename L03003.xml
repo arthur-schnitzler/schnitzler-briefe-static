@@ -116,125 +116,6 @@
             </correspAction>
             <correspContext>
                <ref type="belongsToCorrespondence" target="correspondence_2167">Salten, Felix</ref>
-               <ab type="entitaeten">
-                  <listPerson>
-                     <person>
-                        <persName ref="pmb2167">Felix Salten</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb2315">Elisabeth Steinrück</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb142997"> Engel </persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb12968">Siegfried Trebitsch</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb11813">Siegfried Jacobsohn</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb23918">Ottilie Salten</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb11910">Alfred Kerr</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb2150">Julius Bauer</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb143371">Grete Hofmann</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb13055">Jakob Wassermann</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb2496">Arthur Kaufmann</persName>
-                     </person>
-                  </listPerson>
-                  <listBibl>
-                     <bibl>
-                        <title ref="pmb32516">Bühnenvertrieb</title>
-                     </bibl>
-                     <bibl>
-                        <title ref="pmb41564">Die Schaubühne</title>
-                     </bibl>
-                     <bibl>
-                        <title ref="pmb60265">Bund der Bühnendichter. II</title>
-                     </bibl>
-                     <bibl>
-                        <title ref="pmb145191">?? [Feuilleton über Russland]</title>
-                     </bibl>
-                     <bibl>
-                        <title ref="pmb145189">?? [Feuilleton zu/über Lange]</title>
-                     </bibl>
-                     <bibl>
-                        <title ref="pmb29951">Zum großen Wurstel. Burleske in einem Akt</title>
-                     </bibl>
-                     <bibl>
-                        <title ref="pmb29877">Die letzten Masken</title>
-                     </bibl>
-                     <bibl>
-                        <title ref="pmb29905">Der Ruf des Lebens. Schauspiel in drei Akten</title>
-                     </bibl>
-                     <bibl>
-                        <title ref="pmb30009">Hamlet</title>
-                     </bibl>
-                  </listBibl>
-                  <listPlace>
-                     <place>
-                        <placeName ref="pmb50">Wien</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb133">Edmund-Weiß-Gasse</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb58500">Harz</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb423">Tirol</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb969">Südtirol</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb429">Salzkammergut</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb314">Bayern</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb562">Genf</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb885">Lugano</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb43570">Dänemark</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb142884">Rügen</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb44335">Schweden</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb36300">Kopenhagen</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb63623">Öresund</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb34438">Russland</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb59096">Nordpol</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb108">Schwenders Colosseum</placeName>
-                     </place>
-                  </listPlace>
-               </ab>
                <ref subtype="previous_letter" type="withinCollection" target="L01594">Bahr an
                   Schnitzler, [23. 3. 1906]</ref>
                <ref subtype="next_letter" type="withinCollection" target="L03242">Goldmann an
@@ -739,13 +620,19 @@
                <title>Die Schaubühne</title>
                <title type="namensvariante">Die Weltbühne</title>
                <title type="namensvariante">Die neue Weltbühne</title>
+               <title type="werk_link">https://de.wikisource.org/wiki/Die_Schaubühne_–_Die_Weltbühne</title>
+               <title type="legacy-name-merge">Weltbühne</title>
                <author ref="pmb11813" role="hat-herausgegeben">Jacobsohn, Siegfried</author>
                <author ref="pmb43666" role="hat-herausgegeben">Schlamm, William Siegmund</author>
                <date to="1993-07-02">7.9.1905  – 1993</date>
                <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/41564/</idno>
                <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pmb41564.html</idno>
                <idno type="URL" subtype="kraus">https://kraus.wienbibliothek.at/register/werke/pmb41564</idno>
+               <idno type="URL" subtype="wikipedia">https://de.wikipedia.org/wiki/Die_Weltb%C3%BChne</idno>
+               <idno type="URL" subtype="">https://this-will-change/HB-tv_periodica_169</idno>
+               <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/122191/</idno>
                <idno type="URL" subtype="schnitzler-interviews">https://schnitzler-interviews.acdh.oeaw.ac.at/pmb41564.html</idno>
+               <idno type="URL" subtype="wikidata">https://www.wikidata.org/wiki/Q512687</idno>
                <note type="work_kind">Periodikum &gt;&gt; Zeitschrift</note>
             </bibl>
             <bibl xml:id="pmb60265">
@@ -781,6 +668,8 @@
                <title type="werk_arbeitstitel">Marionetten</title>
                <title type="werk_link-anno">https://anno.onb.ac.at/cgi-content/anno?aid=zei&amp;datum=19050423&amp;seite=47&amp;zoom=33</title>
                <title type="werk_link">https://www.schnitzler-edition.net/genetisch?openWorkInfo=10118#werkinfo-10118</title>
+               <title type="legacy-name-merge">Marionetten</title>
+               <author ref="pmb2121" role="hat-geschaffen">Schnitzler, Arthur</author>
                <author ref="pmb2121" role="hat-geschaffen">Schnitzler, Arthur</author>
                <date when="1905-04-23">23.04.1905</date>
                <idno type="URL" subtype="wikidata">http://www.wikidata.org/entity/Q29014616</idno>
@@ -789,7 +678,9 @@
                <idno type="URL" subtype="arthur-schnitzler">https://www.arthur-schnitzler.de/edition/emendtext/10118</idno>
                <idno type="URL" subtype="schnitzler-bahr">https://schnitzler-bahr.acdh.oeaw.ac.at/pmb29951.html</idno>
                <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/29951/</idno>
+               <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/36093/</idno>
                <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pmb29951.html</idno>
+               <idno type="URL" subtype="schnitzler-tagebuch">https://schnitzler-tagebuch.acdh.oeaw.ac.at/pmb36093.html</idno>
                <idno type="URL" subtype="schnitzler-tagebuch">https://schnitzler-tagebuch.acdh.oeaw.ac.at/pmb29951.html</idno>
                <idno type="URL" subtype="wikipedia">https://de.wikipedia.org/wiki/Zum_gro%C3%9Fen_Wurstel</idno>
                <idno type="URL" subtype="schnitzler-interviews">https://schnitzler-interviews.acdh.oeaw.ac.at/pmb29951.html</idno>

@@ -122,35 +122,6 @@
             <correspContext>
                <ref type="belongsToCorrespondence" target="correspondence_11485">Goldmann,
                   Paul</ref>
-               <ab type="entitaeten">
-                  <listPerson>
-                     <person>
-                        <persName ref="pmb11485">Paul Goldmann</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb23674">Theodore Rottenberg</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb140820">Gertrud Rottenberg</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb9598">Ludwig Rottenberg</persName>
-                     </person>
-                  </listPerson>
-                  <listOrg>
-                     <org>
-                        <orgName ref="pmb29442">Frankfurter Zeitung</orgName>
-                     </org>
-                  </listOrg>
-                  <listPlace>
-                     <place>
-                        <placeName ref="pmb146">Frankfurt am Main</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb50">Wien</placeName>
-                     </place>
-                  </listPlace>
-               </ab>
                <ref subtype="previous_letter" type="withinCollection" target="L01001">Schnitzler an
                   Beer-Hofmann, 25. 11. 1899</ref>
                <ref subtype="next_letter" type="withinCollection" target="L01002">Schnitzler an
@@ -279,8 +250,7 @@
                   <surname>Rottenberg</surname>
                </persName>
                <persName type="person_geburtsname_nachname">Adickes</persName>
-               <persName type="person_geburtsname-vorname">Marie Theodore Emilie
-                  Magdalene</persName>
+               <persName type="person_geburtsname-vorname">Marie Theodore Emilie Magdalene</persName>
                <birth>
                   <date when="1875-09-07">1875-09-07</date>
                </birth>
@@ -388,8 +358,7 @@
             </place>
             <place xml:id="pmb50">
                <placeName>Wien</placeName>
-               <placeName type="ort_fruherer_name">K.K. Reichshaupt- und Residenzstadt
-                  Wien</placeName>
+               <placeName type="ort_fruherer_name">K.K. Reichshaupt- und Residenzstadt Wien</placeName>
                <placeName type="alternative-name">Bécs</placeName>
                <placeName type="alternative-name">Land Wien</placeName>
                <placeName type="alternative-name">Vídeň</placeName>
@@ -457,7 +426,7 @@
                <idno type="URL" subtype="kraus">https://kraus.wienbibliothek.at/register/institutionen/pmb29442</idno>
                <idno type="URL" subtype="schnitzler-interviews">https://schnitzler-interviews.acdh.oeaw.ac.at/pmb29442.html</idno>
                <note type="apis_dates">
-                  <date to="1943-01-01">1856 – 1943</date>
+                  <date to="1943-01-01">1856  – 1943</date>
                </note>
             </org>
          </listOrg>

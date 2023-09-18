@@ -106,34 +106,11 @@
             </correspAction>
             <correspAction type="received">
                <persName ref="#pmb2121">Schnitzler, Arthur</persName>
-               <placeName evidence="conjecture" ref="#pmb">Wien</placeName>
-               <date evidence="conjecture" notBefore="1925-05-01" notAfter="1925-05-05">[1. 5. 1925 – 5. 5. 1925?]</date>
+               <placeName ref="#pmb50" evidence="conjecture">Wien</placeName>
+               <date evidence="conjecture" notBefore="1925-04-30" notAfter="1925-05-04">[30. 4. 1925 – 4. 5. 1925?]</date>
             </correspAction>
             <correspContext>
                <ref type="belongsToCorrespondence" target="correspondence_2167">Salten, Felix</ref>
-               <ab type="entitaeten">
-                  <listPerson>
-                     <person>
-                        <persName ref="pmb2167">Felix Salten</persName>
-                     </person>
-                  </listPerson>
-                  <listOrg>
-                     <org>
-                        <orgName ref="pmb36907">Paul Zsolnay Verlag</orgName>
-                     </org>
-                  </listOrg>
-                  <listPlace>
-                     <place>
-                        <placeName ref="pmb50">Wien</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb168">Berlin</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb864">Leipzig</placeName>
-                     </place>
-                  </listPlace>
-               </ab>
                <ref subtype="previous_letter" type="withinCollection" target="L02654">Lasker-Schüler
                   an Schnitzler, 28. 4. [1925?]</ref>
                <ref subtype="next_letter" type="withinCollection" target="L03021">Schnitzler an

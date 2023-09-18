@@ -110,6 +110,9 @@
                                     <rs type="place" ref="#pmb40387">Kärnt.</rs>
                                  </quote>«</desc>
                            </incident>
+                           <incident type="archival">
+                              <desc>mit Bleistift von unbekannter Hand nummeriert: »<quote>33</quote>«</desc>
+                           </incident>
                         </additions>
                      </physDesc>
                   </msDesc>
@@ -134,33 +137,6 @@
             </correspAction>
             <correspContext>
                <ref type="belongsToCorrespondence" target="correspondence_2167">Salten, Felix</ref>
-               <ab type="entitaeten">
-                  <listPerson>
-                     <person>
-                        <persName ref="pmb2167">Felix Salten</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb144609">W. Bogdanovits</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb65098">Vladimir Galaktionovič Korolenko</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb11809">Jens Peter Jacobsen</persName>
-                     </person>
-                  </listPerson>
-                  <listPlace>
-                     <place>
-                        <placeName ref="pmb144606">Hotel Erzherzog Karl</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb40387">Kärntner Straße</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb50">Wien</placeName>
-                     </place>
-                  </listPlace>
-               </ab>
                <ref subtype="previous_letter" type="withinCollection" target="L00274">Schnitzler an
                   Beer-Hofmann, 21. 10. 1893</ref>
                <ref subtype="next_letter" type="withinCollection" target="L00275">Beer-Hofmann an
@@ -198,7 +174,9 @@
                </persName>
                <persName type="person_geburtsname-vorname">Siegmund</persName>
                <persName type="person_geburtsname_nachname">Salzmann</persName>
-               <persName type="legacy-name-merge">Salzmann, Siegmund</persName>
+               <persName type="x_zum-loschen-markiert">X</persName>
+               <persName type="person_pseudonym">Sascha</persName>
+               <persName type="person_pseudonym">Martin Finder</persName>
                <birth>
                   <date when="1869-09-06">06.09.1869</date>
                   <settlement ref="pmb43471">
@@ -374,8 +352,7 @@
             </place>
             <place xml:id="pmb50">
                <placeName>Wien</placeName>
-               <placeName type="ort_fruherer_name">K.K. Reichshaupt- und Residenzstadt
-                  Wien</placeName>
+               <placeName type="ort_fruherer_name">K.K. Reichshaupt- und Residenzstadt Wien</placeName>
                <placeName type="alternative-name">Bécs</placeName>
                <placeName type="alternative-name">Land Wien</placeName>
                <placeName type="alternative-name">Vídeň</placeName>

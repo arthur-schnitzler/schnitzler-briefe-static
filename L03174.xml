@@ -94,6 +94,9 @@
                                     <date>96</date>
                                  </quote>« ergänzt</desc>
                            </incident>
+                           <incident type="archival">
+                              <desc>mit Bleistift von unbekannter Hand nummeriert: »<quote>73</quote>«</desc>
+                           </incident>
                         </additions>
                      </physDesc>
                   </msDesc>
@@ -118,38 +121,6 @@
             </correspAction>
             <correspContext>
                <ref type="belongsToCorrespondence" target="correspondence_2167">Salten, Felix</ref>
-               <ab type="entitaeten">
-                  <listPerson>
-                     <person>
-                        <persName ref="pmb2167">Felix Salten</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb52648">Victor Hehn</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb23918">Ottilie Salten</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb10863">Richard Beer-Hofmann</persName>
-                     </person>
-                  </listPerson>
-                  <listBibl>
-                     <bibl>
-                        <title ref="pmb144906">Über Goethes Hermann und Dorothea</title>
-                     </bibl>
-                     <bibl>
-                        <title ref="pmb31675">Die Wahlverwandtschaften</title>
-                     </bibl>
-                  </listBibl>
-                  <listPlace>
-                     <place>
-                        <placeName ref="pmb50">Wien</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb36300">Kopenhagen</placeName>
-                     </place>
-                  </listPlace>
-               </ab>
                <ref subtype="previous_letter" type="withinCollection" target="L02781">Goldmann an
                   Schnitzler, 14. 7. [1896]</ref>
                <ref subtype="next_letter" type="withinCollection" target="L00563">Schnitzler an
@@ -193,7 +164,9 @@
                </persName>
                <persName type="person_geburtsname-vorname">Siegmund</persName>
                <persName type="person_geburtsname_nachname">Salzmann</persName>
-               <persName type="legacy-name-merge">Salzmann, Siegmund</persName>
+               <persName type="x_zum-loschen-markiert">X</persName>
+               <persName type="person_pseudonym">Sascha</persName>
+               <persName type="person_pseudonym">Martin Finder</persName>
                <birth>
                   <date when="1869-09-06">06.09.1869</date>
                   <settlement ref="pmb43471">
@@ -442,6 +415,23 @@
                <idno type="URL" subtype="wikidata">http://www.wikidata.org/entity/Q1741</idno>
                <idno type="URL" subtype="wikipedia">https://de.wikipedia.org/wiki/Wien</idno>
                <idno type="URL" subtype="schnitzler-interviews">https://schnitzler-interviews.acdh.oeaw.ac.at/pmb50.html</idno>
+            </place>
+            <place xml:id="pmb40290">
+               <placeName>Trondheim</placeName>
+               <desc type="entity_type">http://www.geonames.org/ontology#P.PPLA2</desc>
+               <desc type="entity_type_id">1134</desc>
+               <location type="coords">
+                  <geo>63,43049 10,39506</geo>
+               </location>
+               <location type="located_in_place">
+                  <placeName ref="pmb64465">Norwegen</placeName>
+                  <geo>62,0 10,0</geo>
+               </location>
+               <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/40290/</idno>
+               <idno type="URL" subtype="schnitzler-briefe">https://schnitzler-briefe.acdh.oeaw.ac.at/pmb40290.html</idno>
+               <idno type="URL" subtype="pmb">https://pmb.acdh.oeaw.ac.at/entity/64395/</idno>
+               <idno type="URL" subtype="geonames">https://sws.geonames.org/3133880/</idno>
+               <idno type="URL" subtype="schnitzler-tagebuch">https://schnitzler-tagebuch.acdh.oeaw.ac.at/pmb40290.html</idno>
             </place>
             <place xml:id="pmb36300">
                <placeName>Kopenhagen</placeName>

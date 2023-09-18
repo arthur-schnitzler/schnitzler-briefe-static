@@ -124,54 +124,6 @@
             <correspContext>
                <ref type="belongsToCorrespondence" target="correspondence_11485">Goldmann,
                   Paul</ref>
-               <ab type="entitaeten">
-                  <listPerson>
-                     <person>
-                        <persName ref="pmb11485">Paul Goldmann</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb141473">D. W. Schröder</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb14948">Auguste Chlum</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb14953">Marie Glümer</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb17164">Eva Marie Goldmann</persName>
-                     </person>
-                     <person>
-                        <persName ref="pmb10863">Richard Beer-Hofmann</persName>
-                     </person>
-                  </listPerson>
-                  <listPlace>
-                     <place>
-                        <placeName ref="pmb168">Berlin</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb50">Wien</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb40853">Hotel Saxonia</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb141471">Potsdamer Platz</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb36914">Tiergarten</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb40854">Stresemannstraße</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb263">Florenz</placeName>
-                     </place>
-                     <place>
-                        <placeName ref="pmb59800">Passauerstraße</placeName>
-                     </place>
-                  </listPlace>
-               </ab>
                <ref subtype="previous_letter" type="withinCollection" target="L02902">Goldmann,
                   Glümer, Chlum, Coschell an Schnitzler, 11. 1. 1900</ref>
                <ref subtype="next_letter" type="withinCollection" target="L01009">Schnitzler an
@@ -312,10 +264,10 @@
             <person xml:id="pmb14948">
                <persName>
                   <forename>Auguste</forename>
-                  <surname>Chlum</surname>
+                  <surname>Glümer</surname>
                </persName>
                <persName type="person_geburtsname-vorname">Augustine</persName>
-               <persName type="legacy-name-merge">Chlum, Auguste</persName>
+               <persName type="person_geburtsname_nachname">Chlum</persName>
                <persName type="person_rufname">Gusti</persName>
                <birth>
                   <date when="1862-03-16">16.03.1862</date>
@@ -327,7 +279,7 @@
                   </settlement>
                </birth>
                <death>
-                  <date when="1956-01-01">1956</date>
+                  <date when="1956-07-01" notAfter="1956-12-31">1956</date>
                </death>
                <sex value="female"/>
                <idno type="URL" subtype="schnitzler-tagebuch">https://schnitzler-tagebuch.acdh.oeaw.ac.at/entity/person_14199</idno>
@@ -479,8 +431,7 @@
             </place>
             <place xml:id="pmb50">
                <placeName>Wien</placeName>
-               <placeName type="ort_fruherer_name">K.K. Reichshaupt- und Residenzstadt
-                  Wien</placeName>
+               <placeName type="ort_fruherer_name">K.K. Reichshaupt- und Residenzstadt Wien</placeName>
                <placeName type="alternative-name">Bécs</placeName>
                <placeName type="alternative-name">Land Wien</placeName>
                <placeName type="alternative-name">Vídeň</placeName>
