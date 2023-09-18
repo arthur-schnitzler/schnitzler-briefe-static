@@ -796,7 +796,7 @@
                             <div class="modal-body">
                                 <xsl:variable name="id-ohne-l"
                                     select="number(substring-after(tei:TEI/@xml:id, 'L'))"/>
-                                <xsl:if test="$id-ohne-l &lt; 2900">
+                                <xsl:if test="$id-ohne-l &lt; 3100">
                                     <p>
                                         <a class="ml-3" data-bs-toggle="tooltip"
                                             title="Brief als PDF">
