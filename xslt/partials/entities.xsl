@@ -342,7 +342,7 @@
                             <legend>Werke</legend>
                         </span>
                     </xsl:if>
-                    <xsl:for-each select="key('authorwork-lookup', $author-ref, $works)">
+                    <xsl:for-each select="key('authorwork-lookup-ref', $author-ref, $works)">
                         <li>
                             <xsl:if test="@role = 'editor' or @role = 'hat-herausgegeben'">
                                 <xsl:text> (Herausgabe)</xsl:text>
