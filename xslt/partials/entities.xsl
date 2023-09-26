@@ -235,6 +235,60 @@
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:for-each>
+                                    <xsl:for-each
+                                        select="tei:author[not(replace(@ref, '#', '') = $author-ref)]">
+                                        <xsl:choose>
+                                            <xsl:when
+                                                test="tei:persName/tei:forename and tei:persName/tei:surname">
+                                                <xsl:value-of select="tei:persName/tei:forename"/>
+                                                <xsl:text> </xsl:text>
+                                                <xsl:value-of select="tei:persName/tei:surname"/>
+                                            </xsl:when>
+                                            <xsl:when test="tei:persName/tei:surname">
+                                                <xsl:value-of select="tei:persName/tei:surname"/>
+                                            </xsl:when>
+                                            <xsl:when test="tei:persName/tei:forename">
+                                                <xsl:value-of select="tei:persName/tei:forename"
+                                                />"/> </xsl:when>
+                                            <xsl:when test="contains(tei:persName, ', ')">
+                                                <xsl:value-of
+                                                    select="concat(substring-after(tei:persName, ', '), ' ', substring-before(tei:persName, ', '))"
+                                                />
+                                            </xsl:when>
+                                            <xsl:when test="contains(., ', ')">
+                                                <xsl:value-of
+                                                    select="concat(substring-after(., ', '), ' ', substring-before(., ', '))"
+                                                />
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="."/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                        <xsl:if
+                                            test="@role = 'editor' or @role = 'hat-herausgegeben'">
+                                            <xsl:text> (Herausgabe)</xsl:text>
+                                        </xsl:if>
+                                        <xsl:if
+                                            test="@role = 'translator' or @role = 'hat-ubersetzt'">
+                                            <xsl:text> (Übersetzung)</xsl:text>
+                                        </xsl:if>
+                                        <xsl:if
+                                            test="@role = 'illustrator' or @role = 'hat-illustriert'">
+                                            <xsl:text> (Illustration)</xsl:text>
+                                        </xsl:if>
+                                        <xsl:if test="@role = 'hat-einen-beitrag-geschaffen-zu'">
+                                            <xsl:text> (Beitrag)</xsl:text>
+                                        </xsl:if>
+                                        <xsl:if test="@role = 'hat-ein-vorwortnachwort-verfasst-zu'">
+                                            <xsl:text> (Vor-/Nachwort)</xsl:text>
+                                        </xsl:if>
+                                        <xsl:choose>
+                                            <xsl:when test="position() = last()"/>
+                                            <xsl:otherwise>
+                                                <xsl:text>, </xsl:text>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:for-each>
                                     <xsl:text>: </xsl:text>
                                 </xsl:when>
                             </xsl:choose>
