@@ -1026,3 +1026,5 @@ tbody {
     vertical-align: super;
     font-size: smaller; /* Optional: Kann die Schriftgröße anpassen, um den hochgestellten Text etwas kleiner zu machen */
 }
+
+legend {float: none;}
