@@ -61,6 +61,7 @@ function createDataTable(containerElement, title) {
         orderCellsTop: true,
         fixedHeader: true,
         initComplete: function () {
+            $(".table-loader").hide();
             var api = this.api();
 
             // For each column
