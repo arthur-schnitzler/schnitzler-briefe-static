@@ -28,6 +28,11 @@
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
                             </div>
+                            <div class="w-100 text-center">
+                                <div class="spinner-grow table-loader" role="status">
+                                    <span class="sr-only">Wird geladen…</span>
+                                </div>
+                            </div>
                             <div class="card-body">
                                 <table class="table table-striped display" id="tocTable"
                                     style="width:100%">
