@@ -238,7 +238,7 @@
                                     </xsl:attribute>
                                     <xsl:value-of select="normalize-space(tei:title[1])"/>
                                 </xsl:element>
-                                <xsl:if test="tei:date[1]">
+                                <xsl:if test="tei:date[not(., 'None')][1]">
                                     <xsl:text> (</xsl:text>
                                     <xsl:choose>
                                         <xsl:when test="contains(tei:date[1], '–')">
