@@ -173,7 +173,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="get-string" as="xs:string">
+        <xsl:variable name="get-string" as="xs:string"> 
             <xsl:value-of
                 select="concat('https://www.wikidata.org/w/api.php?action=wbgetentities&amp;format=xml&amp;props=sitelinks&amp;ids=', $wikidata-entity,'')"
             />
@@ -210,9 +210,9 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:variable name="lang-code"
-                            select="substring($sitelinks/sitelink[1]/@site, 1, 2)"/>
+                            select="substring($sitelinks/sitelink[not(@site='commonswiki')][1]/@site, 1, 2)"/>
                         <xsl:value-of
-                            select="concat('https://', $lang-code, 'wikipedia.org/wiki/', $sitelinks/sitelink[1]/@title)"
+                            select="concat('https://', $lang-code, '.wikipedia.org/wiki/', $sitelinks/sitelink[1]/@title)"
                         />
                     </xsl:otherwise>
                 </xsl:choose>
