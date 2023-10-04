@@ -249,13 +249,28 @@
         </xsl:for-each>
     </xsl:template>
     <xsl:template match="tei:event">
+        <xsl:variable name="e-typ">
+            <xsl:value-of select="tei:idno[1]/@type"/>
+        </xsl:variable>
+        <xsl:variable name="e-typ-farbe">
+            <xsl:choose>
+                <xsl:when
+                    test="key('only-relevant-uris', $e-typ, $relevant-uris)/*:color != '#fff'">
+                    <xsl:value-of
+                        select="key('only-relevant-uris', $e-typ, $relevant-uris)/*:color"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>blue</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <p>
             <b>
                 <xsl:choose>
                     <xsl:when test="starts-with(tei:idno[1]/text(), 'http')">
                         <xsl:element name="a">
                             <xsl:attribute name="style">
-                                <xsl:text>color: black;</xsl:text>
+                                <xsl:value-of select="concat('color: ', $e-typ-farbe)"/>
                             </xsl:attribute>
                             <xsl:attribute name="href">
                                 <xsl:value-of select="tei:idno[1]/text()"/>
@@ -365,7 +380,7 @@
                         </xsl:element>
                     </xsl:when>
                     <xsl:when
-                        test="$e-typ = 'pmb' and starts-with(@ref, 'pmb') or starts-with(@ref, 'person_')">
+                        test="$e-typ = 'pmb' and (starts-with(@ref, 'pmb') or starts-with(@ref, 'person_'))">
                         <xsl:element name="span">
                             <xsl:attribute name="class">
                                 <xsl:text>badge rounded-pill</xsl:text>
