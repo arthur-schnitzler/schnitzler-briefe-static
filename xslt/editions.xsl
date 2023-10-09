@@ -814,6 +814,13 @@
                                         </xsl:attribute>
                                         <i class="fa-lg far fa-file-code"/> TEI </a>
                                 </p>
+                                <!-- XXXX EPUB -->
+                                <!--<p><a class="ml-3" data-toggle="tooltip"
+                                    title="Alle Briefe als EPUB">
+                                    <xsl:attribute name="href">
+                                        <xsl:text>https://schnitzler-briefe.acdh.oeaw.ac.at/epub.html</xsl:text>
+                                    </xsl:attribute>
+                                    <i class="fa-lg far fa-file-lines"/> EPUB (alle Briefe) </a></p>-->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"

@@ -40,6 +40,10 @@
                                     <a class="nav-link" href="kooperationen.html">Kooperationen</a>
                                 </li>
                                 <div class="dropdown-divider"/>
+                                <!-- XXXX EPUB -->
+                                <!--<li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="epub.html">EPUB</a>
+                                </li>-->
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="drucke.html">Druckausgaben</a>
                                 </li>
