@@ -115,6 +115,13 @@
         <span class="gemination">nn</span>
     </xsl:template>
     
+    <xsl:template match="tei:hi[@rend='subscript']" mode="lemma">
+        <sup><xsl:apply-templates/></sup>
+    </xsl:template>
+    <xsl:template match="tei:hi[@rend='superscript']" mode="lemma">
+        <sub><xsl:apply-templates/></sub>
+    </xsl:template>
+    
     <xsl:function name="mam:dots">
         <xsl:param name="anzahl"/> . <xsl:if test="$anzahl &gt; 1">
             <xsl:value-of select="mam:dots($anzahl - 1)"/>
