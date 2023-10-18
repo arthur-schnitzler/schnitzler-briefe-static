@@ -36,6 +36,7 @@
                                             <th scope="col">Briefwechsel</th>
                                             <th scope="col">Datum (ISO)</th>
                                             <th scope="col">Art</th>
+                                            <th scope="col">ID</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -161,6 +162,9 @@
                                                     </xsl:choose>
                                                   
                                                     
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="@xml:id"/>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
