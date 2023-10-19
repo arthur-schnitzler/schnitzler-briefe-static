@@ -57,7 +57,7 @@
       <meta name="docImage" class="staticSearch_docImage" content="https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/DLA_85.1.3171_00030.jpg?format=iiif&amp;param=/full/,200/0/default.jpg" />
       <meta name="docTitle" class="staticSearch_docTitle" content="Paul Goldmann an Arthur Schnitzler, 13. 5. [1901]" />
       <meta name="Places" class="staticSearch_feat" content="Berlin Hauptstadt Berlin Barlīn Reichshauptstadt Berlin Berolino B-n" />
-      <meta name="Places" class="staticSearch_feat" content="Wien K.K. Reichshaupt- und Residenzstadt Wien Bécs Land Wien Vídeň Wenia Beč Vindobona Vienna Wien?" />
+      <meta name="Places" class="staticSearch_feat" content="Wien K.K. Reichshaupt- und Residenzstadt&#xA;                  Wien Bécs Land Wien Vídeň Wenia Beč Vindobona Vienna Wien?" />
       <meta name="Places" class="staticSearch_feat" content="Dessauer Straße" />
       <meta name="Places" class="staticSearch_feat" content="Wörthersee" />
       <meta name="Places" class="staticSearch_feat" content="Velden am Wörthersee Velden Velden am Wörther See" />
@@ -86,6 +86,7 @@
                            <li class="nav-item dropdown-submenu"><a class="nav-link" href="danksagung.html">Danksagung</a></li>
                            <li class="nav-item dropdown-submenu"><a class="nav-link" href="kooperationen.html">Kooperationen</a></li>
                            <div class="dropdown-divider"></div>
+                           <li class="nav-item dropdown-submenu"><a class="nav-link" href="epub.html">EPUB</a></li>
                            <li class="nav-item dropdown-submenu"><a class="nav-link" href="drucke.html">Druckausgaben</a></li>
                            <li class="nav-item dropdown-submenu"><a class="nav-link" href="gedruckte-korrespondenz.html">Korrespondenzverzeichnisse</a></li>
                            <li class="nav-item dropdown-submenu"><a title="Schnitzler am ACDH-CH" href="https://schnitzler.acdh.oeaw.ac.at" class="nav-link" target="_blank">Schnitzler am ACDH-CH</a></li>
@@ -127,7 +128,9 @@
                      <div class="row" id="title-nav">
                         <div class="col-md-2 col-lg-2 col-sm-12">
                            <h1>
-                              <nav class="navbar navbar-previous-next" style="text-indent: 1em;"><i class="fas fa-chevron-left nav-link float-start" href="#" id="navbarDropdownLeft" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i><ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown"><span class="dropdown-item-text">Vorheriger Brief </span><li><a id="prev-doc" class="dropdown-item" href="L01119.html"><i class="fas fa-chevron-left"></i>  David an Schnitzler, 13. 5. 1901</a></li><span class="dropdown-item-text">… in der Korrespondenz</span><li><a id="prev-doc2" class="dropdown-item" href="L03065.html"><i class="fas fa-chevron-left"></i>  Goldmann an Schnitzler, 7. 5. [1901]</a></li>
+                              <nav class="navbar navbar-previous-next" style="text-indent: 1em;"><i class="fas fa-chevron-left nav-link float-start" href="#" id="navbarDropdownLeft" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i><ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown"><span class="dropdown-item-text">Vorheriger Brief </span><li><a id="prev-doc" class="dropdown-item" href="L01119.html"><i class="fas fa-chevron-left"></i>  David an
+                                          Schnitzler, 13. 5. 1901</a></li><span class="dropdown-item-text">… in der Korrespondenz</span><li><a id="prev-doc2" class="dropdown-item" href="L03065.html"><i class="fas fa-chevron-left"></i>  Goldmann an Schnitzler,
+                                          7. 5. [1901]</a></li>
                                  </ul>
                               </nav>
                            </h1>
@@ -137,7 +140,8 @@
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right">
                            <h1>
-                              <nav class="navbar navbar-previous-next float-end dropstart"><i class="fas fa-chevron-right nav-link" href="#" id="navbarDropdownRight" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i><ul class="dropdown-menu" aria-labelledby="navbarDropdown"><span class="dropdown-item-text">Nächster Brief </span><li><a id="next-doc" class="dropdown-item" href="L01120.html"><i class="fas fa-chevron-right"></i>  Schnitzler an Brandes, 14. 5. 1901</a></li><span class="dropdown-item-text">… in der Korrespondenz</span><li><a id="next-doc2" class="dropdown-item" href="L03067.html"><i class="fas fa-chevron-right"></i>  Goldmann an Schnitzler, 16. 5. [1901]</a></li>
+                              <nav class="navbar navbar-previous-next float-end dropstart"><i class="fas fa-chevron-right nav-link" href="#" id="navbarDropdownRight" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i><ul class="dropdown-menu" aria-labelledby="navbarDropdown"><span class="dropdown-item-text">Nächster Brief </span><li><a id="next-doc" class="dropdown-item" href="L01120.html"><i class="fas fa-chevron-right"></i>  Schnitzler an
+                                          Brandes, 14. 5. 1901</a></li><span class="dropdown-item-text">… in der Korrespondenz</span><li><a id="next-doc2" class="dropdown-item" href="L03067.html"><i class="fas fa-chevron-right"></i>  Goldmann an Schnitzler, 16. 5. [1901]</a></li>
                                  </ul>
                               </nav>
                            </h1>
@@ -158,22 +162,24 @@
                                        <p class="salute editionText">Mein lieber Freund,</p>
                                     </div>
                                     <div class="editionText">Es thut mir unendlich leid, daß es <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>o gekommen
-                                       i<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t. Da kann man <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ich zum Tro<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t immer nur <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>agen: wer weiß, wozu es gut war?
+                                       i<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t. Da kann man <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ich zum Tro<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t immer nur <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>agen: Wer weiß, wozu es gut war?
                                        Jedenfalls <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ind auch manche Sorgen dadurch be<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>eitigt. Und wenn wirklich Anämie daran
                                        Schuld war, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>o i<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t es vielleicht be<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>er, wenn die <span class="persons"><a href="pmb2173.html">Mutter</a></span> er<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t einmal ordentlich gekräftigt wird, um <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pagebreak" title="Seitenbeginn">|</span>auch ein kräftiges Kind zur Welt zu bringen. Oder
                                        i<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t das ein naturwi<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>en<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>chaftlicher Un<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>inn? Sch<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ade, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>chade! Ihr <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>cheint Euch <span class="persons"><a href="pmb2173.html">Beide</a></span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ehr darauf gefreut zu
                                        haben. Hoffen wir al<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>o auf das näch<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>te
                                        Mal!</div>
                                     <div class="editionText">Wenn die Sommerpläne gar <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>o <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>chwankend <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ind, <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>o i<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t es vielleicht am Be<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ten, daß ich <span class="latintype"><span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb11707.html">Hirschfeld</a></span>s</span> Einladung annehme, zu ihm
-                                       an den <span class="places"><a href="pmb430.html">Wörther See</a></span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pagebreak" title="Seitenbeginn">|</span>zu kommen. Oder ich gehe nach <span class="places"><a href="pmb909.html">Velden</a></span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="del" style="display:none;"><span xmlns="http://www.w3.org/1999/xhtml" class="illegible">×××</span></span> oder <span class="places"><a href="pmb44278.html">Pört<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>chach</a></span>. Ihr kommt dann hin,
-                                       <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="del" style="display:none;"><span class="unclear"><span class="langes-s">s</span>ogern</span> Ihr k</span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>obald Ihr könnt. Ich wiederhole nochmals:
-                                       ich will diesmal ruhig <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>itzen und nicht herumrei<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>en. Möchte auch in die<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>en paar
-                                       Wochen in einer <span class="places"><a href="pmb50.html">Wien</a></span>er Sommerfri<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>che ein Bischen
-                                       <span class="places"><a href="pmb50.html">Wien</a></span>er Leben mitmachen. I<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t Deine Frau <span class="persons"><a href="pmb12701.html">Mutter</a></span> im Augu<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t am <span class="places"><a href="pmb430.html">Wörther<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ee</a></span>?</div>
+                                       an den <span class="places"><a href="pmb430.html">Wörther See</a></span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pagebreak" title="Seitenbeginn">|</span>zu kommen. Oder ich gehe nach <span class="places"><a href="pmb909.html">Velden</a></span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="del" style="display:none;"><span xmlns="http://www.w3.org/1999/xhtml" class="illegible">××××</span></span> oder <span class="places"><a href="pmb44278.html">Pört<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>chach</a></span>. Ihr kommt dann hin,
+                                       <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="del" style="display:none;"><span class="langes-s">s</span><span class="unclear">oe</span><span xmlns="http://www.w3.org/1999/xhtml" class="illegible">××</span> Ihr k</span> <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>obald Ihr könnt. Ich wiederhole
+                                       nochmals: ich will diesmal ruhig <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>itzen und nicht herumrei<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>en. Möchte auch in die<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>en
+                                       paar Wochen in einer <span class="places"><a href="pmb50.html">Wien</a></span>er Sommerfri<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>che ein
+                                       Bischen <span class="places"><a href="pmb50.html">Wien</a></span>er Leben mitmachen. I<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t Deine Frau
+                                       <span class="persons"><a href="pmb12701.html">Mutter</a></span> im Augu<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>t am <span class="places"><a href="pmb430.html">Wörther<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ee</a></span>?</div>
                                     <div class="editionText">Ich muß mich jetzt wieder namenlos <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="pagebreak" title="Seitenbeginn">|</span>mit der <span class="orgs"><a href="pmb29351.html">N. Fr. Pr.</a></span> herumkränken. Dem Herrn <span class="persons"><a href="pmb144135.html">Nachtredakteur</a></span> (<span class="latintype"><span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb144135.html">Kohler</a></span></span>) bin ich antipathi<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ch. Infolgede<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>en ver<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>chwinden alle meine <span class="places"><a href="pmb168.html">Berlin</a></span>er Theatertelegramme <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>purlos. Wenn ich mich be<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>chwere,
                                        heißt es: Raummangel, und dann wird ruhig weiter weggeworfen, was ich <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>chicke. Hätte
                                        ich eine andere Stellung, ich würde meine Demi<span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span><span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ion geben .  .  . </div>
-                                    <div class="editionText">Bitte, Fräulein <span class="latintype"><span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb2173.html">Olga</a></span></span> recht herzlich zu grüßen, und <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ei auch Du vielmals gegrüßt von Deinem treuen <br /><div class="signed editionText">Paul Goldmnn. </div>
+                                    <div class="editionText">Bitte, Fräulein <span class="latintype"><span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb2173.html">Olga</a></span></span> recht herzlich zu grüßen, und <span xmlns:tei="http://www.tei-c.org/ns/1.0" class="langes-s">s</span>ei auch Du vielmals gegrüßt von <br />Deinem
+                                       treuen <br /><div class="signed editionText">Paul Goldmnn. </div>
                                     </div>
                                     
                                     
@@ -220,7 +226,6 @@
                      <div class="container-fluid" style="display: flex;                                         justify-content: center;                                         align-items: center;">
                         <div id="navbarSupportedContent">
                            <ul class="navbar-nav mb-2 mb-lg-0" id="secondary-menu">
-                              <li class="nav-item">  <a href="#" data-bs-target="#qualitaet" type="button" data-bs-toggle="modal"><span style="color: orange;"> ENTWURF </span></a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#editor-widget" type="button" data-bs-toggle="modal"><i class="fas fa-solid fa-screwdriver-wrench"></i>
                                     EINSTELLUNGEN </a>  </li>
                               <li class="nav-item">  <a href="#" data-bs-target="#ueberlieferung" type="button" data-bs-toggle="modal"><i class="fas fa-landmark"></i> ÜBERLIEFERUNG
@@ -246,6 +251,7 @@
                         <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L03066-3h"><span class="lemma">Sommerpläne] </span><span class="kommentar-text" id="K_L03066-3h">siehe <a class="reference-black" href="L03064.html">Paul Goldmann an Arthur Schnitzler, 26. 4. [1901]</a></span></p>
                         <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L03066-4h"><span class="lemma">Mutter … Wörthersee] </span><span class="kommentar-text" id="K_L03066-4h"><span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb12701.html">Louise Schnitzler</a></span> war im Sommer 1901 höchstwahrscheinlich nicht am <span xmlns="http://www.w3.org/1999/xhtml" class="places"><a href="pmb430.html">Wörthersee</a></span>. Den Briefen <span xmlns="http://www.w3.org/1999/xhtml" class="persons"><a href="pmb2121.html">Schnitzler</a></span>s an sie ist zu entnehmen, dass sie in <span xmlns="http://www.w3.org/1999/xhtml" class="places"><a href="pmb38518.html">Klosters</a></span> (<span xmlns="http://www.w3.org/1999/xhtml" class="places"><a href="pmb43435.html">Schweiz</a></span>)
                               war.</span></p>
+                        <p xmlns:tei="http://www.tei-c.org/ns/1.0" id="K_L03066-121h"><span class="lemma">Demission] </span><span class="kommentar-text" id="K_L03066-121h">Rücktritt</span></p>
                      </dl>
                   </div>
                </div>
@@ -369,7 +375,7 @@
                            <tr xmlns:tei="http://www.tei-c.org/ns/1.0">
                               <tr>
                                  <td></td>
-                                 <td>2) mit rotem Buntstift zwei Unterstreichungen</td>
+                                 <td>2) mit rotem Buntstift drei Unterstreichungen</td>
                               </tr>
                            </tr>
                         </tbody>
@@ -390,7 +396,7 @@
                   <blockquote>Paul Goldmann an Arthur Schnitzler, 13. 5. [1901]. In: Arthur Schnitzler: Briefwechsel
                      mit Autorinnen und Autoren. Digitale Edition. Hg. Martin Anton Müller, Gerd Hermann
                      Susen und Laura Untner, https://schnitzler-briefe.acdh.oeaw.ac.at/L03066.html (Abfrage
-                     18. 10. 2023)</blockquote>
+                     19. 10. 2023)</blockquote>
                   <p></p>
                   <p>Für gekürzte Zitate reicht die Angabe der Briefnummer aus, die
                      eindeutig und persistent ist: »<b>L03066</b>«.</p>
@@ -400,7 +406,7 @@
                         |url=https://schnitzler-briefe.acdh.oeaw.ac.at/L03066.html |titel=Paul Goldmann an Arthur Schnitzler, 13. 5. [1901] |werk=Arthur Schnitzler:
                         Briefwechsel mit Autorinnen und Autoren |hrsg=Martin Anton
                         Müller, Gerd-Hermann Susen, Laura Untner |sprache=de
-                        |datum=1901-05-13 |abruf=2023-10-18 }} </code></blockquote>
+                        |datum=1901-05-13 |abruf=2023-10-19 }} </code></blockquote>
                </div>
                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
             </div>
@@ -574,6 +580,7 @@
                <div class="modal-body">
                   <p><a class="ml-3" data-bs-toggle="tooltip" title="Brief als PDF" href="L03066.pdf"><i class="fa-lg far fa-file-pdf"></i> PDF </a></p>
                   <p><a class="ml-3" data-bs-toggle="tooltip" title="Brief als TEI-Datei" href="L03066.xml"><i class="fa-lg far fa-file-code"></i> TEI </a></p>
+                  <p><a class="ml-3" data-toggle="tooltip" title="Alle Briefe als EPUB" href="https://schnitzler-briefe.acdh.oeaw.ac.at/epub.html"><i class="fa-lg far fa-file-lines"></i> EPUB (alle Briefe) </a></p>
                </div>
                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button></div>
             </div>
