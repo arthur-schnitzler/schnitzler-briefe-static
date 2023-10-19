@@ -4,7 +4,6 @@
     xmlns:mam="whatever" exclude-result-prefixes="xs" version="2.0">
     <!-- this creates the notes[@type='commentary']. included is a feature that takes the text between anchor and note as input and creates a lemma. if the
   text is too long it abbreviates it-->
-    
     <!-- Kommentar und Textkonstitution -->
     <xsl:template
         match="tei:note[(@type = 'textConst' or @type = 'commentary') and not(ancestor::tei:note[@type = 'footnote'])]"/>
@@ -71,30 +70,23 @@
             </span>
         </p>
     </xsl:template>
-    
     <xsl:template match="tei:c[@rendition = '#prozent']" mode="lemma">
         <xsl:text>%</xsl:text>
     </xsl:template>
-    
     <xsl:template match="tei:l" mode="lemma">
         <xsl:apply-templates/>
         <xsl:text> </xsl:text>
     </xsl:template>
-    
     <xsl:template match="tei:c[@rendition = '#dots']" mode="lemma">
         <xsl:value-of select="mam:dots(@n)"/>
     </xsl:template>
-    
     <xsl:template match="tei:c[@rendition = '#langesS']" mode="lemma">
         <xsl:apply-templates/>
     </xsl:template>
-    
     <xsl:template match="tei:c[@rendition = '#kaufmannsund']" mode="lemma">
         <xsl:text>&amp;</xsl:text>
     </xsl:template>
-    
     <xsl:template match="tei:c[@rendition = '#tilde']" mode="lemma">~</xsl:template>
-    
     <xsl:template match="tei:c[@rendition = '#geschwungene-klammer-auf']" mode="lemma">
         <xsl:text>{</xsl:text>
     </xsl:template>
@@ -104,24 +96,22 @@
     <xsl:template match="tei:space[@unit = 'chars' and @quantity = '1']" mode="lemma">
         <xsl:text> </xsl:text>
     </xsl:template>
-    
-    
-    
     <xsl:template match="tei:c[@rendition = '#gemination-m']" mode="lemma">
         <span class="gemination">mm</span>
     </xsl:template>
-    
     <xsl:template match="tei:c[@rendition = '#gemination-n']" mode="lemma">
         <span class="gemination">nn</span>
     </xsl:template>
-    
-    <xsl:template match="tei:hi[@rend='subscript']" mode="lemma">
-        <sup><xsl:apply-templates/></sup>
+    <xsl:template match="tei:hi[@rend = 'subscript']" mode="lemma">
+        <sup>
+            <xsl:apply-templates/>
+        </sup>
     </xsl:template>
-    <xsl:template match="tei:hi[@rend='superscript']" mode="lemma">
-        <sub><xsl:apply-templates/></sub>
+    <xsl:template match="tei:hi[@rend = 'superscript']" mode="lemma">
+        <sub>
+            <xsl:apply-templates/>
+        </sub>
     </xsl:template>
-    
     <xsl:function name="mam:dots">
         <xsl:param name="anzahl"/> . <xsl:if test="$anzahl &gt; 1">
             <xsl:value-of select="mam:dots($anzahl - 1)"/>
