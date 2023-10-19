@@ -374,7 +374,7 @@
                                     <code>{{Internetquelle
                                             |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of
                                             select="$link"/> |titel=<xsl:value-of
-                                                select="replace(replace($doc_title, '[', '&#91;'), ']', '&#93;')"/> |werk=Arthur Schnitzler:
+                                                select="$doc_title"/> |werk=Arthur Schnitzler:
                                         Briefwechsel mit Autorinnen und Autoren |hrsg=Martin Anton
                                         Müller, Gerd-Hermann Susen, Laura Untner |sprache=de
                                             |datum=<xsl:value-of
