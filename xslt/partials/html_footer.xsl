@@ -15,28 +15,29 @@
                 <div class="row">
                     <div class="footer-widget col-lg-1 col-md-2 col-sm-2 col-xs-6  ml-auto  text-center ">
                         <div class="textwidget custom-html-widget">
-                            <a href="/"><img src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg" class="image" alt="ACDH Logo" style="max-width: 90%; height: auto;" title="ACDH Logo"/></a>
+                            <a href="https://www.oeaw.ac.at/acdh/"><img src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg" class="image" alt="ACDH Logo" style="max-width: 90%; height: auto;" title="ACDH Logo"/></a>
                         </div>
                     </div>
                     <!-- .footer-widget -->
                     <div class="footer-widget col-lg-4 col-md-3 col-sm-3">
                         <div class="textwidget custom-html-widget">
                             <p>
-                                ACDH-CH OEAW
+                                ACDH-CH
                                 <br/>
-                                Austrian Centre for Digital Humanities and Cultural Heritage
-                                <br/>
-                                Österreichische Akademie der Wissenschaften
+                                    Austrian Centre for Digital Humanities <br/> and Cultural Heritage
+                                    <br/>
+                                        Österreichische Akademie der Wissenschaften
                             </p>
                             <p>
-                                Bäckerstraße 13
+                                Bäckerstraße 13,
                                 <br/>
-                                1010 Wien
+                                    1010 Wien
                             </p>
                             <p>
                                 T: +43 1 51581-2200
                                 <br/>
-                                E: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at">acdh-ch-helpdesk(at)oeaw.ac.at</a>
+                                    E: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at
+                                        ">acdh-ch-helpdesk(@)oeaw.ac.at</a>
                             </p>
                         </div>
                     </div>
@@ -47,8 +48,8 @@
                                 <h6 class="font-weight-bold">FÖRDERINSTITUTION</h6>
                                 <a href="https://www.fwf.ac.at/"><img class="card-img-right flex-auto d-md-block" src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/Logo-D/FWF_Logo_Zusatz_Dunkelblau_RGB_DE.svg" alt="FWF Österreichischer Wissenschaftsfond Logo" style="max-width: 140px; height: auto; margin-top:1em;" title="FWF Der Wissenschaftsfond" /></a>
                                         <p/>
-                                <p>Gefördert aus Mitteln des Wissenschaftsfonds FWF, P31277 (2018–2021) und
-                                P34792 (2021–[2024])</p>
+                                <p>Gefördert aus Mitteln des<br/> Wissenschaftsfonds FWF,<br/> P31277 (2018–2021) und
+                                    <br/>P34792 (2021–[2024])</p>
                                        
                                       
                             </div>
@@ -87,7 +88,7 @@
         </div>
         <!-- #wrapper-footer-full -->
         <div class="footer-imprint-bar hide-reading" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;" >
-            © Copyright OEAW | <a href="https://www.oeaw.ac.at/oeaw/impressum">Impressum/Imprint</a>
+            © Copyright OEAW | <a href="impressum.html">Impressum</a>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js"
