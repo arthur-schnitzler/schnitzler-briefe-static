@@ -31,10 +31,10 @@
                             <div class="card-body">
                                 <h2>Offenlegung gemäß §§ 24, 25 Mediengesetz und § 5 E-Commerce-Gesetz:</h2>
                                 <h3>Medieninhaberin, Herausgeberin, inhaltliche und redaktionelle Verantwortung, Dienstanbieterin:</h3>
-                                <p><a href="https://www.oeaw.ac.at">Österreichische Akademie der Wissenschaften</a> <br>
-                                    Juristische Person öffentlichen Rechts (BGBl 569/1921 idF BGBl I 130/2003) <br>
-                                        <a href="https://acdh.oeaw.ac.at">Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</a> <br>
-                                            Dr. Ignaz Seipel-Platz 2, 1010 Wien, Österreich <br>
+                                <p><a href="https://www.oeaw.ac.at">Österreichische Akademie der Wissenschaften</a> <br/>
+                                    Juristische Person öffentlichen Rechts (BGBl 569/1921 idF BGBl I 130/2003) <br/>
+                                        <a href="https://acdh.oeaw.ac.at">Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</a> <br/>
+                                            Dr. Ignaz Seipel-Platz 2, 1010 Wien, Österreich <br/>
                                                 E-Mail: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at">acdh-ch-helpdesk@oeaw.ac.at</a></p>
                                 <p>Die Edition wurde geschaffen von Martin Anton Müller, Gerd-Hermann Susen und Laura Untner.</p>
                                 <h3>Unternehmensgegenstand:</h3>
@@ -46,10 +46,10 @@
                                     Disziplinen zu fördern. Das ACDH-CH unterstützt digitale Forschung in vielfältiger Weise.</p>
                                 <p>Es handelt sich um eine wissenschaftliche Briefedition. Die Urheberrechte wurden entsprechend des Österreichischen Rechts gewahrt. Eine Aufnahme von Objekten auf die Seite bedeutet nicht, dass diese nunmehr urheberrechtsfrei sind, sondern nur, dass uns für unsere Edition die Verwendung erlaubt wurde.</p>
                                 <h3>Vertretungsbefugte Organe:</h3>
-                                <p>Präsident: Univ.-Prof. Dr. phil. Heinz Faßmann <br>
-                                    Vizepräsidentin: Univ.-Prof. DI Dr. techn. Ulrike Diebold <br>
-                                        Klassenpräsidentin: Univ.-Prof. Dr. iur. Christiane Wendehorst LL.M. (CANTAB.) <br>
-                                            Klassenpräsident: Prof. Dr. Wolfgang Baumjohann <br>
+                                <p>Präsident: Univ.-Prof. Dr. phil. Heinz Faßmann <br/>
+                                    Vizepräsidentin: Univ.-Prof. DI Dr. techn. Ulrike Diebold <br/>
+                                        Klassenpräsidentin: Univ.-Prof. Dr. iur. Christiane Wendehorst LL.M. (CANTAB.) <br/>
+                                            Klassenpräsident: Prof. Dr. Wolfgang Baumjohann <br/>
                                                 Als Aufsichtsorgan besteht der Akademierat. Siehe mehr dazu unter
                                                 <a href="https://www.oeaw.ac.at/oeaw/gremien/akademierat/">https://www.oeaw.ac.at/oeaw/gremien/akademierat/</a></p>
                                 <h3>Grundlegende Richtung:</h3>
