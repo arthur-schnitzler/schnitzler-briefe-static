@@ -62,8 +62,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto"
-                                style="margin-left:0 !important;">
                                 <div class="textwidget custom-html-widget col-md-4">
                                     <a id="github-logo" title="GitHub" href="{$github_url}"
                                         class="nav-link" target="_blank">
@@ -75,7 +73,7 @@
                                         </svg>
                                     </a>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <!-- .footer-widget -->
