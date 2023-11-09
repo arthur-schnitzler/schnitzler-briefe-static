@@ -31,7 +31,7 @@
     <xsl:variable name="facs-folder" as="xs:string?">
       <xsl:choose>
         <!-- DRUCKE -->
-        <xsl:when test="descendant::tei:sourceDesc[not(tei:listWit)]">
+        <xsl:when test="descendant::tei:sourceDesc[not(tei:listWit)]/tei:listBibl">
           <xsl:text>Drucke</xsl:text>
         </xsl:when>
         <!-- BEINECKE -->
