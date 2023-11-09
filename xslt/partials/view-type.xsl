@@ -25,13 +25,14 @@
         </xsl:for-each-group>
     </xsl:function>-->
   <xsl:template name="mam:view-type-img">
+    
     <xsl:variable name="msIdentifier"
       select="ancestor::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[@n = '1']/tei:msDesc[1]/tei:msIdentifier[1]"
       as="node()?"/>
     <xsl:variable name="facs-folder" as="xs:string?">
       <xsl:choose>
         <!-- DRUCKE -->
-        <xsl:when test="descendant::tei:sourceDesc[not(tei:listWit)]/tei:listBibl">
+        <xsl:when test="ancestor::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1][not(tei:listWit)]/tei:listBibl">
           <xsl:text>Drucke</xsl:text>
         </xsl:when>
         <!-- BEINECKE -->
