@@ -43,6 +43,7 @@
                                             <th scope="col">Lat</th>
                                             <th scope="col">Long</th>
                                             <!--<th scope="col">ID</th>-->
+                                            
                                             <!--<th scope="col">Ortsname</th>
                                             <th scope="col">Längen-/Breitengrad</th>-->
                                         </tr>
@@ -54,35 +55,33 @@
                                             </xsl:variable>
                                             <tr>
                                                 <td>
-                                                  <a>
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of select="concat($id, '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of
-                                                  select="descendant::tei:placeName[1]/text()"/>
-                                                  </a>
+                                                    <a>
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of select="concat($id, '.html')"/>
+                                                        </xsl:attribute>
+                                                        <xsl:value-of
+                                                            select="descendant::tei:placeName[1]/text()"/>
+                                                    </a>
                                                 </td>
                                                 <td>
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="descendant::tei:location/tei:geo[1]">
-                                                  <xsl:variable name="lat"
-                                                  select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"
-                                                  as="xs:string"/>
-                                                  <xsl:value-of select="foo:grad-kuerzen($lat)"/>
-                                                  </xsl:when>
-                                                  </xsl:choose>
+                                                    <xsl:choose>
+                                                        <xsl:when test="descendant::tei:location/tei:geo[1]">
+                                                            <xsl:variable name="lat"
+                                                                select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"
+                                                                as="xs:string"/>
+                                                            <xsl:value-of select="foo:grad-kuerzen($lat)"/>
+                                                        </xsl:when>
+                                                    </xsl:choose>
                                                 </td>
                                                 <td>
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="descendant::tei:location/tei:geo[1]">
-                                                  <xsl:variable name="long"
-                                                  select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"
-                                                  as="xs:string"/>
-                                                  <xsl:value-of select="foo:grad-kuerzen($long)"/>
-                                                  </xsl:when>
-                                                  </xsl:choose>
+                                                    <xsl:choose>
+                                                        <xsl:when test="descendant::tei:location/tei:geo[1]">
+                                                            <xsl:variable name="long"
+                                                                select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"
+                                                                as="xs:string"/>
+                                                            <xsl:value-of select="foo:grad-kuerzen($long)"/>
+                                                        </xsl:when>
+                                                    </xsl:choose>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
@@ -102,12 +101,16 @@
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
                         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
                         crossorigin=""/>
-                    <link rel="stylesheet"
-                        href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
-                    <link rel="stylesheet"
-                        href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
-                    <script src="js/dt_map.js"/>
-                    
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+                    <!-- ############### leaflet script ################ -->
+                    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                        crossorigin=""></script>
+                    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+                    <script src="js/dt_map.js">
+                        
+                    </script>
                 </div>
             </body>
         </html>
