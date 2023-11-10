@@ -26,11 +26,11 @@
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
                             </div>
-                            <div class="w-100 text-center">
+                            <!--<div class="w-100 text-center">
                                 <div class="spinner-grow table-loader" role="status">
                                     <span class="sr-only">Wird geladen…</span>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="card-body">
                                 <div id="map"/>
                                 <table class="table table-striped display" id="myTable"
@@ -94,11 +94,11 @@
                     <xsl:call-template name="html_footer"/>
                     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"></script>
                     <script type="text/javascript" src="js/dt.js"></script>
-                    <script>
+                    <!--<script>
                         $(document).ready(function () {
                         createDataTable('myTable')
                         });
-                    </script>
+                    </script>-->
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
                         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
                         crossorigin=""/>
