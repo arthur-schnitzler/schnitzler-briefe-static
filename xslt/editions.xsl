@@ -374,7 +374,7 @@
                                     <code>{{Internetquelle
                                             |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of
                                             select="$link"/> |titel=<xsl:value-of
-                                                select="$doc_title"/> |werk=Arthur Schnitzler:
+                                            select="$doc_title"/> |werk=Arthur Schnitzler:
                                         Briefwechsel mit Autorinnen und Autoren |hrsg=Martin Anton
                                         Müller, Gerd-Hermann Susen, Laura Untner |sprache=de
                                             |datum=<xsl:value-of
@@ -674,8 +674,14 @@
                             <xsl:when test="$date/@when">
                                 <xsl:value-of select="$date/@when"/>
                             </xsl:when>
+                            <xsl:when test="$date/@from">
+                                <xsl:value-of select="$date/@from"/>
+                            </xsl:when>
                             <xsl:when test="$date/@notBefore">
                                 <xsl:value-of select="$date/@notBefore"/>
+                            </xsl:when>
+                            <xsl:when test="$date/@to">
+                                <xsl:value-of select="$date/@to"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="$date/@notAfter"/>
@@ -814,12 +820,14 @@
                                         </xsl:attribute>
                                         <i class="fa-lg far fa-file-code"/> TEI </a>
                                 </p>
-                                <p><a class="ml-3" data-toggle="tooltip"
-                                    title="Alle Briefe als EPUB">
-                                    <xsl:attribute name="href">
-                                        <xsl:text>https://schnitzler-briefe.acdh.oeaw.ac.at/epub.html</xsl:text>
-                                    </xsl:attribute>
-                                    <i class="fa-lg far fa-file-lines"/> EPUB (alle Briefe) </a></p>
+                                <p>
+                                    <a class="ml-3" data-toggle="tooltip"
+                                        title="Alle Briefe als EPUB">
+                                        <xsl:attribute name="href">
+                                            <xsl:text>https://schnitzler-briefe.acdh.oeaw.ac.at/epub.html</xsl:text>
+                                        </xsl:attribute>
+                                        <i class="fa-lg far fa-file-lines"/> EPUB (alle Briefe) </a>
+                                </p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
