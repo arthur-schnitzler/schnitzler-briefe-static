@@ -58,17 +58,15 @@
                                 top: -250px; visibility: hidden"
                                 id="body"/>
                             <p class="mt-3">Diese Webseite enthält zur Zeit 45 (davon 43
-                                vollständige) Korrespondenzen mit über 3.000 Briefen von und an
+                                vollständige) Korrespondenzen mit über 3.500 Briefen von und an
                                 Arthur Schnitzler (1862–1931). Viele davon werden erstmals
                                 veröffentlicht. Alle sind nach den Originalen in Archiven in Europa
                                 und Amerika durchgesehen und korrigiert.</p>
                             <p class="mt-3" style="padding-bottom: 50px;">Die 44. Korrespondenz,
-                                jene mit Paul Goldmann, ist bislang bis zum Jahr 1900 vollständig
-                                ediert. Das sind 300 Briefe. Von der 45. Korrespondenz, dem
-                                Austausch mit Felix Salten, liegen die überlieferten Briefe
-                                Schnitzlers zur Gänze vor (knapp über 100 Stück). Beide
-                                Korrespondenzen werden fortlaufend erweitert. (<a href="status.html"
-                                    >Projektstand</a>)</p>
+                                jene mit Paul Goldmann, ist fast vollständig ediert. Das sind knapp
+                                550 Briefe. Von der 45. Korrespondenz, dem Austausch mit Felix
+                                Salten, liegen fast 380 Briefe vor. Beide Korrespondenzen werden
+                                fortlaufend erweitert. (<a href="status.html">Projektstand</a>)</p>
                             <a href="L00001.html">
                                 <button class="btn btn-round">Lesen</button>
                             </a>
