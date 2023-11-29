@@ -63,8 +63,8 @@
                                 veröffentlicht. Alle sind nach den Originalen in Archiven in Europa
                                 und Amerika durchgesehen und korrigiert.</p>
                             <p class="mt-3" style="padding-bottom: 50px;">Die 44. Korrespondenz,
-                                jene mit Paul Goldmann, ist fast vollständig ediert. Das sind knapp
-                                550 Briefe. Von der 45. Korrespondenz, dem Austausch mit Felix
+                                jene mit Paul Goldmann, ist fast vollständig ediert. Das sind rund
+                                560 Briefe. Von der 45. Korrespondenz, dem Austausch mit Felix
                                 Salten, liegen fast 380 Briefe vor. Beide Korrespondenzen werden
                                 fortlaufend erweitert. (<a href="status.html">Projektstand</a>)</p>
                             <a href="L00001.html">
