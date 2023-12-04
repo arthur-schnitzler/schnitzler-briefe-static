@@ -37,7 +37,7 @@
                                 <h6 class="font-weight-bold">FÖRDERINSTITUTION</h6>
                                 <a href="https://www.fwf.ac.at/">
                                     <img class="card-img-right flex-auto d-md-block"
-                                        src="https://www.fwf.ac.at/fileadmin/files/Images/News_Presse/Presse/Logo/Logo-D/FWF_Logo_Zusatz_Dunkelblau_RGB_DE.svg"
+                                        src="https://www.fwf.ac.at/fileadmin/Website/Logos/FWF_Logo_Zusatz_Blau_RGB_DE.svg"
                                         alt="FWF Österreichischer Wissenschaftsfond Logo"
                                         style="max-width: 140px; height: auto; margin-top:1em;"
                                         title="FWF Der Wissenschaftsfond"/>

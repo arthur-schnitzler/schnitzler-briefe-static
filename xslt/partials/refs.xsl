@@ -105,7 +105,7 @@
                 <a>
                     <xsl:attribute name="class">reference-black</xsl:attribute>
                     <xsl:attribute name="href">
-                        <xsl:value-of select="$ref-mit-endung"/>
+                        <xsl:value-of select="concat($type-url, $ref-mit-endung)"/>
                     </xsl:attribute>
                     <xsl:choose>
                         <xsl:when test="@type = 'schnitzler-briefe'">
