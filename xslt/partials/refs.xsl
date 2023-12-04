@@ -95,6 +95,9 @@
                 <xsl:when test="contains(@target, '.xml')">
                     <xsl:value-of select="replace(@target, '.xml', '.html')"/>
                 </xsl:when>
+                <xsl:when test="contains(@target, '.html')">
+                    <xsl:value-of select="@target"/>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="concat(@target, '.html')"/>
                 </xsl:otherwise>
@@ -120,7 +123,7 @@
                         </xsl:when>
                         <xsl:when test="@type = 'schnitzler-bahr'">
                             <xsl:value-of
-                                select="document(concat($type-url, replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:dateSender[1]/tei:date[1]/text()"
+                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:dateSender[1]/tei:date[1]/text()"
                             />
                         </xsl:when>
                         
@@ -146,7 +149,7 @@
                 <a>
                     <xsl:attribute name="class">reference-black</xsl:attribute>
                     <xsl:attribute name="href">
-                        <xsl:value-of select="$ref-mit-endung"/>
+                        <xsl:value-of select="concat($type-url, $ref-mit-endung)"/>
                     </xsl:attribute>
                     <xsl:variable name="dateiname-xml" as="xs:string?">
                         <xsl:choose>
