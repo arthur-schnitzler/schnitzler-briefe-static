@@ -105,6 +105,10 @@
                                         >Kodierungsrichtlinien</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="arbeitsablauf.html"
+                                        >Arbeitsablauf</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
                                     <a class="nav-link"
                                         href="https://github.com/arthur-schnitzler/schnitzler-briefe-data/"
                                         target="_blank">Quelldaten auf GitHub</a>
