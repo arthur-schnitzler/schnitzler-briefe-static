@@ -126,7 +126,11 @@
                                 select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:dateSender[1]/tei:date[1]/text()"
                             />
                         </xsl:when>
-                        
+                        <xsl:when test="@type = 'schnitzler-interviews'">
+                            <xsl:value-of
+                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-static/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:dateSender[1]/tei:date[1]/text()"
+                            />
+                        </xsl:when>
                         
                     </xsl:choose>
                 </a>
@@ -161,6 +165,9 @@
                             </xsl:when>
                             <xsl:when test="@type = 'schnitzler-lektueren'">
                                 <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-lektueren/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"/>
+                            </xsl:when>
+                            <xsl:when test="@type = 'schnitzler-interviews'">
+                                <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-static/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"/>
                             </xsl:when>
                         </xsl:choose>
                         
