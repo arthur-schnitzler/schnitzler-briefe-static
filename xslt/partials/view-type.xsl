@@ -218,7 +218,7 @@
                   <div class="card-body-iif">
                     <xsl:variable name="facsimiles">
                       <xsl:value-of
-                        select="distinct-values(descendant::tei:pb[not(starts-with(@facs, 'http') or starts-with(@facs, 'www.') or @facs = '' or empty(@facs)) and not(preceding-sibling::tei:tp/@facs = @facs) or (not(@facs))]/@facs)"
+                        select="distinct-values(ancestor::tei:TEI/descendant::tei:pb[not(starts-with(@facs, 'http') or starts-with(@facs, 'www.') or @facs = '' or empty(@facs)) and not(preceding-sibling::tei:tp/@facs = @facs) or (not(@facs))]/@facs)"
                       />
                     </xsl:variable>
                     <xsl:variable name="url-of-facsimile">
