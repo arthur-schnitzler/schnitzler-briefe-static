@@ -1035,8 +1035,10 @@
         <xsl:element name="a">
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print']">
-                        <xsl:text>pre-print</xsl:text>
+                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print'][ancestor::tei:note]">
+                        
+                            <xsl:text>pre-print</xsl:text>
+                        
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:text>reference-black</xsl:text>
@@ -1060,8 +1062,10 @@
             </xsl:attribute>
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print']">
-                        <xsl:text>pre-print</xsl:text>
+                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print'][ancestor::tei:note]">
+                        
+                            <xsl:text>pre-print</xsl:text>
+                        
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:text>reference-black</xsl:text>
@@ -1477,12 +1481,18 @@
                     <xsl:value-of select="concat(replace(@ref, '#', ''), '.html')"/>
                 </xsl:attribute>
                 <xsl:choose>
-                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print']">
+                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print'] and not(ancestor::tei:note)">
                         <xsl:attribute name="class">
                             <xsl:text>pre-print</xsl:text>
                         </xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="ancestor::tei:hi[@rend = 'stamp']">
+                    <xsl:when test="ancestor::tei:note[ancestor::tei:hi[@rend = 'pre-print']]">
+                        <xsl:attribute name="class">
+                            <xsl:text>reference-black</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                    <xsl:when
+                        test="ancestor::tei:hi[(@rend = 'stamp' and not(ancestor::tei:note)) or (ancestor::tei:note and ancestor::tei:hi[@rend = 'stamp' and ancestor::tei:note])]">
                         <xsl:attribute name="class">
                             <xsl:text>stamp</xsl:text>
                         </xsl:attribute>
@@ -1515,7 +1525,23 @@
             <xsl:attribute name="data-bs-target">
                 <xsl:value-of select="concat('#', $modalId)"/>
             </xsl:attribute>
-            <xsl:apply-templates mode="verschachtelteA"/>
+            <xsl:choose>
+                <xsl:when
+                    test="ancestor::tei:hi[(@rend = 'stamp' and not(ancestor::tei:note)) or (ancestor::tei:note and ancestor::tei:hi[@rend = 'stamp' and ancestor::tei:note])]">
+                    <span class="stamp">
+                        <xsl:apply-templates mode="verschachtelteA"/>
+                    </span>
+                </xsl:when>
+                <xsl:when
+                    test="ancestor::tei:hi[(@rend = 'pre-print' and not(ancestor::tei:note)) or (ancestor::tei:note and ancestor::tei:hi[@rend = 'pre-print' and ancestor::tei:note])]">
+                    <span class="pre-print">
+                        <xsl:apply-templates mode="verschachtelteA"/>
+                    </span>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates mode="verschachtelteA"/>
+                </xsl:otherwise>
+            </xsl:choose>
             <!-- hier die Sonderregeln für ein solches rs -->
         </xsl:element>
     </xsl:template>
@@ -1551,12 +1577,18 @@
                     <xsl:value-of select="concat(replace(@ref, '#', ''), '.html')"/>
                 </xsl:attribute>
                 <xsl:choose>
-                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print']">
+                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print'][ancestor::tei:note]">
                         <xsl:attribute name="class">
                             <xsl:text>pre-print</xsl:text>
                         </xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="ancestor::tei:hi[@rend = 'stamp']">
+                    <xsl:when test="ancestor::tei:hi[@rend = 'pre-print']">
+                        <xsl:attribute name="class">
+                            <xsl:text>reference-black</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                    <xsl:when
+                        test="ancestor::tei:hi[(@rend = 'stamp' and not(ancestor::tei:note)) or (ancestor::tei:note and ancestor::tei:hi[@rend = 'stamp' and ancestor::tei:note])]">
                         <xsl:attribute name="class">
                             <xsl:text>stamp</xsl:text>
                         </xsl:attribute>
