@@ -5,7 +5,7 @@
     xmlns:mam="whatever" version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
-    <xsl:strip-space elements="tei:quote"/>
+    
     <xsl:import href="./partials/shared.xsl"/>
     <xsl:import href="./partials/refs.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
@@ -899,11 +899,7 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:date[@*]">
-        <!-- <abbr><xsl:attribute name="title"><xsl:value-of select="data(./@*)"/></xsl:attribute>-->
-        <xsl:apply-templates/>
-        <!--</abbr>-->
-    </xsl:template>
+    <xsl:template match="tei:date[@*]"><xsl:apply-templates/></xsl:template>
     <xsl:template match="tei:div[not(@type = 'address')]">
         <xsl:apply-templates/>
     </xsl:template>
@@ -1192,9 +1188,7 @@
             <xsl:value-of select="."/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:quote">
-        <xsl:apply-templates/>
-    </xsl:template>
+    <xsl:template match="tei:quote"><xsl:apply-templates/></xsl:template>
     <xsl:template match="tei:row">
         <xsl:element name="tr">
             <xsl:apply-templates/>

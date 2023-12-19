@@ -683,6 +683,13 @@ margin-bottom: 3rem;
     text-transform:uppercase;
 }
 
+.supplied::before {
+  content: '[';
+}
+
+.supplied::after {
+  content: ']';
+}
 
 .spaced_out {
  letter-spacing: 5px;   

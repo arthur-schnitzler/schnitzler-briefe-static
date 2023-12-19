@@ -177,13 +177,7 @@
             <xsl:apply-templates/>
         </p>
     </xsl:template>
-    <xsl:template match="tei:supplied">
-        <span class="supplied">
-            <xsl:text>[</xsl:text>
-            <xsl:apply-templates/>
-            <xsl:text>]</xsl:text>
-        </span>
-    </xsl:template>
+    <xsl:template match="tei:supplied"><span class="supplied"><xsl:apply-templates/></span></xsl:template>
     <xsl:template match="tei:table">
         <xsl:element name="table">
             <xsl:attribute name="class">
