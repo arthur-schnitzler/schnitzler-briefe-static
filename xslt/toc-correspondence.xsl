@@ -22,7 +22,7 @@
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <xsl:variable name="csvFilename" select="concat('statistik_1_correspondence_', tokenize(child::tei:TEI/@xml:id, '_')[2], '.csv')"/>
+                    <xsl:variable name="csvFilename" select="concat('statistik_toc_', tokenize(child::tei:TEI/@xml:id, '_')[2], '.csv')"/>
                     
                     <script src="./js/tocs-statistics-1.js"/>
                     <script>
