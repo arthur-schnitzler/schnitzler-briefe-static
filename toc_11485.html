@@ -44,7 +44,7 @@
             g.defer = true;
             g.src = u + 'piwik.js';
             s.parentNode.insertBefore(g, s);
-        })();</script><body class="page">
+        })();</script><script src="https://code.highcharts.com/highcharts.js"></script><script src="https://code.highcharts.com/highcharts-more.js"></script><script src="https://code.highcharts.com/modules/data.js"></script><script src="https://code.highcharts.com/modules/exporting.js"></script><body class="page">
       <div class="hfeed site" id="page">
          <nav class="navbar navbar-expand-md" style="padding-top:1px;">
             <div class="container-fluid"><a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url"><img src="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" class="img-fluid" title="schnitzler-briefe" alt="schnitzler-briefe" itemprop="logo" /></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none;"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse " id="navbarNav">
@@ -92,13 +92,23 @@
                   </ul>
                </div>
             </div>
-         </nav>
-         <div class="container-fluid">
+         </nav><script src="./js/tocs-statistics-1.js"></script><script>
+    function getTitle() {
+        var title = 'statistik_toc_11485.csv';
+        return title;
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        // Assuming your JavaScript function is defined in tocs-statistics-1.js
+        var title = getTitle();
+        createChartFromXSLT(title);
+    });
+                    </script><div class="container-fluid">
             <div class="card">
                <div class="card-header">
                   <h1>Korrespondenz Arthur Schnitzler – Paul Goldmann</h1>
                </div>
                <div class="card-body">
+                  <div id="container" style="width:100%; height:400px;"></div>
                   <div class="w-100 text-center">
                      <div class="spinner-grow table-loader" role="status"><span class="sr-only">Wird geladen…</span></div>
                   </div>
@@ -2857,7 +2867,7 @@
                         <tr>
                            <td>456</td>
                            <td>
-                              <sortdate hidden="true">1903-05-22</sortdate><a href="L03373.html">Paul Goldmann an Arthur Schnitzler, [22.?] 5. [1903]</a></td>
+                              <sortdate hidden="true">1903-05-22</sortdate><a href="L03373.html">Paul Goldmann an Arthur Schnitzler, 22. 5. [1903]</a></td>
                            <td><a href="L03373.html">1903-05-22</a></td>
                         </tr>
                         <tr>
@@ -2949,8 +2959,8 @@
                         <tr>
                            <td>471</td>
                            <td>
-                              <sortdate hidden="true">1903-10-02</sortdate><a href="L03387.html">Paul Goldmann an Arthur Schnitzler, 2. 10. [1903]</a></td>
-                           <td><a href="L03387.html">1903-10-02</a></td>
+                              <sortdate hidden="true">1903-09-17</sortdate><a href="L03387.html">Paul Goldmann an Arthur Schnitzler, 17. 9. [1903?]</a></td>
+                           <td><a href="L03387.html">1903-09-17</a></td>
                         </tr>
                         <tr>
                            <td>472</td>
@@ -2998,8 +3008,8 @@
                         <tr>
                            <td>479</td>
                            <td>
-                              <sortdate hidden="true">1904-05-17</sortdate><a href="L03443.html">Paul Goldmann an Arthur Schnitzler, [17.?] 5. [1904]</a></td>
-                           <td><a href="L03443.html">1904-05-17</a></td>
+                              <sortdate hidden="true">1904-05-16</sortdate><a href="L03443.html">Paul Goldmann an Arthur Schnitzler, 1[6?.] 5. [1904]</a></td>
+                           <td><a href="L03443.html">1904-05-16</a></td>
                         </tr>
                         <tr>
                            <td>480</td>
