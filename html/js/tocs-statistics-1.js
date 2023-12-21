@@ -1,6 +1,6 @@
 // External JavaScript file
 function createChartFromXSLT(csvFilename) {
-    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/${csvFilename}`;
+    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/statistik1/${csvFilename}`;
     
     const chart = Highcharts.chart('container', {
         data: {
