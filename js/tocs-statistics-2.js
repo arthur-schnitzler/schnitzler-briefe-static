@@ -32,7 +32,7 @@ function createChartFromXSLT2(csvFilename) {
         },
         series: [{
             name: 'Korrespondenzstücke',
-            color: '#A63437',
+            color: '#8B5F8F',
         },{
             name: 'Tagebuch',
             color: '#037A33'}]
