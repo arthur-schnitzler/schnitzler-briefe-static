@@ -22,9 +22,10 @@
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <xsl:variable name="csvFilename" select="concat('statistik1_', tokenize(child::tei:TEI/@xml:id, '_')[2], '.csv')"/>
+                    <xsl:variable name="csvFilename" select="concat('statistik_pmb', replace(substring-after(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]/tei:idno[@type='URI'][1], 'https://id.acdh.oeaw.ac.at/schnitzler-briefe/tocs/toc_'), '.xml' , '.csv'))"/>
                     
                     <script src="./js/tocs-statistics-1.js"/>
+                    <script src="./js/tocs-statistics-2.js"/>
                     <script>
     function getTitle() {
         var title = '<xsl:value-of select="$csvFilename"/>';
@@ -36,6 +37,17 @@
         createChartFromXSLT(title);
     });
                     </script>
+                    <script>
+                        function getTitle() {
+                        var title = '<xsl:value-of select="$csvFilename"/>';
+                        return title;
+                        }
+                        document.addEventListener('DOMContentLoaded', function () {
+                        // Assuming your JavaScript function is defined in tocs-statistics-1.js
+                        var title = getTitle();
+                        createChartFromXSLT2(title);
+                        });
+                    </script>
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-header">
@@ -46,6 +58,7 @@
                             </div>
                             <div class="card-body">
                                 <div id="container" style="width:100%; height:400px;"/>
+                                <div id="container2" style="width:100%; height:400px;"/>
                                 <div class="w-100 text-center">
                                     <div class="spinner-grow table-loader" role="status">
                                         <span class="sr-only">Wird geladen…</span>
