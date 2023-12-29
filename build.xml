@@ -6,6 +6,11 @@
         <fileset dir="${target}" includes="*.html"/>
     </delete>
     <xslt style="./xslt/toc-correspondence.xsl" basedir="./data/tocs" destdir="${target}"
+        includes="toc_*.xml">
+        <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        <classpath location="${basedir}/saxon/saxon9he.jar"/>
+    </xslt>
+    <xslt style="./xslt/toc-statistic.xsl" basedir="./data/tocs" destdir="${target}"
         includes="toc_10863.xml">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
@@ -27,11 +32,6 @@
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
     <xslt in="${index}" out="${target}/tocs.html" style="./xslt/tocs.xsl">
-        <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-        <classpath location="${basedir}/saxon/saxon9he.jar"/>
-    </xslt>
-    <xslt style="./xslt/toc-correspondence.xsl" basedir="./data/tocs" destdir="${target}"
-        includes="toc_*.xml">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>

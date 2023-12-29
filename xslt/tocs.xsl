@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:mam="whatever"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
@@ -83,6 +83,80 @@
                 </div>
             </body>
         </html>
+        <xsl:for-each select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
+            <xsl:sort select="tei:persName[@role = 'main']/text()"/>
+            <xsl:variable name="nummer-des-korrespondenzpartners"
+                select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
+            <xsl:variable name="filename" select="concat('statistik_', $nummer-des-korrespondenzpartners, '.html')"/>
+            <xsl:variable name="name" select="mam:vorname-vor-nachname(tei:persName[@role='main'][1]/text())"/>
+            <xsl:result-document href="{$filename}">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <xsl:call-template name="html_head">
+                        <xsl:with-param name="html_title" select="$name"/>
+                    </xsl:call-template>
+                    <script src="https://code.highcharts.com/highcharts.js"/>
+                    <script src="https://code.highcharts.com/highcharts-more.js"/>
+                    <script src="https://code.highcharts.com/modules/data.js"/>
+                    <script src="https://code.highcharts.com/modules/exporting.js"/>
+                    <body class="page">
+                        <div class="hfeed site" id="page">
+                            <xsl:call-template name="nav_bar"/>
+                            <script src="./js/tocs-statistics.js"/>
+                            <xsl:variable name="csvFilename" select="concat('statistik_', $nummer-des-korrespondenzpartners , '.csv')"/>
+                            <script>
+                                function getTitle() {
+                                var title = '<xsl:value-of select="$csvFilename"/>';
+                                return title;
+                                }
+                                document.addEventListener('DOMContentLoaded', function () {
+                                // Assuming your JavaScript function is defined in tocs-statistics-1.js
+                                var title = getTitle();
+                                createStatistik1(title);
+                                });
+                            </script>
+                            <script>
+                                function getTitle() {
+                                var title = '<xsl:value-of select="$csvFilename"/>';
+                                return title;
+                                }
+                                document.addEventListener('DOMContentLoaded', function () {
+                                // Assuming your JavaScript function is defined in tocs-statistics-1.js
+                                var title = getTitle();
+                                createStatistik2(title);
+                                });
+                            </script>
+                            <script>
+                                function getTitle() {
+                                var title = '<xsl:value-of select="$csvFilename"/>';
+                                return title;
+                                }
+                                document.addEventListener('DOMContentLoaded', function () {
+                                // Assuming your JavaScript function is defined in tocs-statistics-1.js
+                                var title = getTitle();
+                                createStatistik3(title);
+                                });
+                            </script>
+                            <div class="container-fluid">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h1>
+                                            <xsl:text>Statistik zur Korrespondenz Arthur Schnitzler – </xsl:text>
+                                            <xsl:value-of select="$name"/>
+                                        </h1>
+                                    </div>
+                                    <div class="body">
+                                        <div id="statistik1" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
+                                        <div id="statistik2" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
+                                        <div id="statistik3" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+            </xsl:result-document>
+        </xsl:for-each>
+                            
     </xsl:template>
     <xsl:template match="tei:div//tei:head">
         <h2 id="{generate-id()}">
@@ -120,4 +194,17 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    <xsl:function name="mam:vorname-vor-nachname">
+        <xsl:param name="autorname"/>
+        <xsl:choose>
+            <xsl:when test="contains($autorname, ', ')">
+                <xsl:value-of select="substring-after($autorname, ', ')"/>
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="substring-before($autorname, ', ')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$autorname"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
 </xsl:stylesheet>
