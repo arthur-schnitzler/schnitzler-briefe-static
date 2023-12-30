@@ -109,31 +109,24 @@
                                 return title;
                                 }
                                 document.addEventListener('DOMContentLoaded', function () {
-                                // Assuming your JavaScript function is defined in tocs-statistics-1.js
                                 var title = getTitle();
                                 createStatistik1(title);
                                 });
-                            </script>
-                            <script>
-                                function getTitle() {
-                                var title = '<xsl:value-of select="$csvFilename"/>';
-                                return title;
-                                }
                                 document.addEventListener('DOMContentLoaded', function () {
-                                // Assuming your JavaScript function is defined in tocs-statistics-1.js
                                 var title = getTitle();
                                 createStatistik2(title);
                                 });
-                            </script>
-                            <script>
-                                function getTitle() {
-                                var title = '<xsl:value-of select="$csvFilename"/>';
-                                return title;
-                                }
                                 document.addEventListener('DOMContentLoaded', function () {
-                                // Assuming your JavaScript function is defined in tocs-statistics-1.js
                                 var title = getTitle();
                                 createStatistik3(title);
+                                });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                var title = getTitle();
+                                createStatistik4a(title);
+                                });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                var title = getTitle();
+                                createStatistik4b(title);
                                 });
                             </script>
                             <div class="container-fluid">
@@ -145,9 +138,14 @@
                                         </h1>
                                     </div>
                                     <div class="body">
+                                        
                                         <div id="statistik1" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
                                         <div id="statistik2" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
                                         <div id="statistik3" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
+                                        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                                            <div id="statistik4a" style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em;"></div>
+                                            <div id="statistik4b" style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em;"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
