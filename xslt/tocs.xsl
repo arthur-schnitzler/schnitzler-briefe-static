@@ -98,19 +98,20 @@
                     <script src="https://code.highcharts.com/highcharts-more.js"/>
                     <script src="https://code.highcharts.com/modules/data.js"/>
                     <script src="https://code.highcharts.com/modules/exporting.js"/>
+                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+                    <script src="./js/tocs-statistics.js"/>
                     <body class="page">
                         <div class="hfeed site" id="page">
                             <xsl:call-template name="nav_bar"/>
-                            <script src="./js/tocs-statistics.js"/>
                             <xsl:variable name="csvFilename" select="concat('statistik_', $nummer-des-korrespondenzpartners , '.csv')"/>
                             <script>
                                 function getTitle() {
                                 var title = '<xsl:value-of select="$csvFilename"/>';
                                 return title;
                                 }
+                               
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();
-                                createStatistik1(title);
                                 });
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();
@@ -138,14 +139,14 @@
                                         </h1>
                                     </div>
                                     <div class="body">
-                                        
-                                        <div id="statistik1" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
-                                        <div id="statistik2" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
+                                       <div id="statistik1" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
                                         <div id="statistik3" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
+                                        <div id="statistik2" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
                                         <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-                                            <div id="statistik4a" style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em;"></div>
-                                            <div id="statistik4b" style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em;"></div>
+                                            <div id="statistik4a" style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em; min-width: 375px;"></div>
+                                            <div id="statistik4b" style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em; min-width: 375px;"></div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
