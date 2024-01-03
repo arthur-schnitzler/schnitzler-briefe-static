@@ -948,6 +948,7 @@ nav {
     border :0px;
     table-layout: fixed;
     width: inherit !important;
+    clear: both;
 }
 
 .pagebreak{
