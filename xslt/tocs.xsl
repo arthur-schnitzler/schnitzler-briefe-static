@@ -155,6 +155,55 @@
                 </html>
             </xsl:result-document>
         </xsl:for-each>
+        <xsl:for-each select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
+            <xsl:sort select="tei:persName[@role = 'main']/text()"/>
+            <xsl:variable name="nummer-des-korrespondenzpartners"
+                select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
+            <xsl:variable name="filename" select="concat('karte_', $nummer-des-korrespondenzpartners, '.html')"/>
+            <xsl:variable name="name" select="mam:vorname-vor-nachname(tei:persName[@role='main'][1]/text())"/>
+            <xsl:result-document href="{$filename}">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <xsl:call-template name="html_head">
+                        <xsl:with-param name="html_title" select="$name"/>
+                    </xsl:call-template>
+                    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+                    <script src="https://code.highcharts.com/maps/modules/flowmap.js"></script>
+                    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+                    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+                    <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
+                    <script src="./js/tocs-statistics.js"></script>
+                    <body class="page">
+                        <div class="hfeed site" id="page">
+                            <xsl:call-template name="nav_bar"/>
+                            <xsl:variable name="csvFilename" select="concat('statistik_', $nummer-des-korrespondenzpartners , '.csv')"/>
+                            <script>
+                                function getTitle() {
+                                var title = '<xsl:value-of select="$csvFilename"/>';
+                                return title;
+                                }
+                                document.addEventListener('DOMContentLoaded', function () {
+                                var title = getTitle();
+                                createKarte1(title);
+                                });
+                            </script>
+                            <div class="container-fluid">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h1>
+                                            <xsl:text>Karten zur Korrespondenz Arthur Schnitzler – </xsl:text>
+                                            <xsl:value-of select="$name"/>
+                                        </h1>
+                                    </div>
+                                    <div class="body">
+                                        <div id="karte1" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+            </xsl:result-document>
+        </xsl:for-each>
                             
     </xsl:template>
     <xsl:template match="tei:div//tei:head">
