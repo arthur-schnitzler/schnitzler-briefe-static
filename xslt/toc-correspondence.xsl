@@ -47,7 +47,7 @@
                             </div>
                             <div class="card-body">
                                 <div id="statistik1" style="width:100%; height:400px;"/>
-                                <p style="text-align: center;"><a href="{concat('statistik_pmb', $korrespondenznummer, '.html')}">Weitere Statistiken</a></p>
+                                <p style="text-align: center;"><a href="{concat('statistik_pmb', $korrespondenznummer, '.html')}">Weitere Statistiken</a> &#160; <a href="{concat('karte_pmb', $korrespondenznummer, '.html')}">Karten</a></p>
                                 <div class="w-100 text-center">
                                     <div class="spinner-grow table-loader" role="status">
                                         <span class="sr-only">Wird geladen…</span>

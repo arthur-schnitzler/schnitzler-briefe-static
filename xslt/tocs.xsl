@@ -195,11 +195,12 @@
                                         </h1>
                                     </div>
                                     <div class="body">
-                                        <div id="container" style="height: 500px;
+                                        <div id="karte1" style="height: 500px;
                                             min-width: 310px;
                                             max-width: 800px;
                                             margin: 0 auto; margin-bottom:1.5em;"></div>
                                     </div>
+                                    <p style="text-align:center;"><i>Demnächst folgt die Aufgliederung nach Korrespondenzen</i></p>
                                 </div>
                             </div>
                         </div>

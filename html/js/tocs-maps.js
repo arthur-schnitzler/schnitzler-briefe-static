@@ -1,9 +1,17 @@
 async function createKarte1(title) {
+     let mapDataUrl;
+
+    if (title.includes("pmb11485.") || title.includes("pmb2167.")) {
+        mapDataUrl = 'https://code.highcharts.com/mapdata/custom/world.topo.json';
+    } else {
+        mapDataUrl = 'https://code.highcharts.com/mapdata/custom/europe.topo.json';
+    }
+
+    const topology = await fetch(mapDataUrl).then(response => response.json());
+
     const updatedFilename = title.replace('.csv', '.json');
     const jsonURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/statistik5/${updatedFilename}`;
     
-    const topology = await fetch(
-    'https://code.highcharts.com/mapdata/custom/europe.topo.json').then(response => response.json());
     
     fetch(jsonURL).then(response => response.json()).then(jsonData => {
         const processData = (data) => {
@@ -45,17 +53,13 @@ async function createKarte1(title) {
         
         console.log(cityData);
         
-        Highcharts.mapChart('container', {
+        Highcharts.mapChart('karte1', {
             chart: {
                 map: topology // Use the 'topology' variable as the map data
             },
             
             title: {
-                text: 'Highmaps basic flowmap demo'
-            },
-            
-            subtitle: {
-                text: 'Highcharts Maps flow map'
+                text: 'Versandwege aller Korrespondenzstücke'
             },
             
             mapNavigation: {
@@ -76,14 +80,14 @@ async function createKarte1(title) {
                 mappoint: {
                     tooltip: {
                         headerFormat: '{point.point.id}<br>',
-                        pointFormat: 'Lat: {point.lat} Lon: {point.lon}'
+                        pointFormat: 'Länge: {point.lat} Breite: {point.lon}'
                     }
                 },
                 series: {
                     marker: {
-                        fillColor: '#FFFFFF',
+                        fillColor: '#ffaa00',
                         lineWidth: 2,
-                        lineColor: Highcharts.getOptions().colors[1]
+                        lineColor: '#ffaa00'
                     }
                 },
                 mapline: {
@@ -109,21 +113,21 @@ async function createKarte1(title) {
                 data: cityData
             }, {
                 type: 'flowmap',
-                name: 'Flow route',
+                name: 'Korrespondenzstücke',
                 accessibility: {
-                    description: 'This is a demonstration of the flowmap using weighted links.'
+                    description: 'Landkarte mit Pfeilen zwischen Versand- und Empfangsort'
                 },
                 linkedTo: ':previous',
-                minWidth: 5,
-                maxWidth: 15,
+                minWidth: 1,
+                maxWidth: 25,
                 growTowards: true,
                 markerEnd: {
                     width: '50%',
                     height: '50%'
                 },
-               fillColor: '#A63437',
-                fillOpacity: 0.2,
-                color: '#0000FF',
+                fillColor: '#8B5F8F',
+                fillOpacity: 1,
+                color: '#8B5F8F',
                 data: flowData
             }]
         });
