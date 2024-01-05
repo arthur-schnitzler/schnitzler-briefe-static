@@ -171,7 +171,7 @@
                     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
                     <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
                     <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
-                    <script src="./js/tocs-statistics.js"></script>
+                    <script src="./js/tocs-maps.js"></script>
                     <body class="page">
                         <div class="hfeed site" id="page">
                             <xsl:call-template name="nav_bar"/>
@@ -195,7 +195,10 @@
                                         </h1>
                                     </div>
                                     <div class="body">
-                                        <div id="karte1" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
+                                        <div id="container" style="height: 500px;
+                                            min-width: 310px;
+                                            max-width: 800px;
+                                            margin: 0 auto; margin-bottom:1.5em;"></div>
                                     </div>
                                 </div>
                             </div>
