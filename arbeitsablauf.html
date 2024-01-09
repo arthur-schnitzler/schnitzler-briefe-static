@@ -230,7 +230,7 @@
                         Das Empfangsdatum (<code>&lt;correspAction type="received"/&gt;</code>) wird,
                         wenn nicht vorhanden, auf einen bestimmten Zeitraum geschätzt und ebenfalls
                         automatisch ausgefüllt. Auch die Anpassung der Objektbeschreibung (Brief,
-                        Postkarte, Schreibmaterial, Stempel …) kann nun erfolgen. Ausführliche
+                        Postkarte, Schreibmaterial, Stempel…) kann nun erfolgen. Ausführliche
                         Kodierungsrichtlinien sind <a href="https://schnitzler-briefe.acdh.oeaw.ac.at/elemente.html">hier</a>
                         zu finden.</p>
                      
@@ -255,14 +255,21 @@
                            rendition="#langeS"&gt;s&lt;/c&gt;e</code>«), um sicherzustellen, dass die
                         Suche auch mit ›s‹ funktioniert. Danach holt eine weitere <a href="https://github.com/arthur-schnitzler/schnitzler-briefe-static/blob/main/.github/workflows/build.yml">GitHub-Action</a> die neuen Dateien auf die Webseite.</p>
                      
-                     <p id="d13e219">Es folgen mehrere Sichtungen. Dafür rechnen wir mit den beiden Transformationen
+                     <p id="d13e219">Die Website basiert auf dem <a href="https://github.com/acdh-oeaw/dse-static-cookiecutter">DSE-Static-Cookiecutter</a>, die
+                        unter der Leitung von Peter Andorfer entwickelte Vorlage für statische Editionen.
+                        XSLTs transformieren die TEI-Dateien in HTML-Darstellungen
+                        um. Dadurch kann auf eine eigene Datenbank verzichtet werden. Für die Suche kommt
+                        <a href="https://typesense.org/">Typesense</a> zum Einsatz.</p>
+                     
+                     <p id="d13e228">Es folgen mehrere Sichtungen den Korrespondenzstücke. Dafür rechnen wir mit den beiden
+                        Transformationen
                         <a href="https://github.com/arthur-schnitzler/arthur-schnitzler-arbeit/blob/main/xslts/einzel-1-remove-namespaces.xsl">einzel-1-remove-namespaces.xsl</a> und <a href="https://github.com/arthur-schnitzler/arthur-schnitzler-arbeit/blob/main/xslts/einzel-6-korrektur-nach-TeX.xsl">einzel-6-korrektur-nach-TeX.xsl</a> PDFs der Briefe in kritischer
                         Ansicht. Die TeX-Dateien finden sich in einem eigenen Repositorium, <a href="https://github.com/arthur-schnitzler/schnitzler-briefe-tex/">schnitzler-briefe-tex</a>, und liefern eine Korrekturansicht als PDF, in
                         dem auch die vorkommenden Entitäten ausgewiesen sind. (Eine mehr oder weniger
                         analog erstellte Variante ist die Leseansicht, bei der die PDFs ohne farblich
                         hervorgehobene Entitäten erstellt werden.)</p>
                      
-                     <p id="d13e231">Die Sichtungen erfolgen in Schritten, ein Minimalfall besteht aus vier
+                     <p id="d13e240">Die Sichtungen erfolgen in Schritten, ein Minimalfall besteht aus vier
                         Schritten:</p>
                      
                      <ul>
@@ -279,23 +286,23 @@
                            nunmehr nur im Ausnahmefall mit Blick auf das Faksimile</li>
                         </ul>
                      
-                     <p id="d13e244">Oft genug kommt es zu mehreren Sichtungsvorgängen.</p>
+                     <p id="d13e253">Oft genug kommt es zu mehreren Sichtungsvorgängen.</p>
                      </div>
                   
-                  <div id="d13e247">
+                  <div id="d13e256">
                      
                      <h2 id="Archiv">Archivierung</h2>
                      
-                     <p id="d13e252">Am Projektende landen alle Korrespondenzstücke geschlossen in der
+                     <p id="d13e261">Am Projektende landen alle Korrespondenzstücke geschlossen in der
                         Langzeitarchivierung <a href="https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/140074">ARCHE</a> der Österreichischen Akademie der Wissenschaften und sollten so
                         noch auf Jahrzehnte hinaus verfügbar sein.</p>
                      </div>
                   
-                  <div id="d13e260">
+                  <div id="d13e269">
                      
                      <h2 id="Adaption">Adaption von Projekt 1 zu Projekt 2</h2>
                      
-                     <p id="d13e265">In der ersten Laufzeit wurde Transkribus noch nicht verwendet. Stattdessen haben
+                     <p id="d13e274">In der ersten Laufzeit wurde Transkribus noch nicht verwendet. Stattdessen haben
                         wir die Korrespondenzstücke direkt im Oxygen XML Editor mit Vorlagen angelegt.
                         Die Webseite war auf <a href="https://exist-db.org/exist/apps/homepage/index.html">eXist-db</a>
                         aufgebaut, was etwas mühsamer zu erstellen war und auch nicht nachhaltig, da
