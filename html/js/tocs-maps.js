@@ -9,8 +9,7 @@ async function createKarte1(title) {
 
     const topology = await fetch(mapDataUrl).then(response => response.json());
 
-    const updatedFilename = title.replace('.csv', '.json');
-    const jsonURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/statistik5/${updatedFilename}`;
+    const jsonURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/karte1/${title}.json`;
     
     
     fetch(jsonURL).then(response => response.json()).then(jsonData => {

@@ -175,7 +175,7 @@
                     <body class="page">
                         <div class="hfeed site" id="page">
                             <xsl:call-template name="nav_bar"/>
-                            <xsl:variable name="csvFilename" select="concat('statistik_', $nummer-des-korrespondenzpartners , '.csv')"/>
+                            <xsl:variable name="csvFilename" select="concat('karte_', $nummer-des-korrespondenzpartners)"/>
                             <script>
                                 function getTitle() {
                                 var title = '<xsl:value-of select="$csvFilename"/>';
