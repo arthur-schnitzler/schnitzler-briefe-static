@@ -185,6 +185,14 @@
                                 var title = getTitle();
                                 createKarte1(title);
                                 });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                var title = getTitle();
+                                createKarte2(title);
+                                });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                var title = getTitle();
+                                createKarte3(title);
+                                });
                             </script>
                             <div class="container-fluid">
                                 <div class="card">
@@ -197,10 +205,18 @@
                                     <div class="body">
                                         <div id="karte1" style="height: 500px;
                                             min-width: 310px;
-                                            max-width: 800px;
-                                            margin: 0 auto; margin-bottom:1.5em;"></div>
+                                            max-width: 100%
+                                            margin: 0 auto; margin-bottom:2em;"></div>
+                                        <div id="karte2" style="height: 500px;
+                                            min-width: 310px;
+                                            max-width: 100%
+                                            margin: 0 auto; margin-bottom:2em;"></div>
+                                        <div id="karte3" style="height: 500px;
+                                            min-width: 310px;
+                                            max-width: 100%
+                                            margin: 0 auto; margin-bottom:2em;"></div>
                                     </div>
-                                    <p style="text-align:center;"><i>Demnächst folgt die Aufgliederung nach Korrespondenzen</i></p>
+                                    <p style="text-align:center;"><i>Die zu Grunde liegenden Daten können hier geladen werden: <a href="https://github.com/arthur-schnitzler/schnitzler-briefe-statistik">GitHub</a></i></p>
                                 </div>
                             </div>
                         </div>
