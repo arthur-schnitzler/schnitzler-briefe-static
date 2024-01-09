@@ -132,12 +132,12 @@ async function createKarte1(title) {
             }]
         });
     });
-}
+};
 
 async function createKarte2(title) {
      let mapDataUrl;
 
-    if title.endsWith("pmb10863") {
+    if (title.endsWith("pmb10863")) {
         mapDataUrl = 'https://code.highcharts.com/mapdata/custom/world.topo.json';
     } else {
         mapDataUrl = 'https://code.highcharts.com/mapdata/custom/europe.topo.json';
