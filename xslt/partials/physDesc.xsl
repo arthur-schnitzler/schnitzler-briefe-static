@@ -435,27 +435,7 @@
             <xsl:variable name="rest-unit-order"
                 select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string?"/>
             <xsl:variable name="kommakomma" as="xs:boolean">
-                <xsl:choose>
-                    <xsl:when test="
-                            (
-                            contains($rest-unit-order, 'seite') and $measures/tei:measure[@unit = 'seite'][1]
-                            ) or (
-                            contains($rest-unit-order, 'karte') and $measures/tei:measure[@unit = 'karte'][1]
-                            ) or (
-                            contains($rest-unit-order, 'kartenbrief') and $measures/tei:measure[@unit = 'kartenbrief'][1]
-                            ) or (
-                            contains($rest-unit-order, 'widmung') and $measures/tei:measure[@unit = 'widmung'][1]
-                            ) or (
-                            contains($rest-unit-order, 'umschlag') and $measures/tei:measure[@unit = 'umschlag'][1]
-                            ) or (
-                            contains($rest-unit-order, 'zeichenanzahl') and $measures/tei:measure[@unit = 'zeichenanzahl'][1]
-                            )">
-                        <xsl:value-of select="true()"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="false()"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:value-of select="exists(tokenize($rest-unit-order, ' ')[. = $measures/tei:measure/@unit])"/>
             </xsl:variable>
             <xsl:if test="$kommakomma">
                 <xsl:text>, </xsl:text>
