@@ -430,58 +430,79 @@
         <xsl:variable name="unitOrder" select="'blatt seite karte kartenbrief widmung umschlag zeichenanzahl'"/>
         <xsl:variable name="measures" select="." as="node()"/>
         <xsl:for-each select="tokenize($unitOrder, ' ')">
-            <xsl:variable name="unit" select="." as="xs:string"/>
-            <xsl:apply-templates select="$measures/tei:measure[@unit = $unit and not(($unit='karte' or $unit='widmung' or $unit='kartenbrief') and @quantity='1')][1]"/>
-            <xsl:variable name="rest-unit-order"
-                select="normalize-space(substring-after($unitOrder, $unit))" as="xs:string?"/>
-            <xsl:variable name="kommakomma" as="xs:boolean">
-                <xsl:value-of select="exists(tokenize($rest-unit-order, ' ')[. = $measures/tei:measure/@unit])"/>
-            </xsl:variable>
-            <xsl:if test="$kommakomma">
-                <xsl:text>, </xsl:text>
-            </xsl:if>
+            <xsl:variable name="current" select="."/>
+            <xsl:for-each select="$measures/tei:measure[@unit=$current]">
+                <xsl:apply-templates select="."/>
+                <xsl:variable name="unitOrderRest" select="normalize-space(substring-after($unitOrder, $current))" as="xs:string?"/>
+                <xsl:if test="exists($measures/tei:measure[@unit=tokenize($unitOrderRest, ' ')]) and $measures/tei:measure[not(@unit='karte' and @quantity='1') and not(@unit='widmung' and @quantity='1') and not(@unit='kartenbrief' and @quantity='1')][2]">
+                    <xsl:text>, </xsl:text>
+                </xsl:if>
+            </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
-    <xsl:template match="tei:measure">
+    <xsl:template match="tei:measure[@unit='seite']">
         <xsl:choose>
-            <xsl:when test="@unit = 'seite' and @quantity = '1'">
+            <xsl:when test="@quantity = '1'">
                 <xsl:text>1&#160;Seite</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit = 'blatt' and @quantity = '1'">
-                <xsl:text>1&#160;Blatt</xsl:text>
-            </xsl:when>
-            <xsl:when test="@unit = 'umschlag' and @quantity = '1'">
-                <xsl:text>Umschlag</xsl:text>
-            </xsl:when>
-            <!-- hier fehlen die Varianten für »widmung«, »kartenbrief« oder »karte«  und @quantity='1' -->
-            <xsl:when test="@unit = 'seite'">
+            <xsl:otherwise>
                 <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Seiten</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:measure[@unit='blatt']">
+        <xsl:choose>
+            <xsl:when test="@quantity = '1'">
+                <xsl:text>1&#160;Blatt</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit = 'blatt'">
+            <xsl:otherwise>
                 <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Blätter</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:measure[@unit='umschlag']">
+        <xsl:choose>
+            <xsl:when test="@quantity = '1'">
+                <xsl:text>Umschlag</xsl:text>
             </xsl:when>
-            <xsl:when test="@unit = 'umschlag'">
+            <xsl:otherwise>
                 <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Umschläge</xsl:text>
-            </xsl:when>
-            <xsl:when test="@unit = 'widmung' and not(@quantity = '1')">
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:measure[@unit='widmung']">
+        <xsl:choose>
+            <xsl:when test="@quantity = '1'"/>
+            <xsl:otherwise>
                 <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Widmungen</xsl:text>
-            </xsl:when>
-            <xsl:when test="@unit = 'kartenbrief' and not(@quantity = '1')">
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:measure[@unit='kartenbrief']">
+        <xsl:choose>
+            <xsl:when test="@quantity = '1'"/>
+            <xsl:otherwise>
                 <xsl:value-of select="@quantity"/>
-                <xsl:text>&#160;Kartenbriefe</xsl:text>f </xsl:when>
-            <xsl:when test="@unit = 'karte' and not(@quantity = '1')">
+                <xsl:text>&#160;Kartenbriefe</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:measure[@unit='karte']">
+        <xsl:choose>
+            <xsl:when test="@quantity = '1'"/>
+            <xsl:otherwise>
                 <xsl:value-of select="@quantity"/>
                 <xsl:text>&#160;Karten</xsl:text>
-            </xsl:when>
-            <xsl:when test="@unit = 'zeichenanzahl'">
-                <xsl:value-of select="@quantity"/>
-                <xsl:text>&#160;Zeichen</xsl:text>
-            </xsl:when>
+            </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:measure[@unit='zeichenanzahl']">
+        <xsl:value-of select="@quantity"/>
+        <xsl:text>&#160;Zeichen</xsl:text>
     </xsl:template>
     <xsl:template match="tei:support">
         <xsl:text> (</xsl:text>
