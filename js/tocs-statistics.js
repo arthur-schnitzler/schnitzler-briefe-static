@@ -32,6 +32,13 @@ function createStatistik1(csvFilename) {
                 }
             }
         },
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.x + ': ' + Math.abs(this.y);
+                // Display positive values in the tooltip
+            }
+        },
         series:[ {
             name: 'von Schnitzler',
             color: '#A63437',
