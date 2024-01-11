@@ -75,6 +75,13 @@ function createStatistik2(csvFilename) {
                 }
             }
         },
+         tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.x + ': ' + Math.abs(this.y);
+                // Display positive values in the tooltip
+            }
+        },
         series:[ {
             name: 'Korrespondenzstücke',
             color: '#8B5F8F',
@@ -115,6 +122,13 @@ function createStatistik3(csvFilename) {
                     return Math.abs(this.value);
                     // Display absolute value without the leading "-"
                 }
+            }
+        },
+         tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.x + ': ' + Math.abs(this.y);
+                // Display positive values in the tooltip
             }
         },
         series:[ {
