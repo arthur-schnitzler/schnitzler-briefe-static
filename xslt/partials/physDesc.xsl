@@ -3,22 +3,24 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:mam="whatever" exclude-result-prefixes="xs" version="2.0">
     <xsl:template match="tei:incident/tei:desc/tei:stamp">
+        
         <xsl:text>Stempel </xsl:text>
         <xsl:value-of select="@n"/>
         <xsl:text>:</xsl:text>
-        <br/>
-        <xsl:if test="tei:placeName"> Ort: <xsl:apply-templates select="./tei:placeName"/>
-            <br/>
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+        <xsl:if test="tei:placeName">
+            <li>Ort: <xsl:apply-templates select="./tei:placeName"/></li>
         </xsl:if>
-        <xsl:if test="tei:date"> Datum: <xsl:apply-templates select="./tei:date"/>
-            <br/>
+            <xsl:if test="tei:date"><li>Datum: <xsl:apply-templates select="./tei:date"/>
+            </li>
         </xsl:if>
-        <xsl:if test="tei:time"> Zeit: <xsl:apply-templates select="./tei:time"/>
-            <br/>
+            <xsl:if test="tei:time"><li>Zeit: <xsl:apply-templates select="./tei:time"/>
+            </li>
         </xsl:if>
-        <xsl:if test="tei:addSpan"> Vorgang: <xsl:apply-templates select="./tei:addSpan"/>
-            <br/>
+            <xsl:if test="tei:addSpan"><li>Vorgang: <xsl:apply-templates select="./tei:addSpan"/>
+            </li>
         </xsl:if>
+        </ul>
     </xsl:template>
     <xsl:template match="tei:incident">
         <tr>
