@@ -45,6 +45,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -52,6 +53,7 @@
                     test="$poschitzion = 0 and not(parent::tei:incident/following-sibling::tei:incident[@type = 'supplement'])">
                     <th>Beilage</th>
                     <td>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -61,6 +63,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -75,6 +78,7 @@
                 <tr>
                     <th/>
                     <td>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </tr>
@@ -86,6 +90,7 @@
                         <xsl:text>Versand</xsl:text>
                     </th>
                     <td>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </tr>
@@ -97,6 +102,7 @@
                         <xsl:text>Versand</xsl:text>
                     </th>
                     <td>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </tr>
@@ -115,6 +121,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -126,6 +133,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -134,6 +142,7 @@
                         <xsl:value-of select="$receiver"/>
                     </th>
                     <td>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:otherwise>
@@ -150,6 +159,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -159,6 +169,7 @@
                         <xsl:text>Ordnung</xsl:text>
                     </th>
                     <td>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -170,6 +181,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -186,6 +198,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -195,6 +208,7 @@
                         <xsl:text>Zusatz</xsl:text>
                     </th>
                     <td>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -206,6 +220,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -222,6 +237,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -229,6 +245,7 @@
                     test="$poschitzion = 0 and not(parent::tei:incident/following-sibling::tei:incident[@type = 'editorial'])">
                     <th>Editorischer Hinweis</th>
                     <td>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -238,6 +255,7 @@
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
                         <xsl:text>) </xsl:text>
+                        <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
                         <xsl:apply-templates/>
                     </td>
                 </xsl:when>
@@ -511,4 +529,33 @@
         <xsl:apply-templates/>
         <xsl:text>)</xsl:text>
     </xsl:template>
+    <xsl:function name="mam:incident-rend">
+        <xsl:param name="rend" as="xs:string?"/>
+        <xsl:choose>
+            <xsl:when test="$rend = 'bleistift'">
+                <xsl:text>mit Bleistift </xsl:text>
+            </xsl:when>
+            <xsl:when test="$rend = 'roter_buntstift'">
+                <xsl:text>mit rotem Buntstift </xsl:text>
+            </xsl:when>
+            <xsl:when test="$rend = 'blauer_buntstift'">
+                <xsl:text>mit blauem Buntstift </xsl:text>
+            </xsl:when>
+            <xsl:when test="$rend = 'gruener_buntstift'">
+                <xsl:text>mit grünem Buntstift </xsl:text>
+            </xsl:when>
+            <xsl:when test="$rend = 'schwarze_tinte'">
+                <xsl:text>mit schwarzer Tinte </xsl:text>
+            </xsl:when>
+            <xsl:when test="$rend = 'blaue_tinte'">
+                <xsl:text>mit blauer Tinte </xsl:text>
+            </xsl:when>
+            <xsl:when test="$rend = 'gruene_tinte'">
+                <xsl:text>mit grüner Tinte </xsl:text>
+            </xsl:when>
+            <xsl:when test="$rend = 'rote_tinte'">
+                <xsl:text>mit roter Tinte </xsl:text>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:function>
 </xsl:stylesheet>
