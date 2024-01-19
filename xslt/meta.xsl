@@ -14,7 +14,7 @@
             <xsl:value-of select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"/>
         </xsl:variable>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html lang="de" style="hyphens: auto;"  xml:lang="de">
+        <html lang="de" style="hyphens: auto;" xml:lang="de">
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
@@ -144,7 +144,7 @@
     <xsl:template match="tei:lb">
         <br/>
     </xsl:template>
-<xsl:template match="tei:unclear">
+    <xsl:template match="tei:unclear">
         <xsl:element name="span">
             <xsl:attribute name="class">
                 <xsl:text>unclear</xsl:text>
@@ -152,10 +152,13 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-        <xsl:template match="tei:del">
-        <del>
+    <xsl:template match="tei:del">
+        <xsl:element name="span">
+            <xsl:attribute name="class">
             <xsl:apply-templates/>
-        </del>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
     </xsl:template>
     <xsl:template match="tei:table">
         <xsl:element name="table">

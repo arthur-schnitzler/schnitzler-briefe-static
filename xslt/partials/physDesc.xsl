@@ -521,7 +521,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:measure[@unit='zeichenanzahl']">
-        <xsl:value-of select="@quantity"/>
+        <xsl:value-of select="format-number(@quantity, '#.###')"/>
         <xsl:text>&#160;Zeichen</xsl:text>
     </xsl:template>
     <xsl:template match="tei:support">

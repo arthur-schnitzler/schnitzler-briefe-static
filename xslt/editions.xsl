@@ -952,6 +952,7 @@
             <xsl:text> Zeilen unleserlich] </xsl:text>
         </div>
     </xsl:template>
+    
     <xsl:template match="tei:gap[@reason = 'outOfScope']">
         <span class="outOfScope">[…]</span>
     </xsl:template>
@@ -1221,6 +1222,13 @@
     <xsl:template match="tei:space[@unit = 'chars' and @quantity = '1']" mode="verschachtelteA">
         <xsl:text>&#x00A0;</xsl:text>
     </xsl:template>
+    <xsl:template match="text()[matches(., '\s+$') and following-sibling::node()[1][self::tei:space[@unit = 'chars' and @quantity = '1']]]">
+        <xsl:value-of select="replace(., '\s+$', '')"/>
+    </xsl:template>
+    <xsl:template match="text()[matches(., '^\s+') and preceding-sibling::node()[1][self::tei:space[@unit = 'chars' and @quantity = '1']]]">
+        <xsl:value-of select="replace(., '^\s+', '')"/>
+    </xsl:template>
+    
     <xsl:template match="tei:note" mode="verschachtelteA"/>
     <xsl:template match="tei:hi" mode="verschachtelteA">
         <xsl:element name="span">

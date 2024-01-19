@@ -92,16 +92,29 @@
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:del">
-        <span class="del" style="display:none;">
+        <span class="del strikethrough badge-item" style="display:none;">
             <xsl:apply-templates/>
         </span>
     </xsl:template>
+    <!-- Die folgenden beiden Regeln sollten das Leerzeichen vor und nach Streichungen mit aus- und einblenden -->
+    <xsl:template match="text()[matches(., '\s+$') and following-sibling::node()[1][self::tei:del]]">
+        <xsl:value-of select="replace(., '\s+$', '')"/>
+        <span class="del badge-item" style="display:none;">
+            <xsl:text> </xsl:text>
+        </span>
+    </xsl:template>
+    <xsl:template match="text()[matches(., '^\s+') and preceding-sibling::node()[1][self::tei:del]]">
+        <span class="del badge-item" style="display:none;">
+            <xsl:text> </xsl:text>
+        </span>
+        <xsl:value-of select="replace(., '^\s+', '')"/>
+    </xsl:template>
     <xsl:template match="tei:add">
-        <span class="add-zeichen">↓</span>
-        <span class="add-content">
+        <span class="add-zeichen badge-item">↓</span>
+        <span class="add-content badge-item">
             <xsl:apply-templates/>
         </span>
-        <span class="add-zeichen">↓</span>
+        <span class="add-zeichen badge-item">↓</span>
     </xsl:template>
     <!-- Substi -->
     <xsl:template match="tei:subst">
