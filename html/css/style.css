@@ -1036,3 +1036,27 @@ tbody {
 }
 
 legend {float: none;}
+
+ .WikimediaContainer {
+      display: flex;
+      flex-wrap: wrap; /* Enable wrapping for smaller screens */
+    }
+
+    /* Style for the left div */
+    .WikimediaLeft-div {
+      width: 200px; /* Set the width of the left div */
+      min-width: 200px; /* Ensure a minimum width for the right div */
+      background-color: white; /* Add styling as needed */
+      box-sizing: border-box; /* Include padding and border in the width */
+      padding: 0px;
+    }
+
+    /* Style for the right div */
+    .WikimediaRight-div {
+      flex-grow: 1; /* Allow the right div to grow and fill the remaining space */
+      min-width: 300px; /* Ensure a minimum width for the right div */
+      background-color: white; /* Add styling as needed */
+      box-sizing: border-box; /* Include padding and border in the width */
+      padding: 10px;
+      text-align:right;
+    }
