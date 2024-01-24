@@ -97,18 +97,27 @@
         </span>
     </xsl:template>
     <!-- Die folgenden beiden Regeln sollten das Leerzeichen vor und nach Streichungen mit aus- und einblenden -->
-    <xsl:template match="text()[matches(., '\s+$') and following-sibling::node()[1][self::tei:del]]">
-        <xsl:value-of select="replace(., '\s+$', '')"/>
+    <xsl:template match="text()[matches(., '[\s\r\n]+$') and following-sibling::node()[1][self::tei:del]]">
+        <xsl:value-of select="replace(., '[\s\r\n]+$', '')"/>
         <span class="del badge-item" style="display:none;">
             <xsl:text> </xsl:text>
         </span>
     </xsl:template>
-    <xsl:template match="text()[matches(., '^\s+') and preceding-sibling::node()[1][self::tei:del]]">
-        <span class="del badge-item" style="display:none;">
-            <xsl:text> </xsl:text>
-        </span>
+    <!--<xsl:template match="text()[matches(., '^\s+') and preceding-sibling::node()[1][self::tei:del]]">
+        <xsl:choose>
+            <!-\- hier die Abfrage soll verhindern, dass ein Leerzeichen zu wenig ist, weil das vor
+            und das nach dem del entfernt wird-\->
+            <xsl:when test="preceding-sibling::node()[1][self::tei:del]">
+                <xsl:text>Ö</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <span class="del badge-item" style="display:none;">
+                    <xsl:text> </xsl:text>
+                </span>
+            </xsl:otherwise>
+        </xsl:choose>
         <xsl:value-of select="replace(., '^\s+', '')"/>
-    </xsl:template>
+    </xsl:template>-->
     <xsl:template match="tei:add">
         <span class="add-zeichen badge-item">↓</span>
         <span class="add-content badge-item">
