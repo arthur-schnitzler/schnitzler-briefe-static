@@ -83,7 +83,7 @@
                         <xsl:variable name="iiif-domain"
                             select="'https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/'"/>
                         <xsl:variable name="facs_id" select="concat(@type, '_img_', generate-id())"/>
-                        <xsl:variable name="facs_item" select="descendant::tei:*[(name()='pb' or name()='graphic') and not(parent::tei:facsimile)]/@facs"/>
+                        <xsl:variable name="facs_item" select="descendant::tei:pb/@facs"/>
                         <xsl:value-of select="concat($iiif-domain, $facs_item, $iiif-ext)"/>
                     </xsl:attribute>
                 </meta>
