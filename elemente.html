@@ -1301,45 +1301,33 @@
                            
                            <h2 id="typedesc">typeDesc</h2>
                            
-                           <p id="d19e1303">Gibt Auskunft über maschinell erstellte Schriften und Drucke. Diese
-                              werden in einem <code>p</code>-Element wiedergegeben. </p>
+                           <p id="d19e1303">Gibt Auskunft über maschinell erstellte Schriften und Drucke. Jede
+                              <code>typeDesc</code> enthält eine <code>typeNote</code>, die mit
+                              einem <code>@medium</code>-Attribut versehen ist. Darüber wird die Art
+                              näher bestimmt.</p>
                            
-                           <p id="d19e1308">Bei einem gedruckten Text kann die Angabe auch länger werden. </p>
+                           <p id="d19e1312">Zur Auswahl stehen:</p>
                            
-                           <div id="d19e1310">
+                           <ul>
                               
-                              <p id="d19e1312">Beispiel: </p>
+                              <li>schreibmaschine</li>
                               
-                              <p id="d19e1314"><code>&lt;typeDesc&gt;</code>
-                                 </p>
+                              <li>maschinell (z. B. für Telegramme)</li>
                               
-                              <p id="d19e1318"><code>&lt;p&gt;Schreibmaschine &lt;/p&gt;</code>
-                                 </p>
+                              <li>druck</li>
                               
-                              <p id="d19e1322"><code>&lt;/typeDesc&gt;</code>
-                                 </p>
-                              </div>
+                              <li>anderes</li>
+                              </ul>
                            
-                           <div id="d19e1327">
-                              
-                              <p id="d19e1329">Oder, für ein Telegramm: </p>
-                              
-                              <p id="d19e1331"><code>&lt;typeDesc&gt;</code>
-                                 </p>
-                              
-                              <p id="d19e1335"><code>&lt;p&gt;maschinell &lt;/p&gt;</code>
-                                 </p>
-                              
-                              <p id="d19e1339"><code>&lt;/typeDesc&gt;</code>
-                                 </p>
-                              </div>
+                           <p id="d19e1325">Wenn der Attributwert »anderes« ist, ist die genauere Definition in einem
+                              <code>p</code>-Element zu finden.</p>
                            </div>
                         
-                        <div id="d19e1346">
+                        <div id="d19e1332">
                            
                            <h2 id="additions">additions</h2>
                            
-                           <p id="d19e1351">Alles, was dem Korrespondenzstück nach der Fertigstellung durch den
+                           <p id="d19e1337">Alles, was dem Korrespondenzstück nach der Fertigstellung durch den
                               Verfasser, die Verfasserin hinzugefügt wurde, wird in diesem Element
                               versammelt. Dafür werden, in chronologischer Reihenfolge vom ältesten
                               zum neuesten Ereignis, <code>incident</code>-Elemente angelegt.
@@ -1349,15 +1337,14 @@
                               die Poststempel nicht zum selben Augenblick gemacht, also sind zwei
                               Stempel zwei <code>&lt;incident type="postal"/&gt;</code>. </p>
                            
-                           <div id="d19e1360">
+                           <div id="d19e1346">
                               
                               <h2 id="incident">incident</h2>
                               
-                              <p id="d19e1365">Jedes Ereignis hat ein Attribut <code>@type</code>, das es
-                                 klassifiziert und ein mögliches Attribut <code>@rend</code>, das
-                                 das Schreibmedium kennzeichnet, mit dem die Ergänzung vorgenommen wurde. Erlaubt für
-                                 
-                                 die Klassifizierung sind: </p>
+                              <p id="d19e1351">Jedes Ereignis hat ein Attribut <code>@type</code>, das es
+                                 klassifiziert, und ein mögliches Attribut <code>@rend</code>, das
+                                 das Schreibmedium kennzeichnet, mit dem die Ergänzung vorgenommen
+                                 wurde. Erlaubt für die Klassifizierung sind: </p>
                               
                               <table class="table">
                                  <tbody>
@@ -1419,8 +1406,7 @@
                                     </tbody>
                               </table>
                               
-                              <p id="d19e1420">Die Schreibmaterialien sind:
-                                 </p>
+                              <p id="d19e1406">Die Schreibmaterialien sind: </p>
                               
                               <ul>
                                  
@@ -1440,11 +1426,11 @@
                                  </ul>
                               </div>
                            
-                           <div id="d19e1441">
+                           <div id="d19e1427">
                               
                               <h2 id="desc">incident/desc</h2>
                               
-                              <p id="d19e1446">Jeder <code>incident</code> hat ein einziges Kind-Element
+                              <p id="d19e1432">Jeder <code>incident</code> hat ein einziges Kind-Element
                                  <code>desc</code>, das die Hinzufügung beschreibt. Zwar wird
                                  hier auf eine weitere Klassifizierung durch Elemente verzichtet,
                                  doch ist eine formelhafte Sprache bevorzugt: </p>
@@ -1475,25 +1461,25 @@
                                     letzte Nummerierung zu gelten hat.</li>
                                  </ul>
                               
-                              <div id="d19e1469">
+                              <div id="d19e1455">
                                  
                                  <h2 id="incident_stamp">incident[@type="postal"]/desc/stamp</h2>
                                  
-                                 <p id="d19e1474">Poststempel werden jeweils als <code>incident</code> behandelt,
+                                 <p id="d19e1460">Poststempel werden jeweils als <code>incident</code> behandelt,
                                     wobei derselbe Stempel, wenn er mehrfach verwendet wurde (etwa
                                     um mehrere Briefmarken zu entwerten), nur als ein Stempel
                                     gewertet wird und die Wiedergabe einen rekonstruierten,
                                     »idealen« Fall darstellt. Nicht zuordenbare Zeichen und Kürzel
                                     werden übergangen. </p>
                                  
-                                 <p id="d19e1479">Das Attribut <code>@n</code> zählt die Stempel innerhalb des
+                                 <p id="d19e1465">Das Attribut <code>@n</code> zählt die Stempel innerhalb des
                                     Dokuments chronologisch. Ein Aufgabestempel kommt vor einem
                                     Zustellstempel. </p>
                                  
-                                 <p id="d19e1484">Die meisten Stempel sind in Blockbuchstaben geschrieben, das wird
+                                 <p id="d19e1470">Die meisten Stempel sind in Blockbuchstaben geschrieben, das wird
                                     nicht berücksichtigt. </p>
                                  
-                                 <p id="d19e1486">Ein Stempel kann aus maximal vier Elementen bestehen: </p>
+                                 <p id="d19e1472">Ein Stempel kann aus maximal vier Elementen bestehen: </p>
                                  
                                  <ul>
                                     
@@ -1509,20 +1495,20 @@
                                        </li>
                                     </ul>
                                  
-                                 <p id="d19e1511">Das Element <code>addSpan</code> enthält etwaige Textteile,
+                                 <p id="d19e1497">Das Element <code>addSpan</code> enthält etwaige Textteile,
                                     beispielsweise am häufigsten: »Bestellt«. </p>
                                  
-                                 <p id="d19e1516">Fehlende und unsichere Angaben beim Datum werden mit
+                                 <p id="d19e1502">Fehlende und unsichere Angaben beim Datum werden mit
                                     <code>supplied</code> und <code>unclear</code> ergänzt. Zum
                                     Beispiel: </p>
                                  
-                                 <p id="d19e1523"><code>&lt;date
+                                 <p id="d19e1509"><code>&lt;date
                                        when="1891-08-13"&gt;13.&lt;supplied&gt;8.&lt;/supplied&gt;9&lt;unclear&gt;1&lt;/unclear&gt;&lt;/date&gt;</code></p>
                                  
-                                 <p id="d19e1526">… heißt: Monat nicht lesbar, letzte Ziffer der Jahreszahl
+                                 <p id="d19e1512">… heißt: Monat nicht lesbar, letzte Ziffer der Jahreszahl
                                     erahnbar. </p>
                                  
-                                 <p id="d19e1528">Im Ausnahmefall ist auch gap möglich. (Zu den
+                                 <p id="d19e1514">Im Ausnahmefall ist auch gap möglich. (Zu den
                                     Abstandsregeln beim Datum siehe <code>date</code>, im Normalfall
                                     kommt nach dem Punkt ein bedingtes, fixes Leerzeichen:
                                     <code>&amp;#160;</code>) </p>
@@ -1531,15 +1517,15 @@
                            </div>
                         </div>
                      
-                     <div id="d19e1541">
+                     <div id="d19e1527">
                         
                         <h2 id="correspdesc">correspDesc</h2>
                         
-                        <p id="d19e1546">Zu <code>correspDesc</code> sei, neben den allgemeinen Regeln der TEI, auch
+                        <p id="d19e1532">Zu <code>correspDesc</code> sei, neben den allgemeinen Regeln der TEI, auch
                            auf den Webservice <a href="https://correspsearch.net">https://correspsearch.net</a> verwiesen. Dort ist ebenfalls die im
                            CMIF-Ordner des Projekts zu findende CMIF-Datei hinterlegt.</p>
                         
-                        <p id="d19e1554"><code>correspDesc</code> enthält in standardisierter Form den
+                        <p id="d19e1540"><code>correspDesc</code> enthält in standardisierter Form den
                            Übermittlungsvorgang des Korrespondenzstücks. Also: Von wem, an wen. Der
                            Übermittlungsvorgang wird in zumindest zwei verschiedenen
                            <code>correspAction</code>-Elementen dargestellt, wobei das erste immer
@@ -1556,21 +1542,21 @@
                            die Adressatin nicht angetroffen und von diesem oder dieser erst später in
                            Empfang genommen wurde.</p>
                         
-                        <div id="d19e1571">
+                        <div id="d19e1557">
                            
                            <h2 id="correspaction">correspAction</h2>
                            
-                           <p id="d19e1576">Neben dem verpflichtenden Attribut <code>@type</code> gibt es drei
+                           <p id="d19e1562">Neben dem verpflichtenden Attribut <code>@type</code> gibt es drei
                               mögliche Kind-Elemente: <code>persName</code>, <code>placeName</code>
                               und <code>date</code>, wobei die Angabe von <code>persName</code> und
                               <code>date</code> bei <code>@type="sent"</code> und bei
                               <code>@type="received"</code> verpflichtend ist. </p>
                            
-                           <div id="d19e1596">
+                           <div id="d19e1582">
                               
                               <h2 id="correspaction_date">correspAction/date</h2>
                               
-                              <p id="d19e1601">Dieses Element muss ein verpflichtendes Attribut aus der Reihe der
+                              <p id="d19e1587">Dieses Element muss ein verpflichtendes Attribut aus der Reihe der
                                  folgenden haben: </p>
                               
                               <ul>
@@ -1591,14 +1577,14 @@
                                     </li>
                                  </ul>
                               
-                              <p id="d19e1626">Die Angabe erfolgt im ISO-Format (»1862-05-15«). Auf diesen Wert wird
+                              <p id="d19e1612">Die Angabe erfolgt im ISO-Format (»1862-05-15«). Auf diesen Wert wird
                                  von verschiedensten Stellen zugegriffen. </p>
                               
-                              <div id="d19e1628">
+                              <div id="d19e1614">
                                  
                                  <h2 id="correspaction_date_n">correspAction/date/@n</h2>
                                  
-                                 <p id="d19e1633">Weiters hat <code>date/@type="sent"</code> ein zusätzliches
+                                 <p id="d19e1619">Weiters hat <code>date/@type="sent"</code> ein zusätzliches
                                     Attribut <code>@n</code>, das einem Zähler an einem bestimmten
                                     Tag entspricht. Grund dafür ist, dass eine genauere Granulierung
                                     der Briefe erreicht werden soll. Wichtig ist das in einem Fall,
@@ -1613,29 +1599,29 @@
                                     Nachnamens des Empfängers/Senders, der Empfängerin/Senderin
                                     berücksichtigt wird. </p>
                                  
-                                 <div id="d19e1646">
+                                 <div id="d19e1632">
                                     
-                                    <p id="d19e1648">Beispiel: </p>
+                                    <p id="d19e1634">Beispiel: </p>
                                     
-                                    <p id="d19e1650"><code>@n=1</code> Brief Bahrs an Schnitzler </p>
+                                    <p id="d19e1636"><code>@n=1</code> Brief Bahrs an Schnitzler </p>
                                     
-                                    <p id="d19e1654"><code>@n=2</code> Antwort von Schnitzler an Bahr </p>
+                                    <p id="d19e1640"><code>@n=2</code> Antwort von Schnitzler an Bahr </p>
                                     
-                                    <p id="d19e1658"><code>@n=3</code> Brief Schnitzlers an Beer-Hofmann </p>
+                                    <p id="d19e1644"><code>@n=3</code> Brief Schnitzlers an Beer-Hofmann </p>
                                     
-                                    <p id="d19e1662"><code>@n=4</code> Brief Schnitzlers an Wymetal </p>
+                                    <p id="d19e1648"><code>@n=4</code> Brief Schnitzlers an Wymetal </p>
                                     
-                                    <p id="d19e1667"><code>@n=5</code> Brief Hofmannsthals an Schnitzler </p>
+                                    <p id="d19e1653"><code>@n=5</code> Brief Hofmannsthals an Schnitzler </p>
                                     </div>
                                  </div>
                               </div>
                            </div>
                         
-                        <div id="d19e1675">
+                        <div id="d19e1661">
                            
                            <h2 id="correspcontext">correspContext/ref</h2>
                            
-                           <p id="d19e1680">Innerhalb von <code>correspContext</code> finden sich drei Arten von
+                           <p id="d19e1666">Innerhalb von <code>correspContext</code> finden sich drei Arten von
                               <code>ref</code>-Elementen mit dem Attribut <code>@type</code>. </p>
                            
                            <ul>
@@ -1647,7 +1633,7 @@
                               <li>withinCorrespondence </li>
                               </ul>
                            
-                           <p id="d19e1698">Die Angabe »belongsToCorrespondence« ermöglicht es, auch Briefe Dritter
+                           <p id="d19e1684">Die Angabe »belongsToCorrespondence« ermöglicht es, auch Briefe Dritter
                               über das Attribut <code>@target</code> bestimmten Korrespondenzen
                               zuzuordnen, etwa wenn Gertrud Rung für Georg Brandes einen Brief
                               geschrieben hat, so dass dieser auch der Korrespondenz mit Brandes
@@ -1657,37 +1643,37 @@
                               innerhalb aller edierten Briefe (»withinCollection«) oder innerhalb
                               einer Korrespondenz (»withinCorrespondence«) zu erlauben. </p>
                            
-                           <div id="d19e1707">
+                           <div id="d19e1693">
                               
-                              <p id="d19e1709">Beispiel: </p>
+                              <p id="d19e1695">Beispiel: </p>
                               
-                              <p id="d19e1711"><code>&lt;ref type="belongsToCorrespondence"
+                              <p id="d19e1697"><code>&lt;ref type="belongsToCorrespondence"
                                     target="#pmb10992"&gt;Brandes, Georg&lt;/ref&gt; </code></p>
                               
-                              <p id="d19e1714"><code>&lt;ref subtype="previous_letter" type="withinCollection"
+                              <p id="d19e1700"><code>&lt;ref subtype="previous_letter" type="withinCollection"
                                     target="L01778"&gt;Schnitzler, Schnitzler an Beer-Hofmann,
                                     Beer-Hofmann, 26. 6. 1908&lt;/ref&gt; </code></p>
                               
-                              <p id="d19e1717"><code>&lt;ref subtype="next_letter" type="withinCollection"
+                              <p id="d19e1703"><code>&lt;ref subtype="next_letter" type="withinCollection"
                                     target="L01780"&gt;Schnitzler, Schnitzler an Bahr, 6. 7.
                                     1908&lt;/ref&gt;</code></p>
                               
-                              <p id="d19e1720"><code>&lt;ref subtype="previous_letter" type="withinCorrespondence"
+                              <p id="d19e1706"><code>&lt;ref subtype="previous_letter" type="withinCorrespondence"
                                     target="L01777"&gt;Brandes an Schnitzler, [25. 6.
                                     1908]&lt;/ref&gt; </code></p>
                               
-                              <p id="d19e1724"><code>&lt;ref subtype="next_letter" type="withinCorrespondence"
+                              <p id="d19e1710"><code>&lt;ref subtype="next_letter" type="withinCorrespondence"
                                     target="L01991"&gt;Brandes an Schnitzler, 18. 12.
                                     1910&lt;/ref&gt; </code></p>
                               </div>
                            </div>
                         </div>
                      
-                     <div id="d19e1731">
+                     <div id="d19e1717">
                         
                         <h2 id="revisiondesc">revisionDesc</h2>
                         
-                        <p id="d19e1736">Enthält Informationen über den Bearbeitungszustand. Ab dem Moment, wo das
+                        <p id="d19e1722">Enthält Informationen über den Bearbeitungszustand. Ab dem Moment, wo das
                            Attribut <code>@status="approved"</code> gesetzt ist, ist die Bearbeitung
                            abgeschlossen. Darunter finden sich verschiedene
                            <code>change</code>-Elemente. Die vorkommenden Kürzel sind folgendermaßen
@@ -1698,11 +1684,11 @@
                         </div>
                      </div>
                   
-                  <div id="d19e1756">
+                  <div id="d19e1742">
                      
                      <h2 id="facsimile">facsimile</h2>
                      
-                     <p id="d19e1761">Zwar findet sich in vielen Dokumenten das Element <code>facsimile</code> mit den
+                     <p id="d19e1747">Zwar findet sich in vielen Dokumenten das Element <code>facsimile</code> mit den
                         Kind-Elementen <code>graphic</code>, doch wurde dieses nicht separat überprüft.
                         Bei der Erfassung wurden hier oft alle relevanten Bilddateien vermerkt, um sie
                         dann in Folge in das Seitenelement einzutragen. Wir empfehlen, die Werte aus
@@ -1711,31 +1697,31 @@
                         diese beim originalen Brief unmittelbar hinzugefügt im Archiv liegen.</p>
                      </div>
                   
-                  <div id="d19e1771">
+                  <div id="d19e1757">
                      
                      <h2 id="text">text</h2>
                      
-                     <p id="d19e1776">Das Attribut <code>@type</code> ist zwar vorhanden, aber durch die Angaben von
+                     <p id="d19e1762">Das Attribut <code>@type</code> ist zwar vorhanden, aber durch die Angaben von
                         <code>physDesc/objectDesc</code> weitgehend obsolet. Es spielt nur in den
                         wenigen Fällen eine Rolle, bei denen kein Archivzeuge überliefert ist. </p>
                      </div>
                   
-                  <div id="d19e1784">
+                  <div id="d19e1770">
                      
                      <h2 id="body">body</h2>
                      
-                     <p id="d19e1789">Im Folgenden werden häufig verwendete Elemente aufgezählt. Zuerst werden jene
+                     <p id="d19e1775">Im Folgenden werden häufig verwendete Elemente aufgezählt. Zuerst werden jene
                         Elemente behandelt, die eine bestimmte Reihenfolge haben, danach folgt,
                         alphabetisch geordnet, eine allgemeine Liste. Ein paar wenige Elemente davon,
                         etwa Verweise auf Personen oder Seitenwechsel, können auch im Bereich von
                         <code>physDesc</code> zum Einsatz kommen, obgleich sie hier behandelt
                         werden. </p>
                      
-                     <div id="d19e1794">
+                     <div id="d19e1780">
                         
                         <h2 id="aufbau">Aufbau</h2>
                         
-                        <p id="d19e1799">Innerhalb von <code>body</code> sind <code>div</code>-Elemente von diesen
+                        <p id="d19e1785">Innerhalb von <code>body</code> sind <code>div</code>-Elemente von diesen
                            Typen erlaubt: </p>
                         
                         <ul>
@@ -1747,18 +1733,18 @@
                            <li><code>div[@type="image"] </code></li>
                            </ul>
                         
-                        <p id="d19e1818"><code>address</code> darf nur einmal vorkommen und muss an erster Stelle
+                        <p id="d19e1804"><code>address</code> darf nur einmal vorkommen und muss an erster Stelle
                            stehen. <code>writingSession</code>-Elemente kann es mehrere geben, diese
                            sind dann durch den Zähler <code>@n</code> zu unterscheiden.
                            <code>image</code> ist ein Erbe aus dem Vorprojekt Bahr/Schnitzler und
                            eigentlich durch die Aufnahme der Faksimile-Namen in <code>pb/@facs</code>
                            obsolet. </p>
                         
-                        <div id="d19e1830">
+                        <div id="d19e1816">
                            
                            <h2 id="div_address">div[@type="address"]</h2>
                            
-                           <p id="d19e1835">Enthält Absende- und Empfangsadresse, jeweils in einem Element
+                           <p id="d19e1821">Enthält Absende- und Empfangsadresse, jeweils in einem Element
                               <code>address</code> mit mehreren <code>addrLine</code>-Elementen.
                               Eine weitere Unterscheidung, wie sie die TEI erlauben würde, wird
                               derzeit nicht vorgenommen. Bislang können folgende (impliziten) Annahmen
@@ -1766,7 +1752,7 @@
                               ist, ist dies die Empfangsadresse. Wenn es zwei sind, ist die erste die
                               Absende-, die zweite die Empfangsadresse. </p>
                            
-                           <p id="d19e1844">Entsprechend den Editionsprinzipien werden Unterstreichungen in den
+                           <p id="d19e1830">Entsprechend den Editionsprinzipien werden Unterstreichungen in den
                               Adressen nicht aufgenommen, da ansonsten auch jene der Vordrucke
                               berücksichtigt werden müssten. Ausgezeichnet wird aber mit
                               <code>hi[@rend="latintype"]</code>, wenn Teile der Adressierung in
@@ -1774,11 +1760,11 @@
                               hingegen in <code>handNote</code> vermerkt. </p>
                            </div>
                         
-                        <div id="d19e1853">
+                        <div id="d19e1839">
                            
                            <h2 id="div_writingsession">div[@type="writingSession" @n="1"]</h2>
                            
-                           <p id="d19e1858">Dies ist der wichtigste Bereich und eigentlich immer vorhanden.
+                           <p id="d19e1844">Dies ist der wichtigste Bereich und eigentlich immer vorhanden.
                               Üblicherweise ist nur eine »Schreibsitzung« ausgewiesen. Das trifft
                               nicht zu, wenn aus dem Inhalt klar hervorgeht, dass der Verfasser oder
                               die Verfasserin zu einem späteren Zeitpunkt einen Neuansatz vorgenommen
@@ -1787,7 +1773,7 @@
                               fließend, aber wenn zwei Schlussformeln (<code>closer</code>) vorhanden
                               sind, dürften auch zwei <code>div</code>-Bereiche vorliegen. </p>
                            
-                           <p id="d19e1865">Innerhalb eines solchen <code>div</code>s können sich folgende Teile
+                           <p id="d19e1851">Innerhalb eines solchen <code>div</code>s können sich folgende Teile
                               finden, wobei sie nicht verpflichtend sind, nur die Reihenfolge ist
                               weitgehend fixiert: </p>
                            
@@ -1806,11 +1792,11 @@
                                  </li>
                               </ul>
                            
-                           <div id="d19e1889">
+                           <div id="d19e1875">
                               
                               <h2 id="opener">opener</h2>
                               
-                              <p id="d19e1894">Enthält dem eigentlichen Text vorausgehende Information. Das kann
+                              <p id="d19e1880">Enthält dem eigentlichen Text vorausgehende Information. Das kann
                                  sein: Briefkopf, Datumszeile, abgesetzte Begrüßungsformel. Bei
                                  Bildpostkartenmotiven findet sich hier auch – als gedruckt
                                  gekennzeichnet (<code>&lt;hi rend="pre-print"/&gt;</code>) – der
@@ -1818,7 +1804,7 @@
                                  gedruckter Titel vorhanden ist, über <code>&lt;supplied
                                     type="image-description"/&gt;</code>.) </p>
                               
-                              <p id="d19e1901">Folgende Kind-Elemente sind zulässig: </p>
+                              <p id="d19e1887">Folgende Kind-Elemente sind zulässig: </p>
                               
                               <ul>
                                  
@@ -1833,28 +1819,28 @@
                                  </ul>
                               </div>
                            
-                           <div id="d19e1920">
+                           <div id="d19e1906">
                               
                               <h2 id="closer">closer</h2>
                               
-                              <p id="d19e1925">Sofern eine abgegrenzte Schlussformel vorhanden ist, wird diese in
+                              <p id="d19e1911">Sofern eine abgegrenzte Schlussformel vorhanden ist, wird diese in
                                  das Element <code>closer</code> verpackt. Es hat vor allem
                                  <code>lb</code> und <code>signed</code> als Elemente. </p>
                               
-                              <div id="d19e1934">
+                              <div id="d19e1920">
                                  
                                  <h2 id="lb">lb</h2>
                                  
-                                 <p id="d19e1939">Obwohl nicht nur auf <code>closer</code> beschränkt, kommt es
+                                 <p id="d19e1925">Obwohl nicht nur auf <code>closer</code> beschränkt, kommt es
                                     hier am häufigsten zum Einsatz. Das Element ist leer und
                                     markiert einen Zeilenumbruch. </p>
                                  </div>
                               
-                              <div id="d19e1945">
+                              <div id="d19e1931">
                                  
                                  <h2 id="signed">signed</h2>
                                  
-                                 <p id="d19e1950">Dieses Element umfasst die Unterschrift einschließlich des
+                                 <p id="d19e1936">Dieses Element umfasst die Unterschrift einschließlich des
                                     folgenden Satzzeichens. Die Unterschriften sind soweit
                                     normalisiert als keine Schriftwechsel, Unter- oder
                                     Überstreichungen oder Schnörkel berücksichtigt werden.
@@ -1864,11 +1850,11 @@
                                  </div>
                               </div>
                            
-                           <div id="d19e1957">
+                           <div id="d19e1943">
                               
                               <h2 id="postscript">postscript</h2>
                               
-                              <p id="d19e1962">Der nach dem <code>closer</code> stehende Textteil wird in
+                              <p id="d19e1948">Der nach dem <code>closer</code> stehende Textteil wird in
                                  verschiedene Absätze (<code>p</code>) oder Datumszeilen
                                  (<code>dateline</code>) aufgeteilt. Direkt innerhalb von
                                  <code>postscript</code> ist kein Inhalt erlaubt. </p>
