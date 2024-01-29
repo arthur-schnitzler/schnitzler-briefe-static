@@ -265,19 +265,25 @@
     <xsl:template match="tei:typeDesc">
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:typeDesc/tei:p">
+    <xsl:template match="tei:typeDesc/tei:typeNote">
         <tr>
+            <th/>
             <xsl:choose>
-                <xsl:when test="not(preceding-sibling::tei:p)">
-                    <th>Typografie</th>
+                <xsl:when test="@medium = 'schreibmaschine'">
+                    <td>Schreibmaschine</td>
                 </xsl:when>
-                <xsl:otherwise>
-                    <th/>
-                </xsl:otherwise>
+                <xsl:when test="@medium = 'maschinell'">
+                    <td>maschinell</td>
+                </xsl:when>
+                <xsl:when test="@medium = 'druck'">
+                    <td>Druck</td>
+                </xsl:when>
+                <xsl:when test="@medium = 'anderes'">
+                    <td>
+                        <xsl:apply-templates select="child::tei:p"/>
+                    </td>
+                </xsl:when>
             </xsl:choose>
-            <td>
-                <xsl:apply-templates/>
-            </td>
         </tr>
     </xsl:template>
     <xsl:template match="tei:handDesc">
@@ -556,6 +562,19 @@
             <xsl:when test="$rend = 'rote_tinte'">
                 <xsl:text>mit roter Tinte </xsl:text>
             </xsl:when>
+        </xsl:choose>
+    </xsl:function>
+    <xsl:function name="mam:vorname-vor-nachname">
+        <xsl:param name="autorname"/>
+        <xsl:choose>
+            <xsl:when test="contains($autorname, ', ')">
+                <xsl:value-of select="substring-after($autorname, ', ')"/>
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="substring-before($autorname, ', ')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$autorname"/>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 </xsl:stylesheet>
