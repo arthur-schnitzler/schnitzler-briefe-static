@@ -372,32 +372,32 @@
             <xsl:when test="$entry/@medium = 'bleistift'">
                 <xsl:text>Bleistift</xsl:text>
             </xsl:when>
-            <xsl:when test="$entry/@medium = 'roter_buntstift'">
+            <xsl:when test="$entry/@medium = 'roter-buntstift'">
                 <xsl:text>roter Buntstift</xsl:text>
             </xsl:when>
-            <xsl:when test="$entry/@medium = 'blauer_buntstift'">
+            <xsl:when test="$entry/@medium = 'blauer-buntstift'">
                 <xsl:text>blauer Buntstift</xsl:text>
             </xsl:when>
-            <xsl:when test="$entry/@medium = 'gruener_buntstift'">
+            <xsl:when test="$entry/@medium = 'gruener-buntstift'">
                 <xsl:text>grüner Buntstift</xsl:text>
             </xsl:when>
-            <xsl:when test="$entry/@medium = 'schwarze_tinte'">
+            <xsl:when test="$entry/@medium = 'schwarze-tinte'">
                 <xsl:text>schwarze Tinte</xsl:text>
             </xsl:when>
-            <xsl:when test="$entry/@medium = 'blaue_tinte'">
+            <xsl:when test="$entry/@medium = 'blaue-tinte'">
                 <xsl:text>blaue Tinte</xsl:text>
             </xsl:when>
-            <xsl:when test="$entry/@medium = 'gruene_tinte'">
+            <xsl:when test="$entry/@medium = 'gruene-tinte'">
                 <xsl:text>grüne Tinte</xsl:text>
             </xsl:when>
-            <xsl:when test="$entry/@medium = 'rote_tinte'">
+            <xsl:when test="$entry/@medium = 'rote-tinte'">
                 <xsl:text>rote Tinte</xsl:text>
             </xsl:when>
             <xsl:when test="$entry/@medium = 'anderes'">
                 <xsl:text>anderes Schreibmittel</xsl:text>
             </xsl:when>
         </xsl:choose>
-        <xsl:if test="not($entry/@style = 'nicht_anzuwenden')">
+        <xsl:if test="not($entry/@style = 'nicht-anzuwenden')">
             <xsl:text>, </xsl:text>
         </xsl:if>
         <xsl:choose>
@@ -561,25 +561,25 @@
             <xsl:when test="$rend = 'bleistift'">
                 <xsl:text>mit Bleistift </xsl:text>
             </xsl:when>
-            <xsl:when test="$rend = 'roter_buntstift'">
+            <xsl:when test="$rend = 'roter-buntstift'">
                 <xsl:text>mit rotem Buntstift </xsl:text>
             </xsl:when>
-            <xsl:when test="$rend = 'blauer_buntstift'">
+            <xsl:when test="$rend = 'blauer-buntstift'">
                 <xsl:text>mit blauem Buntstift </xsl:text>
             </xsl:when>
-            <xsl:when test="$rend = 'gruener_buntstift'">
+            <xsl:when test="$rend = 'gruener-buntstift'">
                 <xsl:text>mit grünem Buntstift </xsl:text>
             </xsl:when>
-            <xsl:when test="$rend = 'schwarze_tinte'">
+            <xsl:when test="$rend = 'schwarze-tinte'">
                 <xsl:text>mit schwarzer Tinte </xsl:text>
             </xsl:when>
-            <xsl:when test="$rend = 'blaue_tinte'">
+            <xsl:when test="$rend = 'blaue-tinte'">
                 <xsl:text>mit blauer Tinte </xsl:text>
             </xsl:when>
-            <xsl:when test="$rend = 'gruene_tinte'">
+            <xsl:when test="$rend = 'gruene-tinte'">
                 <xsl:text>mit grüner Tinte </xsl:text>
             </xsl:when>
-            <xsl:when test="$rend = 'rote_tinte'">
+            <xsl:when test="$rend = 'rote-tinte'">
                 <xsl:text>mit roter Tinte </xsl:text>
             </xsl:when>
         </xsl:choose>
