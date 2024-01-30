@@ -262,12 +262,9 @@
             </xsl:choose>
         </tr>
     </xsl:template>
-    <xsl:template match="tei:typeDesc">
-        <xsl:apply-templates/>
-    </xsl:template>
     <xsl:template match="tei:typeDesc/tei:typeNote">
         <tr>
-            <th/>
+            <th>Typografie</th>
             <xsl:choose>
                 <xsl:when test="@medium = 'schreibmaschine'">
                     <td>Schreibmaschine</td>

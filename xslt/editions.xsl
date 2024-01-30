@@ -302,9 +302,9 @@
                                                   </td>
                                                   </tr>
                                                   <xsl:if
-                                                  test="tei:msDesc/tei:physDesc/tei:typeDesc">
+                                                  test="tei:msDesc/tei:physDesc/tei:typeDesc/tei:typeNote">
                                                   <xsl:apply-templates
-                                                  select="tei:msDesc/tei:physDesc/tei:typeDesc"/>
+                                                      select="tei:msDesc/tei:physDesc/tei:typeDesc/tei:typeNote"/>
                                                   </xsl:if>
                                                   <xsl:if
                                                   test="tei:msDesc/tei:physDesc/tei:handDesc">
