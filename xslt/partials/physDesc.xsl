@@ -524,7 +524,30 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:measure[@unit='zeichenanzahl']">
-        <xsl:value-of select="format-number(@quantity, '###.###')"/>
+        <xsl:variable name="string" select="@quantity" as="xs:string"/>
+        <xsl:variable name="laenge" select="string-length($string)" as="xs:integer"/>
+        <xsl:variable name="rest" select="$laenge mod 3" />
+        <xsl:choose>
+            <xsl:when test="$laenge &gt; 3">
+                <xsl:if test="$rest != 0">
+                    <xsl:value-of select="substring($string, 1, $rest)"/>
+                <xsl:text>.</xsl:text></xsl:if>
+                <xsl:variable name="uebrig" select="substring($string, $rest + 1, $laenge)"/>
+                <xsl:choose>
+                    <xsl:when test="string-length($uebrig) = 6">
+                        <xsl:value-of select="substring($uebrig, 1, 3)"/>
+                        <xsl:text>.</xsl:text>
+                        <xsl:value-of select="substring($uebrig, 4)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$uebrig"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="@quantity"/>
+            </xsl:otherwise>
+        </xsl:choose>
         <xsl:text>&#160;Zeichen</xsl:text>
     </xsl:template>
     <xsl:template match="tei:support">
