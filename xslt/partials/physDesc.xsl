@@ -264,7 +264,7 @@
     </xsl:template>
     <xsl:template match="tei:typeDesc/tei:typeNote">
         <tr>
-            <th>Typografie</th>
+            <th>Herstellung</th>
             <xsl:choose>
                 <xsl:when test="@medium = 'schreibmaschine'">
                     <td>Schreibmaschine</td>
