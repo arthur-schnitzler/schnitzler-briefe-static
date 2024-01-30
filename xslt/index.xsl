@@ -64,8 +64,8 @@
                                 und korrigiert.</p>
                             <p class="mt-3" style="padding-bottom: 50px;">Seit 2022 wurden zwei
                                 große Korrespondenzen neu aufgenommen: Die 44. Korrespondenz, jene
-                                mit Paul Goldmann, mit rund 560 Briefen. Von der 45. Korrespondenz,
-                                dem Austausch mit Felix Salten, liegen ca. 430 Briefe vor. (<a
+                                mit Paul Goldmann (rund 560 Briefe), und die 45. Korrespondenz,
+                                jene mit Felix Salten (ca. 430 Briefe). (<a
                                     href="status.html">Projektstand</a>)</p>
                             <a href="L00001.html">
                                 <button class="btn btn-round">Lesen</button>
