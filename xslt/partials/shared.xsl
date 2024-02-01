@@ -57,8 +57,18 @@
     </xsl:template>
     <xsl:template match="tei:graphic">
         <div style="width:100%; text-align:center; padding-bottom: 1rem;">
+                
             <img>
                 <xsl:attribute name="src">
+                    <!--<xsl:variable name="iiif-ext" select="'.jp2/full/,200/0/default.jpg'"/> -->
+                    <xsl:variable name="iiif-ext"
+                        select="'.jp2/full/600,/0/default.jpg'"/>
+                    <xsl:variable name="iiif-domain"
+                        select="'https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Bilder/'"/>
+                    <xsl:variable name="facs_item" select="@url"/>
+                    <xsl:value-of select="concat($iiif-domain, $facs_item, $iiif-ext)"/>
+                </xsl:attribute>
+                <xsl:attribute name="alt">
                     <xsl:choose>
                         <xsl:when
                             test="ends-with(@url, '.png') or ends-with(@url, '.jpg') or ends-with(@url, '.jp2')  or ends-with(@url, '.gif')">
@@ -70,7 +80,7 @@
                     </xsl:choose>
                 </xsl:attribute>
                 <xsl:attribute name="width">
-                    <xsl:text>50%</xsl:text>
+                    <xsl:text>75%</xsl:text>
                 </xsl:attribute>
             </img>
         </div>
