@@ -53,7 +53,7 @@
                                                 Als Aufsichtsorgan besteht der Akademierat. Siehe mehr dazu unter
                                                 <a href="https://www.oeaw.ac.at/oeaw/gremien/akademierat/">https://www.oeaw.ac.at/oeaw/gremien/akademierat/</a></p>
                                 <h3>Grundlegende Richtung:</h3>
-                                <p>Die Website gitb Zugang zur beruflichen Korrespondenz von Arthur Schnitzler (1862–1931).</p>
+                                <p>Die Website gibt Zugang zur beruflichen Korrespondenz von Arthur Schnitzler (1862–1931).</p>
                                 <h3>Haftungsausschluss:</h3>
                                 <p>Die Österreichische Akademie der Wissenschaften übernimmt keinerlei Gewähr für die Aktualität,
                                     Korrektheit, Vollständigkeit oder Qualität der bereitgestellten Informationen.</p>
