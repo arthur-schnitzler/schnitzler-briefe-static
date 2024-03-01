@@ -82,8 +82,13 @@ are but links to pdfs etc. an URL can be added
     </item>
     <item>
         <abbr>bahr-textverzeichnis</abbr>
-        <caption>Bahr</caption>
+        <caption>Bahr Textverzeichnis</caption>
         <color>#8E4162</color>
+    </item>
+    <item>
+        <abbr>bahr-TSN</abbr>
+        <caption>Bahr Tagebücher</caption>
+        <color>#ce0000</color>
     </item>
     <item>
         <abbr>legalkraus</abbr>
