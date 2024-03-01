@@ -75,15 +75,19 @@
                                     <xsl:otherwise>
                                         <xsl:choose>
                                             <xsl:when
-                                                test="@type = 'person_geburtsname-vorname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname']">
+                                                test="@type = 'person_geburtsname_vorname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname']">
                                                 <xsl:text>geboren </xsl:text>
                                                 <xsl:value-of
                                                     select="concat(., ' ', $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname'][1])"
                                                 />
                                             </xsl:when>
+                                            <xsl:when test="@type = 'person_geburtsname_vorname'">
+                                <xsl:text>geboren </xsl:text>
+                                <xsl:value-of select="concat(., ' ', $lemma-name//tei:surname)"/>
+                            </xsl:when>
                                             <xsl:when
-                                                test="@type = 'person_geburtsname-nachname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_vorname'][1]"/>
-                                            <xsl:when test="@type = 'person_geburtsname-nachname'">
+                                                test="@type = 'person_geburtsname_nachname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_vorname'][1]"/>
+                                            <xsl:when test="@type = 'person_geburtsname_nachname'">
                                                 <xsl:text>geboren </xsl:text>
                                                 <xsl:value-of select="."/>
                                             </xsl:when>
@@ -198,15 +202,15 @@
                                 <xsl:otherwise>
                                     <xsl:choose>
                                         <xsl:when
-                                            test="@type = 'person_geburtsname-vorname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname']">
+                                            test="@type = 'person_geburtsname_vorname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname']">
                                             <xsl:text>geboren </xsl:text>
                                             <xsl:value-of
                                                 select="concat(., ' ', $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname'][1])"
                                             />
                                         </xsl:when>
                                         <xsl:when
-                                            test="@type = 'person_geburtsname-nachname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_vorname'][1]"/>
-                                        <xsl:when test="@type = 'person_geburtsname-nachname'">
+                                            test="@type = 'person_geburtsname_nachname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_vorname'][1]"/>
+                                        <xsl:when test="@type = 'person_geburtsname_nachname'">
                                             <xsl:text>geboren </xsl:text>
                                             <xsl:value-of select="."/>
                                         </xsl:when>
