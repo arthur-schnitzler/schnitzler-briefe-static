@@ -712,7 +712,7 @@
                                     <xsl:value-of select="."/>
                                 </li>
                             </xsl:for-each>
-                            <xsl:for-each select="tei:title[starts-with(@type, 'werk_link')]">
+                            <xsl:for-each select="tei:title[@type = 'werk_link' or @type='anno']">
                                 <li>
                                     <a>
                                         <xsl:attribute name="href">
