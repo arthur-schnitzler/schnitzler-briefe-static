@@ -5,7 +5,6 @@
     xmlns:mam="whatever" version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
-
     <xsl:import href="./partials/shared.xsl"/>
     <xsl:import href="./partials/refs.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
@@ -872,9 +871,18 @@
     </xsl:template>
     <!-- Regeln für Elemente -->
     <xsl:template match="tei:address">
-        <div class="column">
-            <xsl:apply-templates/>
-        </div>
+        <xsl:choose>
+            <xsl:when test="preceding-sibling::tei:address">
+                <div class="column" style="margin-top: 30px;">
+                    <xsl:apply-templates/>
+                </div>
+            </xsl:when>
+            <xsl:otherwise>
+                <div class="column">
+                    <xsl:apply-templates/>
+                </div>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:addrLine">
         <div class="addrLine">
@@ -952,7 +960,6 @@
             <xsl:text> Zeilen unleserlich] </xsl:text>
         </div>
     </xsl:template>
-
     <xsl:template match="tei:gap[@reason = 'outOfScope']">
         <span class="outOfScope">[…]</span>
     </xsl:template>
@@ -1033,9 +1040,7 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="ancestor::tei:hi[@rend = 'pre-print'][ancestor::tei:note]">
-
                         <xsl:text>pre-print</xsl:text>
-
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:text>reference-black</xsl:text>
@@ -1060,9 +1065,7 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="ancestor::tei:hi[@rend = 'pre-print'][ancestor::tei:note]">
-
                         <xsl:text>pre-print</xsl:text>
-
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:text>reference-black</xsl:text>
@@ -1232,7 +1235,6 @@
         match="text()[matches(., '^\s+') and preceding-sibling::node()[1][self::tei:space[@unit = 'chars' and @quantity = '1']]]">
         <xsl:value-of select="replace(., '^\s+', '')"/>
     </xsl:template>
-
     <xsl:template match="tei:note" mode="verschachtelteA"/>
     <xsl:template match="tei:hi" mode="verschachtelteA">
         <xsl:element name="span">
