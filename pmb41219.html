@@ -1,10 +1,10 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:mam="whatever">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:foo="whatever">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
    <meta name="mobile-web-app-capable" content="yes" />
    <meta name="apple-mobile-web-app-capable" content="yes" />
-   <meta name="apple-mobile-web-app-title" content="Dolly Henriette Julia Landsberger" />
+   <meta name="apple-mobile-web-app-title" content="Teatro Alfieri" />
    <meta name="msapplication-TileColor" content="#ffffff" />
    <meta name="msapplication-TileImage" content="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" />
    <link rel="icon" type="image/svg+xml" href="https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg" sizes="any" />
@@ -96,18 +96,35 @@
          <div class="container-fluid">
             <div class="card">
                <div class="card-header">
-                  <h2 align="center">Dolly Henriette Julia Landsberger <span class="lebensdaten">(11. 11. 1892 Berlin – 15. 4. 1923)</span></h2>
+                  <h1 align="center">Teatro Alfieri</h1>
                </div>
-               <div class="card-body-index">
-                  <div id="mentions">
-                     <p class="buttonreihe"><a href="https://pmb.acdh.oeaw.ac.at/apis/entities/entity/person/148000/detail" target="_blank"><span class="badge rounded-pill" style="background-color: #9B5F98; color: white; margin-top: 4px;">PMB</span></a> </p>
+               <div class="card-body">
+                  <div xmlns:mam="whatever" class="container-fluid">
+                     <div class="card-body-index">
+                        <div id="mentions">
+                           <p class="buttonreihe"><a href="https://it.wikipedia.org/wiki/" target="_blank"><span class="badge rounded-pill" style="background-color: #0645ad; color: white; margin-top: 4px;">it:Wikipedia</span></a> <a href="https://pmb.acdh.oeaw.ac.at/apis/entities/entity/place/41219/detail" target="_blank"><span class="badge rounded-pill" style="background-color: #9B5F98; color: white; margin-top: 4px;">PMB</span></a> </p>
+                        </div>
+                        <div id="mapid" style="height: 400px; width:100%; clear: both;"></div>
+                        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""></link><script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script><script>
+                        
+                        var mymap = L.map('mapid').setView([50, 12], 5);
+                        
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data &amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+                        maxZoom: 18,
+                        zIndex: 1
+                        }).addTo(mymap);
+                        45.06993, 7.67713
+                        L.marker([45.06993, 7.67713]).addTo(mymap)
+                        .bindPopup("<b>Teatro Alfieri</b>").openPopup();
+                    </script><div class="card"></div>
+                        <div id="mentions" class="mt-2"><span class="infodesc mr-2">
+                              <ul>
+                                 <legend>Erwähnungen</legend>
+                                 <li>Arthur Schnitzler an Paul Goldmann, 1. 2. 1911 <a href="L03521.html"><i class="fas fa-external-link-alt"></i></a></li>
+                              </ul></span></div>
+                     </div>
                   </div>
-                  <div class="WikimediaContainer"></div>
-                  <div class="werke"></div>
-                  <div id="mentions" class="mt-2"><span class="infodesc mr-2">
-                        <ul>
-                           <legend>Erwähnungen</legend>
-                        </ul></span></div>
                </div>
             </div>
          </div>
