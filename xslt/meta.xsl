@@ -676,4 +676,18 @@
             <xsl:apply-templates/>
         </code>
     </xsl:template>
+    
+    <xsl:template match="tei:figure">
+        <xsl:element name="div">
+            <xsl:attribute name="class">
+                <xsl:text>d-flex align-items-center</xsl:text>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    
+    <xsl:template match="tei:graphic[@url]">
+        <img src="{@url}" class="mx-auto" width="400px"/>
+    </xsl:template>
 </xsl:stylesheet>
