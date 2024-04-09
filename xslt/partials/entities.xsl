@@ -40,11 +40,10 @@
                     </p>
                 </xsl:if>
             </div>
-            <div class="WikimediaContainer">
+            
             <xsl:choose>
             <xsl:when test="tei:figure/tei:graphic/@url">
-                
-                    
+                <div class="WikimediaContainer">
                     <!-- Left div -->
                     <div class="WikimediaLeft-div">
                         
@@ -175,8 +174,10 @@
                         
                     </xsl:element>
                 </div>
+                </div>
             </xsl:when>
                 <xsl:otherwise>
+                    <div>
                     <xsl:for-each select="$namensformen/descendant::tei:persName">
                         <p class="personenname">
                             <xsl:choose>
@@ -286,10 +287,10 @@
                             </xsl:if>
                         </p>
                     </xsl:if>
+                    </div>
                 </xsl:otherwise>
             </xsl:choose>
                 
-        </div>
                 
             
             <div class="werke">
