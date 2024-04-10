@@ -637,10 +637,11 @@ low resolution
 
 .addrLine {
     line-height: 1.5;
+    font-size: smaller;
 }
 
 .address-div {
-margin-bottom: 3rem;
+    margin-bottom: 3rem;
 }
 
 .add-zeichen {

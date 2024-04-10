@@ -885,7 +885,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:addrLine">
-        <div class="addrLine">
+        <div class="editionText addrLine">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
