@@ -49,7 +49,7 @@ const calendar = new Calendar('#calendar', {
       html += "<div class='modal-header'>";
       html += "<h5 class='modal-title' id='modalLabel'>Links</h5>";
       html += "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
-      html += "</div><div class='modal-body'>";
+      html += "</div><div class='modal-body'><ul>";
       let numbersTitlesAndIds = new Array();
       for (let i = 0; i < entries.length; i++) {
         let linkTitle = entries[i].name;
@@ -70,19 +70,59 @@ const calendar = new Calendar('#calendar', {
         return 0;
       });
       for (let k = 0; k < numbersTitlesAndIds.length; k++) {
-        html += "<div class='indent'><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></div>";
+        html += "<li><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></li>";
       }
-      html += "</div>";
+      html += "</ul></div>";
       html += "<div class='modal-footer'>";
       html += "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Schließen</button>";
       html += "</div></div></div></div>";
       $('#dialogForLinks').remove();
       $('#loadModal').append(html);
-      $('#dialogForLinks').modal('show');
-
+      $('#dialogForLinks').modal('show');if (entries.length > 1) {
+    let html = "<div class='modal fade' id='dialogForLinks' tabindex='-1' aria-labelledby='modalLabel' aria-hidden='true'>";
+    html += "<div class='modal-dialog' role='document'>";
+    html += "<div class='modal-content'>";
+    html += "<div class='modal-header'>";
+    html += "<h5 class='modal-title' id='modalLabel'>Links</h5>";
+    html += "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
+    html += "</div><div class='modal-body'>";
+    html += "<ul>"; // Öffnen der ungeordneten Liste
+    let numbersTitlesAndIds = new Array();
+    for (let i = 0; i < entries.length; i++) {
+        let linkTitle = entries[i].name;
+        let linkId = entries[i].linkId;
+        let numberInSeriesOfLetters = entries[i].tageszaehler;
+        numbersTitlesAndIds.push({ 'i': i, 'position': numberInSeriesOfLetters, 'linkTitle': linkTitle, 'id': linkId });
     }
-    else { window.location = entries.map(entry => entry.linkId).join(); }
-  },
+
+    numbersTitlesAndIds.sort(function (a, b) {
+        let positionOne = parseInt(a.position);
+        let positionTwo = parseInt(b.position);
+        if (positionOne < positionTwo) {
+            return -1;
+        }
+        if (positionOne > positionTwo) {
+            return 1;
+        }
+        return 0;
+    });
+
+    // Durchlaufen der sortierten Liste und Hinzufügen der Einträge als <li>
+    for (let i = 0; i < numbersTitlesAndIds.length; i++) {
+        html += "<li><a href='" + numbersTitlesAndIds[i].id + "'>" + numbersTitlesAndIds[i].linkTitle + "</a></li>";
+    }
+
+    html += "</ul>"; // Schließen der ungeordneten Liste
+    html += "</div>"; // Schließen des modal-body Divs
+    html += "<div class='modal-footer'>";
+    html += "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Schließen</button>";
+    html += "</div></div></div></div>"; // Schließen der modal-content, modal-dialog und modal Divs
+    $('#dialogForLinks').remove();
+    $('#loadModal').append(html);
+    $('#dialogForLinks').modal('show');
+}
+else { window.location = entries.map(entry => entry.linkId).join(); }
+}},
   renderEnd: function (e) {
     const buttons = document.querySelectorAll(".yearbtn");
     for (var i = 0; i < buttons.length; i++) {
