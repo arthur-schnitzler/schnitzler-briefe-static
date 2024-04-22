@@ -18,6 +18,9 @@ var data = calendarData.map(r =>
   color: '#A63437'
 })).filter(r => r.startDate.getFullYear() === 1890);
 
+
+
+
 years = Array.from(new Set(calendarData.map(getYear))).sort();
 var yearsTable = document.getElementById('years-table');
 for (var i = 0; i <= years.length; i++) {
@@ -46,7 +49,7 @@ const calendar = new Calendar('#calendar', {
       html += "<div class='modal-header'>";
       html += "<h5 class='modal-title' id='modalLabel'>Links</h5>";
       html += "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
-      html += "</div><div class='modal-body'><ul>";
+      html += "</div><div class='modal-body'>";
       let numbersTitlesAndIds = new Array();
       for (let i = 0; i < entries.length; i++) {
         let linkTitle = entries[i].name;
@@ -67,9 +70,9 @@ const calendar = new Calendar('#calendar', {
         return 0;
       });
       for (let k = 0; k < numbersTitlesAndIds.length; k++) {
-        html += "<li><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></li>";
+        html += "<div class='indent'><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></div>";
       }
-      html += "</ul></div>";
+      html += "</div>";
       html += "<div class='modal-footer'>";
       html += "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Schließen</button>";
       html += "</div></div></div></div>";
