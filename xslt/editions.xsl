@@ -1321,8 +1321,15 @@
         </xsl:variable>
         <span class="handschriftlich">
             <xsl:text>[handschriftlich </xsl:text>
+            <span class="persons badge-item">
+            <xsl:element name="a">
+                <xsl:attribute name="href">
+                    <xsl:value-of select="replace(@scribe, '#', '')"/>
+                </xsl:attribute>
             <xsl:value-of
                 select="mam:vorname-vor-nachname(ancestor::tei:TEI/descendant::tei:correspDesc//tei:persName[@ref = $scribe])"/>
+            </xsl:element>
+            </span>
             <xsl:text>:] </xsl:text>
         </span>
     </xsl:template>
