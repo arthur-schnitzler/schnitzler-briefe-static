@@ -699,10 +699,28 @@
        <xsl:choose>
            <xsl:when test="ancestor::tei:TEI/@xml:id='Kooperationen'">
                <img src="{@url}" class="mx-auto" style="width: 400px"/>
-               
            </xsl:when>
            <xsl:otherwise>
-               <img src="{@url}" class="mx-auto" style="width: 100%; max-width=100% " />
+               <xsl:variable name="modalName" as="xs:string">
+                   <xsl:choose>
+                       <xsl:when test="string-length(tokenize(@url, '/')[last()])=0">
+                           <xsl:value-of select="substring-before(tokenize(@url, '/')[last()-1], '.')"/>
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:value-of select="substring-before(tokenize(@url, '/')[last()], '.')"/>
+                       </xsl:otherwise>
+                   </xsl:choose>
+               </xsl:variable>
+               <img src="{@url}" class="img-fluid clickable-image" data-bs-toggle="modal" data-bs-target="#{$modalName}" style="width: 100%; max-width=100% " />
+               <div class="modal fade" id="{$modalName}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                   <div class="modal-dialog modal-xl">
+                       <div class="modal-content">
+                           <div class="modal-body">
+                               <img src="{@url}" class="img-fluid" alt="Full Screen Image"/>
+                           </div>
+                       </div>
+                   </div>
+               </div>
            </xsl:otherwise>
        </xsl:choose>
         
