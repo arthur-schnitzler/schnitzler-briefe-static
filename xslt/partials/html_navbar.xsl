@@ -34,6 +34,9 @@
                                     <a class="nav-link" href="ansichten.html">Ansichten</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="statistiken.html">Statistiken</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="danksagung.html">Danksagung</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">

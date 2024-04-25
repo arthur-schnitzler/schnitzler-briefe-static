@@ -160,6 +160,14 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    <xsl:template match="tei:caption">
+        <xsl:element name="figcaption">
+            <xsl:attribute name="class">
+                <xsl:apply-templates/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
     <xsl:template match="tei:table">
         <xsl:element name="table">
             <xsl:if test="@xml:id">
@@ -678,7 +686,7 @@
     </xsl:template>
     
     <xsl:template match="tei:figure">
-        <xsl:element name="div">
+        <xsl:element name="figure">
             <xsl:attribute name="class">
                 <xsl:text>d-flex align-items-center</xsl:text>
             </xsl:attribute>
@@ -688,6 +696,15 @@
     
     
     <xsl:template match="tei:graphic[@url]">
-        <img src="{@url}" class="mx-auto" width="400px"/>
+       <xsl:choose>
+           <xsl:when test="ancestor::tei:TEI/@xml:id='Kooperationen'">
+               <img src="{@url}" class="mx-auto" style="width: 400px"/>
+               
+           </xsl:when>
+           <xsl:otherwise>
+               <img src="{@url}" class="mx-auto" style="width: 100%; max-width=100% " />
+           </xsl:otherwise>
+       </xsl:choose>
+        
     </xsl:template>
 </xsl:stylesheet>

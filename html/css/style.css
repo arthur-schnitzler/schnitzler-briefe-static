@@ -1061,3 +1061,22 @@ legend {float: none;}
       padding: 10px;
       text-align:right;
     }
+    
+    figure {
+  border: none;
+  display: flex;
+  flex-flow: column;
+  padding: 0px;
+  margin: auto;
+}
+
+
+    
+    
+    figcaption {
+  background-color: white;
+  color: black;
+  font: italic smaller sans-serif;
+  padding: 3px;
+  text-align: center;
+}
