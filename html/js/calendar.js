@@ -18,9 +18,6 @@ var data = calendarData.map(r =>
   color: '#A63437'
 })).filter(r => r.startDate.getFullYear() === 1890);
 
-
-
-
 years = Array.from(new Set(calendarData.map(getYear))).sort();
 var yearsTable = document.getElementById('years-table');
 for (var i = 0; i <= years.length; i++) {
