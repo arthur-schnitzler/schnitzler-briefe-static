@@ -298,7 +298,7 @@
                     <ul class="dashed">
                         <legend>Werke</legend>
                         <xsl:for-each select="key('authorwork-lookup', $author-ref, $works)">
-                            <xsl:sort select="descendant::tei:title[1]"/>
+                            <xsl:sort select="descendant::tei:date[1]"/>
                             <li>
                                 <xsl:if test="@role = 'editor' or @role = 'hat-herausgegeben'">
                                     <xsl:text> (Herausgabe)</xsl:text>
