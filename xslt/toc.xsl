@@ -69,7 +69,7 @@
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                  select="concat(replace(@target, '#pmb', 'toc_'), '.html')"
+                                                      select="concat(replace(@target, 'correspondence_', 'toc_'), '.html')"
                                                   />
                                                   </xsl:attribute>
                                                   <xsl:value-of select="."/>
