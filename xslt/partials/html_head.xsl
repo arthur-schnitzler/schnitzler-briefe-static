@@ -32,7 +32,7 @@
         <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png"/>
         <link rel="profile" href="http://gmpg.org/xfn/11"/>
-        <title>schnitzler-briefe</title>
+        <title><xsl:value-of select="$html_title"/></title>
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
             integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
