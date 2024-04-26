@@ -1,0 +1,8 @@
+[flake8]
+ignore = D203 W504 E722
+max-line-length = 120
+exclude =
+    .git,
+    .tox,
+    env
+    venv
