@@ -35,35 +35,25 @@ search.addWidgets([
     }),
 
     instantsearch.widgets.hits({
-        container: '#hits',
-        templates: {
-          empty: 'Keine Ergebnisse',
-          item: `
-              <h4><a href="{{ id }}.html">{{ title }}</a></h4>
-              <p>{{#helpers.snippet}}{ "attribute": "full_text" }{{/helpers.snippet}}</p>
-              <h5><span class="badge bg-warning">{{ project }}</span></h5>
-              <div>
-              {{#persons}}
-              <span class="badge bg-primary">{{ . }}</span>
-              {{/persons}}
-              </div>
-              {{#works}}
-              <span class="badge bg-success">{{ . }}</span>
-              {{/works}}
-              <div>
-              {{#places}}
-              <span class="badge bg-info">{{ . }}</span>
-              {{/places}}
-              </div>
-              <div>
-              {{#orgs}}
-              <span class="badge bg-warning">{{ . }}</span>
-              {{/orgs}}
-              </div>
-              </div>
-
-          `
-      }
+      container: "#hits",
+      cssClasses: {
+        item: "w-100"
+      },
+      templates: {
+        empty: "Keine Resultate für <q>{{ query }}</q>",
+        item(hit, { html, components }) {
+          return html` 
+          <h3><a href="${hit.id}.html">${hit.title}</a></h3>
+          <p>${hit._snippetResult.full_text.matchedWords.length > 0 ? components.Snippet({ hit, attribute: 'full_text' }) : ''}</p>
+          ${hit.persons.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1 bg-warning">${item.label}</span></a>`)}
+          <br />
+          ${hit.places.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1 bg-info">${item.label}</span></a>`)}
+          <br />
+          ${hit.works.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1 bg-success">${item.label}</span></a>`)}
+          <br />`
+          ;
+        },
+      },
     }),
 
     instantsearch.widgets.stats({
@@ -98,11 +88,50 @@ search.addWidgets([
       submit: 'btn'
     }
   }),
+  instantsearch.widgets.refinementList({
+    container: "#refinement-list-receiver",
+    attribute: "receiver.label",
+    searchable: true,
+    showMore: true,
+    showMoreLimit: 50,
+    searchablePlaceholder: "Suche",
+    cssClasses: {
+      searchableInput: "form-control form-control-sm mb-2 border-light-2",
+      searchableSubmit: "d-none",
+      searchableReset: "d-none",
+      showMore: "btn btn-secondary btn-sm align-content-center",
+      list: "list-unstyled",
+      count: "badge ml-2 bg-info",
+      label: "d-flex align-items-center text-capitalize",
+      checkbox: "form-check",
+    },
+  }),
+
+  instantsearch.widgets.refinementList({
+    container: "#refinement-list-sender",
+    attribute: "sender.label",
+    searchable: true,
+    showMore: true,
+    showMoreLimit: 50,
+    searchablePlaceholder: "Suche",
+    cssClasses: {
+      searchableInput: "form-control form-control-sm mb-2 border-light-2",
+      searchableSubmit: "d-none",
+      searchableReset: "d-none",
+      showMore: "btn btn-secondary btn-sm align-content-center",
+      list: "list-unstyled",
+      count: "badge ml-2 bg-info",
+      label: "d-flex align-items-center text-capitalize",
+      checkbox: "form-check",
+    },
+  }),
 
     instantsearch.widgets.refinementList({
         container: '#refinement-list-places',
-        attribute: 'places',
+        attribute: 'places.label',
         searchable: true,
+        showMore: true,
+        showMoreLimit: 50,
         searchablePlaceholder: 'Suche',
         cssClasses: {
           searchableInput: 'form-control form-control-sm mb-2 border-light-2',
@@ -118,8 +147,10 @@ search.addWidgets([
 
     instantsearch.widgets.refinementList({
         container: '#refinement-list-persons',
-        attribute: 'persons',
+        attribute: 'persons.label',
         searchable: true,
+        showMore: true,
+        showMoreLimit: 50,
         searchablePlaceholder: 'Suche',
         cssClasses: {
           searchableInput: 'form-control form-control-sm mb-2 border-light-2',
@@ -135,8 +166,10 @@ search.addWidgets([
 
     instantsearch.widgets.refinementList({
         container: '#refinement-list-works',
-        attribute: 'works',
+        attribute: 'works.label',
         searchable: true,
+        showMore: true,
+        showMoreLimit: 50,
         searchablePlaceholder: 'Suche',
         cssClasses: {
           searchableInput: 'form-control form-control-sm mb-2 border-light-2',
@@ -152,8 +185,10 @@ search.addWidgets([
 
     instantsearch.widgets.refinementList({
       container: '#refinement-list-orgs',
-      attribute: 'orgs',
+      attribute: 'orgs.label',
       searchable: true,
+      showMore: true,
+      showMoreLimit: 50,
       searchablePlaceholder: 'Suche',
       cssClasses: {
         searchableInput: 'form-control form-control-sm mb-2 border-light-2',

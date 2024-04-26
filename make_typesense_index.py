@@ -105,39 +105,33 @@ for x in tqdm(files, total=len(files)):
         )[0]
     except IndexError:
         date_str = MIN_DATE
-    
+
     record["sender"] = []
     try:
         sender_label = doc.any_xpath(
             './/tei:correspAction[@type="sent"]/tei:persName/text()'
         )[0]
-        sender_id = check_for_hash(doc.any_xpath(
-            './/tei:correspAction[@type="sent"]/tei:persName/@ref'
-        )[0])
+        sender_id = check_for_hash(
+            doc.any_xpath('.//tei:correspAction[@type="sent"]/tei:persName/@ref')[0]
+        )
     except Exception as e:
         print(f"sender issues in {x}, due to: {e}")
         sender_label = "Kein Absender"
         sender_id = None
-    record["sender"].append({
-        "label": sender_label,
-        "id": sender_id
-    })
+    record["sender"].append({"label": sender_label, "id": sender_id})
     record["receiver"] = []
     try:
         receiver_label = doc.any_xpath(
             './/tei:correspAction[@type="received"]/tei:persName/text()'
         )[0]
-        receiver_id = check_for_hash(doc.any_xpath(
-            './/tei:correspAction[@type="received"]/tei:persName/@ref'
-        )[0])
+        receiver_id = check_for_hash(
+            doc.any_xpath('.//tei:correspAction[@type="received"]/tei:persName/@ref')[0]
+        )
     except Exception as e:
         print(f"receiver issues in {x}, due to: {e}")
         receiver_label = "Kein Absender"
         receiver_id = None
-    record["receiver"].append({
-        "label": receiver_label,
-        "id": receiver_id
-    })
+    record["receiver"].append({"label": receiver_label, "id": receiver_id})
 
     try:
         record["year"] = int(date_str[:4])
@@ -163,10 +157,7 @@ for x in tqdm(files, total=len(files)):
 
     record["works"] = []
     for y in doc.any_xpath(".//tei:back//tei:bibl[@xml:id]"):
-        item = {
-            "id": get_xmlid(y),
-            "label": extract_fulltext(y),
-        }
+        item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]")[0])[0]}
         record["works"].append(item)
     cfts_record["places"] = [x["label"] for x in record["places"]]
     record["full_text"] = f"{extract_fulltext(body)} {record['title']}"
@@ -178,6 +169,6 @@ make_index = client.collections[COLLECTION_NAME].documents.import_(records)
 print(make_index)
 print(f"done with indexing {COLLECTION_NAME}")
 
-make_index = CFTS_COLLECTION.documents.import_(cfts_records, {"action": "upsert"})
-print(make_index)
-print(f"done with cfts-index {COLLECTION_NAME}")
+# make_index = CFTS_COLLECTION.documents.import_(cfts_records, {"action": "upsert"})
+# print(make_index)
+# print(f"done with cfts-index {COLLECTION_NAME}")
