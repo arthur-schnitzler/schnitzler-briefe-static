@@ -3,7 +3,7 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:local="http://dse-static.foo.bar" exclude-result-prefixes="xs" version="3.0">
     <xsl:template
-        match="tei:ref[not(@type = 'schnitzler-tagebuch') and not(@type = 'schnitzler-briefe') and not(@type = 'schnitzler-bahr') and not(@type = 'schnitzler-lektueren')]">
+        match="tei:ref[not(@type = 'schnitzler-tagebuch') and not(@type = 'schnitzler-briefe') and not(@type = 'schnitzler-bahr') and not(@type = 'schnitzler-lektueren') and not(@type = 'schnitzler-interviews')]">
         <xsl:choose>
             <xsl:when test="@target[ends-with(., '.xml')]">
                 <xsl:element name="a">
