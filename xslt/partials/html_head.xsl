@@ -4,7 +4,17 @@
     exclude-result-prefixes="#all" version="2.0">
     <xsl:include href="./params.xsl"/>
     <xsl:template match="/" name="html_head">
-        <xsl:param name="html_title" select="$project_short_title"/>
+        <xsl:param name="html_title1" select="$project_short_title"/>
+        <xsl:variable name="html_title"><!-- brachialer Eingriff für index -->
+            <xsl:choose>
+                <xsl:when test="$html_title1='Meta' or $html_title1='meta'">
+                    <xsl:text>schnitzler-briefe</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$html_title1"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
