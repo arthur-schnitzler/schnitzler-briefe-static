@@ -856,6 +856,10 @@ code{
 }
 
 
+.modal-content {
+    background-color: #F1F1F1;
+}
+
 /* Navbar (zur Gänze kopiert aus Exist-DB) */
 
 .navbar {
@@ -1069,7 +1073,6 @@ legend {float: none;}
       max-height: 100%;
       object-fit: contain;
     }
-    
     
     
     figcaption {
