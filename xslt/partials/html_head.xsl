@@ -4,14 +4,14 @@
     exclude-result-prefixes="#all" version="2.0">
     <xsl:include href="./params.xsl"/>
     <xsl:template match="/" name="html_head">
-        <xsl:param name="html_title1" select="$project_short_title"/>
-        <xsl:variable name="html_title"><!-- brachialer Eingriff für index -->
+        <xsl:param name="html_title" select="$project_short_title"/>
+        <xsl:variable name="html_title1"><!-- brachialer Eingriff für index -->
             <xsl:choose>
-                <xsl:when test="$html_title1='Meta' or $html_title1='meta'">
+                <xsl:when test="$html_title='Meta' or $html_title='meta'">
                     <xsl:text>schnitzler-briefe</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="$html_title1"/>
+                    <xsl:value-of select="$html_title"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta name="mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta name="apple-mobile-web-app-title" content="{$html_title}"/>
+        <meta name="apple-mobile-web-app-title" content="{$html_title1}"/>
         <meta name="msapplication-TileColor" content="#ffffff"/>
         <meta name="msapplication-TileImage" content="{$project_logo}"/>
         <link rel="icon" type="image/svg+xml" href="{$project_logo}" sizes="any"/>
@@ -42,7 +42,7 @@
         <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png"/>
         <link rel="profile" href="http://gmpg.org/xfn/11"/>
-        <title><xsl:value-of select="$html_title"/></title>
+        <title><xsl:value-of select="$html_title1"/></title>
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
             integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
