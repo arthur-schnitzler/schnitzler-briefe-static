@@ -103,7 +103,7 @@
             <xsl:variable name="abbr" select="child::abbr" as="xs:string"/>
             <div class="modal fade modal-sm" id="{$pill/caption}" tabindex="-1" focus="true"
                 keyboard="true" aria-labelledby="{$pill/caption}" aria-hidden="true"
-                data-bs-backdrop="false">
+                data-bs-backdrop="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -112,7 +112,7 @@
                                 aria-label="Schließen"/>
                         </div>
                         <div class="modal-body">
-                            <p>Mehrfaches Vorkommen auf der gesuchten Seite: </p>
+                            <p>Mehrfaches Vorkommen auf der angesteuerten Website: </p>
                             <ol style="list-style-type: none; padding: 0px;">
                                 <xsl:for-each
                                     select="$idnos-of-current/descendant::tei:idno[@subtype = $abbr]">
