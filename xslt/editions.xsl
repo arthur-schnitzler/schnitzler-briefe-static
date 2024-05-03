@@ -1317,17 +1317,18 @@
     </xsl:template>
     <xsl:template match="tei:handShift[@scribe]">
         <xsl:variable name="scribe">
-            <xsl:value-of select="@scribe"/>
+            <xsl:value-of select="replace(@scribe, '#', '')"/>
         </xsl:variable>
         <span class="handschriftlich">
             <xsl:text>[handschriftlich </xsl:text>
             <span class="persons badge-item">
             <xsl:element name="a">
                 <xsl:attribute name="href">
-                    <xsl:value-of select="replace(@scribe, '#', '')"/>
+                    <xsl:value-of select="concat($scribe, '.html')"/>
                 </xsl:attribute>
+                <xsl:variable name="schreibername" select="ancestor::tei:TEI/tei:text[1]/tei:back[1]/tei:listPerson[1]/tei:person[@xml:id = $scribe]/tei:persName[1]" as="node()"/>
             <xsl:value-of
-                select="mam:vorname-vor-nachname(ancestor::tei:TEI/descendant::tei:correspDesc//tei:persName[@ref = $scribe])"/>
+                select="concat($schreibername/tei:forename, ' ', $schreibername/tei:surname)"/>
             </xsl:element>
             </span>
             <xsl:text>:] </xsl:text>
