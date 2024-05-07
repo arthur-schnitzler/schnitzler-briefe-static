@@ -32,6 +32,7 @@
                 <xsl:choose>
                     <xsl:when test="not(contains($lemmaganz, ' '))">
                         <xsl:value-of select="$lemmaganz"/>
+                        
                     </xsl:when>
                     <xsl:when test="string-length(normalize-space($lemmaganz)) &gt; 24">
                         <xsl:variable name="lemma-kurz"
@@ -114,6 +115,8 @@
             <xsl:apply-templates/>
         </sub>
     </xsl:template>
+    <!-- das blendet verschacheltete notes aus dem Lemma aus: -->
+    <xsl:template match="tei:note[@type='textConst' or @type='commentary']" mode="lemma"/>
     <xsl:function name="mam:dots">
         <xsl:param name="anzahl"/> . <xsl:if test="$anzahl &gt; 1">
             <xsl:value-of select="mam:dots($anzahl - 1)"/>
