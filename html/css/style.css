@@ -1093,3 +1093,7 @@ legend {float: none;
     text-align: center;
     margin-bottom: 15px;
 }
+
+div#map {
+     height: 50vh;
+ } 
