@@ -45,8 +45,8 @@
                                         <tr>
                                             <th scope="col">Ortsname</th>
                                             <th scope="col">Erwähnungen</th>
-                                            <th scope="col">Längengrad</th>
-                                            <th scope="col">Breitengrad</th>
+                                            <th scope="col">lat</th>
+                                            <th scope="col">lng</th>
                                             <th scope="col">ID</th>
                                         </tr>
                                         <!--<tr>
@@ -107,7 +107,7 @@
                     <script src="js/map_table_cfg.js"/>
                     <script src="js/make_map_and_table.js"/>
                     <script>
-                        build_map_and_table(map_cfg, table_cfg, wms_cfg=null, tms_cfg=null);
+                        build_map_and_table(map_cfg, table_cfg, wms_cfg=null, tms_cfg=tms_cfg);
                     </script>
                     
                 </div>
