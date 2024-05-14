@@ -43,7 +43,7 @@
                                     style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Ort</th>
+                                            <th scope="col">Ortsname</th>
                                             <th scope="col">Erwähnungen</th>
                                             <th scope="col">Längengrad</th>
                                             <th scope="col">Breitengrad</th>
