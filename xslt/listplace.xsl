@@ -19,6 +19,9 @@
             <link  href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"></link>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
             <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+            <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+            <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
@@ -40,10 +43,10 @@
                                     style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Ortsname</th>
+                                            <th scope="col">Ort</th>
                                             <th scope="col">Erwähnungen</th>
-                                            <th scope="col">lat</th>
-                                            <th scope="col">lng</th>
+                                            <th scope="col">Längengrad</th>
+                                            <th scope="col">Breitengrad</th>
                                             <th scope="col">ID</th>
                                         </tr>
                                         <!--<tr>
@@ -104,7 +107,7 @@
                     <script src="js/map_table_cfg.js"/>
                     <script src="js/make_map_and_table.js"/>
                     <script>
-                        build_map_and_table(map_cfg, table_cfg, wms_cfg=null, tms_cfg=tms_cfg);
+                        build_map_and_table(map_cfg, table_cfg, wms_cfg=null, tms_cfg=null);
                     </script>
                     
                 </div>
