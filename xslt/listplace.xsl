@@ -97,12 +97,7 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a>
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of select="concat($id, '.html')"/>
-                                                        </xsl:attribute>
                                                         <xsl:value-of select="$id"/>
-                                                    </a>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
