@@ -37,35 +37,19 @@
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
                             </div>
-                            <!--<div class="w-100 text-center">
-                                <div class="spinner-grow table-loader" role="status">
-                                    <span class="sr-only">Wird geladen…</span>
-                                </div>
-                            </div>-->
                             <div class="card-body">
                                 <div id="map"/>
-                                <table class="table table-striped display" id="placesTable"
+                                <table id="placesTable"
                                     style="width:100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Ortsname</th>
+                                            <th scope="col">Zugehörigkeit</th>
                                             <th scope="col">Erwähnungen</th>
                                             <th scope="col">lat</th>
                                             <th scope="col">lng</th>
-                                            <th scope="col">ID</th>
                                             <th scope="col">linkToEntity</th>
                                         </tr>
-                                        <!--<tr>
-                                            <th scope="col">Ortsname</th>
-                                            <!-\-  <th scope="col">Erwähnungen</th>
-                                            <th scope="col">Geonames</th>-\->
-                                            <th scope="col">Lat</th>
-                                            <th scope="col">Long</th>
-                                            <!-\-<th scope="col">ID</th>-\->
-                                            
-                                            <!-\-<th scope="col">Ortsname</th>
-                                            <th scope="col">Längen-/Breitengrad</th>-\->
-                                        </tr>-->
                                     </thead>
                                     <tbody>
                                         <xsl:for-each select=".//tei:place">
@@ -76,6 +60,14 @@
                                                 <td>
                                                   <xsl:value-of
                                                   select="descendant::tei:placeName[1]/text()"/>
+                                                </td>
+                                                <td>
+                                                    <xsl:for-each select="descendant::tei:location[@type='located_in_place']">
+                                                        <xsl:value-of select="tei:placeName[1]"/>
+                                                        <xsl:if test="not(position()=last())">
+                                                            <xsl:text>, </xsl:text>
+                                                        </xsl:if>
+                                                    </xsl:for-each>
                                                 </td>
                                                 <td>
                                                   <xsl:value-of
@@ -98,14 +90,6 @@
                                                   />
                                                   </xsl:when>
                                                   </xsl:choose>
-                                                </td>
-                                                <td>
-                                                  <a>
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of select="concat($id, '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of select="$id"/>
-                                                  </a>
                                                 </td>
                                                 <td>
                                                   <xsl:value-of select="$id"/>

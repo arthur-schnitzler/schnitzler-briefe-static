@@ -32,6 +32,13 @@ const columns = [
     headerFilter: "input",
     title: "Ortsname",
     field: "Ortsname",
+    formatter: linkToDetailView,
+    resizable: false,
+  },
+  {
+    headerFilter: "input",
+    title: "Zugehörigkeit",
+    field: "Zugehörigkeit",
     formatter: "plaintext",
     resizable: false,
   },
@@ -40,13 +47,6 @@ const columns = [
     title: "Erwähnungen",
     field: "mentions",
     formatter: "plaintext",
-    resizable: true,
-  },
-  {
-    headerFilter: "input",
-    title: "ID",
-    field: "ID",
-    formatter: "html",
     resizable: true,
   },
   /* the following fields are necessary, 
@@ -111,6 +111,9 @@ const tabulator_cfg = {
   responsiveLayout: "collapse",
   langs: langs,
   columns: columns,
+  initialSort:[
+    {column:"Ortsname", dir:"asc"},
+  ]
 };
 
 /*this is just an extra capsule to pass cfg trough the functions*/
@@ -163,6 +166,15 @@ const get_popup_label_string_html = get_bold_name
 
 
 /*some helpers*/
+
+function linkToDetailView (cell) {
+  var row = cell.getRow().getData()
+  var cellData = cell.getData()
+  var linkValue = row.linkToEntity
+  var linkText = cellData.Ortsname
+  var theLink = `<a href="${linkValue}.html">${linkText}</a>`
+  return theLink
+}
 
 /*helper for scrollable cell, use in custom formatter in $columns*/
 function make_cell_scrollable(table, cell, cell_html_string_in) {
