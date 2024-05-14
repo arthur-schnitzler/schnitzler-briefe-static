@@ -53,14 +53,14 @@ const columns = [
     provide a string val each in your html-table,
     (longitude and latitude)*/
   {
-    title: "lat",
+    title: "Breitengrad",
     field: "lat",
     formatter: "plaintext",
     resizable: false,
     visible: false,
   },
   {
-    title: "lng",
+    title: "Längengrad",
     field: "lng",
     formatter: "plaintext",
     resizable: false,
