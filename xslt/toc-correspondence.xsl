@@ -85,7 +85,17 @@
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat(@corresp, '.html')"/>
                                                   </xsl:attribute>
-                                                  <xsl:value-of select="tei:date/@when"/>
+                                                   <xsl:choose>
+                                                       <xsl:when test="tei:date/@when">
+                                                           <xsl:value-of select="tei:date/@when"/>
+                                                       </xsl:when>
+                                                       <xsl:when test="tei:date/@notBefore">
+                                                           <xsl:value-of select="concat('nach ', tei:date/@notBefore, ' vor ', tei:date/@notAfter)"/>
+                                                       </xsl:when>
+                                                       <xsl:when test="tei:date/@from">
+                                                           <xsl:value-of select="concat(tei:date/@from, ' – ', tei:date/@to)"/>
+                                                       </xsl:when>
+                                                   </xsl:choose>
                                                   </a>
                                                 </td>
                                             </tr>
