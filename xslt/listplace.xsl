@@ -16,12 +16,17 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
-            <link  href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"></link>
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-            <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
-            <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-            <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+            <link
+                href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bootstrap5.min.css"
+                rel="stylesheet"/>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+                integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""/>
+            <link rel="stylesheet"
+                href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+            <link rel="stylesheet"
+                href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+            <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"/>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
@@ -69,35 +74,41 @@
                                             </xsl:variable>
                                             <tr>
                                                 <td>
-                                                    <xsl:value-of select="descendant::tei:placeName[1]/text()"/>
+                                                  <xsl:value-of
+                                                  select="descendant::tei:placeName[1]/text()"/>
                                                 </td>
                                                 <td>
-                                                    <xsl:value-of select="count(.//tei:note[@type='mentions'])"/>
+                                                  <xsl:value-of
+                                                  select="count(.//tei:note[@type = 'mentions'])"/>
                                                 </td>
                                                 <td>
-                                                    <xsl:choose>
-                                                        <xsl:when test="child::tei:location/tei:geo">
-                                                            <xsl:value-of select="replace(tokenize(child::tei:location[1]/tei:geo/text(), ' ')[1], ',', '.')"/>
-                                                        </xsl:when>
-                                                    </xsl:choose>
+                                                  <xsl:choose>
+                                                  <xsl:when test="child::tei:location/tei:geo">
+                                                  <xsl:value-of
+                                                  select="replace(tokenize(child::tei:location[1]/tei:geo/text(), ' ')[1], ',', '.')"
+                                                  />
+                                                  </xsl:when>
+                                                  </xsl:choose>
                                                 </td>
                                                 <td>
-                                                    <xsl:choose>
-                                                        <xsl:when test="child::tei:location/tei:geo">
-                                                            <xsl:value-of select="replace(tokenize(child::tei:location[1]/tei:geo/text(), ' ')[last()], ',', '.')"/>
-                                                        </xsl:when>
-                                                    </xsl:choose>
+                                                  <xsl:choose>
+                                                  <xsl:when test="child::tei:location/tei:geo">
+                                                  <xsl:value-of
+                                                  select="replace(tokenize(child::tei:location[1]/tei:geo/text(), ' ')[last()], ',', '.')"
+                                                  />
+                                                  </xsl:when>
+                                                  </xsl:choose>
                                                 </td>
                                                 <td>
-                                                    <a>
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of select="concat($id, '.html')"/>
-                                                        </xsl:attribute>
-                                                        <xsl:value-of select="$id"/>
-                                                    </a>
+                                                  <a>
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="concat($id, '.html')"/>
+                                                  </xsl:attribute>
+                                                  <xsl:value-of select="$id"/>
+                                                  </a>
                                                 </td>
                                                 <td>
-                                                        <xsl:value-of select="$id"/>
+                                                  <xsl:value-of select="$id"/>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
@@ -113,7 +124,6 @@
                     <script>
                         build_map_and_table(map_cfg, table_cfg, wms_cfg=null, tms_cfg=null);
                     </script>
-                    
                 </div>
             </body>
         </html>
