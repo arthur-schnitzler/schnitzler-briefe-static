@@ -150,6 +150,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <xsl:call-template name="html_footer"/>
                         </div>
                     </body>
                 </html>
@@ -219,6 +220,7 @@
                                     <p style="text-align:center;"><i>Die zu Grunde liegenden Daten können hier geladen werden: <a href="https://github.com/arthur-schnitzler/schnitzler-briefe-statistik">GitHub</a></i></p>
                                 </div>
                             </div>
+                            <xsl:call-template name="html_footer"/>
                         </div>
                     </body>
                 </html>

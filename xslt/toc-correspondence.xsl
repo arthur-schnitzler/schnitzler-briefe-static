@@ -90,7 +90,7 @@
                                                            <xsl:value-of select="tei:date/@when"/>
                                                        </xsl:when>
                                                        <xsl:when test="tei:date/@notBefore">
-                                                           <xsl:value-of select="concat('nach ', tei:date/@notBefore, ' vor ', tei:date/@notAfter)"/>
+                                                           <xsl:value-of select="concat('nach ', tei:date/@notBefore, ', vor ', tei:date/@notAfter)"/>
                                                        </xsl:when>
                                                        <xsl:when test="tei:date/@from">
                                                            <xsl:value-of select="concat(tei:date/@from, ' – ', tei:date/@to)"/>
@@ -104,8 +104,9 @@
                                 </table>
                             </div>
                         </div>
+                        
                     </div>
-                    <xsl:call-template name="html_footer"/>
+                    
                     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"/>
                     <script type="text/javascript" src="js/dt.js"/>
                     <script>
@@ -113,6 +114,7 @@
                         createDataTable('tocTable')
                         });
                     </script>
+                    <xsl:call-template name="html_footer"/>
                 </div>
             </body>
         </html>
