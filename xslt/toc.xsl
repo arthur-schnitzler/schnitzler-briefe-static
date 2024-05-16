@@ -40,8 +40,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <xsl:variable name="collection" select="collection('../data/editions/?select=*.xml')"/>
                                         <xsl:for-each
-                                            select="collection('../data/editions/?select=*.xml')/tei:TEI">
+                                            select="$collection/tei:TEI">
                                             <xsl:variable name="full_path">
                                                 <xsl:value-of select="document-uri(/)"/>
                                             </xsl:variable>
