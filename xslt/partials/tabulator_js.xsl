@@ -11,7 +11,7 @@
             var table = new Tabulator("#tabulator-table", {
             layout:"fitColumns",
             pagination:"local",       //paginate the data
-            paginationSize:5,         //allow 25 rows per page of data
+            paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
             initialSort:[{column:"verfasser:in", dir:"asc"}, 
