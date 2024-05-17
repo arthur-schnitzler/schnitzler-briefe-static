@@ -7,6 +7,7 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="partials/html_footer.xsl"/>
+    <xsl:import href="partials/tabulator_js.xsl"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Archive'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
@@ -23,14 +24,17 @@
                                 <h1>Archive</h1>
                             </div>
                             <div class="card-body">
-                                <table class="table table-striped display" id="tocTable"
-                                    style="width:100%">
+                                <table class="table table-sm display" id="tabulator-table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Titel</th>
-                                            <th scope="col">Institution</th>
-                                            <th scope="col">Ort</th>
-                                            <th scope="col">Land</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                >Datum</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Titel</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                >Institution</th>
+                                            <th scope="col" tabulator-headerFilter="input">Ort</th>
+                                            <th scope="col" tabulator-headerFilter="input">Land</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -39,54 +43,54 @@
                                             <xsl:variable name="full_path">
                                                 <xsl:value-of select="document-uri(/)"/>
                                             </xsl:variable>
-                                            <xsl:variable name="titel" select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()" as="xs:string"/>
-                                            <xsl:variable name="sortdate" select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()" as="xs:string"/>
-                                            <xsl:for-each select="descendant::tei:listWit[1]/tei:witness">
-                                            <tr>
-                                                <td>
-                                                  <sortdate hidden="true">
-                                                        <xsl:value-of
-                                                            select="$sortdate"
-                                                        />
-                                                    </sortdate>
-                                                    <a>
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of
-                                                                select="replace(tokenize($full_path, '/')[last()], '.xml', '.html')"
-                                                            />
-                                                        </xsl:attribute>
-                                                        <xsl:value-of
-                                                            select="$titel"
-                                                        />
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <xsl:value-of select="descendant::tei:repository[1]/text()"
-                                                    />
-                                                </td>
-                                                <td>
-                                                    <xsl:value-of select="descendant::tei:settlement[1]/text()"
-                                                    />
-                                                </td>
-                                                <td>
-                                                    <xsl:value-of select="descendant::tei:country[1]/text()"/>
-                                                </td>
-                                            </tr>
+                                            <xsl:variable name="titel"
+                                                select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"
+                                                as="xs:string"/>
+                                            <xsl:variable name="sortdate"
+                                                select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()"
+                                                as="xs:date?"/>
+                                            <xsl:for-each
+                                                select="descendant::tei:listWit[1]/tei:witness">
+                                                <xsl:variable name="id">
+                                                  <xsl:value-of select="data(@xml:id)"/>
+                                                </xsl:variable>
+                                                <tr>
+                                                  <td>
+                                                  <xsl:value-of select="$sortdate"/>
+                                                  </td>
+                                                  <td>
+                                                  <a>
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of
+                                                  select="replace(tokenize($full_path, '/')[last()], '.xml', '.html')"
+                                                  />
+                                                  </xsl:attribute>
+                                                  <xsl:value-of select="$titel"/>
+                                                  </a>
+                                                  </td>
+                                                  <td>
+                                                  <xsl:value-of
+                                                  select="descendant::tei:repository[1]/text()"/>
+                                                  </td>
+                                                  <td>
+                                                  <xsl:value-of
+                                                  select="descendant::tei:settlement[1]/text()"/>
+                                                  </td>
+                                                  <td>
+                                                  <xsl:value-of
+                                                  select="descendant::tei:country[1]/text()"/>
+                                                  </td>
+                                                </tr>
                                             </xsl:for-each>
                                         </xsl:for-each>
                                     </tbody>
                                 </table>
+                                <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"></script>
-                    <script type="text/javascript" src="js/dt.js"></script>
-                    <script>
-                        $(document).ready(function () {
-                        createDataTable('tocTable')
-                        });
-                    </script>
+                    <xsl:call-template name="tabulator_js"/>
                 </div>
             </body>
         </html>

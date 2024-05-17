@@ -10,6 +10,7 @@
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/bibl.xsl"/>
+    <xsl:import href="./partials/tabulator_js.xsl"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title">
             <xsl:value-of select=".//tei:title[@type='main'][1]/text()"/>
@@ -37,13 +38,13 @@
                                 </div>
                             </div>
                             <div class="card-body">                                
-                                <table class="table table-striped display" id="tocTable" style="width:100%">
+                                <table class="table table-striped display" id="tabulator-table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Titel</th>
-                                            <th scope="col">Autor</th>
-                                            <th scope="col">Datum</th>
-                                            <th scope="col">ID</th>
+                                            <th scope="col" tabulator-headerFilter="input"  tabulator-formatter="html">Titel</th>
+                                            <th scope="col" tabulator-headerFilter="input"  tabulator-formatter="html">Autor</th>
+                                            <th scope="col" tabulator-headerFilter="input" >Datum</th>
+                                            <th scope="col" tabulator-headerFilter="input">ID</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,18 +73,12 @@
                                             </tr>
                                         </xsl:for-each>
                                     </tbody>
-                                </table>
+                                </table> <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>                       
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"></script>
-                    <script type="text/javascript" src="js/dt.js"></script>
-                    <script>
-                        $(document).ready(function () {
-                        createDataTable('tocTable');
-                        });
-                    </script>
+                    <xsl:call-template name="tabulator_js"/>
                 </div>
             </body>
         </html>

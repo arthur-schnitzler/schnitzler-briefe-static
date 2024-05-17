@@ -7,6 +7,7 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="partials/html_footer.xsl"/>
+    <xsl:import href="./partials/tabulator_js.xsl"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Postwege'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
@@ -23,16 +24,15 @@
                                 <h1>Postwege</h1>
                             </div>
                             <div class="card-body">
-                                <table class="table table-striped display" id="tocTable"
-                                    style="width:100%">
+                                <table class="table table-sm display" id="tabulator-table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Titel</th>
-                                            <th scope="col">Sendedatum</th>
-                                            <th scope="col">Sendeort</th>
-                                            <th scope="col">weitere Stationen</th>
-                                            <th scope="col">Empfangsdatum</th>
-                                            <th scope="col">Empfangsort</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Titel</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Sendedatum</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Sendeort</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">weitere Stationen</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Empfangsdatum</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Empfangsort</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -120,18 +120,12 @@
                                             </tr>
                                         </xsl:for-each>
                                     </tbody>
-                                </table>
+                                </table> <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"></script>
-                    <script type="text/javascript" src="js/dt.js"></script>
-                    <script>
-                        $(document).ready(function () {
-                        createDataTable('tocTable')
-                        });
-                    </script>
+                    <xsl:call-template name="tabulator_js"/>
                 </div>
             </body>
         </html>

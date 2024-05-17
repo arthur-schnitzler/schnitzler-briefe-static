@@ -6,7 +6,8 @@
         omit-xml-declaration="yes"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
-    <xsl:import href="partials/html_footer.xsl"/>
+    <xsl:import href="./partials/html_footer.xsl"/>
+    <xsl:import href="./partials/tabulator_js.xsl"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Verzeichnis der Korrespondenzen'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
@@ -48,27 +49,22 @@
                             <div class="card-body">
                                 <div id="statistik1" style="width:100%; height:400px;"/>
                                 <p style="text-align: center;"><a href="{concat('statistik_pmb', $korrespondenznummer, '.html')}">Weitere Statistiken</a> &#160; <a href="{concat('karte_pmb', $korrespondenznummer, '.html')}">Karten</a></p>
-                                <div class="w-100 text-center">
-                                    <div class="spinner-grow table-loader" role="status">
-                                        <span class="sr-only">Wird geladen…</span>
-                                    </div>
-                                </div>
-                                <table class="table table-striped display" id="tocTable"
-                                    style="width:100%">
+                                
+                                <table class="table table-sm display" id="tabulator-table"
+                                    >
                                     <thead>
                                         <tr>
-                                            <th scope="col">Nr.</th>
-                                            <th scope="col">Titel</th>
-                                            <th scope="col">Datum (ISO)</th>
+                                            
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Titel</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Datum (ISO)</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Briefnummer</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <xsl:for-each
                                             select="descendant::tei:text[1]/tei:body[1]/tei:list[1]/tei:item">
                                             <tr>
-                                                <td>
-                                                  <xsl:value-of select="position()"/>
-                                                </td>
+                                                
                                                 <td>
                                                   <sortdate hidden="true">
                                                   <xsl:value-of select="tei:date/@when"/>
@@ -98,22 +94,24 @@
                                                    </xsl:choose>
                                                   </a>
                                                 </td>
+                                                <td>
+                                                    <a>
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of select="concat(@corresp, '.html')"/>
+                                                        </xsl:attribute>
+                                                    <xsl:value-of select="@corresp"/>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         </xsl:for-each>
                                     </tbody>
-                                </table>
+                                </table> 
+                                <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.js"/>
-                    <script type="text/javascript" src="js/dt.js"/>
-                    <script>
-                        $(document).ready(function () {
-                        createDataTable('tocTable')
-                        });
-                    </script>
-                    
+                    <xsl:call-template name="tabulator_js"/>
                 </div>
             </body>
         </html>
