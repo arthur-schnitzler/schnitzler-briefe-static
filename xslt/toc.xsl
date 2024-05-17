@@ -24,7 +24,7 @@
                                 <h1>Alle Briefe</h1>
                             </div>
                             <div class="card-body">
-                                <table class="table table-sm display" id="tabulator-table"
+                                <table class="table table-sm display" id="tabulator-table" style="width:100%"
                                     >
                                     <thead>
                                         <tr>

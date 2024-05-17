@@ -27,7 +27,7 @@
                                 <h1>Verzeichnis der Korrespondenzen</h1>
                             </div>
                             <div class="card-body">
-                                <table class="table-light table-striped display" id="tabulator-table-limited">
+                                <table class="table-light table-striped display" id="tabulator-table-limited" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Korrespondenz</th>
