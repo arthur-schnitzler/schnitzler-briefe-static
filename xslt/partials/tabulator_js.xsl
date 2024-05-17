@@ -9,7 +9,6 @@
         <script src="tabulator-js/config.js"></script>
         <script>
             var table = new Tabulator("#tabulator-table", {
-            layout:"fitColumns",
             pagination:"local",       //paginate the data
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
@@ -49,7 +48,6 @@
         <script src="tabulator-js/config.js"></script>
         <script>
             var table = new Tabulator("#tabulator-table-limited", {
-            layout:"fitColumns",
             pagination:"local",       //paginate the data
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
