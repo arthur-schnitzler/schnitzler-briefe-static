@@ -35,8 +35,9 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Name</th>
-                                            <th scope="col" tabulator-headerFilter="input">Ort</th>
                                             <th scope="col" tabulator-headerFilter="input">Typ</th>
+                                            <th scope="col" tabulator-headerFilter="input">Ort</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,15 +68,6 @@
                                                   </xsl:if>
                                                 </td>
                                                 <td>
-                                                  <xsl:for-each
-                                                  select="distinct-values(tei:location[@type = 'located_in_place']/tei:placeName[1])">
-                                                  <xsl:value-of select="."/>
-                                                  <xsl:if test="not(position() = last())">
-                                                  <xsl:text>, </xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:for-each>
-                                                </td>
-                                                <td>
                                                   <xsl:choose>
                                                   <xsl:when
                                                   test="contains(tei:desc[@type = 'entity_type'], '&gt;&gt;')">
@@ -89,6 +81,15 @@
                                                   </xsl:otherwise>
                                                   </xsl:choose>
 
+                                                </td>
+                                                <td>
+                                                    <xsl:for-each
+                                                        select="distinct-values(tei:location[@type = 'located_in_place']/tei:placeName[1])">
+                                                        <xsl:value-of select="."/>
+                                                        <xsl:if test="not(position() = last())">
+                                                            <xsl:text>, </xsl:text>
+                                                        </xsl:if>
+                                                    </xsl:for-each>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
