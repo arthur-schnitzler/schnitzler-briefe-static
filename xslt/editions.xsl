@@ -1327,8 +1327,15 @@
                     <xsl:value-of select="concat($scribe, '.html')"/>
                 </xsl:attribute>
                 <xsl:variable name="schreibername" select="ancestor::tei:TEI/tei:text[1]/tei:back[1]/tei:listPerson[1]/tei:person[@xml:id = $scribe]/tei:persName[1]" as="node()"/>
-            <xsl:value-of
-                select="concat($schreibername/tei:forename, ' ', $schreibername/tei:surname)"/>
+            <xsl:choose>
+                <xsl:when test="starts-with($schreibername/tei:surname, '??')">
+                    <xsl:text>unbekannte Hand</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of
+                        select="concat($schreibername/tei:forename, ' ', $schreibername/tei:surname)"/>
+                </xsl:otherwise>
+            </xsl:choose>
             </xsl:element>
             </span>
             <xsl:text>:] </xsl:text>
