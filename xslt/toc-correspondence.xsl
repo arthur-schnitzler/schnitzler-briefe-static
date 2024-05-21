@@ -77,6 +77,11 @@
                                                   </a>
                                                 </td>
                                                 <td>
+                                                    <sortdate hidden="true">
+                                                        <xsl:value-of select="tei:date/@when"/>
+                                                        <xsl:value-of select="tei:date/@from"/>
+                                                        <xsl:value-of select="tei:date/@notBefore"/>
+                                                    </sortdate>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat(@corresp, '.html')"/>
