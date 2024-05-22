@@ -31,7 +31,8 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Korrespondenz</th>
-                                            <th scope="col" >Anzahl der Korrespondenzstücke</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">enthält</th>
+                                            <th scope="col" >Anzahl</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,6 +52,14 @@
                                                   <xsl:value-of
                                                   select="tei:persName[@role = 'main']/text()"/>
                                                   </a>
+                                                </td>
+                                                <td>
+                                                    <xsl:for-each select="tei:persName[not(@role='main')]">
+                                                        <xsl:value-of select="concat(substring-after(., ', '), ' ', substring-before(., ', '))"/>
+                                                        <xsl:if test="not(position()=last())">
+                                                            <br/>
+                                                        </xsl:if>
+                                                    </xsl:for-each>
                                                 </td>
                                                 <td>
                                                   <xsl:value-of

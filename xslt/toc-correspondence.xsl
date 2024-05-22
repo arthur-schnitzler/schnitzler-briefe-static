@@ -50,8 +50,7 @@
                                 <div id="statistik1" style="width:100%; height:400px;"/>
                                 <p style="text-align: center;"><a href="{concat('statistik_pmb', $korrespondenznummer, '.html')}">Weitere Statistiken</a> &#160; <a href="{concat('karte_pmb', $korrespondenznummer, '.html')}">Karten</a></p>
                                 
-                                <table class="table table-sm display" id="tabulator-table"
-                                    >
+                                <table class="table-light table-striped display" id="tabulator-table-limited" style="width:100%">
                                     <thead>
                                         <tr>
                                             
@@ -116,7 +115,7 @@
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <xsl:call-template name="tabulator_js"/>
+                    <xsl:call-template name="tabulator-limited_js"/>
                 </div>
             </body>
         </html>

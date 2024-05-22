@@ -51,6 +51,7 @@
             pagination:"local",       //paginate the data
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
+            layout:"fitColumns",
             langs:{
             "de-de":{ //German language definition
             "pagination":{
