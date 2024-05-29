@@ -677,8 +677,8 @@
                 <div id="erscheinungsdatum" class="mt-2">
                     <p>
                         <xsl:if test="tei:date[1]">
+                            <legend>Erschienen</legend>
                             <ul>
-                                <legend>Erschienen</legend>
                                 <li>
                                     <xsl:choose>
                                         <xsl:when test="contains(tei:date[1], '-')">
