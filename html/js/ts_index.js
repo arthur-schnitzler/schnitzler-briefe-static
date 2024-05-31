@@ -35,26 +35,28 @@ search.addWidgets([
     }),
 
     instantsearch.widgets.hits({
-      container: "#hits",
-      cssClasses: {
-        item: "w-100"
-      },
-      templates: {
-        empty: "Keine Resultate für <q>{{ query }}</q>",
-        item(hit, { html, components }) {
-          return html` 
-          <h3><a href="${hit.id}.html">${hit.title}</a></h3>
-          <p>${hit._snippetResult.full_text.matchedWords.length > 0 ? components.Snippet({ hit, attribute: 'full_text' }) : ''}</p>
-          ${hit.persons.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1 bg-warning">${item.label}</span></a>`)}
-          <br />
-          ${hit.places.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1 bg-info">${item.label}</span></a>`)}
-          <br />
-          ${hit.works.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1 bg-success">${item.label}</span></a>`)}
-          <br />`
-          ;
-        },
-      },
-    }),
+  container: "#hits",
+  cssClasses: {
+    item: "w-100"
+  },
+  templates: {
+    empty: "Keine Resultate für <q>{{ query }}</q>",
+    item(hit, { html, components }) {
+      // Helper function to truncate label
+      const truncateLabel = (label) => label.length > 115 ? label.substring(0, 112) + '…' : label;
+
+      return html`
+        <h3><a href="${hit.id}.html">${hit.title}</a></h3>
+        <p>${hit._snippetResult.full_text.matchedWords.length > 0 ? components.Snippet({ hit, attribute: 'full_text' }) : ''}</p>
+        ${hit.persons.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1 bg-warning">${truncateLabel(item.label)}</span></a>`)}
+        <br />
+        ${hit.places.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1 bg-info">${truncateLabel(item.label)}</span></a>`)}
+        <br />
+        ${hit.works.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1 bg-success">${truncateLabel(item.label)}</span></a>`)}
+        <br />`;
+    },
+  },
+}),
 
     instantsearch.widgets.stats({
       container: '#stats-container',
