@@ -1296,7 +1296,9 @@
         </xsl:element>
     </xsl:template>
     <xsl:function name="mam:dots">
-        <xsl:param name="anzahl"/> . <xsl:if test="$anzahl &gt; 1">
+        <xsl:param name="anzahl"/> 
+        <xsl:text>.&#160;</xsl:text>
+        <xsl:if test="$anzahl &gt; 1">
             <xsl:value-of select="mam:dots($anzahl - 1)"/>
         </xsl:if>
     </xsl:function>
