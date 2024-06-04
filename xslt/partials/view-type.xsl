@@ -25,31 +25,34 @@
         </xsl:for-each-group>
     </xsl:function>-->
   <xsl:template name="mam:view-type-img">
-    
     <xsl:variable name="msIdentifier"
       select="ancestor::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[@n = '1']/tei:msDesc[1]/tei:msIdentifier[1]"
       as="node()?"/>
     <xsl:variable name="facs-folder" as="xs:string?">
       <xsl:choose>
         <!-- DRUCKE -->
-        <xsl:when test="ancestor::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1][not(tei:listWit)]/tei:listBibl">
+        <xsl:when
+          test="ancestor::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1][not(tei:listWit)]/tei:listBibl">
           <xsl:text>Drucke</xsl:text>
         </xsl:when>
         <!-- BEINECKE -->
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Beinecke')]">
           <xsl:choose>
-            <xsl:when test="descendant::tei:pb[1]/@facs[starts-with(., 'ASanRBH')]">
+            <xsl:when test="descendant::tei:pb[not(@facs = '')][1]/@facs[starts-with(., 'ASanRBH')]">
               <xsl:text>Beinecke_ASanRBH</xsl:text>
             </xsl:when>
-            <xsl:when test="descendant::tei:pb[1]/@facs[starts-with(., 'Foto-Innen')]">
+            <xsl:when
+              test="descendant::tei:pb[not(@facs = '')][1]/@facs[starts-with(., 'Foto-Innen')]">
               <xsl:text>Beinecke_RBH_Foto-Innen</xsl:text>
             </xsl:when>
-            <xsl:when test="descendant::tei:pb[1]/@facs[starts-with(., 'undatiert')]">
+            <xsl:when
+              test="descendant::tei:pb[not(@facs = '')][1]/@facs[starts-with(., 'undatiert')]">
               <xsl:text>Beinecke_undatiert</xsl:text>
             </xsl:when>
             <xsl:otherwise>
               <xsl:value-of
-                select="concat('Beinecke_', substring(descendant::tei:pb[1]/@facs, 1, 4))"/>
+                select="concat('Beinecke_', substring(descendant::tei:pb[not(@facs = '')][1]/@facs, 1, 4))"
+              />
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
@@ -70,9 +73,9 @@
         <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Cambridge')]">
           <xsl:variable name="Folder-Number">
             <xsl:choose>
-              <xsl:when test="descendant::tei:pb[1]/@facs[contains(., '-')]">
+              <xsl:when test="descendant::tei:pb[not(@facs = '')][1]/@facs[contains(., '-')]">
                 <xsl:value-of
-                  select="replace(tokenize(substring-after(descendant::tei:pb[1]/@facs, '-0')[1], '-')[1], '^0+', '')"
+                  select="replace(tokenize(substring-after(descendant::tei:pb[not(@facs = '')][1]/@facs, '-0')[1], '-')[1], '^0+', '')"
                 />
               </xsl:when>
               <xsl:otherwise>
@@ -94,7 +97,8 @@
         </xsl:when>
         <!-- DLA -->
         <xsl:when test="$msIdentifier/tei:settlement = 'Marbach am Neckar'">
-          <xsl:value-of select="concat('DLA_', substring(descendant::tei:pb[1]/@facs, 1, 5))"/>
+          <xsl:value-of
+            select="concat('DLA_', substring(descendant::tei:pb[not(@facs = '')][1]/@facs, 1, 5))"/>
         </xsl:when>
         <!-- HOCHSTIFT -->
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Hochstift')]">
@@ -173,7 +177,7 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when
-        test="descendant::tei:pb[1]/@facs and not(starts-with(descendant::tei:pb[1]/@facs, 'http') or starts-with(descendant::tei:pb[1]/@facs, 'www.')) and not(contains(descendant::tei:pb[1]/@facs, '.pdf'))">
+        test="descendant::tei:pb[not(@facs = '')][1]/@facs and not(starts-with(descendant::tei:pb[not(@facs = '')][1]/@facs, 'http') or starts-with(descendant::tei:pb[not(@facs = '')][1]/@facs, 'www.')) and not(contains(descendant::tei:pb[not(@facs = '')][1]/@facs, '.pdf'))">
         <div id="text-resize" class="row transcript active">
           <xsl:for-each select="//tei:body">
             <div id="text-resize" class="col-md-6 col-lg-6 col-sm-12 text yes-index">
