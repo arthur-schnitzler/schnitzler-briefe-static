@@ -31,31 +31,25 @@ When adapting for different projects have a careful look at the following params
         <xsl:variable name="link">
             <xsl:value-of select="replace($teiSource, '.xml', '.html')"/>
         </xsl:variable>
-        <xsl:variable name="fetchUrl" as="node()?">
-            <xsl:choose>
-                <xsl:when test="not($fetch-locally)">
-                    <xsl:value-of select="document(concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum-iso, '.xml'))"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="document(concat('../../chronik-data/', $datum-iso, '.xml'))"/>
-                </xsl:otherwise>
-            </xsl:choose>
+        <xsl:variable name="fetchUrl" as="node()?" >
+            <xsl:copy-of select="document(concat('../../chronik-data/', $datum-iso, '.xml'))"/>
         </xsl:variable>
         <xsl:if test="$fetchUrl/*[1]">
             <xsl:variable name="fetchURLohneTeiSource" as="node()">
                 <xsl:element name="listEvent" namespace="http://www.tei-c.org/ns/1.0">
-                    <xsl:choose>
+                    <xsl:copy-of
+                        select="$fetchUrl/descendant::tei:listEvent/tei:event[not(tei:idno[1]/@type = 'schnitzler-tagebuch')]"
+                    />
+                    <!--<xsl:choose>
                         <xsl:when test="not($schnitzler-tagebuch)">
                             <xsl:copy-of
                                 select="$fetchUrl/descendant::tei:listEvent/tei:event[not(contains(tei:idno[1]/text(), $teiSource))]"
                             />
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:copy-of
-                                select="$fetchUrl/descendant::tei:listEvent/tei:event[not(tei:idno[1]/@type = 'schnitzler-tagebuch')]"
-                            />
+                            
                         </xsl:otherwise>
-                    </xsl:choose>
+                    </xsl:choose>-->
                 </xsl:element>
             </xsl:variable>
             <xsl:variable name="doc_title">
@@ -270,7 +264,6 @@ When adapting for different projects have a careful look at the following params
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:if test="tei:head">
         <p>
             <xsl:element name="span">
                 <xsl:attribute name="class">
@@ -294,7 +287,14 @@ When adapting for different projects have a careful look at the following params
                             <xsl:attribute name="target">
                                 <xsl:text>_blank</xsl:text>
                             </xsl:attribute>
-                            <xsl:value-of select="tei:head"/>
+                            <xsl:choose>
+                                <xsl:when test="string-length(tei:head/text()) &gt; 63">
+                                    <xsl:value-of select="concat(substring(tei:head/text(), 1, 63), '…')"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="tei:head/text()"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:element>
                     </xsl:when>
                     <xsl:when test="starts-with(tei:idno[1]/text(), 'doi')">
@@ -305,16 +305,29 @@ When adapting for different projects have a careful look at the following params
                             <xsl:attribute name="target">
                                 <xsl:text>_blank</xsl:text>
                             </xsl:attribute>
-                            <xsl:value-of select="tei:head"/>
+                            <xsl:choose>
+                                <xsl:when test="string-length(tei:head/text()) &gt; 63">
+                                    <xsl:value-of select="concat(substring(tei:head/text(), 1, 63), '…')"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="tei:head/text()"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="tei:head"/>
+                        <xsl:choose>
+                            <xsl:when test="string-length(tei:head/text()) &gt; 63">
+                                <xsl:value-of select="concat(substring(tei:head/text(), 1, 63), '…')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="tei:head/text()"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:element>
         </p>
-        </xsl:if>
         <xsl:if test="tei:desc/child::*[1]">
             <xsl:element name="ul">
                 <xsl:attribute name="style">
