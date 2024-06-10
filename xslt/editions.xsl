@@ -1208,7 +1208,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:signed">
-        <span class="signed editionText">
+        &#32;<span class="signed editionText">
             <xsl:apply-templates/>
         </span>
     </xsl:template>
