@@ -1208,9 +1208,9 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:signed">
-        <div class="signed editionText">
+        <span class="signed editionText">
             <xsl:apply-templates/>
-        </div>
+        </span>
     </xsl:template>
     <!--<xsl:template match="tei:space[@unit='chars' and not(@quantity = 1)]">
         <span class="space">
