@@ -31,8 +31,8 @@
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:if>
-                                <xsl:if
-                                    test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter'][1]">
+                                <xsl:choose>
+                                    <xsl:when test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter'][1]">
                                     <span class="dropdown-item-text">… in der Korrespondenz</span>
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter']">
@@ -41,7 +41,11 @@
                                             <xsl:with-param name="direction" select="'prev-doc2'"/>
                                         </xsl:call-template>
                                     </xsl:for-each>
-                                </xsl:if>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:text>keine früheren Korrespondenzstücke</xsl:text>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </ul>
                         </nav>
                     </h1>
@@ -71,8 +75,8 @@
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:if>
-                                <xsl:if
-                                    test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter'][1]">
+                                <xsl:choose>
+                                    <xsl:when test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter'][1]">
                                     <span class="dropdown-item-text">… in der Korrespondenz</span>
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter']">
@@ -81,7 +85,11 @@
                                             <xsl:with-param name="direction" select="'next-doc2'"/>
                                         </xsl:call-template>
                                     </xsl:for-each>
-                                </xsl:if>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:text>keine weiteren Korrespondenzstücke</xsl:text>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </ul>
                         </nav>
                     </h1>
