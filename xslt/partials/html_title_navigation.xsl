@@ -43,8 +43,7 @@
                                     </xsl:for-each>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <span class="dropdown-item-text">… in der Korrespondenz</span>
-                                        <xsl:text>nichts früheres überliefert</xsl:text>
+                                        <span class="dropdown-item-text">… in der Korrespondenz<br/>keine früheren Überlieferungen</span>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </ul>
@@ -88,8 +87,7 @@
                                     </xsl:for-each>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <span class="dropdown-item-text">… in der Korrespondenz</span>
-                                        <xsl:text>nichts späteres überliefert</xsl:text>
+                                        <span class="dropdown-item-text">… in der Korrespondenz<br/>keine späteren Überlieferungen</span>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </ul>
