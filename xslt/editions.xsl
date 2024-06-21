@@ -1093,7 +1093,7 @@
         match="tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(ancestor::tei:note[@type = 'footnote']) and not(ancestor::tei:caption) and not(parent::tei:bibl) and not(parent::tei:quote) and not(child::tei:space[@dim])] | tei:dateline | tei:closer">
         <xsl:choose>
             <xsl:when test="child::tei:seg">
-                <div class="editionText">
+                <div class="editionText flexContainer">
                     <span class="seg-left">
                         <xsl:apply-templates select="tei:seg[@rend = 'left']"/>
                     </span>

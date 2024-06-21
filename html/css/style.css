@@ -665,11 +665,11 @@ low resolution
 }
 
 .seg-right{
-    float:right;
+    text-align: right;
 }
 
 .seg-left{
-    float:left;
+    text-align: left;
 }
 
 .signed   { 
@@ -1097,3 +1097,10 @@ legend {float: none;
 div#map {
      height: 50vh;
  } 
+
+.flexContainer{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
