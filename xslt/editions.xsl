@@ -1207,7 +1207,7 @@
     <xsl:template match="tei:salute[not(parent::tei:opener)]">
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:signed"><xsl:text>&#160;</xsl:text><span class="signed editionText">
+    <xsl:template match="tei:signed"><xsl:text>&#160;</xsl:text><span class="editionText signed">
             <xsl:apply-templates/>
         </span>
     </xsl:template>

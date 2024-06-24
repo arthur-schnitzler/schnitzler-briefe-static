@@ -675,8 +675,8 @@ low resolution
 }
 
 .signed   { 
-  text-align: right;
- }
+text-align: right;
+}
  
 .small-caps {
     font-variant: small-caps;
