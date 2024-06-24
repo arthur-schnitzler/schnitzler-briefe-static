@@ -676,6 +676,7 @@ low resolution
 
 .signed   { 
 text-align: right;
+float:right;
 }
  
 .small-caps {
