@@ -1085,7 +1085,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:opener">
-        <div class="opener">
+        <div class="editionText opener">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
