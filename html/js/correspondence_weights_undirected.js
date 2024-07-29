@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeChartContainer);
 
     // Fetch the CSV file
-    fetch('correspondence_weights_undirected.csv')
+    fetch('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/correspondence_weights_undirected/correspondence_weights_undirected.csv')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
