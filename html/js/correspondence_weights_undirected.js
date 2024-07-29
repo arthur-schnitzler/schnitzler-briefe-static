@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function resizeChartContainer() {
         const container = document.getElementById('container');
         if (container) {
-            container.style.width = window.innerWidth + 'px';
-            container.style.height = window.innerHeight + 'px';
+            const width = window.innerWidth * 0.8; // 80% of the window width
+            const height = window.innerHeight * 0.6; // 60% of the window height
+            container.style.width = width + 'px';
+            container.style.height = height + 'px';
         } else {
             console.error('Container not found');
         }
@@ -121,10 +123,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Create the Highcharts chart
                     window.chart = Highcharts.chart('container', {
                         chart: {
-                            type: 'networkgraph'
+                            type: 'networkgraph',
+                            panning: {
+                                enabled: true,
+                                type: 'xy'
+                            },
+                            panKey: 'shift' // Pan with the shift key
                         },
                         title: {
-                            text: 'Anzahl der Korrespondenzstücke aller Korrespondenzen in ungerichteten Graphen'
+                            text: null // No title
                         },
                         tooltip: {
                             formatter: function () {
@@ -139,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 keys: ['from', 'to'],
                                 layoutAlgorithm: {
                                     enableSimulation: true,
-                                    linkLength: 25 // Increase this value to make distances bigger
+                                    linkLength: 30 // Increase this value to make distances bigger
                                 }
                             }
                         },
@@ -149,7 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 linkFormat: '',
                                 allowOverlap: true,
                                 style: {
-                                    textOutline: 'none'
+                                    textOutline: 'none',
+                                },
+                                formatter: function() {
+                                    return this.point.id; // Customize the label display if needed
                                 }
                             },
                             nodes: nodeArray,
