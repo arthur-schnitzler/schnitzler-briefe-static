@@ -26,6 +26,8 @@
                             <div class="card-header">
                                 <h1>Verzeichnis der Korrespondenzen</h1>
                             </div>
+                            <div id="container"/>
+                            <script src="js/correspondence_weights_directed.js"></script>
                             <div class="card-body">
                                 <table class="table-light table-striped display" id="tabulator-table-limited" style="width:100%">
                                     <thead>
