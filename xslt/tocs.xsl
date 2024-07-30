@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:mam="whatever"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="xsl tei xs">
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:mam="whatever" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0"
+    exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
 
@@ -26,15 +27,18 @@
                             <div class="card-header">
                                 <h1>Verzeichnis der Korrespondenzen</h1>
                             </div>
-                            <div id="container"/>
-                            <script src="js/correspondence_weights_directed.js"></script>
                             <div class="card-body">
-                                <table class="table-light table-striped display" id="tabulator-table-limited" style="width:100%">
+                                <div id="container" style="padding-bottom: 20px"/>
+                                <script src="js/correspondence_weights_directed.js"/>
+                                <table class="table-light table-striped display"
+                                    id="tabulator-table-limited" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Korrespondenz</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">enthält</th>
-                                            <th scope="col" >Anzahl</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Korrespondenz</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">enthält</th>
+                                            <th scope="col">Anzahl</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,12 +60,14 @@
                                                   </a>
                                                 </td>
                                                 <td>
-                                                    <xsl:for-each select="tei:persName[not(@role='main')]">
-                                                        <xsl:value-of select="concat(substring-after(., ', '), ' ', substring-before(., ', '))"/>
-                                                        <xsl:if test="not(position()=last())">
-                                                            <br/>
-                                                        </xsl:if>
-                                                    </xsl:for-each>
+                                                  <xsl:for-each
+                                                  select="tei:persName[not(@role = 'main')]">
+                                                  <xsl:value-of
+                                                  select="concat(substring-after(., ', '), ' ', substring-before(., ', '))"/>
+                                                  <xsl:if test="not(position() = last())">
+                                                  <br/>
+                                                  </xsl:if>
+                                                  </xsl:for-each>
                                                 </td>
                                                 <td>
                                                   <xsl:value-of
@@ -73,7 +79,8 @@
 
                                         </xsl:for-each>
                                     </tbody>
-                                </table> <xsl:call-template name="tabulator_dl_buttons"/>
+                                </table>
+                                <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
                     </div>
@@ -83,27 +90,31 @@
                 </div>
             </body>
         </html>
-        <xsl:for-each select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
+        <xsl:for-each
+            select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
             <xsl:sort select="tei:persName[@role = 'main']/text()"/>
             <xsl:variable name="nummer-des-korrespondenzpartners"
                 select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
-            <xsl:variable name="filename" select="concat('statistik_', $nummer-des-korrespondenzpartners, '.html')"/>
-            <xsl:variable name="name" select="mam:vorname-vor-nachname(tei:persName[@role='main'][1]/text())"/>
+            <xsl:variable name="filename"
+                select="concat('statistik_', $nummer-des-korrespondenzpartners, '.html')"/>
+            <xsl:variable name="name"
+                select="mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text())"/>
             <xsl:result-document href="{$filename}">
                 <html xmlns="http://www.w3.org/1999/xhtml">
                     <xsl:call-template name="html_head">
                         <xsl:with-param name="html_title" select="$name"/>
                     </xsl:call-template>
-                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-                    <script src="https://code.highcharts.com/highcharts.js"></script>
-                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-                    <script src="https://code.highcharts.com/modules/data.js"></script>
-                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                    <script src="./js/tocs-statistics.js"></script>
+                    <script src="https://code.highcharts.com/modules/accessibility.js"/>
+                    <script src="https://code.highcharts.com/highcharts.js"/>
+                    <script src="https://code.highcharts.com/highcharts-more.js"/>
+                    <script src="https://code.highcharts.com/modules/data.js"/>
+                    <script src="https://code.highcharts.com/modules/exporting.js"/>
+                    <script src="./js/tocs-statistics.js"/>
                     <body class="page">
                         <div class="hfeed site" id="page">
                             <xsl:call-template name="nav_bar"/>
-                            <xsl:variable name="csvFilename" select="concat('statistik_', $nummer-des-korrespondenzpartners , '.csv')"/>
+                            <xsl:variable name="csvFilename"
+                                select="concat('statistik_', $nummer-des-korrespondenzpartners, '.csv')"/>
                             <script>
                                 function getTitle() {
                                 var title = '<xsl:value-of select="$csvFilename"/>';
@@ -139,14 +150,21 @@
                                         </h1>
                                     </div>
                                     <div class="body">
-                                       <div id="statistik1" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
-                                        <div id="statistik3" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
-                                        <div id="statistik2" style="width:100%; height:400px; margin-bottom:1.5em;"></div>
-                                        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-                                            <div id="statistik4a" style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em; min-width: 375px;"></div>
-                                            <div id="statistik4b" style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em; min-width: 375px;"></div>
+                                        <div id="statistik1"
+                                            style="width:100%; height:400px; margin-bottom:1.5em;"/>
+                                        <div id="statistik3"
+                                            style="width:100%; height:400px; margin-bottom:1.5em;"/>
+                                        <div id="statistik2"
+                                            style="width:100%; height:400px; margin-bottom:1.5em;"/>
+                                        <div
+                                            style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                                            <div id="statistik4a"
+                                                style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em; min-width: 375px;"/>
+                                            <div id="statistik4b"
+                                                style="flex: 1 1 45%; height: 400px; margin-bottom: 1.5em; min-width: 375px;"
+                                            />
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -155,27 +173,31 @@
                 </html>
             </xsl:result-document>
         </xsl:for-each>
-        <xsl:for-each select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
+        <xsl:for-each
+            select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
             <xsl:sort select="tei:persName[@role = 'main']/text()"/>
             <xsl:variable name="nummer-des-korrespondenzpartners"
                 select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
-            <xsl:variable name="filename" select="concat('karte_', $nummer-des-korrespondenzpartners, '.html')"/>
-            <xsl:variable name="name" select="mam:vorname-vor-nachname(tei:persName[@role='main'][1]/text())"/>
+            <xsl:variable name="filename"
+                select="concat('karte_', $nummer-des-korrespondenzpartners, '.html')"/>
+            <xsl:variable name="name"
+                select="mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text())"/>
             <xsl:result-document href="{$filename}">
                 <html xmlns="http://www.w3.org/1999/xhtml">
                     <xsl:call-template name="html_head">
                         <xsl:with-param name="html_title" select="$name"/>
                     </xsl:call-template>
-                    <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
-                    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-                    <script src="https://code.highcharts.com/maps/modules/flowmap.js"></script>
-                    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-                    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-                    <script src="./js/tocs-maps.js"></script>
+                    <script src="https://code.highcharts.com/maps/modules/accessibility.js"/>
+                    <script src="https://code.highcharts.com/maps/highmaps.js"/>
+                    <script src="https://code.highcharts.com/maps/modules/flowmap.js"/>
+                    <script src="https://code.highcharts.com/maps/modules/exporting.js"/>
+                    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"/>
+                    <script src="./js/tocs-maps.js"/>
                     <body class="page">
                         <div class="hfeed site" id="page">
                             <xsl:call-template name="nav_bar"/>
-                            <xsl:variable name="csvFilename" select="concat('karte_', $nummer-des-korrespondenzpartners)"/>
+                            <xsl:variable name="csvFilename"
+                                select="concat('karte_', $nummer-des-korrespondenzpartners)"/>
                             <script>
                                 function getTitle() {
                                 var title = '<xsl:value-of select="$csvFilename"/>';
@@ -206,17 +228,21 @@
                                         <div id="karte1" style="height: 500px;
                                             min-width: 310px;
                                             max-width: 100%
-                                            margin: 0 auto; margin-bottom:2em;"></div>
+                                            margin: 0 auto; margin-bottom:2em;"/>
                                         <div id="karte2" style="height: 500px;
                                             min-width: 310px;
                                             max-width: 100%
-                                            margin: 0 auto; margin-bottom:2em;"></div>
+                                            margin: 0 auto; margin-bottom:2em;"/>
                                         <div id="karte3" style="height: 500px;
                                             min-width: 310px;
                                             max-width: 100%
-                                            margin: 0 auto; margin-bottom:2em;"></div>
+                                            margin: 0 auto; margin-bottom:2em;"
+                                        />
                                     </div>
-                                    <p style="text-align:center;"><i>Die zu Grunde liegenden Daten können hier geladen werden: <a href="https://github.com/arthur-schnitzler/schnitzler-briefe-statistik">GitHub</a></i></p>
+                                    <p style="text-align:center;"><i>Die zu Grunde liegenden Daten
+                                            können hier geladen werden: <a
+                                                href="https://github.com/arthur-schnitzler/schnitzler-briefe-statistik"
+                                                >GitHub</a></i></p>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +250,7 @@
                 </html>
             </xsl:result-document>
         </xsl:for-each>
-                            
+
     </xsl:template>
     <xsl:template match="tei:div//tei:head">
         <h2 id="{generate-id()}">

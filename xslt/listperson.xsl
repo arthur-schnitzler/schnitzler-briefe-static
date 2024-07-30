@@ -28,9 +28,9 @@
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
                             </div>
-                            <div id="container"/>
-                            <script src="js/person_freq_corp_weights_directed.js"></script>
                             <div class="card">
+                                <div id="container" style="padding-bottom: 20px"/>
+                                <script src="js/person_freq_corp_weights_directed.js"/>
                                 <table class="table table-sm display" id="tabulator-table"
                                     style="width:100%">
                                     <thead>
