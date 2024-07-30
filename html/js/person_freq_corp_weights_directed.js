@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }],
                         exporting: {
-                            enabled: false
+                            enabled: true
                         }
                     });
                 },

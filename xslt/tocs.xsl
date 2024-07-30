@@ -17,6 +17,7 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
+            
 
             <body class="page">
                 <div class="hfeed site" id="page">
@@ -28,8 +29,12 @@
                                 <h1>Verzeichnis der Korrespondenzen</h1>
                             </div>
                             <div class="card-body">
-                                <div id="container" style="padding-bottom: 20px"/>
                                 <script src="js/correspondence_weights_directed.js"/>
+                                <div id="tocs-container" style="width: 100%;
+                                    height: 450px;
+                                    max-height: 450px;
+                                    margin: 0;
+                                    padding: 0;"/>
                                 <table class="table-light table-striped display"
                                     id="tabulator-table-limited" style="width:100%">
                                     <thead>
