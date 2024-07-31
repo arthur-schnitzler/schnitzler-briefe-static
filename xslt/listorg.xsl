@@ -30,6 +30,8 @@
                                 </h1>
                             </div>
                             <div class="card-body">
+                                <div id="container" style="padding-bottom: 20px"/>
+                                <script src="js/institution_freq_corp_weights_directed.js"/>
                                 <table class="table table-sm display" id="tabulator-table" style="width:100%"
                                     >
                                     <thead>
