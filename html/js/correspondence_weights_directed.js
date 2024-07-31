@@ -134,7 +134,7 @@
                                     }
                                 }],
                                 exporting: {
-                                    enabled: true, // Disable exporting
+                                    enabled: false, // Disable exporting
                                 }
                             });
                         },
