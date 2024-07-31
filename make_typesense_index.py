@@ -160,7 +160,7 @@ for x in tqdm(files, total=len(files)):
         item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]")[0])[0]}
         record["works"].append(item)
     cfts_record["places"] = [x["label"] for x in record["places"]]
-    record["full_text"] = f"{extract_fulltext(body)} {record['title']}"
+    record["full_text"] = f"{extract_fulltext(body)} {record['title']}".replace("(", " ")
     cfts_record["full_text"] = record["full_text"]
     records.append(record)
     cfts_records.append(cfts_record)
