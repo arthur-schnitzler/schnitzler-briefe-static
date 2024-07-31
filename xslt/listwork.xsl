@@ -32,7 +32,7 @@
                             <div class="card">
                                 <div id="container" style="padding-bottom: 20px"/>
                                 <div id="chart-buttons" class="text-center mt-3" style="margin-bottom: 10px">
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corp_weights_directed/work_freq_corp_weights_directed_all.csv">Alle Werke</button>
+                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top1000.csv">Alle Werke</button>
                                     <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top100.csv">Top 100</button>
                                     <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top30.csv">Top 30</button>
                                 </div>
