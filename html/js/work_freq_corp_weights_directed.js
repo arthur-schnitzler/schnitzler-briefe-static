@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             if (!source || !target) return console.warn('Row missing source or target:', row);
 
-                            if (overallCount <= 45) return;  // Filter out target nodes
+                            // if (overallCount <= 45) return;  // Filter out target nodes
 
                             targets.add(target);
 
