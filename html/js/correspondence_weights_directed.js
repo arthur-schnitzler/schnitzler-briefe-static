@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             groupPadding: 0,
                             pointPadding: 0,
                             dataLabels: {
-                                enabled: true, linkFormat: '', allowOverlap: true, style: { textOutline: 'none' },
+                                enabled: true, linkFormat: '', allowOverlap: false, style: { textOutline: 'none' },
                                 formatter: function () { return this.point.id; }
                             },
                             nodes: Object.values(nodes),
