@@ -384,6 +384,9 @@
             <xsl:when test="$entry/@medium = 'schwarze-tinte'">
                 <xsl:text>schwarze Tinte</xsl:text>
             </xsl:when>
+            <xsl:when test="$entry/@medium = 'lila-tinte'">
+                <xsl:text>lila Tinte</xsl:text>
+            </xsl:when>
             <xsl:when test="$entry/@medium = 'blaue-tinte'">
                 <xsl:text>blaue Tinte</xsl:text>
             </xsl:when>
@@ -581,6 +584,9 @@
             </xsl:when>
             <xsl:when test="$rend = 'rote-tinte'">
                 <xsl:text>mit roter Tinte </xsl:text>
+            </xsl:when>
+            <xsl:when test="$rend = 'lila-tinte'">
+                <xsl:text>lila Tinte</xsl:text>
             </xsl:when>
         </xsl:choose>
     </xsl:function>
