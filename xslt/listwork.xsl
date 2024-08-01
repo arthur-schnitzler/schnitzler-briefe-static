@@ -37,7 +37,8 @@
                                     <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top500.csv">Top 500</button>
                                 </div>
                                 <script src="js/work_freq_corp_weights_directed.js"/>
-                                <table class="table table-sm display" id="tabulator-table" style="width:100%; margin: auto; text-align: center"
+                                <div style="display: flex; justify-content: center;">
+                                <table class="table table-sm display" id="tabulator-table" style="width:100%; margin: auto;"
                                     >
                                     <thead>
                                         <tr>
@@ -133,7 +134,10 @@
                                             </xsl:choose>                                            
                                         </xsl:for-each>
                                     </tbody>
-                                </table> <xsl:call-template name="tabulator_dl_buttons"/>
+                                </table>
+                                </div>  
+                                    <xsl:call-template name="tabulator_dl_buttons"/>
+                                
                             </div>
                         </div>
                         <div class="modal" tabindex="-1" role="dialog" id="exampleModal">

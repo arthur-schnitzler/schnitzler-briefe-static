@@ -30,8 +30,9 @@
                             <div class="card-body">
                                 <script src="js/correspondence_weights_directed.js"/>
                                 <div id="tocs-container" style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                <div style="display: flex; justify-content: center;">
                                 <table class="table-light table-striped display"
-                                    id="tabulator-table-limited" style="width:100%; margin: auto; text-align: center">
+                                    id="tabulator-table-limited" style="width:100%; margin: auto;">
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input"
@@ -80,6 +81,7 @@
                                         </xsl:for-each>
                                     </tbody>
                                 </table>
+                                </div>
                                 <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>

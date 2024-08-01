@@ -39,8 +39,9 @@
                             </div>
                             <div class="card-body">
                                 <div id="map"/>
+                                <div style="display: flex; justify-content: center;">
                                 <table id="placesTable"
-                                    style="width:100%; margin: auto; text-align: center">
+                                    style="width:100%; margin: auto;">
                                     <thead>
                                         <tr>
                                             <th scope="col">Ortsname</th>
@@ -98,6 +99,7 @@
                                         </xsl:for-each>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
