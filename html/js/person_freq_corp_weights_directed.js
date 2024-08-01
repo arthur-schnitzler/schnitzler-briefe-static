@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Document is ready');
 
+    const container = document.getElementById('container');
+
     const resizeChartContainer = () => {
-        const container = document.getElementById('container');
         if (container) {
             container.style.width = window.innerWidth * 0.8 + 'px';
             container.style.height = window.innerHeight * 0.6 + 'px';
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!data.length) return console.error('Parsed data is empty or incorrectly formatted');
 
                         const nodes = {}, links = [];
-                        const [nodeColor, minNodeSize, maxNodeSize, minLinkWidth, maxLinkWidth] = ['#3785A6', 2, 20, 0.1, 5];
+                        const [sourceColor, targetColor, minNodeSize, maxNodeSize, minLinkWidth, maxLinkWidth] = ['#A63437', '#3785A6', 2, 20, 0.5, 5];
 
                         data.forEach(row => {
                             const [source, target, sourceId, targetId, overallCount, weight] = [
@@ -54,17 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (!source || !target) return console.warn('Row missing source or target:', row);
 
                             if (!nodes[source]) {
-                                nodes[source] = { id: source, overallCount: 0, correspondences: [], marker: { fillColor: nodeColor }, url: `https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${sourceId}.html` };
+                                nodes[source] = { id: source, overallCount: 0, marker: { fillColor: sourceColor }, url: `https://schnitzler-briefe.acdh.oeaw.ac.at/toc_${sourceId}.html`, correspondences: [] };
                             }
 
                             if (!nodes[target]) {
-                                nodes[target] = { id: target, overallCount: overallCount, correspondences: [], marker: { fillColor: nodeColor }, url: `https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${targetId}.html` };
+                                nodes[target] = { id: target, overallCount: overallCount, marker: { fillColor: targetColor }, url: `https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${targetId}.html`, correspondences: [] };
                             }
 
-                            nodes[target].overallCount = overallCount;
                             nodes[target].correspondences.push({ from: source, weight });
 
-                            links.push({ from: source, to: target, value: weight, source, target, weight });
+                            links.push({ from: source, to: target, value: weight, width: weight });
                         });
 
                         const allNodes = Object.values(nodes);
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const [minWeight, maxWeight] = [Math.min(...allNodes.map(n => n.overallCount)), Math.max(...allNodes.map(n => n.overallCount))];
 
                         allNodes.forEach(node => {
-                            const normalizedWeight = (node.overallCount - minWeight) / (maxWeight - minWeight);
+                            const normalizedWeight = maxWeight === minWeight ? 1 : (node.overallCount - minWeight) / (maxWeight - minWeight);
                             node.marker.radius = minNodeSize + normalizedWeight * (maxNodeSize - minNodeSize);
                         });
 
@@ -96,8 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             tooltip: {
                                 formatter: function () {
                                     if (this.point.isNode) {
-                                        const { id, overallCount, correspondences } = this.point;
-                                        let tooltipText = `<b>${id}</b><br>Erwähnungen: ${overallCount}`;
+                                        const { id, overallCount, correspondences, marker } = this.point;
+                                        let tooltipText = `<b>${id}</b>`;
+                                        if (marker.fillColor === targetColor && overallCount > 0) {
+                                            tooltipText += `<br>Erwähnungen: ${overallCount}`;
+                                        }
                                         if (correspondences.length > 0) {
                                             const sortedCorrespondences = correspondences.sort((a, b) => b.weight - a.weight);
                                             sortedCorrespondences.forEach(correspondence => {
@@ -116,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         initialPositions: 'circle',
                                         enableSimulation: true,
                                         gravitationalConstant: 0,
-                                        linkLength: 50,
+                                        linkLength: 35,
                                         friction: -0.9
                                     },
                                     dataLabels: {
@@ -142,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             },
                             series: [{
                                 dataLabels: {
-                                    enabled: true, linkFormat: '', allowOverlap: true, style: { textOutline: 'none' },
+                                    enabled: true, linkFormat: '', allowOverlap: false, style: { textOutline: 'none' },
                                     formatter: function () { return this.point.id; }
                                 },
                                 nodes: allNodes,
