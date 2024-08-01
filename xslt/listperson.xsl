@@ -31,9 +31,9 @@
                             <div class="card-body">
                                 <div id="container" style="padding-bottom: 20px; width:100%; margin: auto"/>
                                 <div id="chart-buttons" class="text-center mt-3" style="margin: auto; padding-bottom: 20px">
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv">Top 500</button>
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv">Top 100</button>
                                     <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv">Top 30</button>
+                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv">Top 100</button>
+                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv">Top 500</button>
                                 </div>
                                 <script src="js/person_freq_corp_weights_directed.js"/>
                                 <table class="table table-sm display" id="tabulator-table"
