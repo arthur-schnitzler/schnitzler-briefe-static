@@ -9,7 +9,15 @@
         <xsl:text>:</xsl:text>
         <ul style="list-style-type: none; padding: 0; margin: 0;">
         <xsl:if test="tei:placeName">
-            <li>Ort: <xsl:apply-templates select="./tei:placeName"/></li>
+            <li>Ort: 
+                    <a class="theme-color">
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="concat(data(@ref), '.html')"
+                            />
+                        </xsl:attribute>
+                        <xsl:value-of select="tei:placeName"/>
+                    </a>
+            </li>
         </xsl:if>
             <xsl:if test="tei:date"><li>Datum: <xsl:apply-templates select="./tei:date"/>
             </li>

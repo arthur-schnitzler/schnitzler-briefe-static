@@ -81,7 +81,8 @@
                             select="'.jpg?format=iiif&amp;param=/full/,200/0/default.jpg'"/>
                         <xsl:variable name="iiif-domain"
                             select="'https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/'"/>
-                        <xsl:variable name="facs_item" select="descendant::tei:pb[not(@facs='')][1]/@facs"/>
+                        <xsl:variable name="facs_item"
+                            select="descendant::tei:pb[not(@facs = '')][1]/@facs"/>
                         <xsl:value-of select="concat($iiif-domain, $facs_item, $iiif-ext)"/>
                     </xsl:attribute>
                 </meta>
@@ -245,16 +246,40 @@
                                                   <xsl:value-of select="./tei:date"/>
                                                   <br/>
                                                   </xsl:if>
-                                                  <xsl:if test="./tei:persName">
-                                                  <xsl:value-of select="./tei:persName"
-                                                  separator="; "/>
+                                                  <xsl:for-each select="child::tei:persName">
+                                                  <a class="theme-color">
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="concat(data(@ref), '.html')"
+                                                  />
+                                                  </xsl:attribute>
+                                                  <xsl:value-of select="."/>
+                                                  </a>
+                                                  <xsl:choose>
+                                                  <xsl:when test="not(position() = last())">
+                                                  <xsl:text>; </xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
                                                   <br/>
-                                                  </xsl:if>
-                                                  <xsl:if test="./tei:placeName">
-                                                  <xsl:value-of select="./tei:placeName"
-                                                  separator="; "/>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                  </xsl:for-each>
+                                                  <xsl:for-each select="child::tei:placeName">
+                                                  <a class="theme-color">
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="concat(data(@ref), '.html')"
+                                                  />
+                                                  </xsl:attribute>
+                                                  <xsl:value-of select="."/>
+                                                  </a>
+                                                  <xsl:choose>
+                                                  <xsl:when test="not(position() = last())">
+                                                  <xsl:text>; </xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
                                                   <br/>
-                                                  </xsl:if>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                  </xsl:for-each>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
@@ -1207,7 +1232,9 @@
     <xsl:template match="tei:salute[not(parent::tei:opener)]">
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:signed"><xsl:text>&#160;</xsl:text><span class="editionText signed">
+    <xsl:template match="tei:signed">
+        <xsl:text>&#160;</xsl:text>
+        <span class="editionText signed">
             <xsl:apply-templates/>
         </span>
     </xsl:template>
@@ -1303,7 +1330,7 @@
         </xsl:element>
     </xsl:template>
     <xsl:function name="mam:dots">
-        <xsl:param name="anzahl"/> 
+        <xsl:param name="anzahl"/>
         <xsl:text>.&#160;</xsl:text>
         <xsl:if test="$anzahl &gt; 1">
             <xsl:value-of select="mam:dots($anzahl - 1)"/>
@@ -1331,21 +1358,24 @@
         <span class="handschriftlich">
             <xsl:text>[handschriftlich </xsl:text>
             <span class="persons badge-item">
-            <xsl:element name="a">
-                <xsl:attribute name="href">
-                    <xsl:value-of select="concat($scribe, '.html')"/>
-                </xsl:attribute>
-                <xsl:variable name="schreibername" select="ancestor::tei:TEI/tei:text[1]/tei:back[1]/tei:listPerson[1]/tei:person[@xml:id = $scribe]/tei:persName[1]" as="node()"/>
-            <xsl:choose>
-                <xsl:when test="starts-with($schreibername/tei:surname, '??')">
-                    <xsl:text>unbekannte Hand</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of
-                        select="concat($schreibername/tei:forename, ' ', $schreibername/tei:surname)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-            </xsl:element>
+                <xsl:element name="a">
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="concat($scribe, '.html')"/>
+                    </xsl:attribute>
+                    <xsl:variable name="schreibername"
+                        select="ancestor::tei:TEI/tei:text[1]/tei:back[1]/tei:listPerson[1]/tei:person[@xml:id = $scribe]/tei:persName[1]"
+                        as="node()"/>
+                    <xsl:choose>
+                        <xsl:when test="starts-with($schreibername/tei:surname, '??')">
+                            <xsl:text>unbekannte Hand</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of
+                                select="concat($schreibername/tei:forename, ' ', $schreibername/tei:surname)"
+                            />
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:element>
             </span>
             <xsl:text>:] </xsl:text>
         </span>
