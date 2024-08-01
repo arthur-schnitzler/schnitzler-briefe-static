@@ -17,6 +17,9 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 
             <body class="page">
