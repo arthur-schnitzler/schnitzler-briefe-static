@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         const nodes = {}, links = [];
                         const [nodeColor, minNodeSize, maxNodeSize, minLinkWidth, maxLinkWidth] = ['#3785A6', 2, 20, 0.1, 5];
 
-                        const targets = new Set();
                         data.forEach(row => {
                             const [source, target, sourceId, targetId, overallCount, weight] = [
                                 row.Source?.trim(),
@@ -54,38 +53,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             if (!source || !target) return console.warn('Row missing source or target:', row);
 
-                            targets.add(target);
-
                             if (!nodes[source]) {
-                                nodes[source] = { id: source, correspondences: [], marker: { fillColor: nodeColor }, url: `https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${sourceId}.html` };
+                                nodes[source] = { id: source, overallCount: 0, correspondences: [], marker: { fillColor: nodeColor }, url: `https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${sourceId}.html` };
                             }
 
                             if (!nodes[target]) {
                                 nodes[target] = { id: target, overallCount: overallCount, correspondences: [], marker: { fillColor: nodeColor }, url: `https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${targetId}.html` };
                             }
 
+                            nodes[target].overallCount = overallCount;
                             nodes[target].correspondences.push({ from: source, weight });
 
                             links.push({ from: source, to: target, value: weight, source, target, weight });
                         });
 
-                        // Filter nodes and links to include only those appearing as targets
-                        const targetNodes = Object.values(nodes).filter(node => targets.has(node.id));
-                        const targetLinks = links.filter(link => targets.has(link.source) && targets.has(link.target));
+                        const allNodes = Object.values(nodes);
 
-                        const [minWeight, maxWeight] = [Math.min(...targetNodes.map(n => n.overallCount)), Math.max(...targetNodes.map(n => n.overallCount))];
+                        const [minWeight, maxWeight] = [Math.min(...allNodes.map(n => n.overallCount)), Math.max(...allNodes.map(n => n.overallCount))];
 
-                        targetNodes.forEach(node => {
+                        allNodes.forEach(node => {
                             const normalizedWeight = (node.overallCount - minWeight) / (maxWeight - minWeight);
                             node.marker.radius = minNodeSize + normalizedWeight * (maxNodeSize - minNodeSize);
                         });
 
-                        if (!targetNodes.length || !targetLinks.length) return console.error('Nodes or links arrays are empty');
+                        if (!allNodes.length || !links.length) return console.error('Nodes or links arrays are empty');
 
-                        const minLinkWeight = Math.min(...targetLinks.map(link => link.value));
-                        const maxLinkWeight = Math.max(...targetLinks.map(link => link.value));
+                        const minLinkWeight = Math.min(...links.map(link => link.value));
+                        const maxLinkWeight = Math.max(...links.map(link => link.value));
 
-                        targetLinks.forEach(link => {
+                        links.forEach(link => {
                             link.width = minLinkWidth + ((link.value - minLinkWeight) / (maxLinkWeight - minLinkWeight)) * (maxLinkWidth - minLinkWidth);
                         });
 
@@ -147,10 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             series: [{
                                 dataLabels: {
                                     enabled: true, linkFormat: '', allowOverlap: true, style: { textOutline: 'none' },
-                                formatter: function () { return this.point.id; }
-                            },
-                                nodes: targetNodes,
-                                data: targetLinks,
+                                    formatter: function () { return this.point.id; }
+                                },
+                                nodes: allNodes,
+                                data: links,
                                 point: {
                                     events: {
                                         click: function () {
