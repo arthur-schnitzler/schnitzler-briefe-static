@@ -10,13 +10,18 @@
         <ul style="list-style-type: none; padding: 0; margin: 0;">
         <xsl:if test="tei:placeName">
             <li>Ort: 
+                <xsl:for-each select="tei:placeName">
                     <a class="theme-color">
                         <xsl:attribute name="href">
-                            <xsl:value-of select="concat(replace(tei:placeName/@ref, '#', ''), '.html')"
+                            <xsl:value-of select="concat(replace(@ref, '#', ''), '.html')"
                             />
                         </xsl:attribute>
-                        <xsl:value-of select="tei:placeName"/>
+                        <xsl:value-of select="."/>
                     </a>
+                    <xsl:if test="not(position()=last())">
+                        <xsl:text> </xsl:text>
+                    </xsl:if>
+                </xsl:for-each>
             </li>
         </xsl:if>
             <xsl:if test="tei:date"><li>Datum: <xsl:apply-templates select="./tei:date"/>
