@@ -12,7 +12,7 @@
             <li>Ort: 
                     <a class="theme-color">
                         <xsl:attribute name="href">
-                            <xsl:value-of select="concat(replace(data(tei:placeName/@ref), '#', ''), '.html')"
+                            <xsl:value-of select="concat(replace(tei:placeName/@ref, '#', ''), '.html')"
                             />
                         </xsl:attribute>
                         <xsl:value-of select="tei:placeName"/>

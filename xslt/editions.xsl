@@ -249,7 +249,7 @@
                                                   <xsl:for-each select="child::tei:persName">
                                                   <a class="theme-color">
                                                   <xsl:attribute name="href">
-                                                  <xsl:value-of select="concat(replace(data(@ref), '#', ''), '.html')"
+                                                  <xsl:value-of select="concat(replace((@ref), '#', ''), '.html')"
                                                   />
                                                   </xsl:attribute>
                                                   <xsl:value-of select="."/>
@@ -266,7 +266,7 @@
                                                   <xsl:for-each select="child::tei:placeName">
                                                   <a class="theme-color">
                                                   <xsl:attribute name="href">
-                                                      <xsl:value-of select="concat(replace(data(@ref), '#', ''), '.html')"
+                                                      <xsl:value-of select="concat(replace((@ref), '#', ''), '.html')"
                                                   />
                                                   </xsl:attribute>
                                                   <xsl:value-of select="."/>
