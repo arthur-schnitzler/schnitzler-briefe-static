@@ -22,7 +22,7 @@
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <div class="container-fluid">
+                    <div class="container">
                         <div class="card">
                             <div class="card-header" style="text-align:center">
                                 <h1>
