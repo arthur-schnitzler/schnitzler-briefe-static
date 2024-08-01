@@ -37,7 +37,7 @@
                                 </div>
                                 <script src="js/person_freq_corp_weights_directed.js"/>
                                 <table class="table table-sm display" id="tabulator-table"
-                                    style="width:100%">
+                                    style="width:100%; margin: auto; text-align: center">
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input"

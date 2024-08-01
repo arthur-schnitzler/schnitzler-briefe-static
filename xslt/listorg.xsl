@@ -37,7 +37,7 @@
                                     <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institution_freq_corp_weights_directed/institution_freq_corp_weights_directed_top30.csv">Top 30</button>
                                 </div>
                                 <script src="js/institution_freq_corp_weights_directed.js"/>
-                                <table class="table table-sm display" id="tabulator-table" style="width:100%"
+                                <table class="table table-sm display" id="tabulator-table" style="width:100%; margin: auto; text-align: center"
                                     >
                                     <thead>
                                         <tr>

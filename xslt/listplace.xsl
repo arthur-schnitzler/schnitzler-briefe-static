@@ -40,7 +40,7 @@
                             <div class="card-body">
                                 <div id="map"/>
                                 <table id="placesTable"
-                                    style="width:100%">
+                                    style="width:100%; margin: auto; text-align: center">
                                     <thead>
                                         <tr>
                                             <th scope="col">Ortsname</th>

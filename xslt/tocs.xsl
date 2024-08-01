@@ -31,7 +31,7 @@
                                 <script src="js/correspondence_weights_directed.js"/>
                                 <div id="tocs-container" style="padding-bottom: 20px; width:100%; margin: auto"/>
                                 <table class="table-light table-striped display"
-                                    id="tabulator-table-limited" style="width:100%">
+                                    id="tabulator-table-limited" style="width:100%; margin: auto; text-align: center">
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input"
