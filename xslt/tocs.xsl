@@ -17,9 +17,9 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
-            <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/highcharts.js"/>
+            <script src="https://code.highcharts.com/modules/networkgraph.js"/>
+            <script src="https://code.highcharts.com/modules/exporting.js"/>
 
 
             <body class="page">
@@ -32,27 +32,31 @@
                             </div>
                             <div class="card-body">
                                 <script src="js/correspondence_weights_directed.js"/>
-                                <div id="tocs-container" style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                <div id="tocs-container"
+                                    style="padding-bottom: 20px; width:100%; margin: auto"/>
                                 <div style="display: flex; justify-content: center;">
-                                <table class="table-light table-striped display"
-                                    id="tabulator-table-limited" style="width:100%; margin: auto;">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                tabulator-formatter="html">Korrespondenz</th>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                tabulator-formatter="html">enthält</th>
-                                            <th scope="col">Anzahl</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <xsl:for-each
-                                            select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
-                                            <xsl:sort select="tei:persName[@role = 'main']/text()"/>
-                                            <xsl:variable name="nummer-des-korrespondenzpartners"
-                                                select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
+                                    <table class="table-light table-striped display"
+                                        id="tabulator-table-limited"
+                                        style="width:100%; margin: auto;">
+                                        <thead>
                                             <tr>
-                                                <td>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Korrespondenz</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">enthält</th>
+                                                <th scope="col">Anzahl</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <xsl:for-each
+                                                select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
+                                                <xsl:sort
+                                                  select="tei:persName[@role = 'main']/text()"/>
+                                                <xsl:variable
+                                                  name="nummer-des-korrespondenzpartners"
+                                                  select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
+                                                <tr>
+                                                  <td>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -62,8 +66,8 @@
                                                   <xsl:value-of
                                                   select="tei:persName[@role = 'main']/text()"/>
                                                   </a>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <xsl:for-each
                                                   select="tei:persName[not(@role = 'main')]">
                                                   <xsl:value-of
@@ -72,18 +76,18 @@
                                                   <br/>
                                                   </xsl:if>
                                                   </xsl:for-each>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <xsl:value-of
                                                   select="count(document(concat('../data/tocs/toc_', replace($nummer-des-korrespondenzpartners, 'pmb', ''), '.xml'))/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:list[1]/tei:item)"
                                                   />
-                                                </td>
+                                                  </td>
 
-                                            </tr>
+                                                </tr>
 
-                                        </xsl:for-each>
-                                    </tbody>
-                                </table>
+                                            </xsl:for-each>
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
@@ -95,6 +99,7 @@
                 </div>
             </body>
         </html>
+        <!-- Statistiken -->
         <xsl:for-each
             select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
             <xsl:sort select="tei:persName[@role = 'main']/text()"/>
@@ -178,6 +183,79 @@
                 </html>
             </xsl:result-document>
         </xsl:for-each>
+        <!-- Entitäten -->
+        <xsl:for-each
+            select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
+            <xsl:variable name="corr-id"
+                select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
+            <xsl:variable name="filename" select="concat('netzwerke_', $corr-id, '.html')"/>
+            <xsl:variable name="corr-name"
+                select="mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text())"/>
+            <xsl:if
+                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corr_weights_directed/person_freq_corr_weights_directed_correspondence_', $corr-id, '.csv') or concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_', $corr-id, '.csv') or concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institution_freq_corr_weights_directed/institution_freq_corr_weights_directed_correspondence_', $corr-id, '.csv') or concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
+                <xsl:result-document href="{$filename}">
+                    <html xmlns="http://www.w3.org/1999/xhtml">
+                        <xsl:call-template name="html_head">
+                            <xsl:with-param name="html_title" select="$corr-name"/>
+                        </xsl:call-template>
+                        <script src="https://code.highcharts.com/highcharts.js"/>
+                        <script src="https://code.highcharts.com/modules/networkgraph.js"/>
+                        <script src="https://code.highcharts.com/modules/exporting.js"/>
+                        <script src="js/correspondence-networks.js"/>
+                        <body class="page">
+                            <div class="hfeed site" id="page">
+                                <xsl:call-template name="nav_bar"/>
+                                <div class="container">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h1>
+                                                <xsl:text>Netzwerkvisualisierungen zur Korrespondenz Arthur Schnitzler – </xsl:text>
+                                                <xsl:value-of select="$corr-name"/>
+                                            </h1>
+                                        </div>
+                                        <div class="body">
+                                            <xsl:if
+                                                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corr_weights_directed/person_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
+                                                <h3 style="text-align: center;">Erwähnte Personen</h3>
+                                                <div id="person-container"
+                                                  style="padding-bottom: 20px; width:100%; margin: auto"
+                                                />
+                                            </xsl:if>
+                                            <xsl:if
+                                                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
+                                                <h3 style="text-align: center;">Erwähnte Orte</h3>
+                                                <div id="place-container"
+                                                  style="padding-bottom: 20px; width:100%; margin: auto"
+                                                />
+                                            </xsl:if>
+                                            <xsl:if
+                                                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institution_freq_corr_weights_directed/institution_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
+                                                <h3 style="text-align: center;">Erwähnte Institutionen</h3>
+                                                <div id="institution-container"
+                                                  style="padding-bottom: 20px; width:100%; margin: auto"
+                                                />
+                                            </xsl:if>
+                                            <xsl:if
+                                                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
+                                                <h3 style="text-align: center;">Erwähnte Werke</h3>
+                                                <div id="work-container"
+                                                  style="padding-bottom: 20px; width:100%; margin: auto"
+                                                />
+                                            </xsl:if>
+                                        </div>
+                                        <p style="text-align:center;"><i>Die zu Grunde liegenden
+                                                Daten können hier geladen werden: <a
+                                                  href="https://github.com/arthur-schnitzler/schnitzler-briefe-networks"
+                                                  >GitHub</a></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </body>
+                    </html>
+                </xsl:result-document>
+            </xsl:if>
+        </xsl:for-each>
+        <!-- Karten -->
         <xsl:for-each
             select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null')]">
             <xsl:sort select="tei:persName[@role = 'main']/text()"/>

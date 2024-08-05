@@ -19,13 +19,15 @@
             <script src="https://code.highcharts.com/highcharts-more.js"/>
             <script src="https://code.highcharts.com/modules/data.js"/>
             <script src="https://code.highcharts.com/modules/exporting.js"/>
-            
+
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <xsl:variable name="korrespondenznummer" select="replace(substring-after(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]/tei:idno[@type='URI'][1], 'https://id.acdh.oeaw.ac.at/schnitzler-briefe/tocs/toc_'), '.xml' , '')"/>
-                    <xsl:variable name="csvFilename" select="concat('statistik_pmb', $korrespondenznummer, '.csv')"/>
-                    
+                    <xsl:variable name="korrespondenznummer"
+                        select="replace(substring-after(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]/tei:idno[@type = 'URI'][1], 'https://id.acdh.oeaw.ac.at/schnitzler-briefe/tocs/toc_'), '.xml', '')"/>
+                    <xsl:variable name="csvFilename"
+                        select="concat('statistik_pmb', $korrespondenznummer, '.csv')"/>
+
                     <script src="./js/tocs-statistics.js"/>
                     <script>
     function getTitle() {
@@ -48,22 +50,38 @@
                             </div>
                             <div class="card-body">
                                 <div id="statistik1" style="width:100%; height:400px;"/>
-                                <p style="text-align: center;"><a href="{concat('statistik_pmb', $korrespondenznummer, '.html')}">Weitere Statistiken</a> &#160; <a href="{concat('karte_pmb', $korrespondenznummer, '.html')}">Karten</a></p>
-                                
-                                <table class="table-light table-striped display" id="tabulator-table-limited" style="width:100%">
+                                <p style="text-align: center;"><a
+                                        href="{concat('statistik_pmb', $korrespondenznummer, '.html')}"
+                                        >Weitere Statistiken</a>&#160;&#160;<xsl:if test="
+                                            concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/',
+                                            'person_freq_corr_weights_directed/' or 'place_freq_corr_weights_directed/' or 'work_freq_corr_weights_directed/' or 'institution_freq_corr_weights_directed/',
+                                            'person_freq_corr_weights_directed_correspondence_' or 'place_freq_corr_weights_directed_correspondence_' or 'work_freq_corr_weights_directed_correspondence_' or 'institution_freq_corr_weights_directed_correspondence_',
+                                            $korrespondenznummer, '.csv')"
+                                            ><a
+                                            href="{concat('netzwerke_pmb', $korrespondenznummer, '.html')}"
+                                            >Entitäten</a>&#160;&#160;</xsl:if>
+                                    <a href="{concat('karte_pmb', $korrespondenznummer, '.html')}"
+                                        >Karten</a>
+                                </p>
+
+                                <table class="table-light table-striped display"
+                                    id="tabulator-table-limited" style="width:100%">
                                     <thead>
                                         <tr>
-                                            
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Titel</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Datum (ISO)</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Briefnummer</th>
+
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Titel</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Datum (ISO)</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Briefnummer</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <xsl:for-each
                                             select="descendant::tei:text[1]/tei:body[1]/tei:list[1]/tei:item">
                                             <tr>
-                                                
+
                                                 <td>
                                                   <sortdate hidden="true">
                                                   <xsl:value-of select="tei:date/@when"/>
@@ -76,40 +94,44 @@
                                                   </a>
                                                 </td>
                                                 <td>
-                                                    <sortdate hidden="true">
-                                                        <xsl:value-of select="tei:date/@when"/>
-                                                        <xsl:value-of select="tei:date/@from"/>
-                                                        <xsl:value-of select="tei:date/@notBefore"/>
-                                                    </sortdate>
+                                                  <sortdate hidden="true">
+                                                  <xsl:value-of select="tei:date/@when"/>
+                                                  <xsl:value-of select="tei:date/@from"/>
+                                                  <xsl:value-of select="tei:date/@notBefore"/>
+                                                  </sortdate>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat(@corresp, '.html')"/>
                                                   </xsl:attribute>
-                                                   <xsl:choose>
-                                                       <xsl:when test="tei:date/@when">
-                                                           <xsl:value-of select="tei:date/@when"/>
-                                                       </xsl:when>
-                                                       <xsl:when test="tei:date/@notBefore">
-                                                           <xsl:value-of select="concat('nach ', tei:date/@notBefore, ', vor ', tei:date/@notAfter)"/>
-                                                       </xsl:when>
-                                                       <xsl:when test="tei:date/@from">
-                                                           <xsl:value-of select="concat(tei:date/@from, ' – ', tei:date/@to)"/>
-                                                       </xsl:when>
-                                                   </xsl:choose>
+                                                  <xsl:choose>
+                                                  <xsl:when test="tei:date/@when">
+                                                  <xsl:value-of select="tei:date/@when"/>
+                                                  </xsl:when>
+                                                  <xsl:when test="tei:date/@notBefore">
+                                                  <xsl:value-of
+                                                  select="concat('nach ', tei:date/@notBefore, ', vor ', tei:date/@notAfter)"
+                                                  />
+                                                  </xsl:when>
+                                                  <xsl:when test="tei:date/@from">
+                                                  <xsl:value-of
+                                                  select="concat(tei:date/@from, ' – ', tei:date/@to)"
+                                                  />
+                                                  </xsl:when>
+                                                  </xsl:choose>
                                                   </a>
                                                 </td>
                                                 <td>
-                                                    <a>
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of select="concat(@corresp, '.html')"/>
-                                                        </xsl:attribute>
-                                                    <xsl:value-of select="@corresp"/>
-                                                    </a>
+                                                  <a>
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="concat(@corresp, '.html')"/>
+                                                  </xsl:attribute>
+                                                  <xsl:value-of select="@corresp"/>
+                                                  </a>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
                                     </tbody>
-                                </table> 
+                                </table>
                                 <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
@@ -119,7 +141,7 @@
                 </div>
             </body>
         </html>
-        
+
     </xsl:template>
     <xsl:template match="tei:div//tei:head">
         <h2 id="{generate-id()}">
@@ -156,5 +178,5 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
 </xsl:stylesheet>
