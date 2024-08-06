@@ -192,10 +192,10 @@
             <xsl:variable name="corr-name"
                 select="mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text())"/>
             <xsl:if test="
-                    document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml')) or
-                    document(concat('../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml')) or
-                    document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml')) or
-                    document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
+                    document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml')) or
+                    document(concat('../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml')) or
+                    document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml')) or
+                    document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml'))">
                 <xsl:result-document href="{$filename}">
                     <html xmlns="http://www.w3.org/1999/xhtml">
                         <xsl:call-template name="html_head">
