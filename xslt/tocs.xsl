@@ -229,13 +229,6 @@
                                                   test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
-                                                  data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
-                                                  >Alle</button>
-                                                  </xsl:if>
-                                                  <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
-                                                  <button class="btn mx-1 chart-btn"
-                                                  style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv"
                                                   >Top 30</button>
                                                   </xsl:if>
@@ -245,6 +238,13 @@
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv"
                                                   >Top 100</button>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  <button class="btn mx-1 chart-btn"
+                                                  style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
+                                                  data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
+                                                  >Alle</button>
                                                   </xsl:if>
                                                 </div>
                                             </xsl:if>
@@ -259,13 +259,6 @@
                                                   test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
-                                                  data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
-                                                  >Alle</button>
-                                                  </xsl:if>
-                                                  <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
-                                                  <button class="btn mx-1 chart-btn"
-                                                  style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv"
                                                   >Top 30</button>
                                                   </xsl:if>
@@ -275,6 +268,13 @@
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv"
                                                   >Top 100</button>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  <button class="btn mx-1 chart-btn"
+                                                  style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
+                                                  data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
+                                                  >Alle</button>
                                                   </xsl:if>
                                                 </div>
                                             </xsl:if>
@@ -290,13 +290,6 @@
                                                   test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
-                                                  data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
-                                                  >Alle</button>
-                                                  </xsl:if>
-                                                  <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
-                                                  <button class="btn mx-1 chart-btn"
-                                                  style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv"
                                                   >Top 30</button>
                                                   </xsl:if>
@@ -306,6 +299,13 @@
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv"
                                                   >Top 100</button>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  <button class="btn mx-1 chart-btn"
+                                                  style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
+                                                  data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
+                                                  >Alle</button>
                                                   </xsl:if>
                                                 </div>
                                             </xsl:if>
@@ -320,13 +320,6 @@
                                                   test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
-                                                  data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
-                                                  >Alle</button>
-                                                  </xsl:if>
-                                                  <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
-                                                  <button class="btn mx-1 chart-btn"
-                                                  style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv"
                                                   >Top 30</button>
                                                   </xsl:if>
@@ -336,6 +329,13 @@
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv"
                                                   >Top 100</button>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  <button class="btn mx-1 chart-btn"
+                                                  style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
+                                                  data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
+                                                  >Alle</button>
                                                   </xsl:if>
                                                 </div>
                                             </xsl:if>

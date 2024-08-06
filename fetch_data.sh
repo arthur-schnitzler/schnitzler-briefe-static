@@ -49,7 +49,7 @@ unzip main.zip
 
 mkdir network-data
 
-mv schnitzler-briefe-networks-main/*/*.csv network-data/
+mv schnitzler-briefe-networks-main/*/*corr_weights_directed*.csv network-data/
 rm -rf schnitzler-briefe-networks-main
 
 rm main.zip
