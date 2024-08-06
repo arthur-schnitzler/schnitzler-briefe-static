@@ -59,8 +59,5 @@ for CSV_FILE in $CSV_DIR/*.csv
 do
   BASE_NAME=$(basename "$CSV_FILE" .csv)
   XML_FILE="$CSV_DIR/$BASE_NAME.xml"
-  TOTAL_LINES=$(wc -l < "$CSV_FILE")
-  LINES_WITHOUT_HEADER=$((TOTAL_LINES - 1))
-  echo "<number_of_lines>${LINES_WITHOUT_HEADER}</number_of_lines>" > "$XML_FILE"
+  echo "<root></root>" > "$XML_FILE"
 done
-

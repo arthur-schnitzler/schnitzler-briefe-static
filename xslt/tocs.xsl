@@ -218,7 +218,7 @@
                                         </div>
                                         <div class="body">
                                             <xsl:if
-                                                test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
+                                                test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml'))">
                                                 <h3 style="text-align: center;">Erwähnte
                                                   Personen</h3>
                                                 <div id="person-container"
@@ -226,21 +226,21 @@
                                                 <div id="chart-buttons" class="text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv"
                                                   >Top 30</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 110">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv"
                                                   >Top 100</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
@@ -249,28 +249,28 @@
                                                 </div>
                                             </xsl:if>
                                             <xsl:if
-                                                test="document(concat('../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
+                                                test="document(concat('../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml'))">
                                                 <h3 style="text-align: center;">Erwähnte Orte</h3>
                                                 <div id="place-container"
                                                   style="width:100%; margin: auto"/>
                                                 <div id="chart-buttons" class="text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv"
                                                   >Top 30</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 110">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv"
                                                   >Top 100</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
@@ -279,7 +279,7 @@
                                                 </div>
                                             </xsl:if>
                                             <xsl:if
-                                                test="document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
+                                                test="document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml'))">
                                                 <h3 style="text-align: center;">Erwähnte
                                                   Institutionen</h3>
                                                 <div id="institution-container"
@@ -287,21 +287,21 @@
                                                 <div id="chart-buttons" class="text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv"
                                                   >Top 30</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 110">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv"
                                                   >Top 100</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
@@ -310,28 +310,28 @@
                                                 </div>
                                             </xsl:if>
                                             <xsl:if
-                                                test="document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
+                                                test="document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml'))">
                                                 <h3 style="text-align: center;">Erwähnte Werke</h3>
                                                 <div id="work-container"
                                                   style="width:100%; margin: auto"/>
                                                 <div id="chart-buttons" class="text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv"
                                                   >Top 30</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 110">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv"
                                                   >Top 100</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))/*:number_of_lines/number(text()) > 40">
+                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
