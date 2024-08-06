@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 panKey: 'shift',
                                 zoomType: 'xy'
                             },
-                            title: { text: title },
+                            title: null,
                             tooltip: {
                                 formatter: function () {
                                     if (this.point.isNode && !this.point.isSource) {
@@ -167,46 +167,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const correspondenceId = getCorrespondenceIdFromURL();
 
+    const checkCSVAndLoad = (urlTop30, urlAlle, containerId, title) => {
+        fetch(urlTop30)
+            .then(response => {
+                if (response.ok) {
+                    loadCSVData(urlTop30, containerId, title);
+                } else {
+                    loadCSVData(urlAlle, containerId, title);
+                }
+            })
+            .catch(error => {
+                console.error('Error checking top30 CSV file:', error);
+                loadCSVData(urlAlle, containerId, title);
+            });
+    };
+
     if (correspondenceId) {
         const baseUrls = [
-            { url: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corr_weights_directed/person_freq_corr_weights_directed_correspondence_${correspondenceId}.csv`},
-            { url: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_${correspondenceId}.csv`},
-            { url: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institution_freq_corr_weights_directed/institution_freq_corr_weights_directed_correspondence_${correspondenceId}.csv`},
-            { url: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_${correspondenceId}.csv`}
+            { urlTop30: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corr_weights_directed/person_freq_corr_weights_directed_correspondence_${correspondenceId}_top30.csv`, urlAlle: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corr_weights_directed/person_freq_corr_weights_directed_correspondence_${correspondenceId}_alle.csv`, containerId: 'person-container'},
+            { urlTop30: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_${correspondenceId}_top30.csv`, urlAlle: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_${correspondenceId}_alle.csv`, containerId: 'place-container'},
+            { urlTop30: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institution_freq_corr_weights_directed/institution_freq_corr_weights_directed_correspondence_${correspondenceId}_top30.csv`, urlAlle: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institution_freq_corr_weights_directed/institution_freq_corr_weights_directed_correspondence_${correspondenceId}_alle.csv`, containerId: 'institution-container'},
+            { urlTop30: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_${correspondenceId}_top30.csv`, urlAlle: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_${correspondenceId}_alle.csv`, containerId: 'work-container'}
         ];
 
-        const containers = ['person-container', 'place-container', 'institution-container', 'work-container'];
+        baseUrls.forEach(item => {
+            checkCSVAndLoad(item.urlTop30, item.urlAlle, item.containerId, item.title);
+        });
 
-        baseUrls.forEach((item, index) => {
-            const containerId = containers[index];
-            fetch(item.url)
-                .then(response => response.ok ? response.text() : Promise.reject('Network response was not ok ' + response.statusText))
-                .then(csvText => {
-                    Papa.parse(csvText, {
-                        header: true,
-                        complete: ({ data }) => {
-                            if (data.length) {
-                                const container = document.getElementById(containerId);
-                                if (container) {
-                                    loadCSVData(item.url, containerId, item.title);
-                                }
-                            } else {
-                                const container = document.getElementById(containerId);
-                                if (container) container.remove();
-                            }
-                        },
-                        error: error => {
-                            console.error('Error parsing the CSV file:', error);
-                            const container = document.getElementById(containerId);
-                            if (container) container.remove();
-                        }
-                    });
-                })
-                .catch(error => {
-                    console.error('Error loading the CSV file:', error);
-                    const container = document.getElementById(containerId);
-                    if (container) container.remove();
-                });
+        const buttons = document.querySelectorAll('#chart-buttons button');
+        buttons.forEach(button => {
+            button.style.fontSize = '12px'; // Smaller button size
+            button.addEventListener('click', (event) => {
+                // Remove selected state from all buttons
+                buttons.forEach(btn => btn.style.backgroundColor = '#A63437');
+                // Set selected state to the clicked button
+                event.target.style.backgroundColor = '#C04040';
+                const containerId = button.closest('.container').querySelector('div[id$="-container"]').id;
+                loadCSVData(event.target.getAttribute('data-csv'), containerId, button.innerText);
+            });
         });
     } else {
         console.error('Correspondence ID not found in the URL');
