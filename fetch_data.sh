@@ -53,3 +53,11 @@ mv schnitzler-briefe-networks-main/*/*.csv network-data/
 rm -rf schnitzler-briefe-networks-main
 
 rm main.zip
+
+CSV_DIR="network-data"
+for CSV_FILE in $CSV_DIR/*.csv
+do
+  BASE_NAME=$(basename "$CSV_FILE" .csv)
+  XML_FILE="$CSV_DIR/$BASE_NAME.xml"
+  echo "<root></root>" > "$XML_FILE"
+done

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns:mam="whatever" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0"
-    exclude-result-prefixes="xsl tei xs">
+    xmlns:mam="whatever" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:java="http://www.java.com/" version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
 
@@ -191,8 +191,11 @@
             <xsl:variable name="filename" select="concat('netzwerke_', $corr-id, '.html')"/>
             <xsl:variable name="corr-name"
                 select="mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text())"/>
-            <xsl:if
-                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corr_weights_directed/person_freq_corr_weights_directed_correspondence_', $corr-id, '.csv') or concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_', $corr-id, '.csv') or concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institution_freq_corr_weights_directed/institution_freq_corr_weights_directed_correspondence_', $corr-id, '.csv') or concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
+            <xsl:if test="
+                    document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml')) or
+                    document(concat('../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml')) or
+                    document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml')) or
+                    document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
                 <xsl:result-document href="{$filename}">
                     <html xmlns="http://www.w3.org/1999/xhtml">
                         <xsl:call-template name="html_head">
@@ -215,28 +218,30 @@
                                         </div>
                                         <div class="body">
                                             <xsl:if
-                                                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/person_freq_corr_weights_directed/person_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
-                                                <h3 style="text-align: center;">Erwähnte Personen</h3>
+                                                test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
+                                                <h3 style="text-align: center;">Erwähnte
+                                                  Personen</h3>
                                                 <div id="person-container"
                                                   style="padding-bottom: 20px; width:100%; margin: auto"
                                                 />
                                             </xsl:if>
                                             <xsl:if
-                                                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
+                                                test="document(concat('../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
                                                 <h3 style="text-align: center;">Erwähnte Orte</h3>
                                                 <div id="place-container"
                                                   style="padding-bottom: 20px; width:100%; margin: auto"
                                                 />
                                             </xsl:if>
                                             <xsl:if
-                                                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institution_freq_corr_weights_directed/institution_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
-                                                <h3 style="text-align: center;">Erwähnte Institutionen</h3>
+                                                test="document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
+                                                <h3 style="text-align: center;">Erwähnte
+                                                  Institutionen</h3>
                                                 <div id="institution-container"
                                                   style="padding-bottom: 20px; width:100%; margin: auto"
                                                 />
                                             </xsl:if>
                                             <xsl:if
-                                                test="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_', $corr-id, '.csv')">
+                                                test="document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '.xml'))">
                                                 <h3 style="text-align: center;">Erwähnte Werke</h3>
                                                 <div id="work-container"
                                                   style="padding-bottom: 20px; width:100%; margin: auto"
