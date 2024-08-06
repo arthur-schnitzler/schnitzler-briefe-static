@@ -40,3 +40,16 @@ unzip main
 mv ./schnitzler-briefe-tex-main/pdf-leseansicht/L*.pdf ./html
 rm main.zip
 rm -rf ./schnitzler-briefe-tex-main
+
+# get schnitzler-briefe-networks
+
+wget https://github.com/arthur-schnitzler/schnitzler-briefe-networks/archive/refs/heads/main.zip
+rm -rf network-data
+unzip main.zip
+
+mkdir network-data
+
+mv schnitzler-briefe-networks-main/*/*.csv network-data/
+rm -rf schnitzler-briefe-networks-main
+
+rm main.zip
