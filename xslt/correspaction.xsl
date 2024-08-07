@@ -15,34 +15,49 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
+            <script src="https://code.highcharts.com/maps/highmaps.js"/>
+            <script src="https://code.highcharts.com/maps/modules/flowmap.js"/>
+            <script src="https://code.highcharts.com/maps/modules/exporting.js"/>
+            <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"/>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <div class="container-fluid">
+                    <div class="container">
                         <div class="card">
                             <div class="card-header">
                                 <h1>Postwege</h1>
                             </div>
                             <div class="card-body">
-                                <table class="table table-striped display" id="tabulator-table" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Titel</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Sendedatum</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Sendeort</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">weitere Stationen</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Empfangsdatum</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Empfangsort</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <xsl:for-each
-                                            select="collection('../data/editions/?select=*.xml')/tei:TEI">
-                                            <xsl:variable name="full_path">
-                                                <xsl:value-of select="document-uri(/)"/>
-                                            </xsl:variable>
+                                <div id="container"
+                                    style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                <script src="js/postwege_weights_directed.js"/>
+                                <div style="display: flex; justify-content: center;">
+                                    <table class="table table-striped display" id="tabulator-table"
+                                        style="width:100%">
+                                        <thead>
                                             <tr>
-                                                <td>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Titel</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Sendedatum</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Sendeort</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">weitere Stationen</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Empfangsdatum</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Empfangsort</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <xsl:for-each
+                                                select="collection('../data/editions/?select=*.xml')/tei:TEI">
+                                                <xsl:variable name="full_path">
+                                                  <xsl:value-of select="document-uri(/)"/>
+                                                </xsl:variable>
+                                                <tr>
+                                                  <td>
                                                   <sortdate hidden="true">
                                                   <xsl:value-of
                                                   select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()"
@@ -58,13 +73,13 @@
                                                   select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"
                                                   />
                                                   </a>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <xsl:value-of
                                                   select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date"
                                                   />
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -72,11 +87,11 @@
                                                   />
                                                   </xsl:attribute>
                                                   <xsl:value-of
-                                                      select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:placeName"
+                                                  select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:placeName"
                                                   />
                                                   </a>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <xsl:for-each
                                                   select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[not(position() = 1 or position() = last())]">
                                                   <xsl:if test="tei:date">
@@ -96,31 +111,33 @@
                                                   </a>
                                                   </xsl:if>
                                                   <xsl:if test="not(position() = last())">
-                                                   <br/>
+                                                  <br/>
                                                   </xsl:if>
                                                   </xsl:for-each>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <xsl:value-of
                                                   select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date"
                                                   />
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                      select="concat(replace(descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:placeName/@ref, '#', ''), '.html')"
+                                                  select="concat(replace(descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:placeName/@ref, '#', ''), '.html')"
                                                   />
                                                   </xsl:attribute>
                                                   <xsl:value-of
-                                                      select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:placeName"
+                                                  select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:placeName"
                                                   />
                                                   </a>
-                                                </td>
-                                            </tr>
-                                        </xsl:for-each>
-                                    </tbody>
-                                </table> <xsl:call-template name="tabulator_dl_buttons"/>
+                                                  </td>
+                                                </tr>
+                                            </xsl:for-each>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
                     </div>
