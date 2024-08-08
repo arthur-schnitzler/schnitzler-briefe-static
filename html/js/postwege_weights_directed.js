@@ -106,7 +106,7 @@ async function createKarte1() {
         lon: location.lon,
         name: location.name,
         marker: {
-            radius: 4 + (location.weight / maxWeight) * 10 // Scale marker size based on weight
+            radius: 3 + (location.weight / maxWeight) * 20 // Scale marker size based on weight
         }
     }));
 
@@ -143,7 +143,7 @@ async function createKarte1() {
                     },
                     weight: connection.weight,
                     tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}`,
-                    lineWidth: Math.max(0.1, Math.min(connection.weight, 2)) // Adjust the scaling as needed
+                    lineWidth: Math.max(0.01, Math.min(connection.weight, 10)) // Adjust the scaling as needed
                 };
             } else {
                 console.log(`Invalid connection: from ${connection.from} to ${connection.to}`);
