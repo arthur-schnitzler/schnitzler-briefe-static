@@ -158,8 +158,7 @@ async function createKarte1() {
                 const reverseWeight = connection.reverseWeight;
 
                 const tooltip = `
-                    ${fromLocation.name} → ${toLocation.name}: ${forwardWeight}<br/>
-                    ${toLocation.name} → ${fromLocation.name}: ${reverseWeight}
+                    ${fromLocation.name} → ${toLocation.name}: ${forwardWeight}<br/>${toLocation.name} → ${fromLocation.name}: ${reverseWeight}
                 `.trim();
 
                 return {
@@ -263,6 +262,10 @@ async function createKarte1() {
                     pointFormat: '{point.tooltip}'
                 }
             }
+        },
+        mapView: {
+            center: [10, 20], // Set the initial center of the map [longitude, latitude]
+            zoom: 2.1 // Set the initial zoom level
         },
         series: [{
             name: 'Basemap',
