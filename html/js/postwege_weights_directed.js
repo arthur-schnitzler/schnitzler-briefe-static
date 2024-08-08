@@ -48,7 +48,8 @@ async function createKarte1() {
                                 id: SourceID,
                                 name: Source,
                                 lat: senderLat,
-                                lon: senderLon
+                                lon: senderLon,
+                                weight: 0 // Initialize weight
                             });
                             console.log(`Added location: ${Source} (${SourceID})`);
                         }
@@ -58,15 +59,27 @@ async function createKarte1() {
                                 id: TargetID,
                                 name: Target,
                                 lat: receiverLat,
-                                lon: receiverLon
+                                lon: receiverLon,
+                                weight: 0 // Initialize weight
                             });
                             console.log(`Added location: ${Target} (${TargetID})`);
+                        }
+
+                        const weightValue = parseFloat(Weight);
+
+                        // Update the weight for the source and target locations
+                        if (result.locations.has(SourceID)) {
+                            result.locations.get(SourceID).weight += weightValue;
+                        }
+
+                        if (result.locations.has(TargetID)) {
+                            result.locations.get(TargetID).weight += weightValue;
                         }
 
                         result.connections.push({
                             from: SourceID,
                             to: TargetID,
-                            weight: parseFloat(Weight)
+                            weight: weightValue
                         });
                         console.log(`Added connection from ${SourceID} to ${TargetID} with weight ${Weight}`);
                     } else {
@@ -86,11 +99,15 @@ async function createKarte1() {
     const data = processData(csvData);
     console.log("Processed Data:", data);
 
+    const maxWeight = Math.max(...Array.from(data.locations.values()).map(loc => loc.weight));
     const cityData = Array.from(data.locations.values()).map(location => ({
         id: location.id,
         lat: location.lat,
         lon: location.lon,
-        name: location.name
+        name: location.name,
+        marker: {
+            radius: 4 + (location.weight / maxWeight) * 10 // Scale marker size based on weight
+        }
     }));
 
     const combinedWeights = {};
@@ -126,7 +143,7 @@ async function createKarte1() {
                     },
                     weight: connection.weight,
                     tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}`,
-                    lineWidth: Math.max(0.1, Math.min(connection.weight, 1)) // Adjust the scaling as needed
+                    lineWidth: Math.max(0.1, Math.min(connection.weight, 2)) // Adjust the scaling as needed
                 };
             } else {
                 console.log(`Invalid connection: from ${connection.from} to ${connection.to}`);
@@ -197,9 +214,8 @@ async function createKarte1() {
                     width: '50%',
                     height: '50%'
                 },
-                fillColor: '#8B5F8F',
+                color: 'rgba(139, 95, 143, 0.5)',
                 fillOpacity: 1,
-                color: '#8B5F8F',
                 states: {
                     hover: {
                         enabled: true,
@@ -227,20 +243,6 @@ async function createKarte1() {
                 }
             }
         }, {
-            type: 'mappoint',
-            id: 'world',
-            name: 'Cities',
-            dataLabels: {
-                format: '{point.name}'
-            },
-            data: cityData,
-            marker: {
-                fillColor: '#ffaa00',
-                lineWidth: 1,
-                lineColor: '#ffaa00'
-            }
-        }, 
-        {
             type: 'flowmap',
             id: 'flowmap',
             name: 'Korrespondenzstücke',
@@ -249,6 +251,19 @@ async function createKarte1() {
             },
             data: flowData,
             lineWidth: '{point.lineWidth}' // This binds the lineWidth to the point's lineWidth property
+        }, {
+            type: 'mappoint',
+            id: 'world',
+            name: 'Cities',
+            dataLabels: {
+                format: '{point.name}'
+            },
+            data: cityData,
+            marker: {
+                fillColor: 'rgba(255, 170, 0, 0.3)',
+                lineWidth: 0.5,
+                lineColor: 'rgba(255, 170, 0, 0.3)',
+            }
         }]
     });
 
