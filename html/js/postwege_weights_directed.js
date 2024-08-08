@@ -110,35 +110,45 @@ async function createKarte1() {
         }
     });
 
-    const flowData = Object.values(combinedWeights).map(connection => {
-        const fromLocation = data.locations.get(connection.from);
-        const toLocation = data.locations.get(connection.to);
-        if (fromLocation && toLocation) {
-            return {
-                from: {
-                    lat: fromLocation.lat,
-                    lon: fromLocation.lon
-                },
-                to: {
-                    lat: toLocation.lat,
-                    lon: toLocation.lon
-                },
-                weight: connection.weight,
-                tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}`,
-                lineWidth: Math.max(0.1, Math.min(connection.weight, 5)) // Adjust the scaling as needed
-            };
-        } else {
-            console.log(`Invalid connection: from ${connection.from} to ${connection.to}`);
-            return null;
-        }
-    }).filter(item => item !== null);
+    const createFlowData = () => {
+        return Object.values(combinedWeights).map(connection => {
+            const fromLocation = data.locations.get(connection.from);
+            const toLocation = data.locations.get(connection.to);
+            if (fromLocation && toLocation) {
+                return {
+                    from: {
+                        lat: fromLocation.lat,
+                        lon: fromLocation.lon
+                    },
+                    to: {
+                        lat: toLocation.lat,
+                        lon: toLocation.lon
+                    },
+                    weight: connection.weight,
+                    tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}`,
+                    lineWidth: Math.max(0.1, Math.min(connection.weight, 1)) // Adjust the scaling as needed
+                };
+            } else {
+                console.log(`Invalid connection: from ${connection.from} to ${connection.to}`);
+                return null;
+            }
+        }).filter(item => item !== null);
+    };
+
+    let flowData = createFlowData();
 
     console.log("City Data:", cityData);
     console.log("Flow Data:", flowData);
 
-    Highcharts.mapChart('container', {
+    const chart = Highcharts.mapChart('container', {
         chart: {
-            map: topology
+            map: topology,
+            events: {
+                redraw: debounce(function () {
+                    flowData = createFlowData();
+                    chart.get('flowmap').setData(flowData, true, false, false);
+                }, 200)
+            }
         },
         title: {
             text: null
@@ -180,8 +190,8 @@ async function createKarte1() {
                 }
             },
             flowmap: {
-                minWidth: 1,
-                maxWidth: 25,
+                minWidth: 0.1,
+                maxWidth: 100,
                 growTowards: true,
                 markerEnd: {
                     width: '50%',
@@ -232,6 +242,7 @@ async function createKarte1() {
         }, 
         {
             type: 'flowmap',
+            id: 'flowmap',
             name: 'Korrespondenzstücke',
             accessibility: {
                 description: 'Landkarte mit Pfeilen zwischen Versand- und Empfangsort'
@@ -242,6 +253,16 @@ async function createKarte1() {
     });
 
     console.log("Highcharts configuration complete.");
+
+    // Debounce function to limit the rate at which a function can fire
+    function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+            const context = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+    }
 }
 
 createKarte1();
