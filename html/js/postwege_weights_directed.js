@@ -144,7 +144,7 @@ async function createKarte1() {
         chart: {
             map: topology,
             events: {
-                redraw: debounce(function () {
+                redraw: debounce(() => {
                     flowData = createFlowData();
                     chart.get('flowmap').setData(flowData, true, false, false);
                 }, 200)
