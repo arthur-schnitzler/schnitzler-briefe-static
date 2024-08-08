@@ -49,7 +49,9 @@ async function createKarte1() {
                                 name: Source,
                                 lat: senderLat,
                                 lon: senderLon,
-                                weight: 0 // Initialize weight
+                                weight: 0, // Initialize weight
+                                sourceCount: 0, // Initialize source count
+                                targetCount: 0  // Initialize target count
                             });
                             console.log(`Added location: ${Source} (${SourceID})`);
                         }
@@ -60,20 +62,24 @@ async function createKarte1() {
                                 name: Target,
                                 lat: receiverLat,
                                 lon: receiverLon,
-                                weight: 0 // Initialize weight
+                                weight: 0, // Initialize weight
+                                sourceCount: 0, // Initialize source count
+                                targetCount: 0  // Initialize target count
                             });
                             console.log(`Added location: ${Target} (${TargetID})`);
                         }
 
                         const weightValue = parseFloat(Weight);
 
-                        // Update the weight for the source and target locations
+                        // Update the weight and counts for the source and target locations
                         if (result.locations.has(SourceID)) {
                             result.locations.get(SourceID).weight += weightValue;
+                            result.locations.get(SourceID).sourceCount += weightValue;
                         }
 
                         if (result.locations.has(TargetID)) {
                             result.locations.get(TargetID).weight += weightValue;
+                            result.locations.get(TargetID).targetCount += weightValue;
                         }
 
                         result.connections.push({
@@ -106,8 +112,9 @@ async function createKarte1() {
         lon: location.lon,
         name: location.name,
         marker: {
-            radius: 3 + (location.weight / maxWeight) * 20 // Scale marker size based on weight
-        }
+            radius: 4 + (location.weight / maxWeight) * 10 // Scale marker size based on weight
+        },
+        tooltip: `<b>${location.name}</b><br>Sendeort: ${location.sourceCount}<br>Empfangsort: ${location.targetCount}`
     }));
 
     const combinedWeights = {};
@@ -117,12 +124,13 @@ async function createKarte1() {
         if (combinedWeights[key]) {
             combinedWeights[key].weight += connection.weight;
         } else if (combinedWeights[reverseKey]) {
-            combinedWeights[reverseKey].weight += connection.weight;
+            combinedWeights[reverseKey].reverseWeight = (combinedWeights[reverseKey]?.reverseWeight || 0) + connection.weight;
         } else {
             combinedWeights[key] = {
                 from: connection.from,
                 to: connection.to,
-                weight: connection.weight
+                weight: connection.weight,
+                reverseWeight: 0
             };
         }
     });
@@ -132,6 +140,14 @@ async function createKarte1() {
             const fromLocation = data.locations.get(connection.from);
             const toLocation = data.locations.get(connection.to);
             if (fromLocation && toLocation) {
+                const forwardWeight = combinedWeights[`${connection.from}-${connection.to}`]?.weight || 0;
+                const reverseWeight = combinedWeights[`${connection.to}-${connection.from}`]?.reverseWeight || 0;
+
+                const tooltip = `
+                    ${fromLocation.name} → ${toLocation.name}: ${forwardWeight}<br/>
+                    ${toLocation.name} → ${fromLocation.name}: ${reverseWeight}
+                `.trim();
+
                 return {
                     from: {
                         lat: fromLocation.lat,
@@ -141,9 +157,9 @@ async function createKarte1() {
                         lat: toLocation.lat,
                         lon: toLocation.lon
                     },
-                    weight: connection.weight,
-                    tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}`,
-                    lineWidth: Math.max(0.01, Math.min(connection.weight, 10)) // Adjust the scaling as needed
+                    weight: forwardWeight + reverseWeight,
+                    tooltip: tooltip,
+                    lineWidth: Math.max(0.1, Math.min(forwardWeight + reverseWeight, 2)) // Adjust the scaling as needed
                 };
             } else {
                 console.log(`Invalid connection: from ${connection.from} to ${connection.to}`);
@@ -187,8 +203,8 @@ async function createKarte1() {
         plotOptions: {
             mappoint: {
                 tooltip: {
-                    headerFormat: '<b>{point.name}</b>',
-                    pointFormat: '<b>{point.name}</b>'
+                    headerFormat: '',
+                    pointFormat: '{point.tooltip}'
                 },
                 states: {
                     hover: {
