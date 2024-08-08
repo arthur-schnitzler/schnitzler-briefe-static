@@ -117,31 +117,45 @@ async function createKarte1() {
         tooltip: `<b>${location.name}</b><br>Sendeort: ${location.sourceCount}<br>Empfangsort: ${location.targetCount}`
     }));
 
-    const combinedWeights = {};
-    data.connections.forEach(connection => {
-        const key = `${connection.from}-${connection.to}`;
-        const reverseKey = `${connection.to}-${connection.from}`;
-        if (combinedWeights[key]) {
-            combinedWeights[key].weight += connection.weight;
-        } else if (combinedWeights[reverseKey]) {
-            combinedWeights[reverseKey].reverseWeight = (combinedWeights[reverseKey]?.reverseWeight || 0) + connection.weight;
-        } else {
-            combinedWeights[key] = {
-                from: connection.from,
-                to: connection.to,
-                weight: connection.weight,
-                reverseWeight: 0
-            };
-        }
-    });
-
     const createFlowData = () => {
+        const combinedWeights = {};
+
+        data.connections.forEach(connection => {
+            const forwardKey = `${connection.from}-${connection.to}`;
+            const reverseKey = `${connection.to}-${connection.from}`;
+
+            // Create or update the forward connection
+            if (!combinedWeights[forwardKey]) {
+                combinedWeights[forwardKey] = {
+                    from: connection.from,
+                    to: connection.to,
+                    forwardWeight: connection.weight,
+                    reverseWeight: 0 // Initialize reverse weight
+                };
+            } else {
+                combinedWeights[forwardKey].forwardWeight += connection.weight;
+            }
+
+            // Create or update the reverse connection
+            if (!combinedWeights[reverseKey]) {
+                combinedWeights[reverseKey] = {
+                    from: connection.to,
+                    to: connection.from,
+                    forwardWeight: 0, // Initialize forward weight
+                    reverseWeight: connection.weight
+                };
+            } else {
+                combinedWeights[reverseKey].reverseWeight += connection.weight;
+            }
+        });
+
         return Object.values(combinedWeights).map(connection => {
             const fromLocation = data.locations.get(connection.from);
             const toLocation = data.locations.get(connection.to);
+
             if (fromLocation && toLocation) {
-                const forwardWeight = combinedWeights[`${connection.from}-${connection.to}`]?.weight || 0;
-                const reverseWeight = combinedWeights[`${connection.to}-${connection.from}`]?.reverseWeight || 0;
+                const forwardWeight = connection.forwardWeight;
+                const reverseWeight = connection.reverseWeight;
 
                 const tooltip = `
                     ${fromLocation.name} → ${toLocation.name}: ${forwardWeight}<br/>
