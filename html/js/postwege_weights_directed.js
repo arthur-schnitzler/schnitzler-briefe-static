@@ -124,7 +124,8 @@ async function createKarte1() {
                     lon: toLocation.lon
                 },
                 weight: connection.weight,
-                tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}`
+                tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}`,
+                lineWidth: Math.max(0.1, Math.min(connection.weight, 5)) // Adjust the scaling as needed
             };
         } else {
             console.log(`Invalid connection: from ${connection.from} to ${connection.to}`);
@@ -141,6 +142,9 @@ async function createKarte1() {
         },
         title: {
             text: null
+        },
+        exporting: {
+            enabled: false, // Disable exporting
         },
         mapNavigation: {
             enabled: true
@@ -222,7 +226,7 @@ async function createKarte1() {
             data: cityData,
             marker: {
                 fillColor: '#ffaa00',
-                lineWidth: 2,
+                lineWidth: 1,
                 lineColor: '#ffaa00'
             }
         }, 
@@ -232,7 +236,8 @@ async function createKarte1() {
             accessibility: {
                 description: 'Landkarte mit Pfeilen zwischen Versand- und Empfangsort'
             },
-            data: flowData
+            data: flowData,
+            lineWidth: '{point.lineWidth}' // This binds the lineWidth to the point's lineWidth property
         }]
     });
 
