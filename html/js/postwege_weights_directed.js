@@ -93,24 +93,38 @@ async function createKarte1() {
         name: location.name
     }));
 
-    const flowData = data.connections.map(connection => {
+    const combinedWeights = {};
+    data.connections.forEach(connection => {
+        const key = `${connection.from}-${connection.to}`;
+        const reverseKey = `${connection.to}-${connection.from}`;
+        if (combinedWeights[key]) {
+            combinedWeights[key].weight += connection.weight;
+        } else if (combinedWeights[reverseKey]) {
+            combinedWeights[reverseKey].weight += connection.weight;
+        } else {
+            combinedWeights[key] = {
+                from: connection.from,
+                to: connection.to,
+                weight: connection.weight
+            };
+        }
+    });
+
+    const flowData = Object.values(combinedWeights).map(connection => {
         const fromLocation = data.locations.get(connection.from);
         const toLocation = data.locations.get(connection.to);
         if (fromLocation && toLocation) {
             return {
-                id: `${connection.from}-${connection.to}`,
-                geometry: {
-                    type: 'LineString',
-                    coordinates: [
-                        [fromLocation.lon, fromLocation.lat],
-                        [toLocation.lon, toLocation.lat]
-                    ]
+                from: {
+                    lat: fromLocation.lat,
+                    lon: fromLocation.lon
                 },
-                properties: {
-                    from: fromLocation.name,
-                    to: toLocation.name,
-                    weight: connection.weight
-                }
+                to: {
+                    lat: toLocation.lat,
+                    lon: toLocation.lon
+                },
+                weight: connection.weight,
+                tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}`
             };
         } else {
             console.log(`Invalid connection: from ${connection.from} to ${connection.to}`);
@@ -161,9 +175,17 @@ async function createKarte1() {
                     }
                 }
             },
-            mapline: {
+            flowmap: {
+                minWidth: 1,
+                maxWidth: 25,
+                growTowards: true,
+                markerEnd: {
+                    width: '50%',
+                    height: '50%'
+                },
+                fillColor: '#8B5F8F',
+                fillOpacity: 1,
                 color: '#8B5F8F',
-                lineWidth: 2,
                 states: {
                     hover: {
                         enabled: true,
@@ -178,7 +200,7 @@ async function createKarte1() {
                 },
                 tooltip: {
                     headerFormat: '',
-                    pointFormat: '{point.properties.from} -> {point.properties.to}: {point.properties.weight}'
+                    pointFormat: '{point.tooltip}'
                 }
             }
         },
@@ -203,27 +225,18 @@ async function createKarte1() {
                 lineWidth: 2,
                 lineColor: '#ffaa00'
             }
-        }, {
-            type: 'mapline',
+        }, 
+        {
+            type: 'flowmap',
             name: 'Korrespondenzstücke',
             accessibility: {
-                description: 'Landkarte mit Linien zwischen Versand- und Empfangsort'
+                description: 'Landkarte mit Pfeilen zwischen Versand- und Empfangsort'
             },
-            color: '#8B5F8F',  // Always use this color
-            data: flowData,
-            lineWidth: 2,
-            states: {
-                hover: {
-                    enabled: true,
-                    color: '#8B5F8F',
-                    brightness: 0
-                },
-                inactive: {
-                    opacity: 1
-                }
-            }
+            data: flowData
         }]
     });
+
+    console.log("Highcharts configuration complete.");
 }
 
 createKarte1();
