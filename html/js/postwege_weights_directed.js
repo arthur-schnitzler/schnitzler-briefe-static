@@ -63,8 +63,8 @@ async function createKarte1() {
         lat: location.lat,
         lon: location.lon,
         name: location.name,
-        marker: { radius: 2 + (location.weight / maxWeight) * 20 },
-        color: '#ffaa00',
+        marker: { radius: 2 + (location.weight / maxWeight) * 7 },
+        color: '#ffaa00', // node normal
         tooltip: `<b>${location.name}</b><br>Sendeort: ${location.sourceCount}<br>Empfangsort: ${location.targetCount}`
     }));
 
@@ -94,8 +94,6 @@ async function createKarte1() {
                 redraw: debounce(() => {
                     console.log("Chart redrawn.");
                     updateFlowData();
-                    chart.get('flowmap').setData(flowData, true, false, false);
-                    restoreHighlightState();
                 }, 200)
             }
         },
@@ -109,18 +107,12 @@ async function createKarte1() {
         plotOptions: {
             mappoint: {
                 tooltip: { headerFormat: '', pointFormat: '{point.tooltip}' },
-                states: { hover: { enabled: true, halo: { size: 9 } } },
+                states: { hover: { enabled: false }, inactive: { enabled: false } },
                 point: {
                     events: {
                         click: function () {
                             window.open(`https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${this.id}.html`, '_blank');
-                        },
-                        mouseOver: throttle(function () {
-                            highlightNodesAndConnections(this.id, true);
-                        }, 100),
-                        mouseOut: throttle(function () {
-                            highlightNodesAndConnections(this.id, false);
-                        }, 100)
+                        }
                     }
                 }
             },
@@ -131,21 +123,8 @@ async function createKarte1() {
                 markerEnd: { width: '50%', height: '50%' },
                 color: '#8B5F8F',
                 fillOpacity: 1,
-                states: {
-                    hover: { enabled: false },
-                    inactive: { opacity: 1 }
-                },
-                tooltip: { headerFormat: '', pointFormat: '{point.tooltip}' },
-                point: {
-                    events: {
-                        mouseOver: throttle(function () {
-                            highlightConnection(this.options, true);
-                        }, 100),
-                        mouseOut: throttle(function () {
-                            highlightConnection(this.options, false);
-                        }, 100)
-                    }
-                }
+                states: { hover: { enabled: false }, inactive: { enabled: false } },
+                tooltip: { headerFormat: '', pointFormat: '{point.tooltip}' }
             }
         },
         mapView: { center: [10, 20], zoom: 2.1 },
@@ -156,104 +135,29 @@ async function createKarte1() {
         ]
     });
 
-    let highlightedNodes = new Set();
-    let highlightedConnections = new Set();
-
     function updateFlowData() {
-        console.log("Updating flow data.");
-        flowData = data.connections.map(connection => {
-            const fromLocation = data.locations.get(connection.from);
-            const toLocation = data.locations.get(connection.to);
-            const reverseConnection = data.connections.find(conn => conn.from === connection.to && conn.to === connection.from);
-            const reverseWeight = reverseConnection ? reverseConnection.weight : 0;
-
-            return {
-                id: connection.id,
-                from: { id: connection.from, lat: fromLocation.lat, lon: fromLocation.lon },
-                to: { id: connection.to, lat: toLocation.lat, lon: toLocation.lon },
-                weight: connection.weight,
-                lineWidth: Math.max(0.1, Math.min(connection.weight, 2)),
-                color: '#8B5F8F',
-                tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}<br>${toLocation.name} → ${fromLocation.name}: ${reverseWeight}`
-            };
-        });
-    }
-
-    function highlightNodesAndConnections(nodeId, highlight) {
+        const mapView = chart.mapView;
         const flowmapSeries = chart.get('flowmap');
-        const citySeries = chart.get('world');
-        const connections = data.connections.filter(conn => conn.from === nodeId || conn.to === nodeId);
+        if (flowmapSeries && mapView) {
+            const newFlowData = data.connections.map(connection => {
+                const fromLocation = data.locations.get(connection.from);
+                const toLocation = data.locations.get(connection.to);
+                const reverseConnection = data.connections.find(conn => conn.from === connection.to && conn.to === connection.from);
+                const reverseWeight = reverseConnection ? reverseConnection.weight : 0;
 
-        const updateData = (series, idSet, color, markerColor) => {
-            series.data.forEach(point => {
-                if (idSet.has(point.id)) {
-                    point.update({
-                        color: highlight ? color : '#8B5F8F',
-                        marker: { fillColor: highlight ? markerColor : '#8B5F8F' }
-                    }, false);
-                }
+                return {
+                    id: connection.id,
+                    from: { id: connection.from, lat: fromLocation.lat, lon: fromLocation.lon },
+                    to: { id: connection.to, lat: toLocation.lat, lon: toLocation.lon },
+                    weight: connection.weight,
+                    lineWidth: Math.max(0.1, Math.min(connection.weight, 2)),
+                    color: '#8B5F8F',
+                    tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}<br>${toLocation.name} → ${fromLocation.name}: ${reverseWeight}`
+                };
             });
-        };
 
-        const relatedNodeIds = new Set(connections.flatMap(conn => [conn.from, conn.to]));
-        relatedNodeIds.add(nodeId);
-
-        updateData(citySeries, relatedNodeIds, 'red', 'red');
-        updateData(flowmapSeries, new Set(connections.map(conn => conn.id)), 'red');
-
-        // Perform a single redraw after updates
-        chart.redraw(false);
-
-        if (highlight) {
-            highlightedNodes.add(nodeId);
-            connections.forEach(conn => highlightedConnections.add(conn.id));
-        } else {
-            highlightedNodes.delete(nodeId);
-            connections.forEach(conn => highlightedConnections.delete(conn.id));
+            flowmapSeries.setData(newFlowData, true, false, false);
         }
-    }
-
-    function highlightConnection(connection, highlight) {
-        const flowmapSeries = chart.get('flowmap');
-        const citySeries = chart.get('world');
-        const nodes = [connection.from.id, connection.to.id];
-
-        const updateData = (series, idSet, color, markerColor) => {
-            series.data.forEach(point => {
-                if (idSet.has(point.id)) {
-                    point.update({
-                        color: highlight ? color : '#8B5F8F',
-                        marker: { fillColor: highlight ? markerColor : '#8B5F8F' }
-                    }, false);
-                }
-            });
-        };
-
-        updateData(citySeries, new Set(nodes), 'red', 'red');
-        updateData(flowmapSeries, new Set([connection.id]), 'red');
-
-        // Perform a single redraw after updates
-        chart.redraw(false);
-
-        if (highlight) {
-            highlightedConnections.add(connection.id);
-            nodes.forEach(nodeId => highlightedNodes.add(nodeId));
-        } else {
-            highlightedConnections.delete(connection.id);
-            nodes.forEach(nodeId => highlightedNodes.delete(nodeId));
-        }
-    }
-
-    function restoreHighlightState() {
-        highlightedNodes.forEach(nodeId => {
-            highlightNodesAndConnections(nodeId, true);
-        });
-        highlightedConnections.forEach(connectionId => {
-            const connection = flowData.find(conn => conn.id === connectionId);
-            if (connection) {
-                highlightConnection(connection, true);
-            }
-        });
     }
 
     function debounce(func, wait) {
