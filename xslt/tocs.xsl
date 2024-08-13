@@ -256,21 +256,21 @@
                                                 <div id="chart-buttons" class="text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
+                                                  test="document(concat('../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="{concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.csv')}"
                                                   >Top 30</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
+                                                  test="document(concat('../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="{concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.csv')}"
                                                   >Top 100</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
+                                                  test="document(concat('../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="{concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/place_freq_corr_weights_directed/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.csv')}"
@@ -287,21 +287,21 @@
                                                 <div id="chart-buttons" class="text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
+                                                  test="document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="{concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institutionen_freq_corr_weights_directed/institutionen_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.csv')}"
                                                   >Top 30</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
+                                                  test="document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="{concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institutionen_freq_corr_weights_directed/institutionen_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.csv')}"
                                                   >Top 100</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
+                                                  test="document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="{concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/institutionen_freq_corr_weights_directed/institutionen_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.csv')}"
@@ -317,21 +317,21 @@
                                                 <div id="chart-buttons" class="text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
+                                                  test="document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="{concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.csv')}"
                                                   >Top 30</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
+                                                  test="document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="{concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.csv')}"
                                                   >Top 100</button>
                                                   </xsl:if>
                                                   <xsl:if
-                                                  test="document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
+                                                  test="document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.xml')) or document(concat('../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top100.xml'))">
                                                   <button class="btn mx-1 chart-btn"
                                                   style="background-color: #A63437; color: white; border: none; padding: 2px 10px; font-size: 0.875rem;"
                                                   data-csv="{concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.csv')}"
