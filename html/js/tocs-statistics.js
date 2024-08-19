@@ -1,7 +1,7 @@
 
 // External JavaScript file
 function createStatistik1(csvFilename) {
-    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/statistik1/${csvFilename}`;
+    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik1/${csvFilename}`;
     
     const chart = Highcharts.chart('statistik1', {
         data: {
@@ -51,7 +51,7 @@ function createStatistik1(csvFilename) {
 
 function createStatistik2(csvFilename) {
     
-    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/statistik2/${csvFilename}`;
+    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik2/${csvFilename}`;
     
     const chart = Highcharts.chart('statistik2', {
         data: {
@@ -100,7 +100,7 @@ function createStatistik2(csvFilename) {
 }
 
 function createStatistik3(csvFilename) {
-    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/statistik3/${csvFilename}`;
+    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik3/${csvFilename}`;
     
     const chart = Highcharts.chart('statistik3', {
         data: {
@@ -187,7 +187,7 @@ var colorMapB = {
 function createStatistik4a(csvFilename) {
     const updatedFilename = csvFilename.replace('.csv', '-a.csv');
     
-    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/statistik4/${updatedFilename}`;
+    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik4/${updatedFilename}`;
     
     const chart = Highcharts.chart('statistik4a', {
         data: {
@@ -224,7 +224,7 @@ function createStatistik4a(csvFilename) {
 function createStatistik4b(csvFilenameb) {
     const updatedFilenameb = csvFilenameb.replace('.csv', '-b.csv');
     
-    const csvURLb = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-statistik/main/statistik4/${updatedFilenameb}`;
+    const csvURLb = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik4/${updatedFilenameb}`;
     
     const chartb = Highcharts.chart('statistik4b', {
         data: {

@@ -421,7 +421,7 @@
                                     </div>
                                     <p style="text-align:center;"><i>Die zu Grunde liegenden Daten
                                             können hier geladen werden: <a
-                                                href="https://github.com/arthur-schnitzler/schnitzler-briefe-statistik"
+                                                href="https://github.com/arthur-schnitzler/schnitzler-briefe-charts/tree/main/statistiken"
                                                 >GitHub</a></i></p>
                                 </div>
                             </div>
