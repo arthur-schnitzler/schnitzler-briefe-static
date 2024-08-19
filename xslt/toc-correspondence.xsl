@@ -53,7 +53,7 @@
                                 <p style="text-align: center;"><a
                                         href="{concat('statistik_pmb', $korrespondenznummer, '.html')}"
                                         >Weitere Statistiken</a>&#160;&#160;<xsl:if test="
-                                            concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/',
+                                            concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/',
                                             'person_freq_corr_weights_directed/' or 'place_freq_corr_weights_directed/' or 'work_freq_corr_weights_directed/' or 'institution_freq_corr_weights_directed/',
                                             'person_freq_corr_weights_directed_correspondence_' or 'place_freq_corr_weights_directed_correspondence_' or 'work_freq_corr_weights_directed_correspondence_' or 'institution_freq_corr_weights_directed_correspondence_',
                                             $korrespondenznummer, '.csv')"

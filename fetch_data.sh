@@ -41,16 +41,16 @@ mv ./schnitzler-briefe-tex-main/pdf-leseansicht/L*.pdf ./html
 rm main.zip
 rm -rf ./schnitzler-briefe-tex-main
 
-# get schnitzler-briefe-networks
+# get schnitzler-briefe-charts
 
-wget https://github.com/arthur-schnitzler/schnitzler-briefe-networks/archive/refs/heads/main.zip
+wget https://github.com/arthur-schnitzler/schnitzler-briefe-charts/archive/refs/heads/main.zip
 rm -rf network-data
 unzip main.zip
 
 mkdir network-data
 
-mv schnitzler-briefe-networks-main/*/*corr_weights_directed*.csv network-data/
-rm -rf schnitzler-briefe-networks-main
+mv schnitzler-briefe-charts-main/netzwerke/*/*corr_weights_directed*.csv network-data/
+rm -rf schnitzler-briefe-charts-main
 
 rm main.zip
 

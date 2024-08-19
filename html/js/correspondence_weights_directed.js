@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resizeChartContainer();
     window.addEventListener('resize', resizeChartContainer);
 
-    fetch('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/correspondence_weights_directed/correspondence_weights_directed.csv')
+    fetch('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/correspondence_weights_directed/correspondence_weights_directed.csv')
         .then(response => response.ok ? response.text() : Promise.reject('Network response was not ok ' + response.statusText))
         .then(csvText => {
             console.log('CSV file content:', csvText);

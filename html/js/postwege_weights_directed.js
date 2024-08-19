@@ -1,6 +1,6 @@
 async function createKarte1() {
     const mapDataUrl = 'https://code.highcharts.com/mapdata/custom/world.topo.json';
-    const csvUrl = 'https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-networks/main/postwege_weights_directed/postwege_weights_directed.csv';
+    const csvUrl = 'https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/postwege_weights_directed/postwege_weights_directed.csv';
 
     const topology = await fetch(mapDataUrl).then(response => response.json());
     const csvData = await fetch(csvUrl).then(response => response.text());
