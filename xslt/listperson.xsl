@@ -53,7 +53,7 @@
                                 <div style="display: flex; justify-content: center;">
                                     <table class="table table-sm display" id="tabulator-table"
                                         style="width:100%; margin: auto;" role="grid"
-                                        tabulator-layout="fitData">
+                                        tabulator-layout="fitData" >
                                         <thead>
                                             <tr>
                                                 <th scope="col" tabulator-headerFilter="input"

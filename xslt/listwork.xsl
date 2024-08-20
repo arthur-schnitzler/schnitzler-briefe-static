@@ -46,7 +46,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Titel</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Verfasser:in</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Name</th>
                                             <th scope="col" tabulator-headerFilter="input">Datum</th>
                                         </tr>
                                     </thead>

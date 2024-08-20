@@ -13,7 +13,7 @@
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
-            initialSort:[{column:"verfasser:in", dir:"asc"}, 
+            initialSort:[{column:"name", dir:"asc"}, 
             {column:"titel", dir:"asc"}],
             langs:{
             "de-de":{ //German language definition
