@@ -18,9 +18,9 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
-            <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/highcharts.js"/>
+            <script src="https://code.highcharts.com/modules/networkgraph.js"/>
+            <script src="https://code.highcharts.com/modules/exporting.js"/>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
@@ -32,34 +32,47 @@
                                 </h1>
                             </div>
                             <div class="card-body">
-                                <div id="container" style="padding-bottom: 20px; width:100%; margin: auto"/>
-                                <div id="chart-buttons" class="text-center mt-3" style="margin: auto; padding-bottom: 20px">
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv">Top 30</button>
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv">Top 100</button>
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv">Top 500</button>
+                                <div id="container"
+                                    style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                <div id="chart-buttons" class="text-center mt-3"
+                                    style="margin: auto; padding-bottom: 20px">
+                                    <button class="btn mx-1 chart-btn"
+                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top30.csv"
+                                        >Top 30</button>
+                                    <button class="btn mx-1 chart-btn"
+                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top100.csv"
+                                        >Top 100</button>
+                                    <button class="btn mx-1 chart-btn"
+                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/person_freq_corp_weights_directed/person_freq_corp_weights_directed_top500.csv"
+                                        >Top 500</button>
                                 </div>
                                 <script src="js/person_freq_corp_weights_directed.js"/>
                                 <div style="display: flex; justify-content: center;">
-                                <table class="table table-sm display" id="tabulator-table"
-                                    style="width:100%; margin: auto;">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                tabulator-formatter="html">Name</th>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                tabulator-formatter="html">Lebensdaten</th>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                >Berufe</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <xsl:for-each
-                                            select="descendant::tei:listPerson[1]/tei:person">
-                                            <xsl:variable name="entiyID"
-                                                select="replace(@xml:id, '#', '')"/>
-                                            <xsl:variable name="entity" as="node()" select="."/>
+                                    <table class="table table-sm display" id="tabulator-table"
+                                        style="width:100%; margin: auto;">
+                                        <thead>
                                             <tr>
-                                                <td>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Name</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Namensvarianten</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Lebensdaten</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  >Berufe</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <xsl:for-each
+                                                select="descendant::tei:listPerson[1]/tei:person">
+                                                <xsl:variable name="entiyID"
+                                                  select="replace(@xml:id, '#', '')"/>
+                                                <xsl:variable name="entity" as="node()" select="."/>
+                                                <tr>
+                                                  <td>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -107,11 +120,111 @@
                                                   </xsl:otherwise>
                                                   </xsl:choose>
                                                   </a>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
+                                                  <xsl:variable name="lemma-name"
+                                                  select="$entity/tei:persName[(position() = 1)]"
+                                                  as="node()"/>
+                                                  <xsl:variable name="namensformen" as="node()">
+                                                  <xsl:element name="listPerson">
+                                                  <xsl:for-each
+                                                  select="$entity/descendant::tei:persName[not(position() = 1)]">
+                                                  <xsl:copy-of select="."/>
+                                                  </xsl:for-each>
+                                                  </xsl:element>
+                                                  </xsl:variable>
+                                                  <xsl:for-each
+                                                  select="$namensformen/descendant::tei:persName">
+                                                  <xsl:choose>
+                                                  <xsl:when test="descendant::*">
+                                                  <!-- den Fall dürfte es eh nicht geben, aber löschen braucht man auch nicht -->
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="./tei:forename/text() and ./tei:surname/text()">
+                                                  <xsl:value-of
+                                                  select="concat(./tei:forename/text(), ' ', ./tei:surname/text())"
+                                                  />
+                                                  </xsl:when>
+                                                  <xsl:when test="./tei:forename/text()">
+                                                  <xsl:value-of select="./tei:forename/text()"/>
+                                                  </xsl:when>
+                                                  <xsl:when test="./tei:surname/text()">
+                                                  <xsl:value-of select="./tei:surname/text()"/>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="@type = 'person_geburtsname_vorname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname']">
+                                                  <xsl:text>geboren </xsl:text>
+                                                  <xsl:value-of
+                                                  select="concat(., ' ', $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname'][1])"
+                                                  />
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="@type = 'person_geburtsname_vorname'">
+                                                  <xsl:text>geboren </xsl:text>
+                                                  <xsl:value-of
+                                                  select="concat(., ' ', $lemma-name//tei:surname)"
+                                                  />
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="@type = 'person_geburtsname_nachname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_vorname'][1]"/>
+                                                  <xsl:when
+                                                  test="@type = 'person_geburtsname_nachname'">
+                                                  <xsl:text>geboren </xsl:text>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="@type = 'person_adoptierter-nachname'">
+                                                  <xsl:text>Nachname durch Adoption </xsl:text>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="@type = 'person_variante-nachname-vorname'">
+                                                  <xsl:text>Namensvariante </xsl:text>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:when>
+                                                  <xsl:when test="@type = 'person_namensvariante'">
+                                                  <xsl:text>Namensvariante </xsl:text>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:when>
+                                                  <xsl:when test="@type = 'person_rufname'">
+                                                  <xsl:text>Rufname </xsl:text>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:when>
+                                                  <xsl:when test="@type = 'person_pseudonym'">
+                                                  <xsl:text>Pseudonym </xsl:text>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:when>
+                                                  <xsl:when test="@type = 'person_ehename'">
+                                                  <xsl:text>Ehename </xsl:text>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:when>
+                                                  <xsl:when test="@type = 'person_geschieden'">
+                                                  <xsl:text>geschieden </xsl:text>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:when>
+                                                  <xsl:when test="@type = 'person_verwitwet'">
+                                                  <xsl:text>verwitwet </xsl:text>
+                                                  <xsl:value-of select="."/>
+                                                  </xsl:when>
+                                                  </xsl:choose>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                  <xsl:if test="not(position() = last())">
+                                                  <xsl:text>, </xsl:text>
+                                                  </xsl:if>
+                                                  </xsl:for-each>
+                                                  </td>
+                                                  <td>
                                                   <xsl:value-of select="mam:lebensdaten($entity)"/>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <xsl:if test="$entity/descendant::tei:occupation">
                                                   <xsl:for-each
                                                   select="$entity/descendant::tei:occupation">
@@ -142,11 +255,11 @@
                                                   </xsl:if>
                                                   </xsl:for-each>
                                                   </xsl:if>
-                                                </td>
-                                            </tr>
-                                        </xsl:for-each>
-                                    </tbody>
-                                </table>
+                                                  </td>
+                                                </tr>
+                                            </xsl:for-each>
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
