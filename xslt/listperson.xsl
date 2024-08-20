@@ -158,6 +158,7 @@
                                                   </xsl:choose>
                                                   </xsl:when>
                                                   <xsl:otherwise>
+                                                      <xsl:if test="@type = 'person_geburtsname_vorname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname']">
                                                       <xsl:for-each select="@type = 'person_geburtsname_vorname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname']">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>geboren </xsl:text>
@@ -175,6 +176,8 @@
                                                           </xsl:choose>
                                                           
                                                       </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:if test="@type = 'person_geburtsname_vorname' and not($namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname'])">
                                                       <xsl:for-each select="@type = 'person_geburtsname_vorname' and not($namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname'])">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>geboren </xsl:text>
@@ -191,6 +194,8 @@
                                                               </xsl:otherwise>
                                                           </xsl:choose>
                                                       </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:if test="@type = 'person_geburtsname_nachname' and not($namensformen/descendant::tei:persName[@type = 'person_geburtsname_vorname'][1])">
                                                       <xsl:for-each select="@type = 'person_geburtsname_nachname' and not($namensformen/descendant::tei:persName[@type = 'person_geburtsname_vorname'][1])">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>geboren </xsl:text>
@@ -205,6 +210,8 @@
                                                               </xsl:otherwise>
                                                           </xsl:choose>
                                                       </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:if test="@type = 'person_adoptierter-nachname'">
                                                       <xsl:for-each select="@type = 'person_adoptierter-nachname'">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>adoptierter Name </xsl:text>
@@ -219,6 +226,8 @@
                                                               </xsl:otherwise>
                                                           </xsl:choose>
                                                       </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:if test="@type = 'person_variante-nachname-vorname' or  @type = 'person_namensvariante'">
                                                       <xsl:for-each select="@type = 'person_variante-nachname-vorname' or  @type = 'person_namensvariante'">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>Namensvariante </xsl:text>
@@ -233,6 +242,8 @@
                                                               </xsl:otherwise>
                                                           </xsl:choose>
                                                       </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:if test="@type = 'person_rufname'">
                                                       <xsl:for-each select="@type = 'person_rufname'">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>Rufname </xsl:text>
@@ -247,6 +258,8 @@
                                                               </xsl:otherwise>
                                                           </xsl:choose>
                                                       </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:if test="@type = 'person_pseudonym'">
                                                       <xsl:for-each select="@type = 'person_pseudonym'">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>Pseudonym </xsl:text>
@@ -261,6 +274,8 @@
                                                               </xsl:otherwise>
                                                           </xsl:choose>
                                                       </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:if test="@type = 'person_ehename'">
                                                       <xsl:for-each select="@type = 'person_ehename'">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>verheiratet </xsl:text>
@@ -275,6 +290,8 @@
                                                               </xsl:otherwise>
                                                           </xsl:choose>
                                                       </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:if test="@type = 'person_geschieden'">
                                                       <xsl:for-each select="@type = 'person_geschieden'">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>geschieden </xsl:text>
@@ -289,6 +306,8 @@
                                                               </xsl:otherwise>
                                                           </xsl:choose>
                                                       </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:if test="@type = 'person_verwitwet'">
                                                       <xsl:for-each select="@type = 'person_verwitwet'">
                                                           <xsl:if test="position()=1">
                                                               <xsl:text>verwitwet </xsl:text>
@@ -303,6 +322,7 @@
                                                               </xsl:otherwise>
                                                           </xsl:choose>
                                                       </xsl:for-each>
+                                                      </xsl:if>
                                                   </xsl:otherwise>
                                                   </xsl:choose>
                                                   </xsl:for-each>
