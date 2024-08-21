@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 panKey: 'shift',
                 zoomType: 'xy'
             },
-            title: { text: `Korrespondenzen im Laufe der Zeit` },
+            title: { text: `Korrespondenzen im Laufe der Jahre` },
             tooltip: {
                 formatter: function () {
                     if (this.point.isNode) {
