@@ -136,10 +136,22 @@
             <xsl:apply-templates/>
         </p>
     </xsl:template>
-    <xsl:template match="tei:div">
+    <xsl:template match="tei:div[not(@xml:id = 'container-1') and not(@xml:id = 'container-2')]">
         <div id="{generate-id()}">
             <xsl:apply-templates/>
         </div>
+    </xsl:template>
+    <xsl:template match="tei:div[@xml:id = 'container-ohne-slider']">
+        <div id="container-ohne-slider" style="padding-bottom: 60px; width:100%; margin: auto"/>
+    </xsl:template>
+    <xsl:template match="tei:div[@xml:id = 'container-mit-slider']">
+        <div id="container-mit-slider" style="padding-bottom: 20px; width:100%; margin: auto"/>
+        <div style="text-align: center;">
+            <input type="range" id="yearSlider" min="1890" max="1931" value="1900" step="1"/>
+            <span id="yearDisplay">1900</span>
+        </div>
+        <script src="js/jung-wien-charts-ohne-slider.js"/>
+        <script src="js/jung-wien-charts-mit-slider.js"/>
     </xsl:template>
     <xsl:template match="tei:lb">
         <br/>
@@ -155,7 +167,7 @@
     <xsl:template match="tei:del">
         <xsl:element name="span">
             <xsl:attribute name="class">
-            <xsl:apply-templates/>
+                <xsl:apply-templates/>
             </xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
@@ -684,7 +696,7 @@
             <xsl:apply-templates/>
         </code>
     </xsl:template>
-    
+
     <xsl:template match="tei:figure">
         <xsl:element name="figure">
             <xsl:attribute name="class">
@@ -693,36 +705,40 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    
-    
+
+
     <xsl:template match="tei:graphic[@url]">
-       <xsl:choose>
-           <xsl:when test="ancestor::tei:TEI/@xml:id='Kooperationen'">
-               <img src="{@url}" class="mx-auto" style="width: 400px"/>
-           </xsl:when>
-           <xsl:otherwise>
-               <xsl:variable name="modalName" as="xs:string">
-                   <xsl:choose>
-                       <xsl:when test="string-length(tokenize(@url, '/')[last()])=0">
-                           <xsl:value-of select="substring-before(tokenize(@url, '/')[last()-1], '.')"/>
-                       </xsl:when>
-                       <xsl:otherwise>
-                           <xsl:value-of select="substring-before(tokenize(@url, '/')[last()], '.')"/>
-                       </xsl:otherwise>
-                   </xsl:choose>
-               </xsl:variable>
-               <img src="{@url}" class="img-fluid clickable-image" data-bs-toggle="modal" data-bs-target="#{$modalName}" style="width: 100%; max-width=100% " />
-               <div class="modal fade" id="{$modalName}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                   <div class="modal-dialog modal-xl">
-                       <div class="modal-content">
-                           <div class="modal-body">
-                               <img src="{@url}" class="img-fluid" alt="Full Screen Image"/>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </xsl:otherwise>
-       </xsl:choose>
-        
+        <xsl:choose>
+            <xsl:when test="ancestor::tei:TEI/@xml:id = 'Kooperationen'">
+                <img src="{@url}" class="mx-auto" style="width: 400px"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="modalName" as="xs:string">
+                    <xsl:choose>
+                        <xsl:when test="string-length(tokenize(@url, '/')[last()]) = 0">
+                            <xsl:value-of
+                                select="substring-before(tokenize(@url, '/')[last() - 1], '.')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of
+                                select="substring-before(tokenize(@url, '/')[last()], '.')"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <img src="{@url}" class="img-fluid clickable-image" data-bs-toggle="modal"
+                    data-bs-target="#{$modalName}" style="width: 100%; max-width=100% "/>
+                <div class="modal fade" id="{$modalName}" tabindex="-1"
+                    aria-labelledby="imageModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="{@url}" class="img-fluid" alt="Full Screen Image"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xsl:otherwise>
+        </xsl:choose>
+
     </xsl:template>
 </xsl:stylesheet>
