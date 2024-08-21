@@ -1083,12 +1083,12 @@ legend {float: none;
       object-fit: contain;
     }
     
-    
     figcaption {
   background-color: white;
   color: black;
   font: italic smaller sans-serif;
-  padding: 3px;
+  padding-top: 10px;
+  padding-bottom: 15px;
   text-align: center;
 }
 
