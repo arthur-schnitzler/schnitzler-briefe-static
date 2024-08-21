@@ -41,12 +41,12 @@
                                 </div>
                                 <script src="js/work_freq_corp_weights_directed.js"/>
                                 <div style="display: flex; justify-content: center;">
-                                <table class="table table-sm display" id="tabulator-table" style="width:100%; margin: auto;"
+                                <table class="table table-sm display" id="tabulator-table-work" style="width:100%; margin: auto;"
                                     >
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Titel</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Name</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Urheber_in</th>
                                             <th scope="col" tabulator-headerFilter="input">Datum</th>
                                         </tr>
                                     </thead>
@@ -165,7 +165,7 @@
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <xsl:call-template name="tabulator_js"/>
+                    <xsl:call-template name="tabulator_work_js"/>
                 </div>
             </body>
         </html>

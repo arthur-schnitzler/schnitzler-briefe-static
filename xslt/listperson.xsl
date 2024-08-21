@@ -51,7 +51,7 @@
                                 </div>
                                 <script src="js/person_freq_corp_weights_directed.js"/>
                                 <div style="display: flex; justify-content: center;">
-                                    <table class="table table-sm display" id="tabulator-table"
+                                    <table class="table table-sm display" id="tabulator-table-person"
                                         style="width:100%; margin: auto;" role="grid"
                                         tabulator-layout="fitData" >
                                         <thead>
@@ -333,7 +333,7 @@
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <xsl:call-template name="tabulator_js"/>
+                    <xsl:call-template name="tabulator_person_js"/>
                 </div>
             </body>
         </html>
