@@ -136,7 +136,7 @@
             <xsl:apply-templates/>
         </p>
     </xsl:template>
-    <xsl:template match="tei:div[not(@xml:id = 'container-1') and not(@xml:id = 'container-2')]">
+    <xsl:template match="tei:div[not(@xml:id = 'container-ohne-slider') and not(@xml:id = 'container-mit-slider')]">
         <div id="{generate-id()}">
             <xsl:apply-templates/>
         </div>
