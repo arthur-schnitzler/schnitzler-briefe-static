@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             Papa.parse(csvText, {
                 header: true,
-                complete: ({ data
+                complete: ({
+                    data
                 }) => {
                     if (! data.length) return console.error('Parsed data is empty or incorrectly formatted');
                     
@@ -129,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             zoomType: 'xy'
                         },
                         title: {
-                            text: `Alle Korrespondenzen`
+                            text: null
                         },
                         tooltip: {
                             formatter: function () {

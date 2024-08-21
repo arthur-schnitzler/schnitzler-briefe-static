@@ -143,16 +143,25 @@
         </div>
     </xsl:template>
     <xsl:template match="tei:div[@xml:id = 'container-ohne-slider']">
-        <div style="display: flex; flex-direction: column; align-items: flex-end; width: 100%;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
             <div style="display: flex; width: 100%;">
-                <div id="container-ohne-slider"
-                    style="width: 50%; padding-top: 50px; padding-bottom: 50px; margin: auto;"></div>
-                <div id="container-mit-slider"
-                    style="width: 50%; padding-top: 50px; margin: auto;"></div>
-            </div>
-            <div style="width: 50%; text-align: center; margin-top: 10px; padding-bottom: 50px;">
-                <input type="range" id="yearSlider" min="1890" max="1931" value="1900" step="1"/>
-                <span id="yearDisplay">1900</span>
+                <div style="width: 50%; margin: auto;">
+                    <div id="container-ohne-slider" style="width: 100%;"/>
+                    <figcaption>Abb. 5: Alle Korrespondenzen zwischen Arthur Schnitzler, Hermann
+                        Bahr, Richard Beer-Hofmann und Hugo von Hofmannsthal</figcaption>
+                </div>
+                <div style="width: 50%; margin: auto;">
+                    <div id="container-mit-slider" style="width: 100%;"/>
+                    <div
+                        style="width: 100%; text-align: center; margin-top: 5px;">
+                        <input type="range" id="yearSlider" min="1890" max="1931" value="1900"
+                            step="1"/>
+                        <span id="yearDisplay">1900</span>
+                    </div>
+                    <figcaption>Abb. 6: Alle Korrespondenzen zwischen Arthur Schnitzler, Hermann
+                        Bahr, Richard Beer-Hofmann und Hugo von Hofmannsthal im
+                        Timeslider</figcaption>
+                </div>
             </div>
         </div>
         <script src="js/jung-wien-charts-ohne-slider.js"/>
