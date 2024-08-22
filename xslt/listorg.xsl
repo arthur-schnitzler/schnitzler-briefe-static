@@ -4,7 +4,6 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
-
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
@@ -18,9 +17,9 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
-            <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/highcharts.js"/>
+            <script src="https://code.highcharts.com/modules/networkgraph.js"/>
+            <script src="https://code.highcharts.com/modules/exporting.js"/>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
@@ -32,31 +31,45 @@
                                 </h1>
                             </div>
                             <div class="card-body">
-                                <div id="container" style="padding-bottom: 20px; width:100%; margin: auto"/>
-                                <div id="chart-buttons" class="text-center mt-3" style="margin: auto; padding-bottom: 20px">
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/institution_freq_corp_weights_directed/institution_freq_corp_weights_directed_top30.csv">Top 30</button>
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/institution_freq_corp_weights_directed/institution_freq_corp_weights_directed_top100.csv">Top 100</button>
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/institution_freq_corp_weights_directed/institution_freq_corp_weights_directed_top500.csv">Top 500</button>
+                                <div id="container"
+                                    style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                <div id="chart-buttons" class="text-center mt-3"
+                                    style="margin: auto; padding-bottom: 20px">
+                                    <button class="btn mx-1 chart-btn"
+                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/institution_freq_corp_weights_directed/institution_freq_corp_weights_directed_top30.csv"
+                                        >Top 30</button>
+                                    <button class="btn mx-1 chart-btn"
+                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/institution_freq_corp_weights_directed/institution_freq_corp_weights_directed_top100.csv"
+                                        >Top 100</button>
+                                    <button class="btn mx-1 chart-btn"
+                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/institution_freq_corp_weights_directed/institution_freq_corp_weights_directed_top500.csv"
+                                        >Top 500</button>
                                 </div>
                                 <script src="js/institution_freq_corp_weights_directed.js"/>
                                 <div style="display: flex; justify-content: center;">
-                                <table class="table table-sm display" id="tabulator-table-org" style="width:100%; margin: auto;"
-                                    >
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Name</th>
-                                            <th scope="col" tabulator-headerFilter="input">Typ</th>
-                                            <th scope="col" tabulator-headerFilter="input">Ort</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <xsl:for-each select=".//tei:org">
-                                            <xsl:variable name="id">
-                                                <xsl:value-of select="data(@xml:id)"/>
-                                            </xsl:variable>
+                                    <table class="table table-sm display" id="tabulator-table-org">
+                                        <thead>
                                             <tr>
-                                                <td>
+                                                <th scope="col" 
+                                                  >Name</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                    tabulator-formatter="html">Namensvarianten</th>
+                                                <th scope="col" 
+                                                  >Zugehörigkeiten</th>
+                                                <th scope="col"
+                                                  >Typ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <xsl:for-each select=".//tei:org">
+                                                <xsl:variable name="id">
+                                                  <xsl:value-of select="data(@xml:id)"/>
+                                                </xsl:variable>
+                                                <tr>
+                                                  <td>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat($id, '.html')"/>
@@ -64,20 +77,38 @@
                                                   <xsl:value-of
                                                   select="child::tei:orgName[1]/text()"/>
                                                   </a>
-                                                  <xsl:if
-                                                  test="child::tei:orgName[@type = 'alternative-name']">
-                                                  <xsl:text> (</xsl:text>
+                                                  </td>
+                                                    <td>
+                                                        <xsl:if
+                                                            test="child::tei:orgName[@type = 'alternative-name']">
+                                                            <xsl:for-each
+                                                                select="child::tei:orgName[@type = 'alternative-name']">
+                                                                <xsl:value-of select="."/>
+                                                                <xsl:if test="not(position() = last())">
+                                                                    <br/>
+                                                                </xsl:if>
+                                                            </xsl:for-each>
+                                                        </xsl:if>
+                                                    </td>
+                                                  <td>
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="not(tei:location[@type = 'located_in_place'])">
+                                                  <span hidden="true">ZZZ</span>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <span hidden="true"/>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
                                                   <xsl:for-each
-                                                  select="child::tei:orgName[@type = 'alternative-name']">
+                                                  select="distinct-values(tei:location[@type = 'located_in_place']/tei:placeName[1])">
                                                   <xsl:value-of select="."/>
                                                   <xsl:if test="not(position() = last())">
                                                   <xsl:text>, </xsl:text>
                                                   </xsl:if>
                                                   </xsl:for-each>
-                                                  <xsl:text>)</xsl:text>
-                                                  </xsl:if>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <xsl:choose>
                                                   <xsl:when
                                                   test="contains(tei:desc[@type = 'entity_type'], '&gt;&gt;')">
@@ -90,23 +121,13 @@
                                                   select="tei:desc[@type = 'entity_type']"/>
                                                   </xsl:otherwise>
                                                   </xsl:choose>
-
-                                                </td>
-                                                <td>
-                                                    <xsl:for-each
-                                                        select="distinct-values(tei:location[@type = 'located_in_place']/tei:placeName[1])">
-                                                        <xsl:value-of select="."/>
-                                                        <xsl:if test="not(position() = last())">
-                                                            <xsl:text>, </xsl:text>
-                                                        </xsl:if>
-                                                    </xsl:for-each>
-                                                </td>
-                                            </tr>
-                                        </xsl:for-each>
-                                    </tbody>
-                                </table> 
+                                                  </td>
+                                                </tr>
+                                            </xsl:for-each>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                    <xsl:call-template name="tabulator_dl_buttons"/>
+                                <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
                     </div>
@@ -147,8 +168,6 @@
                     </body>
                 </html>
             </xsl:result-document>
-
         </xsl:for-each>
     </xsl:template>
-
 </xsl:stylesheet>

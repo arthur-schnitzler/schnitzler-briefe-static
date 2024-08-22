@@ -57,6 +57,7 @@
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
+            layout:"fitColumns",
             initialSort:[
             {column:"urheber_in", dir:"asc"}, 
             {column:"titel", dir:"asc"}
@@ -99,8 +100,18 @@
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
+            layout:"fitColumns",
+            columns: [
+            {title: "Vorname", field: "vorname", sorter: "string", formatter: "html"},
+            {title: "Nachname", field: "nachname", sorter: "string", formatter: "html"},
+            {title: "Namensvarianten", field: "namensvarianten", sorter: "string"},
+            {title: "Lebensdaten", field: "lebensdaten", sorter: "string"},
+            {title: "Berufe", field: "berufe", sorter: "string"}
+            ],
             initialSort:[
-            {column:"name", dir:"asc"}
+            {column:"vorname", dir:"asc"},
+            {column:"nachname", dir:"asc"}
+            
             ],
             langs:{
             "de-de":{ //German language definition
@@ -140,10 +151,18 @@
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
-            initialSort:[
-            {column:"ort", dir:"asc"}, 
-            {column:"titel", dir:"asc"}
+            columns: [
+            {title: "Name", field: "name", sorter: "string", formatter: "html", tabulator-headerFilter="input"},
+            {title: "Namensvarianten", field: "namensvarianten", sorter: "string"},
+            {title: "Zugehörigkeiten", field: "zugehoerigkeiten", sorter: "string", formatter: "html", tabulator-headerFilter="input"},
+            {title: "Typ", field: "typ", sorter: "string", tabulator-headerFilter="input"}
             ],
+            initialSort:[
+            {column:"name", dir:"asc"},
+            {column:"zugehoerigkeiten", dir:"asc"}
+            
+            ],
+            
             langs:{
             "de-de":{ //German language definition
             "pagination":{

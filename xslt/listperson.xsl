@@ -50,79 +50,73 @@
                                         >Top 500</button>
                                 </div>
                                 <script src="js/person_freq_corp_weights_directed.js"/>
-                                <div style="display: flex; justify-content: center;">
-                                    <table class="table table-sm display" id="tabulator-table-person"
-                                        style="width:100%; margin: auto;" role="grid"
-                                        tabulator-layout="fitData" >
-                                        <thead>
+                                <table class="table table-sm display" id="tabulator-table-person">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                >Vorname</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                >Nachname</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Namensvarianten</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Lebensdaten</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                >Berufe</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <xsl:for-each
+                                            select="descendant::tei:listPerson[1]/tei:person">
+                                            <xsl:variable name="entiyID"
+                                                select="replace(@xml:id, '#', '')"/>
+                                            <xsl:variable name="entity" as="node()" select="."/>
                                             <tr>
-                                                <th scope="col" tabulator-headerFilter="input"
-                                                  tabulator-formatter="html">Name</th>
-                                                <th scope="col" tabulator-headerFilter="input"
-                                                  tabulator-formatter="html">Namensvarianten</th>
-                                                <th scope="col" tabulator-headerFilter="input"
-                                                  tabulator-formatter="html">Lebensdaten</th>
-                                                <th scope="col" tabulator-headerFilter="input"
-                                                  >Berufe</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <xsl:for-each
-                                                select="descendant::tei:listPerson[1]/tei:person">
-                                                <xsl:variable name="entiyID"
-                                                  select="replace(@xml:id, '#', '')"/>
-                                                <xsl:variable name="entity" as="node()" select="."/>
-                                                <tr>
-                                                  <td>
+                                                <td>
+                                                  <span hidden="true">
+                                                      <xsl:choose>
+                                                          <xsl:when test="starts-with($entity/tei:persName[1]/tei:forename[1]/text(), '??')">
+                                                              <xsl:text>ZZZ </xsl:text><!-- Vornamen mit ?? nach unten reihen -->
+                                                          </xsl:when>
+                                                          <xsl:when test="normalize-space($entity/tei:persName[1]/tei:forename[1]/text()) = ''">
+                                                              <xsl:value-of select="substring($entity/tei:persName[1]/tei:surname/text(), 1, 1)"/>
+                                                          </xsl:when>
+                                                      </xsl:choose>
+                                                  <xsl:value-of
+                                                  select="$entity/tei:persName[1]/tei:forename[1]/text()"
+                                                  />
+                                                  </span>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat($entity/@xml:id, '.html')"/>
                                                   </xsl:attribute>
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="starts-with($entity/tei:persName[1]/tei:surname[1]/text(), '??')">
-                                                  <span hidden="true">ZZZ</span>
-                                                  <xsl:value-of
-                                                  select="$entity/tei:persName[1]/tei:surname[1]/text()"
-                                                  />
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="$entity/tei:persName[1]/tei:surname[1]/text() and $entity/tei:persName[1]/tei:forename[1]/text()">
-                                                  <span hidden="true">
-                                                  <xsl:value-of
-                                                  select="$entity/tei:persName[1]/tei:surname[1]/text()"/>
                                                   <xsl:value-of
                                                   select="$entity/tei:persName[1]/tei:forename[1]/text()"
+                                                  />
+                                                  </a>
+                                                </td>
+                                                <td>
+                                                  <span hidden="true">
+                                                  <xsl:if
+                                                  test="starts-with($entity/tei:persName[1]/tei:surname[1]/text(), '??')">
+                                                  <xsl:text>ZZZ </xsl:text>
+                                                  </xsl:if>
+                                                  <xsl:value-of
+                                                  select="$entity/tei:persName[1]/tei:surname[1]/text()"
                                                   />
                                                   </span>
+                                                  <a>
+                                                  <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                  select="$entity/tei:persName[1]/tei:forename[1]/text()"/>
-                                                  <xsl:text> </xsl:text>
-                                                  <xsl:value-of
-                                                  select="$entity/tei:persName[1]/tei:surname[1]/text()"
-                                                  />
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="$entity/tei:persName[1]/tei:surname[1]/text()">
+                                                  select="concat($entity/@xml:id, '.html')"/>
+                                                  </xsl:attribute>
                                                   <xsl:value-of
                                                   select="$entity/tei:persName[1]/tei:surname[1]/text()"
                                                   />
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="$entity/tei:persName[1]/tei:forename[1]/text()">
-                                                  <xsl:value-of
-                                                  select="$entity/tei:persName[1]/tei:forename[1]/text()"
-                                                  />
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of
-                                                  select="$entity/tei:persName[1]/tei:persName[1]"/>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
                                                   </a>
-                                                  </td>
-                                                  <td>
+                                                </td>
+                                                <td>
                                                   <xsl:variable name="lemma-name"
                                                   select="$entity/tei:persName[(position() = 1)]"
                                                   as="node()"/>
@@ -287,11 +281,11 @@
                                                   </xsl:otherwise>
                                                   </xsl:choose>
                                                   </xsl:for-each>
-                                                  </td>
-                                                  <td>
+                                                </td>
+                                                <td>
                                                   <xsl:value-of select="mam:lebensdaten($entity)"/>
-                                                  </td>
-                                                  <td>
+                                                </td>
+                                                <td>
                                                   <xsl:if test="$entity/descendant::tei:occupation">
                                                   <xsl:for-each
                                                   select="$entity/descendant::tei:occupation">
@@ -322,12 +316,11 @@
                                                   </xsl:if>
                                                   </xsl:for-each>
                                                   </xsl:if>
-                                                  </td>
-                                                </tr>
-                                            </xsl:for-each>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                </td>
+                                            </tr>
+                                        </xsl:for-each>
+                                    </tbody>
+                                </table>
                                 <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
