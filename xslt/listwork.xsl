@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="xsl tei xs">
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="xsl tei xs"
+    xmlns:mam="whatever">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
@@ -74,7 +75,7 @@
                                                         <tr>
                                                             <td>
                                                                 <span hidden="true">
-                                                                <xsl:value-of select="normalize-space($titel)"/>
+                                                                <xsl:value-of select="mam:sonderzeichen-entfernen($titel)"/>
                                                                 </span>
                                                                 <xsl:element name="a">
                                                                     <xsl:attribute name="href">
@@ -122,7 +123,7 @@
                                                         <tr>
                                                             <td>
                                                                 <span hidden="true">
-                                                                    <xsl:value-of select="normalize-space($titel)"/>
+                                                                    <xsl:value-of select="mam:sonderzeichen-entfernen($titel)"/>
                                                                 </span>
                                                                 <xsl:element name="a">
                                                                     <xsl:attribute name="href">
@@ -203,4 +204,51 @@
             </xsl:result-document>
         </xsl:for-each>
     </xsl:template>
+    <xsl:function name="mam:sonderzeichen-entfernen" as="xs:string">
+        <xsl:param name="input-string" as="xs:string"/>
+        
+        <!-- Ersetzen der Umlaute und Sonderzeichen Schritt für Schritt -->
+        <xsl:variable name="string0" select="replace(replace(replace(replace(replace(replace(replace($input-string, '»', ''), '«', ''), '’', ''), '\?\?\s\[', ''), '\[', ''), '\(', ''), '\*', '')"/>
+        <xsl:variable name="string1" select="replace($string0, 'ä', 'ae')"/>
+        <xsl:variable name="string2" select="replace($string1, 'ö', 'oe')"/>
+        <xsl:variable name="string3" select="replace($string2, 'ü', 'ue')"/>
+        <xsl:variable name="string4" select="replace($string3, 'ß', 'ss')"/>
+        <xsl:variable name="string5" select="replace($string4, 'Ä', 'Ae')"/>
+        <xsl:variable name="string6" select="replace($string5, 'Ü', 'Ue')"/>
+        <xsl:variable name="string7" select="replace($string6, 'Ö', 'Oe')"/>
+        <xsl:variable name="string8" select="replace($string7, 'é', 'e')"/>
+        <xsl:variable name="string9" select="replace($string8, 'è', 'e')"/>
+        <xsl:variable name="string10" select="replace($string9, 'É', 'E')"/>
+        <xsl:variable name="string11" select="replace($string10, 'È', 'E')"/>
+        <xsl:variable name="string12" select="replace($string11, 'ò', 'o')"/>
+        <xsl:variable name="string13" select="replace($string12, 'Č', 'C')"/>
+        <xsl:variable name="string14" select="replace($string13, 'D’', 'D')"/>
+        <xsl:variable name="string15" select="replace($string14, 'd’', 'd')"/>
+        <xsl:variable name="string16" select="replace($string15, 'Ś', 'S')"/>
+        <xsl:variable name="string17" select="replace($string16, '’', ' ')"/>
+        <xsl:variable name="string18" select="replace($string17, '&amp;', 'und')"/>
+        <xsl:variable name="string19" select="replace($string18, 'ë', 'e')"/>
+        <xsl:variable name="string20" select="replace($string19, '!', '')"/>
+        <xsl:variable name="string21" select="replace($string20, 'č', 'c')"/>
+        <xsl:variable name="string22" select="replace($string21, 'Ł', 'L')"/>
+        <xsl:variable name="string23">
+        <xsl:choose>
+            <xsl:when test="starts-with($string22, 'Der ')">
+                <xsl:value-of select="substring-after($string22, 'Der ')"/>
+            </xsl:when>
+            <xsl:when test="starts-with($string22, 'Die ')">
+                <xsl:value-of select="substring-after($string22, 'Die ')"/>
+            </xsl:when>
+            <xsl:when test="starts-with($string22, 'Das ')">
+                <xsl:value-of select="substring-after($string22, 'Das ')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$string22"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        </xsl:variable>
+        <xsl:sequence select="$string23"/>
+    </xsl:function>
+    
+   
 </xsl:stylesheet>

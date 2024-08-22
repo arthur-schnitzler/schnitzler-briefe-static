@@ -45,7 +45,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Ortsname</th>
-                                            <th scope="col">Zugehörigkeit</th>
+                                            <th scope="col">Zugehörigkeiten</th>
                                             <th scope="col">Erwähnungen</th>
                                             <th scope="col">lat</th>
                                             <th scope="col">lng</th>

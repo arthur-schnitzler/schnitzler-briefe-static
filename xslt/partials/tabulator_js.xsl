@@ -147,45 +147,44 @@
         <script>
             // Erste Tabelle mit Sortierung nach "urheber_in" und "titel"
             var table = new Tabulator("#tabulator-table-org", {
-            pagination:"local",       //paginate the data
-            paginationSize:25,         //allow 25 rows per page of data
-            paginationCounter:"rows", //display count of paginated rows in footer
-            movableColumns:true,
+            pagination: "local",       // paginate the data
+            paginationSize: 25,         // allow 25 rows per page of data
+            paginationCounter: "rows", // display count of paginated rows in footer
+            movableColumns: true,
             columns: [
-            {title: "Name", field: "name", sorter: "string", formatter: "html", tabulator-headerFilter="input"},
-            {title: "Namensvarianten", field: "namensvarianten", sorter: "string"},
-            {title: "Zugehörigkeiten", field: "zugehoerigkeiten", sorter: "string", formatter: "html", tabulator-headerFilter="input"},
-            {title: "Typ", field: "typ", sorter: "string", tabulator-headerFilter="input"}
+            { title: "Name", field: "name", sorter: "string" },
+            { title: "Namensvarianten", field: "namensvarianten", sorter: "string" },
+            { title: "Zugehörigkeiten", field: "zugehoerigkeiten", sorter: "string" },
+            { title: "Typ", field: "typ", sorter: "string" }
             ],
-            initialSort:[
-            {column:"name", dir:"asc"},
-            {column:"zugehoerigkeiten", dir:"asc"}
-            
+            initialSort: [
+            { column: "zugehoerigkeiten", dir: "asc" },
+            { column: "name", dir: "asc" }
             ],
-            
-            langs:{
-            "de-de":{ //German language definition
-            "pagination":{
-            "first":"Erste",
-            "first_title":"Erste Seite",
-            "last":"Letzte",
-            "last_title":"Letzte Seite",
-            "prev":"Vorige",
-            "prev_title":"Vorige Seite",
-            "next":"Nächste",
-            "next_title":"Nächste Seite",
-            "all":"Alle",
-            "counter":{
+            langs: {
+            "de-de": { // German language definition
+            "pagination": {
+            "first": "Erste",
+            "first_title": "Erste Seite",
+            "last": "Letzte",
+            "last_title": "Letzte Seite",
+            "prev": "Vorige",
+            "prev_title": "Vorige Seite",
+            "next": "Nächste",
+            "next_title": "Nächste Seite",
+            "all": "Alle",
+            "counter": {
             "showing": "Zeige",
             "of": "von",
             "rows": "Reihen",
-            "pages": "Seiten",
+            "pages": "Seiten"
             }
-            },
-            },
+            }
+            }
             },
             locale: "de-de"
             });
+            
         </script>
         
     </xsl:template>
