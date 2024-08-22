@@ -102,6 +102,10 @@
                                                   test="starts-with($entity/tei:persName[1]/tei:surname[1]/text(), '??')">
                                                   <xsl:text>ZZZ </xsl:text>
                                                   </xsl:if>
+                                                      <xsl:if
+                                                          test="not($entity/tei:persName[1]/tei:surname[1]) or normalize-space($entity/tei:persName[1]/tei:surname[1]/text())=''">
+                                                          <xsl:text>ZZ </xsl:text>
+                                                      </xsl:if>
                                                   <xsl:value-of
                                                   select="$entity/tei:persName[1]/tei:surname[1]/text()"
                                                   />

@@ -4,6 +4,8 @@
     exclude-result-prefixes="xs"
     version="2.0">
     
+    <!-- hier sind die verschiedenen tabellentypen. die unterscheidung dient vor allem der sortierung am anfang -->
+    
     <xsl:template match="/" name="tabulator_js">
         <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
         <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
@@ -151,6 +153,7 @@
             paginationSize: 25,         // allow 25 rows per page of data
             paginationCounter: "rows", // display count of paginated rows in footer
             movableColumns: true,
+            layout:"fitColumns",
             columns: [
             { title: "Name", field: "name", sorter: "string" },
             { title: "Namensvarianten", field: "namensvarianten", sorter: "string" },
@@ -199,6 +202,7 @@
             paginationSize: 25,         // allow 25 rows per page of data
             paginationCounter: "rows", // display count of paginated rows in footer
             movableColumns: true,
+            layout:"fitColumns",
             columns: [
             { title: "Datum", field: "datum", sorter: "string" },
             { title: "Titel", sorter: "string" },
@@ -247,8 +251,9 @@
             paginationSize: 25,         // allow 25 rows per page of data
             paginationCounter: "rows", // display count of paginated rows in footer
             movableColumns: true,
+            layout:"fitColumns",
             initialSort: [
-            { column: "datum", dir: "asc" }
+            { column: "sendedatum", dir: "asc" }
             ],
             langs: {
             "de-de": { // German language definition

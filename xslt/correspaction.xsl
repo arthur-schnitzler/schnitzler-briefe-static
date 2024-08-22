@@ -22,7 +22,7 @@
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <div class="container-fluid">
+                    <div class="container">
                         <div class="card">
                             <div class="card-header">
                                 <h1>Postwege</h1>
@@ -58,11 +58,11 @@
                                             </xsl:variable>
                                             <tr>
                                                 <td>
-                                                  <sortdate hidden="true">
-                                                  <xsl:value-of
-                                                  select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()"
-                                                  />
-                                                  </sortdate>
+                                                  <span hidden="true">
+                                                      <xsl:value-of
+                                                          select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"
+                                                      />
+                                                  </span>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -75,11 +75,21 @@
                                                   </a>
                                                 </td>
                                                 <td>
+                                                 <span hidden="true">
+                                                        <xsl:value-of
+                                                            select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()"
+                                                        />
+                                                  </span>
                                                   <xsl:value-of
                                                   select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date"
                                                   />
                                                 </td>
                                                 <td>
+                                                  <span hidden="true">
+                                                      <xsl:value-of
+                                                          select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:placeName"
+                                                      />
+                                                  </span>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -116,6 +126,25 @@
                                                   </xsl:for-each>
                                                 </td>
                                                 <td>
+                                                  <span hidden="true">
+                                                      <xsl:choose>
+                                                          <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@when">
+                                                              <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@when"/>
+                                                          </xsl:when>
+                                                          <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@from">
+                                                              <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@from"/>
+                                                          </xsl:when>
+                                                          <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@notBefor">
+                                                              <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@notBefore"/>
+                                                          </xsl:when>
+                                                          <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@notAfter">
+                                                              <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@notAfter"/>
+                                                          </xsl:when>
+                                                          <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@to">
+                                                              <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date[1]/@to"/>
+                                                          </xsl:when>
+                                                      </xsl:choose>
+                                                  </span>
                                                   <xsl:value-of
                                                   select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:date"
                                                   />
