@@ -237,6 +237,47 @@
         
     </xsl:template>
     
+    <xsl:template match="/" name="tabulator_correspaction_js">
+        <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
+        <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+        <script src="tabulator-js/config.js"></script>
+        <script>
+            var table = new Tabulator("#tabulator-table-correspaction", {
+            pagination: "local",       // paginate the data
+            paginationSize: 25,         // allow 25 rows per page of data
+            paginationCounter: "rows", // display count of paginated rows in footer
+            movableColumns: true,
+            initialSort: [
+            { column: "datum", dir: "asc" }
+            ],
+            langs: {
+            "de-de": { // German language definition
+            "pagination": {
+            "first": "Erste",
+            "first_title": "Erste Seite",
+            "last": "Letzte",
+            "last_title": "Letzte Seite",
+            "prev": "Vorige",
+            "prev_title": "Vorige Seite",
+            "next": "Nächste",
+            "next_title": "Nächste Seite",
+            "all": "Alle",
+            "counter": {
+            "showing": "Zeige",
+            "of": "von",
+            "rows": "Reihen",
+            "pages": "Seiten"
+            }
+            }
+            }
+            },
+            locale: "de-de"
+            });
+            
+        </script>
+        
+    </xsl:template>
+    
     
     <xsl:template match="/" name="tabulator-limited_js">
         <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
