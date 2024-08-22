@@ -50,7 +50,7 @@
                                         >Top 500</button>
                                 </div>
                                 <script src="js/institution_freq_corp_weights_directed.js"/>
-                                <div style="display: flex; justify-content: center;">
+                                
                                     <table class="table table-sm display" id="tabulator-table-org">
                                         <thead>
                                             <tr>
@@ -131,7 +131,7 @@
                                             </xsl:for-each>
                                         </tbody>
                                     </table>
-                                </div>
+                                
                                 <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>

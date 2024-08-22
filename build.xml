@@ -5,7 +5,7 @@
     <delete>
         <fileset dir="${target}" includes="*.html"/>
     </delete>
-    <xslt style="./xslt/editions.xsl" basedir="./data/editions" destdir="${target}" includes="*.xml">
+   <!-- <xslt style="./xslt/editions.xsl" basedir="./data/editions" destdir="${target}" includes="*.xml">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
@@ -38,21 +38,21 @@
     <xslt in="${index}" out="${target}/search.html" style="./xslt/search.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
-    </xslt>
+    </xslt>-->
     <xslt in="${index}" out="${target}/archives.html" style="./xslt/archives.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
-    <xslt in="./data/indices/listperson.xml" out="${target}/listperson.html"
+   <!-- <xslt in="./data/indices/listperson.xml" out="${target}/listperson.html"
         style="./xslt/listperson.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
-    </xslt>
-    <xslt in="./data/indices/listwork.xml" out="${target}/listwork.html" style="./xslt/listwork.xsl">
+    </xslt>-->
+    <!--<xslt in="./data/indices/listwork.xml" out="${target}/listwork.html" style="./xslt/listwork.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
-    </xslt>
-    <xslt in="./data/indices/listperson.xml" out="${target}/beacon.txt" style="./xslt/beacon.xsl">
+    </xslt>-->
+    <!--<xslt in="./data/indices/listperson.xml" out="${target}/beacon.txt" style="./xslt/beacon.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
@@ -72,7 +72,7 @@
     <xslt in="./data/editions/L00001.xml" out="${target}/imprint.html" style="./xslt/imprint.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
-    </xslt>
+    </xslt>-->
     <!--<xslt in="./data/meta/arche_constants.rdf" out="${target}/arche.rdf" style="./xslt/arche.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>

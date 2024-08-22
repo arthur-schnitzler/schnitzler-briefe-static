@@ -20,9 +20,9 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
-            <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/highcharts.js"/>
+            <script src="https://code.highcharts.com/modules/networkgraph.js"/>
+            <script src="https://code.highcharts.com/modules/exporting.js"/>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
@@ -34,25 +34,43 @@
                                 </h1>
                             </div>
                             <div class="card-body">
-                                <div id="container" style="padding-bottom: 20px; width:100%; margin: auto"/>
-                                <div id="chart-buttons" class="text-center mt-3" style="margin: auto; padding-bottom: 20px">
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top30.csv">Top 30</button>
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top100.csv">Top 100</button>
-                                    <button class="btn mx-1 chart-btn" style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;" data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top500.csv">Top 500</button>
+                                <div id="container"
+                                    style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                <div id="chart-buttons" class="text-center mt-3"
+                                    style="margin: auto; padding-bottom: 20px">
+                                    <button class="btn mx-1 chart-btn"
+                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top30.csv"
+                                        >Top 30</button>
+                                    <button class="btn mx-1 chart-btn"
+                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top100.csv"
+                                        >Top 100</button>
+                                    <button class="btn mx-1 chart-btn"
+                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top500.csv"
+                                        >Top 500</button>
                                 </div>
                                 <script src="js/work_freq_corp_weights_directed.js"/>
-                                
-                                <table class="table table-sm display" id="tabulator-table-work" 
-                                    >
+                                <table class="table table-sm display" id="tabulator-table-work">
                                     <thead>
                                         <tr>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Titel</th>
-                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Urheber_in</th>
-                                            <th scope="col" tabulator-headerFilter="input">Datum</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Titel</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Urheber_in</th>
+                                            
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                >Datum</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                >Typ</th>
+                                            
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <xsl:for-each select="descendant::tei:listBibl/tei:bibl[@xml:id]">
+                                        <xsl:for-each
+                                            select="descendant::tei:listBibl/tei:bibl[@xml:id]">
                                             <xsl:variable name="id">
                                                 <xsl:value-of select="data(@xml:id)"/>
                                             </xsl:variable>
@@ -60,92 +78,105 @@
                                                 select="normalize-space(tei:title[1]/text())"/>
                                             <xsl:variable name="datum">
                                                 <xsl:choose>
-                                                    <xsl:when test="contains(tei:date/text(), '>&lt;')">
-                                                        <xsl:value-of select="substring-before(tei:date/text(), '>&lt;')"/>
-                                                    </xsl:when>
-                                                    <xsl:when test="tei:date='None'"/>
-                                                    <xsl:otherwise>
-                                                        <xsl:value-of select="tei:date"/>
-                                                    </xsl:otherwise>
+                                                  <xsl:when test="tei:date = 'None'"/>
+                                                  <xsl:when test="contains(tei:date, ' – ')">
+                                                      <xsl:variable name="datum1" select="substring-before(tei:date/text(), ' – ')"/>
+                                                      <xsl:variable name="datum2" select="substring-after(tei:date/text(), ' – ')"/>
+                                                      <xsl:choose>
+                                                          <xsl:when test="$datum1 = $datum2">
+                                                              <xsl:value-of select="mam:normalize-date-to-standard($datum1)"/>
+                                                          </xsl:when>
+                                                          <xsl:otherwise>
+                                                              <xsl:value-of select="concat(mam:normalize-date-to-standard($datum1), ' – ', mam:normalize-date-to-standard($datum2))"/>
+                                                          </xsl:otherwise>
+                                                      </xsl:choose>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                      <xsl:if test="tei:date != '' and tei:date">
+                                                  <xsl:value-of select="mam:normalize-date-to-standard(tei:date/text())"/>
+                                                      </xsl:if>
+                                                  </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:variable>
                                             <xsl:choose>
                                                 <xsl:when test="tei:author">
-                                                    <xsl:for-each select="tei:author">
-                                                        <tr>
-                                                            <td>
-                                                                <span hidden="true">
-                                                                <xsl:value-of select="mam:sonderzeichen-entfernen($titel)"/>
-                                                                </span>
-                                                                <xsl:element name="a">
-                                                                    <xsl:attribute name="href">
-                                                                        <xsl:value-of select="concat($id, '.html')"/>
-                                                                    </xsl:attribute>
-                                                                    <xsl:value-of select="normalize-space($titel)"/>
-                                                                </xsl:element>
-                                                            </td>
-                                                            <td>
-                                                                <a>
-                                                                    <xsl:attribute name="href">
-                                                                        <xsl:value-of select="concat(@ref, '.html')"/>
-                                                                    </xsl:attribute>
-                                                                    <xsl:value-of select="."/>
-                                                                </a>
-                                                                <xsl:if
-                                                                    test="@role = 'editor' or @role = 'hat-herausgegeben'">
-                                                                    <xsl:text> (Hrsg.)</xsl:text>
-                                                                </xsl:if>
-                                                                <xsl:if
-                                                                    test="@role = 'translator' or @role = 'hat-ubersetzt'">
-                                                                    <xsl:text> (Übersetzung)</xsl:text>
-                                                                </xsl:if>
-                                                                <xsl:if
-                                                                    test="@role = 'illustrator' or @role = 'hat-illustriert'">
-                                                                    <xsl:text> (Illustrationen)</xsl:text>
-                                                                </xsl:if>
-                                                                <xsl:if test="@role = 'hat-einen-beitrag-geschaffen-zu'">
-                                                                    <xsl:text> (Beitrag)</xsl:text>
-                                                                </xsl:if>
-                                                                <xsl:if test="@role = 'hat-ein-vorwortnachwort-verfasst-zu'">
-                                                                    <xsl:text> (Vor-/Nachwort)</xsl:text>
-                                                                </xsl:if>
-                                                            </td>
-                                                            <td>
-                                                                
-                                                                        <xsl:value-of select="$datum"/>
-                                                                
-                                                                
-                                                            </td>
-                                                        </tr>
-                                                    </xsl:for-each>
+                                                  <xsl:for-each select="tei:author">
+                                                  <tr>
+                                                  <td>
+                                                  <span hidden="true">
+                                                  <xsl:value-of
+                                                  select="mam:sonderzeichen-entfernen($titel)"/>
+                                                  </span>
+                                                  <xsl:element name="a">
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="concat($id, '.html')"/>
+                                                  </xsl:attribute>
+                                                  <xsl:value-of select="normalize-space($titel)"/>
+                                                  </xsl:element>
+                                                  </td>
+                                                  <td>
+                                                  <a>
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="concat(@ref, '.html')"/>
+                                                  </xsl:attribute>
+                                                  <xsl:value-of select="."/>
+                                                  </a>
+                                                  <xsl:if
+                                                  test="@role = 'editor' or @role = 'hat-herausgegeben'">
+                                                  <xsl:text> (Hrsg.)</xsl:text>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="@role = 'translator' or @role = 'hat-ubersetzt'">
+                                                  <xsl:text> (Übersetzung)</xsl:text>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="@role = 'illustrator' or @role = 'hat-illustriert'">
+                                                  <xsl:text> (Illustrationen)</xsl:text>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="@role = 'hat-einen-beitrag-geschaffen-zu'">
+                                                  <xsl:text> (Beitrag)</xsl:text>
+                                                  </xsl:if>
+                                                  <xsl:if
+                                                  test="@role = 'hat-ein-vorwortnachwort-verfasst-zu'">
+                                                  <xsl:text> (Vor-/Nachwort)</xsl:text>
+                                                  </xsl:if>
+                                                  </td>
+                                                  <td>
+                                                  <xsl:value-of select="$datum"/>
+                                                  </td>
+                                                  </tr>
+                                                  </xsl:for-each>
                                                 </xsl:when>
                                                 <xsl:otherwise>
-                                                        <tr>
-                                                            <td>
-                                                                <span hidden="true">
-                                                                    <xsl:value-of select="mam:sonderzeichen-entfernen($titel)"/>
-                                                                </span>
-                                                                <xsl:element name="a">
-                                                                    <xsl:attribute name="href">
-                                                                        <xsl:value-of select="concat($id, '.html')"/>
-                                                                    </xsl:attribute>
-                                                                    <xsl:value-of select="normalize-space($titel)"/>
-                                                                </xsl:element>
-                                                            </td>
-                                                            <td/>
-                                                            <td>
-                                                                <xsl:value-of select="$datum"/>
-                                                            </td>
-                                                        </tr>
-                                                    
+                                                  <tr>
+                                                  <td>
+                                                  <span hidden="true">
+                                                  <xsl:value-of
+                                                  select="mam:sonderzeichen-entfernen($titel)"/>
+                                                  </span>
+                                                  <xsl:element name="a">
+                                                  <xsl:attribute name="href">
+                                                  <xsl:value-of select="concat($id, '.html')"/>
+                                                  </xsl:attribute>
+                                                  <xsl:value-of select="normalize-space($titel)"/>
+                                                  </xsl:element>
+                                                  </td>
+                                                  <td/>
+                                                  <td>
+                                                  <xsl:value-of select="$datum"/>
+                                                  </td>
+                                                  <td>
+                                                      <xsl:value-of select="tei:note[@type='work_kind']"/>
+                                                  </td>
+                                                      
+                                                  </tr>
                                                 </xsl:otherwise>
-                                            </xsl:choose>                                            
+                                            </xsl:choose>
                                         </xsl:for-each>
                                     </tbody>
                                 </table>
-                                  
-                                    <xsl:call-template name="tabulator_dl_buttons"/>
-                                
+                                <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
                         <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
@@ -206,9 +237,9 @@
     </xsl:template>
     <xsl:function name="mam:sonderzeichen-entfernen" as="xs:string">
         <xsl:param name="input-string" as="xs:string"/>
-        
         <!-- Ersetzen der Umlaute und Sonderzeichen Schritt für Schritt -->
-        <xsl:variable name="string0" select="replace(replace(replace(replace(replace(replace(replace($input-string, '»', ''), '«', ''), '’', ''), '\?\?\s\[', ''), '\[', ''), '\(', ''), '\*', '')"/>
+        <xsl:variable name="string0"
+            select="replace(replace(replace(replace(replace(replace(replace($input-string, '»', ''), '«', ''), '’', ''), '\?\?\s\[', ''), '\[', ''), '\(', ''), '\*', '')"/>
         <xsl:variable name="string1" select="replace($string0, 'ä', 'ae')"/>
         <xsl:variable name="string2" select="replace($string1, 'ö', 'oe')"/>
         <xsl:variable name="string3" select="replace($string2, 'ü', 'ue')"/>
@@ -232,23 +263,66 @@
         <xsl:variable name="string21" select="replace($string20, 'č', 'c')"/>
         <xsl:variable name="string22" select="replace($string21, 'Ł', 'L')"/>
         <xsl:variable name="string23">
-        <xsl:choose>
-            <xsl:when test="starts-with($string22, 'Der ')">
-                <xsl:value-of select="substring-after($string22, 'Der ')"/>
-            </xsl:when>
-            <xsl:when test="starts-with($string22, 'Die ')">
-                <xsl:value-of select="substring-after($string22, 'Die ')"/>
-            </xsl:when>
-            <xsl:when test="starts-with($string22, 'Das ')">
-                <xsl:value-of select="substring-after($string22, 'Das ')"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$string22"/>
-            </xsl:otherwise>
-        </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="starts-with($string22, 'Der ')">
+                    <xsl:value-of select="substring-after($string22, 'Der ')"/>
+                </xsl:when>
+                <xsl:when test="starts-with($string22, 'Die ')">
+                    <xsl:value-of select="substring-after($string22, 'Die ')"/>
+                </xsl:when>
+                <xsl:when test="starts-with($string22, 'Das ')">
+                    <xsl:value-of select="substring-after($string22, 'Das ')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$string22"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
         <xsl:sequence select="$string23"/>
     </xsl:function>
+    <xsl:function name="mam:normalize-date-to-standard">
+        <xsl:param name="input" as="xs:string"/>
+        <xsl:analyze-string select="$input"
+            regex="^(\d{{4}})-(\d{{1,2}})-(\d{{1,2}})$">
+            <xsl:matching-substring>
+                <xsl:value-of
+                    select="concat(mam:remove-leading-zeros(regex-group(3)), '. ', mam:remove-leading-zeros(regex-group(2)), '. ', mam:remove-leading-zeros(regex-group(1)))"
+                />
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:analyze-string select="." regex="^(\d{{1,2}}).(\d{{1,2}}).(\d{{4}})$">
+                    
+                    <xsl:matching-substring>
+                        <xsl:value-of
+                            select="concat(mam:remove-leading-zeros(regex-group(1)), '. ', mam:remove-leading-zeros(regex-group(2)), '. ', mam:remove-leading-zeros(regex-group(3)))"
+                        />
+                    </xsl:matching-substring>
+                    <xsl:non-matching-substring>
+                        <xsl:value-of select="."/>
+                    </xsl:non-matching-substring>
+                </xsl:analyze-string>
+                
+                
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+        
+    </xsl:function>
     
-   
+    <xsl:function name="mam:remove-leading-zeros">
+        <xsl:param name="input" as="xs:string"/>
+        <xsl:variable name="spitze-weg">
+            <xsl:choose>
+                <xsl:when
+                    test="contains($input, '>&lt;')">
+                    <xsl:value-of
+                        select="substring-before($input, '>&lt;')"
+                    />
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$input"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:sequence select="replace($spitze-weg, '^0+', '')"/>
+    </xsl:function>
 </xsl:stylesheet>

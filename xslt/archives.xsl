@@ -24,17 +24,19 @@
                                 <h1>Archive</h1>
                             </div>
                             <div class="card-body">
-                                <table class="table table-sm display" id="tabulator-table">
+                                <table class="table table-sm display" id="tabulator-table-archives">
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input"
-                                                >Datum</th>
+                                                tabulator-formatter="html">Datum</th>
                                             <th scope="col" tabulator-headerFilter="input"
                                                 tabulator-formatter="html">Titel</th>
                                             <th scope="col" tabulator-headerFilter="input"
-                                                >Institution</th>
-                                            <th scope="col" tabulator-headerFilter="input">Ort</th>
-                                            <th scope="col" tabulator-headerFilter="input">Land</th>
+                                                tabulator-formatter="html">Institution</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Ort</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Land</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,6 +61,9 @@
                                                   <xsl:value-of select="$sortdate"/>
                                                   </td>
                                                   <td>
+                                                      <span hidden="true">
+                                                          <xsl:value-of select="$titel"/>
+                                                      </span>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -90,7 +95,7 @@
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <xsl:call-template name="tabulator_js"/>
+                    <xsl:call-template name="tabulator_archives_js"/>
                 </div>
             </body>
         </html>
