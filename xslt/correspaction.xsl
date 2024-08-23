@@ -76,9 +76,23 @@
                                                 </td>
                                                 <td>
                                                  <span hidden="true">
-                                                        <xsl:value-of
-                                                            select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()"
-                                                        />
+                                                     <xsl:choose>
+                                                         <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@when">
+                                                             <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@when"/>
+                                                         </xsl:when>
+                                                         <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@from">
+                                                             <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@from"/>
+                                                         </xsl:when>
+                                                         <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@notBefor">
+                                                             <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@notBefore"/>
+                                                         </xsl:when>
+                                                         <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@notAfter">
+                                                             <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@notAfter"/>
+                                                         </xsl:when>
+                                                         <xsl:when test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@to">
+                                                             <xsl:value-of select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date[1]/@to"/>
+                                                         </xsl:when>
+                                                     </xsl:choose>
                                                   </span>
                                                   <xsl:value-of
                                                   select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:date"
