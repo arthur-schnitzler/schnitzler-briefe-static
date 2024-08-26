@@ -131,6 +131,11 @@
             <xsl:apply-templates/>
         </p>
     </xsl:template>
+    <xsl:template match="tei:p[@rend = 'right']">
+        <p align="right">
+            <xsl:apply-templates/>
+        </p>
+    </xsl:template>
     <xsl:template match="tei:p">
         <p id="{generate-id()}">
             <xsl:apply-templates/>
@@ -148,7 +153,7 @@
                 style="width: 40%; margin: auto; display: flex; flex-direction: column; height: 500px;">
                 <div id="container-ohne-slider" style="width: 100%; flex-grow: 1;"/>
                 <div style="width: 100%; height: 55px;"/>
-                <figcaption style="text-align: center;">Abb. 5: Alle Korrespondenzen zwischen Arthur
+                <figcaption style="text-align: center;">Abb. 8: Alle Korrespondenzen zwischen Arthur
                     Schnitzler, Hermann Bahr, Richard Beer-Hofmann und Hugo von
                     Hofmannsthal</figcaption>
             </div>
@@ -159,7 +164,7 @@
                     <input type="range" id="yearSlider" min="1890" max="1931" value="1900" step="1" style="display: block; margin: 0 auto;"/>
                     <span id="yearDisplay" style="display: block; margin-top: 2px;">1900</span>
                 </div>
-                <figcaption style="text-align: center; margin-top: auto;">Abb. 6: Alle
+                <figcaption style="text-align: center; margin-top: auto;">Abb. 9: Alle
                     Korrespondenzen zwischen Arthur Schnitzler, Hermann Bahr, Richard Beer-Hofmann
                     und Hugo von Hofmannsthal im Timeslider</figcaption>
             </div>
