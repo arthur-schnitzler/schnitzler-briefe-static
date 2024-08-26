@@ -145,6 +145,9 @@
                                                   <td>
                                                   <xsl:value-of select="$datum"/>
                                                   </td>
+                                                   <td>
+                                                          <xsl:value-of select="child::tei:note[@type='work_kind'][1]"/>
+                                                   </td>
                                                   </tr>
                                                   </xsl:for-each>
                                                 </xsl:when>
@@ -167,7 +170,7 @@
                                                   <xsl:value-of select="$datum"/>
                                                   </td>
                                                   <td>
-                                                      <xsl:value-of select="tei:note[@type='work_kind']"/>
+                                                      <xsl:value-of select="child::tei:note[@type='work_kind'][1]"/>
                                                   </td>
                                                       
                                                   </tr>
