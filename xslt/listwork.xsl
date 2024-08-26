@@ -59,13 +59,9 @@
                                                 tabulator-formatter="html">Titel</th>
                                             <th scope="col" tabulator-headerFilter="input"
                                                 tabulator-formatter="html">Urheber_in</th>
-                                            
                                             <th scope="col" tabulator-headerFilter="input"
                                                 >Datum</th>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                >Typ</th>
-                                            
-                                            
+                                            <th scope="col" tabulator-headerFilter="input">Typ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,24 +76,33 @@
                                                 <xsl:choose>
                                                   <xsl:when test="tei:date = 'None'"/>
                                                   <xsl:when test="contains(tei:date, ' – ')">
-                                                      <xsl:variable name="datum1" select="substring-before(tei:date/text(), ' – ')"/>
-                                                      <xsl:variable name="datum2" select="substring-after(tei:date/text(), ' – ')"/>
-                                                      <xsl:choose>
-                                                          <xsl:when test="$datum1 = $datum2">
-                                                              <xsl:value-of select="mam:normalize-date-to-standard($datum1)"/>
-                                                          </xsl:when>
-                                                          <xsl:otherwise>
-                                                              <xsl:value-of select="concat(mam:normalize-date-to-standard($datum1), ' – ', mam:normalize-date-to-standard($datum2))"/>
-                                                          </xsl:otherwise>
-                                                      </xsl:choose>
+                                                  <xsl:variable name="datum1"
+                                                  select="substring-before(tei:date/text(), ' – ')"/>
+                                                  <xsl:variable name="datum2"
+                                                  select="substring-after(tei:date/text(), ' – ')"/>
+                                                  <xsl:choose>
+                                                  <xsl:when test="$datum1 = $datum2">
+                                                  <xsl:value-of
+                                                  select="mam:normalize-date-to-standard($datum1)"/>
                                                   </xsl:when>
                                                   <xsl:otherwise>
-                                                      <xsl:if test="tei:date != '' and tei:date">
-                                                  <xsl:value-of select="mam:normalize-date-to-standard(tei:date/text())"/>
-                                                      </xsl:if>
+                                                  <xsl:value-of
+                                                  select="concat(mam:normalize-date-to-standard($datum1), ' – ', mam:normalize-date-to-standard($datum2))"
+                                                  />
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:if test="tei:date != '' and tei:date">
+                                                  <xsl:value-of
+                                                  select="mam:normalize-date-to-standard(tei:date/text())"
+                                                  />
+                                                  </xsl:if>
                                                   </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:variable>
+                                            <xsl:variable name="work-kind"
+                                                select="descendant::tei:note[@type = 'work_kind'][1]"/>
                                             <xsl:choose>
                                                 <xsl:when test="tei:author">
                                                   <xsl:for-each select="tei:author">
@@ -145,9 +150,9 @@
                                                   <td>
                                                   <xsl:value-of select="$datum"/>
                                                   </td>
-                                                   <td>
-                                                          <xsl:value-of select="child::tei:note[@type='work_kind'][1]"/>
-                                                   </td>
+                                                  <td>
+                                                  <xsl:value-of select="$work-kind"/>
+                                                  </td>
                                                   </tr>
                                                   </xsl:for-each>
                                                 </xsl:when>
@@ -170,9 +175,8 @@
                                                   <xsl:value-of select="$datum"/>
                                                   </td>
                                                   <td>
-                                                      <xsl:value-of select="child::tei:note[@type='work_kind'][1]"/>
+                                                  <xsl:value-of select="$work-kind"/>
                                                   </td>
-                                                      
                                                   </tr>
                                                 </xsl:otherwise>
                                             </xsl:choose>
@@ -285,8 +289,7 @@
     </xsl:function>
     <xsl:function name="mam:normalize-date-to-standard">
         <xsl:param name="input" as="xs:string"/>
-        <xsl:analyze-string select="$input"
-            regex="^(\d{{4}})-(\d{{1,2}})-(\d{{1,2}})$">
+        <xsl:analyze-string select="$input" regex="^(\d{{4}})-(\d{{1,2}})-(\d{{1,2}})$">
             <xsl:matching-substring>
                 <xsl:value-of
                     select="concat(mam:remove-leading-zeros(regex-group(3)), '. ', mam:remove-leading-zeros(regex-group(2)), '. ', mam:remove-leading-zeros(regex-group(1)))"
@@ -294,7 +297,6 @@
             </xsl:matching-substring>
             <xsl:non-matching-substring>
                 <xsl:analyze-string select="." regex="^(\d{{1,2}}).(\d{{1,2}}).(\d{{4}})$">
-                    
                     <xsl:matching-substring>
                         <xsl:value-of
                             select="concat(mam:remove-leading-zeros(regex-group(1)), '. ', mam:remove-leading-zeros(regex-group(2)), '. ', mam:remove-leading-zeros(regex-group(3)))"
@@ -304,22 +306,15 @@
                         <xsl:value-of select="."/>
                     </xsl:non-matching-substring>
                 </xsl:analyze-string>
-                
-                
             </xsl:non-matching-substring>
         </xsl:analyze-string>
-        
     </xsl:function>
-    
     <xsl:function name="mam:remove-leading-zeros">
         <xsl:param name="input" as="xs:string"/>
         <xsl:variable name="spitze-weg">
             <xsl:choose>
-                <xsl:when
-                    test="contains($input, '>&lt;')">
-                    <xsl:value-of
-                        select="substring-before($input, '>&lt;')"
-                    />
+                <xsl:when test="contains($input, '>&lt;')">
+                    <xsl:value-of select="substring-before($input, '>&lt;')"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$input"/>
