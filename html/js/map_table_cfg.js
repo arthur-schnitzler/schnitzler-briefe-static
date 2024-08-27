@@ -37,8 +37,8 @@ const columns = [
   },
   {
     headerFilter: "input",
-    title: "Zugehörigkeit",
-    field: "Zugehörigkeit",
+    title: "Zugehörigkeiten",
+    field: "Zugehörigkeiten",
     formatter: "plaintext",
     resizable: false,
   },
