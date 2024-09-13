@@ -71,7 +71,7 @@
             </span>
         </p>
     </xsl:template>
-    
+    <xsl:template match="tei:del" mode="lemma"/>
     <xsl:template match="tei:subst/tei:del" mode="lemma"/><!-- das verhindert die Wiedergabe des gelöschten Teils von subst in einem Lemma -->
     <xsl:template match="tei:c[@rendition = '#prozent']" mode="lemma">
         <xsl:text>%</xsl:text>
