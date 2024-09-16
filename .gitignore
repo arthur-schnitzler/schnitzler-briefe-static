@@ -59,3 +59,5 @@ stopwords.txt
 words.txt
 /venv
 html/js-data/calendarData.js
+/network-data
+hansi.ttl

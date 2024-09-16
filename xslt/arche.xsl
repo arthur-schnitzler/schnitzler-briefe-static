@@ -79,7 +79,7 @@
                         <acdh:hasSpatialCoverage>
                             <acdh:Place>
                                 <xsl:attribute name="rdf:about"><xsl:value-of select="$entId"/></xsl:attribute>
-                                <acdh:hasTitle xml:lang="und"><xsl:value-of select=".//tei:placeName[1]/text()"/></acdh:hasTitle>
+                                <acdh:hasTitle xml:lang="und"><xsl:value-of select="./tei:placeName[1]/text()"/></acdh:hasTitle>
                             </acdh:Place>
                         </acdh:hasSpatialCoverage>
                     </xsl:for-each>
