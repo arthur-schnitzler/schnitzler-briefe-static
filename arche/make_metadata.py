@@ -40,7 +40,7 @@ for x in tqdm(files, total=len(files)):
 
 print("processing data/editions")
 files = glob.glob("data/editions/*.xml")
-files = files[:5]
+files = files
 for x in tqdm(files, total=len(files)):
     fname = os.path.split(x)[-1]
     shutil.copyfile(x, os.path.join(TO_INGEST, fname))
@@ -56,14 +56,17 @@ for x in tqdm(files, total=len(files)):
         has_title = normalize_string(doc.any_xpath(".//tei:titleStmt[1]/tei:title[1]/text()")[0])
     g.add((uri, ACDH["hasTitle"], Literal(has_title, lang="de")))
 
-    # try:
-    #     start_date = doc.any_xpath(".//tei:titleStmt[1]/tei:title[@type='iso-date']")[0]
-    # except IndexError:
-    #     start_date = False
+    try:
+        start_date = doc.any_xpath(".//tei:titleStmt[1]/tei:title[@type='iso-date']")[0].text
+        g.add((uri, ACDH["hasCreatedStartDateOriginal"], Literal(start_date, datatype=XSD.date)))
+        g.add((uri, ACDH["hasCreatedEndDateOriginal"], Literal(start_date, datatype=XSD.date)))
+    except IndexError:
+        pass
+    #     start_date = None
     # if start_date:
     #     print(start_date)
-    #     g.add((uri, ACDH["hasCreatedStartDateOriginal"]), Literal(start_date.text, datatype=XSD.date))
-    #     g.add((uri, ACDH["hasCreatedEndDateOriginal"]), Literal(start_date.text, datatype=XSD.date))
+    #     g.add((uri, ACDH["hasCreatedStartDateOriginal"], Literal(start_date, datatype=XSD.date)))
+    #     g.add((uri, ACDH["hasCreatedEndDateOriginal"], Literal(start_date, datatype=XSD.date)))
 
     for y in doc.any_xpath(".//tei:back//tei:person[./tei:idno[@subtype='d-nb']]"):
         person_uri = URIRef(f'{y.xpath("./tei:idno[@subtype='d-nb']/text()", namespaces=nsmap)[0]}')
