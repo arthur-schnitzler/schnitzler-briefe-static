@@ -2,7 +2,7 @@ import glob
 import os
 import shutil
 from acdh_tei_pyutils.tei import TeiReader
-from acdh_tei_pyutils.utils import normalize_string, make_entity_label, nsmap
+from acdh_tei_pyutils.utils import normalize_string, make_entity_label, nsmap, get_xmlid
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
 from tqdm import tqdm
 
@@ -47,6 +47,14 @@ for x in tqdm(files, total=len(files)):
     doc = TeiReader(x)
     uri = URIRef(f"{ID}/editions/{fname}")
     g.add((uri, RDF.type, ACDH["Resource"]))
+    url = f"https://schnitzler-briefe.acdh.oeaw.ac.at/{fname.replace('.xml', '.html')}"
+    g.add(
+        (
+            uri,
+            ACDH["hasUrl"],
+            Literal(url, datatype=XSD.anyURI)
+        )
+    )
     g.add((uri, ACDH["isPartOf"], URIRef(f"{ID}/editions")))
     g.add((uri, ACDH["hasIdentifier"], URIRef(f"{ID}/{fname}")))
     g.add((uri, ACDH["hasCategory"], URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei")))
@@ -62,11 +70,6 @@ for x in tqdm(files, total=len(files)):
         g.add((uri, ACDH["hasCreatedEndDateOriginal"], Literal(start_date, datatype=XSD.date)))
     except IndexError:
         pass
-    #     start_date = None
-    # if start_date:
-    #     print(start_date)
-    #     g.add((uri, ACDH["hasCreatedStartDateOriginal"], Literal(start_date, datatype=XSD.date)))
-    #     g.add((uri, ACDH["hasCreatedEndDateOriginal"], Literal(start_date, datatype=XSD.date)))
 
     for y in doc.any_xpath(".//tei:back//tei:person[./tei:idno[@subtype='d-nb']]"):
         person_uri = URIRef(f'{y.xpath("./tei:idno[@subtype='d-nb']/text()", namespaces=nsmap)[0]}')
@@ -74,13 +77,26 @@ for x in tqdm(files, total=len(files)):
         g.add((uri, ACDH["hasActor"], person_uri))
         g.add((person_uri, RDF.type, ACDH["Person"]))
         g.add((person_uri, ACDH["hasTitle"], Literal(has_title[0], lang=has_title[1])))
+        xml_id = get_xmlid(y)
+        g.add((person_uri, ACDH["hasUrl"], Literal(f"https://schnitzler-briefe.acdh.oeaw.ac.at/{xml_id}.html")))
 
     for y in doc.any_xpath(".//tei:back//tei:place[./tei:idno[@subtype='geonames']]"):
         place_uri = URIRef(f'{y.xpath("./tei:idno[@subtype='geonames']/text()", namespaces=nsmap)[0]}')
-        has_title = make_entity_label(y.xpath("./*[1]", namespaces=nsmap)[0], default_lang="de")
+        has_title = make_entity_label(y.xpath("./*[1]", namespaces=nsmap)[0], default_lang="und")
         g.add((uri, ACDH["hasSpatialCoverage"], place_uri))
         g.add((place_uri, RDF.type, ACDH["Place"]))
         g.add((place_uri, ACDH["hasTitle"], Literal(has_title[0], lang=has_title[1])))
+        xml_id = get_xmlid(y)
+        # g.add((place_uri, ACDH["hasUrl"], Literal(f"https://schnitzler-briefe.acdh.oeaw.ac.at/{xml_id}.html")))
+
+    for y in doc.any_xpath(".//tei:back//tei:org[./tei:idno[@subtype='d-nb']]"):
+        org_uri = URIRef(f'{y.xpath("./tei:idno[@subtype='d-nb']/text()", namespaces=nsmap)[0]}')
+        has_title = make_entity_label(y.xpath("./*[1]", namespaces=nsmap)[0], default_lang="und")
+        g.add((uri, ACDH["hasActor"], org_uri))
+        g.add((org_uri, RDF.type, ACDH["Organisation"]))
+        g.add((org_uri, ACDH["hasTitle"], Literal(has_title[0], lang=has_title[1])))
+        xml_id = get_xmlid(y)
+        g.add((org_uri, ACDH["hasUrl"], Literal(f"https://schnitzler-briefe.acdh.oeaw.ac.at/{xml_id}.html")))
 
 print("adding repo objects constants now")
 COLS = [ACDH["TopCollection"], ACDH["Collection"], ACDH["Resource"]]
