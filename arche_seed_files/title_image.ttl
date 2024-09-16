@@ -1,0 +1,19 @@
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://id.acdh.oeaw.ac.at/slehecka> a acdh:Person;
+    acdh:hasTitle "Sandra Lehacka"@de .
+
+<https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/title-img.jpg> a acdh:Resource ;
+    acdh:hasTitle """Titelbild zu: Schnitzler-Briefe"""@de ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/labasi> ;
+    acdh:isTitleImageOf <https://id.acdh.oeaw.ac.at/labasi> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0> ;
+    acdh:hasLicensor <https://id.acdh.oeaw.ac.at/acdh> ;
+    acdh:hasCreator <https://id.acdh.oeaw.ac.at/slehecka> ;
+    acdh:hasOwner <https://id.acdh.oeaw.ac.at/acdh> ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasDepositor <https://orcid.org/0000-0003-2682-8933> ;
+    acdh:hasMetadataCreator <https://d-nb.info/gnd/1043833846> ;
+    acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> .

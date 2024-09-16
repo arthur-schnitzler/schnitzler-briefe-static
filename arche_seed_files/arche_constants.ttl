@@ -1,0 +1,380 @@
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
+
+
+<https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe> a acdh:TopCollection ;
+    acdh:hasTitle "Arthur Schnitzler – Briefwechsel mit Autorinnen und Autoren"@de ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-000E-7538-0" ;
+    acdh:hasDescription "38 vollständige Korrespondenzen mit über 2.500 Briefen von und an Arthur Schnitzler (1862–1931). Viele davon werden erstmals veröffentlicht. Alle sind nach den Originalen in Archiven in Europa und Amerika durchgesehen und korrigiert."@de ;
+    acdh:hasDescription "38 complete correspondences with over 2.500 letters from and to Arthur Schnitzler (1862–1931). Many of them are published for the first time. All are reviewed and corrected according to the originals in archives in Europe and America."@en;
+    acdh:hasTemporalCoverage "Wiener Moderne"@und;
+    acdh:hasSubject "Korrespondenz"@de, "Edition"@de, "Briefausgabe"@de ;
+    acdh:hasCoverageStartDate "1889-01-01"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    acdh:hasCoverageEndDate "1931-10-21"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    acdh:hasCreatedStartDate "2018-07-01"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    acdh:hasCreatedEndDate "2024-09-30"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    acdh:hasSubject "Briefausgabe"@de ;
+    acdh:hasSubject "Korrespondenz"@de ;
+    acdh:hasSubject "Edition"@de ;
+    acdh:hasActor <https://d-nb.info/gnd/118609807> ;
+    # Schnitzler
+    acdh:hasActor <https://d-nb.info/gnd/1020823992> ;
+    # Adam
+    acdh:hasActor <https://d-nb.info/gnd/118502255> ;
+    # Altenberg
+    acdh:hasActor <https://d-nb.info/gnd/118502921> ;
+    # Andreas-Salomé
+    acdh:hasActor <https://d-nb.info/gnd/118505955> ;
+    # Bahr
+    acdh:hasActor <https://d-nb.info/gnd/118654756> ;
+    # Beer-Hofmann
+    acdh:hasActor <https://d-nb.info/gnd/116155795> ;
+    # Bettelheim
+    acdh:hasActor <https://d-nb.info/gnd/118511653> ;
+    # Blei
+    acdh:hasActor <https://d-nb.info/gnd/118659111> ;
+    # Blumenthal
+    acdh:hasActor <https://d-nb.info/gnd/118514326> ;
+    # Brandes
+    acdh:hasActor <https://d-nb.info/gnd/118514598> ;
+    # Braun
+    acdh:hasActor <https://d-nb.info/gnd/117161144> ;
+    # Burckhard
+    acdh:hasActor <https://d-nb.info/gnd/118512706> ;
+    # Bölsche
+    acdh:hasActor <https://d-nb.info/gnd/118669915> ;
+    # Conrad
+    acdh:hasActor <https://d-nb.info/gnd/118671103> ;
+    # David
+    acdh:hasActor <https://d-nb.info/gnd/116054522> ;
+    # Dehmel
+    acdh:hasActor <https://d-nb.info/gnd/118679236> ;
+    # Dehmel
+    acdh:hasActor <https://d-nb.info/gnd/118528661> ;
+    # Ebner-Eschenbach
+    acdh:hasActor <https://d-nb.info/gnd/118688227> ;
+    # Ehrenstein
+    acdh:hasActor <https://d-nb.info/gnd/127899537> ;
+    # Fels
+    acdh:hasActor <https://d-nb.info/gnd/118691406> ;
+    # Fischer
+    acdh:hasActor <https://d-nb.info/gnd/118537490> ;
+    # Ganghofer
+    acdh:hasActor <https://d-nb.info/gnd/116755105> ;
+    # Goldmann
+    acdh:hasActor <https://d-nb.info/gnd/118542664> ;
+    # Grossmann
+    acdh:hasActor <https://d-nb.info/gnd/118546937> ;
+    # Hauptmann
+    acdh:hasActor <https://d-nb.info/gnd/116537175> ;
+    # Hauschner
+    acdh:hasActor <https://d-nb.info/gnd/119543559> ;
+    # Herzfeld
+    acdh:hasActor <https://d-nb.info/gnd/118552759> ;
+    # Hofmannsthal
+    acdh:hasActor <https://d-nb.info/gnd/118553216> ;
+    # Holz
+    acdh:hasActor <https://d-nb.info/gnd/141477482> ;
+    # Kafka
+    acdh:hasActor <https://d-nb.info/gnd/118566288> ;
+    # Kraus
+    acdh:hasActor <https://d-nb.info/gnd/118569880> ;
+    # Lasker-Schüler
+    acdh:hasActor <https://d-nb.info/gnd/118572954> ;
+    # Liliencron
+    acdh:hasActor <https://d-nb.info/gnd/118780778> ;
+    # Ludwig
+    acdh:hasActor <https://d-nb.info/gnd/116724919> ;
+    # Mamroth
+    acdh:hasActor <https://d-nb.info/gnd/118577166> ;
+    # Mann
+    acdh:hasActor <https://d-nb.info/gnd/118992996> ;
+    # Marholm
+    acdh:hasActor <https://d-nb.info/gnd/118580566> ;
+    # Mell
+    acdh:hasActor <https://d-nb.info/gnd/11539396X> ;
+    # Michaëlis
+    acdh:hasActor <https://d-nb.info/gnd/118595474> ;
+    # Polgar
+    acdh:hasActor <https://d-nb.info/gnd/1321328176> ;
+    # Rie-Andro
+    acdh:hasActor <https://d-nb.info/gnd/118601709> ;
+    # Rodenberg
+    acdh:hasActor <https://d-nb.info/gnd/118604449> ;
+    # Saar
+    acdh:hasActor <https://d-nb.info/gnd/118840819> ;
+    # Salten
+    acdh:hasActor <https://d-nb.info/gnd/117473995> ;
+    # Seligmann
+    acdh:hasActor <https://d-nb.info/gnd/118620126> ;
+    # Suttner
+    acdh:hasActor <https://d-nb.info/gnd/118629867> ;
+    # Wedekind
+    acdh:hasActor <https://d-nb.info/gnd/118632302> ;
+    # Widmann
+    acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu> ;
+    acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602014> .
+
+
+<https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta/asbwschema.xsd> a acdh:Resource ;
+    acdh:hasTitle "XSD-Schema der XML/TEI kodierten Briefe"@de ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/other> ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-000E-7534-4" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta> .
+
+<https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta/danksagung.xml> a acdh:Resource ;
+    acdh:hasTitle "Danksagung"@de ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei> ;
+    acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu> ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-000E-7537-1" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta> .
+
+<https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta/editionsrichtlinien.xml> a acdh:Resource ;
+    acdh:hasTitle "Zur Edition"@de ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei> ;
+    acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu> ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-000E-7535-3" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta> .
+
+<https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta/elemente.xml> a acdh:Resource ;
+    acdh:hasTitle "Verwendete TEI-Elemente"@de ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei> ;
+    acdh:hasDescription """Hier sind die wichtigsten in den TEI-Dateien
+         verwendeten Elemente ausgewiesen, einschließlich etwaiger Normalisierungen und
+         idiosynkratischer Verwendungen und Adaptierungen. Adressiert ist die Aufstellung
+         dabei nicht nur an Forscherinnen und Forscher, die mit den Daten weiterarbeiten
+         möchten, sondern zugleich an uns selbst in der Funktion eines
+         Style-Sheets."""@de ;
+    acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu> ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-000E-7536-2" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta> .
+
+<https://d-nb.info/gnd/1020823992> a acdh:Person ;
+    acdh:hasFirstName "Robert"@de ;
+    acdh:hasLastName "Adam"@de .
+
+<https://d-nb.info/gnd/1043833846> a acdh:Person ;
+    acdh:hasFirstName "Peter"@de ;
+    acdh:hasLastName "Andorfer"@de ;
+    acdh:hasTitle "Peter Andorfer"@de .
+
+<https://d-nb.info/gnd/1050382196> a acdh:Person ;
+    acdh:hasFirstName "Martin Anton"@de ;
+    acdh:hasLastName "Müller"@de ;
+    acdh:hasTitle "Martin Anton Müller"@de .
+
+<https://d-nb.info/gnd/11539396X> a acdh:Person ;
+    acdh:hasFirstName "Karin"@de ;
+    acdh:hasLastName "Michaëlis"@de .
+
+<https://d-nb.info/gnd/116054522> a acdh:Person ;
+    acdh:hasFirstName "Paula"@de ;
+    acdh:hasLastName "Dehmel"@de .
+
+<https://d-nb.info/gnd/116155795> a acdh:Person ;
+    acdh:hasFirstName "Anton"@de ;
+    acdh:hasLastName "Bettelheim"@de .
+
+<https://d-nb.info/gnd/116537175> a acdh:Person ;
+    acdh:hasFirstName "Auguste"@de ;
+    acdh:hasLastName "Hauschner"@de .
+
+<https://d-nb.info/gnd/116724919> a acdh:Person ;
+    acdh:hasFirstName "Fedor"@de ;
+    acdh:hasLastName "Mamroth"@de .
+
+<https://d-nb.info/gnd/116755105> a acdh:Person ;
+    acdh:hasFirstName "Paul"@de ;
+    acdh:hasLastName "Goldmann"@de .
+
+<https://d-nb.info/gnd/117161144> a acdh:Person ;
+    acdh:hasFirstName "Max Eugen"@de ;
+    acdh:hasLastName "Burckhard"@de .
+
+<https://d-nb.info/gnd/117473995> a acdh:Person ;
+    acdh:hasFirstName "Adalbert Franz"@de ;
+    acdh:hasLastName "Seligmann"@de .
+
+<https://d-nb.info/gnd/1176130706> a acdh:Person ;
+    acdh:hasFirstName "Ingo"@de ;
+    acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/iboerner> ;
+    acdh:hasLastName "Börner"@de ;
+    acdh:hasTitle "Ingo Börner"@de .
+
+<https://d-nb.info/gnd/118502255> a acdh:Person ;
+    acdh:hasFirstName "Peter"@de ;
+    acdh:hasLastName "Altenberg"@de .
+
+<https://d-nb.info/gnd/118502921> a acdh:Person ;
+    acdh:hasFirstName "Lou"@de ;
+    acdh:hasLastName "Andreas-Salomé"@de .
+
+<https://d-nb.info/gnd/118505955> a acdh:Person ;
+    acdh:hasFirstName "Hermann"@de ;
+    acdh:hasLastName "Bahr"@de .
+
+<https://d-nb.info/gnd/118511653> a acdh:Person ;
+    acdh:hasFirstName "Franz"@de ;
+    acdh:hasLastName "Blei"@de .
+
+<https://d-nb.info/gnd/118512706> a acdh:Person ;
+    acdh:hasFirstName "Wilhelm"@de ;
+    acdh:hasLastName "Bölsche"@de .
+
+<https://d-nb.info/gnd/118514326> a acdh:Person ;
+    acdh:hasFirstName "Georg"@de ;
+    acdh:hasLastName "Brandes"@de .
+
+<https://d-nb.info/gnd/118514598> a acdh:Person ;
+    acdh:hasFirstName "Felix"@de ;
+    acdh:hasLastName "Braun"@de .
+
+<https://d-nb.info/gnd/118528661> a acdh:Person ;
+    acdh:hasFirstName "Marie"@de ;
+    acdh:hasLastName "Ebner-Eschenbach"@de .
+
+<https://d-nb.info/gnd/118537490> a acdh:Person ;
+    acdh:hasFirstName "Ludwig"@de ;
+    acdh:hasLastName "Ganghofer"@de .
+
+<https://d-nb.info/gnd/118542664> a acdh:Person ;
+    acdh:hasFirstName "Stefan"@de ;
+    acdh:hasLastName "Grossmann"@de .
+
+<https://d-nb.info/gnd/118546937> a acdh:Person ;
+    acdh:hasFirstName "Gerhart"@de ;
+    acdh:hasLastName "Hauptmann"@de .
+
+<https://d-nb.info/gnd/118552759> a acdh:Person ;
+    acdh:hasFirstName "Hugo von"@de ;
+    acdh:hasLastName "Hofmannsthal"@de .
+
+<https://d-nb.info/gnd/118553216> a acdh:Person ;
+    acdh:hasFirstName "Arno"@de ;
+    acdh:hasLastName "Holz"@de .
+
+<https://d-nb.info/gnd/118566288> a acdh:Person ;
+    acdh:hasFirstName "Karl"@de ;
+    acdh:hasLastName "Kraus"@de .
+
+<https://d-nb.info/gnd/118569880> a acdh:Person ;
+    acdh:hasFirstName "Else"@de ;
+    acdh:hasLastName "Lasker-Schüler"@de .
+
+<https://d-nb.info/gnd/118572954> a acdh:Person ;
+    acdh:hasFirstName "Detlev von"@de ;
+    acdh:hasLastName "Liliencron"@de .
+
+<https://d-nb.info/gnd/118577166> a acdh:Person ;
+    acdh:hasFirstName "Thomas"@de ;
+    acdh:hasLastName "Mann"@de .
+
+<https://d-nb.info/gnd/118580566> a acdh:Person ;
+    acdh:hasFirstName "Max"@de ;
+    acdh:hasLastName "Mell"@de .
+
+<https://d-nb.info/gnd/118595474> a acdh:Person ;
+    acdh:hasFirstName "Alfred"@de ;
+    acdh:hasLastName "Polgar"@de .
+
+<https://d-nb.info/gnd/118601709> a acdh:Person ;
+    acdh:hasFirstName "Julius"@de ;
+    acdh:hasLastName "Rodenberg"@de .
+
+<https://d-nb.info/gnd/118604449> a acdh:Person ;
+    acdh:hasFirstName "Ferdinand von"@de ;
+    acdh:hasLastName "Saar"@de .
+
+<https://d-nb.info/gnd/118609807> a acdh:Person ;
+    acdh:hasFirstName "Arthur"@de ;
+    acdh:hasLastName "Schnitzler"@de ;
+    acdh:hasTitle "Arthur Schnitzler"@de .
+
+<https://d-nb.info/gnd/118620126> a acdh:Person ;
+    acdh:hasFirstName "Bertha"@de ;
+    acdh:hasLastName "Suttner"@de .
+
+<https://d-nb.info/gnd/118629867> a acdh:Person ;
+    acdh:hasFirstName "Frank"@de ;
+    acdh:hasLastName "Wedekind"@de .
+
+<https://d-nb.info/gnd/118632302> a acdh:Person ;
+    acdh:hasFirstName "Joseph Victor"@de ;
+    acdh:hasLastName "Widmann"@de .
+
+<https://d-nb.info/gnd/118654756> a acdh:Person ;
+    acdh:hasFirstName "Richard"@de ;
+    acdh:hasLastName "Beer-Hofmann"@de .
+
+<https://d-nb.info/gnd/118659111> a acdh:Person ;
+    acdh:hasFirstName "Oskar"@de ;
+    acdh:hasLastName "Blumenthal"@de .
+
+<https://d-nb.info/gnd/118669915> a acdh:Person ;
+    acdh:hasFirstName "Michael Georg"@de ;
+    acdh:hasLastName "Conrad"@de .
+
+<https://d-nb.info/gnd/118671103> a acdh:Person ;
+    acdh:hasFirstName "Jakob Julius"@de ;
+    acdh:hasLastName "David"@de .
+
+<https://d-nb.info/gnd/118679236> a acdh:Person ;
+    acdh:hasFirstName "Richard"@de ;
+    acdh:hasLastName "Dehmel"@de .
+
+<https://d-nb.info/gnd/118688227> a acdh:Person ;
+    acdh:hasFirstName "Albert"@de ;
+    acdh:hasLastName "Ehrenstein"@de .
+
+<https://d-nb.info/gnd/118691406> a acdh:Person ;
+    acdh:hasFirstName "Samuel"@de ;
+    acdh:hasLastName "Fischer"@de .
+
+<https://d-nb.info/gnd/118780778> a acdh:Person ;
+    acdh:hasFirstName "Emil"@de ;
+    acdh:hasLastName "Ludwig"@de .
+
+<https://d-nb.info/gnd/118840819> a acdh:Person ;
+    acdh:hasFirstName "Felix"@de ;
+    acdh:hasLastName "Salten"@de .
+
+<https://d-nb.info/gnd/118992996> a acdh:Person ;
+    acdh:hasFirstName "Laura"@de ;
+    acdh:hasLastName "Marholm"@de .
+
+<https://d-nb.info/gnd/119543559> a acdh:Person ;
+    acdh:hasFirstName "Marie"@de ;
+    acdh:hasLastName "Herzfeld"@de .
+
+<https://d-nb.info/gnd/127899537> a acdh:Person ;
+    acdh:hasFirstName "Friedrich M."@de ;
+    acdh:hasLastName "Fels"@de .
+
+<https://d-nb.info/gnd/1289549982> a acdh:Person ;
+    acdh:hasFirstName "Laura"@de ;
+    acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/luntner> ;
+    acdh:hasLastName "Untner"@de ;
+    acdh:hasTitle "Laura Untner"@de .
+
+<https://d-nb.info/gnd/1321328176> a acdh:Person ;
+    acdh:hasFirstName "Therese"@de ;
+    acdh:hasLastName "Rie-Andro"@de .
+
+<https://d-nb.info/gnd/132560496> a acdh:Person ;
+    acdh:hasFirstName "Kurt"@de ;
+    acdh:hasLastName "Ifkovits"@de ;
+    acdh:hasTitle "Kurt Ifkovits"@de .
+
+<https://d-nb.info/gnd/141477482> a acdh:Person ;
+    acdh:hasFirstName "Eduard Michael"@de ;
+    acdh:hasLastName "Kafka"@de .
+
+<https://id.acdh.oeaw.ac.at/slehecka> a acdh:Person ;
+    acdh:hasTitle "Sandra Lehecka"@de .
+
+<https://orcid.org/0000-0002-4257-7313> a acdh:Person ;
+    acdh:hasFirstName "Gerd-Hermann"@de ;
+    acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/gsusen> ;
+    acdh:hasLastName "Susen"@de ;
+    acdh:hasTitle "Gerd-Hermann Susen"@de .
+
