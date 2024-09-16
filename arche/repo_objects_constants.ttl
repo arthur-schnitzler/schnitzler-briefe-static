@@ -1,0 +1,16 @@
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+
+<https://foo/bar> acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0> ;
+    acdh:hasLicensor <https://id.acdh.oeaw.ac.at/acdh> ;
+    acdh:hasContact <https://id.acdh.oeaw.ac.at/acdh> ;
+    acdh:hasOwner <https://id.acdh.oeaw.ac.at/acdh> ;
+    acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> ;
+    acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602014> ;
+    acdh:hasCreator <https://d-nb.info/gnd/1050382196> ;
+    acdh:hasCreator <https://orcid.org/0000-0002-4257-7313> ;
+    acdh:hasCreator <https://d-nb.info/gnd/1289549982> ;
+    acdh:hasCurator <https://d-nb.info/gnd/1050382196> ;
+    acdh:hasContributor <https://d-nb.info/gnd/1043833846> ;
+    acdh:hasContributor <https://orcid.org/0000-0001-8294-2541> ; 
+    acdh:hasDepositor <https://d-nb.info/gnd/1043833846> ;
+    acdh:hasMetadataCreator <https://d-nb.info/gnd/1043833846> .
