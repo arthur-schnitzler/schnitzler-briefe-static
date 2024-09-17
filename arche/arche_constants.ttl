@@ -228,7 +228,7 @@
     acdh:hasFirstName "Adalbert Franz"@de ;
     acdh:hasLastName "Seligmann"@de .
 
-<https://d-nb.info/gnd/1176130706> a acdh:Person ;
+<https://id.acdh.oeaw.ac.at/iboerner> a acdh:Person ;
     acdh:hasFirstName "Ingo"@de ;
     acdh:hasLastName "Börner"@de .
 
@@ -380,7 +380,7 @@
     acdh:hasFirstName "Friedrich M."@de ;
     acdh:hasLastName "Fels"@de .
 
-<https://d-nb.info/gnd/1289549982> a acdh:Person ;
+<https://orcid.org/0000-0002-9649-0870> a acdh:Person ;
     acdh:hasFirstName "Laura"@de ;
     acdh:hasLastName "Untner"@de .
 
