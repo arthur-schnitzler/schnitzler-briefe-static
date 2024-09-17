@@ -121,6 +121,20 @@ with open("date_issues.txt", "w") as fp:
         try:
             if datetime.fromisoformat(created_start_date).date() >= datetime.fromisoformat(created_end_date).date():
                 fp.write(f"{fname}: created_start_date: {created_start_date} > created_end_date: {created_end_date}\n")
+                g.add(
+                    (
+                        uri,
+                        ACDH["hasCreatedStartDate"],
+                        Literal(created_start_date, datatype=XSD.date),
+                    )
+                )
+                g.add(
+                    (
+                        uri,
+                        ACDH["hasCreatedEndDate"],
+                        Literal("2024-09-17", datatype=XSD.date),
+                    )
+                )
             else:
                 g.add(
                     (
