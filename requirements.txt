@@ -1,2 +1,3 @@
+acdh-arche-assets
 acdh-cfts-pyutils==0.2
 acdh-tei-pyutils
