@@ -87,7 +87,7 @@ for x in tqdm(files, total=len(files)):
     g.add((pdf_uri, ACDH["isPartOf"], URIRef(f"{ID}/editions")))
     g.add(
         (
-            uri,
+            pdf_uri,
             ACDH["hasCategory"],
             URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text"),
         )
