@@ -51,7 +51,7 @@ for x in tqdm(files, total=len(files)):
 
 print("processing data/editions")
 files = glob.glob("data/editions/*.xml")
-files = files[:50]
+files = files
 for x in tqdm(files, total=len(files)):
     fname = os.path.split(x)[-1]
     shutil.copyfile(x, os.path.join(TO_INGEST, fname))
