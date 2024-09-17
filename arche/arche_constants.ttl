@@ -230,8 +230,6 @@
 
 <https://d-nb.info/gnd/1176130706> a acdh:Person ;
     acdh:hasFirstName "Ingo"@de ;
-    acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/iboerner> ;
-    acdh:hasIdentifier <https://orcid.org/0000-0001-8294-2541> ;
     acdh:hasLastName "Börner"@de .
 
 <https://d-nb.info/gnd/118502255> a acdh:Person ;
@@ -384,7 +382,6 @@
 
 <https://d-nb.info/gnd/1289549982> a acdh:Person ;
     acdh:hasFirstName "Laura"@de ;
-    acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/luntner> ;
     acdh:hasLastName "Untner"@de .
 
 <https://d-nb.info/gnd/1321328176> a acdh:Person ;
