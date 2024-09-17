@@ -118,7 +118,7 @@ for x in tqdm(files, total=len(files)):
 
     for y in doc.any_xpath(".//tei:back//tei:person[./tei:idno[@subtype='d-nb']]"):
         person_uri = URIRef(
-            f'{get_normalized_uri(y.xpath("./tei:idno[@subtype='d-nb']/text()", namespaces=nsmap)[0])}'
+            get_normalized_uri(y.xpath("./tei:idno[@subtype='d-nb']/text()", namespaces=nsmap)[0])
         )
         has_title = make_entity_label(
             y.xpath("./*[1]", namespaces=nsmap)[0], default_lang="de"
@@ -137,7 +137,7 @@ for x in tqdm(files, total=len(files)):
 
     for y in doc.any_xpath(".//tei:back//tei:place[./tei:idno[@subtype='geonames']]"):
         place_uri = URIRef(
-            f'{get_normalized_uri(y.xpath("./tei:idno[@subtype='geonames']/text()", namespaces=nsmap)[0])}'
+            get_normalized_uri(y.xpath("./tei:idno[@subtype='geonames']/text()", namespaces=nsmap)[0])
         )
         has_title = make_entity_label(
             y.xpath("./*[1]", namespaces=nsmap)[0], default_lang="und"
@@ -150,7 +150,7 @@ for x in tqdm(files, total=len(files)):
 
     for y in doc.any_xpath(".//tei:back//tei:org[./tei:idno[@subtype='d-nb']]"):
         org_uri = URIRef(
-            f'{get_normalized_uri(y.xpath("./tei:idno[@subtype='d-nb']/text()", namespaces=nsmap)[0])}'
+            get_normalized_uri(y.xpath("./tei:idno[@subtype='d-nb']/text()", namespaces=nsmap)[0])
         )
         has_title = make_entity_label(
             y.xpath("./*[1]", namespaces=nsmap)[0], default_lang="und"
