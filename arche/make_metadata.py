@@ -79,6 +79,22 @@ for x in tqdm(files, total=len(files)):
         )
     g.add((uri, ACDH["hasTitle"], Literal(has_title, lang="de")))
 
+    # PDFS
+    pdf_fname = fname.replace(".xml", ".pdf")
+    shutil.copyfile(os.path.join("html", pdf_fname), os.path.join(TO_INGEST, pdf_fname))
+    pdf_uri = URIRef(f"{ID}/{pdf_fname}")
+    g.add((pdf_uri, RDF.type, ACDH["Resource"]))
+    g.add((pdf_uri, ACDH["isPartOf"], URIRef(f"{ID}/editions")))
+    g.add(
+        (
+            uri,
+            ACDH["hasCategory"],
+            URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text"),
+        )
+    )
+    g.add((pdf_uri, ACDH["hasTitle"], Literal(f"{has_title} (PDF Version)", lang="de")))
+
+    # ENTITIES
     try:
         start_date = doc.any_xpath(".//tei:titleStmt[1]/tei:title[@type='iso-date']")[
             0
