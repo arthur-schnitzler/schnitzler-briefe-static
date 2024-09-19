@@ -58,6 +58,12 @@ with open("date_issues.txt", "w") as fp:
         shutil.copyfile(x, os.path.join(TO_INGEST, fname))
         doc = TeiReader(x)
         uri = URIRef(f"{ID}/editions/{fname}")
+        try:
+            pid = doc.any_xpath(".//tei:idno[@type='handle']/text()")[0]
+        except IndexError:
+            pid = "XXXX"
+        if pid.startswith("http"):
+            g.add((uri, ACDH["hasPid"], Literal(pid)))
         g.add((uri, RDF.type, ACDH["Resource"]))
         url = f"https://schnitzler-briefe.acdh.oeaw.ac.at/{fname.replace('.xml', '.html')}"
         g.add((uri, ACDH["hasUrl"], Literal(url, datatype=XSD.anyURI)))
