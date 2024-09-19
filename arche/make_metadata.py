@@ -25,8 +25,7 @@ for x in tqdm(files, total=len(files)):
         continue
     else:
         fname = os.path.split(x)[-1]
-        # don't copy index files due to: https://github.com/acdh-oeaw/arche-core/issues/39
-        # shutil.copyfile(x, os.path.join(TO_INGEST, fname))
+        shutil.copyfile(x, os.path.join(TO_INGEST, fname))
         doc = TeiReader(x)
         uri = URIRef(f"{ID}/indices/{fname}")
         g.add((uri, RDF.type, ACDH["Resource"]))
@@ -188,7 +187,7 @@ with open("date_issues.txt", "w") as fp:
             g.add((place_uri, RDF.type, ACDH["Place"]))
             g.add((place_uri, ACDH["hasTitle"], Literal(has_title[0], lang=has_title[1])))
             xml_id = get_xmlid(y)
-            # g.add((place_uri, ACDH["hasUrl"], Literal(f"https://schnitzler-briefe.acdh.oeaw.ac.at/{xml_id}.html")))
+            g.add((place_uri, ACDH["hasUrl"], Literal(f"https://schnitzler-briefe.acdh.oeaw.ac.at/{xml_id}.html")))
 
         for y in doc.any_xpath(".//tei:back//tei:org[./tei:idno[@subtype='d-nb']]"):
             org_uri = URIRef(
