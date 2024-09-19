@@ -51,7 +51,7 @@ for x in tqdm(files, total=len(files)):
 
 print("processing data/editions")
 files = glob.glob("data/editions/*.xml")
-files = files
+files = files[:3]
 with open("date_issues.txt", "w") as fp:
     for x in tqdm(files, total=len(files)):
         fname = os.path.split(x)[-1]
