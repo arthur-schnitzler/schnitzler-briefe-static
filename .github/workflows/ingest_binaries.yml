@@ -25,6 +25,7 @@ jobs:
       run: python add_mentions.py
     - name: create arche metadata
       run: python arche/make_metadata.py
+    - uses: mxschmitt/action-tmate@v3
     - name: run metadata import
       run: ./arche/arche__ingest_binaries.sh
     
