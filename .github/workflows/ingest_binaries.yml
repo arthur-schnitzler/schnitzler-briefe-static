@@ -1,7 +1,13 @@
 name: ARCHE-Ingest-Binaries
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: Should remote console be turned on before running the ingestion?
+        type: boolean
+        required: true
+        default: false
 
 jobs:
   build_pages:
@@ -25,7 +31,8 @@ jobs:
       run: python add_mentions.py
     - name: create arche metadata
       run: python arche/make_metadata.py
-    #- uses: mxschmitt/action-tmate@v3
+    - if: ${{ inputs.debug }}
+      uses: mxschmitt/action-tmate@v3
     - name: run metadata import
       run: ./arche/arche__ingest_binaries.sh
     
