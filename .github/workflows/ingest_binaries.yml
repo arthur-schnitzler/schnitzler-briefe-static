@@ -33,6 +33,6 @@ jobs:
       run: python arche/make_metadata.py
     - if: ${{ inputs.debug }}
       uses: mxschmitt/action-tmate@v3
-    - name: run metadata import
+    - name: run binaries import
       run: ./arche/arche__ingest_binaries.sh
     
