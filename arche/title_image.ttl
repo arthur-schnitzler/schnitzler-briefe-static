@@ -6,7 +6,7 @@
 <https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/title-img.jpg> a acdh:Resource ;
     acdh:hasTitle """Titelbild zu: Schnitzler-Briefe"""@de ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta> ;
-    acdh:isTitleImageOf <https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe/meta> ;
+    acdh:isTitleImageOf <https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe> ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0> ;
     acdh:hasLicensor <https://id.acdh.oeaw.ac.at/acdh> ;
     acdh:hasCreator <https://id.acdh.oeaw.ac.at/slehecka> ;
