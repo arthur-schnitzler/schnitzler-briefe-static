@@ -769,15 +769,17 @@ When adapting for different projects have a careful look at the following params
     </xsl:function>
     <xsl:function name="mam:hexToDec">
         <xsl:param name="hex"/>
+        <!-- Konvertiere Kleinbuchstaben in Großbuchstaben -->
+        <xsl:variable name="uppercaseHex" select="translate($hex, 'abcdef', 'ABCDEF')"/>
         <xsl:variable name="dec"
-            select="string-length(substring-before('0123456789ABCDEF', substring($hex, 1, 1)))"/>
+            select="string-length(substring-before('0123456789ABCDEF', substring($uppercaseHex, 1, 1)))"/>
         <xsl:choose>
-            <xsl:when test="matches($hex, '([0-9]*|[A-F]*)')">
+            <xsl:when test="matches($uppercaseHex, '([0-9]*|[A-F]*)')">
                 <xsl:value-of select="
-                        if ($hex = '') then
-                            0
-                        else
-                            $dec * mam:power(16, string-length($hex) - 1) + mam:hexToDec(substring($hex, 2))"
+                    if ($uppercaseHex = '') then
+                    0
+                    else
+                    $dec * mam:power(16, string-length($uppercaseHex) - 1) + mam:hexToDec(substring($uppercaseHex, 2))"
                 />
             </xsl:when>
             <xsl:otherwise>
