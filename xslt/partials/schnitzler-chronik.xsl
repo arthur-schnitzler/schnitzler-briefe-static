@@ -17,9 +17,9 @@
 
 When adapting for different projects have a careful look at the following params and adapt accordingly
     -->
-    <xsl:param name="fetch-locally" as="xs:boolean" select="false()"/>
+    <xsl:param name="fetch-locally" as="xs:boolean" select="true()"/>
     <!-- for larger projects it is recommended to clone the complete repo and work with the chronik locally -->
-    <xsl:param name="schnitzler-tagebuch" as="xs:boolean" select="true()"/>
+    <xsl:param name="schnitzler-tagebuch" as="xs:boolean" select="false()"/>
     <!-- only true if this is the chronik of schnitzler-tagebuch-->
     <xsl:param name="relevant-eventtypes"
         select="'Arthur-Schnitzler-digital,schnitzler-tagebuch,schnitzler-briefe,pollaczek,schnitzler-interviews,schnitzler-bahr,schnitzler-orte,schnitzler-chronik-manuell,pmb,schnitzler-events,schnitzler-cmif,schnitzler-mikrofilme-daten,schnitzler-traeume-buch,schnitzler-kino-buch,schnitzler-kempny-buch,kalliope-verbund'"/>
