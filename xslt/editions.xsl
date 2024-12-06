@@ -231,13 +231,13 @@
                                                 <th>
                                                   <xsl:choose>
                                                   <xsl:when test="@type = 'sent'"> Versand: </xsl:when>
-                                                  <xsl:when test="@type = 'received'"> Empfangen: </xsl:when>
+                                                  <xsl:when test="@type = 'received'"> Empfang: </xsl:when>
                                                   <xsl:when test="@type = 'forwarded'">
-                                                  Weitergeleitet: </xsl:when>
-                                                  <xsl:when test="@type = 'redirected'"> Umgeleitet: </xsl:when>
+                                                  Weiterleitung: </xsl:when>
+                                                  <xsl:when test="@type = 'redirected'"> Umleitung: </xsl:when>
                                                   <xsl:when test="@type = 'delivered'"> Zustellung: </xsl:when>
                                                   <xsl:when test="@type = 'transmitted'">
-                                                  Übermittelt: </xsl:when>
+                                                  Übermittlung: </xsl:when>
                                                   </xsl:choose>
                                                 </th>
                                                 <td> </td>
