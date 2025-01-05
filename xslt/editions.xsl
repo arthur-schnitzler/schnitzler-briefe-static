@@ -14,8 +14,8 @@
     <xsl:import href="./partials/html_title_navigation.xsl"/>
     <xsl:import href="./partials/view-type.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
-    <!--<xsl:import href="../../schnitzler-chronik-static/xslt/export/schnitzler-chronik.xsl"/>-->
-    <xsl:import href="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-static/refs/heads/main/xslt/export/schnitzler-chronik.xsl"/>
+    <xsl:import href="../../schnitzler-chronik-static/xslt/export/schnitzler-chronik.xsl"/>
+    <!--<xsl:import href="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-static/refs/heads/main/xslt/export/schnitzler-chronik.xsl"/>-->
     <xsl:variable name="quotationURL">
         <xsl:value-of
             select="concat('https://schnitzler-briefe.acdh.oeaw.ac.at/', replace(tokenize(base-uri(), '/')[last()], '.xml', '.html'))"
@@ -795,7 +795,7 @@
                                     <xsl:with-param name="datum-iso" select="$datum"/>
                                     <xsl:with-param name="current-type" select="'schnitzler-briefe'"/>
                                     <xsl:with-param name="teiSource" select="$teiSource"/>
-                                    <xsl:with-param name="fetch-locally" select="false()"/>
+                                    <xsl:with-param name="fetch-locally" select="true()"/>
                                     <xsl:with-param name="relevant-eventtypes" select="$relevant-eventtypes"/>
                                 </xsl:call-template>
                             </div>
