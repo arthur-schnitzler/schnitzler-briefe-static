@@ -14,8 +14,15 @@
     <xsl:import href="./partials/html_title_navigation.xsl"/>
     <xsl:import href="./partials/view-type.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
-    <!--<xsl:import href="../../schnitzler-chronik-static/xslt/export/schnitzler-chronik.xsl"/>-->
+    
+    
+    <!-- Einstellungen für die Schnitzler-Chronik. Das entfernte XSL wird nur benützt, wenn fetch-locally auf  -->
     <xsl:import href="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-static/refs/heads/main/xslt/export/schnitzler-chronik.xsl"/>
+    <!--<xsl:import href="../../schnitzler-chronik-static/xslt/export/schnitzler-chronik.xsl"/>-->
+    <xsl:param name="schnitzler-chronik_fetch-locally" as="xs:boolean" select="true()"/>
+    <xsl:param name="schnitzler-chronik_current-type" as="xs:string" select="'schnitzler-briefe'"/>
+    
+    
     <xsl:variable name="quotationURL">
         <xsl:value-of
             select="concat('https://schnitzler-briefe.acdh.oeaw.ac.at/', replace(tokenize(base-uri(), '/')[last()], '.xml', '.html'))"
@@ -691,7 +698,7 @@
                 <!-- Modal Tag -->
                 <div class="modal fade" id="tagfuertag" tabindex="-1"
                     aria-labelledby="downloadModalLabel2" aria-hidden="true">
-                    <xsl:variable name="datum">
+                    <xsl:variable name="datum-iso">
                         <xsl:variable name="date"
                             select="descendant::tei:correspDesc/tei:correspAction[@type = 'sent'][1]/tei:date"
                             as="node()?"/>
@@ -714,56 +721,56 @@
                         </xsl:choose>
                     </xsl:variable>
                     <xsl:variable name="datum-written" select="
-                            format-date($datum, '[D1].&#160;[M1].&#160;[Y0001]',
+                            format-date($datum-iso, '[D1].&#160;[M1].&#160;[Y0001]',
                             'en',
                             'AD',
                             'EN')"/>
                     <xsl:variable name="wochentag">
                         <xsl:choose>
                             <xsl:when test="
-                                    format-date($datum, '[F]',
+                                    format-date($datum-iso, '[F]',
                                     'en',
                                     'AD',
                                     'EN') = 'Monday'">
                                 <xsl:text>Montag</xsl:text>
                             </xsl:when>
                             <xsl:when test="
-                                    format-date($datum, '[F]',
+                                    format-date($datum-iso, '[F]',
                                     'en',
                                     'AD',
                                     'EN') = 'Tuesday'">
                                 <xsl:text>Dienstag</xsl:text>
                             </xsl:when>
                             <xsl:when test="
-                                    format-date($datum, '[F]',
+                                    format-date($datum-iso, '[F]',
                                     'en',
                                     'AD',
                                     'EN') = 'Wednesday'">
                                 <xsl:text>Mittwoch</xsl:text>
                             </xsl:when>
                             <xsl:when test="
-                                    format-date($datum, '[F]',
+                                    format-date($datum-iso, '[F]',
                                     'en',
                                     'AD',
                                     'EN') = 'Thursday'">
                                 <xsl:text>Donnerstag</xsl:text>
                             </xsl:when>
                             <xsl:when test="
-                                    format-date($datum, '[F]',
+                                    format-date($datum-iso, '[F]',
                                     'en',
                                     'AD',
                                     'EN') = 'Friday'">
                                 <xsl:text>Freitag</xsl:text>
                             </xsl:when>
                             <xsl:when test="
-                                    format-date($datum, '[F]',
+                                    format-date($datum-iso, '[F]',
                                     'en',
                                     'AD',
                                     'EN') = 'Saturday'">
                                 <xsl:text>Samstag</xsl:text>
                             </xsl:when>
                             <xsl:when test="
-                                    format-date($datum, '[F]',
+                                    format-date($datum-iso, '[F]',
                                     'en',
                                     'AD',
                                     'EN') = 'Sunday'">
@@ -779,7 +786,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle3">
                                     <a
-                                        href="{concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum, '.html')}"
+                                        href="{concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum-iso, '.html')}"
                                         target="_blank" style="color: #C67F53">
                                         <xsl:value-of
                                             select="concat($wochentag, ', ', $datum-written)"/>
@@ -788,15 +795,27 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Schließen"/>
                             </div>
-                            <xsl:variable name="relevant-eventtypes" as="xs:string" select="'Arthur-Schnitzler-digital,schnitzler-tagebuch,schnitzler-briefe,pollaczek,schnitzler-interviews,schnitzler-bahr,schnitzler-orte,schnitzler-chronik-manuell,pmb,schnitzler-events,schnitzler-cmif,schnitzler-mikrofilme-daten,schnitzler-traeume-buch,schnitzler-kino-buch,schnitzler-kempny-buch,kalliope-verbund'"/>
                             <div class="modal-body">
                                 <div id="chronik-modal-body"/>
+                                <xsl:variable name="fetchContentsFromURL" as="node()?">
+                                    <xsl:choose>
+                                        <xsl:when test="$schnitzler-chronik_fetch-locally">
+                                            <xsl:copy-of
+                                                select="document(concat('../chronik-data/', $datum-iso, '.xml'))"/>
+                                            <!-- das geht davon aus, dass das schnitzler-chronik-repo lokal vorliegt -->
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:copy-of
+                                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-data/refs/heads/main/editions/data/', $datum-iso, '.xml'))"
+                                            />
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:variable>
                                 <xsl:call-template name="mam:schnitzler-chronik">
-                                    <xsl:with-param name="datum-iso" select="$datum"/>
-                                    <xsl:with-param name="current-type" select="'schnitzler-briefe'"/>
+                                    <xsl:with-param name="datum-iso" select="$datum-iso"/>
+                                    <xsl:with-param name="current-type" select="$schnitzler-chronik_current-type"/>
                                     <xsl:with-param name="teiSource" select="$teiSource"/>
-                                    <xsl:with-param name="fetch-locally" select="true()"/>
-                                    <xsl:with-param name="relevant-eventtypes" select="$relevant-eventtypes"/>
+                                    <xsl:with-param name="fetchContentsFromURL" select="$fetchContentsFromURL" as="node()?"/>
                                 </xsl:call-template>
                             </div>
                             <div class="modal-footer">
