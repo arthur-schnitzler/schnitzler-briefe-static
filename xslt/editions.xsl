@@ -797,6 +797,7 @@
                             </div>
                             <div class="modal-body">
                                 <div id="chronik-modal-body"/>
+                                <!-- SCHNITZLER-CHRONIK. Zuerst wird der Eintrag geladen, weil das schneller ist, wenn er lokal vorliegt -->
                                 <xsl:variable name="fetchContentsFromURL" as="node()?">
                                     <xsl:choose>
                                         <xsl:when test="$schnitzler-chronik_fetch-locally">
