@@ -796,7 +796,7 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <div id="chronik-modal-body"/>
+                                <div id="chronik-modal-body">
                                 <!-- SCHNITZLER-CHRONIK. Zuerst wird der Eintrag geladen, weil das schneller ist, wenn er lokal vorliegt -->
                                 <xsl:variable name="fetchContentsFromURL" as="node()?">
                                     <xsl:choose>
@@ -818,6 +818,7 @@
                                     <xsl:with-param name="teiSource" select="$teiSource"/>
                                     <xsl:with-param name="fetchContentsFromURL" select="$fetchContentsFromURL" as="node()?"/>
                                 </xsl:call-template>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"

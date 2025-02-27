@@ -169,8 +169,7 @@
                     und Hugo von Hofmannsthal im Timeslider</figcaption>
             </div>
         </div>
-        <script src="js/jung-wien-charts-ohne-slider.js"/>
-        <script src="js/jung-wien-charts-mit-slider.js"/>
+        <script src="js/jung-wien-exp-charts.js"/>
     </xsl:template>
     <xsl:template match="tei:lb">
         <br/>
