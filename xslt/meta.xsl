@@ -151,7 +151,7 @@
         <div style="display: flex; width: 100%;">
             <div
                 style="width: 40%; margin: auto; display: flex; flex-direction: column; height: 500px;">
-                <div id="container-ohne-slider" style="width: 100%; flex-grow: 1;"/>
+                   <div id="container-ohne-slider" style="width: 100%; flex-grow: 1;"/>
                 <div style="width: 100%; height: 55px;"/>
                 <figcaption style="text-align: center;">Abb. 8: Alle Korrespondenzen zwischen Arthur
                     Schnitzler, Hermann Bahr, Richard Beer-Hofmann und Hugo von
