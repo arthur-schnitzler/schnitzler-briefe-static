@@ -44,7 +44,7 @@ for x in files:
     doc = TeiReader(x)
     item = {
         "id": os.path.split(x)[-1],
-        "title": extract_fulltext(doc.any_xpath(".//tei:titleStmt[1]/tei:title[1]")[0]),
+        "title": extract_fulltext(doc.any_xpath(".//tei:titleStmt[1]/tei:title[@level='a']")[0]),
         "datestamp": datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d"),
     }
     object_list.append(item)
