@@ -12,5 +12,7 @@ python make_calendar_data.py
 echo "build ft-index"
 python make_typesense_index.py
 
+python oai-pmh/make_files.py
+
 echo "create app"
 ant
