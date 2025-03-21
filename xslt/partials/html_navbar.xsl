@@ -113,8 +113,8 @@
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link"
-                                        href="https://github.com/arthur-schnitzler/schnitzler-briefe-data/"
-                                        target="_blank">Quelldaten auf GitHub</a>
+                                        href="quelldaten_und_api.html"
+                                        target="_blank">Quelldaten und API</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link"
