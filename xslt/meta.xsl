@@ -306,14 +306,7 @@
     <xsl:template match="tei:bibl" mode="footnote">
         <xsl:value-of select="."/>
     </xsl:template>
-    <xsl:template match="tei:ref">
-        <xsl:element name="a">
-            <xsl:attribute name="href">
-                <xsl:value-of select="@target"/>
-            </xsl:attribute>
-            <xsl:value-of select="."/>
-        </xsl:element>
-    </xsl:template>
+    
     <xsl:template match="tei:rs[@type = 'work']/text()">
         <i>
             <xsl:value-of select="."/>
