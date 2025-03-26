@@ -28,7 +28,7 @@
         <xsl:choose>
             <xsl:when test="@target[ends-with(., '.xml')]">
                 <xsl:element name="a">
-                    <xsl:attribute name="class">reference-black1</xsl:attribute>
+                    <xsl:attribute name="class">reference-black</xsl:attribute>
                     <xsl:attribute name="href"> show.html?ref=<xsl:value-of
                             select="tokenize(./@target, '/')[4]"/>
                     </xsl:attribute>
@@ -49,7 +49,7 @@
         <xsl:choose>
             <xsl:when test="@subtype = 'date-only'">
                 <a>
-                    <xsl:attribute name="class">reference-black2</xsl:attribute>
+                    <xsl:attribute name="class">reference-black</xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of
                             select="concat('https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__', @target, '.html')"
@@ -81,7 +81,7 @@
                     </xsl:when>
                 </xsl:choose>
                 <a>
-                    <xsl:attribute name="class">reference-black3</xsl:attribute>
+                    <xsl:attribute name="class">reference-black</xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of
                             select="concat('https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__', @target, '.html')"
@@ -127,7 +127,7 @@
         <xsl:choose>
             <xsl:when test="@subtype = 'date-only'">
                 <a>
-                    <xsl:attribute name="class">reference-black4</xsl:attribute>
+                    <xsl:attribute name="class">reference-black</xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of select="concat($type-url, $ref-mit-endung)"/>
                     </xsl:attribute>
@@ -172,7 +172,7 @@
                     </xsl:when>
                 </xsl:choose>
                 <a>
-                    <xsl:attribute name="class">reference-black5</xsl:attribute>
+                    <xsl:attribute name="class">reference-black</xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of select="concat($type-url, $ref-mit-endung)"/>
                     </xsl:attribute>
