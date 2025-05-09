@@ -45,84 +45,84 @@
                                             <!-- den Fall dürfte es eh nicht geben, aber löschen braucht man auch nicht -->
                                             <xsl:choose>
                                                 <xsl:when
-                                                  test="./tei:forename/text() and ./tei:surname/text()">
-                                                  <xsl:value-of
-                                                  select="concat(./tei:forename/text(), ' ', ./tei:surname/text())"
-                                                  />
+                                                    test="./tei:forename/text() and ./tei:surname/text()">
+                                                    <xsl:value-of
+                                                        select="concat(./tei:forename/text(), ' ', ./tei:surname/text())"
+                                                    />
                                                 </xsl:when>
                                                 <xsl:when test="./tei:forename/text()">
-                                                  <xsl:value-of select="./tei:forename/text()"/>
+                                                    <xsl:value-of select="./tei:forename/text()"/>
                                                 </xsl:when>
                                                 <xsl:when test="./tei:surname/text()">
-                                                  <xsl:value-of select="./tei:surname/text()"/>
+                                                    <xsl:value-of select="./tei:surname/text()"/>
                                                 </xsl:when>
                                                 <xsl:otherwise>
-                                                  <xsl:value-of select="."/>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:when>
                                         <xsl:otherwise>
                                             <xsl:choose>
                                                 <xsl:when
-                                                  test="@type = 'person_geburtsname_vorname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname']">
-                                                  <xsl:text>geboren </xsl:text>
-                                                  <xsl:value-of
-                                                  select="concat(., ' ', $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname'][1])"
-                                                  />
+                                                    test="@type = 'person_geburtsname_vorname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname']">
+                                                    <xsl:text>geboren </xsl:text>
+                                                    <xsl:value-of
+                                                        select="concat(., ' ', $namensformen/descendant::tei:persName[@type = 'person_geburtsname_nachname'][1])"
+                                                    />
                                                 </xsl:when>
                                                 <xsl:when
-                                                  test="@type = 'person_geburtsname_vorname'">
-                                                  <xsl:text>geboren </xsl:text>
-                                                  <xsl:value-of
-                                                  select="concat(., ' ', $lemma-name//tei:surname)"
-                                                  />
+                                                    test="@type = 'person_geburtsname_vorname'">
+                                                    <xsl:text>geboren </xsl:text>
+                                                    <xsl:value-of
+                                                        select="concat(., ' ', $lemma-name//tei:surname)"
+                                                    />
                                                 </xsl:when>
                                                 <xsl:when
-                                                  test="@type = 'person_geburtsname_nachname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_vorname'][1]"/>
+                                                    test="@type = 'person_geburtsname_nachname' and $namensformen/descendant::tei:persName[@type = 'person_geburtsname_vorname'][1]"/>
                                                 <xsl:when
-                                                  test="@type = 'person_geburtsname_nachname'">
-                                                  <xsl:text>geboren </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    test="@type = 'person_geburtsname_nachname'">
+                                                    <xsl:text>geboren </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                                 <xsl:when
-                                                  test="@type = 'person_adoptierter-nachname'">
-                                                  <xsl:text>Nachname durch Adoption </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    test="@type = 'person_adoptierter-nachname'">
+                                                    <xsl:text>Nachname durch Adoption </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                                 <xsl:when
-                                                  test="@type = 'person_namensvariante-nachname'">
-                                                  <xsl:text>Namensvariante Nachame </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    test="@type = 'person_namensvariante-nachname'">
+                                                    <xsl:text>Namensvariante Nachame </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                                 <xsl:when
-                                                  test="@type = 'person_namensvariante-vorname'">
-                                                  <xsl:text>Namensvariante Vorname </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    test="@type = 'person_namensvariante-vorname'">
+                                                    <xsl:text>Namensvariante Vorname </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                                 <xsl:when test="@type = 'person_namensvariante'">
-                                                  <xsl:text>Namensvariante </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    <xsl:text>Namensvariante </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                                 <xsl:when test="@type = 'person_rufname_vorname'">
-                                                  <xsl:text>Rufname </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    <xsl:text>Rufname </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                                 <xsl:when test="@type = 'person_pseudonym'">
-                                                  <xsl:text>Pseudonym </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    <xsl:text>Pseudonym </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                                 <xsl:when test="@type = 'person_ehename_nachname'">
-                                                  <xsl:text>Ehename </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    <xsl:text>Ehename </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                                 <xsl:when
-                                                  test="@type = 'person_geschieden_nachname'">
-                                                  <xsl:text>geschieden </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    test="@type = 'person_geschieden_nachname'">
+                                                    <xsl:text>geschieden </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                                 <xsl:when test="@type = 'person_verwitwet_nachname'">
-                                                  <xsl:text>verwitwet </xsl:text>
-                                                  <xsl:value-of select="."/>
+                                                    <xsl:text>verwitwet </xsl:text>
+                                                    <xsl:value-of select="."/>
                                                 </xsl:when>
                                             </xsl:choose>
                                         </xsl:otherwise>

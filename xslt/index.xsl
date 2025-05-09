@@ -30,8 +30,8 @@
                                         Autorinnen und Autoren </h1>
                                     <h3 class="mt-3">1888–1931</h3>
                                     <h4 style="font-style: italic">Herausgegeben von Martin Anton
-                                        Müller, Gerd-Hermann Susen und Laura Untner, Wien
-                                        2018–[2024]</h4>
+                                        Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke, Wien
+                                        2018–[2029]</h4>
                                     <div style="text-align: right">
                                         <a href="#body">
                                             <button class="btn btn-round"
