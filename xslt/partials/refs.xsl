@@ -139,17 +139,12 @@
                         </xsl:when>
                         <xsl:when test="@type = 'schnitzler-interviews'">
                             <xsl:value-of
-                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-static/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:titleStmt[1]/tei:title[@type='iso-date'][1]/text()"
+                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:titleStmt[1]/tei:title[@type='iso-date'][1]/text()"
                             />
                         </xsl:when>
                         <xsl:when test="@type = 'schnitzler-bahr'">
                             <xsl:value-of
                                 select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:dateSender[1]/tei:date[1]/text()"
-                            />
-                        </xsl:when>
-                        <xsl:when test="@type = 'schnitzler-interviews'">
-                            <xsl:value-of
-                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-static/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:dateSender[1]/tei:date[1]/text()"
                             />
                         </xsl:when>
                         

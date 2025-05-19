@@ -14,15 +14,12 @@
     <xsl:import href="./partials/html_title_navigation.xsl"/>
     <xsl:import href="./partials/view-type.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
-    
-    
     <!-- Einstellungen für die Schnitzler-Chronik. Das entfernte XSL wird nur benützt, wenn fetch-locally auf  -->
-    <xsl:import href="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-static/refs/heads/main/xslt/export/schnitzler-chronik.xsl"/>
+    <xsl:import
+        href="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-static/refs/heads/main/xslt/export/schnitzler-chronik.xsl"/>
     <!--<xsl:import href="../../schnitzler-chronik-static/xslt/export/schnitzler-chronik.xsl"/>-->
     <xsl:param name="schnitzler-chronik_fetch-locally" as="xs:boolean" select="true()"/>
     <xsl:param name="schnitzler-chronik_current-type" as="xs:string" select="'schnitzler-briefe'"/>
-    
-    
     <xsl:variable name="quotationURL">
         <xsl:value-of
             select="concat('https://schnitzler-briefe.acdh.oeaw.ac.at/', replace(tokenize(base-uri(), '/')[last()], '.xml', '.html'))"
@@ -257,7 +254,8 @@
                                                   <xsl:for-each select="child::tei:persName">
                                                   <a class="theme-color">
                                                   <xsl:attribute name="href">
-                                                  <xsl:value-of select="concat(replace((@ref), '#', ''), '.html')"
+                                                  <xsl:value-of
+                                                  select="concat(replace((@ref), '#', ''), '.html')"
                                                   />
                                                   </xsl:attribute>
                                                   <xsl:value-of select="."/>
@@ -274,7 +272,8 @@
                                                   <xsl:for-each select="child::tei:placeName">
                                                   <a class="theme-color">
                                                   <xsl:attribute name="href">
-                                                      <xsl:value-of select="concat(replace((@ref), '#', ''), '.html')"
+                                                  <xsl:value-of
+                                                  select="concat(replace((@ref), '#', ''), '.html')"
                                                   />
                                                   </xsl:attribute>
                                                   <xsl:value-of select="."/>
@@ -797,27 +796,29 @@
                             </div>
                             <div class="modal-body">
                                 <div id="chronik-modal-body">
-                                <!-- SCHNITZLER-CHRONIK. Zuerst wird der Eintrag geladen, weil das schneller ist, wenn er lokal vorliegt -->
-                                <xsl:variable name="fetchContentsFromURL" as="node()?">
-                                    <xsl:choose>
-                                        <xsl:when test="$schnitzler-chronik_fetch-locally">
-                                            <xsl:copy-of
-                                                select="document(concat('../chronik-data/', $datum-iso, '.xml'))"/>
-                                            <!-- das geht davon aus, dass das schnitzler-chronik-repo lokal vorliegt -->
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:copy-of
-                                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-data/refs/heads/main/editions/data/', $datum-iso, '.xml'))"
-                                            />
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:variable>
-                                <xsl:call-template name="mam:schnitzler-chronik">
-                                    <xsl:with-param name="datum-iso" select="$datum-iso"/>
-                                    <xsl:with-param name="current-type" select="$schnitzler-chronik_current-type"/>
-                                    <xsl:with-param name="teiSource" select="$teiSource"/>
-                                    <xsl:with-param name="fetchContentsFromURL" select="$fetchContentsFromURL" as="node()?"/>
-                                </xsl:call-template>
+                                    <!-- SCHNITZLER-CHRONIK. Zuerst wird der Eintrag geladen, weil das schneller ist, wenn er lokal vorliegt -->
+                                    <xsl:variable name="fetchContentsFromURL" as="node()?">
+                                        <xsl:choose>
+                                            <xsl:when test="$schnitzler-chronik_fetch-locally">
+                                                <xsl:copy-of
+                                                  select="document(concat('../chronik-data/', $datum-iso, '.xml'))"/>
+                                                <!-- das geht davon aus, dass das schnitzler-chronik-repo lokal vorliegt -->
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:copy-of
+                                                  select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-data/refs/heads/main/editions/data/', $datum-iso, '.xml'))"
+                                                />
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
+                                    <xsl:call-template name="mam:schnitzler-chronik">
+                                        <xsl:with-param name="datum-iso" select="$datum-iso"/>
+                                        <xsl:with-param name="current-type"
+                                            select="$schnitzler-chronik_current-type"/>
+                                        <xsl:with-param name="teiSource" select="$teiSource"/>
+                                        <xsl:with-param name="fetchContentsFromURL"
+                                            select="$fetchContentsFromURL" as="node()?"/>
+                                    </xsl:call-template>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -950,6 +951,7 @@
     <xsl:template match="tei:div[not(@type = 'address')]">
         <xsl:apply-templates/>
     </xsl:template>
+    
     <xsl:template match="tei:div[@type = 'address']">
         <div class="address-div">
             <xsl:apply-templates/>
@@ -1129,8 +1131,19 @@
             <xsl:apply-templates/>
         </div>
     </xsl:template>
+    <xsl:template match="tei:seg[tei:seg[@rend='left'] and tei:seg[@rend='right']]">
+        <div class="editionText flexContainer">
+            <span class="seg-left">
+                <xsl:apply-templates select="tei:seg[@rend = 'left']"/>
+            </span>
+            <xsl:text> </xsl:text>
+            <span class="seg-right">
+                <xsl:apply-templates select="tei:seg[@rend = 'right']"/>
+            </span>
+        </div>
+    </xsl:template>
     <xsl:template
-        match="tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(ancestor::tei:note[@type = 'footnote']) and not(ancestor::tei:caption) and not(parent::tei:bibl) and not(parent::tei:quote) and not(child::tei:space[@dim])] | tei:dateline | tei:closer">
+        match="tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(ancestor::tei:note[@type = 'footnote']) and not(ancestor::tei:caption) and not(parent::tei:bibl) and not(parent::tei:quote) and not(child::tei:space[@dim])] | tei:dateline | tei:closer | tei:seg[not(parent::tei:seg)]">
         <xsl:choose>
             <xsl:when test="child::tei:seg">
                 <div class="editionText flexContainer">
@@ -1169,9 +1182,6 @@
                 </div>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-    <xsl:template match="tei:p[child::tei:space[@dim] and not(child::*[2]) and empty(text())]">
-        <br/>
     </xsl:template>
     <xsl:template match="tei:p[parent::tei:quote]">
         <xsl:apply-templates/>
@@ -1322,11 +1332,17 @@
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:space[@dim = 'vertical' and not(@unit)]">
-        <xsl:element name="div">
+        <br/>
+        <div>
             <xsl:attribute name="style">
-                <xsl:value-of select="concat('padding-bottom:', @quantity, 'em;')"/>
+                <xsl:choose>
+                    <xsl:when test="@quantity">
+                        <xsl:value-of select="concat('margin-bottom:', @quantity, 'em;')"/>
+                    </xsl:when>
+                    <xsl:otherwise>margin-bottom:1em;</xsl:otherwise>
+                </xsl:choose>
             </xsl:attribute>
-        </xsl:element>
+        </div>
     </xsl:template>
     <!-- Tabellen -->
     <xsl:template match="tei:table">
