@@ -36,7 +36,7 @@
                                         <a href="https://acdh.oeaw.ac.at">Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</a> <br/>
                                             Dr. Ignaz Seipel-Platz 2, 1010 Wien, Österreich <br/>
                                     E-Mail: <a href="mailto:acdh-ch-helpdesk@oeaw.ac.at">acdh-ch-helpdesk(at)oeaw.ac.at</a></p>
-                                <p>Die Edition wurde geschaffen von Martin Anton Müller, Gerd-Hermann Susen und Laura Untner.</p>
+                                <p>Die Edition wurde geschaffen von Martin Anton Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke.</p>
                                 <h3>Unternehmensgegenstand:</h3>
                                 <p>Die Österreichische Akademie der Wissenschaften (ÖAW) hat den gesetzlichen Auftrag, die Wissenschaft
                                     in jeder Hinsicht zu fördern. Als Gelehrtengesellschaft pflegt die ÖAW den Diskurs und die

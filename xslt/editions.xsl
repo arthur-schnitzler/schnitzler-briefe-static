@@ -30,7 +30,7 @@
     </xsl:variable>
     <xsl:variable name="quotationString">
         <xsl:value-of
-            select="concat(normalize-space(//tei:titleStmt/tei:title[@level = 'a']), '. In: Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition. Hg. Martin Anton Müller, Gerd Hermann Susen und Laura Untner, ', $quotationURL, ' (Abfrage ', $currentDate, ')')"
+            select="concat(normalize-space(//tei:titleStmt/tei:title[@level = 'a']), '. In: Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition. Herausgeben von Martin Anton Müller mit Gerd Hermann Susen, Laura Untner und Selma Jahnke, ', $quotationURL, ' (Abfrage ', $currentDate, ')')"
         />
     </xsl:variable>
     <xsl:variable name="teiSource">

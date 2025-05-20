@@ -54,7 +54,9 @@
                                 </a>
                                 <p/>
                                 <p>Gefördert aus Mitteln des<br/> Wissenschaftsfonds FWF,<br/>
-                                    P31277 (2018–2021) und <br/>P34792 (2021–[2024])</p>
+                                    P31277 (2018–2021), <br/>P34792 (2021–2024) und 
+                                    10.55776/PAT1998524 (2025–2029).
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -62,12 +64,12 @@
                     <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
                         <div class="row">
                             <div class="textwidget custom-html-widget">
-                                <h6 class="font-weight-bold">HELPDESK</h6>
-                                <p>Bei Fragen, Anmerkungen, Kritik, aber gerne auch Lob, wenden Sie
-                                    sich bitte an den ACDH-CH Helpdesk.</p>
+                                <h6 class="font-weight-bold">KONTAKT</h6>
+                                <p>Bei Fragen, Anmerkungen, Kritik, aber gerne auch Lob, kontaktieren Sie
+                                    bitte Martin Anton Müller.</p>
                                 <p>
                                     <a class="helpdesk-button"
-                                        href="mailto:acdh-ch-helpdesk@oeaw.ac.at">e-Mail</a>
+                                        href="mailto:martin.anton.mueller@encore.at">e-Mail</a>
                                 </p>
                             </div>
                         </div>
