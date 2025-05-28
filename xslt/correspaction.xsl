@@ -114,6 +114,9 @@
                                                   select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:placeName"
                                                   />
                                                   </a>
+                                                    <xsl:if test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:placeName/@evidence='conjecture'">
+                                                        <xsl:text> (?)</xsl:text>
+                                                    </xsl:if>
                                                 </td>
                                                 <td>
                                                   <xsl:for-each
@@ -133,6 +136,9 @@
                                                   </xsl:attribute>
                                                   <xsl:value-of select="tei:placeName"/>
                                                   </a>
+                                                      <xsl:if test="@evidence='conjecture'">
+                                                          <xsl:text> (?)</xsl:text>
+                                                      </xsl:if>
                                                   </xsl:if>
                                                   <xsl:if test="not(position() = last())">
                                                   <br/>
@@ -174,6 +180,9 @@
                                                   select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:placeName"
                                                   />
                                                   </a>
+                                                    <xsl:if test="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:placeName/@evidence='conjecture'">
+                                                        <xsl:text> (?)</xsl:text>
+                                                    </xsl:if>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
