@@ -50,6 +50,7 @@
                                         >Top 500</button>
                                 </div>
                                 <script src="js/person_freq_corp_weights_directed.js"/>
+                                <!--<div class="text-center p-1"><span id="counter1"></span> von <span id="counter2"></span> Personen</div>-->
                                 <table class="table table-sm display" id="tabulator-table-person">
                                     <thead>
                                         <tr>

@@ -44,6 +44,19 @@
             },
             locale: "de-de"
             });
+            
+            
+            table.on("dataLoaded", function (data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            var el = document.getElementById("counter2");
+            el.innerHTML = `${data.length}`;
+            });
+            
+            table.on("dataFiltered", function (filters, data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            }); 
         </script>
         
     </xsl:template>
@@ -87,6 +100,85 @@
             },
             locale: "de-de"
             });
+            
+            table.on("dataLoaded", function (data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            var el = document.getElementById("counter2");
+            el.innerHTML = `${data.length}`;
+            });
+            
+            table.on("dataFiltered", function (filters, data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            }); 
+            
+            table.on("dataLoaded", function (data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            var el = document.getElementById("counter2");
+            el.innerHTML = `${data.length}`;
+            });
+            
+            table.on("dataFiltered", function (filters, data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            }); 
+        </script>
+        
+    </xsl:template>
+    
+    <xsl:template match="/" name="tabulator_event_js">
+        <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
+        <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+        <script src="tabulator-js/config.js"></script>
+        <script>
+            // Erste Tabelle mit Sortierung nach "urheber_in" und "titel"
+            var table = new Tabulator("#tabulator-table-event", {
+            pagination:"local",       //paginate the data
+            paginationSize:25,         //allow 25 rows per page of data
+            paginationCounter:"rows", //display count of paginated rows in footer
+            movableColumns:true,
+            layout:"fitColumns",
+            initialSort:[
+            {column:"date", dir:"asc"}, 
+            {column:"titel", dir:"asc"}
+            ],
+            langs:{
+            "de-de":{ //German language definition
+            "pagination":{
+            "first":"Erste",
+            "first_title":"Erste Seite",
+            "last":"Letzte",
+            "last_title":"Letzte Seite",
+            "prev":"Vorige",
+            "prev_title":"Vorige Seite",
+            "next":"Nächste",
+            "next_title":"Nächste Seite",
+            "all":"Alle",
+            "counter":{
+            "showing": "Zeige",
+            "of": "von",
+            "rows": "Reihen",
+            "pages": "Seiten",
+            }
+            },
+            },
+            },
+            locale: "de-de"
+            });
+            
+            table.on("dataLoaded", function (data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            var el = document.getElementById("counter2");
+            el.innerHTML = `${data.length}`;
+            });
+            
+            table.on("dataFiltered", function (filters, data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            }); 
         </script>
         
     </xsl:template>
@@ -138,6 +230,19 @@
             },
             locale: "de-de"
             });
+            
+            
+            table.on("dataLoaded", function (data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            var el = document.getElementById("counter2");
+            el.innerHTML = `${data.length}`;
+            });
+            
+            table.on("dataFiltered", function (filters, data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            }); 
         </script>
         
     </xsl:template>
@@ -188,6 +293,18 @@
             locale: "de-de"
             });
             
+            
+            table.on("dataLoaded", function (data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            var el = document.getElementById("counter2");
+            el.innerHTML = `${data.length}`;
+            });
+            
+            table.on("dataFiltered", function (filters, data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            }); 
         </script>
         
     </xsl:template>
@@ -237,6 +354,18 @@
             locale: "de-de"
             });
             
+            
+            table.on("dataLoaded", function (data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            var el = document.getElementById("counter2");
+            el.innerHTML = `${data.length}`;
+            });
+            
+            table.on("dataFiltered", function (filters, data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            }); 
         </script>
         
     </xsl:template>
@@ -279,6 +408,18 @@
             locale: "de-de"
             });
             
+            
+            table.on("dataLoaded", function (data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            var el = document.getElementById("counter2");
+            el.innerHTML = `${data.length}`;
+            });
+            
+            table.on("dataFiltered", function (filters, data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            }); 
         </script>
         
     </xsl:template>
@@ -317,8 +458,24 @@
             },
             locale: "de-de"
             });
+            
+            
+            table.on("dataLoaded", function (data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            var el = document.getElementById("counter2");
+            el.innerHTML = `${data.length}`;
+            });
+            
+            table.on("dataFiltered", function (filters, data) {
+            var el = document.getElementById("counter1");
+            el.innerHTML = `${data.length}`;
+            }); 
+
         </script>
     </xsl:template>
+    
+    
     
     <xsl:template match="/" name="tabulator_dl_buttons">
         <h4>Tabelle laden</h4>
@@ -336,4 +493,6 @@
             </button>
         </div>
     </xsl:template>
+    
+    
 </xsl:stylesheet>
