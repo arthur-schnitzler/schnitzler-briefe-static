@@ -817,11 +817,12 @@
                         maxZoom: 18,
                         zIndex: 1
                         }).addTo(mymap);
-                        <xsl:variable name="laenge" as="xs:string" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"/>
-                        <xsl:variable name="breite" as="xs:string" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"/>
-                        <xsl:variable name="laengebreite" as="xs:string" select="concat($laenge, ', ', $breite)"/>
-                        <xsl:value-of select="$laengebreite"/>
-                        L.marker([<xsl:value-of select="$laengebreite"/>]).addTo(mymap)
+                        <xsl:variable name="laenge" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"/>
+                        <xsl:variable name="breite" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"/>
+                        <xsl:variable name="breiteLaenge" select="concat($breite, ', ', $laenge)"/>
+                        <xsl:value-of select="$breiteLaenge"/>
+                        var mymap = L.map('mapid').setView([<xsl:value-of select="$breiteLaenge"/>], 14);
+                        L.marker([<xsl:value-of select="$breiteLaenge"/>]).addTo(mymap)
                         .bindPopup("<b>
                             <xsl:value-of select="./tei:placeName[1]/text()"/>
                         </b>").openPopup();
