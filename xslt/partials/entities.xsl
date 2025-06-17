@@ -745,31 +745,27 @@
                     </xsl:if>
                 </div>
                 <xsl:if test=".//tei:geo/text()">
-                    <div id="mapid" style="height: 400px; width:100%; clear: both;"/>
+                    <div id="mapid" style="height: 400px; width:100%; clear: both;"> </div>
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
                         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
                         crossorigin=""/>
                     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""/>
                     <script>
+                        <xsl:variable name="laenge" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"/>
+                        <xsl:variable name="breite" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"/>
                         
-                        var mymap = L.map('mapid').setView([50, 12], 14);
+                        var mymap = L.map('mapid').setView([<xsl:value-of select="$breite"/>, <xsl:value-of select="$laenge"/>], 14);
                         
                         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: 'Map data &amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
-                        maxZoom: 18,
-                        zIndex: 1
+                        attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                        maxZoom: 18
                         }).addTo(mymap);
-                        <xsl:variable name="laenge" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"/>
-                        <xsl:variable name="breite" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"/>
-                        <xsl:variable name="laengeBreite" select="concat($laenge, ', ', $breite)"/>
-                        <xsl:value-of select="$laengeBreite/">
-                            var mymap = L.map('mapid').setView([<xsl:value-of select="$laengeBreite"/>], 14);
-                            L.marker([<xsl:value-of select="$laengeBreite"/>]).addTo(mymap)
-                        .bindPopup("<b>
-                            <xsl:value-of select="./tei:placeName[1]/text()"/>
-                        </b>").openPopup();
+                        
+                        L.marker([<xsl:value-of select="$breite"/>, <xsl:value-of select="$laenge"/>])
+                        .addTo(mymap)
+                        .bindPopup("<b><xsl:value-of select="./tei:placeName[1]/text()"/></b>")
+                        .openPopup();
                     </script>
-                    <div class="card"> </div>
                 </xsl:if>
                 <xsl:if test="count(.//tei:placeName[contains(@type, 'namensvariante')]) gt 1">
                     <ul>
