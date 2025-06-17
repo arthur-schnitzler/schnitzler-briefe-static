@@ -20,8 +20,7 @@
             <script src="https://code.highcharts.com/highcharts.js"/>
             <script src="https://code.highcharts.com/modules/networkgraph.js"/>
             <script src="https://code.highcharts.com/modules/exporting.js"/>
-
-
+            <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
@@ -95,7 +94,8 @@
                     </div>
 
                     <xsl:call-template name="html_footer"/>
-                    <xsl:call-template name="tabulator-limited_js"/>
+                    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+                    <script src="tabulator-js/tabulator-limited_js"></script>
                 </div>
             </body>
         </html>
