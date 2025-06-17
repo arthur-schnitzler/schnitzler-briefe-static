@@ -138,7 +138,7 @@
                     </div>
                     <xsl:call-template name="html_footer"/>
                     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
-                    <script src="tabulator-js/tabulator-limited_js"></script>
+                    <script src="tabulator-js/tabulator-limited.js"></script>
                 </div>
             </body>
         </html>
