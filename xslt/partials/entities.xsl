@@ -817,8 +817,8 @@
                         maxZoom: 18,
                         zIndex: 1
                         }).addTo(mymap);
-                        <xsl:variable name="laenge" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"/>
-                        <xsl:variable name="breite" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"/>
+                        <xsl:variable name="laenge" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[2], ',', '.')"/>
+                        <xsl:variable name="breite" select="replace(tokenize(descendant::tei:geo[1]/text(), ' ')[1], ',', '.')"/>
                         <xsl:variable name="breiteLaenge" select="concat($breite, ', ', $laenge)"/>
                         <xsl:value-of select="$breiteLaenge"/>
                         var mymap = L.map('mapid').setView([<xsl:value-of select="$breiteLaenge"/>], 14);
@@ -839,20 +839,63 @@
                         </xsl:for-each>
                     </ul>
                 </xsl:if>
+                <xsl:variable name="mentions" select=".//tei:note[@type = 'mentions']"/>
+                <xsl:variable name="mentionCount" select="count($mentions)"/>
+                
                 <div id="mentions" class="mt-2">
                     <span class="infodesc mr-2">
                         <legend>Erwähnungen</legend>
-                        <ul>
-                            <xsl:for-each select=".//tei:note[@type = 'mentions']">
-                                <xsl:sort select="replace(@corresp, '-', '')" order="ascending"
-                                    data-type="number"/>
-                                <xsl:variable name="linkToDocument">
-                                    <xsl:value-of
-                                        select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"
-                                    />
-                                </xsl:variable>
-                                <xsl:choose>
-                                    <xsl:when test="position() lt $showNumberOfMentions + 1">
+                        
+                        <xsl:choose>
+                            <!-- Wenn mehr als 10 Erwähnungen -->
+                            <xsl:when test="$mentionCount > 10">
+                                <div class="accordion" id="mentionsAccordion">
+                                    <!-- Gruppieren nach Jahr -->
+                                    <xsl:for-each-group select="$mentions" group-by="substring(@corresp, 1, 4)">
+                                        <xsl:sort select="current-grouping-key()" data-type="number" order="ascending"/>
+                                        
+                                        <xsl:variable name="year" select="current-grouping-key()"/>
+                                        <xsl:variable name="accordionId" select="concat('accordion-', $year)"/>
+                                        
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="heading-{$year}">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#{$accordionId}" aria-expanded="false" aria-controls="{$accordionId}">
+                                                    <xsl:value-of select="$year"/>
+                                                </button>
+                                            </h2>
+                                            <div id="{$accordionId}" class="accordion-collapse collapse" aria-labelledby="heading-{$year}" data-bs-parent="#mentionsAccordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <xsl:for-each select="current-group()">
+                                                            <xsl:sort select="replace(@corresp, '-', '')" order="ascending" data-type="number"/>
+                                                            <xsl:variable name="linkToDocument">
+                                                                <xsl:value-of select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"/>
+                                                            </xsl:variable>
+                                                            <li>
+                                                                <xsl:value-of select="."/>
+                                                                <xsl:text> </xsl:text>
+                                                                <a href="{$linkToDocument}">
+                                                                    <i class="fas fa-external-link-alt"/>
+                                                                </a>
+                                                            </li>
+                                                        </xsl:for-each>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </xsl:for-each-group>
+                                </div>
+                            </xsl:when>
+                            
+                            <!-- Weniger als oder gleich 10: Standardliste -->
+                            <xsl:otherwise>
+                                <ul>
+                                    <xsl:for-each select="$mentions">
+                                        <xsl:sort select="replace(@corresp, '-', '')" order="ascending" data-type="number"/>
+                                        <xsl:variable name="linkToDocument">
+                                            <xsl:value-of select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"/>
+                                        </xsl:variable>
                                         <li>
                                             <xsl:value-of select="."/>
                                             <xsl:text> </xsl:text>
@@ -860,17 +903,13 @@
                                                 <i class="fas fa-external-link-alt"/>
                                             </a>
                                         </li>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:for-each>
-                        </ul>
-                        <xsl:if
-                            test="count(.//tei:note[@type = 'mentions']) gt $showNumberOfMentions + 1">
-                            <p>Anzahl der Erwähnungen limitiert, klicke <a href="{$selfLink}"
-                                    >hier</a> für eine vollständige Auflistung</p>
-                        </xsl:if>
+                                    </xsl:for-each>
+                                </ul>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </span>
                 </div>
+                
             </div>
         </div>
     </xsl:template>
