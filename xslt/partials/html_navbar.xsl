@@ -74,6 +74,9 @@
                                     <a class="nav-link" href="tocs.html">Korrespondenzen</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="tocs-female-writers.html">Korrespondenzen mit Schriftstellerinnen</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="correspaction.html">Postwege</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">

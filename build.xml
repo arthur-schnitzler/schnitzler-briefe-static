@@ -30,6 +30,10 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
+    <xslt in="${index}" out="${target}/tocs-female-writers.html" style="./xslt/tocs-female-writers.xsl">
+        <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        <classpath location="${basedir}/saxon/saxon9he.jar"/>
+    </xslt>
     <xslt in="./xslt/correspaction.xsl" out="${target}/correspaction.html"
         style="./xslt/correspaction.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
