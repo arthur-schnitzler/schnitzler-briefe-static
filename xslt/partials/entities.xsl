@@ -1113,13 +1113,25 @@
                                                                     order="ascending"/>
                                                                 <xsl:variable name="monthKey"
                                                                     select="current-grouping-key()"/>
-                                                                <xsl:variable name="monthName">
-                                                                    <xsl:value-of
-                                                                        select="format-date(xs:date(concat($monthKey, '-01')), '[MNn] [Y]')"
-                                                                    />
-                                                                </xsl:variable>
                                                                 <h3 class="mt-3">
-                                                                    <xsl:value-of select="mam:germanNames($monthName)"/>
+                                                                    <xsl:variable name="monthNum" select="number(substring(current-grouping-key(), 6, 2))"/>
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="$monthNum = 1">Jänner</xsl:when>
+                                                                        <xsl:when test="$monthNum = 2">Februar</xsl:when>
+                                                                        <xsl:when test="$monthNum = 3">März</xsl:when>
+                                                                        <xsl:when test="$monthNum = 4">April</xsl:when>
+                                                                        <xsl:when test="$monthNum = 5">Mai</xsl:when>
+                                                                        <xsl:when test="$monthNum = 6">Juni</xsl:when>
+                                                                        <xsl:when test="$monthNum = 7">Juli</xsl:when>
+                                                                        <xsl:when test="$monthNum = 8">August</xsl:when>
+                                                                        <xsl:when test="$monthNum = 9">September</xsl:when>
+                                                                        <xsl:when test="$monthNum = 10">Oktober</xsl:when>
+                                                                        <xsl:when test="$monthNum = 11">November</xsl:when>
+                                                                        <xsl:when test="$monthNum = 12">Dezember</xsl:when>
+                                                                        <xsl:otherwise>
+                                                                            <xsl:value-of select="current-grouping-key()"/>
+                                                                        </xsl:otherwise>
+                                                                    </xsl:choose>
                                                                 </h3>
                                                                 <ul class="dashed">
                                                                     <xsl:for-each select="current-group()">
@@ -1212,28 +1224,5 @@
             </xsl:if>
         </div>
     </xsl:template>
-    <xsl:function name="mam:germanNames">
-        <xsl:param name="input"/>
-        <xsl:choose>
-            <xsl:when test="$input = 'Monday'">Montag</xsl:when>
-            <xsl:when test="$input = 'Tuesday'">Dienstag</xsl:when>
-            <xsl:when test="$input = 'Wednesday'">Mittwoch</xsl:when>
-            <xsl:when test="$input = 'Thursday'">Donnerstag</xsl:when>
-            <xsl:when test="$input = 'Friday'">Freitag</xsl:when>
-            <xsl:when test="$input = 'Saturday'">Samstag</xsl:when>
-            <xsl:when test="$input = 'Sunday'">Sonntag</xsl:when>
-            <xsl:when test="$input = 'January'">Januar</xsl:when>
-            <xsl:when test="$input = 'February'">Februar</xsl:when>
-            <xsl:when test="$input = 'March'">März</xsl:when>
-            <xsl:when test="$input = 'May'">Mai</xsl:when>
-            <xsl:when test="$input = 'June'">Juni</xsl:when>
-            <xsl:when test="$input = 'July'">Juli</xsl:when>
-            <xsl:when test="$input = 'October'">Oktober</xsl:when>
-            <xsl:when test="$input = 'December'">Dezember</xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$input"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
 </xsl:stylesheet>
 
