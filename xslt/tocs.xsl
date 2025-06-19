@@ -13,7 +13,7 @@
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Verzeichnis der Korrespondenzen'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html xmlns="http://www.w3.org/1999/xhtml">
+        <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
@@ -110,7 +110,8 @@
             <xsl:variable name="name"
                 select="mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text())"/>
             <xsl:result-document href="{$filename}">
-                <html xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
+                <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
                     <xsl:call-template name="html_head">
                         <xsl:with-param name="html_title" select="$name"/>
                     </xsl:call-template>
@@ -197,7 +198,8 @@
                     document(concat('../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml')) or
                     document(concat('../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.xml'))">
                 <xsl:result-document href="{$filename}">
-                    <html xmlns="http://www.w3.org/1999/xhtml">
+                    <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
+                    <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
                         <xsl:call-template name="html_head">
                             <xsl:with-param name="html_title" select="$corr-name"/>
                         </xsl:call-template>
@@ -363,7 +365,8 @@
             <xsl:variable name="name"
                 select="mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text())"/>
             <xsl:result-document href="{$filename}">
-                <html xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
+                <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
                     <xsl:call-template name="html_head">
                         <xsl:with-param name="html_title" select="$name"/>
                     </xsl:call-template>
