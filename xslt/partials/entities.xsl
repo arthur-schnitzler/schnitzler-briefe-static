@@ -330,8 +330,9 @@
                             />
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of
-                                select="replace(replace(@xml:id, 'person__', ''), 'pmb', '')"/>
+                                <xsl:value-of
+                                    select="concat('pmb', replace(replace(@xml:id, 'person__', ''), 'pmb', ''))"/> 
+                                <!-- etwas redundant, aber sicher ist sicherer -->
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
@@ -1538,7 +1539,7 @@
                         <xsl:variable name="stepWidth" select="(580 - 50) div $totalYears"/>
                         <xsl:for-each select="188 to 193">
                             <xsl:variable name="year" select="(.) * 10"/>
-                            <xsl:variable name="xPos" select="50 + ($year - 1879) * $stepWidth"/>
+                            <xsl:variable name="xPos" select="50 + ($year - $start-year) * $stepWidth"/>
                             <text x="{$xPos}" y="175" font-size="10" text-anchor="middle">
                                 <xsl:value-of select="$year"/>
                             </text>
@@ -1549,7 +1550,7 @@
                             <xsl:variable name="count"
                                 select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year)])"/>
                             <xsl:variable name="barHeight" select="($count * 140) div 30"/>
-                            <xsl:variable name="xPos" select="50 + ($year - 1879) * $stepWidth - 2"/>
+                            <xsl:variable name="xPos" select="50 + ($year - $start-year) * $stepWidth - 2"/>
                             <rect x="{$xPos}" y="{160 - $barHeight}" width="4" height="{$barHeight}"
                                 fill="{$current-colour}">
                                 <title>
