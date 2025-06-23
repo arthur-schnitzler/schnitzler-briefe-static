@@ -34,8 +34,8 @@
                                     <p>Der Anteil von Korrespondenzen Schnitzlers mit
                                         Schriftstellerinnen ist gegenüber den Briefwechseln mit
                                         männlichen Kollegen so gering wie der Anteil an Werken von
-                                        Autorinnen, die er rezipierte, innerhalb seiner gesamten
-                                        Lektüre – aber es gibt sie. Die vorliegende Edition strebt
+                                        Autorinnen innerhalb seiner 
+                                        <ref type="URL" target="https://schnitzler-lektueren.acdh.oeaw.ac.at/listperson.html">Lektüre</ref> – aber es gibt sie. Die vorliegende Edition strebt
                                         eine vollständige Edition aller dazugehörigen
                                         Korrespondenzen an, sofern ein tatsächlicher Austausch
                                         anzunehmen ist. Nicht berücksichtigt wurden bislang zwei
@@ -44,16 +44,16 @@
                                         eingebettet in autobiografische Zeugnisse des Gegenübers
                                         vorliegen: Clara Katharina Pollaczek, die Lebensgefährtin
                                         des letzten Lebensjahrzehnts, nahm die Korrespondenz in ihr
-                                        nachgelassenes Memoirenwerk <ref type="URL"
-                                            target="https://pollaczek.acdh.oeaw.ac.at/">Arthur
-                                            Schnitzler und ich</ref> auf. Die ebenfalls in die Zeit
+                                        nachgelassenes Memoirenwerk <a target="_blank"
+                                            href="https://pollaczek.acdh.oeaw.ac.at/">Arthur
+                                            Schnitzler und ich</a> auf. Die ebenfalls in die Zeit
                                         nach dem 1. Weltkrieg fallende Freundschaft zwischen Hedy
                                         Kempny und Schnitzler wiederum wurde gemeinsam mit
-                                        Tagebucheintragungen von ihr in der Buchedition <hi
-                                            rend="italics">»Das Mädchen mit den dreizehn Seelen«.
+                                        Tagebucheintragungen von ihr in der Buchedition <i
+                                            >»Das Mädchen mit den dreizehn Seelen«.
                                             Eine Korrespondenz ergänzt durch Blätter aus Hedy
                                             Kempnys Tagebuch sowie durch eine Auswahl ihrer
-                                            Erzählungen</hi> (Hg. Heinz P. Adamek, Reinbek 1984)
+                                            Erzählungen</i> (Hg. Heinz P. Adamek, Reinbek 1984)
                                         publiziert.</p>
                                     <p>Marie Ebner-Eschenbach bezeichnet sich selbst als »uralte
                                         Erzählerin«, Lou Andreas-Salomé formuliert für Schnitzler
