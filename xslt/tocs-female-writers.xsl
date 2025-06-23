@@ -31,12 +31,46 @@
                             </div>
                             <div style="display: flex; justify-content: center; width: 100%;">
                                 <div style="max-width: 800px; text-align: left;">
-                                    <p>Die Anzahl der Korrespondenzen, die
-                                        Arthur Schnitzler mit Schriftstellerinnen geführt hat, ist
-                                        überschaubar und sie zeichnen sich meist durch ein starkes
-                                        Hierarchiegefälle aus. Das literarische Werk Schnitzlers
-                                        wird positiv, das der Schreibpartnerin kaum
-                                        thematisiert.</p>
+                                    <p>Der Anteil von Korrespondenzen Schnitzlers mit
+                                        Schriftstellerinnen ist gegenüber den Briefwechseln mit
+                                        männlichen Kollegen so gering wie der Anteil an Werken von
+                                        Autorinnen, die er rezipierte, innerhalb seiner gesamten
+                                        Lektüre – aber es gibt sie. Die vorliegende Edition strebt
+                                        eine vollständige Edition aller dazugehörigen
+                                        Korrespondenzen an, sofern ein tatsächlicher Austausch
+                                        anzunehmen ist. Nicht berücksichtigt wurden bislang zwei
+                                        umfangreichere Korrespondenzen an der Grenzlinie zwischen
+                                        persönlicher und beruflicher Freundschaft, die beide
+                                        eingebettet in autobiografische Zeugnisse des Gegenübers
+                                        vorliegen: Clara Katharina Pollaczek, die Lebensgefährtin
+                                        des letzten Lebensjahrzehnts, nahm die Korrespondenz in ihr
+                                        nachgelassenes Memoirenwerk <ref type="URL"
+                                            target="https://pollaczek.acdh.oeaw.ac.at/">Arthur
+                                            Schnitzler und ich</ref> auf. Die ebenfalls in die Zeit
+                                        nach dem 1. Weltkrieg fallende Freundschaft zwischen Hedy
+                                        Kempny und Schnitzler wiederum wurde gemeinsam mit
+                                        Tagebucheintragungen von ihr in der Buchedition <hi
+                                            rend="italics">»Das Mädchen mit den dreizehn Seelen«.
+                                            Eine Korrespondenz ergänzt durch Blätter aus Hedy
+                                            Kempnys Tagebuch sowie durch eine Auswahl ihrer
+                                            Erzählungen</hi> (Hg. Heinz P. Adamek, Reinbek 1984)
+                                        publiziert.</p>
+                                    <p>Marie Ebner-Eschenbach bezeichnet sich selbst als »uralte
+                                        Erzählerin«, Lou Andreas-Salomé formuliert für Schnitzler
+                                        Überlegungen zum »überspannten Mann«, Auguste Hauschner
+                                        bittet um Verzeihung für einen »Herzensschrei und das Senden
+                                        meines Buches«, bevor sie eine Rezension über <i>Der Weg ins
+                                            Freie</i> verfasst, mit Marie Herzfeld nutzt Schnitzler
+                                        die Gelegenheit des Briefverkehrs, einander »gegenseitig
+                                        schmeichelhafte Dinge zu sagen«. Die Asymmetrie der
+                                        zeitgenössischen Geschlechterrollen, schlägt sich in den
+                                        Korrespondenzen (unterschiedlich stark) nieder und lädt zur
+                                        Untersuchung ein. Das literarische Werk Schnitzlers wird
+                                        deutlich mehr thematisiert als das seiner
+                                        Schreibpartnerinnen. Aber es sind schreibkundige Autorinnen,
+                                        die hier Schnitzler Feedback zu seinen Texten geben.</p>
+                                    <p>In nächster Zeit werden die Korrespondenzen mit Elsa Plessner
+                                        und Berta Zuckerkandl ediert.</p>
                                 </div>
                             </div>
                             <div class="card-body">
