@@ -31,14 +31,12 @@
                             </div>
                             <div style="display: flex; justify-content: center; width: 100%;">
                                 <div style="max-width: 800px; text-align: left;">
-                                    <p>Keine der Korrespondenzen, die Schnitzler mit Schriftstellerinnen
-                                        geführt hat, erreicht die Tiefe eines umfangreicheren
-                                        Austauschs. Vielleicht ist es das gleiche Verhältnis wie
-                                        es sich auf seiner <ref type="URL" target="https://schnitzler-lektueren.acdh.oeaw.ac.at/listperson.html">Leseliste</ref>
-                                        findet, auf der im Schnitt eine Autorin neun Autoren gegebenübersteht. In beiden
-                                        Fällen kann nicht ein ausgeglichenes Verhältnis konstatiert werden, sondern
-                                        überhaupt die Feststellung, dass Schnitzler Schriftstellerinnen
-                                        wahrnahm, sie rezipierte.</p>
+                                    <p>Die Korrespondenzen, die Schnitzler mit Schriftstellerinnen
+                                        geführt hat, sind nicht besonders umfangreich. Auf seiner <ref type="URL" target="https://schnitzler-lektueren.acdh.oeaw.ac.at/listperson.html">Leseliste</ref>
+                                        kommt im Schnitt eine Autorin auf neun männliche Autoren. In beiden
+                                        Fällen kann nicht ein ausgeglichenes Verhältnis konstatiert werden. Es lässt sich
+                                        aber festhalten, dass Schnitzler Schriftstellerinnen
+                                        wahrnahm und sie rezipierte.</p>
                                     <p>Die vorliegende Edition strebt
                                         eine vollständige Edition aller dazugehörigen
                                         Korrespondenzen an, sofern ein tatsächlicher Austausch
@@ -59,7 +57,7 @@
                                             Kempnys Tagebuch sowie durch eine Auswahl ihrer
                                             Erzählungen</i> (Hg. Heinz P. Adamek, Reinbek 1984)
                                         publiziert.</p>
-                                    <p>Marie Ebner-Eschenbach bezeichnet sich selbst als »uralte
+                                    <!--<p>Marie Ebner-Eschenbach bezeichnet sich selbst als »uralte
                                         Erzählerin«, Lou Andreas-Salomé formuliert für Schnitzler
                                         Überlegungen zum »überspannten Mann«, Auguste Hauschner
                                         bittet um Verzeihung für einen »Herzensschrei und das Senden
@@ -72,7 +70,7 @@
                                         Untersuchung ein. Das literarische Werk Schnitzlers wird
                                         deutlich mehr thematisiert als das seiner
                                         Schreibpartnerinnen. Aber es sind schreibkundige Autorinnen,
-                                        die hier Schnitzler Feedback zu seinen Texten geben.</p>
+                                        die hier Schnitzler Feedback zu seinen Texten geben.</p>-->
                                     <p>In nächster Zeit werden die Korrespondenzen mit Elsa Plessner
                                         und Berta Zuckerkandl ediert.</p>
                                 </div>
