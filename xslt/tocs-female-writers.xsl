@@ -31,11 +31,15 @@
                             </div>
                             <div style="display: flex; justify-content: center; width: 100%;">
                                 <div style="max-width: 800px; text-align: left;">
-                                    <p>Der Anteil von Korrespondenzen Schnitzlers mit
-                                        Schriftstellerinnen ist gegenüber den Briefwechseln mit
-                                        männlichen Kollegen so gering wie der Anteil an Werken von
-                                        Autorinnen innerhalb seiner 
-                                        <ref type="URL" target="https://schnitzler-lektueren.acdh.oeaw.ac.at/listperson.html">Lektüre</ref> – aber es gibt sie. Die vorliegende Edition strebt
+                                    <p>Keine der Korrespondenzen, die Schnitzler mit Schriftstellerinnen
+                                        geführt hat, erreicht die Tiefe eines umfangreicheren
+                                        Austauschs. Vielleicht ist es das gleiche Verhältnis wie
+                                        es sich auf seiner <ref type="URL" target="https://schnitzler-lektueren.acdh.oeaw.ac.at/listperson.html">Leseliste</ref>
+                                        findet, auf der im Schnitt eine Autorin neun Autoren gegebenübersteht. In beiden
+                                        Fällen kann nicht ein ausgeglichenes Verhältnis konstatiert werden, sondern
+                                        überhaupt die Feststellung, dass Schnitzler Schriftstellerinnen
+                                        wahrnahm, sie rezipierte.</p>
+                                    <p>Die vorliegende Edition strebt
                                         eine vollständige Edition aller dazugehörigen
                                         Korrespondenzen an, sofern ein tatsächlicher Austausch
                                         anzunehmen ist. Nicht berücksichtigt wurden bislang zwei

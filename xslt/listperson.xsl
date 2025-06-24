@@ -64,6 +64,8 @@
                                                 tabulator-formatter="html">Lebensdaten</th>
                                             <th scope="col" tabulator-headerFilter="input"
                                                 >Berufe</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                >Gender</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -321,6 +323,22 @@
                                                   </xsl:if>
                                                   </xsl:for-each>
                                                   </xsl:if>
+                                                </td>
+                                                <td>
+                                                    <xsl:choose>
+                                                        <xsl:when test="tei:sex/@value = 'female'">
+                                                            <xsl:text>weiblich</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:when test="tei:sex/@value = 'male'">
+                                                            <xsl:text>männlich</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:when test="tei:sex/@value = 'third gender'">
+                                                            <xsl:text>drittes Geschlecht</xsl:text>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <xsl:text>unbekannt</xsl:text>
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
