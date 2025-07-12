@@ -54,9 +54,9 @@
                                         >Korrespondenzverzeichnisse</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
-                                    <a title="Schnitzler am ACDH-CH"
+                                    <a title="Schnitzler am ACDH"
                                         href="https://schnitzler.acdh.oeaw.ac.at" class="nav-link"
-                                        target="_blank">Schnitzler am ACDH-CH</a>
+                                        target="_blank">Schnitzler am ACDH</a>
                                 </li>
                             </ul>
                         </li>
