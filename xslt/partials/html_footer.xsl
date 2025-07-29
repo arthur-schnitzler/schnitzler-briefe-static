@@ -75,7 +75,7 @@
                         </div>
                         <div class="row">
                                 <div class="textwidget custom-html-widget col-md-4">
-                                    <a id="github-logo" title="GitHub" href="{$github_url}"
+                                    <a id="github-logo" title="GitHub" href="https://github.com/arthur-schnitzler/schnitzler-briefe-data/"
                                         class="nav-link" target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32"
                                             height="32" viewBox="0 0 24 24">
