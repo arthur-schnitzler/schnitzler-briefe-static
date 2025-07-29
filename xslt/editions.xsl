@@ -123,6 +123,12 @@
                         > </meta>
                     </xsl:for-each>
                 </xsl:if>
+                <xsl:if test="descendant::tei:back/tei:listEvent/tei:event">
+                    <xsl:for-each select="descendant::tei:back/tei:listEvent/tei:event">
+                        <meta name="Events" class="staticSearch_feat"
+                            content="{./tei:eventName}"> </meta>
+                    </xsl:for-each>
+                </xsl:if>
             </head>
             <body class="page">
                 <div class="hfeed site" id="page">
@@ -576,6 +582,25 @@
                                     </xsl:if>
                                 </div>
                                 <div>
+                                    <xsl:if test=".//tei:back/tei:listEvent/tei:event[1]">
+                                        <legend>Institutionen</legend>
+                                        <ul>
+                                            <xsl:for-each select=".//tei:listEvent//tei:event">
+                                                <xsl:sort select="child::tei:eventName[1]"/>
+                                                <li>
+                                                    <a class="theme-color">
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of
+                                                                select="concat(data(@xml:id), '.html')"/>
+                                                        </xsl:attribute>
+                                                        <xsl:value-of select="./tei:eventName[1]"/>
+                                                    </a>
+                                                </li>
+                                            </xsl:for-each>
+                                        </ul>
+                                    </xsl:if>
+                                </div>
+                                <div>
                                     <xsl:if test=".//tei:back/tei:listPlace/tei:place[1]">
                                         <legend>Orte</legend>
                                         <ul>
@@ -683,7 +708,7 @@
                                             &#160; <annotation-slider opt="wrk"/> &#160; &#160;
                                             &#160; &#160; <annotation-slider opt="plc"/> &#160;
                                             &#160; &#160; &#160; <annotation-slider opt="org"/>
-                                            &#160; &#160; &#160; &#160; </li>
+                                            &#160; &#160; &#160; &#160; <annotation-slider opt="evt"/></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1524,6 +1549,9 @@
                                                 <xsl:when test="$typ = 'org'">
                                                   <xsl:value-of select="$eintrag/tei:orgName[1]"/>
                                                 </xsl:when>
+                                                <xsl:when test="$typ = 'event'">
+                                                    <xsl:value-of select="$eintrag/tei:eventName[1]"/>
+                                                </xsl:when>
                                                 <xsl:when test="$typ = 'person'">
                                                   <xsl:value-of select="$eintrag/tei:persName[1]"/>
                                                 </xsl:when>
@@ -1548,7 +1576,7 @@
     <!-- tei:rs -->
     <!-- erster Fall: alles ganz einfach, keine Verschachtelung, keine note: -->
     <xsl:template
-        match="tei:rs[not(ancestor::tei:note)][not(ancestor::tei:rs) and not(descendant::tei:rs[not(ancestor::tei:note)]) and not(contains(@ref, ' '))] | tei:persName | tei:author | tei:placeName | tei:orgName">
+        match="tei:rs[not(ancestor::tei:note)][not(ancestor::tei:rs) and not(descendant::tei:rs[not(ancestor::tei:note)]) and not(contains(@ref, ' '))] | tei:persName | tei:author | tei:placeName | tei:orgName | tei:eventName">
         <xsl:variable name="entity-typ" as="xs:string">
             <xsl:choose>
                 <xsl:when test="@type = 'person'">
@@ -1562,6 +1590,9 @@
                 </xsl:when>
                 <xsl:when test="@type = 'org'">
                     <xsl:text>orgs</xsl:text>
+                </xsl:when>
+                <xsl:when test="@type = 'event'">
+                    <xsl:text>events</xsl:text>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
@@ -1659,6 +1690,9 @@
                 </xsl:when>
                 <xsl:when test="@type = 'org'">
                     <xsl:text>orgs</xsl:text>
+                </xsl:when>
+                <xsl:when test="@type = 'event'">
+                    <xsl:text>events</xsl:text>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
