@@ -92,13 +92,16 @@
                                     <a class="nav-link" href="listperson.html">Personen</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="listwork.html">Werke</a>
+                                    <a class="nav-link" href="listbibl.html">Werke</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="listplace.html">Orte</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="listorg.html">Institutionen</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="listevent.html">Ereignisse</a>
                                 </li>
                             </ul>
                         </li>
