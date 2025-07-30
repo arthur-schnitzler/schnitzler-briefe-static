@@ -32,7 +32,7 @@
                         <h1>
                             <xsl:text>Verzeichnis der Veranstaltungen</xsl:text>
                         </h1>
-                        <p>Hier wird das »Ereignis« enger gefasst als eine kulturelle Veranstaltung. 
+                        <p class="max-width-600">Hier wird das »Ereignis« enger gefasst als eine kulturelle Veranstaltung. 
                             Mit dem Auszeichnen von Ereignisse wurde erst in der dritten
                         Projektlaufzeit begonnen, so dass diese in den bis dahin publizierten
                         Briefen noch nicht vorhanden sind. Es empfiehlt sich nach bestimmten
@@ -257,7 +257,6 @@
                     </div>
                 </main>
                 <xsl:call-template name="html_footer"/>
-                <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"/>
                 <script src="tabulator-js/tabulator_event.js"/>
             </body>
         </html>
