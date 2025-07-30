@@ -37,8 +37,6 @@
                         Projektlaufzeit begonnen, so dass diese in den bis dahin publizierten
                         Briefen noch nicht vorhanden sind. Es empfiehlt sich nach bestimmten
                         Veranstaltungen auch über die Werke zu suchen, die aufgeführt wurden.</p>
-                        <div class="text-center p-1"><span id="counter1"/> von <span id="counter2"/>
-                            Ereignissen</div>
                         <table class="table table-sm display" id="tabulator-table-event">
                             <thead>
                                 <tr>
