@@ -12,7 +12,7 @@
     <xsl:import href="./partials/tabulator_js.xsl"/>
     <xsl:param name="work-day" select="document('../data/indices/index_work_day.xml')"/>
     <xsl:key name="work-day-lookup" match="item/@when" use="ref"/>
-    <xsl:variable name="teiSource" select="'listwork.xml'"/>
+    <xsl:variable name="teiSource" select="'listbibl.xml'"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Verzeichnis erwähnter Werke'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
