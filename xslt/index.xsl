@@ -146,7 +146,7 @@
                                 </a>
                             </div>
                             <div class="col-md-6 col-lg-6 col-sm-12">
-                                <a href="listwork.html" class="index-link">
+                                <a href="listbibl.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
                                             <img class="d-block w-100"
