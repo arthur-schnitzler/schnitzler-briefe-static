@@ -172,7 +172,7 @@ function applyEventStacking(year) {
       /* Custom event bars container */
       .custom-event-bars {
         position: absolute !important;
-        top: 0 !important;
+        bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
         z-index: 1 !important;
