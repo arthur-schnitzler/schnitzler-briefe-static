@@ -84,7 +84,17 @@
 
                                                 <td>
                                                   <sortdate hidden="true">
-                                                  <xsl:value-of select="tei:date/@when"/>
+                                                      <xsl:choose>
+                                                          <xsl:when test="tei:date/@when">
+                                                              <xsl:value-of select="tei:date/@when"/>
+                                                          </xsl:when>
+                                                          <xsl:when test="tei:date/@from">
+                                                              <xsl:value-of select="tei:date/@from"/>
+                                                          </xsl:when>
+                                                          <xsl:when test="tei:date/@notBefore">
+                                                              <xsl:value-of select="tei:date/@notBefore"/>
+                                                          </xsl:when>
+                                                      </xsl:choose>
                                                   </sortdate>
                                                   <a>
                                                   <xsl:attribute name="href">
@@ -95,9 +105,17 @@
                                                 </td>
                                                 <td>
                                                   <sortdate hidden="true">
-                                                  <xsl:value-of select="tei:date/@when"/>
-                                                  <xsl:value-of select="tei:date/@from"/>
-                                                  <xsl:value-of select="tei:date/@notBefore"/>
+                                                      <xsl:choose>
+                                                          <xsl:when test="tei:date/@when">
+                                                              <xsl:value-of select="tei:date/@when"/>
+                                                          </xsl:when>
+                                                          <xsl:when test="tei:date/@from">
+                                                              <xsl:value-of select="tei:date/@from"/>
+                                                          </xsl:when>
+                                                          <xsl:when test="tei:date/@notBefore">
+                                                              <xsl:value-of select="tei:date/@notBefore"/>
+                                                          </xsl:when>
+                                                      </xsl:choose>
                                                   </sortdate>
                                                   <a>
                                                   <xsl:attribute name="href">
