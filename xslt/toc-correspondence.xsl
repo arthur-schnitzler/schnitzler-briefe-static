@@ -8,6 +8,7 @@
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/tabulator_js.xsl"/>
+    
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Verzeichnis der Korrespondenzen'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
@@ -79,7 +80,11 @@
                                     <tbody>
                                         <xsl:for-each
                                             select="descendant::tei:text[1]/tei:body[1]/tei:list[1]/tei:item">
-                                            <xsl:sort select="tei:date/@when | tei:date/@from | tei:date/@notBefore" data-type="text"/>
+                                            <xsl:sort
+                                                select="tei:date/@when | tei:date/@from | tei:date/@notBefore"
+                                                data-type="text"/>
+                                            <xsl:variable name="schnitzler-als-empfänger" as="xs:boolean" select="matches(., '.* an .*(Arthur|Olga) Schnitzler.*')">
+                                            </xsl:variable>
                                             <tr>
                                                 <td>
                                                   <sortdate hidden="true">
@@ -99,6 +104,12 @@
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat(@corresp, '.html')"/>
                                                   </xsl:attribute>
+                                                  <xsl:if
+                                                  test="$schnitzler-als-empfänger">
+                                                  <xsl:attribute name="class">
+                                                  <xsl:text>sender-color</xsl:text>
+                                                  </xsl:attribute>
+                                                  </xsl:if>
                                                   <xsl:value-of select="tei:title/text()"/>
                                                   </a>
                                                 </td>
@@ -120,6 +131,12 @@
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat(@corresp, '.html')"/>
                                                   </xsl:attribute>
+                                                      <xsl:if
+                                                          test="$schnitzler-als-empfänger">
+                                                          <xsl:attribute name="class">
+                                                              <xsl:text>sender-color</xsl:text>
+                                                          </xsl:attribute>
+                                                      </xsl:if>
                                                   <xsl:choose>
                                                   <xsl:when test="tei:date/@when">
                                                   <xsl:value-of select="tei:date/@when"/>
@@ -139,6 +156,12 @@
                                                 </td>
                                                 <td>
                                                   <a>
+                                                      <xsl:if
+                                                          test="$schnitzler-als-empfänger">
+                                                          <xsl:attribute name="class">
+                                                              <xsl:text>sender-color</xsl:text>
+                                                          </xsl:attribute>
+                                                      </xsl:if>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat(@corresp, '.html')"/>
                                                   </xsl:attribute>

@@ -42,6 +42,8 @@
                                             <xsl:variable name="full_path">
                                                 <xsl:value-of select="document-uri(/)"/>
                                             </xsl:variable>
+                                            <xsl:variable name="schnitzler-als-empfänger" as="xs:boolean" select="matches(descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text(), '.* an .*(Arthur|Olga) Schnitzler.*')">
+                                            </xsl:variable>
                                             <tr>
                                                 <td>
                                                   <sortdate hidden="true">
@@ -55,6 +57,11 @@
                                                   select="replace(tokenize($full_path, '/')[last()], '.xml', '.html')"
                                                   />
                                                   </xsl:attribute>
+                                                      <xsl:if test="$schnitzler-als-empfänger">
+                                                          <xsl:attribute name="class">
+                                                              <xsl:text>sender-color</xsl:text>
+                                                          </xsl:attribute>
+                                                      </xsl:if>
                                                   <xsl:value-of
                                                   select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"
                                                   />
@@ -69,6 +76,11 @@
                                                       select="concat(replace(@target, 'correspondence_', 'toc_'), '.html')"
                                                   />
                                                   </xsl:attribute>
+                                                      <xsl:if test="$schnitzler-als-empfänger">
+                                                          <xsl:attribute name="class">
+                                                              <xsl:text>sender-color</xsl:text>
+                                                          </xsl:attribute>
+                                                      </xsl:if>
                                                   <xsl:value-of select="."/>
                                                   </a>
                                                   <xsl:if test="not(position() = last())">
@@ -77,11 +89,24 @@
                                                   </xsl:for-each>
                                                 </td>
                                                 <td>
+                                                    <span>
+                                                    <xsl:if test="$schnitzler-als-empfänger">
+                                                        <xsl:attribute name="class">
+                                                            <xsl:text>sender-color</xsl:text>
+                                                        </xsl:attribute>
+                                                    </xsl:if>
                                                   <xsl:value-of
                                                   select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()"
                                                   />
+                                                    </span>
                                                 </td>
                                                 <td>
+                                                    <span>
+                                                        <xsl:if test="$schnitzler-als-empfänger">
+                                                            <xsl:attribute name="class">
+                                                                <xsl:text>sender-color</xsl:text>
+                                                            </xsl:attribute>
+                                                        </xsl:if>
                                                   <xsl:variable name="sortentyp"
                                                   select="child::tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[1]/tei:objectType[1]"
                                                   as="node()?"/>
@@ -158,10 +183,17 @@
                                                         
                                                     </xsl:choose>
                                                   
-                                                    
+                                                    </span>
                                                 </td>
                                                 <td>
+                                                    <span>
+                                                        <xsl:if test="$schnitzler-als-empfänger">
+                                                            <xsl:attribute name="class">
+                                                                <xsl:text>sender-color</xsl:text>
+                                                            </xsl:attribute>
+                                                        </xsl:if>
                                                     <xsl:value-of select="@xml:id"/>
+                                                    </span>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>

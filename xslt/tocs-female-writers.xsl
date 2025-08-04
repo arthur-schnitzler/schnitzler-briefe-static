@@ -9,7 +9,6 @@
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/tabulator_js.xsl"/>
-    <xsl:param name="female-writers-color" select="'#1C6E8C'"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title"
             select="'Verzeichnis der Korrespondenzen mit Schriftstellerinnen'"/>
@@ -26,7 +25,7 @@
                     <xsl:call-template name="nav_bar"/>
                     <div class="container">
                         <div class="card">
-                            <div class="card-header" style="color: {$female-writers-color}">
+                            <div class="card-header sender-color">
                                 <h1>Verzeichnis der Korrespondenzen mit Schriftstellerinnen</h1>
                             </div>
                             <div style="display: flex; justify-content: center; width: 100%;">
@@ -107,9 +106,8 @@
                                                   select="concat(replace(@xml:id, 'correspondence', 'toc'), '.html')"
                                                   />
                                                   </xsl:attribute>
-                                                  <xsl:attribute name="style">
-                                                  <xsl:text>color: </xsl:text>
-                                                  <xsl:value-of select="$female-writers-color"/>
+                                                  <xsl:attribute name="class">
+                                                  <xsl:text>sender-color</xsl:text>
                                                   </xsl:attribute>
                                                   <xsl:value-of
                                                   select="tei:persName[@role = 'main']/text()"/>
