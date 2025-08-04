@@ -167,10 +167,6 @@ function applyEventStacking(year) {
       .calendar .day-content {
         position: relative !important;
         z-index: 10 !important;
-        background-color: rgba(255, 255, 255, 0.8) !important;
-        border-radius: 2px !important;
-        padding: 1px 2px !important;
-        display: inline-block !important;
       }
       
       /* Custom event bars container */
