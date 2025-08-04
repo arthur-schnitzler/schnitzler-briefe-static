@@ -19,7 +19,9 @@
             <script src="https://code.highcharts.com/highcharts-more.js"/>
             <script src="https://code.highcharts.com/modules/data.js"/>
             <script src="https://code.highcharts.com/modules/exporting.js"/>
-            <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
+            <link
+                href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css"
+                rel="stylesheet"/>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
@@ -27,7 +29,6 @@
                         select="replace(substring-after(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]/tei:idno[@type = 'URI'][1], 'https://id.acdh.oeaw.ac.at/schnitzler-briefe/tocs/toc_'), '.xml', '')"/>
                     <xsl:variable name="csvFilename"
                         select="concat('statistik_pmb', $korrespondenznummer, '.csv')"/>
-
                     <script src="./js/tocs-statistics.js"/>
                     <script>
     function getTitle() {
@@ -63,12 +64,10 @@
                                     <a href="{concat('karte_pmb', $korrespondenznummer, '.html')}"
                                         >Karten</a>
                                 </p>
-
                                 <table class="table-light table-striped display"
                                     id="tabulator-table-limited" style="width:100%">
                                     <thead>
                                         <tr>
-
                                             <th scope="col" tabulator-headerFilter="input"
                                                 tabulator-formatter="html">Titel</th>
                                             <th scope="col" tabulator-headerFilter="input"
@@ -80,21 +79,21 @@
                                     <tbody>
                                         <xsl:for-each
                                             select="descendant::tei:text[1]/tei:body[1]/tei:list[1]/tei:item">
+                                            <xsl:sort select="tei:date/@when | tei:date/@from | tei:date/@notBefore" data-type="text"/>
                                             <tr>
-
                                                 <td>
                                                   <sortdate hidden="true">
-                                                      <xsl:choose>
-                                                          <xsl:when test="tei:date/@when">
-                                                              <xsl:value-of select="tei:date/@when"/>
-                                                          </xsl:when>
-                                                          <xsl:when test="tei:date/@from">
-                                                              <xsl:value-of select="tei:date/@from"/>
-                                                          </xsl:when>
-                                                          <xsl:when test="tei:date/@notBefore">
-                                                              <xsl:value-of select="tei:date/@notBefore"/>
-                                                          </xsl:when>
-                                                      </xsl:choose>
+                                                  <xsl:choose>
+                                                  <xsl:when test="tei:date/@when">
+                                                  <xsl:value-of select="tei:date/@when"/>
+                                                  </xsl:when>
+                                                  <xsl:when test="tei:date/@from">
+                                                  <xsl:value-of select="tei:date/@from"/>
+                                                  </xsl:when>
+                                                  <xsl:when test="tei:date/@notBefore">
+                                                  <xsl:value-of select="tei:date/@notBefore"/>
+                                                  </xsl:when>
+                                                  </xsl:choose>
                                                   </sortdate>
                                                   <a>
                                                   <xsl:attribute name="href">
@@ -105,17 +104,17 @@
                                                 </td>
                                                 <td>
                                                   <sortdate hidden="true">
-                                                      <xsl:choose>
-                                                          <xsl:when test="tei:date/@when">
-                                                              <xsl:value-of select="tei:date/@when"/>
-                                                          </xsl:when>
-                                                          <xsl:when test="tei:date/@from">
-                                                              <xsl:value-of select="tei:date/@from"/>
-                                                          </xsl:when>
-                                                          <xsl:when test="tei:date/@notBefore">
-                                                              <xsl:value-of select="tei:date/@notBefore"/>
-                                                          </xsl:when>
-                                                      </xsl:choose>
+                                                  <xsl:choose>
+                                                  <xsl:when test="tei:date/@when">
+                                                  <xsl:value-of select="tei:date/@when"/>
+                                                  </xsl:when>
+                                                  <xsl:when test="tei:date/@from">
+                                                  <xsl:value-of select="tei:date/@from"/>
+                                                  </xsl:when>
+                                                  <xsl:when test="tei:date/@notBefore">
+                                                  <xsl:value-of select="tei:date/@notBefore"/>
+                                                  </xsl:when>
+                                                  </xsl:choose>
                                                   </sortdate>
                                                   <a>
                                                   <xsl:attribute name="href">
@@ -155,12 +154,11 @@
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
-                    <script src="tabulator-js/tabulator-limited.js"></script>
+                    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"/>
+                    <script src="tabulator-js/tabulator-limited.js"/>
                 </div>
             </body>
         </html>
-
     </xsl:template>
     <xsl:template match="tei:div//tei:head">
         <h2 id="{generate-id()}">
@@ -197,5 +195,4 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-
 </xsl:stylesheet>
