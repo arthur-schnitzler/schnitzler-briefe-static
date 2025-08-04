@@ -163,13 +163,23 @@ function applyEventStacking(year) {
         min-height: 30px !important;
       }
       
+      /* Ensure day content appears above event bars */
+      .calendar .day-content {
+        position: relative !important;
+        z-index: 10 !important;
+        background-color: rgba(255, 255, 255, 0.8) !important;
+        border-radius: 2px !important;
+        padding: 1px 2px !important;
+        display: inline-block !important;
+      }
+      
       /* Custom event bars container */
       .custom-event-bars {
         position: absolute !important;
-        bottom: 0 !important;
+        top: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        z-index: 5 !important;
+        z-index: 1 !important;
         display: flex !important;
         flex-direction: column !important;
         gap: 0 !important;
