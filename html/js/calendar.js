@@ -374,36 +374,55 @@ function applyEventStacking(year) {
         const barsContainer = document.createElement('div');
         barsContainer.className = 'custom-event-bars';
         
-        // Add click handler to the entire day cell for event navigation
-        dayEl.addEventListener('click', function(e) {
+        // Remove any existing click handlers from js-year-calendar and add our own
+        const removeExistingHandlers = (element) => {
+          const newElement = element.cloneNode(true);
+          element.parentNode.replaceChild(newElement, element);
+          return newElement;
+        };
+        
+        // Clean the day element from existing handlers
+        const cleanDayEl = removeExistingHandlers(dayEl);
+        const cleanDayContentEl = cleanDayEl.querySelector('.day-content');
+        
+        // Add our click handler with high priority (capture phase)
+        cleanDayEl.addEventListener('click', function(e) {
           console.log('Day clicked, events:', eventsForDay.length); // Debug
+          
+          // Stop all propagation immediately
+          e.stopImmediatePropagation();
+          e.preventDefault();
+          
           if (eventsForDay.length === 1) {
             // Single event - navigate directly
-            window.location = eventsForDay[0].linkId;
+            console.log('Navigating to single event:', eventsForDay[0].linkId);
+            window.location.href = eventsForDay[0].linkId;
           } else if (eventsForDay.length > 1) {
             // Multiple events - show custom popup
             console.log('Showing popup for events:', eventsForDay); // Debug
             showEventPopup(eventsForDay, eventsForDay[0].startDate);
           }
-          e.preventDefault();
-          e.stopPropagation();
-        });
+          
+          return false;
+        }, true); // Use capture phase to get priority
         
-        // Also add click handler to the day-content div to ensure it captures clicks
-        if (dayContentEl) {
-          dayContentEl.addEventListener('click', function(e) {
+        // Also handle clicks on day-content and event bars
+        if (cleanDayContentEl) {
+          cleanDayContentEl.addEventListener('click', function(e) {
             console.log('Day content clicked, events:', eventsForDay.length); // Debug
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            
             if (eventsForDay.length === 1) {
-              // Single event - navigate directly
-              window.location = eventsForDay[0].linkId;
+              console.log('Navigating to single event from content:', eventsForDay[0].linkId);
+              window.location.href = eventsForDay[0].linkId;
             } else if (eventsForDay.length > 1) {
-              // Multiple events - show custom popup
               console.log('Showing popup for events from day-content:', eventsForDay); // Debug
               showEventPopup(eventsForDay, eventsForDay[0].startDate);
             }
-            e.preventDefault();
-            e.stopPropagation();
-          });
+            
+            return false;
+          }, true);
         }
         
         // Create individual bars for each event - each gets its own full-width bar
@@ -420,11 +439,11 @@ function applyEventStacking(year) {
           }
         });
         
-        dayEl.appendChild(barsContainer);
+        cleanDayEl.appendChild(barsContainer);
         
         // Add indicator for more than 10 events
         if (eventsForDay.length > 10) {
-          const existingIndicator = dayEl.querySelector('.more-events-indicator');
+          const existingIndicator = cleanDayEl.querySelector('.more-events-indicator');
           if (existingIndicator) {
             existingIndicator.remove();
           }
@@ -433,7 +452,7 @@ function applyEventStacking(year) {
           indicator.className = 'more-events-indicator';
           indicator.textContent = `+${eventsForDay.length - 10}`;
           indicator.title = `${eventsForDay.length} Briefe insgesamt`;
-          dayEl.appendChild(indicator);
+          cleanDayEl.appendChild(indicator);
         }
       }
     });
@@ -498,15 +517,34 @@ function createEventPopup() {
   popup.id = 'eventPopup';
   popup.className = 'event-popup';
   popup.innerHTML = `
-    <div class="popup-backdrop" onclick="closeEventPopup()"></div>
-    <div class="popup-content" onclick="event.stopPropagation();">
+    <div class="popup-backdrop"></div>
+    <div class="popup-content">
       <div class="popup-header">
         <h3 class="popup-date"></h3>
-        <button class="popup-close" onclick="closeEventPopup()">&times;</button>
+        <button class="popup-close">&times;</button>
       </div>
       <div class="event-list"></div>
     </div>
   `;
+  
+  // Add event listeners programmatically to have better control
+  popup.querySelector('.popup-backdrop').addEventListener('click', function(e) {
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    closeEventPopup();
+    return false;
+  });
+  
+  popup.querySelector('.popup-close').addEventListener('click', function(e) {
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    closeEventPopup();
+    return false;
+  });
+  
+  popup.querySelector('.popup-content').addEventListener('click', function(e) {
+    e.stopPropagation(); // Don't close popup when clicking inside content
+  });
   
   document.body.appendChild(popup);
   return popup;
