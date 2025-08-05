@@ -9,7 +9,7 @@ This repository contains a static website generator for Arthur Schnitzler's corr
 ## Build Commands
 
 ### Main Build Process
-- `./transform.sh` - Main build script that runs the complete transformation pipeline
+- `./transform.sh` - Main build script that runs the complete transformation pipeline with SEO optimization
 - `ant` - Execute the XSLT transformations using the build.xml configuration
 
 ### Data Fetching
@@ -20,6 +20,11 @@ This repository contains a static website generator for Arthur Schnitzler's corr
 - `python add_mentions.py` - Process entity mentions and cross-references  
 - `python make_calendar_data.py` - Generate calendar/chronological data
 - `python make_typesense_index.py` - Build full-text search index
+- `python generate_sitemap.py` - Generate XML sitemap and robots.txt for SEO
+- `python generate_seo_metadata.py` - Generate SEO statistics and metadata
+- `python seo_build.py` - Final SEO validation and optimization
+- `python optimized_processing.py` - Memory-optimized processing for large datasets
+- `python error_handler.py` - Advanced error handling and logging system
 
 ## Architecture
 
