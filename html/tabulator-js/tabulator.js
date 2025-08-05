@@ -3,6 +3,17 @@
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
+            layout:"fitDataStretch",  //stretch columns to fit full width
+            autoColumns:true,         //auto generate columns from HTML table structure
+            autoColumnsDefinitions:function(definitions){
+                //auto columns returns columns with basic titles and field names
+                //this callback allows you to edit each column definition before they are used
+                definitions.forEach(function(column){
+                    column.formatter = "html";  //set formatter to html for all columns
+                    column.headerFilter = "input"; //add header filters
+                });
+                return definitions;
+            },
             langs:{
             "de-de":{ //German language definition
             "pagination":{

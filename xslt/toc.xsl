@@ -18,7 +18,7 @@
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <div class="container-fluid">
+                    <div class="container-fluid" style="max-width: none;">
                         <div class="card">
                             <div class="card-header">
                                 <h1>Alle Briefe</h1>
@@ -32,10 +32,12 @@
                                                 tabulator-formatter="html">Titel</th>
                                             <th scope="col" tabulator-headerFilter="input"
                                                 tabulator-formatter="html">Briefwechsel</th>
-                                            <th scope="col" tabulator-headerFilter="input">Datum
-                                                (ISO)</th>
-                                            <th scope="col" tabulator-headerFilter="input">Art</th>
-                                            <th scope="col" tabulator-headerFilter="input">ID</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Datum (ISO)</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Art</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">ID</th>
                                         </tr>
                                     </thead>
                                     <tbody>
