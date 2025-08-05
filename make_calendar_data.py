@@ -24,6 +24,19 @@ for x in tqdm(files, total=len(files)):
     try:
         item["tageszaehler"] = doc.any_xpath('//tei:title[@type="iso-date"]/@n')[0]
         item["id"] = tail.replace(".xml", ".html")
+        
+        # Determine letter category using the same XPATH logic as XSLT
+        # Check if Schnitzler is sender (pmb2121 is Schnitzler's ID)
+        is_schnitzler_sender = doc.any_xpath('//tei:correspAction[@type="sent"]//tei:persName[@ref="#pmb2121"]')
+        is_schnitzler_receiver = doc.any_xpath('//tei:correspAction[@type="received"]//tei:persName[@ref="#pmb2121"]')
+        
+        if is_schnitzler_sender:
+            item["category"] = "as-sender"  # FROM Schnitzler
+        elif is_schnitzler_receiver:
+            item["category"] = "as-empf"    # TO Schnitzler
+        else:
+            item["category"] = "umfeld"     # Third party correspondence
+        
         data.append(item)
     except IndexError:
         continue

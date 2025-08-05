@@ -42,7 +42,7 @@
                                                 <th scope="col" tabulator-headerFilter="input"
                                                   tabulator-formatter="html">Korrespondenz</th>
                                                 <th scope="col" tabulator-headerFilter="input"
-                                                  tabulator-formatter="html">enthält</th>
+                                                  tabulator-formatter="html">Enthält</th>
                                                 <th scope="col">Anzahl</th>
                                             </tr>
                                         </thead>

@@ -47,14 +47,14 @@
                                             </xsl:variable>
                                             <xsl:variable name="schnitzler-als-empfänger">
                                                 <xsl:choose>
-                                                    <xsl:when test="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = '#pmb2121']">
+                                                    <xsl:when test="descendant::tei:correspAction[@type = 'sent']//tei:persName[@ref = '#pmb2121']">
                                                         <xsl:text>as-sender</xsl:text>
                                                     </xsl:when>
                                                     <xsl:when
-                                                        test="not(child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = '#pmb2121'][1]) and not(child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'received'][1]/tei:persName[@ref = '#pmb2121'][1])">  
-                                                        <xsl:text>umfeld</xsl:text>  </xsl:when>
+                                                        test="descendant::tei:correspAction[@type = 'received']//tei:persName[@ref = '#pmb2121']">  
+                                                        <xsl:text>as-empf</xsl:text>  </xsl:when>
                                                     <xsl:otherwise>  
-                                                        <xsl:text>as-empf</xsl:text> 
+                                                        <xsl:text>umfeld</xsl:text> 
                                                     </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:variable>
