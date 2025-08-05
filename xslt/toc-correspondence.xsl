@@ -83,8 +83,6 @@
                                             <xsl:sort
                                                 select="tei:date/@when | tei:date/@from | tei:date/@notBefore"
                                                 data-type="text"/>
-                                            <xsl:variable name="schnitzler-als-empfänger" as="xs:boolean" select="matches(., '.* an .*(Arthur|Olga) Schnitzler.*')">
-                                            </xsl:variable>
                                             <tr>
                                                 <td>
                                                   <sortdate hidden="true">
@@ -104,12 +102,19 @@
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat(@corresp, '.html')"/>
                                                   </xsl:attribute>
-                                                  <xsl:if
-                                                  test="$schnitzler-als-empfänger">
-                                                  <xsl:attribute name="class">
-                                                  <xsl:text>sender-color</xsl:text>
-                                                  </xsl:attribute>
-                                                  </xsl:if>
+                                                      <xsl:attribute name="class">
+                                                          <xsl:choose>
+                                                              <xsl:when test="@ana = 'as-empf'">
+                                                                  <xsl:text>sender-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:when test="@ana = 'umfeld'">
+                                                                  <xsl:text>umfeld-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                                  <xsl:text>theme-color</xsl:text>
+                                                              </xsl:otherwise>
+                                                          </xsl:choose>
+                                                      </xsl:attribute>
                                                   <xsl:value-of select="tei:title/text()"/>
                                                   </a>
                                                 </td>
@@ -131,12 +136,19 @@
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat(@corresp, '.html')"/>
                                                   </xsl:attribute>
-                                                      <xsl:if
-                                                          test="$schnitzler-als-empfänger">
-                                                          <xsl:attribute name="class">
-                                                              <xsl:text>sender-color</xsl:text>
-                                                          </xsl:attribute>
-                                                      </xsl:if>
+                                                      <xsl:attribute name="class">
+                                                          <xsl:choose>
+                                                              <xsl:when test="@ana = 'as-empf'">
+                                                                  <xsl:text>sender-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:when test="@ana = 'umfeld'">
+                                                                  <xsl:text>umfeld-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                                  <xsl:text>theme-color</xsl:text>
+                                                              </xsl:otherwise>
+                                                          </xsl:choose>
+                                                      </xsl:attribute>
                                                   <xsl:choose>
                                                   <xsl:when test="tei:date/@when">
                                                   <xsl:value-of select="tei:date/@when"/>
@@ -156,12 +168,19 @@
                                                 </td>
                                                 <td>
                                                   <a>
-                                                      <xsl:if
-                                                          test="$schnitzler-als-empfänger">
-                                                          <xsl:attribute name="class">
-                                                              <xsl:text>sender-color</xsl:text>
-                                                          </xsl:attribute>
-                                                      </xsl:if>
+                                                      <xsl:attribute name="class">
+                                                          <xsl:choose>
+                                                              <xsl:when test="@ana = 'as-empf'">
+                                                                  <xsl:text>sender-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:when test="@ana = 'umfeld'">
+                                                                  <xsl:text>umfeld-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                                  <xsl:text>theme-color</xsl:text>
+                                                              </xsl:otherwise>
+                                                          </xsl:choose>
+                                                      </xsl:attribute>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of select="concat(@corresp, '.html')"/>
                                                   </xsl:attribute>
