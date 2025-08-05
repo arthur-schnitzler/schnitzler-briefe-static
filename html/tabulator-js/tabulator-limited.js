@@ -15,6 +15,15 @@ var table = new Tabulator("#tabulator-table-limited", {
                     column.formatter = "html";  //set formatter to html for all columns
                     column.headerFilter = "input"; //add header filters
                     
+                    // Ensure correct capitalization of headers
+                    if (column.title === "korrespondenz") {
+                        column.title = "Korrespondenz";
+                    } else if (column.title === "enthält" || column.title === "Enthält") {
+                        column.title = "enthält";
+                    } else if (column.title === "anzahl") {
+                        column.title = "Anzahl";
+                    }
+                    
                     // Hide the first column if it's a counter/id column
                     if (index === 0 && (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
                         column.visible = false;

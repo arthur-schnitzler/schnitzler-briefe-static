@@ -4,13 +4,16 @@ var table = new Tabulator("#tabulator-table-archives", {
             paginationCounter: "rows", // display count of paginated rows in footer
             movableColumns: true,
             layout:"fitColumns",
-            columns: [
-            { title: "Datum", field: "datum", sorter: "string" },
-            { title: "Titel", sorter: "string" },
-            { title: "Institution", sorter: "string" },
-            { title: "Ort", sorter: "string" },
-            { title: "Land", sorter: "string" }
-            ],
+            autoColumns:true,         //auto generate columns from HTML table structure
+            autoColumnsDefinitions:function(definitions){
+                //auto columns returns columns with basic titles and field names
+                //this callback allows you to edit each column definition before they are used
+                definitions.forEach(function(column){
+                    column.formatter = "html";  //set formatter to html for all columns
+                    column.headerFilter = "input"; //add header filters
+                });
+                return definitions;
+            },
             initialSort: [
             { column: "datum", dir: "asc" }
             ],
