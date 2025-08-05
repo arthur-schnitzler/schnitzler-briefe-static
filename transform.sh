@@ -14,5 +14,16 @@ python make_typesense_index.py
 
 python oai-pmh/make_files.py
 
+echo "generate SEO metadata and analysis"
+python generate_seo_metadata.py
+
 echo "create app"
 ant
+
+echo "generate sitemap and robots.txt"
+python generate_sitemap.py
+
+echo "running final SEO build and validation"
+python seo_build.py
+
+echo "SEO optimization completed - all files generated and validated"

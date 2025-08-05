@@ -22,6 +22,18 @@
         <meta name="mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-title" content="{$html_title1}"/>
+        
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition mit über 3000 Briefen, herausgegeben von Martin Anton Müller."/>
+        <meta name="keywords" content="Arthur Schnitzler, Briefwechsel, Korrespondenz, Literatur, Wien, Fin de Siècle, Jung Wien, digitale Edition, Briefe"/>
+        <meta name="author" content="Martin Anton Müller, Gerd Hermann Susen, Laura Untner, Selma Jahnke"/>
+        <meta name="publisher" content="Austrian Centre for Digital Humanities and Cultural Heritage"/>
+        <meta name="robots" content="index, follow"/>
+        <meta name="language" content="de"/>
+        <meta name="revisit-after" content="7 days"/>
+        
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://schnitzler-briefe.acdh.oeaw.ac.at/{if ($html_title1 = 'schnitzler-briefe') then '' else concat(replace($html_title1, ' ', '-'), '.html')}"/>
         <meta name="msapplication-TileColor" content="#ffffff"/>
         <meta name="msapplication-TileImage" content="{$project_logo}"/>
         <link rel="icon" type="image/svg+xml" href="{$project_logo}" sizes="any"/>
