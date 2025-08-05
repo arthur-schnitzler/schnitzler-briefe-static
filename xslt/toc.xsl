@@ -18,14 +18,15 @@
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <div class="container-fluid" style="max-width: none;">
+                    <div class="container-fluid">
                         <div class="card">
                             <div class="card-header">
                                 <h1>Alle Briefe</h1>
                             </div>
-                            <div class="card-body">
-                                <table class="table table-sm display" id="tabulator-table"
-                                    style="width:100%">
+                            <div class="card-body" style="overflow-x: auto;">
+                                <div style="display: flex; justify-content: center;">
+                                    <table class="table table-sm display" id="tabulator-table"
+                                        style="width: auto; min-width: 100%;">
                                     <thead>
                                         <tr>
                                             <th scope="col" tabulator-headerFilter="input"
@@ -263,6 +264,7 @@
                                         </xsl:for-each>
                                     </tbody>
                                 </table>
+                                </div>
                                 <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>

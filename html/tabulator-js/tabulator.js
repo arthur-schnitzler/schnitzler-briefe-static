@@ -3,7 +3,7 @@
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
-            layout:"fitDataStretch",  //stretch columns to fit full width
+            layout:"fitColumns",  //fit columns to content, allow table to be narrower
             autoColumns:true,         //auto generate columns from HTML table structure
             autoColumnsDefinitions:function(definitions){
                 //auto columns returns columns with basic titles and field names
