@@ -252,13 +252,16 @@
             paginationCounter: "rows", // display count of paginated rows in footer
             movableColumns: true,
             layout:"fitColumns",
-            columns: [
-            { title: "Datum", field: "datum", sorter: "string" },
-            { title: "Titel", sorter: "string" },
-            { title: "Institution", sorter: "string" },
-            { title: "Ort", sorter: "string" },
-            { title: "Land", sorter: "string" }
-            ],
+            autoColumns:true,         //auto generate columns from HTML table structure
+            autoColumnsDefinitions:function(definitions){
+                //auto columns returns columns with basic titles and field names
+                //this callback allows you to edit each column definition before they are used
+                definitions.forEach(function(column){
+                    column.formatter = "html";  //set formatter to html for all columns
+                    column.headerFilter = "input"; //add header filters
+                });
+                return definitions;
+            },
             initialSort: [
             { column: "datum", dir: "asc" }
             ],
@@ -289,14 +292,14 @@
             
             table.on("dataLoaded", function (data) {
             var el = document.getElementById("counter1");
-            el.innerHTML = `${data.length}`;
-            var el = document.getElementById("counter2");
-            el.innerHTML = `${data.length}`;
+            if(el) el.innerHTML = `${data.length}`;
+            var el2 = document.getElementById("counter2");
+            if(el2) el2.innerHTML = `${data.length}`;
             });
             
             table.on("dataFiltered", function (filters, data) {
             var el = document.getElementById("counter1");
-            el.innerHTML = `${data.length}`;
+            if(el) el.innerHTML = `${data.length}`;
             }); 
         </script>
         
@@ -313,6 +316,16 @@
             paginationCounter: "rows", // display count of paginated rows in footer
             movableColumns: true,
             layout:"fitColumns",
+            autoColumns:true,         //auto generate columns from HTML table structure
+            autoColumnsDefinitions:function(definitions){
+                //auto columns returns columns with basic titles and field names
+                //this callback allows you to edit each column definition before they are used
+                definitions.forEach(function(column){
+                    column.formatter = "html";  //set formatter to html for all columns
+                    column.headerFilter = "input"; //add header filters
+                });
+                return definitions;
+            },
             initialSort: [
             { column: "sendedatum", dir: "asc" }
             ],
@@ -343,14 +356,14 @@
             
             table.on("dataLoaded", function (data) {
             var el = document.getElementById("counter1");
-            el.innerHTML = `${data.length}`;
-            var el = document.getElementById("counter2");
-            el.innerHTML = `${data.length}`;
+            if(el) el.innerHTML = `${data.length}`;
+            var el2 = document.getElementById("counter2");
+            if(el2) el2.innerHTML = `${data.length}`;
             });
             
             table.on("dataFiltered", function (filters, data) {
             var el = document.getElementById("counter1");
-            el.innerHTML = `${data.length}`;
+            if(el) el.innerHTML = `${data.length}`;
             }); 
         </script>
         
