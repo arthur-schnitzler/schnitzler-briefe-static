@@ -56,6 +56,19 @@
                                             <xsl:variable name="full_path">
                                                 <xsl:value-of select="document-uri(/)"/>
                                             </xsl:variable>
+                                            <xsl:variable name="schnitzler-als-empfänger">
+                                                <xsl:choose>
+                                                    <xsl:when test="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = '#pmb2121']">
+                                                        <xsl:text>as-sender</xsl:text>
+                                                    </xsl:when>
+                                                    <xsl:when
+                                                        test="not(child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = '#pmb2121'][1]) and not(child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'received'][1]/tei:persName[@ref = '#pmb2121'][1])"> 
+                                                        <xsl:text>umfeld</xsl:text> </xsl:when>
+                                                    <xsl:otherwise> 
+                                                        <xsl:text>as-empf</xsl:text>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:variable>
                                             <tr>
                                                 <td>
                                                   <span hidden="true">
@@ -63,6 +76,7 @@
                                                           select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"
                                                       />
                                                   </span>
+                                                  <span data-schnitzler-role="{$schnitzler-als-empfänger}" style="display:none;"></span>
                                                   <a>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of

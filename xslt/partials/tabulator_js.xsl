@@ -256,11 +256,51 @@
             autoColumnsDefinitions:function(definitions){
                 //auto columns returns columns with basic titles and field names
                 //this callback allows you to edit each column definition before they are used
-                definitions.forEach(function(column){
+                definitions.forEach(function(column, index){
                     column.formatter = "html";  //set formatter to html for all columns
                     column.headerFilter = "input"; //add header filters
+                    
+                    // Fix header capitalization for archives table
+                    if (column.title === "datum") {
+                        column.title = "Datum";
+                    } else if (column.title === "titel") {
+                        column.title = "Titel";
+                    } else if (column.title === "institution") {
+                        column.title = "Institution";
+                    } else if (column.title === "ort") {
+                        column.title = "Ort";
+                    } else if (column.title === "land") {
+                        column.title = "Land";
+                    }
+                    
+                    // Hide the first column if it's an id column
+                    if (index === 0 &amp;&amp; (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
+                        column.visible = false;
+                    }
                 });
                 return definitions;
+            },
+            rowFormatter:function(row){
+                var rowData = row.getData();
+                var rowElement = row.getElement();
+                
+                // Extract schnitzler role from hidden span or data attribute
+                var schnitzlerRole = "";
+                var cells = rowElement.querySelectorAll("td");
+                cells.forEach(function(cell) {
+                    var hiddenSpan = cell.querySelector("span[data-schnitzler-role]");
+                    if (hiddenSpan) {
+                        schnitzlerRole = hiddenSpan.getAttribute("data-schnitzler-role");
+                    }
+                });
+                
+                // Apply row coloring based on schnitzler role
+                if (schnitzlerRole === "as-empf") {
+                    rowElement.classList.add("sender-color");
+                } else if (schnitzlerRole === "umfeld") {
+                    rowElement.classList.add("umfeld-color");
+                }
+                // as-sender gets no special class (default styling)
             },
             initialSort: [
             { column: "datum", dir: "asc" }
@@ -320,11 +360,53 @@
             autoColumnsDefinitions:function(definitions){
                 //auto columns returns columns with basic titles and field names
                 //this callback allows you to edit each column definition before they are used
-                definitions.forEach(function(column){
+                definitions.forEach(function(column, index){
                     column.formatter = "html";  //set formatter to html for all columns
                     column.headerFilter = "input"; //add header filters
+                    
+                    // Fix header capitalization for correspaction table
+                    if (column.title === "titel") {
+                        column.title = "Titel";
+                    } else if (column.title === "sendedatum") {
+                        column.title = "Sendedatum";
+                    } else if (column.title === "sendeort") {
+                        column.title = "Sendeort";
+                    } else if (column.title === "weitere stationen") {
+                        column.title = "weitere Stationen";
+                    } else if (column.title === "empfangsdatum") {
+                        column.title = "Empfangsdatum";
+                    } else if (column.title === "empfangsort") {
+                        column.title = "Empfangsort";
+                    }
+                    
+                    // Hide the first column if it's an id column
+                    if (index === 0 &amp;&amp; (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
+                        column.visible = false;
+                    }
                 });
                 return definitions;
+            },
+            rowFormatter:function(row){
+                var rowData = row.getData();
+                var rowElement = row.getElement();
+                
+                // Extract schnitzler role from hidden span or data attribute
+                var schnitzlerRole = "";
+                var cells = rowElement.querySelectorAll("td");
+                cells.forEach(function(cell) {
+                    var hiddenSpan = cell.querySelector("span[data-schnitzler-role]");
+                    if (hiddenSpan) {
+                        schnitzlerRole = hiddenSpan.getAttribute("data-schnitzler-role");
+                    }
+                });
+                
+                // Apply row coloring based on schnitzler role
+                if (schnitzlerRole === "as-empf") {
+                    rowElement.classList.add("sender-color");
+                } else if (schnitzlerRole === "umfeld") {
+                    rowElement.classList.add("umfeld-color");
+                }
+                // as-sender gets no special class (default styling)
             },
             initialSort: [
             { column: "sendedatum", dir: "asc" }
