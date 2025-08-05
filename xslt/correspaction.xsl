@@ -76,8 +76,21 @@
                                                           select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"
                                                       />
                                                   </span>
-                                                  <span data-schnitzler-role="{$schnitzler-als-empfänger}" style="display:none;"></span>
+                                                  
                                                   <a>
+                                                      <xsl:attribute name="class">
+                                                          <xsl:choose>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
+                                                                  <xsl:text>sender-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
+                                                                  <xsl:text>umfeld-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                                  <xsl:text>theme-color</xsl:text>
+                                                              </xsl:otherwise>
+                                                          </xsl:choose>
+                                                      </xsl:attribute>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="replace(tokenize($full_path, '/')[last()], '.xml', '.html')"
@@ -119,6 +132,19 @@
                                                       />
                                                   </span>
                                                   <a>
+                                                      <xsl:attribute name="class">
+                                                          <xsl:choose>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
+                                                                  <xsl:text>sender-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
+                                                                  <xsl:text>umfeld-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                                  <xsl:text>theme-color</xsl:text>
+                                                              </xsl:otherwise>
+                                                          </xsl:choose>
+                                                      </xsl:attribute>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(replace(descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[1]/tei:placeName/@ref, '#', ''), '.html')"
@@ -143,6 +169,19 @@
                                                   </xsl:if>
                                                   <xsl:if test="tei:placeName">
                                                   <a>
+                                                      <xsl:attribute name="class">
+                                                          <xsl:choose>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
+                                                                  <xsl:text>sender-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
+                                                                  <xsl:text>umfeld-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                                  <xsl:text>theme-color</xsl:text>
+                                                              </xsl:otherwise>
+                                                          </xsl:choose>
+                                                      </xsl:attribute>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(replace(tei:placeName/@ref, '#', ''), '.html')"
@@ -185,6 +224,19 @@
                                                 </td>
                                                 <td>
                                                   <a>
+                                                      <xsl:attribute name="class">
+                                                          <xsl:choose>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
+                                                                  <xsl:text>sender-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
+                                                                  <xsl:text>umfeld-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                                  <xsl:text>theme-color</xsl:text>
+                                                              </xsl:otherwise>
+                                                          </xsl:choose>
+                                                      </xsl:attribute>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(replace(descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[last()]/tei:placeName/@ref, '#', ''), '.html')"

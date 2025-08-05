@@ -78,8 +78,21 @@
                                                       <span hidden="true">
                                                           <xsl:value-of select="$titel"/>
                                                       </span>
-                                                      <span data-schnitzler-role="{$schnitzler-als-empfänger}" style="display:none;"></span>
+                                                      
                                                   <a>
+                                                      <xsl:attribute name="class">
+                                                          <xsl:choose>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
+                                                                  <xsl:text>sender-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
+                                                                  <xsl:text>umfeld-color</xsl:text>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                                  <xsl:text>theme-color</xsl:text>
+                                                              </xsl:otherwise>
+                                                          </xsl:choose>
+                                                      </xsl:attribute>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="replace(tokenize($full_path, '/')[last()], '.xml', '.html')"
