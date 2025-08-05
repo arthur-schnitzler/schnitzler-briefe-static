@@ -5,7 +5,7 @@ function getYear(item) {
 
 function createyearcell(val) {
   return (val !== undefined) ? `<div class="col-xs-6" style="width: auto;">\
-  <button id="ybtn${val}" class="btn btn-light rounded-0 yearbtn" value="${val}" onclick="updateyear(this.value)">${val}</button>\
+  <button id="ybtn${val}" class="btn btn-light rounded-0 yearbtn" value="${val}" onclick="updateyear(this.value)" aria-label="Jahr ${val} auswählen">${val}</button>\
 </div>` : '';
 }
 
@@ -30,9 +30,9 @@ function createLegendFilter() {
     const legendItem = document.createElement('div');
     legendItem.style.cssText = 'display: inline-block; margin: 5px 15px; cursor: pointer; user-select: none;';
     legendItem.innerHTML = `
-      <input type="checkbox" id="filter-${item.category}" checked style="margin-right: 8px;">
-      <span style="display: inline-block; width: 12px; height: 12px; background-color: ${item.color}; margin-right: 6px; vertical-align: middle; border-radius: 2px;"></span>
-      <label for="filter-${item.category}" style="cursor: pointer; font-size: 14px; color: #333;">${item.label}</label>
+      <input type="checkbox" id="filter-${item.category}" checked style="margin-right: 8px;" aria-describedby="legend-desc-${item.category}">
+      <span style="display: inline-block; width: 12px; height: 12px; background-color: ${item.color}; margin-right: 6px; vertical-align: middle; border-radius: 2px;" aria-hidden="true"></span>
+      <label for="filter-${item.category}" style="cursor: pointer; font-size: 14px; color: #333;" id="legend-desc-${item.category}">${item.label}</label>
     `;
     
     // Add click handler for the entire item
@@ -43,6 +43,21 @@ function createLegendFilter() {
       }
       toggleCategoryFilter(item.category);
     });
+    
+    // Add keyboard support
+    legendItem.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const checkbox = legendItem.querySelector('input[type="checkbox"]');
+        checkbox.checked = !checkbox.checked;
+        toggleCategoryFilter(item.category);
+      }
+    });
+    
+    // Make focusable
+    legendItem.setAttribute('tabindex', '0');
+    legendItem.setAttribute('role', 'checkbox');
+    legendItem.setAttribute('aria-checked', 'true');
     
     legendContainer.appendChild(legendItem);
   });

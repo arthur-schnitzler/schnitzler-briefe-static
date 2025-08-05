@@ -69,6 +69,45 @@
                     
                     a {
                         color: black;
+                    }
+                    
+                    /* Accessibility improvements */
+                    .skip-link {
+                        position: absolute;
+                        top: -40px;
+                        left: 6px;
+                        z-index: 999999;
+                        text-decoration: none;
+                        color: #000;
+                        background-color: #fff;
+                        padding: 8px 16px;
+                        border: 2px solid #000;
+                        border-radius: 4px;
+                    }
+                    
+                    .skip-link:focus,
+                    .visually-hidden-focusable:focus {
+                        position: static;  
+                        top: auto;
+                        left: auto;
+                        z-index: 999999;
+                        text-decoration: underline;
+                    }
+                    
+                    /* Enhanced focus indicators */
+                    a:focus, button:focus, input:focus, select:focus, textarea:focus {
+                        outline: 2px solid #005fcc;
+                        outline-offset: 2px;
+                    }
+                    
+                    /* Better color contrast for links */
+                    a:not(.nav-link):not(.btn) {
+                        color: #0066cc;
+                        text-decoration: underline;
+                    }
+                    
+                    a:not(.nav-link):not(.btn):hover {
+                        color: #004499;
                     }</style>
                 <meta name="Date of publication" class="staticSearch_date">
                     <xsl:attribute name="content">
@@ -131,9 +170,10 @@
                 </xsl:if>
             </head>
             <body class="page">
+                <a href="#main-content" class="skip-link visually-hidden-focusable">Zum Hauptinhalt springen</a>
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <div class="container-fluid">
+                    <main id="main-content" role="main" class="container-fluid" tabindex="-1">
                         <div class="wp-transcript">
                             <div class="card" data-index="true">
                                 <div class="card-header">
@@ -160,16 +200,16 @@
                                                   <span style="color: orange;"> ENTWURF </span>
                                                   </a>&#160; </li>
                                                 </xsl:if>
-                                                <li class="nav-item"> &#160;<a href="#"
+                                                <li class="nav-item"> &#160;<button
                                                   data-bs-target="#editor-widget" type="button"
-                                                  data-bs-toggle="modal"><i
-                                                  class="fas fa-solid fa-screwdriver-wrench"/>
-                                                  EINSTELLUNGEN </a>&#160; </li>
-                                                <li class="nav-item"> &#160;<a href="#"
+                                                  data-bs-toggle="modal" class="btn btn-link" aria-label="Einstellungen öffnen"><i
+                                                  class="fas fa-solid fa-screwdriver-wrench" aria-hidden="true"/>
+                                                  EINSTELLUNGEN </button>&#160; </li>
+                                                <li class="nav-item"> &#160;<button
                                                   data-bs-target="#ueberlieferung" type="button"
-                                                  data-bs-toggle="modal">
-                                                  <i class="fas fa-landmark"/> ÜBERLIEFERUNG
-                                                  </a>&#160; </li>
+                                                  data-bs-toggle="modal" class="btn btn-link" aria-label="Überlieferung anzeigen">
+                                                  <i class="fas fa-landmark" aria-hidden="true"/> ÜBERLIEFERUNG
+                                                  </button>&#160; </li>
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#entitaeten" type="button"
                                                   data-bs-toggle="modal">
@@ -928,6 +968,8 @@
                         <xsl:with-param name="back" select="$back"/>
                     </xsl:call-template>
                 </xsl:for-each>
+                    </main>
+                </div>
                 <script src="https://unpkg.com/de-micro-editor@0.2.83/dist/de-editor.min.js"/>
                 <script type="text/javascript" src="js/run.js"/>
                 <script type="text/javascript" src="js/prev-next-urlupdate.js"/>

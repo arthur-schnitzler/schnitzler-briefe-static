@@ -3,9 +3,9 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
     <xsl:template match="/" name="nav_bar">
-        <nav class="navbar navbar-expand-md" style="padding-top:1px;">
+        <nav class="navbar navbar-expand-md" role="navigation" aria-label="Hauptnavigation" style="padding-top:1px;">
             <div class="container-fluid">
-                <a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url">
+                <a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url" aria-label="Zur Startseite">
                     <img src="{$project_logo}" class="img-fluid" title="{$project_short_title}"
                         alt="{$project_short_title}" itemprop="logo"/>
                 </a>
@@ -18,8 +18,8 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Projekt</a>
-                            <ul class="dropdown-menu">
+                                data-bs-toggle="dropdown" aria-expanded="false" id="projektDropdown" aria-haspopup="true">Projekt</a>
+                            <ul class="dropdown-menu" aria-labelledby="projektDropdown">
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="about.html">Zum Projekt</a>
                                 </li>
@@ -65,8 +65,8 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Briefe </a>
-                            <ul class="dropdown-menu">
+                                data-bs-toggle="dropdown" aria-expanded="false" id="briefeDropdown" aria-haspopup="true"> Briefe </a>
+                            <ul class="dropdown-menu" aria-labelledby="briefeDropdown">
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="toc.html">Alle Briefe</a>
                                 </li>
@@ -86,8 +86,8 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Index</a>
-                            <ul class="dropdown-menu">
+                                data-bs-toggle="dropdown" aria-expanded="false" id="indexDropdown" aria-haspopup="true">Index</a>
+                            <ul class="dropdown-menu" aria-labelledby="indexDropdown">
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="listperson.html">Personen</a>
                                 </li>
@@ -107,8 +107,8 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Technisches</a>
-                            <ul class="dropdown-menu">
+                                data-bs-toggle="dropdown" aria-expanded="false" id="technischesDropdown" aria-haspopup="true">Technisches</a>
+                            <ul class="dropdown-menu" aria-labelledby="technischesDropdown">
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="elemente.html"
                                         >Kodierungsrichtlinien</a>
@@ -156,11 +156,11 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a title="Suche" class="nav-link" href="search.html"><svg
+                            <a title="Suche" class="nav-link" href="search.html" aria-label="Zur Suchseite"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    class="feather feather-search">
+                                    class="feather feather-search" aria-hidden="true">
                                     <circle cx="11" cy="11" r="8"/>
                                     <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                                 </svg> SUCHE</a>

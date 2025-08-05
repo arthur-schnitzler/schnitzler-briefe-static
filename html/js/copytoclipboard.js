@@ -3,12 +3,20 @@
  $(function() { 
      
     
-    $(document ).delegate( "#copyLinkInputBtn", "click", function(e) {
+    $(document ).delegate( "#copyLinkInputBtn", "click keydown", function(e) {
+        if (e.type === 'keydown' && e.which !== 13 && e.which !== 32) {
+            return;
+        }
+        e.preventDefault();
         var URLtoCopy = $(this).data("copyuri");
         var result = copyToClipboard(URLtoCopy);
         if (result) {
 	        $('#copyLinkTextfield').val("Nachweis ist in die Zwischenablage kopiert!");
-	        setTimeout(function() { $('#copyLinkTextfield').val(URLtoCopy); }, 2000);
+	        $(this).attr('aria-label', 'Nachweis wurde kopiert');
+	        setTimeout(function() { 
+	            $('#copyLinkTextfield').val(URLtoCopy); 
+	            $('#copyLinkInputBtn').attr('aria-label', 'Nachweis in Zwischenablage kopieren');
+	        }, 2000);
         }
     });
     
@@ -23,12 +31,20 @@
 }, '#res-act-button-copy-url');
      
      
-     $(document ).delegate( "#copy-cite-btn", "click", function(e) {    
-         var URLtoCopy = $('.cite-content.active').html();
-         var result = copyToClipboard(URLtoCopy);
+     $(document ).delegate( "#copy-cite-btn", "click keydown", function(e) {
+        if (e.type === 'keydown' && e.which !== 13 && e.which !== 32) {
+            return;
+        }
+        e.preventDefault();
+        var URLtoCopy = $('.cite-content.active').html();
+        var result = copyToClipboard(URLtoCopy);
         if (result) {
             $('#copy-cite-btn-confirmation').fadeIn(100);
-            setTimeout(function() { $('#copy-cite-btn-confirmation').fadeOut(200); }, 2000);
+            $(this).attr('aria-label', 'Zitat wurde kopiert');
+            setTimeout(function() { 
+                $('#copy-cite-btn-confirmation').fadeOut(200); 
+                $('#copy-cite-btn').attr('aria-label', 'Zitat in Zwischenablage kopieren');
+            }, 2000);
         }
      });
     

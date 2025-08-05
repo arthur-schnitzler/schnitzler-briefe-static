@@ -74,6 +74,16 @@ current_schema = {
             "facet": True,
             "optional": True,
         },
+        {
+            "name": "accessible_title",
+            "type": "string",
+            "optional": True,
+        },
+        {
+            "name": "correspondence_description",
+            "type": "string",
+            "optional": True,
+        },
     ],
 }
 
@@ -162,6 +172,27 @@ for x in tqdm(files, total=len(files)):
     cfts_record["places"] = [x["label"] for x in record["places"]]
     record["full_text"] = f"{extract_fulltext(body)} {record['title']}".replace("(", " ")
     cfts_record["full_text"] = record["full_text"]
+    
+    # Add accessibility metadata
+    try:
+        # Create accessible title with sender and receiver info
+        if sender_label != "Kein Absender" and receiver_label != "Kein Absender":
+            record["accessible_title"] = f"{record['title']} - Brief von {sender_label} an {receiver_label}"
+            record["correspondence_description"] = f"Korrespondenz zwischen {sender_label} und {receiver_label}"
+        elif sender_label != "Kein Absender":
+            record["accessible_title"] = f"{record['title']} - Brief von {sender_label}"
+            record["correspondence_description"] = f"Brief von {sender_label}"
+        elif receiver_label != "Kein Absender": 
+            record["accessible_title"] = f"{record['title']} - Brief an {receiver_label}"
+            record["correspondence_description"] = f"Brief an {receiver_label}"
+        else:
+            record["accessible_title"] = record["title"]
+            record["correspondence_description"] = "Brief"
+    except Exception as e:
+        print(f"accessibility metadata issues in {x}, due to: {e}")
+        record["accessible_title"] = record["title"]
+        record["correspondence_description"] = "Brief"
+    
     records.append(record)
     cfts_records.append(cfts_record)
 

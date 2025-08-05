@@ -32,11 +32,30 @@ for x in tqdm(files, total=len(files)):
         
         if is_schnitzler_sender:
             item["category"] = "as-sender"  # FROM Schnitzler
+            item["categoryLabel"] = "Brief von Schnitzler"  # Accessible label
         elif is_schnitzler_receiver:
             item["category"] = "as-empf"    # TO Schnitzler
+            item["categoryLabel"] = "Brief an Schnitzler"   # Accessible label
         else:
             item["category"] = "umfeld"     # Third party correspondence
+            item["categoryLabel"] = "Umfeldbrief"           # Accessible label
         
+        # Add accessibility metadata
+        try:
+            # Extract sender and receiver for screen readers
+            sender = doc.any_xpath('//tei:correspAction[@type="sent"]//tei:persName/text()')
+            receiver = doc.any_xpath('//tei:correspAction[@type="received"]//tei:persName/text()')
+            if sender and receiver:
+                item["accessible_desc"] = f"Brief von {sender[0]} an {receiver[0]}"
+            elif sender:
+                item["accessible_desc"] = f"Brief von {sender[0]}"
+            elif receiver:
+                item["accessible_desc"] = f"Brief an {receiver[0]}"
+            else:
+                item["accessible_desc"] = item["name"]
+        except:
+            item["accessible_desc"] = item["name"]
+            
         data.append(item)
     except IndexError:
         continue
