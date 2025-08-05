@@ -7,9 +7,19 @@ var table = new Tabulator("#tabulator-table-limited", {
             autoColumnsDefinitions:function(definitions){
                 //auto columns returns columns with basic titles and field names
                 //this callback allows you to edit each column definition before they are used
-                definitions.forEach(function(column){
+                
+                // Debug: Log all columns to see what we're working with
+                console.log("Tabulator columns:", definitions.map(d => ({title: d.title, field: d.field})));
+                
+                definitions.forEach(function(column, index){
                     column.formatter = "html";  //set formatter to html for all columns
                     column.headerFilter = "input"; //add header filters
+                    
+                    // Hide the first column if it's a counter/id column
+                    if (index === 0 && (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
+                        column.visible = false;
+                        console.log("Hiding first column:", column.title, column.field);
+                    }
                 });
                 return definitions;
             },
