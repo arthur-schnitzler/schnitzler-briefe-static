@@ -126,22 +126,79 @@
                             content="{./tei:eventName}"> </meta>
                     </xsl:for-each>
                 </xsl:if>
+                
+                <!-- JSON-LD structured data for better Wikipedia/search engine recognition -->
+                <script type="application/ld+json">
+                {
+                  "@context": "http://schema.org",
+                  "@type": "ScholarlyArticle",
+                  "mainEntityOfPage": "<xsl:value-of select="$quotationURL"/>",
+                  "headline": "<xsl:value-of select="normalize-space($doc_title)"/>",
+                  "name": "<xsl:value-of select="normalize-space($doc_title)"/>",
+                  "datePublished": "<xsl:value-of select="//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso"/>",
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren"
+                  },
+                  "isPartOf": {
+                    "@type": "Collection", 
+                    "name": "Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition"
+                  }<xsl:if test="//tei:correspAction[@type='sent']/tei:persName">,
+                  "author": [<xsl:for-each select="//tei:correspAction[@type='sent']/tei:persName">
+                    {
+                      "@type": "Person",
+                      "name": "<xsl:choose>
+                        <xsl:when test="tei:surname and tei:forename"><xsl:value-of select="concat(tei:forename, ' ', tei:surname)"/></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+                      </xsl:choose>"
+                    }<xsl:if test="position() != last()">,</xsl:if>
+                  </xsl:for-each>]</xsl:if>,
+                  "url": "<xsl:value-of select="$quotationURL"/>",
+                  "citation": "<xsl:value-of select="normalize-space($quotationString)"/>"
+                }
+                </script>
             </head>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
                     <div class="container-fluid">
                         <div class="wp-transcript">
-                            <div class="card" data-index="true">
-                                <div class="card-header">
+                            <!-- Wikipedia-compatible semantic structure with Schema.org microdata -->
+                            <article class="card" data-index="true" itemscope="" itemtype="http://schema.org/ScholarlyArticle">
+                                <link itemprop="mainEntityOfPage" href="{$quotationURL}"/>
+                                <meta itemprop="datePublished" content="{//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso}"/>
+                                <meta itemprop="publisher" content="Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren"/>
+                                <meta itemprop="isPartOf" content="Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition"/>
+                                
+                                <!-- Author information from correspondence metadata -->
+                                <xsl:for-each select="//tei:correspAction[@type='sent']/tei:persName">
+                                    <meta itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                                        <xsl:attribute name="content">
+                                            <xsl:choose>
+                                                <xsl:when test="tei:surname and tei:forename">
+                                                    <xsl:value-of select="concat(tei:forename, ' ', tei:surname)"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:value-of select="normalize-space(.)"/>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:attribute>
+                                    </meta>
+                                </xsl:for-each>
+                                
+                                <header class="card-header">
+                                    <h1 itemprop="headline name">
+                                        <xsl:value-of select="$doc_title"/>
+                                    </h1>
                                     <xsl:call-template name="header-nav"/>
-                                </div>
-                                <div id="container-resize" class="row transcript active">
+                                </header>
+                                
+                                <main id="container-resize" class="row transcript active" itemprop="articleBody">
                                     <xsl:for-each select="descendant::tei:body">
                                         <xsl:call-template name="mam:view-type-img"/>
                                     </xsl:for-each>
-                                </div>
-                            </div>
+                                </main>
+                            </article>
                             <div class="card-footer" style="clear: both;">
                                 <nav class="navbar navbar-expand-lg" style="box-shadow: none;">
                                     <div class="container-fluid" style="display: flex;
@@ -404,7 +461,7 @@
                                         /></b>«.</p>
                                 <p>Für Belege in der Wikipedia kann diese Vorlage benutzt
                                     werden:</p>
-                                <blockquote>
+                                <blockquote itemscope="" itemtype="http://schema.org/WebSite" itemid="https://schnitzler-briefe.acdh.oeaw.ac.at">
                                     <code>{{Internetquelle
                                             |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of
                                             select="$link"/> |titel=<xsl:value-of
