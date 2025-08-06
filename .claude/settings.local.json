@@ -12,7 +12,8 @@
       "Bash(chmod:*)",
       "Bash(java:*)",
       "Bash(find:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": []
   }
