@@ -35,9 +35,6 @@
         <!-- Canonical URL -->
         <link rel="canonical" href="https://schnitzler-briefe.acdh.oeaw.ac.at/{if ($html_title1 = 'schnitzler-briefe') then '' else concat(replace($html_title1, ' ', '-'), '.html')}"/>
         
-        <!-- Performance optimization -->
-        <xsl:call-template name="resource-hints"/>
-        <xsl:call-template name="critical-css"/>
         <meta name="msapplication-TileColor" content="#ffffff"/>
         <meta name="msapplication-TileImage" content="{$project_logo}"/>
         <link rel="icon" type="image/svg+xml" href="{$project_logo}" sizes="any"/>

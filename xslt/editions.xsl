@@ -10,7 +10,6 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
-    <xsl:import href="./partials/performance-utils.xsl"/>
     <!--<xsl:import href="./partials/aot-options.xsl"/>-->
     <xsl:import href="./partials/html_title_navigation.xsl"/>
     <xsl:import href="./partials/view-type.xsl"/>
@@ -68,11 +67,7 @@
                         display: none !important;
                     }
                     
-                    a {
-                        color: black;
-                    }
-                    
-                    /* Accessibility improvements */
+                    /* Accessibility improvements - skip link only */
                     .skip-link {
                         position: absolute;
                         top: -40px;
@@ -86,29 +81,12 @@
                         border-radius: 4px;
                     }
                     
-                    .skip-link:focus,
-                    .visually-hidden-focusable:focus {
+                    .skip-link:focus {
                         position: static;  
                         top: auto;
                         left: auto;
                         z-index: 999999;
                         text-decoration: underline;
-                    }
-                    
-                    /* Enhanced focus indicators */
-                    a:focus, button:focus, input:focus, select:focus, textarea:focus {
-                        outline: 2px solid #005fcc;
-                        outline-offset: 2px;
-                    }
-                    
-                    /* Better color contrast for links */
-                    a:not(.nav-link):not(.btn) {
-                        color: #0066cc;
-                        text-decoration: underline;
-                    }
-                    
-                    a:not(.nav-link):not(.btn):hover {
-                        color: #004499;
                     }</style>
                 <meta name="Date of publication" class="staticSearch_date">
                     <xsl:attribute name="content">

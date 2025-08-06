@@ -9,7 +9,10 @@
       "Bash(source:*)",
       "Bash(pip install:*)",
       "Bash(sed:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(java:*)",
+      "Bash(find:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }
