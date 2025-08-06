@@ -187,9 +187,6 @@
                                 </xsl:for-each>
                                 
                                 <header class="card-header">
-                                    <h1 itemprop="headline name">
-                                        <xsl:value-of select="$doc_title"/>
-                                    </h1>
                                     <xsl:call-template name="header-nav"/>
                                 </header>
                                 
