@@ -781,9 +781,9 @@ border-bottom-style: solid;
     color: #A63437;
 }
 
-.reference-black {
+a.reference-black {
     cursor: pointer;
-    color: black;    
+    color: black !important;    
 }
 
 .tripleUnderline {
