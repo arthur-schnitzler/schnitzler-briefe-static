@@ -66,7 +66,10 @@
                     .navBarNavDropdown ul li:nth-child(2) {
                         display: none !important;
                     }
-                </style>
+                    
+                    a {
+                        color: black;
+                    }</style>
                 <meta name="Date of publication" class="staticSearch_date">
                     <xsl:attribute name="content">
                         <xsl:value-of
@@ -128,10 +131,9 @@
                 </xsl:if>
             </head>
             <body class="page">
-                <a href="#main-content" class="skip-link visually-hidden-focusable">Zum Hauptinhalt springen</a>
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <main id="main-content" role="main" class="container-fluid" tabindex="-1">
+                    <div class="container-fluid">
                         <div class="wp-transcript">
                             <div class="card" data-index="true">
                                 <div class="card-header">
@@ -158,16 +160,16 @@
                                                   <span style="color: orange;"> ENTWURF </span>
                                                   </a>&#160; </li>
                                                 </xsl:if>
-                                                <li class="nav-item"> &#160;<button
+                                                <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#editor-widget" type="button"
-                                                  data-bs-toggle="modal" class="btn btn-link" aria-label="Einstellungen öffnen"><i
-                                                  class="fas fa-solid fa-screwdriver-wrench" aria-hidden="true"/>
-                                                  EINSTELLUNGEN </button>&#160; </li>
-                                                <li class="nav-item"> &#160;<button
+                                                  data-bs-toggle="modal"><i
+                                                  class="fas fa-solid fa-screwdriver-wrench"/>
+                                                  EINSTELLUNGEN </a>&#160; </li>
+                                                <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#ueberlieferung" type="button"
-                                                  data-bs-toggle="modal" class="btn btn-link" aria-label="Überlieferung anzeigen">
-                                                  <i class="fas fa-landmark" aria-hidden="true"/> ÜBERLIEFERUNG
-                                                  </button>&#160; </li>
+                                                  data-bs-toggle="modal">
+                                                  <i class="fas fa-landmark"/> ÜBERLIEFERUNG
+                                                  </a>&#160; </li>
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#entitaeten" type="button"
                                                   data-bs-toggle="modal">
@@ -214,7 +216,7 @@
                             </div>
                             <xsl:call-template name="html_footer"/>
                         </div>
-                    </main>
+                    </div>
                 </div>
                 <!-- Modal -->
                 <div class="modal fade" id="ueberlieferung" tabindex="-1"
@@ -249,7 +251,7 @@
                                                   Übermittlung: </xsl:when>
                                                   </xsl:choose>
                                                 </th>
-                                                <td> </td>
+                                                <td> </td>
                                                 <td>
                                                   <xsl:if test="./tei:date">
                                                   <xsl:value-of select="./tei:date"/>
@@ -1021,7 +1023,7 @@
         <div class="illegible">
             <xsl:text> [</xsl:text>
             <xsl:value-of select="@quantity"/>
-            <xsl:text> Zeilen unleserlich] </xsl:text>
+            <xsl:text> Zeilen unleserlich] </xsl:text>
         </div>
     </xsl:template>
     <xsl:template match="tei:gap[@reason = 'outOfScope']">
@@ -1159,7 +1161,7 @@
             <span class="seg-left">
                 <xsl:apply-templates select="tei:seg[@rend = 'left']"/>
             </span>
-            <xsl:text> </xsl:text>
+            <xsl:text> </xsl:text>
             <span class="seg-right">
                 <xsl:apply-templates select="tei:seg[@rend = 'right']"/>
             </span>
@@ -1173,7 +1175,7 @@
                     <span class="seg-left">
                         <xsl:apply-templates select="tei:seg[@rend = 'left']"/>
                     </span>
-                    <xsl:text> </xsl:text>
+                    <xsl:text> </xsl:text>
                     <span class="seg-right">
                         <xsl:apply-templates select="tei:seg[@rend = 'right']"/>
                     </span>
