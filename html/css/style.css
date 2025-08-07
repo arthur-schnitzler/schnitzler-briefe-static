@@ -142,46 +142,35 @@ a {
     cursor: pointer;
 }
 
-/* Entity highlighting with colored borders - default ON, can be disabled */
-.persons.entity {
+/* Entity highlighting with colored borders - controlled by JavaScript */
+.activated .persons.entity {
     border: 1px solid #e74c3c !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.places.entity {
+.activated .places.entity {
     border: 1px solid #3498db !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.orgs.entity {
+.activated .orgs.entity {
     border: 1px solid #9b59b6 !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.works.entity {
+.activated .works.entity {
     border: 1px solid #f39c12 !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.events.entity {
+.activated .events.entity {
     border: 1px solid #27ae60 !important;
     padding: 2px 4px;
     border-radius: 8px;
-}
-
-/* Hide entities when their option is disabled */
-.persons.entity[style*="display: none"],
-.places.entity[style*="display: none"],
-.orgs.entity[style*="display: none"],
-.works.entity[style*="display: none"],
-.events.entity[style*="display: none"] {
-    border: none !important;
-    padding: 0;
-    border-radius: 0;
 }
 
 .entity-table {

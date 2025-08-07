@@ -113,7 +113,7 @@ var editor = new LoadEditor({
             title: "Personen",
             html_class: "persons",
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "persons .entity",
             },
             chg_citation: "citation-url",
@@ -126,7 +126,7 @@ var editor = new LoadEditor({
             title: "Orte",
             html_class: "places",
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "places .entity",
             },
             chg_citation: "citation-url",
@@ -139,7 +139,7 @@ var editor = new LoadEditor({
             title: "Institutionen",
             html_class: "orgs",
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "orgs .entity",
             },
             chg_citation: "citation-url",
@@ -152,7 +152,7 @@ var editor = new LoadEditor({
             title: "Werke",
             html_class: "works",
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "works .entity",
             },
             features: {
@@ -164,7 +164,7 @@ var editor = new LoadEditor({
             title: "Ereignisse",
             html_class: "events",
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "events .entity",
             },
             features: {
