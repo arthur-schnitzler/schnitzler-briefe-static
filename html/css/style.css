@@ -143,31 +143,31 @@ a {
 }
 
 /* Entity highlighting with colored borders - only when activated */
-.activated .persons.entity {
+.activated .css-class-prs.entity {
     border: 1px solid #e74c3c !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.activated .places.entity {
+.activated .css-class-plc.entity {
     border: 1px solid #3498db !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.activated .orgs.entity {
+.activated .css-class-org.entity {
     border: 1px solid #9b59b6 !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.activated .works.entity {
+.activated .css-class-wrk.entity {
     border: 1px solid #f39c12 !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.activated .events.entity {
+.activated .css-class-evt.entity {
     border: 1px solid #27ae60 !important;
     padding: 2px 4px;
     border-radius: 8px;

@@ -111,7 +111,9 @@ var editor = new LoadEditor({
         }, {
             opt: "prs",
             title: "Personen",
+            color: "#e74c3c",
             html_class: "persons",
+            css_class: "prs",
             hide: {
                 hidden: true,
                 class: "persons .entity",
@@ -123,8 +125,10 @@ var editor = new LoadEditor({
             },
         }, {
             opt: "plc",
-            title: "Orte",
+            title: "Orte", 
+            color: "#3498db",
             html_class: "places",
+            css_class: "plc",
             hide: {
                 hidden: true,
                 class: "places .entity",
@@ -137,7 +141,9 @@ var editor = new LoadEditor({
         }, {
             opt: "org",
             title: "Institutionen",
+            color: "#9b59b6",
             html_class: "orgs",
+            css_class: "org",
             hide: {
                 hidden: true,
                 class: "orgs .entity",
@@ -150,7 +156,9 @@ var editor = new LoadEditor({
         }, {
             opt: "wrk",
             title: "Werke",
-            html_class: "works",
+            color: "#f39c12",
+            html_class: "works", 
+            css_class: "wrk",
             hide: {
                 hidden: true,
                 class: "works .entity",
@@ -162,7 +170,9 @@ var editor = new LoadEditor({
         }, {
             opt: "evt",
             title: "Ereignisse",
+            color: "#27ae60",
             html_class: "events",
+            css_class: "evt", 
             hide: {
                 hidden: true,
                 class: "events .entity",
