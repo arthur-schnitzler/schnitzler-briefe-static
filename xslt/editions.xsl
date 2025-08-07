@@ -6,7 +6,6 @@
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
     <xsl:import href="./partials/shared.xsl"/>
-    <xsl:import href="./partials/refs.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
@@ -771,14 +770,51 @@
                                     <legend>Links markieren</legend>
                                     <ul>
                                         <li>
-                                            <annotation-slider opt="ef"/>
+                                            <div class="entity-toggle" data-type="master" style="display: inline-block;">
+                                                <label class="switch">
+                                                    <input type="checkbox" checked="checked" id="master-entity-toggle"/>
+                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                </label>
+                                                <span class="opt-title"> Alle</span>
+                                            </div>
                                         </li>
                                         <li>
-                                            <annotation-slider opt="prs"/> &#160; &#160; &#160;
-                                            &#160; <annotation-slider opt="wrk"/> &#160; &#160;
-                                            &#160; &#160; <annotation-slider opt="plc"/> &#160;
-                                            &#160; &#160; &#160; <annotation-slider opt="org"/>
-                                            &#160; &#160; &#160; &#160; <annotation-slider opt="evt"/></li>
+                                        <div class="entity-toggle" data-type="persons" style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                                <input type="checkbox" checked="checked"/>
+                                                <span class="i-slider round" style="background-color: #e74c3c;"></span>
+                                            </label>
+                                            <span class="opt-title"> Personen</span>
+                                        </div>
+                                        <div class="entity-toggle" data-type="works" style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                                <input type="checkbox" checked="checked"/>
+                                                <span class="i-slider round" style="background-color: #f39c12;"></span>
+                                            </label>
+                                            <span class="opt-title"> Werke</span>
+                                        </div>
+                                        <div class="entity-toggle" data-type="places" style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                                <input type="checkbox" checked="checked"/>
+                                                <span class="i-slider round" style="background-color: #3498db;"></span>
+                                            </label>
+                                            <span class="opt-title"> Orte</span>
+                                        </div>
+                                        <div class="entity-toggle" data-type="orgs" style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                                <input type="checkbox" checked="checked"/>
+                                                <span class="i-slider round" style="background-color: #9b59b6;"></span>
+                                            </label>
+                                            <span class="opt-title"> Institutionen</span>
+                                        </div>
+                                        <div class="entity-toggle" data-type="events" style="display: inline-block;">
+                                            <label class="switch">
+                                                <input type="checkbox" checked="checked"/>
+                                                <span class="i-slider round" style="background-color: #27ae60;"></span>
+                                            </label>
+                                            <span class="opt-title"> Ereignisse</span>
+                                        </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1671,26 +1707,7 @@
         </xsl:variable>
         <span>
             <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="@type = 'person'">
-                        <xsl:text>persons badge-item entity prs</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@type = 'work'">
-                        <xsl:text>works badge-item entity wrk</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@type = 'place'">
-                        <xsl:text>places badge-item entity plc</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@type = 'org'">
-                        <xsl:text>orgs badge-item entity org</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@type = 'event'">
-                        <xsl:text>events badge-item entity evt</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
             </xsl:attribute>
             <xsl:element name="a">
                 <xsl:attribute name="href">
@@ -1795,26 +1812,7 @@
         </xsl:variable>
         <span>
             <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="@type = 'person'">
-                        <xsl:text>persons badge-item entity prs</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@type = 'work'">
-                        <xsl:text>works badge-item entity wrk</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@type = 'place'">
-                        <xsl:text>places badge-item entity plc</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@type = 'org'">
-                        <xsl:text>orgs badge-item entity org</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@type = 'event'">
-                        <xsl:text>events badge-item entity evt</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
             </xsl:attribute>
             <xsl:element name="a">
                 <xsl:attribute name="href">

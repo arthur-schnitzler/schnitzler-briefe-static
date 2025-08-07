@@ -1,6 +1,109 @@
+// Independent entity toggle system
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait for DOM to be ready
+    setTimeout(function() {
+        const entityToggles = document.querySelectorAll('.entity-toggle input[type="checkbox"]');
+        const masterToggle = document.getElementById('master-entity-toggle');
+        
+        // Individual entity toggles
+        entityToggles.forEach(function(toggle) {
+            const entityType = toggle.closest('.entity-toggle').getAttribute('data-type');
+            
+            // Skip master toggle for individual handling
+            if (entityType === 'master') return;
+            
+            toggle.addEventListener('change', function() {
+                const entities = document.querySelectorAll('.' + entityType + '.entity');
+                
+                entities.forEach(function(entity) {
+                    if (toggle.checked) {
+                        // Show borders - remove the hidden class
+                        entity.classList.remove('entity-hidden');
+                    } else {
+                        // Hide borders - add the hidden class
+                        entity.classList.add('entity-hidden');
+                    }
+                });
+                
+                // Update slider color (grey when unchecked)
+                const slider = toggle.nextElementSibling;
+                if (!toggle.checked) {
+                    slider.style.backgroundColor = '#ccc';
+                } else {
+                    // Restore original color
+                    const colorMap = {
+                        'persons': '#e74c3c',
+                        'works': '#f39c12', 
+                        'places': '#3498db',
+                        'orgs': '#9b59b6',
+                        'events': '#27ae60'
+                    };
+                    slider.style.backgroundColor = colorMap[entityType];
+                }
+                
+                // Update master toggle state based on individual toggles
+                updateMasterToggleState();
+            });
+        });
+        
+        // Master toggle handler
+        if (masterToggle) {
+            masterToggle.addEventListener('change', function() {
+                const individualToggles = document.querySelectorAll('.entity-toggle:not([data-type="master"]) input[type="checkbox"]');
+                const masterSlider = masterToggle.nextElementSibling;
+                
+                // Set all individual toggles to match master
+                individualToggles.forEach(function(toggle) {
+                    if (toggle.checked !== masterToggle.checked) {
+                        toggle.checked = masterToggle.checked;
+                        // Trigger change event to update entities
+                        toggle.dispatchEvent(new Event('change'));
+                    }
+                });
+                
+                // Update master slider color
+                if (!masterToggle.checked) {
+                    masterSlider.style.backgroundColor = '#ccc';
+                } else {
+                    masterSlider.style.backgroundColor = '#A63437';
+                }
+            });
+        }
+        
+        // Function to update master toggle state based on individual toggles
+        function updateMasterToggleState() {
+            if (!masterToggle) return;
+            
+            const individualToggles = document.querySelectorAll('.entity-toggle:not([data-type="master"]) input[type="checkbox"]');
+            const checkedCount = Array.from(individualToggles).filter(t => t.checked).length;
+            const totalCount = individualToggles.length;
+            
+            const masterSlider = masterToggle.nextElementSibling;
+            
+            if (checkedCount === totalCount) {
+                // All checked - master should be checked
+                masterToggle.checked = true;
+                masterSlider.style.backgroundColor = '#A63437';
+            } else if (checkedCount === 0) {
+                // None checked - master should be unchecked
+                masterToggle.checked = false;
+                masterSlider.style.backgroundColor = '#ccc';
+            } else {
+                // Some checked - master remains as is but we could make it indeterminate
+                // For now, just update color based on current state
+                if (masterToggle.checked) {
+                    masterSlider.style.backgroundColor = '#A63437';
+                } else {
+                    masterSlider.style.backgroundColor = '#ccc';
+                }
+            }
+        }
+    }, 500);
+});
+
 var editor = new LoadEditor({
     aot: {
-        title: "Entitäten",
+        title: "Einstellungen",
         variants:[ {
             opt: "ef",
             opt_slider: "entities-features-slider",
@@ -108,69 +211,6 @@ var editor = new LoadEditor({
                 all: false,
                 class: "features-2"
             }
-        }, {
-            opt: "prs",
-            title: "Personen",
-            html_class: "persons",
-            hide: {
-                hidden: false,
-                class: "prs",
-            },
-            chg_citation: "citation-url",
-            features: {
-                all: false,
-                class: "features-1",
-            },
-        }, {
-            opt: "plc",
-            title: "Orte", 
-            html_class: "places",
-            hide: {
-                hidden: false,
-                class: "plc",
-            },
-            chg_citation: "citation-url",
-            features: {
-                all: false,
-                class: "features-1",
-            },
-        }, {
-            opt: "org",
-            title: "Institutionen",
-            html_class: "orgs",
-            hide: {
-                hidden: false,
-                class: "org",
-            },
-            chg_citation: "citation-url",
-            features: {
-                all: false,
-                class: "features-1",
-            },
-        }, {
-            opt: "wrk",
-            title: "Werke",
-            html_class: "works", 
-            hide: {
-                hidden: false,
-                class: "wrk",
-            },
-            features: {
-                all: false,
-                class: "features-1",
-            },
-        }, {
-            opt: "evt",
-            title: "Ereignisse",
-            html_class: "events",
-            hide: {
-                hidden: false,
-                class: "evt",
-            },
-            features: {
-                all: false,
-                class: "features-1",
-            },
         }],
         span_element: {
             css_class: "badge-item",
@@ -209,7 +249,7 @@ var editor = new LoadEditor({
         active_class: "active",
         rendered_element: {
             a_class: "nav-link btn btn-round",
-            svg: "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-image' viewBox='0 0 16 16'><path d='M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'/><path d='M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z'/></svg>",
+            svg: "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-image' viewBox='0 0 16 16'><path d='M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'/><path d='M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a .5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z'/></svg>",
         },
     },
     wr: false,

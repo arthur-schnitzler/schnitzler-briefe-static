@@ -102,7 +102,7 @@
                     <xsl:value-of select="$direction"/>
                 </xsl:attribute>
                 <xsl:attribute name="class">
-                    <xsl:text>dropdown-item</xsl:text>
+                    <xsl:text>dropdown-item theme-color</xsl:text>
                 </xsl:attribute>
                 <xsl:attribute name="href">
                     <xsl:value-of select="concat($eintrag/@target, '.html')"/>

@@ -142,78 +142,113 @@ a {
     cursor: pointer;
 }
 
-/* Entity highlighting with colored borders - visible by default */
-.persons.entity.prs {
+/* Entity highlighting with colored borders - active by default for independent toggle system */
+.persons.entity {
     border: 1px solid #e74c3c !important;
     padding: 2px 4px;
     border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
-.places.entity.plc {
+.persons.entity:hover {
+    background-color: #e74c3c !important;
+    color: white !important;
+}
+
+.places.entity {
     border: 1px solid #3498db !important;
     padding: 2px 4px;
     border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
-.orgs.entity.org {
+.places.entity:hover {
+    background-color: #3498db !important;
+    color: white !important;
+}
+
+.orgs.entity {
     border: 1px solid #9b59b6 !important;
     padding: 2px 4px;
     border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
-.works.entity.wrk {
+.orgs.entity:hover {
+    background-color: #9b59b6 !important;
+    color: white !important;
+}
+
+.works.entity {
     border: 1px solid #f39c12 !important;
     padding: 2px 4px;
     border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
-.events.entity.evt {
+.works.entity:hover {
+    background-color: #f39c12 !important;
+    color: white !important;
+}
+
+.events.entity {
     border: 1px solid #27ae60 !important;
     padding: 2px 4px;
     border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
-/* Hide borders when JavaScript removes the specific class */
-.persons.entity:not(.prs),
-.places.entity:not(.plc),
-.orgs.entity:not(.org), 
-.works.entity:not(.wrk),
-.events.entity:not(.evt) {
-    border: none !important;
-    padding: 0;
-    border-radius: 0;
+.events.entity:hover {
+    background-color: #27ae60 !important;
+    color: white !important;
+}
+
+/* Hidden state for entities when toggled off */
+.entity.entity-hidden {
+    border: 1px solid transparent !important;
 }
 
 .entity-table {
 margin: 4em auto;
 }
 
-/* Colored switches for entity types - default ON */
+/* Colored switches for entity types - default ON, then turn grey when OFF */
 annotation-slider[opt="prs"] .i-slider {
     background-color: #e74c3c !important;
+}
+
+annotation-slider[opt="prs"] input:not(:checked) + .i-slider {
+    background-color: #ccc !important;
 }
 
 annotation-slider[opt="plc"] .i-slider {
     background-color: #3498db !important;
 }
 
+annotation-slider[opt="plc"] input:not(:checked) + .i-slider {
+    background-color: #ccc !important;
+}
+
 annotation-slider[opt="org"] .i-slider {
     background-color: #9b59b6 !important;
+}
+
+annotation-slider[opt="org"] input:not(:checked) + .i-slider {
+    background-color: #ccc !important;
 }
 
 annotation-slider[opt="wrk"] .i-slider {
     background-color: #f39c12 !important;
 }
 
+annotation-slider[opt="wrk"] input:not(:checked) + .i-slider {
+    background-color: #ccc !important;
+}
+
 annotation-slider[opt="evt"] .i-slider {
     background-color: #27ae60 !important;
 }
 
-/* When disabled, switches are grey */
-annotation-slider[opt="prs"] input:not(:checked) + .i-slider,
-annotation-slider[opt="plc"] input:not(:checked) + .i-slider,
-annotation-slider[opt="org"] input:not(:checked) + .i-slider,
-annotation-slider[opt="wrk"] input:not(:checked) + .i-slider,
 annotation-slider[opt="evt"] input:not(:checked) + .i-slider {
     background-color: #ccc !important;
 }
@@ -978,6 +1013,17 @@ code{
     color: #6c757d;
     background-color: transparent
 }
+
+/* Override dropdown-item color for theme-color class */
+.dropdown-item.theme-color {
+    color: #A63437 !important;
+}
+
+.dropdown-item.theme-color:hover,
+.dropdown-item.theme-color:focus {
+    color: #A63437 !important;
+    background-color: #eeeeee;
+}
 .dropdown-toggle:after {
     margin-left: .2em;
     vertical-align: .15em;
@@ -1062,8 +1108,17 @@ ol.list-for-footnotes p {
 }
 
 .navbar-previous-next .nav-link {
-    font-size: 2em;
+    font-size: 4em;
     color: #A63437 !important;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+    top: -0.5em;
+    display: inline-block;
+}
+
+.navbar-previous-next .nav-link:hover {
+    transform: scale(1.1);
 }
 
 table {

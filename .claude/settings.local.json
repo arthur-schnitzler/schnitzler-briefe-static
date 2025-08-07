@@ -18,7 +18,8 @@
       "Bash(grep:*)",
       "WebFetch(domain:www.wikidata.org)",
       "Bash(saxon:*)",
-      "Bash(xmllint:*)"
+      "Bash(xmllint:*)",
+      "Bash(./transform.sh)"
     ],
     "deny": []
   }
