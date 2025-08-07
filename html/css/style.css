@@ -142,60 +142,35 @@ a {
     cursor: pointer;
 }
 
-/* Entity highlighting colors - default ON, can be disabled */
+/* Entity highlighting with colored borders - default ON, can be disabled */
 .persons.entity {
-    background-color: #e74c3c !important;
+    border: 1px solid #e74c3c !important;
     padding: 2px 4px;
-    border-radius: 3px;
-}
-
-.persons.entity a,
-.persons.entity .reference-black {
-    color: white !important;
+    border-radius: 8px;
 }
 
 .places.entity {
-    background-color: #3498db !important;
+    border: 1px solid #3498db !important;
     padding: 2px 4px;
-    border-radius: 3px;
-}
-
-.places.entity a,
-.places.entity .reference-black {
-    color: white !important;
+    border-radius: 8px;
 }
 
 .orgs.entity {
-    background-color: #9b59b6 !important;
+    border: 1px solid #9b59b6 !important;
     padding: 2px 4px;
-    border-radius: 3px;
-}
-
-.orgs.entity a,
-.orgs.entity .reference-black {
-    color: white !important;
+    border-radius: 8px;
 }
 
 .works.entity {
-    background-color: #f39c12 !important;
+    border: 1px solid #f39c12 !important;
     padding: 2px 4px;
-    border-radius: 3px;
-}
-
-.works.entity a,
-.works.entity .reference-black {
-    color: white !important;
+    border-radius: 8px;
 }
 
 .events.entity {
-    background-color: #27ae60 !important;
+    border: 1px solid #27ae60 !important;
     padding: 2px 4px;
-    border-radius: 3px;
-}
-
-.events.entity a,
-.events.entity .reference-black {
-    color: white !important;
+    border-radius: 8px;
 }
 
 /* Hide entities when their option is disabled */
@@ -204,22 +179,9 @@ a {
 .orgs.entity[style*="display: none"],
 .works.entity[style*="display: none"],
 .events.entity[style*="display: none"] {
-    background-color: transparent !important;
+    border: none !important;
     padding: 0;
     border-radius: 0;
-}
-
-.persons.entity[style*="display: none"] a,
-.persons.entity[style*="display: none"] .reference-black,
-.places.entity[style*="display: none"] a,
-.places.entity[style*="display: none"] .reference-black,
-.orgs.entity[style*="display: none"] a,
-.orgs.entity[style*="display: none"] .reference-black,
-.works.entity[style*="display: none"] a,
-.works.entity[style*="display: none"] .reference-black,
-.events.entity[style*="display: none"] a,
-.events.entity[style*="display: none"] .reference-black {
-    color: #A63437 !important;
 }
 
 .entity-table {

@@ -1,9 +1,16 @@
 import glob
 import os
 import json
+import xml.etree.ElementTree as ET
 from collections import defaultdict, Counter
-from acdh_tei_pyutils.tei import TeiReader
-from tqdm import tqdm
+
+try:
+    from tqdm import tqdm
+except ImportError:
+    # Fallback if tqdm is not available
+    def tqdm(iterable, desc="Processing"):
+        print(f"{desc}...")
+        return iterable
 
 def generate_seo_statistics():
     """Generate SEO statistics and metadata for analysis"""
@@ -26,65 +33,79 @@ def generate_seo_statistics():
     
     for file_path in tqdm(files, desc="Processing letters"):
         try:
-            doc = TeiReader(file_path)
+            # Use simple ElementTree parsing with full namespace
+            tree = ET.parse(file_path)
+            root = tree.getroot()
+            ns = {'tei': 'http://www.tei-c.org/ns/1.0'}
             
             # Extract date information
             try:
-                date_str = doc.any_xpath('//tei:title[@type="iso-date"]/@when-iso')[0]
-                if stats["date_range"]["earliest"] is None or date_str < stats["date_range"]["earliest"]:
-                    stats["date_range"]["earliest"] = date_str
-                if stats["date_range"]["latest"] is None or date_str > stats["date_range"]["latest"]:
-                    stats["date_range"]["latest"] = date_str
-                
-                year = date_str[:4]
-                stats["years"][year] += 1
-                
-            except IndexError:
+                date_elem = root.find('.//tei:title[@type="iso-date"]', ns)
+                if date_elem is not None:
+                    date_str = date_elem.get('when-iso')
+                    if date_str:
+                        if stats["date_range"]["earliest"] is None or date_str < stats["date_range"]["earliest"]:
+                            stats["date_range"]["earliest"] = date_str
+                        if stats["date_range"]["latest"] is None or date_str > stats["date_range"]["latest"]:
+                            stats["date_range"]["latest"] = date_str
+                        
+                        year = date_str[:4]
+                        stats["years"][year] += 1
+            except:
                 pass
             
             # Extract correspondents
             try:
-                sender = doc.any_xpath('//tei:correspAction[@type="sent"]//tei:persName/text()')[0]
-                stats["correspondents"][sender] += 1
-                
-                # Determine letter type based on Schnitzler involvement
-                if "Schnitzler" in sender:
-                    stats["letter_types"]["from_schnitzler"] += 1
-                else:
-                    stats["letter_types"]["to_schnitzler"] += 1
+                sender_elem = root.find('.//tei:correspAction[@type="sent"]//tei:persName', ns)
+                if sender_elem is not None and sender_elem.text:
+                    sender = sender_elem.text.strip()
+                    stats["correspondents"][sender] += 1
                     
-            except IndexError:
+                    # Determine letter type based on Schnitzler involvement
+                    if "Schnitzler" in sender:
+                        stats["letter_types"]["from_schnitzler"] += 1
+                    else:
+                        stats["letter_types"]["to_schnitzler"] += 1
+            except:
                 pass
             
             try:
-                receiver = doc.any_xpath('//tei:correspAction[@type="received"]//tei:persName/text()')[0]
-                stats["correspondents"][receiver] += 1
-            except IndexError:
+                receiver_elem = root.find('.//tei:correspAction[@type="received"]//tei:persName', ns)
+                if receiver_elem is not None and receiver_elem.text:
+                    receiver = receiver_elem.text.strip()
+                    stats["correspondents"][receiver] += 1
+            except:
                 pass
             
             # Extract places
-            for place in doc.any_xpath('.//tei:back//tei:place'):
+            for place in root.findall('.//tei:back//tei:place', ns):
                 try:
-                    place_name = place.xpath('.//tei:placeName[1]/text()')[0]
-                    stats["places"][place_name] += 1
-                except IndexError:
+                    place_name_elem = place.find('.//tei:placeName', ns)
+                    if place_name_elem is not None and place_name_elem.text:
+                        place_name = place_name_elem.text.strip()
+                        stats["places"][place_name] += 1
+                except:
                     pass
             
             # Extract persons for keyword generation
-            for person in doc.any_xpath('.//tei:back//tei:person'):
+            for person in root.findall('.//tei:back//tei:person', ns):
                 try:
-                    person_name = person.xpath('.//tei:persName/tei:surname/text()')[0]
-                    stats["keywords_frequency"][person_name] += 1
-                except IndexError:
+                    surname_elem = person.find('.//tei:persName/tei:surname', ns)
+                    if surname_elem is not None and surname_elem.text:
+                        person_name = surname_elem.text.strip()
+                        stats["keywords_frequency"][person_name] += 1
+                except:
                     pass
             
             # Extract works/literature
-            for work in doc.any_xpath('.//tei:back//tei:bibl'):
+            for work in root.findall('.//tei:back//tei:bibl', ns):
                 try:
-                    work_title = work.xpath('.//tei:title[1]/text()')[0]
-                    if len(work_title) > 5:  # Filter short titles
-                        stats["topics"][work_title] += 1
-                except IndexError:
+                    title_elem = work.find('.//tei:title', ns)
+                    if title_elem is not None and title_elem.text:
+                        work_title = title_elem.text.strip()
+                        if len(work_title) > 5:  # Filter short titles
+                            stats["topics"][work_title] += 1
+                except:
                     pass
                     
         except Exception as e:

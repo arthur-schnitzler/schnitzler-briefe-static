@@ -1238,7 +1238,7 @@
         </div>
     </xsl:template>
     <xsl:template
-        match="tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(ancestor::tei:note[@type = 'footnote']) and not(ancestor::tei:caption) and not(parent::tei:bibl) and not(parent::tei:quote) and not(child::tei:space[@dim])] | tei:dateline | tei:closer | tei:seg[not(parent::tei:seg)]">
+        match="tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(ancestor::tei:note[@type = 'footnote']) and not(ancestor::tei:caption) and not(parent::tei:bibl) and not(parent::tei:quote) and not(child::tei:space[@dim])] | tei:dateline | tei:closer | tei:seg[not(parent::tei:seg) and not(child::tei:seg[@rend='left' or @rend='right']) and not(tei:seg[@rend='left'] and tei:seg[@rend='right'])]">
         <xsl:choose>
             <xsl:when test="child::tei:seg">
                 <div class="editionText flexContainer">
