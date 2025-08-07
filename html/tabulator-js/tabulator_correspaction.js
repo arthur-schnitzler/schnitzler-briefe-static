@@ -11,6 +11,15 @@ var table = new Tabulator("#tabulator-table-correspaction", {
                 definitions.forEach(function(column){
                     column.formatter = "html";  //set formatter to html for all columns
                     column.headerFilter = "input"; //add header filters
+                    
+                    // Ensure correct capitalization of headers
+                    if (column.title === "titel") {
+                        column.title = "Titel";
+                    } else if (column.title === "datum_(iso)" || column.title === "datum (iso)") {
+                        column.title = "Datum (ISO)";
+                    } else if (column.title === "briefnummer") {
+                        column.title = "Briefnummer";
+                    }
                 });
                 return definitions;
             },

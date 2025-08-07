@@ -16,7 +16,13 @@ var table = new Tabulator("#tabulator-table-limited", {
                     column.headerFilter = "input"; //add header filters
                     
                     // Ensure correct capitalization of headers
-                    if (column.title === "korrespondenz") {
+                    if (column.title === "titel") {
+                        column.title = "Titel";
+                    } else if (column.title === "datum_(iso)" || column.title === "datum (iso)") {
+                        column.title = "Datum (ISO)";
+                    } else if (column.title === "briefnummer") {
+                        column.title = "Briefnummer";
+                    } else if (column.title === "korrespondenz") {
                         column.title = "Korrespondenz";
                     } else if (column.title === "enthält" || column.title === "Enthält") {
                         column.title = "enthält";

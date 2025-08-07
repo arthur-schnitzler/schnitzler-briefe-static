@@ -1671,7 +1671,26 @@
         </xsl:variable>
         <span>
             <xsl:attribute name="class">
-                <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
+                <xsl:choose>
+                    <xsl:when test="@type = 'person'">
+                        <xsl:text>persons badge-item entity prs</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@type = 'work'">
+                        <xsl:text>works badge-item entity wrk</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@type = 'place'">
+                        <xsl:text>places badge-item entity plc</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@type = 'org'">
+                        <xsl:text>orgs badge-item entity org</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@type = 'event'">
+                        <xsl:text>events badge-item entity evt</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:attribute>
             <xsl:element name="a">
                 <xsl:attribute name="href">
@@ -1776,7 +1795,26 @@
         </xsl:variable>
         <span>
             <xsl:attribute name="class">
-                <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
+                <xsl:choose>
+                    <xsl:when test="@type = 'person'">
+                        <xsl:text>persons badge-item entity prs</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@type = 'work'">
+                        <xsl:text>works badge-item entity wrk</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@type = 'place'">
+                        <xsl:text>places badge-item entity plc</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@type = 'org'">
+                        <xsl:text>orgs badge-item entity org</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@type = 'event'">
+                        <xsl:text>events badge-item entity evt</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:attribute>
             <xsl:element name="a">
                 <xsl:attribute name="href">

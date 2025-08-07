@@ -111,12 +111,10 @@ var editor = new LoadEditor({
         }, {
             opt: "prs",
             title: "Personen",
-            color: "#e74c3c",
             html_class: "persons",
-            css_class: "prs",
             hide: {
                 hidden: false,
-                class: "persons .entity",
+                class: "prs",
             },
             chg_citation: "citation-url",
             features: {
@@ -126,12 +124,10 @@ var editor = new LoadEditor({
         }, {
             opt: "plc",
             title: "Orte", 
-            color: "#3498db",
             html_class: "places",
-            css_class: "plc",
             hide: {
                 hidden: false,
-                class: "places .entity",
+                class: "plc",
             },
             chg_citation: "citation-url",
             features: {
@@ -141,12 +137,10 @@ var editor = new LoadEditor({
         }, {
             opt: "org",
             title: "Institutionen",
-            color: "#9b59b6",
             html_class: "orgs",
-            css_class: "org",
             hide: {
                 hidden: false,
-                class: "orgs .entity",
+                class: "org",
             },
             chg_citation: "citation-url",
             features: {
@@ -156,12 +150,10 @@ var editor = new LoadEditor({
         }, {
             opt: "wrk",
             title: "Werke",
-            color: "#f39c12",
             html_class: "works", 
-            css_class: "wrk",
             hide: {
                 hidden: false,
-                class: "works .entity",
+                class: "wrk",
             },
             features: {
                 all: false,
@@ -170,12 +162,10 @@ var editor = new LoadEditor({
         }, {
             opt: "evt",
             title: "Ereignisse",
-            color: "#27ae60",
             html_class: "events",
-            css_class: "evt", 
             hide: {
                 hidden: false,
-                class: "events .entity",
+                class: "evt",
             },
             features: {
                 all: false,

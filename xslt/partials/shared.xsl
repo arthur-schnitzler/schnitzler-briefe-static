@@ -832,7 +832,7 @@
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
-                <span class="pagebreak" title="Seitenbeginn">
+                <span class="pagebreak" title="Beginn einer neuen Seite">
                     <xsl:text>|</xsl:text>
                 </span>
             </xsl:otherwise>
