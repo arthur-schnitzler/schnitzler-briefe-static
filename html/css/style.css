@@ -142,32 +142,32 @@ a {
     cursor: pointer;
 }
 
-/* Entity highlighting with colored borders - only when activated */
-.activated .css-class-prs.entity {
+/* Entity highlighting with colored borders - when class prs/plc/org/wrk/evt is present */
+.persons.entity.prs {
     border: 1px solid #e74c3c !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.activated .css-class-plc.entity {
+.places.entity.plc {
     border: 1px solid #3498db !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.activated .css-class-org.entity {
+.orgs.entity.org {
     border: 1px solid #9b59b6 !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.activated .css-class-wrk.entity {
+.works.entity.wrk {
     border: 1px solid #f39c12 !important;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
-.activated .css-class-evt.entity {
+.events.entity.evt {
     border: 1px solid #27ae60 !important;
     padding: 2px 4px;
     border-radius: 8px;
