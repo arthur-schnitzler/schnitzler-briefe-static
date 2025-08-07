@@ -7,7 +7,7 @@ var editor = new LoadEditor({
             title: "Alle",
             color: "red",
             html_class: "undefined",
-            css_class: "undefined",
+            css_class: "",
             chg_citation: "citation-url",
             hide: {
                 hidden: false,
@@ -23,7 +23,7 @@ var editor = new LoadEditor({
             title: "Alle",
             color: "green",
             html_class: "undefined",
-            css_class: "undefined",
+            css_class: "",
             chg_citation: "citation-url",
             hide: {
                 hidden: false,
@@ -110,12 +110,10 @@ var editor = new LoadEditor({
             }
         }, {
             opt: "prs",
-            color: "red",
             title: "Personen",
             html_class: "persons",
-            css_class: "pers",
             hide: {
-                hidden: false,
+                hidden: true,
                 class: "persons .entity",
             },
             chg_citation: "citation-url",
@@ -125,12 +123,10 @@ var editor = new LoadEditor({
             },
         }, {
             opt: "plc",
-            color: "red",
             title: "Orte",
             html_class: "places",
-            css_class: "plc",
             hide: {
-                hidden: false,
+                hidden: true,
                 class: "places .entity",
             },
             chg_citation: "citation-url",
@@ -140,12 +136,10 @@ var editor = new LoadEditor({
             },
         }, {
             opt: "org",
-            color: "red",
             title: "Institutionen",
             html_class: "orgs",
-            css_class: "org",
             hide: {
-                hidden: false,
+                hidden: true,
                 class: "orgs .entity",
             },
             chg_citation: "citation-url",
@@ -155,14 +149,23 @@ var editor = new LoadEditor({
             },
         }, {
             opt: "wrk",
-            color: "red",
             title: "Werke",
             html_class: "works",
-            css_class: "wrk",
-            chg_citation: "citation-url",
             hide: {
-                hidden: false,
-                class: "wrk .entity",
+                hidden: true,
+                class: "works .entity",
+            },
+            features: {
+                all: false,
+                class: "features-1",
+            },
+        }, {
+            opt: "evt",
+            title: "Ereignisse",
+            html_class: "events",
+            hide: {
+                hidden: true,
+                class: "events .entity",
             },
             features: {
                 all: false,

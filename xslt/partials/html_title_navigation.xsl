@@ -17,7 +17,7 @@
                     <nav class="navbar navbar-previous-next" style="text-indent: 1em;" aria-label="Vorheriger Brief">
                         <i class="fas fa-chevron-left nav-link float-start" href="#"
                             id="navbarDropdownLeft" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"/>
+                            aria-expanded="false">&#8249;</i>
                         <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
                             <xsl:if
                                 test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]">
@@ -59,7 +59,7 @@
                     <nav class="navbar navbar-previous-next float-end dropstart" aria-label="Nächster Brief">
                         <i class="fas fa-chevron-right nav-link" href="#"
                             id="navbarDropdownRight" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"/>
+                            aria-expanded="false">&#8250;</i>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <xsl:if
                                 test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]">
@@ -109,9 +109,9 @@
                 </xsl:attribute>
                 <xsl:choose>
                     <xsl:when test="contains($eintrag/@subtype, 'next')">
-                        <i class="fas fa-chevron-right"/>&#160; </xsl:when>
+                        <i class="fas fa-chevron-right">&#8250;</i>&#160; </xsl:when>
                     <xsl:when test="contains($eintrag/@subtype, 'previous')">
-                        <i class="fas fa-chevron-left"/>&#160; </xsl:when>
+                        <i class="fas fa-chevron-left">&#8249;</i>&#160; </xsl:when>
                 </xsl:choose>
                 <xsl:value-of select="$eintrag"/>
             </xsl:element>

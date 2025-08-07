@@ -634,7 +634,7 @@
                                 </div>
                                 <div>
                                     <xsl:if test=".//tei:back/tei:listEvent/tei:event[1]">
-                                        <legend>Institutionen</legend>
+                                        <legend>Ereignisse</legend>
                                         <ul>
                                             <xsl:for-each select=".//tei:listEvent//tei:event">
                                                 <xsl:sort select="child::tei:eventName[1]"/>
@@ -749,7 +749,7 @@
                                     </ul>
                                 </div>
                                 <div>
-                                    <legend>Entitäten markieren</legend>
+                                    <legend>Links markieren</legend>
                                     <ul>
                                         <li>
                                             <annotation-slider opt="ef"/>
@@ -1652,7 +1652,7 @@
         </xsl:variable>
         <span>
             <xsl:attribute name="class">
-                <xsl:value-of select="$entity-typ"/>
+                <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
             </xsl:attribute>
             <xsl:element name="a">
                 <xsl:attribute name="href">
@@ -1757,7 +1757,7 @@
         </xsl:variable>
         <span>
             <xsl:attribute name="class">
-                <xsl:value-of select="$entity-typ"/>
+                <xsl:value-of select="concat($entity-typ, ' badge-item entity')"/>
             </xsl:attribute>
             <xsl:element name="a">
                 <xsl:attribute name="href">
