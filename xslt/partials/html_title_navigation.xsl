@@ -15,9 +15,9 @@
             <div class="col-md-2 col-lg-2 col-sm-12">
                 <xsl:if test="$correspContext/tei:ref/@subtype = 'previous_letter'">
                     <nav class="navbar navbar-previous-next" style="text-indent: 1em;" aria-label="Vorheriger Brief">
-                        <i class="fas fa-chevron-left nav-link float-start" href="#"
+                        <span class="nav-link float-start" href="#"
                             id="navbarDropdownLeft" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"></i>
+                            aria-expanded="false">‹</span>
                         <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
                             <xsl:if
                                 test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]">
@@ -57,9 +57,9 @@
             <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right">
                 <xsl:if test="$correspContext/tei:ref/@subtype = 'next_letter'">
                     <nav class="navbar navbar-previous-next float-end dropstart" aria-label="Nächster Brief">
-                        <i class="fas fa-chevron-right nav-link" href="#"
+                        <span class="nav-link" href="#"
                             id="navbarDropdownRight" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"></i>
+                            aria-expanded="false">›</span>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <xsl:if
                                 test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]">
@@ -109,9 +109,9 @@
                 </xsl:attribute>
                 <xsl:choose>
                     <xsl:when test="contains($eintrag/@subtype, 'next')">
-                        <i class="fas fa-chevron-right"></i>&#160; </xsl:when>
+                        <span>›</span>&#160; </xsl:when>
                     <xsl:when test="contains($eintrag/@subtype, 'previous')">
-                        <i class="fas fa-chevron-left"></i>&#160; </xsl:when>
+                        <span>‹</span>&#160; </xsl:when>
                 </xsl:choose>
                 <xsl:value-of select="$eintrag"/>
             </xsl:element>
