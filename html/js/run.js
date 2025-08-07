@@ -115,7 +115,7 @@ var editor = new LoadEditor({
             html_class: "persons",
             css_class: "prs",
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "persons .entity",
             },
             chg_citation: "citation-url",
@@ -130,7 +130,7 @@ var editor = new LoadEditor({
             html_class: "places",
             css_class: "plc",
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "places .entity",
             },
             chg_citation: "citation-url",
@@ -145,7 +145,7 @@ var editor = new LoadEditor({
             html_class: "orgs",
             css_class: "org",
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "orgs .entity",
             },
             chg_citation: "citation-url",
@@ -160,7 +160,7 @@ var editor = new LoadEditor({
             html_class: "works", 
             css_class: "wrk",
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "works .entity",
             },
             features: {
@@ -174,7 +174,7 @@ var editor = new LoadEditor({
             html_class: "events",
             css_class: "evt", 
             hide: {
-                hidden: true,
+                hidden: false,
                 class: "events .entity",
             },
             features: {
