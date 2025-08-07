@@ -16,7 +16,9 @@
       "Bash(git checkout:*)",
       "mcp__ide__getDiagnostics",
       "Bash(grep:*)",
-      "WebFetch(domain:www.wikidata.org)"
+      "WebFetch(domain:www.wikidata.org)",
+      "Bash(saxon:*)",
+      "Bash(xmllint:*)"
     ],
     "deny": []
   }

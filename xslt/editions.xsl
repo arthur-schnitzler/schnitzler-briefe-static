@@ -127,6 +127,7 @@
                     </xsl:for-each>
                 </xsl:if>
                 
+                
                 <!-- JSON-LD structured data for better Wikipedia/search engine recognition -->
                 <script type="application/ld+json">
                 {
@@ -142,7 +143,25 @@
                   },
                   "isPartOf": {
                     "@type": "Collection", 
-                    "name": "Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition"
+                    "name": "Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition",
+                    "editor": [
+                      {
+                        "@type": "Person",
+                        "name": "Martin Anton Müller"
+                      },
+                      {
+                        "@type": "Person", 
+                        "name": "Gerd-Hermann Susen"
+                      },
+                      {
+                        "@type": "Person",
+                        "name": "Laura Untner"
+                      },
+                      {
+                        "@type": "Person",
+                        "name": "Selma Jahnke"
+                      }
+                    ]
                   }<xsl:if test="//tei:correspAction[@type='sent']/tei:persName">,
                   "author": [<xsl:for-each select="//tei:correspAction[@type='sent']/tei:persName">
                     {
