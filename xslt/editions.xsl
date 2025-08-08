@@ -654,7 +654,7 @@
                                     <xsl:if test=".//tei:back/tei:listEvent/tei:event[1]">
                                         <legend>Ereignisse</legend>
                                         <ul>
-                                            <xsl:for-each select=".//tei:listEvent//tei:event">
+                                            <xsl:for-each select=".//tei:back/tei:listEvent/tei:event">
                                                 <xsl:sort select="child::tei:eventName[1]"/>
                                                 <li>
                                                     <a class="events">
