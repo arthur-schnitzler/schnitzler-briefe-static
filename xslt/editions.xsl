@@ -467,7 +467,7 @@
                             <div class="modal-body">
                                 <p>Eine zitierfähige Angabe dieser Seite lautet:</p>
                                 <blockquote class="citation-quote" style="cursor: pointer; user-select: all; padding: 10px; background-color: #f8f9fa; border-left: 4px solid #A63437;" onclick="copyToClipboard(this)" title="Klicken zum Kopieren">
-                                    <xsl:value-of select="$quotationString"/>
+                                    <xsl:value-of select="normalize-space($quotationString)"/>
                                 </blockquote>
                                 <p/>
                                 <p>Für gekürzte Zitate reicht die Angabe der Briefnummer aus, die
@@ -476,7 +476,7 @@
                                         /></b>«.</p>
                                 <p>Für Belege in der Wikipedia kann diese Vorlage benutzt
                                     werden:</p>
-                                <blockquote itemscope="" itemtype="http://schema.org/WebSite" itemid="https://schnitzler-briefe.acdh.oeaw.ac.at">
+                                <blockquote class="citation-quote" style="cursor: pointer; user-select: all; padding: 10px; background-color: #f8f9fa; border-left: 4px solid #A63437;" onclick="copyToClipboard(this)" title="Klicken zum Kopieren">
                                     <code>{{Internetquelle
                                             |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of
                                             select="$link"/> |titel=<xsl:value-of
@@ -1088,58 +1088,7 @@
                 <script src="https://unpkg.com/de-micro-editor@0.2.83/dist/de-editor.min.js"/>
                 <script type="text/javascript" src="js/run.js"/>
                 <script type="text/javascript" src="js/prev-next-urlupdate.js"/>
-                <script>
-                function copyToClipboard(element) {
-                    const text = element.textContent || element.innerText;
-                    
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(text).then(function() {
-                            showCopyFeedback(element);
-                        }).catch(function(err) {
-                            console.error('Fehler beim Kopieren: ', err);
-                            fallbackCopyToClipboard(text, element);
-                        });
-                    } else {
-                        fallbackCopyToClipboard(text, element);
-                    }
-                }
-                
-                function fallbackCopyToClipboard(text, element) {
-                    const textArea = document.createElement('textarea');
-                    textArea.value = text;
-                    textArea.style.position = 'fixed';
-                    textArea.style.left = '-999999px';
-                    textArea.style.top = '-999999px';
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    
-                    try {
-                        document.execCommand('copy');
-                        showCopyFeedback(element);
-                    } catch (err) {
-                        console.error('Fallback-Kopieren fehlgeschlagen: ', err);
-                        alert('Kopieren fehlgeschlagen. Bitte markieren Sie den Text manuell und drücken Sie Strg+C');
-                    }
-                    
-                    document.body.removeChild(textArea);
-                }
-                
-                function showCopyFeedback(element) {
-                    const originalBg = element.style.backgroundColor;
-                    const originalBorder = element.style.borderLeft;
-                    
-                    element.style.backgroundColor = '#d4edda';
-                    element.style.borderLeft = '4px solid #28a745';
-                    element.title = 'Kopiert!';
-                    
-                    setTimeout(function() {
-                        element.style.backgroundColor = originalBg;
-                        element.style.borderLeft = originalBorder;
-                        element.title = 'Klicken zum Kopieren';
-                    }, 1500);
-                }
-                </script>
+                <script type="text/javascript" src="js/copy-to-clipboard.js"/>
             </body>
         </html>
     </xsl:template>
