@@ -142,11 +142,9 @@ a {
     cursor: pointer;
 }
 
-/* Entity highlighting with colored borders - active by default for independent toggle system */
+/* Entity highlighting with colored underlines - active by default for independent toggle system */
 .persons.entity {
-    border: 1px solid #e74c3c !important;
-    padding: 2px 4px;
-    border-radius: 8px;
+    border-bottom: 2px solid #e74c3c !important;
     transition: all 0.2s ease;
 }
 
@@ -156,9 +154,7 @@ a {
 }
 
 .places.entity {
-    border: 1px solid #3498db !important;
-    padding: 2px 4px;
-    border-radius: 8px;
+    border-bottom: 2px solid #3498db !important;
     transition: all 0.2s ease;
 }
 
@@ -168,9 +164,7 @@ a {
 }
 
 .orgs.entity {
-    border: 1px solid #9b59b6 !important;
-    padding: 2px 4px;
-    border-radius: 8px;
+    border-bottom: 2px solid #9b59b6 !important;
     transition: all 0.2s ease;
 }
 
@@ -180,9 +174,7 @@ a {
 }
 
 .works.entity {
-    border: 1px solid #f39c12 !important;
-    padding: 2px 4px;
-    border-radius: 8px;
+    border-bottom: 2px solid #f39c12 !important;
     transition: all 0.2s ease;
 }
 
@@ -192,9 +184,7 @@ a {
 }
 
 .events.entity {
-    border: 1px solid #27ae60 !important;
-    padding: 2px 4px;
-    border-radius: 8px;
+    border-bottom: 2px solid #27ae60 !important;
     transition: all 0.2s ease;
 }
 
@@ -205,7 +195,7 @@ a {
 
 /* Hidden state for entities when toggled off */
 .entity.entity-hidden {
-    border: 1px solid transparent !important;
+    border-bottom: 2px solid transparent !important;
 }
 
 .entity-table {
