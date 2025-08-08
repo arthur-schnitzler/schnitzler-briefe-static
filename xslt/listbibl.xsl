@@ -34,24 +34,27 @@
                                 </h1>
                             </div>
                             <div class="card-body">
-                                <div id="container"
-                                    style="padding-bottom: 20px; width:100%; margin: auto"/>
-                                <div id="chart-buttons" class="text-center mt-3"
-                                    style="margin: auto; padding-bottom: 20px">
-                                    <button class="btn mx-1 chart-btn"
-                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
-                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top30.csv"
-                                        >Top 30</button>
-                                    <button class="btn mx-1 chart-btn"
-                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
-                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top100.csv"
-                                        >Top 100</button>
-                                    <button class="btn mx-1 chart-btn"
-                                        style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
-                                        data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top500.csv"
-                                        >Top 500</button>
+                                <div class="alert alert-light alert-dismissible fade show" role="alert" style="border: 1px solid #dee2e6;">
+                                    <div id="container"
+                                        style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                    <div id="chart-buttons" class="text-center mt-3"
+                                        style="margin: auto; padding-bottom: 20px">
+                                        <button class="btn mx-1 chart-btn"
+                                            style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                            data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top30.csv"
+                                            >Top 30</button>
+                                        <button class="btn mx-1 chart-btn"
+                                            style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                            data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top100.csv"
+                                            >Top 100</button>
+                                        <button class="btn mx-1 chart-btn"
+                                            style="background-color: #A63437; color: white; border: none; padding: 5px 10px; font-size: 0.875rem;"
+                                            data-csv="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-static/main/netzwerke/work_freq_corp_weights_directed/work_freq_corp_weights_directed_top500.csv"
+                                            >Top 500</button>
+                                    </div>
+                                    <script src="js/work_freq_corp_weights_directed.js"/>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Schließen"></button>
                                 </div>
-                                <script src="js/work_freq_corp_weights_directed.js"/>
                                 <table class="table table-sm display" id="tabulator-table-work">
                                     <thead>
                                         <tr>
