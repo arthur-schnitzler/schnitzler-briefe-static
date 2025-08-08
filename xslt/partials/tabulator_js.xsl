@@ -131,6 +131,11 @@
                     } else if (column.title === "organisation") {
                         column.title = "Organisation";
                     }
+                    
+                    // Hide the first column if it's an id column
+                    if (index === 0 &amp;&amp; (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
+                        column.visible = false;
+                    }
                 });
                 return definitions;
             },
