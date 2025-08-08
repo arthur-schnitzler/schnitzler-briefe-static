@@ -30,10 +30,10 @@
                             </div>
                             <div class="card-body">
                                 <div style="max-width: 800px; margin: 0 auto;">
-                                    <p>Hier wird das »Ereignis« enger gefasst als eine kulturelle Veranstaltung. 
-                                        Mit dem Auszeichnen von Ereignisse wurde erst in der dritten
-                                        Projektlaufzeit begonnen, so dass diese in den bis dahin publizierten
-                                        Briefen noch nicht vorhanden sind. Es empfiehlt sich nach bestimmten
+                                    <p>Hier werden »Ereignisse« im engeren Sinne verstanden: als eine kulturelle Veranstaltung. 
+                                        Mit dem Auszeichnen von Ereignisse wurde erst nach sechs Jahren des Projekts begonnen, 
+                                        so dass diese in den bis dahin publizierten
+                                        Briefen noch nicht vorhanden sind. Wir werden uns zwar bemühen, nachzutragen. Es empfiehlt sich nach bestimmten
                                         Veranstaltungen auch über die Werke zu suchen, die aufgeführt wurden.</p>
                                 </div>
                                 <table class="table table-sm display" id="tabulator-table-event">

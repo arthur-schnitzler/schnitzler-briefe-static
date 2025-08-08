@@ -19,7 +19,8 @@
       "WebFetch(domain:www.wikidata.org)",
       "Bash(saxon:*)",
       "Bash(xmllint:*)",
-      "Bash(./transform.sh)"
+      "Bash(./transform.sh)",
+      "Bash(node:*)"
     ],
     "deny": []
   }

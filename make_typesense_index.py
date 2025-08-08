@@ -75,6 +75,12 @@ current_schema = {
             "optional": True,
         },
         {
+            "name": "events",
+            "type": "object[]",
+            "facet": True,
+            "optional": True,
+        },
+        {
             "name": "accessible_title",
             "type": "string",
             "optional": True,
@@ -169,6 +175,25 @@ for x in tqdm(files, total=len(files)):
     for y in doc.any_xpath(".//tei:back//tei:bibl[@xml:id]"):
         item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]")[0])[0]}
         record["works"].append(item)
+
+    record["events"] = []
+    for y in doc.any_xpath(".//tei:back//tei:event[@xml:id]"):
+        try:
+            event_name = y.xpath(".//tei:eventName/text()")[0] if y.xpath(".//tei:eventName/text()") else "Unbekanntes Ereignis"
+            event_date = y.xpath("./@when-iso")[0] if y.xpath("./@when-iso") else None
+            event_type = y.xpath(".//tei:eventName/@n")[0] if y.xpath(".//tei:eventName/@n") else None
+            
+            item = {
+                "id": get_xmlid(y), 
+                "label": event_name,
+                "date": event_date,
+                "type": event_type
+            }
+            record["events"].append(item)
+        except Exception as e:
+            print(f"Error processing event in {x}: {e}")
+            
+    cfts_record["events"] = [x["label"] for x in record["events"]]
     cfts_record["places"] = [x["label"] for x in record["places"]]
     record["full_text"] = f"{extract_fulltext(body)} {record['title']}".replace("(", " ")
     cfts_record["full_text"] = record["full_text"]

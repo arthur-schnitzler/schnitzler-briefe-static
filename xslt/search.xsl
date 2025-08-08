@@ -48,6 +48,8 @@
                                             <div id="refinement-list-orgs"></div>
                                             <h4>Werke</h4>
                                             <div id="refinement-list-works"></div>
+                                            <h4>Ereignisse</h4>
+                                            <div id="refinement-list-events"></div>
                                             
                                         </div>
                                         <div class="col-md-8">

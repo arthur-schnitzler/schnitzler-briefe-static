@@ -1290,6 +1290,32 @@ div#map {
             white-space: nowrap; /* Kein Umbruch für Kinder */
         }
 
+/* Typesense search filter badges with consistent entity colors */
+#refinement-list-persons .ais-RefinementList-count {
+    background-color: #e74c3c !important;
+    color: white !important;
+}
+
+#refinement-list-places .ais-RefinementList-count {
+    background-color: #3498db !important;
+    color: white !important;
+}
+
+#refinement-list-orgs .ais-RefinementList-count {
+    background-color: #9b59b6 !important;
+    color: white !important;
+}
+
+#refinement-list-works .ais-RefinementList-count {
+    background-color: #f39c12 !important;
+    color: white !important;
+}
+
+#refinement-list-events .ais-RefinementList-count {
+    background-color: #27ae60 !important;
+    color: white !important;
+}
+
 .cornered-pill {
     border-radius: 50px;
     padding: 5px 15px;
@@ -1340,3 +1366,29 @@ div#map {
             overflow-x: auto; /* Horizontal scrollen */
             white-space: nowrap; /* Kein Umbruch für Kinder */
         }
+
+/* Typesense search filter badges with consistent entity colors */
+#refinement-list-persons .ais-RefinementList-count {
+    background-color: #e74c3c !important;
+    color: white !important;
+}
+
+#refinement-list-places .ais-RefinementList-count {
+    background-color: #3498db !important;
+    color: white !important;
+}
+
+#refinement-list-orgs .ais-RefinementList-count {
+    background-color: #9b59b6 !important;
+    color: white !important;
+}
+
+#refinement-list-works .ais-RefinementList-count {
+    background-color: #f39c12 !important;
+    color: white !important;
+}
+
+#refinement-list-events .ais-RefinementList-count {
+    background-color: #27ae60 !important;
+    color: white !important;
+}
