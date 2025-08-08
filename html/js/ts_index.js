@@ -48,14 +48,12 @@ search.addWidgets([
       return html`
         <h3><a href="${hit.id}.html">${hit.title}</a></h3>
         <p>${hit._snippetResult.full_text.matchedWords.length > 0 ? components.Snippet({ hit, attribute: 'full_text' }) : ''}</p>
+        <p>
         ${hit.persons.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #e74c3c; color: white;">${truncateLabel(item.label)}</span></a>`)}
-        <br />
         ${hit.places.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #3498db; color: white;">${truncateLabel(item.label)}</span></a>`)}
-        <br />
         ${hit.orgs.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #9b59b6; color: white;">${truncateLabel(item.label)}</span></a>`)}
-        <br />
         ${hit.works.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #f39c12; color: white;">${truncateLabel(item.label)}</span></a>`)}
-        <br />`;
+        </p>`;
     },
   },
 }),
