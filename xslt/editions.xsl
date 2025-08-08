@@ -532,200 +532,251 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <div>
-                                    <legend>Personen</legend>
-                                    <ul>
-                                        <xsl:for-each select=".//tei:listPerson//tei:person">
-                                            <xsl:sort
-                                                select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
-                                            <xsl:variable name="naname" as="xs:string">
-                                                <xsl:choose>
-                                                  <xsl:when
-                                                  test="child::tei:persName[1]/tei:surname[1] and child::tei:persName[1]/tei:forename[1]">
-                                                  <xsl:value-of
-                                                  select="concat(child::tei:persName[1]/tei:surname[1], ' ', child::tei:persName[1]/tei:forename[1])"
-                                                  />
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="child::tei:persName[1]/tei:forename[1]">
-                                                  <xsl:value-of select="child::tei:forename[1]"/>
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="child::tei:persName[1]/tei:surname[1]">
-                                                  <xsl:value-of
-                                                  select="child::tei:persName[1]/tei:surname[1]"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of
-                                                  select="normalize-space(child::tei:persName)"/>
-                                                  </xsl:otherwise>
-                                                </xsl:choose>
-                                            </xsl:variable>
-                                            <li>
-                                                <a class="persons">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat(data(@xml:id), '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of select="$naname"/>
-                                                </a>
-                                            </li>
-                                        </xsl:for-each>
-                                    </ul>
-                                </div>
-                                <div>
+                                <div class="accordion" id="entitietenAccordion">
+                                    <!-- Personen -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingPersons">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePersons" aria-expanded="true" aria-controls="collapsePersons">
+                                                Personen
+                                            </button>
+                                        </h2>
+                                        <div id="collapsePersons" class="accordion-collapse collapse show" aria-labelledby="headingPersons" data-bs-parent="#entitietenAccordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <xsl:for-each select=".//tei:listPerson//tei:person">
+                                                        <xsl:sort
+                                                            select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
+                                                        <xsl:variable name="naname" as="xs:string">
+                                                            <xsl:choose>
+                                                              <xsl:when
+                                                              test="child::tei:persName[1]/tei:surname[1] and child::tei:persName[1]/tei:forename[1]">
+                                                              <xsl:value-of
+                                                              select="concat(child::tei:persName[1]/tei:surname[1], ' ', child::tei:persName[1]/tei:forename[1])"
+                                                              />
+                                                              </xsl:when>
+                                                              <xsl:when
+                                                              test="child::tei:persName[1]/tei:forename[1]">
+                                                              <xsl:value-of select="child::tei:forename[1]"/>
+                                                              </xsl:when>
+                                                              <xsl:when
+                                                              test="child::tei:persName[1]/tei:surname[1]">
+                                                              <xsl:value-of
+                                                              select="child::tei:persName[1]/tei:surname[1]"/>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                              <xsl:value-of
+                                                              select="normalize-space(child::tei:persName)"/>
+                                                              </xsl:otherwise>
+                                                            </xsl:choose>
+                                                        </xsl:variable>
+                                                        <li>
+                                                            <a class="persons">
+                                                              <xsl:attribute name="href">
+                                                              <xsl:value-of
+                                                              select="concat(data(@xml:id), '.html')"/>
+                                                              </xsl:attribute>
+                                                              <xsl:value-of select="$naname"/>
+                                                            </a>
+                                                        </li>
+                                                    </xsl:for-each>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Werke -->
                                     <xsl:if test=".//tei:back/tei:listBibl/tei:bibl[1]">
-                                        <legend>Werke</legend>
-                                        <ul>
-                                            <xsl:for-each select=".//tei:back/tei:listBibl/tei:bibl">
-                                                <xsl:sort select="child::tei:title[1]"/>
-                                                <li>
-                                                  <a class="works">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat(data(@xml:id), '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:if
-                                                  test="child::tei:author[@role = 'hat-geschaffen' or @role = 'author']">
-                                                  <xsl:for-each
-                                                  select="child::tei:author[@role = 'hat-geschaffen' or @role = 'author']">
-                                                  <xsl:sort
-                                                  select="concat(., child::tei:surname[1], child::tei:forename[1])"/>
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="child::tei:surname[1] or child::tei:forename[1]">
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="child::tei:surname[1] and child::tei:forename[1]">
-                                                  <xsl:value-of
-                                                  select="concat(child::tei:surname[1], ' ', child::tei:forename[1])"
-                                                  />
-                                                  </xsl:when>
-                                                  <xsl:when test="child::tei:forename[1]">
-                                                  <xsl:value-of select="child::tei:forename[1]"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="child::tei:surname[1]"/>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  <xsl:if test="position() != last()">
-                                                  <xsl:text>, </xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="."/>
-                                                  <xsl:if test="position() != last()">
-                                                  <xsl:text>; </xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  <xsl:if test="position() = last()">
-                                                  <xsl:text>: </xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:for-each>
-                                                  </xsl:if>
-                                                  <xsl:value-of select="./tei:title[1]"/>
-                                                  </a>
-                                                </li>
-                                            </xsl:for-each>
-                                        </ul>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingWorks">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWorks" aria-expanded="false" aria-controls="collapseWorks">
+                                                    Werke
+                                                </button>
+                                            </h2>
+                                            <div id="collapseWorks" class="accordion-collapse collapse" aria-labelledby="headingWorks" data-bs-parent="#entitietenAccordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <xsl:for-each select=".//tei:back/tei:listBibl/tei:bibl">
+                                                            <xsl:sort select="child::tei:title[1]"/>
+                                                            <li>
+                                                              <a class="works">
+                                                              <xsl:attribute name="href">
+                                                              <xsl:value-of
+                                                              select="concat(data(@xml:id), '.html')"/>
+                                                              </xsl:attribute>
+                                                              <xsl:if
+                                                              test="child::tei:author[@role = 'hat-geschaffen' or @role = 'author']">
+                                                              <xsl:for-each
+                                                              select="child::tei:author[@role = 'hat-geschaffen' or @role = 'author']">
+                                                              <xsl:sort
+                                                              select="concat(., child::tei:surname[1], child::tei:forename[1])"/>
+                                                              <xsl:choose>
+                                                              <xsl:when
+                                                              test="child::tei:surname[1] or child::tei:forename[1]">
+                                                              <xsl:choose>
+                                                              <xsl:when
+                                                              test="child::tei:surname[1] and child::tei:forename[1]">
+                                                              <xsl:value-of
+                                                              select="concat(child::tei:surname[1], ' ', child::tei:forename[1])"
+                                                              />
+                                                              </xsl:when>
+                                                              <xsl:when test="child::tei:forename[1]">
+                                                              <xsl:value-of select="child::tei:forename[1]"/>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                              <xsl:value-of select="child::tei:surname[1]"/>
+                                                              </xsl:otherwise>
+                                                              </xsl:choose>
+                                                              <xsl:if test="position() != last()">
+                                                              <xsl:text>, </xsl:text>
+                                                              </xsl:if>
+                                                              </xsl:when>
+                                                              <xsl:otherwise>
+                                                              <xsl:value-of select="."/>
+                                                              <xsl:if test="position() != last()">
+                                                              <xsl:text>; </xsl:text>
+                                                              </xsl:if>
+                                                              </xsl:otherwise>
+                                                              </xsl:choose>
+                                                              <xsl:if test="position() = last()">
+                                                              <xsl:text>: </xsl:text>
+                                                              </xsl:if>
+                                                              </xsl:for-each>
+                                                              </xsl:if>
+                                                              <xsl:value-of select="./tei:title[1]"/>
+                                                              </a>
+                                                            </li>
+                                                        </xsl:for-each>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </xsl:if>
-                                </div>
-                                <div>
+                                    
+                                    <!-- Institutionen -->
                                     <xsl:if test=".//tei:back/tei:listOrg/tei:org[1]">
-                                        <legend>Institutionen</legend>
-                                        <ul>
-                                            <xsl:for-each select=".//tei:listOrg//tei:org">
-                                                <xsl:sort select="child::tei:orgName[1]"/>
-                                                <li>
-                                                  <a class="orgs">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat(data(@xml:id), '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of select="./tei:orgName[1]"/>
-                                                  </a>
-                                                </li>
-                                            </xsl:for-each>
-                                        </ul>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOrgs">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrgs" aria-expanded="false" aria-controls="collapseOrgs">
+                                                    Institutionen
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOrgs" class="accordion-collapse collapse" aria-labelledby="headingOrgs" data-bs-parent="#entitietenAccordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <xsl:for-each select=".//tei:listOrg//tei:org">
+                                                            <xsl:sort select="child::tei:orgName[1]"/>
+                                                            <li>
+                                                              <a class="orgs">
+                                                              <xsl:attribute name="href">
+                                                              <xsl:value-of
+                                                              select="concat(data(@xml:id), '.html')"/>
+                                                              </xsl:attribute>
+                                                              <xsl:value-of select="./tei:orgName[1]"/>
+                                                              </a>
+                                                            </li>
+                                                        </xsl:for-each>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </xsl:if>
-                                </div>
-                                <div>
+                                    
+                                    <!-- Ereignisse -->
                                     <xsl:if test=".//tei:back/tei:listEvent/tei:event[1]">
-                                        <legend>Ereignisse</legend>
-                                        <ul>
-                                            <xsl:for-each select=".//tei:back/tei:listEvent/tei:event">
-                                                <xsl:sort select="child::tei:eventName[1]"/>
-                                                <li>
-                                                    <a class="events">
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of
-                                                                select="concat(data(@xml:id), '.html')"/>
-                                                        </xsl:attribute>
-                                                        <xsl:value-of select="./tei:eventName[1]"/>
-                                                    </a>
-                                                </li>
-                                            </xsl:for-each>
-                                        </ul>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingEvents">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEvents" aria-expanded="false" aria-controls="collapseEvents">
+                                                    Ereignisse
+                                                </button>
+                                            </h2>
+                                            <div id="collapseEvents" class="accordion-collapse collapse" aria-labelledby="headingEvents" data-bs-parent="#entitietenAccordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <xsl:for-each select=".//tei:back/tei:listEvent/tei:event">
+                                                            <xsl:sort select="child::tei:eventName[1]"/>
+                                                            <li>
+                                                                <a class="events">
+                                                                    <xsl:attribute name="href">
+                                                                        <xsl:value-of
+                                                                            select="concat(data(@xml:id), '.html')"/>
+                                                                    </xsl:attribute>
+                                                                    <xsl:value-of select="./tei:eventName[1]"/>
+                                                                </a>
+                                                            </li>
+                                                        </xsl:for-each>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </xsl:if>
-                                </div>
-                                <div>
+                                    
+                                    <!-- Orte -->
                                     <xsl:if test=".//tei:back/tei:listPlace/tei:place[1]">
-                                        <legend>Orte</legend>
-                                        <ul>
-                                            <xsl:for-each select=".//tei:listPlace/tei:place">
-                                                <xsl:sort select="child::tei:placeName[1]"/>
-                                                <li>
-                                                  <a class="places">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat(data(@xml:id), '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of
-                                                  select="child::tei:placeName[1]/text()"/>
-                                                  </a>
-                                                  <xsl:if
-                                                  test="child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')][1]">
-                                                  <xsl:text> (</xsl:text>
-                                                  <xsl:for-each
-                                                  select="distinct-values(child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')])">
-                                                  <xsl:value-of select="normalize-space(.)"/>
-                                                  <xsl:if test="position() != last()">
-                                                  <xsl:text>, </xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:for-each>
-                                                  <xsl:text>)</xsl:text>
-                                                  </xsl:if>
-                                                  <xsl:if
-                                                  test="child::tei:location[@type = 'coords']">
-                                                  <xsl:text> </xsl:text>
-                                                  <xsl:variable name="mlat"
-                                                  select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[1], ',', '.')"
-                                                  as="xs:string"/>
-                                                  <xsl:variable name="mlong"
-                                                  select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[2], ',', '.')"
-                                                  as="xs:string"/>
-                                                  <xsl:variable name="mappin"
-                                                  select="concat('mlat=',$mlat, '&amp;mlon=', $mlong)"
-                                                  as="xs:string"/>
-                                                  <xsl:variable name="openstreetmapurl"
-                                                  select="concat('https://www.openstreetmap.org/?', $mappin, '#map=12/', $mlat, '/', $mlong)"/>
-                                                  <a class="theme-color">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of select="$openstreetmapurl"/>
-                                                  </xsl:attribute>
-                                                  <xsl:attribute name="target">
-                                                  <xsl:text>_blank</xsl:text>
-                                                  </xsl:attribute>
-                                                  <xsl:attribute name="rel">
-                                                  <xsl:text>noopener</xsl:text>
-                                                  </xsl:attribute>
-                                                  <i class="fa-solid fa-location-dot"/>
-                                                  </a>
-                                                  </xsl:if>
-                                                </li>
-                                            </xsl:for-each>
-                                        </ul>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingPlaces">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlaces" aria-expanded="false" aria-controls="collapsePlaces">
+                                                    Orte
+                                                </button>
+                                            </h2>
+                                            <div id="collapsePlaces" class="accordion-collapse collapse" aria-labelledby="headingPlaces" data-bs-parent="#entitietenAccordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <xsl:for-each select=".//tei:listPlace/tei:place">
+                                                            <xsl:sort select="child::tei:placeName[1]"/>
+                                                            <li>
+                                                              <a class="places">
+                                                              <xsl:attribute name="href">
+                                                              <xsl:value-of
+                                                              select="concat(data(@xml:id), '.html')"/>
+                                                              </xsl:attribute>
+                                                              <xsl:value-of
+                                                              select="child::tei:placeName[1]/text()"/>
+                                                              </a>
+                                                              <xsl:if
+                                                              test="child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')][1]">
+                                                              <xsl:text> (</xsl:text>
+                                                              <xsl:for-each
+                                                              select="distinct-values(child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')])">
+                                                              <xsl:value-of select="normalize-space(.)"/>
+                                                              <xsl:if test="position() != last()">
+                                                              <xsl:text>, </xsl:text>
+                                                              </xsl:if>
+                                                              </xsl:for-each>
+                                                              <xsl:text>)</xsl:text>
+                                                              </xsl:if>
+                                                              <xsl:if
+                                                              test="child::tei:location[@type = 'coords']">
+                                                              <xsl:text> </xsl:text>
+                                                              <xsl:variable name="mlat"
+                                                              select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[1], ',', '.')"
+                                                              as="xs:string"/>
+                                                              <xsl:variable name="mlong"
+                                                              select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[2], ',', '.')"
+                                                              as="xs:string"/>
+                                                              <xsl:variable name="mappin"
+                                                              select="concat('mlat=',$mlat, '&amp;mlon=', $mlong)"
+                                                              as="xs:string"/>
+                                                              <xsl:variable name="openstreetmapurl"
+                                                              select="concat('https://www.openstreetmap.org/?', $mappin, '#map=12/', $mlat, '/', $mlong)"/>
+                                                              <a class="theme-color">
+                                                              <xsl:attribute name="href">
+                                                              <xsl:value-of select="$openstreetmapurl"/>
+                                                              </xsl:attribute>
+                                                              <xsl:attribute name="target">
+                                                              <xsl:text>_blank</xsl:text>
+                                                              </xsl:attribute>
+                                                              <xsl:attribute name="rel">
+                                                              <xsl:text>noopener</xsl:text>
+                                                              </xsl:attribute>
+                                                              <i class="fa-solid fa-location-dot"/>
+                                                              </a>
+                                                              </xsl:if>
+                                                            </li>
+                                                        </xsl:for-each>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </xsl:if>
                                 </div>
                             </div>

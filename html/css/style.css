@@ -829,7 +829,7 @@ border-bottom-style: solid;
  textcolor: rgba(0,0,0,0.4);
  border-color: #2E86AB;
  border-width: 2px; */
- color:  #2E86AB;
+ color:  #2E86AB !important;
 }
 
 .reference {
@@ -842,40 +842,26 @@ a.reference-black {
     color: black !important;
 }
 
-/* Override entity colors for reference-black links but keep colored underlines */
-.persons.entity a.reference-black,
-.places.entity a.reference-black,
-.works.entity a.reference-black,
-.orgs.entity a.reference-black,
-.events.entity a.reference-black,
-span.persons.entity a.reference-black,
-span.places.entity a.reference-black,
-span.works.entity a.reference-black,
-span.orgs.entity a.reference-black,
-span.events.entity a.reference-black {
-    color: black !important;
-}
 
-/* Entity-specific link colors for toggleable text entities (not modal links) */
-.persons.entity a:not(.theme-color) {
-    color: #e74c3c !important;
-}
 
-.places.entity a:not(.theme-color) {
+
+/* These rules are now overridden by the general black color rule above
+.places.entity a {
     color: #3498db !important;
 }
 
-.orgs.entity a:not(.theme-color) {
+.orgs.entity a {
     color: #9b59b6 !important;
 }
 
-.works.entity a:not(.theme-color) {
+.works.entity a {
     color: #f39c12 !important;
 }
 
-.events.entity a:not(.theme-color) {
+.events.entity a {
     color: #27ae60 !important;
 }
+*/
 
 /* Entity-specific link colors for modal entity lists */
 a.persons {
