@@ -2,8 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:local="http://dse-static.foo.bar" exclude-result-prefixes="xs" version="3.0">
-    
-    <xsl:template match="tei:ref[@type='URL']">
+    <xsl:template match="tei:ref[@type = 'URL']">
         <xsl:element name="a">
             <xsl:attribute name="href">
                 <xsl:value-of select="@target"/>
@@ -12,23 +11,26 @@
                 <xsl:text>_blank</xsl:text>
             </xsl:attribute>
             <xsl:choose>
-                <xsl:when test="normalize-space(.)=''">
+                <xsl:when test="normalize-space(.) = ''">
                     <xsl:text>Link</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="."/>
                 </xsl:otherwise>
             </xsl:choose>
-            
         </xsl:element>
     </xsl:template>
-    
     <xsl:template
-        match="tei:ref[not(@type = 'schnitzler-tagebuch') and not(@type = 'schnitzler-briefe') and not(@type = 'schnitzler-bahr') and not(@type = 'schnitzler-lektueren') and not(@type = 'schnitzler-interviews') and not(@type='URL')]">
+        match="tei:ref[not(@type = 'schnitzler-tagebuch') and not(@type = 'schnitzler-briefe') and not(@type = 'schnitzler-bahr') and not(@type = 'schnitzler-lektueren') and not(@type = 'schnitzler-interviews') and not(@type = 'URL')]">
         <xsl:choose>
             <xsl:when test="@target[ends-with(., '.xml')]">
                 <xsl:element name="a">
-                    <xsl:attribute name="class">reference-black</xsl:attribute>
+                    <xsl:if test="@type != ''">
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="@type"/>
+                            <xsl:text> font-weight-bold</xsl:text>
+                        </xsl:attribute>
+                    </xsl:if>
                     <xsl:attribute name="href"> show.html?ref=<xsl:value-of
                             select="tokenize(./@target, '/')[4]"/>
                     </xsl:attribute>
@@ -49,7 +51,10 @@
         <xsl:choose>
             <xsl:when test="@subtype = 'date-only'">
                 <a>
-                    <xsl:attribute name="class">reference-black</xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="@type"/>
+                        <xsl:text> font-weight-bold</xsl:text>
+                    </xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of
                             select="concat('https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__', @target, '.html')"
@@ -81,7 +86,10 @@
                     </xsl:when>
                 </xsl:choose>
                 <a>
-                    <xsl:attribute name="class">reference-black</xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="@type"/>
+                        <xsl:text> font-weight-bold</xsl:text>
+                    </xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of
                             select="concat('https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__', @target, '.html')"
@@ -94,7 +102,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template
-        match="tei:ref[@type = 'schnitzler-briefe' or @type = 'schnitzler-bahr' or @type = 'schnitzler-lektueren' or @type='schnitzler-interviews']">
+        match="tei:ref[@type = 'schnitzler-briefe' or @type = 'schnitzler-bahr' or @type = 'schnitzler-lektueren' or @type = 'schnitzler-interviews']">
         <xsl:variable name="type-url" as="xs:string">
             <xsl:choose>
                 <xsl:when test="@type = 'schnitzler-briefe'">
@@ -127,7 +135,10 @@
         <xsl:choose>
             <xsl:when test="@subtype = 'date-only'">
                 <a>
-                    <xsl:attribute name="class">reference-black</xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="@type"/>
+                        <xsl:text> font-weight-bold</xsl:text>
+                    </xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of select="concat($type-url, $ref-mit-endung)"/>
                     </xsl:attribute>
@@ -139,7 +150,7 @@
                         </xsl:when>
                         <xsl:when test="@type = 'schnitzler-interviews'">
                             <xsl:value-of
-                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:titleStmt[1]/tei:title[@type='iso-date'][1]/text()"
+                                select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:titleStmt[1]/tei:title[@type = 'iso-date'][1]/text()"
                             />
                         </xsl:when>
                         <xsl:when test="@type = 'schnitzler-bahr'">
@@ -147,7 +158,6 @@
                                 select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:dateSender[1]/tei:date[1]/text()"
                             />
                         </xsl:when>
-                        
                     </xsl:choose>
                 </a>
             </xsl:when>
@@ -167,38 +177,47 @@
                     </xsl:when>
                 </xsl:choose>
                 <a>
-                    <xsl:attribute name="class">reference-black</xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="@type"/>
+                        <xsl:text> font-weight-bold</xsl:text>
+                    </xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of select="concat($type-url, $ref-mit-endung)"/>
                     </xsl:attribute>
                     <xsl:variable name="dateiname-xml" as="xs:string?">
                         <xsl:choose>
                             <xsl:when test="@type = 'schnitzler-briefe'">
-                                <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"/>
+                                <xsl:value-of
+                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                />
                             </xsl:when>
                             <xsl:when test="@type = 'schnitzler-bahr'">
-                                <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"/>
+                                <xsl:value-of
+                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                />
                             </xsl:when>
                             <xsl:when test="@type = 'schnitzler-lektueren'">
-                                <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-lektueren/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"/>
+                                <xsl:value-of
+                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-lektueren/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                />
                             </xsl:when>
                             <xsl:when test="@type = 'schnitzler-interviews'">
-                                <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-static/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"/>
+                                <xsl:value-of
+                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-static/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                />
                             </xsl:when>
                         </xsl:choose>
-                        
                     </xsl:variable>
-                   <xsl:choose>
-                       <xsl:when test="document($dateiname-xml)/child::*[1]">
-                           <xsl:value-of
-                               select="document($dateiname-xml)/descendant::tei:titleStmt[1]/tei:title[@level = 'a'][1]/text()"
-                           />
-                       </xsl:when>
-                       <xsl:otherwise>
-                           <xsl:value-of select="$dateiname-xml"/>
-                       </xsl:otherwise>
-                   </xsl:choose>
-                    
+                    <xsl:choose>
+                        <xsl:when test="document($dateiname-xml)/child::*[1]">
+                            <xsl:value-of
+                                select="document($dateiname-xml)/descendant::tei:titleStmt[1]/tei:title[@level = 'a'][1]/text()"
+                            />
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$dateiname-xml"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </a>
             </xsl:otherwise>
         </xsl:choose>
