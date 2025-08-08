@@ -466,7 +466,7 @@
                             </div>
                             <div class="modal-body">
                                 <p>Eine zitierfähige Angabe dieser Seite lautet:</p>
-                                <blockquote>
+                                <blockquote class="citation-quote" style="cursor: pointer; user-select: all; padding: 10px; background-color: #f8f9fa; border-left: 4px solid #A63437;" onclick="copyToClipboard(this)" title="Klicken zum Kopieren">
                                     <xsl:value-of select="$quotationString"/>
                                 </blockquote>
                                 <p/>
@@ -482,7 +482,7 @@
                                             select="$link"/> |titel=<xsl:value-of
                                             select="$doc_title"/> |werk=Arthur Schnitzler:
                                         Briefwechsel mit Autorinnen und Autoren |hrsg=Martin Anton
-                                        Müller, Gerd-Hermann Susen, Laura Untner |sprache=de
+                                        Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke  |sprache=de
                                             |datum=<xsl:value-of
                                             select="//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso"
                                         /> |abruf=<xsl:value-of
@@ -1088,6 +1088,58 @@
                 <script src="https://unpkg.com/de-micro-editor@0.2.83/dist/de-editor.min.js"/>
                 <script type="text/javascript" src="js/run.js"/>
                 <script type="text/javascript" src="js/prev-next-urlupdate.js"/>
+                <script>
+                function copyToClipboard(element) {
+                    const text = element.textContent || element.innerText;
+                    
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopyFeedback(element);
+                        }).catch(function(err) {
+                            console.error('Fehler beim Kopieren: ', err);
+                            fallbackCopyToClipboard(text, element);
+                        });
+                    } else {
+                        fallbackCopyToClipboard(text, element);
+                    }
+                }
+                
+                function fallbackCopyToClipboard(text, element) {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    textArea.style.top = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    
+                    try {
+                        document.execCommand('copy');
+                        showCopyFeedback(element);
+                    } catch (err) {
+                        console.error('Fallback-Kopieren fehlgeschlagen: ', err);
+                        alert('Kopieren fehlgeschlagen. Bitte markieren Sie den Text manuell und drücken Sie Strg+C');
+                    }
+                    
+                    document.body.removeChild(textArea);
+                }
+                
+                function showCopyFeedback(element) {
+                    const originalBg = element.style.backgroundColor;
+                    const originalBorder = element.style.borderLeft;
+                    
+                    element.style.backgroundColor = '#d4edda';
+                    element.style.borderLeft = '4px solid #28a745';
+                    element.title = 'Kopiert!';
+                    
+                    setTimeout(function() {
+                        element.style.backgroundColor = originalBg;
+                        element.style.borderLeft = originalBorder;
+                        element.title = 'Klicken zum Kopieren';
+                    }, 1500);
+                }
+                </script>
             </body>
         </html>
     </xsl:template>
