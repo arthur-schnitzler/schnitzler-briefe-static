@@ -784,35 +784,35 @@
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #e74c3c;"></span>
                                             </label>
-                                            <span class="opt-title"> Personen (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='person']/tokenize(., '#pmb'))"/>)</span>
+                                            <span class="opt-title"> Personen (<xsl:value-of select="count(descendant::tei:text/tei:body//tei:rs[@type='person']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="works" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #f39c12;"></span>
                                             </label>
-                                            <span class="opt-title"> Werke (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='work']/tokenize(., '#pmb'))"/>)</span>
+                                            <span class="opt-title"> Werke (<xsl:value-of select="count(descendant::tei:text/tei:body//tei:rs[@type='work']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="places" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #3498db;"></span>
                                             </label>
-                                            <span class="opt-title"> Orte (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='place']/tokenize(., '#pmb'))"/>)</span>
+                                            <span class="opt-title"> Orte (<xsl:value-of select="count(descendant::tei:text/tei:body//tei:rs[@type='place']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="orgs" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #9b59b6;"></span>
                                             </label>
-                                            <span class="opt-title"> Institutionen (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='org']/tokenize(., '#pmb'))"/>)</span>
+                                            <span class="opt-title"> Institutionen (<xsl:value-of select="count(descendant::tei:text/tei:body//tei:rs[@type='org']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="events" style="display: inline-block;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #27ae60;"></span>
                                             </label>
-                                            <span class="opt-title"> Ereignisse (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='event']/tokenize(., '#pmb'))"/>)</span>
+                                            <span class="opt-title"> Ereignisse (<xsl:value-of select="count(descendant::tei:text/tei:body//tei:rs[@type='event']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         </li>
                                     </ul>
