@@ -53,8 +53,6 @@ search.addWidgets([
         ${hit.places.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #3498db; color: white;">${truncateLabel(item.label)}</span></a>`)}
         <br />
         ${hit.works.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #f39c12; color: white;">${truncateLabel(item.label)}</span></a>`)}
-        <br />
-        ${hit.events.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #27ae60; color: white;">${truncateLabel(item.label)}</span></a>`)}
         <br />`;
     },
   },
@@ -205,25 +203,6 @@ search.addWidgets([
         checkbox: 'form-check'
       }
   }),
-
-    instantsearch.widgets.refinementList({
-        container: '#refinement-list-events',
-        attribute: 'events.label',
-        searchable: true,
-        showMore: true,
-        showMoreLimit: 50,
-        searchablePlaceholder: 'Suche',
-        cssClasses: {
-          searchableInput: 'form-control form-control-sm mb-2 border-light-2',
-          searchableSubmit: 'd-none',
-          searchableReset: 'd-none',
-          showMore: 'btn btn-secondary btn-sm align-content-center',
-          list: 'list-unstyled',
-          count: 'badge ml-2',
-          label: 'd-flex align-items-center text-capitalize',
-          checkbox: 'form-check'
-        }
-    }),
 
     instantsearch.widgets.pagination({
         container: '#pagination',
