@@ -1,65 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    version="2.0" exclude-result-prefixes="xsl tei xs">
-    <xsl:output encoding="UTF-8" media-type="text/html" method="html" version="5.0" indent="yes"
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:mam="whatever" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0"
+    exclude-result-prefixes="xsl tei xs">
+    <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
-    <!--<xsl:import href="./partials/blockquote.xsl"/>-->
     <xsl:import href="./partials/tabulator_js.xsl"/>
-    <xsl:param name="default_lang" select="'de'"/>
+    <xsl:variable name="teiSource" select="'listevent.xml'"/>
     <xsl:template match="/">
-        <xsl:variable name="doc_title">
-            <xsl:value-of select=".//tei:titleStmt/tei:title[1]/text()"/>
-        </xsl:variable>
-        <html class="h-100" lang="{$default_lang}">
-            <head>
-                <xsl:call-template name="html_head">
-                    <xsl:with-param name="html_title" select="'Verzeichnis der Ereignisse'"/>
-                </xsl:call-template>
-                <link href="vendor/tabulator-tables/css/tabulator_bootstrap5.min.css"
-                    rel="stylesheet"/>
-                    
-                    
-            </head>
-            <body class="d-flex flex-column h-100">
-                <xsl:call-template name="nav_bar"/>
-                <main class="flex-shrink-0 flex-grow-1">
+        <xsl:variable name="doc_title" select="'Verzeichnis der Ereignisse'"/>
+        <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
+        <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
+            <xsl:call-template name="html_head">
+                <xsl:with-param name="html_title" select="$doc_title"/>
+            </xsl:call-template>
+            <body class="page">
+                <div class="hfeed site" id="page">
+                    <xsl:call-template name="nav_bar"/>
                     <div class="container">
-                        <h1>
-                            <xsl:text>Verzeichnis der Veranstaltungen</xsl:text>
-                        </h1>
-                        <p class="max-width-600">Hier wird das »Ereignis« enger gefasst als eine kulturelle Veranstaltung. 
-                            Mit dem Auszeichnen von Ereignisse wurde erst in der dritten
-                        Projektlaufzeit begonnen, so dass diese in den bis dahin publizierten
-                        Briefen noch nicht vorhanden sind. Es empfiehlt sich nach bestimmten
-                        Veranstaltungen auch über die Werke zu suchen, die aufgeführt wurden.</p>
-                        <table class="table table-sm display" id="tabulator-table-event">
-                            <thead>
-                                <tr>
-                                    <th scope="col" tabulator-headerFilter="input"
-                                        tabulator-formatter="html">Datum</th>
-                                    <th scope="col" tabulator-headerFilter="input"
-                                        tabulator-formatter="html">Ereignis</th>
-                                    <th scope="col" tabulator-headerFilter="input"
-                                        tabulator-formatter="html">Werk</th>
-                                    <th scope="col" tabulator-headerFilter="input"
-                                        tabulator-formatter="html">Ort</th>
-                                    <th scope="col" tabulator-headerFilter="input"
-                                        tabulator-formatter="html">Typ</th>
-                                    <th scope="col" tabulator-headerFilter="input"
-                                        tabulator-formatter="html">Arbeitskraft</th>
-                                    <th scope="col" tabulator-headerFilter="input"
-                                        tabulator-formatter="html">Teilnehmer_innen</th>
-                                    <th scope="col" tabulator-headerFilter="input"
-                                        tabulator-formatter="html">Organisation</th>
-                                    
-                                    
-                                </tr>
-                            </thead>
+                        <div class="card">
+                            <div class="card-header" style="text-align:center">
+                                <h1>
+                                    <xsl:value-of select="$doc_title"/>
+                                </h1>
+                            </div>
+                            <div class="card-body">
+                                <div style="max-width: 800px; margin: 0 auto;">
+                                    <p>Hier wird das »Ereignis« enger gefasst als eine kulturelle Veranstaltung. 
+                                        Mit dem Auszeichnen von Ereignisse wurde erst in der dritten
+                                        Projektlaufzeit begonnen, so dass diese in den bis dahin publizierten
+                                        Briefen noch nicht vorhanden sind. Es empfiehlt sich nach bestimmten
+                                        Veranstaltungen auch über die Werke zu suchen, die aufgeführt wurden.</p>
+                                </div>
+                                <table class="table table-sm display" id="tabulator-table-event">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Datum</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Ereignis</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Werk</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Ort</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Typ</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Arbeitskraft</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Teilnehmer_innen</th>
+                                            <th scope="col" tabulator-headerFilter="input"
+                                                tabulator-formatter="html">Organisation</th>
+                                        </tr>
+                                    </thead>
                             <tbody>
                                 <xsl:for-each select=".//tei:event[@xml:id]">
                                     <xsl:variable name="id">
@@ -244,18 +241,15 @@
                                         </td>-->
                                     </tr>
                                 </xsl:for-each>
-                            </tbody>
-                        </table>
-                        <xsl:call-template name="tabulator_dl_buttons"/>
-                        <!--<div class="text-center p-4">
-                            <xsl:call-template name="blockquote">
-                                <xsl:with-param name="pageId" select="'listevent.html'"/>
-                            </xsl:call-template>
-                        </div>-->
+                                    </tbody>
+                                </table>
+                                <xsl:call-template name="tabulator_dl_buttons"/>
+                            </div>
+                        </div>
                     </div>
-                </main>
-                <xsl:call-template name="html_footer"/>
-                <script src="tabulator-js/tabulator_event.js"/>
+                    <xsl:call-template name="html_footer"/>
+                    <xsl:call-template name="tabulator_event_js"/>
+                </div>
             </body>
         </html>
         <xsl:for-each select=".//tei:event[@xml:id]">

@@ -99,16 +99,44 @@
         <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
         <script src="tabulator-js/config.js"></script>
         <script>
-            // Erste Tabelle mit Sortierung nach "urheber_in" und "titel"
             var table = new Tabulator("#tabulator-table-event", {
             pagination:"local",       //paginate the data
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
             layout:"fitColumns",
+            autoColumns:true,         //auto generate columns from HTML table structure
+            autoColumnsDefinitions:function(definitions){
+                //auto columns returns columns with basic titles and field names
+                //this callback allows you to edit each column definition before they are used
+                definitions.forEach(function(column, index){
+                    column.formatter = "html";  //set formatter to html for all columns
+                    column.headerFilter = "input"; //add header filters
+                    
+                    // Fix header capitalization for events table
+                    if (column.title === "datum") {
+                        column.title = "Datum";
+                    } else if (column.title === "ereignis") {
+                        column.title = "Ereignis";
+                    } else if (column.title === "werk") {
+                        column.title = "Werk";
+                    } else if (column.title === "ort") {
+                        column.title = "Ort";
+                    } else if (column.title === "typ") {
+                        column.title = "Typ";
+                    } else if (column.title === "arbeitskraft") {
+                        column.title = "Arbeitskraft";
+                    } else if (column.title === "teilnehmer_innen") {
+                        column.title = "Teilnehmer:innen";
+                    } else if (column.title === "organisation") {
+                        column.title = "Organisation";
+                    }
+                });
+                return definitions;
+            },
             initialSort:[
-            {column:"date", dir:"asc"}, 
-            {column:"titel", dir:"asc"}
+            {column:"datum", dir:"asc"}, 
+            {column:"ereignis", dir:"asc"}
             ],
             langs:{
             "de-de":{ //German language definition
