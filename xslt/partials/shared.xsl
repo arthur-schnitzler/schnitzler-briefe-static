@@ -57,12 +57,10 @@
     </xsl:template>
     <xsl:template match="tei:graphic">
         <div style="width:100%; text-align:center; padding-bottom: 1rem;">
-                
             <img>
                 <xsl:attribute name="src">
                     <!--<xsl:variable name="iiif-ext" select="'.jp2/full/,200/0/default.jpg'"/> -->
-                    <xsl:variable name="iiif-ext"
-                        select="'.jp2/full/600,/0/default.jpg'"/>
+                    <xsl:variable name="iiif-ext" select="'.jp2/full/600,/0/default.jpg'"/>
                     <xsl:variable name="iiif-domain"
                         select="'https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Bilder/'"/>
                     <xsl:variable name="facs_item" select="@url"/>
@@ -71,7 +69,7 @@
                 <xsl:attribute name="alt">
                     <xsl:choose>
                         <xsl:when
-                            test="ends-with(@url, '.png') or ends-with(@url, '.jpg') or ends-with(@url, '.jp2')  or ends-with(@url, '.gif')">
+                            test="ends-with(@url, '.png') or ends-with(@url, '.jpg') or ends-with(@url, '.jp2') or ends-with(@url, '.gif')">
                             <xsl:value-of select="@url"/>
                         </xsl:when>
                         <xsl:otherwise>
@@ -107,7 +105,8 @@
         </span>
     </xsl:template>
     <!-- Die folgenden beiden Regeln sollten das Leerzeichen vor und nach Streichungen mit aus- und einblenden -->
-    <xsl:template match="text()[matches(., '[\s\r\n]+$') and following-sibling::node()[1][self::tei:del]]">
+    <xsl:template
+        match="text()[matches(., '[\s\r\n]+$') and following-sibling::node()[1][self::tei:del]]">
         <xsl:value-of select="replace(., '[\s\r\n]+$', '')"/>
         <span class="del badge-item" style="display:none;">
             <xsl:text> </xsl:text>
@@ -209,7 +208,11 @@
             <xsl:apply-templates/>
         </p>
     </xsl:template>
-    <xsl:template match="tei:supplied"><span class="supplied"><xsl:apply-templates/></span></xsl:template>
+    <xsl:template match="tei:supplied">
+        <span class="supplied">
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
     <xsl:template match="tei:table">
         <xsl:element name="table">
             <xsl:attribute name="class">
@@ -648,7 +651,7 @@
             </div>
         </div>
     </xsl:template>
-    <xsl:template match="tei:listBibl|tei:bibl[not(parent::tei:listBibl)]">
+    <xsl:template match="tei:listBibl | tei:bibl[not(parent::tei:listBibl)]">
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:listBibl/tei:bibl">
@@ -801,13 +804,11 @@
             </xsl:element>
         </strong>
     </xsl:template> -->
-    
     <xsl:template match="tei:damage">
         <span class="damage-critical">
             <xsl:apply-templates/>
         </span>
     </xsl:template>
-    
     <xsl:template match="tei:pb">
         <xsl:choose>
             <xsl:when test="starts-with(@facs, 'http') or starts-with(@facs, 'www.')">
@@ -837,5 +838,10 @@
                 </span>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:title[@level = 'a' or @level = 'm' or @level = 'j']">
+        <span class="font-italic">
+            <xsl:apply-templates/>
+        </span>
     </xsl:template>
 </xsl:stylesheet>
