@@ -257,7 +257,7 @@
             <xsl:variable name="name"
                 select="normalize-space(string-join(./tei:eventName[1]//text()))"/>
             <xsl:result-document href="{$filename}">
-                <html class="h-100" lang="{$default_lang}">
+                <html class="h-100" lang="de">
                     <head>
                         <xsl:call-template name="html_head">
                             <xsl:with-param name="html_title" select="$name"/>
