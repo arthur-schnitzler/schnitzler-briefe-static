@@ -839,7 +839,21 @@ border-bottom-style: solid;
 
 a.reference-black {
     cursor: pointer;
-    color: black !important;    
+    color: black !important;
+}
+
+/* Override entity colors for reference-black links but keep colored underlines */
+.persons.entity a.reference-black,
+.places.entity a.reference-black,
+.works.entity a.reference-black,
+.orgs.entity a.reference-black,
+.events.entity a.reference-black,
+span.persons.entity a.reference-black,
+span.places.entity a.reference-black,
+span.works.entity a.reference-black,
+span.orgs.entity a.reference-black,
+span.events.entity a.reference-black {
+    color: black !important;
 }
 
 /* Entity-specific link colors for toggleable text entities (not modal links) */
