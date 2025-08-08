@@ -101,8 +101,63 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    <xsl:template match="tei:ref[@type = 'wienerschnitzler']">
+        <xsl:choose>
+            <xsl:when test="@subtype = 'date-only'">
+                <a>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="@type"/>
+                        <xsl:text> font-weight-bold</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="href">
+                        <xsl:value-of
+                            select="concat('https://wienerschnitzler.org/tag.html#', @target)"
+                        />
+                    </xsl:attribute>
+                    <xsl:choose>
+                        <xsl:when test="@target = ''">
+                            <xsl:text>FEHLER</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="format-date(@target, '[D].&#160;[M].&#160;[Y]')"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </a>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:choose>
+                    <xsl:when test="@subtype = 'See'">
+                        <xsl:text>Siehe </xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@subtype = 'Cf'">
+                        <xsl:text>Vgl. </xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@subtype = 'see'">
+                        <xsl:text>siehe </xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@subtype = 'cf'">
+                        <xsl:text>vgl. </xsl:text>
+                    </xsl:when>
+                </xsl:choose>
+                <a>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="@type"/>
+                        <xsl:text> font-weight-bold</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="href">
+                        <xsl:value-of
+                            select="concat('https://wienerschnitzler.org/tag.html#', @target)"
+                        />
+                    </xsl:attribute>
+                    <xsl:text>Wiener Schnitzler – Schnitzlers Wien, </xsl:text>
+                    <xsl:value-of select="format-date(@target, '[D].&#160;[M].&#160;[Y]')"/>
+                </a>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     <xsl:template
-        match="tei:ref[@type = 'schnitzler-briefe' or @type = 'schnitzler-bahr' or @type = 'schnitzler-lektueren' or @type = 'schnitzler-interviews']">
+        match="tei:ref[@type = 'schnitzler-briefe' or @type = 'schnitzler-bahr' or @type = 'schnitzler-lektueren' or @type = 'schnitzler-interviews'  or @type = 'schnitzler-kultur'
+        ]">
         <xsl:variable name="type-url" as="xs:string">
             <xsl:choose>
                 <xsl:when test="@type = 'schnitzler-briefe'">
@@ -116,6 +171,9 @@
                 </xsl:when>
                 <xsl:when test="@type = 'schnitzler-interviews'">
                     <xsl:text>https://schnitzler-interviews.acdh.oeaw.ac.at/</xsl:text>
+                </xsl:when>
+                <xsl:when test="@type = 'schnitzler-kultur'">
+                    <xsl:text>https://schnitzler-kultur.acdh.oeaw.ac.at/</xsl:text>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
@@ -156,6 +214,11 @@
                         <xsl:when test="@type = 'schnitzler-bahr'">
                             <xsl:value-of
                                 select="document(concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml')))/descendant::tei:dateSender[1]/tei:date[1]/text()"
+                            />
+                        </xsl:when>
+                        <xsl:when test="@type = 'schnitzler-kultur'">
+                            <xsl:value-of
+                                select="document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/listEvent[1]/event[@xml:id = replace($ref-mit-endung, '.html', '')]/@when-iso/text()"
                             />
                         </xsl:when>
                     </xsl:choose>
@@ -204,6 +267,11 @@
                             <xsl:when test="@type = 'schnitzler-interviews'">
                                 <xsl:value-of
                                     select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-static/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                />
+                            </xsl:when>
+                            <xsl:when test="@type = 'schnitzler-kultur'">
+                                <xsl:value-of
+                                    select="normalize-space(document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/listEvent[1]/event[@xml:id = replace($ref-mit-endung, '.html', '')]/tei:eventName/text())"
                                 />
                             </xsl:when>
                         </xsl:choose>
