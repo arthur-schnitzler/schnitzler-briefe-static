@@ -1420,3 +1420,14 @@ div#map {
 .wikidata { color: #0645ad; }
 .pmb { color: #9B5F98; }
 .gnd { color: #006; }
+
+/* Sender and receiver filter badges in project color */
+#refinement-list-sender .ais-RefinementList-count {
+    background-color: #A63437 !important;
+    color: white !important;
+}
+
+#refinement-list-receiver .ais-RefinementList-count {
+    background-color: #A63437 !important;
+    color: white !important;
+}

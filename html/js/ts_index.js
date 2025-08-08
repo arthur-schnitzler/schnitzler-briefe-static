@@ -52,6 +52,8 @@ search.addWidgets([
         <br />
         ${hit.places.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #3498db; color: white;">${truncateLabel(item.label)}</span></a>`)}
         <br />
+        ${hit.orgs.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #9b59b6; color: white;">${truncateLabel(item.label)}</span></a>`)}
+        <br />
         ${hit.works.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #f39c12; color: white;">${truncateLabel(item.label)}</span></a>`)}
         <br />`;
     },
