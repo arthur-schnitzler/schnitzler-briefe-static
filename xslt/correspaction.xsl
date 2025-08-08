@@ -7,7 +7,6 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="partials/html_footer.xsl"/>
-    <xsl:import href="./partials/tabulator_js.xsl"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Postwege'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
@@ -256,11 +255,54 @@
                                 </table>
                                 </div>
                             </div>
-                            <xsl:call-template name="tabulator_dl_buttons"/>
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <xsl:call-template name="tabulator_correspaction_js"/>
+                    <!-- Separate Tabulator config for correspaction -->
+                    <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
+                    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+                    <script src="tabulator-js/config.js"></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var table = new Tabulator("#tabulator-table-correspaction", {
+                                pagination: "local",
+                                paginationSize: 25,
+                                paginationCounter: "rows",
+                                layout: "fitColumns",
+                                responsiveLayout: "hide",
+                                autoResize: true,
+                                tooltips: true,
+                                addRowPos: "top",
+                                history: true,
+                                movableColumns: true,
+                                resizableRows: false,
+                                responsiveLayoutCollapseStartOpen: false,
+                                placeholder: "Keine Daten verfügbar",
+                                initialSort: [
+                                    {column: "titel", dir: "asc"}
+                                ],
+                                columns: [
+                                    {title: "Titel", field: "titel", headerFilter: "input", formatter: "html"},
+                                    {title: "Sendedatum", field: "sendedatum", headerFilter: "input", formatter: "html"},
+                                    {title: "Sendeort", field: "sendeort", headerFilter: "input", formatter: "html"},
+                                    {title: "weitere Stationen", field: "stationen", headerFilter: "input", formatter: "html"},
+                                    {title: "Empfangsdatum", field: "empfangsdatum", headerFilter: "input", formatter: "html"},
+                                    {title: "Empfangsort", field: "empfangsort", headerFilter: "input", formatter: "html"}
+                                ]
+                            });
+
+                            // Download buttons
+                            document.getElementById("download-csv").addEventListener("click", function() {
+                                table.download("csv", "postwege.csv");
+                            });
+                            document.getElementById("download-json").addEventListener("click", function() {
+                                table.download("json", "postwege.json");
+                            });
+                            document.getElementById("download-xlsx").addEventListener("click", function() {
+                                table.download("xlsx", "postwege.xlsx", {sheetName: "Postwege"});
+                            });
+                        });
+                    </script>
                 </div>
             </body>
         </html>

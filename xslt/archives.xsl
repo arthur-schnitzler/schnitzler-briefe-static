@@ -7,7 +7,6 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="partials/html_footer.xsl"/>
-    <xsl:import href="partials/tabulator_js.xsl"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Archive'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
@@ -118,12 +117,54 @@
                                         </xsl:for-each>
                                     </tbody>
                                 </table>
-                                <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <xsl:call-template name="tabulator_archives_js"/>
+                    <!-- Separate Tabulator config for archives -->
+                    <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
+                    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+                    <script src="tabulator-js/config.js"></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var table = new Tabulator("#tabulator-table-archives", {
+                                pagination: "local",
+                                paginationSize: 25,
+                                paginationCounter: "rows",
+                                layout: "fitColumns",
+                                responsiveLayout: "hide",
+                                autoResize: true,
+                                tooltips: true,
+                                addRowPos: "top",
+                                history: true,
+                                movableColumns: true,
+                                resizableRows: false,
+                                responsiveLayoutCollapseStartOpen: false,
+                                placeholder: "Keine Daten verfügbar",
+                                initialSort: [
+                                    {column: "datum", dir: "desc"}
+                                ],
+                                columns: [
+                                    {title: "Datum", field: "datum", headerFilter: "input", formatter: "html"},
+                                    {title: "Titel", field: "titel", headerFilter: "input", formatter: "html"},
+                                    {title: "Institution", field: "institution", headerFilter: "input", formatter: "html"},
+                                    {title: "Ort", field: "ort", headerFilter: "input", formatter: "html"},
+                                    {title: "Land", field: "land", headerFilter: "input", formatter: "html"}
+                                ]
+                            });
+
+                            // Download buttons
+                            document.getElementById("download-csv").addEventListener("click", function() {
+                                table.download("csv", "archive.csv");
+                            });
+                            document.getElementById("download-json").addEventListener("click", function() {
+                                table.download("json", "archive.json");
+                            });
+                            document.getElementById("download-xlsx").addEventListener("click", function() {
+                                table.download("xlsx", "archive.xlsx", {sheetName: "Archive"});
+                            });
+                        });
+                    </script>
                 </div>
             </body>
         </html>

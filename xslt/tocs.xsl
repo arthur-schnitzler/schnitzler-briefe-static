@@ -30,9 +30,14 @@
                                 <h1>Verzeichnis der Korrespondenzen</h1>
                             </div>
                             <div class="card-body">
-                                <script src="js/correspondence_weights_directed.js"/>
-                                <div id="tocs-container"
-                                    style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                <div id="chart-container" class="border rounded p-3 mb-3" style="background-color: white;">
+                                    <div class="d-flex justify-content-end mb-2">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('chart-container').style.display='none'" aria-label="Charts ausblenden">×</button>
+                                    </div>
+                                    <div id="tocs-container"
+                                        style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                    <script src="js/correspondence_weights_directed.js"/>
+                                </div>
                                 <div style="display: flex; justify-content: center;">
                                     <table class="table-light table-striped display"
                                         id="tabulator-table-limited"
