@@ -562,7 +562,7 @@
                                                 </xsl:choose>
                                             </xsl:variable>
                                             <li>
-                                                <a class="theme-color">
+                                                <a class="persons">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -580,7 +580,7 @@
                                             <xsl:for-each select=".//tei:back/tei:listBibl/tei:bibl">
                                                 <xsl:sort select="child::tei:title[1]"/>
                                                 <li>
-                                                  <a class="theme-color">
+                                                  <a class="works">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -638,7 +638,7 @@
                                             <xsl:for-each select=".//tei:listOrg//tei:org">
                                                 <xsl:sort select="child::tei:orgName[1]"/>
                                                 <li>
-                                                  <a class="theme-color">
+                                                  <a class="orgs">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -657,7 +657,7 @@
                                             <xsl:for-each select=".//tei:listEvent//tei:event">
                                                 <xsl:sort select="child::tei:eventName[1]"/>
                                                 <li>
-                                                    <a class="theme-color">
+                                                    <a class="events">
                                                         <xsl:attribute name="href">
                                                             <xsl:value-of
                                                                 select="concat(data(@xml:id), '.html')"/>
@@ -676,7 +676,7 @@
                                             <xsl:for-each select=".//tei:listPlace/tei:place">
                                                 <xsl:sort select="child::tei:placeName[1]"/>
                                                 <li>
-                                                  <a class="theme-color">
+                                                  <a class="places">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(data(@xml:id), '.html')"/>
@@ -784,35 +784,35 @@
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #e74c3c;"></span>
                                             </label>
-                                            <span class="opt-title"> Personen</span>
+                                            <span class="opt-title"> Personen (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='person']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="works" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #f39c12;"></span>
                                             </label>
-                                            <span class="opt-title"> Werke</span>
+                                            <span class="opt-title"> Werke (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='work']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="places" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #3498db;"></span>
                                             </label>
-                                            <span class="opt-title"> Orte</span>
+                                            <span class="opt-title"> Orte (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='place']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="orgs" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #9b59b6;"></span>
                                             </label>
-                                            <span class="opt-title"> Institutionen</span>
+                                            <span class="opt-title"> Institutionen (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='org']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="events" style="display: inline-block;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
                                                 <span class="i-slider round" style="background-color: #27ae60;"></span>
                                             </label>
-                                            <span class="opt-title"> Ereignisse</span>
+                                            <span class="opt-title"> Ereignisse (<xsl:value-of select="count(ancestor::tei:text/tei:body//tei:rs[@type='event']/tokenize(., '#pmb'))"/>)</span>
                                         </div>
                                         </li>
                                     </ul>

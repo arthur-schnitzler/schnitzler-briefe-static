@@ -202,47 +202,6 @@ a {
 margin: 4em auto;
 }
 
-/* Colored switches for entity types - default ON, then turn grey when OFF */
-annotation-slider[opt="prs"] .i-slider {
-    background-color: #e74c3c !important;
-}
-
-annotation-slider[opt="prs"] input:not(:checked) + .i-slider {
-    background-color: #ccc !important;
-}
-
-annotation-slider[opt="plc"] .i-slider {
-    background-color: #3498db !important;
-}
-
-annotation-slider[opt="plc"] input:not(:checked) + .i-slider {
-    background-color: #ccc !important;
-}
-
-annotation-slider[opt="org"] .i-slider {
-    background-color: #9b59b6 !important;
-}
-
-annotation-slider[opt="org"] input:not(:checked) + .i-slider {
-    background-color: #ccc !important;
-}
-
-annotation-slider[opt="wrk"] .i-slider {
-    background-color: #f39c12 !important;
-}
-
-annotation-slider[opt="wrk"] input:not(:checked) + .i-slider {
-    background-color: #ccc !important;
-}
-
-annotation-slider[opt="evt"] .i-slider {
-    background-color: #27ae60 !important;
-}
-
-annotation-slider[opt="evt"] input:not(:checked) + .i-slider {
-    background-color: #ccc !important;
-}
-
 .entity-table tbody tr td,
 .entity-table tbody tr th {
 border: none;
@@ -881,6 +840,48 @@ border-bottom-style: solid;
 a.reference-black {
     cursor: pointer;
     color: black !important;    
+}
+
+/* Entity-specific link colors for toggleable text entities (not modal links) */
+.persons.entity a:not(.theme-color) {
+    color: #e74c3c !important;
+}
+
+.places.entity a:not(.theme-color) {
+    color: #3498db !important;
+}
+
+.orgs.entity a:not(.theme-color) {
+    color: #9b59b6 !important;
+}
+
+.works.entity a:not(.theme-color) {
+    color: #f39c12 !important;
+}
+
+.events.entity a:not(.theme-color) {
+    color: #27ae60 !important;
+}
+
+/* Entity-specific link colors for modal entity lists */
+a.persons {
+    color: #e74c3c !important;
+}
+
+a.places {
+    color: #3498db !important;
+}
+
+a.orgs {
+    color: #9b59b6 !important;
+}
+
+a.works {
+    color: #f39c12 !important;
+}
+
+a.events {
+    color: #27ae60 !important;
 }
 
 .tripleUnderline {
