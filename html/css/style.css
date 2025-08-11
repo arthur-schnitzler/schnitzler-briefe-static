@@ -147,6 +147,10 @@ a {
 .persons.entity {
     position: relative;
     transition: all 0.2s ease;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
 }
 
 .persons.entity::after {
@@ -169,6 +173,10 @@ a {
 .places.entity {
     position: relative;
     transition: all 0.2s ease;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
 }
 
 .places.entity::after {
@@ -191,6 +199,10 @@ a {
 .orgs.entity {
     position: relative;
     transition: all 0.2s ease;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
 }
 
 .orgs.entity::after {
@@ -213,6 +225,10 @@ a {
 .works.entity {
     position: relative;
     transition: all 0.2s ease;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
 }
 
 .works.entity::after {
