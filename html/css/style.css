@@ -1084,6 +1084,7 @@ border-bottom-style: solid;
 a.reference-black {
     cursor: pointer;
     color: black !important;
+    hyphens: none;
 }
 
 
