@@ -1700,6 +1700,17 @@
                                             <xsl:attribute name="href">
                                                 <xsl:value-of select="concat($current, '.html')"/>
                                             </xsl:attribute>
+                                            <!-- Add entity-specific CSS class for colored modal links -->
+                                            <xsl:attribute name="class">
+                                                <xsl:choose>
+                                                    <xsl:when test="$typ = 'place'">places</xsl:when>
+                                                    <xsl:when test="$typ = 'bibl'">works</xsl:when>
+                                                    <xsl:when test="$typ = 'org'">orgs</xsl:when>
+                                                    <xsl:when test="$typ = 'event'">events</xsl:when>
+                                                    <xsl:when test="$typ = 'person'">persons</xsl:when>
+                                                    <xsl:otherwise></xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:attribute>
                                             <xsl:choose>
                                                 <xsl:when test="$typ = 'place'">
                                                   <xsl:value-of select="$eintrag/tei:placeName[1]"/>
@@ -1808,6 +1819,11 @@
         <xsl:variable name="modalId">
             <xsl:value-of select="xs:string(replace(replace($modalId1, ' #', ''), '#', ''))"/>
         </xsl:variable>
+        <!-- Create entity-specific span wrapper for colored underlines on nested rs elements -->
+        <xsl:variable name="entity-classes">
+            <xsl:call-template name="get-nested-entity-classes"/>
+        </xsl:variable>
+        <span class="{$entity-classes} entity">
         <xsl:element name="a">
             <xsl:attribute name="class">
                 <xsl:text>reference-black</xsl:text>
@@ -1835,6 +1851,7 @@
             </xsl:choose>
             <!-- hier die Sonderregeln für ein solches rs -->
         </xsl:element>
+        </span>
     </xsl:template>
     <!-- Ein rs, das in einem anderen enthalten wird, wird ausgegeben, aber nicht mehr weiter zu einem Link etc. -->
     <xsl:template match="tei_rs" mode="verschachtelteA">
@@ -1910,6 +1927,11 @@
         <xsl:variable name="modalId">
             <xsl:value-of select="xs:string(replace(replace($modalId1, ' #', ''), '#', ''))"/>
         </xsl:variable>
+        <!-- Create entity-specific span wrapper for colored underlines on nested rs elements in notes -->
+        <xsl:variable name="entity-classes">
+            <xsl:call-template name="get-nested-entity-classes-note"/>
+        </xsl:variable>
+        <span class="{$entity-classes} entity">
         <xsl:element name="a">
             <xsl:attribute name="class">
                 <xsl:text>reference-black</xsl:text>
@@ -1921,6 +1943,85 @@
             <xsl:apply-templates mode="verschachtelteA"/>
             <!-- hier die Sonderregeln für ein solches rs -->
         </xsl:element>
+        </span>
+    </xsl:template>
+    <!-- Template to determine entity classes for nested rs elements -->
+    <xsl:template name="get-nested-entity-classes">
+        <xsl:param name="back" select="//tei:back" as="node()?"/>
+        <xsl:variable name="current-element" select="." as="node()"/>
+        <xsl:variable name="all-refs" as="xs:string*">
+            <xsl:for-each select=".//@ref[not(ancestor::tei:note)]">
+                <xsl:for-each select="tokenize(., ' ')">
+                    <xsl:if test="normalize-space(.) != ''">
+                        <xsl:value-of select="replace(normalize-space(.), '^#', '')"/>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="entity-types" as="xs:string*">
+            <xsl:for-each select="$all-refs">
+                <xsl:variable name="ref" select="."/>
+                <xsl:variable name="entity" select="$back//tei:*[@xml:id = $ref][1]"/>
+                <xsl:choose>
+                    <xsl:when test="$entity/name() = 'person'">persons</xsl:when>
+                    <xsl:when test="$entity/name() = 'place'">places</xsl:when>
+                    <xsl:when test="$entity/name() = 'org'">orgs</xsl:when>
+                    <xsl:when test="$entity/name() = 'bibl'">works</xsl:when>
+                    <xsl:when test="$entity/name() = 'event'">events</xsl:when>
+                    <xsl:otherwise>
+                        <!-- Fallback to @type of current rs element if entity lookup fails -->
+                        <xsl:choose>
+                            <xsl:when test="$current-element/@type = 'person'">persons</xsl:when>
+                            <xsl:when test="$current-element/@type = 'place'">places</xsl:when>
+                            <xsl:when test="$current-element/@type = 'org'">orgs</xsl:when>
+                            <xsl:when test="$current-element/@type = 'work'">works</xsl:when>
+                            <xsl:when test="$current-element/@type = 'event'">events</xsl:when>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:variable>
+        <!-- Return unique entity types joined with space -->
+        <xsl:value-of select="string-join(distinct-values($entity-types), ' ')"/>
+    </xsl:template>
+    <!-- Template to determine entity classes for nested rs elements in notes -->
+    <xsl:template name="get-nested-entity-classes-note">
+        <xsl:param name="back" select="//tei:back" as="node()?"/>
+        <xsl:variable name="current-element" select="." as="node()"/>
+        <xsl:variable name="all-refs" as="xs:string*">
+            <xsl:for-each select=".//@ref[ancestor::tei:note]">
+                <xsl:for-each select="tokenize(., ' ')">
+                    <xsl:if test="normalize-space(.) != ''">
+                        <xsl:value-of select="replace(normalize-space(.), '^#', '')"/>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="entity-types" as="xs:string*">
+            <xsl:for-each select="$all-refs">
+                <xsl:variable name="ref" select="."/>
+                <xsl:variable name="entity" select="$back//tei:*[@xml:id = $ref][1]"/>
+                <xsl:choose>
+                    <xsl:when test="$entity/name() = 'person'">persons</xsl:when>
+                    <xsl:when test="$entity/name() = 'place'">places</xsl:when>
+                    <xsl:when test="$entity/name() = 'org'">orgs</xsl:when>
+                    <xsl:when test="$entity/name() = 'bibl'">works</xsl:when>
+                    <xsl:when test="$entity/name() = 'event'">events</xsl:when>
+                    <xsl:otherwise>
+                        <!-- Fallback to @type of current rs element if entity lookup fails -->
+                        <xsl:choose>
+                            <xsl:when test="$current-element/@type = 'person'">persons</xsl:when>
+                            <xsl:when test="$current-element/@type = 'place'">places</xsl:when>
+                            <xsl:when test="$current-element/@type = 'org'">orgs</xsl:when>
+                            <xsl:when test="$current-element/@type = 'work'">works</xsl:when>
+                            <xsl:when test="$current-element/@type = 'event'">events</xsl:when>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:variable>
+        <!-- Return unique entity types joined with space -->
+        <xsl:value-of select="string-join(distinct-values($entity-types), ' ')"/>
     </xsl:template>
     <xsl:template
         match="tei:rs[@type = 'work' and not(ancestor::tei:quote) and ancestor::tei:note and not(@subtype = 'implied')]/text()">

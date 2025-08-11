@@ -13,9 +13,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entityType === 'master') return;
             
             toggle.addEventListener('change', function() {
-                const entities = document.querySelectorAll('.' + entityType + '.entity');
+                // Find all entities that have the current entity type class
+                // This includes both single entities (.persons.entity) and mixed entities (.persons.places.entity)
+                const allEntities = document.querySelectorAll('.entity');
+                const matchingEntities = [];
                 
-                entities.forEach(function(entity) {
+                allEntities.forEach(function(entity) {
+                    // Check if this entity has the current entityType class
+                    if (entity.classList.contains(entityType)) {
+                        matchingEntities.push(entity);
+                    }
+                });
+                
+                matchingEntities.forEach(function(entity) {
                     if (toggle.checked) {
                         // Show borders - remove the hidden class
                         entity.classList.remove('entity-hidden');

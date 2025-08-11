@@ -143,8 +143,21 @@ a {
 }
 
 /* Entity highlighting with colored underlines - active by default for independent toggle system */
+/* Using pseudo-elements for rounded underlines */
 .persons.entity {
-    border-bottom: 2px solid #e74c3c !important;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.persons.entity::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e74c3c;
+    border-radius: 1px;
     transition: all 0.2s ease;
 }
 
@@ -154,7 +167,19 @@ a {
 }
 
 .places.entity {
-    border-bottom: 2px solid #3498db !important;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.places.entity::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #3498db;
+    border-radius: 1px;
     transition: all 0.2s ease;
 }
 
@@ -164,7 +189,19 @@ a {
 }
 
 .orgs.entity {
-    border-bottom: 2px solid #9b59b6 !important;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.orgs.entity::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #9b59b6;
+    border-radius: 1px;
     transition: all 0.2s ease;
 }
 
@@ -174,7 +211,19 @@ a {
 }
 
 .works.entity {
-    border-bottom: 2px solid #f39c12 !important;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.works.entity::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #f39c12;
+    border-radius: 1px;
     transition: all 0.2s ease;
 }
 
@@ -184,7 +233,19 @@ a {
 }
 
 .events.entity {
-    border-bottom: 2px solid #27ae60 !important;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.events.entity::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #27ae60;
+    border-radius: 1px;
     transition: all 0.2s ease;
 }
 
@@ -194,8 +255,175 @@ a {
 }
 
 /* Hidden state for entities when toggled off */
-.entity.entity-hidden {
-    border-bottom: 2px solid transparent !important;
+.entity.entity-hidden::after {
+    display: none;
+}
+
+/* Mixed entity types for nested rs elements - create gradient underlines with rounded edges */
+/* Two entity types */
+.persons.places.entity::after {
+    background: linear-gradient(90deg, #e74c3c 50%, #3498db 50%);
+}
+
+.persons.works.entity::after {
+    background: linear-gradient(90deg, #e74c3c 50%, #f39c12 50%);
+}
+
+.persons.orgs.entity::after {
+    background: linear-gradient(90deg, #e74c3c 50%, #9b59b6 50%);
+}
+
+.persons.events.entity::after {
+    background: linear-gradient(90deg, #e74c3c 50%, #27ae60 50%);
+}
+
+.places.works.entity::after {
+    background: linear-gradient(90deg, #3498db 50%, #f39c12 50%);
+}
+
+.places.orgs.entity::after {
+    background: linear-gradient(90deg, #3498db 50%, #9b59b6 50%);
+}
+
+.places.events.entity::after {
+    background: linear-gradient(90deg, #3498db 50%, #27ae60 50%);
+}
+
+.works.orgs.entity::after {
+    background: linear-gradient(90deg, #f39c12 50%, #9b59b6 50%);
+}
+
+.works.events.entity::after {
+    background: linear-gradient(90deg, #f39c12 50%, #27ae60 50%);
+}
+
+.orgs.events.entity::after {
+    background: linear-gradient(90deg, #9b59b6 50%, #27ae60 50%);
+}
+
+/* Three entity types - split in thirds */
+.persons.places.works.entity::after {
+    background: linear-gradient(90deg, #e74c3c 33.33%, #3498db 33.33%, #3498db 66.66%, #f39c12 66.66%);
+}
+
+.persons.places.orgs.entity::after {
+    background: linear-gradient(90deg, #e74c3c 33.33%, #3498db 33.33%, #3498db 66.66%, #9b59b6 66.66%);
+}
+
+.persons.places.events.entity::after {
+    background: linear-gradient(90deg, #e74c3c 33.33%, #3498db 33.33%, #3498db 66.66%, #27ae60 66.66%);
+}
+
+.persons.works.orgs.entity::after {
+    background: linear-gradient(90deg, #e74c3c 33.33%, #f39c12 33.33%, #f39c12 66.66%, #9b59b6 66.66%);
+}
+
+.persons.works.events.entity::after {
+    background: linear-gradient(90deg, #e74c3c 33.33%, #f39c12 33.33%, #f39c12 66.66%, #27ae60 66.66%);
+}
+
+.persons.orgs.events.entity::after {
+    background: linear-gradient(90deg, #e74c3c 33.33%, #9b59b6 33.33%, #9b59b6 66.66%, #27ae60 66.66%);
+}
+
+.places.works.orgs.entity::after {
+    background: linear-gradient(90deg, #3498db 33.33%, #f39c12 33.33%, #f39c12 66.66%, #9b59b6 66.66%);
+}
+
+.places.works.events.entity::after {
+    background: linear-gradient(90deg, #3498db 33.33%, #f39c12 33.33%, #f39c12 66.66%, #27ae60 66.66%);
+}
+
+.places.orgs.events.entity::after {
+    background: linear-gradient(90deg, #3498db 33.33%, #9b59b6 33.33%, #9b59b6 66.66%, #27ae60 66.66%);
+}
+
+.works.orgs.events.entity::after {
+    background: linear-gradient(90deg, #f39c12 33.33%, #9b59b6 33.33%, #9b59b6 66.66%, #27ae60 66.66%);
+}
+
+/* Four entity types */
+.persons.places.works.orgs.entity::after {
+    background: linear-gradient(90deg, #e74c3c 25%, #3498db 25%, #3498db 50%, #f39c12 50%, #f39c12 75%, #9b59b6 75%);
+}
+
+.persons.places.works.events.entity::after {
+    background: linear-gradient(90deg, #e74c3c 25%, #3498db 25%, #3498db 50%, #f39c12 50%, #f39c12 75%, #27ae60 75%);
+}
+
+.persons.places.orgs.events.entity::after {
+    background: linear-gradient(90deg, #e74c3c 25%, #3498db 25%, #3498db 50%, #9b59b6 50%, #9b59b6 75%, #27ae60 75%);
+}
+
+.persons.works.orgs.events.entity::after {
+    background: linear-gradient(90deg, #e74c3c 25%, #f39c12 25%, #f39c12 50%, #9b59b6 50%, #9b59b6 75%, #27ae60 75%);
+}
+
+.places.works.orgs.events.entity::after {
+    background: linear-gradient(90deg, #3498db 25%, #f39c12 25%, #f39c12 50%, #9b59b6 50%, #9b59b6 75%, #27ae60 75%);
+}
+
+/* Five entity types */
+.persons.places.works.orgs.events.entity::after {
+    background: linear-gradient(90deg, #e74c3c 20%, #3498db 20%, #3498db 40%, #f39c12 40%, #f39c12 60%, #9b59b6 60%, #9b59b6 80%, #27ae60 80%);
+}
+
+/* Hover states for mixed entities - brighten underlines */
+.persons.places.entity:hover::after,
+.persons.works.entity:hover::after,
+.persons.orgs.entity:hover::after,
+.persons.events.entity:hover::after {
+    opacity: 0.8;
+    height: 3px;
+}
+
+.places.works.entity:hover::after,
+.places.orgs.entity:hover::after,
+.places.events.entity:hover::after {
+    opacity: 0.8;
+    height: 3px;
+}
+
+.works.orgs.entity:hover::after,
+.works.events.entity:hover::after {
+    opacity: 0.8;
+    height: 3px;
+}
+
+.orgs.events.entity:hover::after {
+    opacity: 0.8;
+    height: 3px;
+}
+
+/* Hover states for three+ entity types */
+.persons.places.works.entity:hover::after,
+.persons.places.orgs.entity:hover::after,
+.persons.places.events.entity:hover::after,
+.persons.works.orgs.entity:hover::after,
+.persons.works.events.entity:hover::after,
+.persons.orgs.events.entity:hover::after,
+.places.works.orgs.entity:hover::after,
+.places.works.events.entity:hover::after,
+.places.orgs.events.entity:hover::after,
+.works.orgs.events.entity:hover::after {
+    opacity: 0.8;
+    height: 3px;
+}
+
+/* Hover states for four+ entity types */
+.persons.places.works.orgs.entity:hover::after,
+.persons.places.works.events.entity:hover::after,
+.persons.places.orgs.events.entity:hover::after,
+.persons.works.orgs.events.entity:hover::after,
+.places.works.orgs.events.entity:hover::after {
+    opacity: 0.8;
+    height: 3px;
+}
+
+/* Hover state for five entity types */
+.persons.places.works.orgs.events.entity:hover::after {
+    opacity: 0.8;
+    height: 3px;
 }
 
 .entity-table {
