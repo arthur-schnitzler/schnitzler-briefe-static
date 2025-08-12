@@ -156,32 +156,38 @@ for x in tqdm(files, total=len(files)):
         pass
     record["persons"] = []
     for y in doc.any_xpath(".//tei:back//tei:person[@xml:id]"):
-        item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]")[0])[0]}
+        item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]", namespaces=doc.nsmap)[0])[0]}
         record["persons"].append(item)
     cfts_record["persons"] = [x["label"] for x in record["persons"]]
 
     record["places"] = []
     for y in doc.any_xpath(".//tei:back//tei:place[@xml:id]"):
-        item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]")[0])[0]}
+        item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]", namespaces=doc.nsmap)[0])[0]}
         record["places"].append(item)
     cfts_record["places"] = [x["label"] for x in record["places"]]
 
     record["orgs"] = []
     for y in doc.any_xpath(".//tei:back//tei:org[@xml:id]"):
-        item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]")[0])[0]}
+        item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]", namespaces=doc.nsmap)[0])[0]}
         record["orgs"].append(item)
 
     record["works"] = []
     for y in doc.any_xpath(".//tei:back//tei:bibl[@xml:id]"):
-        item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]")[0])[0]}
+        item = {"id": get_xmlid(y), "label": make_entity_label(y.xpath("./*[1]", namespaces=doc.nsmap)[0])[0]}
         record["works"].append(item)
 
     record["events"] = []
     for y in doc.any_xpath(".//tei:back//tei:event[@xml:id]"):
         try:
-            event_name = y.xpath(".//tei:eventName/text()")[0] if y.xpath(".//tei:eventName/text()") else "Unbekanntes Ereignis"
-            event_date = y.xpath("./@when-iso")[0] if y.xpath("./@when-iso") else None
-            event_type = y.xpath(".//tei:eventName/@n")[0] if y.xpath(".//tei:eventName/@n") else None
+            # Use proper namespace-aware xpath with TeiReader's nsmap
+            event_name_nodes = y.xpath(".//tei:eventName/text()", namespaces=doc.nsmap)
+            event_name = event_name_nodes[0] if event_name_nodes else "Unbekanntes Ereignis"
+            
+            event_date_nodes = y.xpath("./@when-iso", namespaces=doc.nsmap)
+            event_date = event_date_nodes[0] if event_date_nodes else None
+            
+            event_type_nodes = y.xpath(".//tei:eventName/@n", namespaces=doc.nsmap)
+            event_type = event_type_nodes[0] if event_type_nodes else None
             
             item = {
                 "id": get_xmlid(y), 
