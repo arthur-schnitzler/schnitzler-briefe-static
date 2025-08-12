@@ -1,5 +1,5 @@
 function copyToClipboard(element) {
-                    const text = element.textContent || element.innerText;
+                    const text = (element.textContent || element.innerText).trim();
                     
                     if (navigator.clipboard && navigator.clipboard.writeText) {
                         navigator.clipboard.writeText(text).then(function() {
