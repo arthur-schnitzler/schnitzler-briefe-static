@@ -266,7 +266,7 @@
                             </xsl:when>
                             <xsl:when test="@type = 'schnitzler-interviews'">
                                 <xsl:value-of
-                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-static/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
                                 />
                             </xsl:when>
                             <xsl:when test="@type = 'schnitzler-kultur'">
