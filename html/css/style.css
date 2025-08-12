@@ -1085,6 +1085,12 @@ a.reference-black {
     cursor: pointer;
     color: black !important;
     hyphens: none;
+    text-decoration: underline;
+    text-decoration-color: #A63437;
+    text-decoration-thickness: 2px;
+    text-decoration-skip-ink: none;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
 
