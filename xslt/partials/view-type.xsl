@@ -165,6 +165,9 @@
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'United Nations')]">
           <xsl:text>United_Nations_Archives</xsl:text>
         </xsl:when>
+        <xsl:when test="$msIdentifier/tei:repository[contains(., 'Zionist Archives')]">
+          <xsl:text>Central_Zionist_Archives</xsl:text>
+        </xsl:when>
         <!-- WBR -->
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Wienbibliothek')]">
           <xsl:text>WBR</xsl:text>
