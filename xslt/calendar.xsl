@@ -55,7 +55,14 @@
                                     <h5 class="modal-title">Die Briefe in Kalenderansicht</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Briefe eines bestimmten Tages suchen. </p>
+                                    <p>Dieser Kalender zeigt alle Korrespondenzstücke der vorliegenden Edition. Sie
+                                    sind aufgeteilt in die Farben rot (Korrespondenzstücke von Arthur Schnitzler), blau (Korrespondenzstücke
+                                    an Schnitzler) und grün (Umfeldbriefe: Korrespondenzstücke der jeweiligen Lebensgefährtin oder des jeweiligen
+                                    Lebensgefährten an das jeweilige Gegenüber).</p>
+                                    <p>Zusätzlich werden in brauner Farbe gedruckte Korrespondenzstücke Schnitzlers angezeigt, die sich nicht
+                                    in der Edition finden. Ihr Inhalt ist nicht aufgenommen. Teilweise sind PDFs der Drucke hier zu finden:
+                                        <ref type="URL" target="drucke.html">Druckdigitalisate</ref>.
+                                    </p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
