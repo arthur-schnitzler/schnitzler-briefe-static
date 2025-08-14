@@ -848,7 +848,7 @@ class SimpleCalendar {
     } else if (this.currentView === 'week') {
       const weekStart = this.getWeekStart(this.currentYear, this.currentWeek);
       const weekEnd = new Date(weekStart.getTime() + 6 * 24 * 60 * 60 * 1000);
-      return `KW ${this.currentWeek}, ${this.currentYear} (${weekStart.getDate()}.${weekStart.getMonth() + 1} - ${weekEnd.getDate()}.${weekEnd.getMonth() + 1}.${weekEnd.getFullYear()})`;
+      return `KW ${this.currentWeek}, ${this.currentYear} (${weekStart.getDate()}.${weekStart.getMonth() + 1}. – ${weekEnd.getDate()}.${weekEnd.getMonth() + 1}.${weekEnd.getFullYear()})`;
     }
   }
   
