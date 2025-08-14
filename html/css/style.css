@@ -143,7 +143,7 @@ a {
 }
 
 /* Entity highlighting with colored underlines - active by default for independent toggle system */
-/* Using pseudo-elements for rounded underlines */
+/* Using border-bottom for multiline support */
 .persons.entity {
     position: relative;
     transition: all 0.2s ease;
@@ -151,16 +151,23 @@ a {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
+    border-bottom: 2px solid #e74c3c;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
+/* Keep after pseudo-element for backwards compatibility, but make it invisible */
 .persons.entity::after {
     content: '';
     position: absolute;
     bottom: -2px;
     left: 0;
     right: 0;
-    height: 2px;
-    background-color: #e74c3c;
+    height: 0px;
+    background-color: transparent;
     border-radius: 1px;
     transition: all 0.2s ease;
 }
@@ -177,6 +184,12 @@ a {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
+    border-bottom: 2px solid #3498db;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .places.entity::after {
@@ -185,8 +198,8 @@ a {
     bottom: -2px;
     left: 0;
     right: 0;
-    height: 2px;
-    background-color: #3498db;
+    height: 0px;
+    background-color: transparent;
     border-radius: 1px;
     transition: all 0.2s ease;
 }
@@ -203,6 +216,12 @@ a {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
+    border-bottom: 2px solid #9b59b6;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .orgs.entity::after {
@@ -211,8 +230,8 @@ a {
     bottom: -2px;
     left: 0;
     right: 0;
-    height: 2px;
-    background-color: #9b59b6;
+    height: 0px;
+    background-color: transparent;
     border-radius: 1px;
     transition: all 0.2s ease;
 }
@@ -229,6 +248,12 @@ a {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
+    border-bottom: 2px solid #f39c12;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .works.entity::after {
@@ -237,8 +262,8 @@ a {
     bottom: -2px;
     left: 0;
     right: 0;
-    height: 2px;
-    background-color: #f39c12;
+    height: 0px;
+    background-color: transparent;
     border-radius: 1px;
     transition: all 0.2s ease;
 }
@@ -251,6 +276,16 @@ a {
 .events.entity {
     position: relative;
     transition: all 0.2s ease;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    border-bottom: 2px solid #27ae60;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .events.entity::after {
@@ -259,8 +294,8 @@ a {
     bottom: -2px;
     left: 0;
     right: 0;
-    height: 2px;
-    background-color: #27ae60;
+    height: 0px;
+    background-color: transparent;
     border-radius: 1px;
     transition: all 0.2s ease;
 }
@@ -275,171 +310,258 @@ a {
     display: none;
 }
 
-/* Mixed entity types for nested rs elements - create gradient underlines with rounded edges */
-/* Two entity types */
+/* Mixed entity types for nested rs elements - use primary color with dashed border for indication */
+/* For mixed entities, use the first entity type's color with a dashed border to indicate multiple types */
+.persons.places.entity {
+    border-bottom: 2px dashed #e74c3c;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
+}
+
 .persons.places.entity::after {
-    background: linear-gradient(90deg, #e74c3c 50%, #3498db 50%);
+    background: transparent;
+    height: 0px;
+}
+
+.persons.works.entity {
+    border-bottom: 2px dashed #e74c3c;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .persons.works.entity::after {
-    background: linear-gradient(90deg, #e74c3c 50%, #f39c12 50%);
+    background: transparent;
+    height: 0px;
+}
+
+.persons.orgs.entity {
+    border-bottom: 2px dashed #e74c3c;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .persons.orgs.entity::after {
-    background: linear-gradient(90deg, #e74c3c 50%, #9b59b6 50%);
+    background: transparent;
+    height: 0px;
+}
+
+.persons.events.entity {
+    border-bottom: 2px dashed #e74c3c;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .persons.events.entity::after {
-    background: linear-gradient(90deg, #e74c3c 50%, #27ae60 50%);
+    background: transparent;
+    height: 0px;
+}
+
+.places.works.entity {
+    border-bottom: 2px dashed #3498db;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .places.works.entity::after {
-    background: linear-gradient(90deg, #3498db 50%, #f39c12 50%);
+    background: transparent;
+    height: 0px;
+}
+
+.places.orgs.entity {
+    border-bottom: 2px dashed #3498db;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .places.orgs.entity::after {
-    background: linear-gradient(90deg, #3498db 50%, #9b59b6 50%);
+    background: transparent;
+    height: 0px;
+}
+
+.places.events.entity {
+    border-bottom: 2px dashed #3498db;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .places.events.entity::after {
-    background: linear-gradient(90deg, #3498db 50%, #27ae60 50%);
+    background: transparent;
+    height: 0px;
+}
+
+.works.orgs.entity {
+    border-bottom: 2px dashed #f39c12;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .works.orgs.entity::after {
-    background: linear-gradient(90deg, #f39c12 50%, #9b59b6 50%);
+    background: transparent;
+    height: 0px;
+}
+
+.works.events.entity {
+    border-bottom: 2px dashed #f39c12;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .works.events.entity::after {
-    background: linear-gradient(90deg, #f39c12 50%, #27ae60 50%);
+    background: transparent;
+    height: 0px;
+}
+
+.orgs.events.entity {
+    border-bottom: 2px dashed #9b59b6;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .orgs.events.entity::after {
-    background: linear-gradient(90deg, #9b59b6 50%, #27ae60 50%);
+    background: transparent;
+    height: 0px;
 }
 
-/* Three entity types - split in thirds */
+/* Three or more entity types - use dotted pattern to indicate multiple types */
+.persons.places.works.entity {
+    border-bottom: 2px dotted #e74c3c;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
+}
+
 .persons.places.works.entity::after {
-    background: linear-gradient(90deg, #e74c3c 33.33%, #3498db 33.33%, #3498db 66.66%, #f39c12 66.66%);
+    background: transparent;
+    height: 0px;
+}
+
+.persons.places.orgs.entity {
+    border-bottom: 2px dotted #e74c3c;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .persons.places.orgs.entity::after {
-    background: linear-gradient(90deg, #e74c3c 33.33%, #3498db 33.33%, #3498db 66.66%, #9b59b6 66.66%);
+    background: transparent;
+    height: 0px;
+}
+
+.persons.places.events.entity {
+    border-bottom: 2px dotted #e74c3c;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
 .persons.places.events.entity::after {
-    background: linear-gradient(90deg, #e74c3c 33.33%, #3498db 33.33%, #3498db 66.66%, #27ae60 66.66%);
+    background: transparent;
+    height: 0px;
 }
 
-.persons.works.orgs.entity::after {
-    background: linear-gradient(90deg, #e74c3c 33.33%, #f39c12 33.33%, #f39c12 66.66%, #9b59b6 66.66%);
+/* All remaining 3+, 4+, and 5+ entity combinations use dotted pattern */
+.persons.works.orgs.entity,
+.persons.works.events.entity,
+.persons.orgs.events.entity,
+.places.works.orgs.entity,
+.places.works.events.entity,
+.places.orgs.events.entity,
+.works.orgs.events.entity,
+.persons.places.works.orgs.entity,
+.persons.places.works.events.entity,
+.persons.places.orgs.events.entity,
+.persons.works.orgs.events.entity,
+.places.works.orgs.events.entity,
+.persons.places.works.orgs.events.entity {
+    border-bottom: 2px dotted #e74c3c;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+    padding-bottom: 1px;
 }
 
-.persons.works.events.entity::after {
-    background: linear-gradient(90deg, #e74c3c 33.33%, #f39c12 33.33%, #f39c12 66.66%, #27ae60 66.66%);
-}
-
-.persons.orgs.events.entity::after {
-    background: linear-gradient(90deg, #e74c3c 33.33%, #9b59b6 33.33%, #9b59b6 66.66%, #27ae60 66.66%);
-}
-
-.places.works.orgs.entity::after {
-    background: linear-gradient(90deg, #3498db 33.33%, #f39c12 33.33%, #f39c12 66.66%, #9b59b6 66.66%);
-}
-
-.places.works.events.entity::after {
-    background: linear-gradient(90deg, #3498db 33.33%, #f39c12 33.33%, #f39c12 66.66%, #27ae60 66.66%);
-}
-
-.places.orgs.events.entity::after {
-    background: linear-gradient(90deg, #3498db 33.33%, #9b59b6 33.33%, #9b59b6 66.66%, #27ae60 66.66%);
-}
-
-.works.orgs.events.entity::after {
-    background: linear-gradient(90deg, #f39c12 33.33%, #9b59b6 33.33%, #9b59b6 66.66%, #27ae60 66.66%);
-}
-
-/* Four entity types */
-.persons.places.works.orgs.entity::after {
-    background: linear-gradient(90deg, #e74c3c 25%, #3498db 25%, #3498db 50%, #f39c12 50%, #f39c12 75%, #9b59b6 75%);
-}
-
-.persons.places.works.events.entity::after {
-    background: linear-gradient(90deg, #e74c3c 25%, #3498db 25%, #3498db 50%, #f39c12 50%, #f39c12 75%, #27ae60 75%);
-}
-
-.persons.places.orgs.events.entity::after {
-    background: linear-gradient(90deg, #e74c3c 25%, #3498db 25%, #3498db 50%, #9b59b6 50%, #9b59b6 75%, #27ae60 75%);
-}
-
-.persons.works.orgs.events.entity::after {
-    background: linear-gradient(90deg, #e74c3c 25%, #f39c12 25%, #f39c12 50%, #9b59b6 50%, #9b59b6 75%, #27ae60 75%);
-}
-
-.places.works.orgs.events.entity::after {
-    background: linear-gradient(90deg, #3498db 25%, #f39c12 25%, #f39c12 50%, #9b59b6 50%, #9b59b6 75%, #27ae60 75%);
-}
-
-/* Five entity types */
+.persons.works.orgs.entity::after,
+.persons.works.events.entity::after,
+.persons.orgs.events.entity::after,
+.places.works.orgs.entity::after,
+.places.works.events.entity::after,
+.places.orgs.events.entity::after,
+.works.orgs.events.entity::after,
+.persons.places.works.orgs.entity::after,
+.persons.places.works.events.entity::after,
+.persons.places.orgs.events.entity::after,
+.persons.works.orgs.events.entity::after,
+.places.works.orgs.events.entity::after,
 .persons.places.works.orgs.events.entity::after {
-    background: linear-gradient(90deg, #e74c3c 20%, #3498db 20%, #3498db 40%, #f39c12 40%, #f39c12 60%, #9b59b6 60%, #9b59b6 80%, #27ae60 80%);
+    background: transparent;
+    height: 0px;
 }
 
-/* Hover states for mixed entities - brighten underlines */
-.persons.places.entity:hover::after,
-.persons.works.entity:hover::after,
-.persons.orgs.entity:hover::after,
-.persons.events.entity:hover::after {
-    opacity: 0.8;
-    height: 3px;
-}
-
-.places.works.entity:hover::after,
-.places.orgs.entity:hover::after,
-.places.events.entity:hover::after {
-    opacity: 0.8;
-    height: 3px;
-}
-
-.works.orgs.entity:hover::after,
-.works.events.entity:hover::after {
-    opacity: 0.8;
-    height: 3px;
-}
-
-.orgs.events.entity:hover::after {
-    opacity: 0.8;
-    height: 3px;
-}
-
-/* Hover states for three+ entity types */
-.persons.places.works.entity:hover::after,
-.persons.places.orgs.entity:hover::after,
-.persons.places.events.entity:hover::after,
-.persons.works.orgs.entity:hover::after,
-.persons.works.events.entity:hover::after,
-.persons.orgs.events.entity:hover::after,
-.places.works.orgs.entity:hover::after,
-.places.works.events.entity:hover::after,
-.places.orgs.events.entity:hover::after,
-.works.orgs.events.entity:hover::after {
-    opacity: 0.8;
-    height: 3px;
-}
-
-/* Hover states for four+ entity types */
-.persons.places.works.orgs.entity:hover::after,
-.persons.places.works.events.entity:hover::after,
-.persons.places.orgs.events.entity:hover::after,
-.persons.works.orgs.events.entity:hover::after,
-.places.works.orgs.events.entity:hover::after {
-    opacity: 0.8;
-    height: 3px;
-}
-
-/* Hover state for five entity types */
-.persons.places.works.orgs.events.entity:hover::after {
-    opacity: 0.8;
-    height: 3px;
+/* Hover states for all mixed entities - since we use border-bottom now, adjust border style on hover */
+.persons.places.entity:hover,
+.persons.works.entity:hover,
+.persons.orgs.entity:hover,
+.persons.events.entity:hover,
+.places.works.entity:hover,
+.places.orgs.entity:hover,
+.places.events.entity:hover,
+.works.orgs.entity:hover,
+.works.events.entity:hover,
+.orgs.events.entity:hover,
+.persons.places.works.entity:hover,
+.persons.places.orgs.entity:hover,
+.persons.places.events.entity:hover,
+.persons.works.orgs.entity:hover,
+.persons.works.events.entity:hover,
+.persons.orgs.events.entity:hover,
+.places.works.orgs.entity:hover,
+.places.works.events.entity:hover,
+.places.orgs.events.entity:hover,
+.works.orgs.events.entity:hover,
+.persons.places.works.orgs.entity:hover,
+.persons.places.works.events.entity:hover,
+.persons.places.orgs.events.entity:hover,
+.persons.works.orgs.events.entity:hover,
+.places.works.orgs.events.entity:hover,
+.persons.places.works.orgs.events.entity:hover {
+    border-bottom-width: 3px;
 }
 
 .entity-table {
