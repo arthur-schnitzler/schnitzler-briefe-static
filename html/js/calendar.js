@@ -51,8 +51,9 @@ function handleDayClick(e) {
   }
 }
 
-// Show popup for printed letters
+// Show popup for printed letters - make globally available
 function showPrintedLetterPopup(event) {
+  window.showPrintedLetterPopup = showPrintedLetterPopup; // Make globally available
   let html = "<div class='modal fade' id='printedLetterModal' tabindex='-1' aria-labelledby='printedLetterModalLabel' aria-hidden='true'>";
   html += "<div class='modal-dialog' role='document'>";
   html += "<div class='modal-content'>";
@@ -80,8 +81,9 @@ function showPrintedLetterPopup(event) {
   $('#printedLetterModal').modal('show');
 }
 
-// Show events modal (preserves original modal functionality)
+// Show events modal (preserves original modal functionality) - make globally available
 function showEventsModal(events, date) {
+  window.showEventsModal = showEventsModal; // Make globally available
   // Format date for title without leading zeros
   const day = date.getDate();
   const month = date.getMonth() + 1;
@@ -169,6 +171,10 @@ function showEventsModal(events, date) {
 document.addEventListener('DOMContentLoaded', function() {
   // Process calendar data
   processCalendarData();
+  
+  // Make functions globally available for simple-calendar.js
+  window.showPrintedLetterPopup = showPrintedLetterPopup;
+  window.showEventsModal = showEventsModal;
   
   // Initialize SimpleCalendar
   calendar = new SimpleCalendar('calendar', {

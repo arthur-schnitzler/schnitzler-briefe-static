@@ -33,7 +33,7 @@ class SimpleCalendar {
     
     
     this.monthNames = [
-      'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+      'Jänner', 'Februar', 'März', 'April', 'Mai', 'Juni',
       'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
     ];
     
@@ -835,7 +835,9 @@ class SimpleCalendar {
     for (let week = 1; week <= 53; week++) {
       const option = document.createElement('option');
       option.value = week;
-      option.textContent = `KW ${week}`;
+      const weekStart = this.getWeekStart(this.currentYear, week);
+      const weekEnd = new Date(weekStart.getTime() + 6 * 24 * 60 * 60 * 1000);
+      option.textContent = `${weekStart.getDate()}.${weekStart.getMonth() + 1}. - ${weekEnd.getDate()}.${weekEnd.getMonth() + 1}.${weekEnd.getFullYear()}`;
       option.selected = week === this.currentWeek;
       weekSelect.appendChild(option);
     }
@@ -864,7 +866,7 @@ class SimpleCalendar {
     } else if (this.currentView === 'week') {
       const weekStart = this.getWeekStart(this.currentYear, this.currentWeek);
       const weekEnd = new Date(weekStart.getTime() + 6 * 24 * 60 * 60 * 1000);
-      return `KW ${this.currentWeek}, ${this.currentYear} (${weekStart.getDate()}.${weekStart.getMonth() + 1}. – ${weekEnd.getDate()}.${weekEnd.getMonth() + 1}.${weekEnd.getFullYear()})`;
+      return `${weekStart.getDate()}.${weekStart.getMonth() + 1}. - ${weekEnd.getDate()}.${weekEnd.getMonth() + 1}.${weekEnd.getFullYear()}`;
     }
   }
   
@@ -1256,7 +1258,17 @@ class SimpleCalendar {
         eventEl.title = event.name;
         eventEl.addEventListener('click', (e) => {
           e.stopPropagation();
-          window.location.href = event.linkId;
+          if (event.category === 'gedruckt') {
+            // Use global function for printed letters
+            if (typeof window.showPrintedLetterPopup === 'function') {
+              window.showPrintedLetterPopup(event);
+            } else {
+              // Fallback if function not available
+              window.location.href = event.linkId || '#';
+            }
+          } else {
+            window.location.href = event.linkId;
+          }
         });
         eventsContainer.appendChild(eventEl);
       });
@@ -1327,7 +1339,17 @@ class SimpleCalendar {
         eventEl.title = event.name;
         eventEl.addEventListener('click', (e) => {
           e.stopPropagation();
-          window.location.href = event.linkId;
+          if (event.category === 'gedruckt') {
+            // Use global function for printed letters
+            if (typeof window.showPrintedLetterPopup === 'function') {
+              window.showPrintedLetterPopup(event);
+            } else {
+              // Fallback if function not available
+              window.location.href = event.linkId || '#';
+            }
+          } else {
+            window.location.href = event.linkId;
+          }
         });
         dayColumn.appendChild(eventEl);
       });
