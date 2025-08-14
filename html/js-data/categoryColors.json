@@ -1,0 +1,14 @@
+{
+  "as-sender": {
+    "caption": "Briefe Schnitzlers",
+    "color": "#A63437"
+  },
+  "as-empf": {
+    "caption": "Briefe an Schnitzler",
+    "color": "#1C6E8C"
+  },
+  "umfeld": {
+    "caption": "Umfeldbriefe",
+    "color": "#68825b"
+  }
+}

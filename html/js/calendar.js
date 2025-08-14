@@ -1,652 +1,114 @@
-function getYear(item) {
-  return item.startDate.split('-')[0];
+// Calendar initialization for schnitzler-briefe-static
+// Uses SimpleCalendar instead of js-year-calendar
+
+let calendar;
+let data = [];
+let years = [];
+
+// Convert calendarData format to SimpleCalendar format
+let activeFilters = new Set(['as-sender', 'as-empf', 'umfeld']); // All active by default
+window.activeFilters = activeFilters; // Make globally available for SimpleCalendar
+
+function processCalendarData() {
+  data = calendarData.map(r => ({
+    startDate: r.startDate,
+    endDate: r.startDate, // Same day event
+    name: r.name,
+    linkId: r.id,
+    category: r.category,
+    tageszaehler: r.tageszaehler
+  }));
+  
+  // Get available years
+  years = Array.from(new Set(calendarData.map(r => 
+    r.startDate.split('-')[0]
+  ))).sort();
+}
+
+// Filter data based on active categories
+function getFilteredData() {
+  return data.filter(event => activeFilters.has(event.category));
 }
 
 
-function createyearcell(val) {
-  return (val !== undefined) ? `<div class="col-xs-6" style="width: auto;">\
-  <button id="ybtn${val}" class="btn btn-light rounded-0 yearbtn" value="${val}" onclick="updateyear(this.value)" aria-label="Jahr ${val} auswählen">${val}</button>\
-</div>` : '';
+// Day click handler - preserves original functionality
+function handleDayClick(e) {
+  const events = e.events;
+  const date = e.date;
+  
+  if (events.length === 1) {
+    // Single event - navigate directly
+    window.location.href = events[0].linkId;
+  } else if (events.length > 1) {
+    // Multiple events - show modal
+    showEventsModal(events, date);
+  }
 }
 
-// Create legend/filter component
-function createLegendFilter() {
-  const yearsTable = document.getElementById('years-table');
-  if (!yearsTable) return;
+// Show events modal (preserves original modal functionality)
+function showEventsModal(events, date) {
+  let html = "<div class='modal fade' id='dialogForLinks' tabindex='-1' aria-labelledby='modalLabel' aria-hidden='true'>";
+  html += "<div class='modal-dialog' role='document'>";
+  html += "<div class='modal-content'>";
+  html += "<div class='modal-header'>";
+  html += "<h5 class='modal-title' id='modalLabel'>Links</h5>";
+  html += "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
+  html += "</div><div class='modal-body'>";
   
-  // Create legend container
-  const legendContainer = document.createElement('div');
-  legendContainer.id = 'legend-filter';
-  legendContainer.style.cssText = 'margin-top: 15px; text-align: center; padding: 10px; border-top: 1px solid #e0e0e0;';
+  // Category colors mapping
+  const categoryColors = {
+    'as-sender': '#A63437',    // Briefe Schnitzlers (red)
+    'as-empf': '#1C6E8C',      // Briefe an Schnitzler (blue)
+    'umfeld': '#68825b'        // Umfeldbriefe (green)
+  };
   
-  // Create legend items
-  const legendItems = [
-    { category: 'as-sender', label: 'Briefe Schnitzlers', color: '#A63437' },
-    { category: 'as-empf', label: 'Briefe an Schnitzler', color: '#1C6E8C' },
-    { category: 'umfeld', label: 'Umfeldbriefe', color: '#68825b' }
-  ];
-  
-  legendItems.forEach(item => {
-    const legendItem = document.createElement('div');
-    legendItem.style.cssText = 'display: inline-block; margin: 5px 15px; cursor: pointer; user-select: none;';
-    legendItem.innerHTML = `
-      <input type="checkbox" id="filter-${item.category}" checked style="margin-right: 8px;" aria-describedby="legend-desc-${item.category}">
-      <span style="display: inline-block; width: 12px; height: 12px; background-color: ${item.color}; margin-right: 6px; vertical-align: middle; border-radius: 2px;" aria-hidden="true"></span>
-      <label for="filter-${item.category}" style="cursor: pointer; font-size: 14px; color: #333;" id="legend-desc-${item.category}">${item.label}</label>
-    `;
-    
-    // Add click handler for the entire item
-    legendItem.addEventListener('click', function(e) {
-      if (e.target.type !== 'checkbox') {
-        const checkbox = legendItem.querySelector('input[type="checkbox"]');
-        checkbox.checked = !checkbox.checked;
-      }
-      toggleCategoryFilter(item.category);
+  // Sort events by tageszaehler (preserving original sorting logic)
+  let numbersTitlesAndIds = [];
+  events.forEach((event, i) => {
+    numbersTitlesAndIds.push({
+      'i': i,
+      'position': event.tageszaehler,
+      'linkTitle': event.name,
+      'id': event.linkId,
+      'category': event.category
     });
-    
-    // Add keyboard support
-    legendItem.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        const checkbox = legendItem.querySelector('input[type="checkbox"]');
-        checkbox.checked = !checkbox.checked;
-        toggleCategoryFilter(item.category);
-      }
-    });
-    
-    // Make focusable
-    legendItem.setAttribute('tabindex', '0');
-    legendItem.setAttribute('role', 'checkbox');
-    legendItem.setAttribute('aria-checked', 'true');
-    
-    legendContainer.appendChild(legendItem);
   });
   
-  // Insert legend after years table
-  yearsTable.parentNode.insertBefore(legendContainer, yearsTable.nextSibling);
+  numbersTitlesAndIds.sort((a, b) => {
+    let positionOne = parseInt(a.position);
+    let positionTwo = parseInt(b.position);
+    if (positionOne < positionTwo) return -1;
+    if (positionOne > positionTwo) return 1;
+    return 0;
+  });
+  
+  numbersTitlesAndIds.forEach(item => {
+    const color = categoryColors[item.category] || '#999999';
+    html += "<div class='indent' style='margin: 8px 0;'>";
+    html += "<a href='" + item.id + "' style='color: " + color + "; text-decoration: none; font-weight: 500; display: block; padding: 4px 0;'>" + item.linkTitle + "</a>";
+    html += "</div>";
+  });
+  
+  html += "</div>";
+  html += "<div class='modal-footer'>";
+  html += "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Schließen</button>";
+  html += "</div></div></div></div>";
+  
+  // Remove existing modal and add new one
+  $('#dialogForLinks').remove();
+  $('#loadModal').append(html);
+  $('#dialogForLinks').modal('show');
 }
 
-// Toggle category filter and refresh calendar
-function toggleCategoryFilter(category) {
-  categoryFilters[category] = !categoryFilters[category];
+// Initialize calendar when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Process calendar data
+  processCalendarData();
   
-  // Update the checkbox state
-  const checkbox = document.getElementById(`filter-${category}`);
-  if (checkbox) {
-    checkbox.checked = categoryFilters[category];
-  }
-  
-  // Refresh the calendar with current filters
-  const currentYear = calendar.getYear();
-  setTimeout(() => {
-    applyEventStacking(currentYear);
-  }, 100);
-}
-
-// Function to determine letter color based on category from XML data
-function getLetterColor(letterData) {
-  // Use the category field from the JSON data (generated by make_calendar_data.py)
-  // This uses actual XPATH queries on the XML files for precise categorization
-  
-  if (letterData.category === 'as-sender') {
-    return '#A63437'; // theme-color - red for letters FROM Schnitzler
-  } else if (letterData.category === 'as-empf') {
-    return '#1C6E8C'; // sender-color - blue for letters TO Schnitzler
-  } else if (letterData.category === 'umfeld') {
-    return '#68825b'; // umfeld-color - green for letters between third parties
-  }
-  
-  // Fallback to title parsing if category is missing (backwards compatibility)
-  const name = letterData.name.toLowerCase();
-  
-  // Check if this is FROM Schnitzler
-  if (name.includes('arthur schnitzler an ') || 
-      name.includes('a. s. an ') ||
-      name.includes('schnitzler an ')) {
-    return '#A63437'; // theme-color - red for letters FROM Schnitzler
-  }
-  
-  // Check if this is TO Schnitzler  
-  if (name.includes(' an arthur schnitzler') || 
-      name.includes(' an a. s.') ||
-      name.includes(' an schnitzler')) {
-    return '#1C6E8C'; // sender-color - blue for letters TO Schnitzler
-  }
-  
-  // Default fallback
-  return '#68825b'; // umfeld-color - green for third party correspondence
-}
-
-var data = calendarData.map(r =>
-({
-  startDate: new Date(r.startDate),
-  endDate: new Date(r.startDate),
-  name: r.name,
-  linkId: r.id,
-  color: getLetterColor(r)
-})).filter(r => r.startDate.getFullYear() === 1890);
-
-years = Array.from(new Set(calendarData.map(getYear))).sort();
-var yearsTable = document.getElementById('years-table');
-for (var i = 0; i <= years.length; i++) {
-  yearsTable.insertAdjacentHTML('beforeend', createyearcell(years[i]));
-}
-
-// Filter state - all categories enabled by default
-var categoryFilters = {
-  'as-sender': true,   // Briefe Schnitzlers (red)
-  'as-empf': true,     // Briefe an Schnitzler (blue)  
-  'umfeld': true       // Umfeldbriefe (green)
-};
-
-// Create legend/filter below years
-createLegendFilter();
-
-//document.getElementById("ybtn1900").classList.add("focus");
-
-const calendar = new Calendar('#calendar', {
-  startYear: 1890,
-  language: "de",
-  dataSource: [], // Empty initially - we'll handle events manually
-  displayHeader: false,
-  clickDay: function (e) {
-    //window.location = e.events[0].linkId;
-
-    var entries = []
-    $.each(e.events, function (key, entry) {
-      entries.push(entry)
-    });
-    //window.location = ids.join();
-    if (entries.length > 1) {
-      let html = "<div class='modal fade' id='dialogForLinks' tabindex='-1' aria-labelledby='modalLabel' aria-hidden='true'>";
-      html += "<div class='modal-dialog' role='document'>";
-      html += "<div class='modal-content'>";
-      html += "<div class='modal-header'>";
-      html += "<h5 class='modal-title' id='modalLabel'>Links</h5>";
-      html += "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
-      html += "</div><div class='modal-body'>";
-      let numbersTitlesAndIds = new Array();
-      for (let i = 0; i < entries.length; i++) {
-        let linkTitle = entries[i].name;
-        let linkId = entries[i].linkId;
-        let numberInSeriesOfLetters = entries[i].tageszaehler;
-        numbersTitlesAndIds.push({ 'i': i, 'position': numberInSeriesOfLetters, 'linkTitle': linkTitle, 'id': linkId });
-      }
-
-      numbersTitlesAndIds.sort(function (a, b) {
-        let positionOne = parseInt(a.position);
-        let positionTwo = parseInt(b.position);
-        if (positionOne < positionTwo) {
-          return -1;
-        }
-        if (positionOne > positionTwo) {
-          return 1;
-        }
-        return 0;
-      });
-      for (let k = 0; k < numbersTitlesAndIds.length; k++) {
-        html += "<div class='indent'><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></div>";
-      }
-      html += "</div>";
-      html += "<div class='modal-footer'>";
-      html += "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Schließen</button>";
-      html += "</div></div></div></div>";
-      $('#dialogForLinks').remove();
-      $('#loadModal').append(html);
-      $('#dialogForLinks').modal('show');
-
-    }
-    else { window.location = entries.map(entry => entry.linkId).join(); }
-  },
-  renderEnd: function (e) {
-    const buttons = document.querySelectorAll(".yearbtn");
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].classList.remove('focus');
-    }
-    document.getElementById(`ybtn${e.currentYear}`).classList.add("focus");
-    
-    // Apply custom stacking after calendar renders
-    setTimeout(() => {
-      applyEventStacking(1890); // Default year
-    }, 200);
-  }
+  // Initialize SimpleCalendar
+  calendar = new SimpleCalendar('calendar', {
+    startYear: 1900,
+    dataSource: data,  // Use all data, filtering is handled inside SimpleCalendar
+    clickDay: handleDayClick
+  });
 });
-
-function updateyear(year) {
-  calendar.setYear(year);
-  // Don't set dataSource - we handle events manually
-  
-  // Apply custom stacking after year change
-  setTimeout(() => {
-    applyEventStacking(parseInt(year));
-  }, 200);
-}
-
-// Function to apply custom event stacking for multiple letters per day
-function applyEventStacking(year) {
-  // Use the year parameter if provided, otherwise get from calendar
-  const currentYear = year || calendar.getYear();
-  const calendarElement = document.querySelector('#calendar');
-  if (!calendarElement) return;
-  
-  // Add CSS styles for stacked events
-  if (!document.getElementById('event-stacking-styles')) {
-    const style = document.createElement('style');
-    style.id = 'event-stacking-styles';
-    style.textContent = `
-      /* Improve day cell styling */
-      .calendar table td.day {
-        position: relative !important;
-        vertical-align: top !important;
-        padding: 2px !important;
-        min-height: 30px !important;
-      }
-      
-      /* Ensure day content appears above event bars */
-      .calendar .day-content {
-        position: relative !important;
-        z-index: 10 !important;
-      }
-      
-      /* Custom event bars container */
-      .custom-event-bars {
-        position: absolute !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 1 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 0 !important;
-        pointer-events: auto !important;
-      }
-      
-      .custom-event-bars .custom-event-bar {
-        height: 1mm !important;
-        width: 100% !important;
-        display: block !important;
-        margin: 0 !important;
-        border: none !important;
-      }
-      
-      /* Hide original events completely */
-      .calendar .event {
-        display: none !important;
-      }
-      
-      /* Style for more events indicator */
-      .calendar .more-events-indicator {
-        position: absolute;
-        bottom: 1px;
-        right: 2px;
-        font-size: 8px;
-        color: rgba(0,0,0,0.8);
-        font-weight: bold;
-        line-height: 1;
-        z-index: 10;
-      }
-      
-      /* Improve hover effect */
-      .calendar table td.day:hover {
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2) !important;
-      }
-      
-      /* Event popup styles */
-      .event-popup {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1000;
-      }
-      
-      .popup-backdrop {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-      }
-      
-      .popup-content {
-        position: relative;
-        background-color: white;
-        margin: 15% auto;
-        padding: 0;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 500px;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      }
-      
-      .popup-header {
-        padding: 15px 20px;
-        border-bottom: 1px solid #ddd;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #f8f9fa;
-        border-radius: 5px 5px 0 0;
-      }
-      
-      .popup-date {
-        margin: 0;
-        font-size: 1.2em;
-        color: #333;
-      }
-      
-      .popup-close {
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: #aaa;
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .popup-close:hover {
-        color: #000;
-      }
-      
-      .event-list {
-        padding: 20px;
-        max-height: 400px;
-        overflow-y: auto;
-      }
-      
-      .event-item {
-        margin-bottom: 10px;
-        padding: 8px 0;
-        border-bottom: 1px solid #eee;
-      }
-      
-      .event-item:last-child {
-        border-bottom: none;
-      }
-      
-      .event-link {
-        text-decoration: none;
-        font-size: 14px;
-        line-height: 1.4;
-        transition: opacity 0.2s ease;
-      }
-      
-      .event-link:hover {
-        text-decoration: underline;
-        opacity: 0.8;
-      }
-    `;
-    document.head.appendChild(style);
-  }
-  
-  // Create custom event bars after calendar renders - use longer timeout to ensure calendar is fully rendered
-  setTimeout(() => {
-    console.log('Starting custom event bar creation'); // Debug
-    // Create our own data source from calendarData
-    const dataSource = calendarData.map(r => ({
-      startDate: new Date(r.startDate),
-      endDate: new Date(r.startDate),
-      name: r.name,
-      linkId: r.id,
-      category: r.category, // Include category for filtering
-      color: getLetterColor(r)
-    })).filter(r => {
-      // Filter by year and active category filters
-      return r.startDate.getFullYear() === currentYear && 
-             r.category && 
-             categoryFilters[r.category];
-    });
-    
-    // Group events by date
-    const eventsByDate = {};
-    dataSource.forEach(event => {
-      const dateKey = event.startDate.toDateString();
-      if (!eventsByDate[dateKey]) {
-        eventsByDate[dateKey] = [];
-      }
-      eventsByDate[dateKey].push(event);
-    });
-    
-    // Process each day cell
-    const dayElements = calendarElement.querySelectorAll('td.day');
-    
-    dayElements.forEach((dayEl) => {
-      let eventsForDay = [];
-      
-      // Try to extract date from day element - look for day-content div
-      const dayContentEl = dayEl.querySelector('.day-content');
-      if (!dayContentEl) return; // Skip days without content (old/new month days)
-      
-      const dayText = dayContentEl.textContent.trim();
-      const dayNumber = parseInt(dayText);
-      
-      if (dayNumber && dayNumber >= 1 && dayNumber <= 31) {
-        // Find the month container this day belongs to
-        let currentMonth = -1;
-        const monthContainers = calendarElement.querySelectorAll('.month-container');
-        for (let i = 0; i < monthContainers.length; i++) {
-          const container = monthContainers[i];
-          if (container.contains(dayEl)) {
-            currentMonth = i;
-            break;
-          }
-        }
-        
-        if (currentMonth >= 0) {
-          // Find events that match this exact day, month and year
-          eventsForDay = dataSource.filter(event => {
-            const eventDate = event.startDate.getDate();
-            const eventMonth = event.startDate.getMonth();
-            const eventYear = event.startDate.getFullYear();
-            return eventDate === dayNumber && 
-                   eventMonth === currentMonth && 
-                   eventYear === currentYear;
-          });
-        }
-      }
-      
-      // Remove existing custom bars
-      const existingBars = dayEl.querySelector('.custom-event-bars');
-      if (existingBars) {
-        existingBars.remove();
-      }
-      
-      if (eventsForDay.length > 0) {
-        // Create container for custom event bars
-        const barsContainer = document.createElement('div');
-        barsContainer.className = 'custom-event-bars';
-        
-        // Remove any existing click handlers from js-year-calendar and add our own
-        const removeExistingHandlers = (element) => {
-          const newElement = element.cloneNode(true);
-          element.parentNode.replaceChild(newElement, element);
-          return newElement;
-        };
-        
-        // Clean the day element from existing handlers
-        const cleanDayEl = removeExistingHandlers(dayEl);
-        const cleanDayContentEl = cleanDayEl.querySelector('.day-content');
-        
-        // Add our click handler with high priority (capture phase)
-        cleanDayEl.addEventListener('click', function(e) {
-          console.log('Day clicked, events:', eventsForDay.length); // Debug
-          
-          // Stop all propagation immediately
-          e.stopImmediatePropagation();
-          e.preventDefault();
-          
-          if (eventsForDay.length === 1) {
-            // Single event - navigate directly
-            console.log('Navigating to single event:', eventsForDay[0].linkId);
-            window.location.href = eventsForDay[0].linkId;
-          } else if (eventsForDay.length > 1) {
-            // Multiple events - show custom popup
-            console.log('Showing popup for events:', eventsForDay); // Debug
-            showEventPopup(eventsForDay, eventsForDay[0].startDate);
-          }
-          
-          return false;
-        }, true); // Use capture phase to get priority
-        
-        // Also handle clicks on day-content and event bars
-        if (cleanDayContentEl) {
-          cleanDayContentEl.addEventListener('click', function(e) {
-            console.log('Day content clicked, events:', eventsForDay.length); // Debug
-            e.stopImmediatePropagation();
-            e.preventDefault();
-            
-            if (eventsForDay.length === 1) {
-              console.log('Navigating to single event from content:', eventsForDay[0].linkId);
-              window.location.href = eventsForDay[0].linkId;
-            } else if (eventsForDay.length > 1) {
-              console.log('Showing popup for events from day-content:', eventsForDay); // Debug
-              showEventPopup(eventsForDay, eventsForDay[0].startDate);
-            }
-            
-            return false;
-          }, true);
-        }
-        
-        // Create individual bars for each event - each gets its own full-width bar
-        eventsForDay.forEach((event, index) => {
-          if (index < 10) { // Limit to 10 visible bars
-            const bar = document.createElement('div');
-            bar.className = 'custom-event-bar';
-            bar.style.backgroundColor = event.color;
-            bar.style.height = '1mm';
-            bar.style.width = '100%';
-            bar.style.display = 'block';
-            bar.title = event.name; // Add tooltip
-            barsContainer.appendChild(bar);
-          }
-        });
-        
-        cleanDayEl.appendChild(barsContainer);
-        
-        // Add indicator for more than 10 events
-        if (eventsForDay.length > 10) {
-          const existingIndicator = cleanDayEl.querySelector('.more-events-indicator');
-          if (existingIndicator) {
-            existingIndicator.remove();
-          }
-          
-          const indicator = document.createElement('span');
-          indicator.className = 'more-events-indicator';
-          indicator.textContent = `+${eventsForDay.length - 10}`;
-          indicator.title = `${eventsForDay.length} Briefe insgesamt`;
-          cleanDayEl.appendChild(indicator);
-        }
-      }
-    });
-  }, 500); // Increased timeout to ensure calendar is fully rendered
-}
-
-// Popup functions from schnitzler-kultur
-function showEventPopup(events, date) {
-  console.log('showEventPopup called with events:', events, 'date:', date); // Debug
-  
-  // Check if popup is already visible to prevent duplicates
-  const existingPopup = document.getElementById('eventPopup');
-  if (existingPopup && existingPopup.style.display === 'block') {
-    console.log('Popup already visible, returning'); // Debug
-    return;
-  }
-  
-  const popup = existingPopup || createEventPopup();
-  const eventList = popup.querySelector('.event-list');
-  const dateHeader = popup.querySelector('.popup-date');
-  
-  // Format date for display
-  const formattedDate = date.toLocaleDateString('de-DE', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  });
-  
-  dateHeader.textContent = formattedDate;
-  eventList.innerHTML = '';
-  
-  // Create unique events array to avoid duplicates
-  const uniqueEvents = events.filter((event, index, self) => 
-    index === self.findIndex(e => e.linkId === event.linkId)
-  );
-  
-  uniqueEvents.forEach(event => {
-    const eventItem = document.createElement('div');
-    eventItem.className = 'event-item';
-    eventItem.innerHTML = `
-      <a href="${event.linkId}" class="event-link" onclick="event.stopPropagation();" style="color: ${event.color};">
-        ${event.name}
-      </a>
-    `;
-    eventList.appendChild(eventItem);
-  });
-  
-  popup.style.display = 'block';
-  
-  // Add keyboard listener for ESC key
-  document.addEventListener('keydown', handleEscapeKey);
-}
-
-function handleEscapeKey(e) {
-  if (e.key === 'Escape') {
-    closeEventPopup();
-  }
-}
-
-function createEventPopup() {
-  const popup = document.createElement('div');
-  popup.id = 'eventPopup';
-  popup.className = 'event-popup';
-  popup.innerHTML = `
-    <div class="popup-backdrop"></div>
-    <div class="popup-content">
-      <div class="popup-header">
-        <h3 class="popup-date"></h3>
-        <button class="popup-close">&times;</button>
-      </div>
-      <div class="event-list"></div>
-    </div>
-  `;
-  
-  // Add event listeners programmatically to have better control
-  popup.querySelector('.popup-backdrop').addEventListener('click', function(e) {
-    e.stopImmediatePropagation();
-    e.preventDefault();
-    closeEventPopup();
-    return false;
-  });
-  
-  popup.querySelector('.popup-close').addEventListener('click', function(e) {
-    e.stopImmediatePropagation();
-    e.preventDefault();
-    closeEventPopup();
-    return false;
-  });
-  
-  popup.querySelector('.popup-content').addEventListener('click', function(e) {
-    e.stopPropagation(); // Don't close popup when clicking inside content
-  });
-  
-  document.body.appendChild(popup);
-  return popup;
-}
-
-function closeEventPopup() {
-  const popup = document.getElementById('eventPopup');
-  if (popup) {
-    popup.style.display = 'none';
-  }
-  
-  // Remove keyboard listener
-  document.removeEventListener('keydown', handleEscapeKey);
-}

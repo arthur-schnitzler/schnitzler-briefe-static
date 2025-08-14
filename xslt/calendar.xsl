@@ -19,11 +19,8 @@
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
             <body class="page">
-                <script src="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.js"/>
-                <script src="https://unpkg.com/js-year-calendar@latest/locales/js-year-calendar.de.js"/>
-                <link rel="stylesheet" type="text/css"
-                    href="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.css"/>
                 <script src="js-data/calendarData.js"/>
+                <script src="js/simple-calendar.js"/>
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
 
@@ -42,19 +39,9 @@
                                 </a>
                             </div>
                             <div class="card-body containingloader">
-                                <div class="row">
-                                    <div class="col-sm-2 yearscol">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <p
-                                                  style="text-align:center;font-weight:bold;margin-bottom:0;"
-                                                  >Jahr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-md-center" id="years-table"
-                                        > </div>
-                                    </div>
-                                    <div class="col-sm-10">
+                                <!-- Calendar Container -->
+                                <div class="row" id="calendar-row">
+                                    <div class="col-12" id="calendar-col">
                                         <div id="calendar"/>
                                     </div>
                                 </div>
