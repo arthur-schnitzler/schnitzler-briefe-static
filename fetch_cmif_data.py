@@ -85,15 +85,28 @@ def integrate_cmif_data():
         print("No events found")
         return False
     
+    # Check if calendar data file exists
+    import os
+    calendar_file = 'html/js-data/calendarData.js'
+    if not os.path.exists(calendar_file):
+        print(f"Calendar data file {calendar_file} not found!")
+        return False
+    
     # Load existing calendar data
     try:
-        with open('html/js-data/calendarData.js', 'r', encoding='utf-8') as f:
+        with open(calendar_file, 'r', encoding='utf-8') as f:
             content = f.read()
             
         # Extract existing data (remove JavaScript variable declaration)
         json_start = content.find('[')
         json_end = content.rfind(']') + 1
+        
+        if json_start == -1 or json_end <= json_start:
+            print("Could not find JSON array in calendar data file")
+            return False
+            
         existing_data = json.loads(content[json_start:json_end])
+        print(f"Loaded {len(existing_data)} existing calendar entries")
         
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"Error loading existing calendar data: {e}")

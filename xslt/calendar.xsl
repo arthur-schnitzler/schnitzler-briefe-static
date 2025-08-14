@@ -32,7 +32,7 @@
                                 <a>
                                     <i class="fas fa-info"
                                         title="Korrespondenzstücke nach Tagen suchen"
-                                        data-bs-toggle="modal" data-target="#exampleModal"/>
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal"/>
                                 </a>
                                 <a style="padding-left:5px;" href="js-data/calendarData.js">
                                     <i class="fas fa-download" title="Kalenderdaten herunterladen"/>
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Schließen</button>
+                                        data-bs-dismiss="modal">Schließen</button>
                                 </div>
                             </div>
                         </div>
