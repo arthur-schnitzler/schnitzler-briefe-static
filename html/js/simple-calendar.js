@@ -20,13 +20,15 @@ class SimpleCalendar {
     this.eventCategories = {
       'as-sender': '#A63437',    // Letters FROM Schnitzler (red)
       'as-empf': '#1C6E8C',      // Letters TO Schnitzler (blue)
-      'umfeld': '#68825b'        // Third-party letters (green)
+      'umfeld': '#68825b',       // Third-party letters (green)
+      'gedruckt': 'rgb(101, 67, 33)'  // Printed letters (brown)
     };
     
     this.categoryLabels = {
       'as-sender': 'Briefe Schnitzlers',
       'as-empf': 'Briefe an Schnitzler', 
-      'umfeld': 'Umfeldbriefe'
+      'umfeld': 'Umfeldbriefe',
+      'gedruckt': 'Gedruckte Briefe'
     };
     
     
@@ -124,6 +126,10 @@ class SimpleCalendar {
                   <button class="filter-toggle active" data-category="umfeld" title="Umfeldbriefe">
                     <span class="filter-dot"></span>
                     Umfeldbriefe
+                  </button>
+                  <button class="filter-toggle active" data-category="gedruckt" title="Gedruckte Briefe">
+                    <span class="filter-dot"></span>
+                    Gedruckte Briefe
                   </button>
                 </div>
               </div>
@@ -272,7 +278,7 @@ class SimpleCalendar {
           background: #f8f9fa;
           border: 1px solid #dee2e6;
           border-radius: 4px;
-          padding: 4px 12px;
+          padding: 6px 12px;
           cursor: pointer;
           font-size: 14px;
           transition: all 0.2s;
@@ -327,6 +333,10 @@ class SimpleCalendar {
           border-color: #68825b;
         }
         
+        .filter-toggle[data-category="gedruckt"] .filter-dot {
+          border-color: rgb(101, 67, 33);
+        }
+        
         .filter-toggle.active[data-category="as-sender"] {
           background: #A63437;
           color: white;
@@ -343,6 +353,12 @@ class SimpleCalendar {
           background: #68825b;
           color: white;
           border-color: #68825b;
+        }
+        
+        .filter-toggle.active[data-category="gedruckt"] {
+          background: rgb(101, 67, 33);
+          color: white;
+          border-color: rgb(101, 67, 33);
         }
         
         .filter-toggle:not(.active) {
