@@ -1123,7 +1123,7 @@ class SimpleCalendar {
       const barsEl = document.createElement('div');
       barsEl.className = 'event-bars';
       
-      dayEvents.slice(0, 3).forEach(event => {
+      dayEvents.forEach(event => {
         const barEl = document.createElement('div');
         barEl.className = 'event-bar';
         barEl.style.backgroundColor = this.eventCategories[event.category] || '#999';
