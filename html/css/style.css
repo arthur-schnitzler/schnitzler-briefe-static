@@ -1295,32 +1295,41 @@ code{
 
 
 
-/* Content replacement via CSS when toggle is active */
+/* Complete content replacement - natural width */
 .langes-s-rplMe {
-    font-size: 0; /* Hide original text */
+    text-indent: -9999px;
+    overflow: hidden;
 }
 
 .langes-s-rplMe::before {
     content: 'ſ';
-    font-size: inherit; /* Use same font size as parent */
+    text-indent: 0;
+    display: block;
+    line-height: inherit;
 }
 
 .gemination-m-rplMe {
-    font-size: 0; /* Hide original text */
+    text-indent: -9999px;
+    overflow: hidden;
 }
 
 .gemination-m-rplMe::before {
     content: 'm̅';
-    font-size: inherit; /* Use same font size as parent */
+    text-indent: 0;
+    display: block;
+    line-height: inherit;
 }
 
 .gemination-n-rplMe {
-    font-size: 0; /* Hide original text */
+    text-indent: -9999px;
+    overflow: hidden;
 }
 
 .gemination-n-rplMe::before {
     content: 'n̅';
-    font-size: inherit; /* Use same font size as parent */
+    text-indent: 0;
+    display: block;
+    line-height: inherit;
 }
 
 
