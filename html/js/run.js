@@ -143,9 +143,6 @@ var editor = new LoadEditor({
             },
             css_class: "langes-s-active",
             chg_citation: "citation-url",
-            callback: function(active) {
-                window.textReplacer.toggleLangesS(active);
-            },
             features: {
                 all: false,
                 class: "features-2"
@@ -162,9 +159,6 @@ var editor = new LoadEditor({
             },
             css_class: "gemination-m-active",
             chg_citation: "citation-url",
-            callback: function(active) {
-                window.textReplacer.toggleGeminationM(active);
-            },
             features: {
                 all: false,
                 class: "features-2"
@@ -181,9 +175,6 @@ var editor = new LoadEditor({
             },
             css_class: "gemination-n-active",
             chg_citation: "citation-url",
-            callback: function(active) {
-                window.textReplacer.toggleGeminationN(active);
-            },
             features: {
                 all: false,
                 class: "features-2"
@@ -261,4 +252,38 @@ var editor = new LoadEditor({
     },
     wr: false,
     up: true,
+});
+
+// Custom event listeners for text replacement toggles
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Wait for de-editor to initialize
+    setTimeout(function() {
+        
+        // Langes-s toggle
+        const lsSlider = document.querySelector('#langes-s-slider input[type="checkbox"]');
+        if (lsSlider) {
+            lsSlider.addEventListener('change', function() {
+                window.textReplacer.toggleLangesS(this.checked);
+            });
+        }
+        
+        // Gemination-m toggle  
+        const gmSlider = document.querySelector('#gemination-m-slider input[type="checkbox"]');
+        if (gmSlider) {
+            gmSlider.addEventListener('change', function() {
+                window.textReplacer.toggleGeminationM(this.checked);
+            });
+        }
+        
+        // Gemination-n toggle
+        const gnSlider = document.querySelector('#gemination-n-slider input[type="checkbox"]');
+        if (gnSlider) {
+            gnSlider.addEventListener('change', function() {
+                window.textReplacer.toggleGeminationN(this.checked);
+            });
+        }
+        
+    }, 1000); // Wait 1 second for de-editor to fully initialize
+    
 });
