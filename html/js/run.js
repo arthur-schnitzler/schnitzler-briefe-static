@@ -115,23 +115,6 @@ var editor = new LoadEditor({
     aot: {
         title: "Einstellungen",
         variants:[ {
-            opt: "ef",
-            opt_slider: "ef-slider",
-            title: "Bunte Unterstreichungen",
-            color: "red",
-            html_class: "entity",
-            css_class: "entity-hidden",
-            chg_citation: "citation-url",
-            urlparam: "entities",
-            hide: {
-                hidden: false,
-                class: "undefined",
-            },
-            features: {
-                all: true,
-                class: "features-1",
-            },
-        }, {
             opt: "ef2",
             opt_slider: "ef2-slider", 
             title: "Textkritische Zeichen",
