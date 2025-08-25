@@ -38,13 +38,13 @@
         <xsl:text>}</xsl:text>
     </xsl:template>
     <xsl:template match="tei:c[@rendition = '#langesS']">
-        <span class="langes-s">s</span><span class="langes-s-rplMe">ſ</span>
+        <span class="langes-s">s</span>
     </xsl:template>
     <xsl:template match="tei:c[@rendition = '#gemination-m']">
-        <span class="gemination-m">mm</span><span class="gemination-m-rplMe">m̅</span>
+        <span class="gemination-m">mm</span>
     </xsl:template>
     <xsl:template match="tei:c[@rendition = '#gemination-n']">
-        <span class="gemination-n">nn</span><span class="gemination-n-rplMe">n̅</span>
+        <span class="gemination-n">nn</span>
     </xsl:template>
     <xsl:template match="tei:c[@rendition = '#prozent']">
         <xsl:text>%</xsl:text>

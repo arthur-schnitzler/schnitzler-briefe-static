@@ -1295,39 +1295,32 @@ code{
 
 
 
-/* Text content replacement - natural spacing */
+/* Content replacement via CSS when toggle is active */
 .langes-s-rplMe {
-    display: none;
+    font-size: 0; /* Hide original text */
+}
+
+.langes-s-rplMe::before {
+    content: 'ſ';
+    font-size: 1rem; /* Restore font size for replacement */
 }
 
 .gemination-m-rplMe {
-    display: none;
+    font-size: 0; /* Hide original text */
+}
+
+.gemination-m-rplMe::before {
+    content: 'm̅';
+    font-size: 1rem; /* Restore font size for replacement */
 }
 
 .gemination-n-rplMe {
-    display: none;
+    font-size: 0; /* Hide original text */
 }
 
-/* When toggles are active, hide originals and show replacements */
-body.ls .langes-s {
-    display: none;
-}
-body.ls .langes-s-rplMe {
-    display: inline;
-}
-
-body.gem-m .gemination-m {
-    display: none;
-}
-body.gem-m .gemination-m-rplMe {
-    display: inline;
-}
-
-body.gem-n .gemination-n {
-    display: none;
-}
-body.gem-n .gemination-n-rplMe {
-    display: inline;
+.gemination-n-rplMe::before {
+    content: 'n̅';
+    font-size: 1rem; /* Restore font size for replacement */
 }
 
 
