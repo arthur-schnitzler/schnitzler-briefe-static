@@ -306,6 +306,10 @@ a {
 }
 
 /* Hidden state for entities when toggled off */
+.entity.entity-hidden {
+    border-bottom: none !important;
+}
+
 .entity.entity-hidden::after {
     display: none;
 }
