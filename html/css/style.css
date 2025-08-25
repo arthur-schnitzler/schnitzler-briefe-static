@@ -151,7 +151,7 @@ a {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px solid #e74c3c;
+    border-bottom: 2px dotted #e74c3c;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
@@ -184,7 +184,7 @@ a {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px dotted #3498db;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
@@ -216,7 +216,7 @@ a {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px solid #9b59b6;
+    border-bottom: 2px dotted #9b59b6;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
@@ -248,7 +248,7 @@ a {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px solid #f39c12;
+    border-bottom: 2px dotted #f39c12;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
@@ -280,7 +280,7 @@ a {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px solid #27ae60;
+    border-bottom: 2px dotted #27ae60;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;

@@ -806,6 +806,9 @@
                                     <legend>Textkritische Auszeichnungen</legend>
                                     <ul>
                                         <li>
+                                            <annotation-slider opt="ef"/>
+                                        </li>
+                                        <li>
                                             <annotation-slider opt="ef2"/>
                                         </li>
                                         <li>
