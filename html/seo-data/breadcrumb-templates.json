@@ -1,0 +1,50 @@
+{
+  "letter": {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://schnitzler-briefe.acdh.oeaw.ac.at/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Briefe",
+        "item": "https://schnitzler-briefe.acdh.oeaw.ac.at/toc.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{letter_title}",
+        "item": "https://schnitzler-briefe.acdh.oeaw.ac.at/{letter_id}.html"
+      }
+    ]
+  },
+  "person": {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://schnitzler-briefe.acdh.oeaw.ac.at/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Personen",
+        "item": "https://schnitzler-briefe.acdh.oeaw.ac.at/listperson.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{person_name}",
+        "item": "https://schnitzler-briefe.acdh.oeaw.ac.at/{person_id}.html"
+      }
+    ]
+  }
+}

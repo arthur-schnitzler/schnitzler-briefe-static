@@ -133,7 +133,7 @@
                     }
                     
                     // Hide the first column if it's an id column
-                    if (index === 0 &amp;&amp; (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
+                    if (index === 0 <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
                         column.visible = false;
                     }
                 });
@@ -307,7 +307,7 @@
                     }
                     
                     // Hide the first column if it's an id column
-                    if (index === 0 &amp;&amp; (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
+                    if (index === 0 <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
                         column.visible = false;
                     }
                 });
@@ -413,7 +413,7 @@
                     }
                     
                     // Hide the first column if it's an id column
-                    if (index === 0 &amp;&amp; (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
+                    if (index === 0 <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
                         column.visible = false;
                     }
                 });
