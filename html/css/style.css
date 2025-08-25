@@ -1296,33 +1296,64 @@ code{
 
 
 .langes-s-rplMe {
+    position: relative;
+    display: inline-block;
+    width: 1ch; /* Width of exactly 1 character */
+    text-align: center;
     visibility: hidden;
 }
 
 .langes-s-rplMe:after {
     visibility: visible;
     content: 'ſ';
-    margin-left: -8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1ch;
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
 }
 
+/* Gemination marks with proper spacing */
 .gemination-m-rplMe {
+    position: relative;
+    display: inline-block;
+    width: 1ch; /* Width of exactly 1 character */
+    text-align: center;
     visibility: hidden;
 }
 
 .gemination-m-rplMe:after {
     visibility: visible;
     content: 'm̅';
-    margin-left: -30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1ch;
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .gemination-n-rplMe {
+    position: relative;
+    display: inline-block;
+    width: 1ch; /* Width of exactly 1 character */
+    text-align: center;
     visibility: hidden;
 }
 
 .gemination-n-rplMe:after {
     visibility: visible;
     content: 'n̅';
-    margin-left: -19px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1ch;
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 
