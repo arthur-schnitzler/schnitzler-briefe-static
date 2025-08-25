@@ -136,12 +136,13 @@ var editor = new LoadEditor({
             opt_slider: "langes-s-slider",
             title: "Langes-s (ſ)",
             color: "undefined",
-            html_class: "langes-s",
-            hide: {
-                hidden: true,
-                class: "langes-s-rplMe"
+            html_class: "card-body-text",
+            chg_citation: "citation-url",
+            replace: {
+                element: ".card-body-text",
+                regex: "(<span[^>]*class=\"[^\"]*langes-s[^\"]*\"[^>]*>)s(</span>)",
+                replacement: "$1ſ$2"
             },
-            css_class: "langes-s-rplMe",
             features: {
                 all: false,
                 class: "features-2"
@@ -151,12 +152,13 @@ var editor = new LoadEditor({
             opt_slider: "gemination-m-slider",
             title: "Gemination m (m̅)",
             color: "undefined",
-            html_class: "gemination-m",
-            hide: {
-                hidden: true,
-                class: "gemination-m-rplMe"
+            html_class: "card-body-text",
+            chg_citation: "citation-url",
+            replace: {
+                element: ".card-body-text",
+                regex: "(<span[^>]*class=\"[^\"]*gemination-m[^\"]*\"[^>]*>)mm(</span>)",
+                replacement: "$1m̅$2"
             },
-            css_class: "gemination-m-rplMe",
             features: {
                 all: false,
                 class: "features-2"
@@ -164,14 +166,15 @@ var editor = new LoadEditor({
         }, {
             opt: "gem-n",
             opt_slider: "gemination-n-slider",
-            title: "Gemination n (n̅̅)",
+            title: "Gemination n (n̅)",
             color: "undefined",
-            html_class: "gemination-n",
-            hide: {
-                hidden: true,
-                class: "gemination-n-rplMe"
+            html_class: "card-body-text",
+            chg_citation: "citation-url",
+            replace: {
+                element: ".card-body-text",
+                regex: "(<span[^>]*class=\"[^\"]*gemination-n[^\"]*\"[^>]*>)nn(</span>)",
+                replacement: "$1n̅$2"
             },
-            css_class: "gemination-n-rplMe",
             features: {
                 all: false,
                 class: "features-2"

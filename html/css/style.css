@@ -1295,42 +1295,7 @@ code{
 
 
 
-/* Complete content replacement - natural width */
-.langes-s-rplMe {
-    text-indent: -9999px;
-    overflow: hidden;
-}
-
-.langes-s-rplMe::before {
-    content: 'ſ';
-    text-indent: 0;
-    display: block;
-    line-height: inherit;
-}
-
-.gemination-m-rplMe {
-    text-indent: -9999px;
-    overflow: hidden;
-}
-
-.gemination-m-rplMe::before {
-    content: 'm̅';
-    text-indent: 0;
-    display: block;
-    line-height: inherit;
-}
-
-.gemination-n-rplMe {
-    text-indent: -9999px;
-    overflow: hidden;
-}
-
-.gemination-n-rplMe::before {
-    content: 'n̅';
-    text-indent: 0;
-    display: block;
-    line-height: inherit;
-}
+/* Toggles will handle content replacement via JavaScript */
 
 
 /* Seitenzahlen blättern, aktive Seite */
