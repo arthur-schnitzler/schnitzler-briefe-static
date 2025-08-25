@@ -136,12 +136,15 @@ var editor = new LoadEditor({
             opt_slider: "langes-s-slider",
             title: "Langes-s (ſ)",
             color: "undefined",
-            html_class: "card-body-text",
+            html_class: "langes-s",
+            hide: {
+                hidden: false,
+                class: "undefined"
+            },
+            css_class: "langes-s-active",
             chg_citation: "citation-url",
-            replace: {
-                element: ".card-body-text",
-                regex: "(<span[^>]*class=\"[^\"]*langes-s[^\"]*\"[^>]*>)s(</span>)",
-                replacement: "$1ſ$2"
+            callback: function(active) {
+                window.textReplacer.toggleLangesS(active);
             },
             features: {
                 all: false,
@@ -152,12 +155,15 @@ var editor = new LoadEditor({
             opt_slider: "gemination-m-slider",
             title: "Gemination m (m̅)",
             color: "undefined",
-            html_class: "card-body-text",
+            html_class: "gemination-m",
+            hide: {
+                hidden: false,
+                class: "undefined"
+            },
+            css_class: "gemination-m-active",
             chg_citation: "citation-url",
-            replace: {
-                element: ".card-body-text",
-                regex: "(<span[^>]*class=\"[^\"]*gemination-m[^\"]*\"[^>]*>)mm(</span>)",
-                replacement: "$1m̅$2"
+            callback: function(active) {
+                window.textReplacer.toggleGeminationM(active);
             },
             features: {
                 all: false,
@@ -168,12 +174,15 @@ var editor = new LoadEditor({
             opt_slider: "gemination-n-slider",
             title: "Gemination n (n̅)",
             color: "undefined",
-            html_class: "card-body-text",
+            html_class: "gemination-n",
+            hide: {
+                hidden: false,
+                class: "undefined"
+            },
+            css_class: "gemination-n-active",
             chg_citation: "citation-url",
-            replace: {
-                element: ".card-body-text",
-                regex: "(<span[^>]*class=\"[^\"]*gemination-n[^\"]*\"[^>]*>)nn(</span>)",
-                replacement: "$1n̅$2"
+            callback: function(active) {
+                window.textReplacer.toggleGeminationN(active);
             },
             features: {
                 all: false,

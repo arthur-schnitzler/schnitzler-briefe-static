@@ -1086,6 +1086,7 @@
                     </xsl:call-template>
                 </xsl:for-each>
                 <script src="https://unpkg.com/de-micro-editor@0.2.83/dist/de-editor.min.js"/>
+                <script type="text/javascript" src="js/text-replacer.js"/>
                 <script type="text/javascript" src="js/run.js"/>
                 <script type="text/javascript" src="js/prev-next-urlupdate.js"/>
                 <script type="text/javascript" src="js/copy-to-clipboard.js"/>
