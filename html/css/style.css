@@ -1295,47 +1295,39 @@ code{
 
 
 
+/* Text content replacement - natural spacing */
 .langes-s-rplMe {
-    display: inline;
-    visibility: hidden;
+    display: none;
 }
 
-.langes-s-rplMe:after {
-    visibility: visible;
-    content: 'ſ';
-    position: absolute;
-    margin-left: -1ch;
-    font-family: inherit;
-    font-size: inherit;
-}
-
-/* Gemination marks with proper spacing */
 .gemination-m-rplMe {
-    display: inline;
-    visibility: hidden;
-}
-
-.gemination-m-rplMe:after {
-    visibility: visible;
-    content: 'm̅';
-    position: absolute;
-    margin-left: -2ch;
-    font-family: inherit;
-    font-size: inherit;
+    display: none;
 }
 
 .gemination-n-rplMe {
-    display: inline;
-    visibility: hidden;
+    display: none;
 }
 
-.gemination-n-rplMe:after {
-    visibility: visible;
-    content: 'n̅';
-    position: absolute;
-    margin-left: -2ch;
-    font-family: inherit;
-    font-size: inherit;
+/* When toggles are active, hide originals and show replacements */
+body.ls .langes-s {
+    display: none;
+}
+body.ls .langes-s-rplMe {
+    display: inline;
+}
+
+body.gem-m .gemination-m {
+    display: none;
+}
+body.gem-m .gemination-m-rplMe {
+    display: inline;
+}
+
+body.gem-n .gemination-n {
+    display: none;
+}
+body.gem-n .gemination-n-rplMe {
+    display: inline;
 }
 
 
