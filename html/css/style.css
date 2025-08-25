@@ -1302,7 +1302,7 @@ code{
 
 .langes-s-rplMe::before {
     content: 'ſ';
-    font-size: 1rem; /* Restore font size for replacement */
+    font-size: inherit; /* Use same font size as parent */
 }
 
 .gemination-m-rplMe {
@@ -1311,7 +1311,7 @@ code{
 
 .gemination-m-rplMe::before {
     content: 'm̅';
-    font-size: 1rem; /* Restore font size for replacement */
+    font-size: inherit; /* Use same font size as parent */
 }
 
 .gemination-n-rplMe {
@@ -1320,7 +1320,7 @@ code{
 
 .gemination-n-rplMe::before {
     content: 'n̅';
-    font-size: 1rem; /* Restore font size for replacement */
+    font-size: inherit; /* Use same font size as parent */
 }
 
 
