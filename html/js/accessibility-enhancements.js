@@ -58,33 +58,48 @@ $(document).ready(function() {
     // Improve modal accessibility
     $('.modal').on('shown.bs.modal', function() {
         var $modal = $(this);
-        var $focusableElements = $modal.find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
         
-        if ($focusableElements.length > 0) {
-            $focusableElements.first().focus();
+        // Skip accessibility enhancements for the editor-widget modal to avoid interference
+        if ($modal.attr('id') === 'editor-widget') {
+            return;
         }
         
-        // Trap focus within modal
-        $modal.on('keydown', function(e) {
-            if (e.key === 'Tab') {
-                var firstElement = $focusableElements.first()[0];
-                var lastElement = $focusableElements.last()[0];
-                
-                if (e.shiftKey) { // Shift + Tab
-                    if (document.activeElement === firstElement) {
-                        e.preventDefault();
-                        lastElement.focus();
-                    }
-                } else { // Tab
-                    if (document.activeElement === lastElement) {
-                        e.preventDefault();
-                        firstElement.focus();
-                    }
-                }
-            } else if (e.key === 'Escape') {
-                $modal.modal('hide');
+        // Wait a bit for custom elements (like annotation-slider) to be fully initialized
+        setTimeout(function() {
+            var $focusableElements = $modal.find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            
+            // Don't auto-focus if the modal contains de-editor elements to avoid interfering
+            if (!$modal.find('annotation-slider, image-switch, font-size').length && $focusableElements.length > 0) {
+                $focusableElements.first().focus();
             }
-        });
+            
+            // Trap focus within modal, but allow clicks on annotation-slider elements
+            $modal.on('keydown', function(e) {
+                // Don't interfere with annotation-slider or other de-editor element interactions
+                if ($(e.target).closest('annotation-slider, image-switch, font-size').length) {
+                    return true; // Allow normal event handling
+                }
+                
+                if (e.key === 'Tab') {
+                    var firstElement = $focusableElements.first()[0];
+                    var lastElement = $focusableElements.last()[0];
+                    
+                    if (e.shiftKey) { // Shift + Tab
+                        if (document.activeElement === firstElement) {
+                            e.preventDefault();
+                            lastElement.focus();
+                        }
+                    } else { // Tab
+                        if (document.activeElement === lastElement) {
+                            e.preventDefault();
+                            firstElement.focus();
+                        }
+                    }
+                } else if (e.key === 'Escape') {
+                    $modal.modal('hide');
+                }
+            });
+        }, 100);
     });
     
     // Announce dynamic content changes to screen readers
