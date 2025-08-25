@@ -254,36 +254,42 @@ var editor = new LoadEditor({
     up: true,
 });
 
-// Custom event listeners for text replacement toggles
+// Monitor for CSS class changes and trigger text replacement
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Wait for de-editor to initialize
+    // Use MutationObserver to watch for class changes
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                const element = mutation.target;
+                
+                // Check for langes-s changes
+                if (element.classList.contains('langes-s')) {
+                    const isActive = element.classList.contains('langes-s-active');
+                    element.textContent = isActive ? element.dataset.replacement : element.dataset.original;
+                }
+                
+                // Check for gemination-m changes  
+                if (element.classList.contains('gemination-m')) {
+                    const isActive = element.classList.contains('gemination-m-active');
+                    element.textContent = isActive ? element.dataset.replacement : element.dataset.original;
+                }
+                
+                // Check for gemination-n changes
+                if (element.classList.contains('gemination-n')) {
+                    const isActive = element.classList.contains('gemination-n-active');
+                    element.textContent = isActive ? element.dataset.replacement : element.dataset.original;
+                }
+            }
+        });
+    });
+    
+    // Start observing class changes on relevant elements
     setTimeout(function() {
-        
-        // Langes-s toggle
-        const lsSlider = document.querySelector('#langes-s-slider input[type="checkbox"]');
-        if (lsSlider) {
-            lsSlider.addEventListener('change', function() {
-                window.textReplacer.toggleLangesS(this.checked);
-            });
-        }
-        
-        // Gemination-m toggle  
-        const gmSlider = document.querySelector('#gemination-m-slider input[type="checkbox"]');
-        if (gmSlider) {
-            gmSlider.addEventListener('change', function() {
-                window.textReplacer.toggleGeminationM(this.checked);
-            });
-        }
-        
-        // Gemination-n toggle
-        const gnSlider = document.querySelector('#gemination-n-slider input[type="checkbox"]');
-        if (gnSlider) {
-            gnSlider.addEventListener('change', function() {
-                window.textReplacer.toggleGeminationN(this.checked);
-            });
-        }
-        
-    }, 1000); // Wait 1 second for de-editor to fully initialize
+        const elements = document.querySelectorAll('.langes-s, .gemination-m, .gemination-n');
+        elements.forEach(function(element) {
+            observer.observe(element, { attributes: true, attributeFilter: ['class'] });
+        });
+    }, 500);
     
 });
