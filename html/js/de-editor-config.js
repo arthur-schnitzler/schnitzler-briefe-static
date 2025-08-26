@@ -83,63 +83,23 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                     
-                    // Control all other annotation toggles
+                    // Control all other annotation toggles - disable update during batch operation
                     const annotationToggles = document.querySelectorAll('#langes-s-slider, #gemination-m-slider, #gemination-n-slider, #deleted-slider, #addition-slider');
                     annotationToggles.forEach(function(annotationToggle) {
-                        if (annotationToggle.checked !== toggle.checked) {
-                            annotationToggle.checked = toggle.checked;
-                            // Trigger change event to apply styles
-                            annotationToggle.dispatchEvent(new Event('change'));
-                        }
-                    });
-                } else if (annotationType === 'ls') {
-                    // Handle langes-s
-                    document.querySelectorAll('.langes-s').forEach(el => {
-                        if (toggle.checked) {
-                            el.classList.add('langes-s-active');
+                        annotationToggle.checked = toggle.checked;
+                        // Update slider color immediately
+                        const childSlider = annotationToggle.nextElementSibling;
+                        if (!annotationToggle.checked) {
+                            childSlider.style.backgroundColor = '#ccc';
                         } else {
-                            el.classList.remove('langes-s-active');
+                            childSlider.style.backgroundColor = '#A63437';
                         }
-                        el.textContent = toggle.checked ? el.dataset.replacement : el.dataset.original;
+                        // Apply the functionality without triggering the master update
+                        applyAnnotationToggle(annotationToggle);
                     });
-                } else if (annotationType === 'gem-m') {
-                    // Handle gemination-m
-                    document.querySelectorAll('.gemination-m').forEach(el => {
-                        if (toggle.checked) {
-                            el.classList.add('gemination-m-active');
-                        } else {
-                            el.classList.remove('gemination-m-active');
-                        }
-                        el.textContent = toggle.checked ? el.dataset.replacement : el.dataset.original;
-                    });
-                } else if (annotationType === 'gem-n') {
-                    // Handle gemination-n
-                    document.querySelectorAll('.gemination-n').forEach(el => {
-                        if (toggle.checked) {
-                            el.classList.add('gemination-n-active');
-                        } else {
-                            el.classList.remove('gemination-n-active');
-                        }
-                        el.textContent = toggle.checked ? el.dataset.replacement : el.dataset.original;
-                    });
-                } else if (annotationType === 'del') {
-                    // Handle deletions
-                    document.querySelectorAll('.del').forEach(el => {
-                        if (toggle.checked) {
-                            el.classList.add('strikethrough');
-                        } else {
-                            el.classList.remove('strikethrough');
-                        }
-                    });
-                } else if (annotationType === 'add') {
-                    // Handle additions
-                    document.querySelectorAll('.add').forEach(el => {
-                        if (toggle.checked) {
-                            el.classList.add('add-zeichen');
-                        } else {
-                            el.classList.remove('add-zeichen');
-                        }
-                    });
+                } else {
+                    // Handle individual annotation toggles
+                    applyAnnotationToggle(toggle);
                 }
                 
                 // Update master annotation toggle state for non-master toggles
@@ -202,6 +162,61 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     masterSlider.style.backgroundColor = '#ccc';
                 }
+            }
+        }
+        
+        // Function to apply annotation toggle functionality without triggering master update
+        function applyAnnotationToggle(annotationToggle) {
+            const annotationType = annotationToggle.closest('.annotation-toggle').getAttribute('data-type');
+            
+            if (annotationType === 'ls') {
+                // Handle langes-s
+                document.querySelectorAll('.langes-s').forEach(el => {
+                    if (annotationToggle.checked) {
+                        el.classList.add('langes-s-active');
+                    } else {
+                        el.classList.remove('langes-s-active');
+                    }
+                    el.textContent = annotationToggle.checked ? el.dataset.replacement : el.dataset.original;
+                });
+            } else if (annotationType === 'gem-m') {
+                // Handle gemination-m
+                document.querySelectorAll('.gemination-m').forEach(el => {
+                    if (annotationToggle.checked) {
+                        el.classList.add('gemination-m-active');
+                    } else {
+                        el.classList.remove('gemination-m-active');
+                    }
+                    el.textContent = annotationToggle.checked ? el.dataset.replacement : el.dataset.original;
+                });
+            } else if (annotationType === 'gem-n') {
+                // Handle gemination-n
+                document.querySelectorAll('.gemination-n').forEach(el => {
+                    if (annotationToggle.checked) {
+                        el.classList.add('gemination-n-active');
+                    } else {
+                        el.classList.remove('gemination-n-active');
+                    }
+                    el.textContent = annotationToggle.checked ? el.dataset.replacement : el.dataset.original;
+                });
+            } else if (annotationType === 'del') {
+                // Handle deletions
+                document.querySelectorAll('.del').forEach(el => {
+                    if (annotationToggle.checked) {
+                        el.classList.add('strikethrough');
+                    } else {
+                        el.classList.remove('strikethrough');
+                    }
+                });
+            } else if (annotationType === 'add') {
+                // Handle additions
+                document.querySelectorAll('.add').forEach(el => {
+                    if (annotationToggle.checked) {
+                        el.classList.add('add-zeichen');
+                    } else {
+                        el.classList.remove('add-zeichen');
+                    }
+                });
             }
         }
         
