@@ -5,6 +5,8 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="no" omit-xml-declaration="yes"/>
+    <xsl:strip-space elements="*"/>
+    <xsl:preserve-space elements="tei:p"/>
 
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:template match="/">

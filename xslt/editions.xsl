@@ -871,35 +871,35 @@
                                         <div class="entity-toggle" data-type="persons" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                <span class="i-slider round" style="background-color: #e74c3c;"></span>
                                             </label>
                                             <span class="opt-title"> Personen (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person)"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="works" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                <span class="i-slider round" style="background-color: #f39c12;"></span>
                                             </label>
                                             <span class="opt-title"> Werke (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="places" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                <span class="i-slider round" style="background-color: #3498db;"></span>
                                             </label>
                                             <span class="opt-title"> Orte (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="orgs" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                <span class="i-slider round" style="background-color: #9b59b6;"></span>
                                             </label>
                                             <span class="opt-title"> Institutionen (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="events" style="display: inline-block;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                <span class="i-slider round" style="background-color: #27ae60;"></span>
                                             </label>
                                             <span class="opt-title"> Ereignisse (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"/>)</span>
                                         </div>

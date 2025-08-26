@@ -40,8 +40,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!toggle.checked) {
                     slider.style.backgroundColor = '#ccc';
                 } else {
-                    // Restore project color
-                    slider.style.backgroundColor = '#A63437';
+                    // Restore original entity colors
+                    const colorMap = {
+                        'persons': '#e74c3c',
+                        'works': '#f39c12', 
+                        'places': '#3498db',
+                        'orgs': '#9b59b6',
+                        'events': '#27ae60'
+                    };
+                    slider.style.backgroundColor = colorMap[entityType];
                 }
                 
                 // Update master toggle state based on individual toggles
@@ -66,13 +73,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Handle different annotation types
                 if (annotationType === 'ef2') {
-                    // Handle features-2 class elements
+                    // Master toggle for all text-critical features
                     const features2Elements = document.querySelectorAll('.features-2');
                     features2Elements.forEach(function(element) {
                         if (toggle.checked) {
                             element.classList.add('activated');
                         } else {
                             element.classList.remove('activated');
+                        }
+                    });
+                    
+                    // Control all other annotation toggles
+                    const annotationToggles = document.querySelectorAll('#langes-s-slider, #gemination-m-slider, #gemination-n-slider, #deleted-slider, #addition-slider');
+                    annotationToggles.forEach(function(annotationToggle) {
+                        if (annotationToggle.checked !== toggle.checked) {
+                            annotationToggle.checked = toggle.checked;
+                            // Trigger change event to apply styles
+                            annotationToggle.dispatchEvent(new Event('change'));
                         }
                     });
                 } else if (annotationType === 'ls') {
@@ -123,6 +140,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             el.classList.remove('add-zeichen');
                         }
                     });
+                }
+                
+                // Update master annotation toggle state for non-master toggles
+                if (annotationType !== 'ef2') {
+                    updateMasterAnnotationToggleState();
                 }
                 
                 // Update URL parameters
@@ -180,6 +202,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     masterSlider.style.backgroundColor = '#ccc';
                 }
+            }
+        }
+        
+        // Function to update master annotation toggle state based on individual annotation toggles
+        function updateMasterAnnotationToggleState() {
+            const masterAnnotationToggle = document.getElementById('ef2-slider');
+            if (!masterAnnotationToggle) return;
+            
+            const individualAnnotationToggles = document.querySelectorAll('#langes-s-slider, #gemination-m-slider, #gemination-n-slider, #deleted-slider, #addition-slider');
+            const checkedCount = Array.from(individualAnnotationToggles).filter(t => t.checked).length;
+            const totalCount = individualAnnotationToggles.length;
+            
+            const masterSlider = masterAnnotationToggle.nextElementSibling;
+            
+            if (checkedCount === totalCount) {
+                // All checked - master should be checked
+                masterAnnotationToggle.checked = true;
+                masterSlider.style.backgroundColor = '#A63437';
+            } else if (checkedCount === 0) {
+                // None checked - master should be unchecked
+                masterAnnotationToggle.checked = false;
+                masterSlider.style.backgroundColor = '#ccc';
+            } else {
+                // Some checked - master remains unchecked but keep current color
+                masterAnnotationToggle.checked = false;
+                masterSlider.style.backgroundColor = '#ccc';
             }
         }
         
@@ -266,6 +314,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Initialize from URL parameters
         initializeFromURL();
+        
+        // Update master toggle states after initialization
+        updateMasterAnnotationToggleState();
     }, 500);
 });
 
