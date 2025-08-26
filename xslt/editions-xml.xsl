@@ -66,12 +66,15 @@
 
     <!-- Main template for XML display -->
     <xsl:template match="*" mode="xml-display">
+        <xsl:param name="indent" select="0"/>
         <xsl:variable name="element-name" select="local-name()"/>
         <xsl:variable name="namespace-prefix" select="if(namespace-uri() = 'http://www.tei-c.org/ns/1.0') then 'tei:' else ''"/>
+        <xsl:variable name="indent-string" select="string-join(for $i in 1 to $indent return '  ', '')"/>
         
-        <!-- Check if this element should be on a new line -->
-        <xsl:if test="preceding-sibling::*[1] and not(preceding-sibling::text()[normalize-space(.) != ''][1])">
+        <!-- Add line break and indentation for elements that should be on new line -->
+        <xsl:if test="preceding-sibling::*[1] and (not(preceding-sibling::text()[1]) or normalize-space(preceding-sibling::text()[1]) = '')">
             <xsl:text>&#10;</xsl:text>
+            <xsl:value-of select="$indent-string"/>
         </xsl:if>
         
         <!-- Opening tag -->
@@ -79,7 +82,8 @@
         
         <!-- Attributes -->
         <xsl:for-each select="@*">
-            <xsl:text>&#10;  </xsl:text>
+            <xsl:text>&#10;</xsl:text>
+            <xsl:value-of select="concat($indent-string, '    ')"/>
             <span class="xml-attribute-name"><xsl:value-of select="local-name()"/></span>
             <xsl:text>=</xsl:text>
             <span class="xml-attribute-value">"<xsl:value-of select="."/>"</span>
@@ -93,12 +97,12 @@
                 <xsl:for-each select="node()">
                     <xsl:choose>
                         <xsl:when test="self::*">
-                            <xsl:apply-templates select="." mode="xml-display"/>
+                            <xsl:apply-templates select="." mode="xml-display">
+                                <xsl:with-param name="indent" select="$indent + 1"/>
+                            </xsl:apply-templates>
                         </xsl:when>
                         <xsl:when test="self::text()">
-                            <xsl:if test="normalize-space(.) != ''">
-                                <span class="xml-text"><xsl:value-of select="."/></span>
-                            </xsl:if>
+                            <span class="xml-text"><xsl:value-of select="."/></span>
                         </xsl:when>
                         <xsl:when test="self::comment()">
                             <span class="xml-comment">&lt;!--<xsl:value-of select="."/>--&gt;</span>
@@ -109,6 +113,7 @@
                 <!-- Closing tag -->
                 <xsl:if test="*[last()] and not(text()[normalize-space(.) != ''][position() = last()])">
                     <xsl:text>&#10;</xsl:text>
+                    <xsl:value-of select="$indent-string"/>
                 </xsl:if>
                 <span class="xml-element">&lt;/<xsl:value-of select="concat($namespace-prefix, $element-name)"/>&gt;</span>
             </xsl:when>
@@ -120,14 +125,7 @@
 
     <!-- Template for text nodes to preserve meaningful whitespace -->
     <xsl:template match="text()" mode="xml-display">
-        <xsl:choose>
-            <xsl:when test="normalize-space(.) = ''">
-                <!-- Skip whitespace-only text nodes between elements -->
-            </xsl:when>
-            <xsl:otherwise>
-                <span class="xml-text"><xsl:value-of select="."/></span>
-            </xsl:otherwise>
-        </xsl:choose>
+        <span class="xml-text"><xsl:value-of select="."/></span>
     </xsl:template>
 
     <!-- Template for comments -->
