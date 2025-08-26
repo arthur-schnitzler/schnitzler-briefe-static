@@ -6,9 +6,13 @@
     version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="no" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space elements="tei:p"/>
 
     <xsl:import href="./partials/html_head.xsl"/>
+    
+    <!-- Normalize whitespace within inline text elements to preserve word spacing but remove line breaks -->
+    <xsl:template match="text()[ancestor::tei:p or ancestor::tei:salute or ancestor::tei:title or ancestor::tei:hi or ancestor::tei:emph or ancestor::tei:rs]">
+        <xsl:value-of select="replace(., '\s+', ' ')"/>
+    </xsl:template>
     <xsl:template match="/">
         <xsl:variable name="doc_title">
             <xsl:value-of select=".//tei:title[@level='a'][1]/text()"/>
