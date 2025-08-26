@@ -290,6 +290,35 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.forEach(function(element) {
             observer.observe(element, { attributes: true, attributeFilter: ['class'] });
         });
+        
+        // Add direct event listeners for the new toggle structure
+        const lsToggle = document.querySelector('#langes-s-slider');
+        const gmToggle = document.querySelector('#gemination-m-slider');
+        const gnToggle = document.querySelector('#gemination-n-slider');
+        
+        if (lsToggle) {
+            lsToggle.addEventListener('change', function() {
+                document.querySelectorAll('.langes-s').forEach(el => {
+                    el.textContent = this.checked ? el.dataset.replacement : el.dataset.original;
+                });
+            });
+        }
+        
+        if (gmToggle) {
+            gmToggle.addEventListener('change', function() {
+                document.querySelectorAll('.gemination-m').forEach(el => {
+                    el.textContent = this.checked ? el.dataset.replacement : el.dataset.original;
+                });
+            });
+        }
+        
+        if (gnToggle) {
+            gnToggle.addEventListener('change', function() {
+                document.querySelectorAll('.gemination-n').forEach(el => {
+                    el.textContent = this.checked ? el.dataset.replacement : el.dataset.original;
+                });
+            });
+        }
     }, 500);
     
 });

@@ -808,15 +808,51 @@
                                     <legend>Textkritische Auszeichnungen</legend>
                                     <ul>
                                         <li>
-                                            <annotation-slider opt="ef2"/>
+                                            <div class="annotation-toggle" data-type="ef2" style="display: inline-block; margin-right: 20px;">
+                                                <label class="switch">
+                                                    <input type="checkbox" id="ef2-slider"/>
+                                                    <span class="i-slider round" style="background-color: #28a745;"></span>
+                                                </label>
+                                                <span class="opt-title"> Textkritische Zeichen</span>
+                                            </div>
                                         </li>
                                         <li>
-                                            <annotation-slider opt="ls"/> &#160; &#160; &#160;
-                                            &#160; <annotation-slider opt="gem-m"/> &#160; &#160;
-                                            &#160; &#160; <annotation-slider opt="gem-n"/> &#160;
-                                            &#160; &#160; &#160; <annotation-slider opt="del"/>
-                                            &#160; &#160; &#160; &#160; <annotation-slider opt="add"
-                                            /> &#160; &#160; &#160; &#160; </li>
+                                            <div class="annotation-toggle" data-type="ls" style="display: inline-block; margin-right: 20px;">
+                                                <label class="switch">
+                                                    <input type="checkbox" id="langes-s-slider"/>
+                                                    <span class="i-slider round" style="background-color: #6c757d;"></span>
+                                                </label>
+                                                <span class="opt-title"> Langes-s (ſ)</span>
+                                            </div>
+                                            <div class="annotation-toggle" data-type="gem-m" style="display: inline-block; margin-right: 20px;">
+                                                <label class="switch">
+                                                    <input type="checkbox" id="gemination-m-slider"/>
+                                                    <span class="i-slider round" style="background-color: #17a2b8;"></span>
+                                                </label>
+                                                <span class="opt-title"> Gemination m (m̅)</span>
+                                            </div>
+                                            <div class="annotation-toggle" data-type="gem-n" style="display: inline-block; margin-right: 20px;">
+                                                <label class="switch">
+                                                    <input type="checkbox" id="gemination-n-slider"/>
+                                                    <span class="i-slider round" style="background-color: #fd7e14;"></span>
+                                                </label>
+                                                <span class="opt-title"> Gemination n (n̅)</span>
+                                            </div>
+                                            <div class="annotation-toggle" data-type="del" style="display: inline-block; margin-right: 20px;">
+                                                <label class="switch">
+                                                    <input type="checkbox" id="deleted-slider"/>
+                                                    <span class="i-slider round" style="background-color: #dc3545;"></span>
+                                                </label>
+                                                <span class="opt-title"> Streichung</span>
+                                            </div>
+                                            <div class="annotation-toggle" data-type="add" style="display: inline-block; margin-right: 20px;">
+                                                <label class="switch">
+                                                    <input type="checkbox" id="addition-slider"/>
+                                                    <span class="i-slider round" style="background-color: #20c997;"></span>
+                                                </label>
+                                                <span class="opt-title"> Hinzufügungen</span>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
@@ -1089,7 +1125,7 @@
                 </xsl:for-each>
                 <script src="https://unpkg.com/de-micro-editor@0.2.83/dist/de-editor.min.js"/>
                 <script type="text/javascript" src="js/text-replacer.js"/>
-                <script type="text/javascript" src="js/run.js"/>
+                <script type="text/javascript" src="js/de-editor-config.js"/>
                 <script type="text/javascript" src="js/prev-next-urlupdate.js"/>
                 <script type="text/javascript" src="js/copy-to-clipboard.js"/>
             </body>

@@ -35,24 +35,40 @@ function nextPrevUrl() {
   } else {
     path = "";
   }
-  if (prev && urlparam.size > 0) {
+  if (prev) {
     var prev_href = prev.getAttribute("href");
-    var new_prev = new URL(`${domain}/${path}/${prev_href}?${urlparam}`);
+    if (urlparam.size > 0) {
+      var new_prev = new URL(`${domain}/${path}/${prev_href}?${urlparam}`);
+    } else {
+      var new_prev = new URL(`${domain}/${path}/${prev_href}`);
+    }
     prev.setAttribute("href", new_prev);
   }
-  if (next && urlparam.size > 0) {
+  if (next) {
     var next_href = next.getAttribute("href");
-    var new_next = new URL(`${domain}/${path}/${next_href}?${urlparam}`);
+    if (urlparam.size > 0) {
+      var new_next = new URL(`${domain}/${path}/${next_href}?${urlparam}`);
+    } else {
+      var new_next = new URL(`${domain}/${path}/${next_href}`);
+    }
     next.setAttribute("href", new_next);
   }
-  if (prev2 && urlparam.size > 0) {
+  if (prev2) {
     var prev_href = prev2.getAttribute("href");
-    var new_prev = new URL(`${domain}/${path}/${prev_href}?${urlparam}`);
+    if (urlparam.size > 0) {
+      var new_prev = new URL(`${domain}/${path}/${prev_href}?${urlparam}`);
+    } else {
+      var new_prev = new URL(`${domain}/${path}/${prev_href}`);
+    }
     prev2.setAttribute("href", new_prev);
   }
-  if (next2 && urlparam.size > 0) {
+  if (next2) {
     var next_href = next2.getAttribute("href");
-    var new_next = new URL(`${domain}/${path}/${next_href}?${urlparam}`);
+    if (urlparam.size > 0) {
+      var new_next = new URL(`${domain}/${path}/${next_href}?${urlparam}`);
+    } else {
+      var new_next = new URL(`${domain}/${path}/${next_href}`);
+    }
     next2.setAttribute("href", new_next);
   }
 }
@@ -64,47 +80,39 @@ function nextPrevUrlUpdate() {
   var next2 = document.getElementById(next_btn2);
   var urlparam = new URLSearchParams(document.location.search);
   if (prev) {
+    var base_href = prev.getAttribute("href").replace(/\?.+/, '');
     if (urlparam.size > 0) {
-      var new_href = `${prev.getAttribute("href").replace(/\?.+/, '')}?${urlparam.toString()}`;
+      var new_href = `${base_href}?${urlparam.toString()}`;
     } else {
-      var new_href = `${prev.getAttribute("href").replace(/\?.+/, '')}`;
+      var new_href = base_href;
     }
-    prev.setAttribute(
-      "href",
-      new_href
-    );
+    prev.setAttribute("href", new_href);
   }
   if (prev2) {
+    var base_href = prev2.getAttribute("href").replace(/\?.+/, '');
     if (urlparam.size > 0) {
-      var new_href = `${prev2.getAttribute("href").replace(/\?.+/, '')}?${urlparam.toString()}`;
+      var new_href = `${base_href}?${urlparam.toString()}`;
     } else {
-      var new_href = `${prev2.getAttribute("href").replace(/\?.+/, '')}`;
+      var new_href = base_href;
     }
-    prev2.setAttribute(
-      "href",
-      new_href
-    );
+    prev2.setAttribute("href", new_href);
   }
   if (next) {
+    var base_href = next.getAttribute("href").replace(/\?.+/, '');
     if (urlparam.size > 0) {
-      var new_href = `${next.getAttribute("href").replace(/\?.+/, '')}?${urlparam.toString()}`;
+      var new_href = `${base_href}?${urlparam.toString()}`;
     } else {
-      var new_href = `${next.getAttribute("href").replace(/\?.+/, '')}`;
+      var new_href = base_href;
     }
-    next.setAttribute(
-      "href",
-      new_href
-    );
+    next.setAttribute("href", new_href);
   }
   if (next2) {
+    var base_href = next2.getAttribute("href").replace(/\?.+/, '');
     if (urlparam.size > 0) {
-      var new_href = `${next2.getAttribute("href").replace(/\?.+/, '')}?${urlparam.toString()}`;
+      var new_href = `${base_href}?${urlparam.toString()}`;
     } else {
-      var new_href = `${next2.getAttribute("href").replace(/\?.+/, '')}`;
+      var new_href = base_href;
     }
-    next2.setAttribute(
-      "href",
-      new_href
-    );
+    next2.setAttribute("href", new_href);
   }
 }
