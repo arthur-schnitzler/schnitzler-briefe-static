@@ -37,15 +37,9 @@
     <xsl:template match="tei:c[@rendition = '#geschwungene-klammer-zu']">
         <xsl:text>}</xsl:text>
     </xsl:template>
-    <xsl:template match="tei:c[@rendition = '#langesS']">
-        <span class="langes-s" data-original="s" data-replacement="ſ">s</span>
-    </xsl:template>
-    <xsl:template match="tei:c[@rendition = '#gemination-m']">
-        <span class="gemination-m" data-original="mm" data-replacement="m̅">mm</span>
-    </xsl:template>
-    <xsl:template match="tei:c[@rendition = '#gemination-n']">
-        <span class="gemination-n" data-original="nn" data-replacement="n̅">nn</span>
-    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#langesS']"><span class="langes-s" data-original="s" data-replacement="ſ">s</span></xsl:template>
+    <xsl:template match="tei:c[@rendition = '#gemination-m']"><span class="gemination-m" data-original="mm" data-replacement="m̅">mm</span></xsl:template>
+    <xsl:template match="tei:c[@rendition = '#gemination-n']"><span class="gemination-n" data-original="nn" data-replacement="n̅">nn</span></xsl:template>
     <xsl:template match="tei:c[@rendition = '#prozent']">
         <xsl:text>%</xsl:text>
     </xsl:template>

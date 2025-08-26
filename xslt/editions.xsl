@@ -811,7 +811,7 @@
                                             <div class="annotation-toggle" data-type="ef2" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="ef2-slider"/>
-                                                    <span class="i-slider round" style="background-color: #28a745;"></span>
+                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
                                                 </label>
                                                 <span class="opt-title"> Textkritische Zeichen</span>
                                             </div>
@@ -820,35 +820,35 @@
                                             <div class="annotation-toggle" data-type="ls" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="langes-s-slider"/>
-                                                    <span class="i-slider round" style="background-color: #6c757d;"></span>
+                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
                                                 </label>
                                                 <span class="opt-title"> Langes-s (ſ)</span>
                                             </div>
                                             <div class="annotation-toggle" data-type="gem-m" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="gemination-m-slider"/>
-                                                    <span class="i-slider round" style="background-color: #17a2b8;"></span>
+                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
                                                 </label>
                                                 <span class="opt-title"> Gemination m (m̅)</span>
                                             </div>
                                             <div class="annotation-toggle" data-type="gem-n" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="gemination-n-slider"/>
-                                                    <span class="i-slider round" style="background-color: #fd7e14;"></span>
+                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
                                                 </label>
                                                 <span class="opt-title"> Gemination n (n̅)</span>
                                             </div>
                                             <div class="annotation-toggle" data-type="del" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="deleted-slider"/>
-                                                    <span class="i-slider round" style="background-color: #dc3545;"></span>
+                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
                                                 </label>
                                                 <span class="opt-title"> Streichung</span>
                                             </div>
                                             <div class="annotation-toggle" data-type="add" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="addition-slider"/>
-                                                    <span class="i-slider round" style="background-color: #20c997;"></span>
+                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
                                                 </label>
                                                 <span class="opt-title"> Hinzufügungen</span>
                                             </div>
@@ -871,35 +871,35 @@
                                         <div class="entity-toggle" data-type="persons" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #e74c3c;"></span>
+                                                <span class="i-slider round" style="background-color: #A63437;"></span>
                                             </label>
                                             <span class="opt-title"> Personen (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person)"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="works" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #f39c12;"></span>
+                                                <span class="i-slider round" style="background-color: #A63437;"></span>
                                             </label>
                                             <span class="opt-title"> Werke (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="places" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #3498db;"></span>
+                                                <span class="i-slider round" style="background-color: #A63437;"></span>
                                             </label>
                                             <span class="opt-title"> Orte (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="orgs" style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #9b59b6;"></span>
+                                                <span class="i-slider round" style="background-color: #A63437;"></span>
                                             </label>
                                             <span class="opt-title"> Institutionen (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"/>)</span>
                                         </div>
                                         <div class="entity-toggle" data-type="events" style="display: inline-block;">
                                             <label class="switch">
                                                 <input type="checkbox" checked="checked"/>
-                                                <span class="i-slider round" style="background-color: #27ae60;"></span>
+                                                <span class="i-slider round" style="background-color: #A63437;"></span>
                                             </label>
                                             <span class="opt-title"> Ereignisse (<xsl:value-of select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"/>)</span>
                                         </div>
@@ -1499,15 +1499,9 @@
     <xsl:template match="tei:space[@unit = 'chars' and @quantity = '1']" mode="verschachtelteA">
         <xsl:text>&#x00A0;</xsl:text>
     </xsl:template>
-    <xsl:template match="tei:c[@rendition = '#gemination-m']" mode="verschachtelteA">
-        <span class="gemination-m">mm</span>
-    </xsl:template>
-    <xsl:template match="tei:c[@rendition = '#gemination-n']" mode="verschachtelteA">
-        <span class="gemination-n">nn</span>
-    </xsl:template>
-    <xsl:template match="tei:c[@rendition = '#langesS']" mode="verschachtelteA">
-        <span class="langes-s">s</span>
-    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#gemination-m']" mode="verschachtelteA"><span class="gemination-m" data-original="mm" data-replacement="m̅">mm</span></xsl:template>
+    <xsl:template match="tei:c[@rendition = '#gemination-n']" mode="verschachtelteA"><span class="gemination-n" data-original="nn" data-replacement="n̅">nn</span></xsl:template>
+    <xsl:template match="tei:c[@rendition = '#langesS']" mode="verschachtelteA"><span class="langes-s" data-original="s" data-replacement="ſ">s</span></xsl:template>
     <xsl:template
         match="text()[matches(., '\s+$') and following-sibling::node()[1][self::tei:space[@unit = 'chars' and @quantity = '1']]]">
         <xsl:value-of select="replace(., '\s+$', '')"/>

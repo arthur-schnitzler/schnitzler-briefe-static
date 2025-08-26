@@ -40,19 +40,93 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!toggle.checked) {
                     slider.style.backgroundColor = '#ccc';
                 } else {
-                    // Restore original color
-                    const colorMap = {
-                        'persons': '#e74c3c',
-                        'works': '#f39c12', 
-                        'places': '#3498db',
-                        'orgs': '#9b59b6',
-                        'events': '#27ae60'
-                    };
-                    slider.style.backgroundColor = colorMap[entityType];
+                    // Restore project color
+                    slider.style.backgroundColor = '#A63437';
                 }
                 
                 // Update master toggle state based on individual toggles
                 updateMasterToggleState();
+            });
+        });
+        
+        // Annotation toggles
+        const annotationToggles = document.querySelectorAll('.annotation-toggle input[type="checkbox"]');
+        annotationToggles.forEach(function(toggle) {
+            const annotationType = toggle.closest('.annotation-toggle').getAttribute('data-type');
+            
+            toggle.addEventListener('change', function() {
+                const slider = toggle.nextElementSibling;
+                
+                // Update slider color
+                if (!toggle.checked) {
+                    slider.style.backgroundColor = '#ccc';
+                } else {
+                    slider.style.backgroundColor = '#A63437';
+                }
+                
+                // Handle different annotation types
+                if (annotationType === 'ef2') {
+                    // Handle features-2 class elements
+                    const features2Elements = document.querySelectorAll('.features-2');
+                    features2Elements.forEach(function(element) {
+                        if (toggle.checked) {
+                            element.classList.add('activated');
+                        } else {
+                            element.classList.remove('activated');
+                        }
+                    });
+                } else if (annotationType === 'ls') {
+                    // Handle langes-s
+                    document.querySelectorAll('.langes-s').forEach(el => {
+                        if (toggle.checked) {
+                            el.classList.add('langes-s-active');
+                        } else {
+                            el.classList.remove('langes-s-active');
+                        }
+                        el.textContent = toggle.checked ? el.dataset.replacement : el.dataset.original;
+                    });
+                } else if (annotationType === 'gem-m') {
+                    // Handle gemination-m
+                    document.querySelectorAll('.gemination-m').forEach(el => {
+                        if (toggle.checked) {
+                            el.classList.add('gemination-m-active');
+                        } else {
+                            el.classList.remove('gemination-m-active');
+                        }
+                        el.textContent = toggle.checked ? el.dataset.replacement : el.dataset.original;
+                    });
+                } else if (annotationType === 'gem-n') {
+                    // Handle gemination-n
+                    document.querySelectorAll('.gemination-n').forEach(el => {
+                        if (toggle.checked) {
+                            el.classList.add('gemination-n-active');
+                        } else {
+                            el.classList.remove('gemination-n-active');
+                        }
+                        el.textContent = toggle.checked ? el.dataset.replacement : el.dataset.original;
+                    });
+                } else if (annotationType === 'del') {
+                    // Handle deletions
+                    document.querySelectorAll('.del').forEach(el => {
+                        if (toggle.checked) {
+                            el.classList.add('strikethrough');
+                        } else {
+                            el.classList.remove('strikethrough');
+                        }
+                    });
+                } else if (annotationType === 'add') {
+                    // Handle additions
+                    document.querySelectorAll('.add').forEach(el => {
+                        if (toggle.checked) {
+                            el.classList.add('add-zeichen');
+                        } else {
+                            el.classList.remove('add-zeichen');
+                        }
+                    });
+                }
+                
+                // Update URL parameters
+                updateURLParameters();
             });
         });
         
@@ -108,117 +182,94 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
+        
+        // Function to update URL parameters
+        function updateURLParameters() {
+            const url = new URL(window.location);
+            
+            // Check annotation toggles
+            const ef2Toggle = document.getElementById('ef2-slider');
+            const lsToggle = document.getElementById('langes-s-slider');
+            const gmToggle = document.getElementById('gemination-m-slider');
+            const gnToggle = document.getElementById('gemination-n-slider');
+            const delToggle = document.getElementById('deleted-slider');
+            const addToggle = document.getElementById('addition-slider');
+            
+            if (ef2Toggle && ef2Toggle.checked) {
+                url.searchParams.set('textfeatures', '1');
+            } else {
+                url.searchParams.delete('textfeatures');
+            }
+            
+            if (lsToggle && lsToggle.checked) {
+                url.searchParams.set('ls', '1');
+            } else {
+                url.searchParams.delete('ls');
+            }
+            
+            if (gmToggle && gmToggle.checked) {
+                url.searchParams.set('gem-m', '1');
+            } else {
+                url.searchParams.delete('gem-m');
+            }
+            
+            if (gnToggle && gnToggle.checked) {
+                url.searchParams.set('gem-n', '1');
+            } else {
+                url.searchParams.delete('gem-n');
+            }
+            
+            if (delToggle && delToggle.checked) {
+                url.searchParams.set('del', '1');
+            } else {
+                url.searchParams.delete('del');
+            }
+            
+            if (addToggle && addToggle.checked) {
+                url.searchParams.set('add', '1');
+            } else {
+                url.searchParams.delete('add');
+            }
+            
+            // Update URL without reloading page
+            window.history.replaceState({}, '', url);
+            
+            // Trigger URL update for prev/next buttons
+            if (window.nextPrevUrlUpdate) {
+                window.nextPrevUrlUpdate();
+            }
+        }
+        
+        // Initialize toggles from URL parameters
+        function initializeFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Set toggle states based on URL parameters
+            const toggleMappings = {
+                'textfeatures': 'ef2-slider',
+                'ls': 'langes-s-slider',
+                'gem-m': 'gemination-m-slider',
+                'gem-n': 'gemination-n-slider',
+                'del': 'deleted-slider',
+                'add': 'addition-slider'
+            };
+            
+            Object.entries(toggleMappings).forEach(([param, toggleId]) => {
+                const toggle = document.getElementById(toggleId);
+                if (toggle && urlParams.get(param) === '1') {
+                    toggle.checked = true;
+                    // Trigger change event to apply styles
+                    toggle.dispatchEvent(new Event('change'));
+                }
+            });
+        }
+        
+        // Initialize from URL parameters
+        initializeFromURL();
     }, 500);
 });
 
 var editor = new LoadEditor({
-    aot: {
-        title: "Einstellungen",
-        variants:[ {
-            opt: "ef2",
-            opt_slider: "ef2-slider", 
-            title: "Textkritische Zeichen",
-            color: "green",
-            html_class: "undefined",
-            css_class: "",
-            chg_citation: "citation-url",
-            urlparam: "textfeatures",
-            hide: {
-                hidden: false,
-                class: "undefined",
-            },
-            features: {
-                all: true,
-                class: "features-2",
-            },
-        }, {
-            opt: "ls",
-            opt_slider: "langes-s-slider",
-            title: "Langes-s (ſ)",
-            color: "undefined",
-            html_class: "langes-s",
-            hide: {
-                hidden: false,
-                class: "undefined"
-            },
-            css_class: "langes-s-active",
-            chg_citation: "citation-url",
-            features: {
-                all: false,
-                class: "features-2"
-            }
-        }, {
-            opt: "gem-m",
-            opt_slider: "gemination-m-slider",
-            title: "Gemination m (m̅)",
-            color: "undefined",
-            html_class: "gemination-m",
-            hide: {
-                hidden: false,
-                class: "undefined"
-            },
-            css_class: "gemination-m-active",
-            chg_citation: "citation-url",
-            features: {
-                all: false,
-                class: "features-2"
-            }
-        }, {
-            opt: "gem-n",
-            opt_slider: "gemination-n-slider",
-            title: "Gemination n (n̅)",
-            color: "undefined",
-            html_class: "gemination-n",
-            hide: {
-                hidden: false,
-                class: "undefined"
-            },
-            css_class: "gemination-n-active",
-            chg_citation: "citation-url",
-            features: {
-                all: false,
-                class: "features-2"
-            }
-        }, {
-            opt: "del",
-            opt_slider: "deleted-slider",
-            title: "Streichung",
-            color: "black",
-            html_class: "del",
-            hide: {
-                hidden: true,
-                class: "del"
-            },
-            css_class: "strikethrough",
-            features: {
-                all: false,
-                class: "features-2"
-            }
-        }, {
-            opt: "add",
-            opt_slider: "addition-slider",
-            title: "Hinzufügungen",
-            color: "undefined",
-            html_class: "add",
-            hide: {
-                hidden: true,
-                class: "add-zeichen"
-            },
-            css_class: "add-zeichen",
-            features: {
-                all: false,
-                class: "features-2"
-            }
-        }],
-        span_element: {
-            css_class: "badge-item",
-        },
-        active_class: "activated",
-        rendered_element: {
-            label_class: "switch",
-            slider_class: "i-slider round",
-        },
-    },
     is: {
         name: "Faksimile",
         variants:[ {
@@ -254,71 +305,3 @@ var editor = new LoadEditor({
     up: true,
 });
 
-// Monitor for CSS class changes and trigger text replacement
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Use MutationObserver to watch for class changes
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                const element = mutation.target;
-                
-                // Check for langes-s changes
-                if (element.classList.contains('langes-s')) {
-                    const isActive = element.classList.contains('langes-s-active');
-                    element.textContent = isActive ? element.dataset.replacement : element.dataset.original;
-                }
-                
-                // Check for gemination-m changes  
-                if (element.classList.contains('gemination-m')) {
-                    const isActive = element.classList.contains('gemination-m-active');
-                    element.textContent = isActive ? element.dataset.replacement : element.dataset.original;
-                }
-                
-                // Check for gemination-n changes
-                if (element.classList.contains('gemination-n')) {
-                    const isActive = element.classList.contains('gemination-n-active');
-                    element.textContent = isActive ? element.dataset.replacement : element.dataset.original;
-                }
-            }
-        });
-    });
-    
-    // Start observing class changes on relevant elements
-    setTimeout(function() {
-        const elements = document.querySelectorAll('.langes-s, .gemination-m, .gemination-n');
-        elements.forEach(function(element) {
-            observer.observe(element, { attributes: true, attributeFilter: ['class'] });
-        });
-        
-        // Add direct event listeners for the new toggle structure
-        const lsToggle = document.querySelector('#langes-s-slider');
-        const gmToggle = document.querySelector('#gemination-m-slider');
-        const gnToggle = document.querySelector('#gemination-n-slider');
-        
-        if (lsToggle) {
-            lsToggle.addEventListener('change', function() {
-                document.querySelectorAll('.langes-s').forEach(el => {
-                    el.textContent = this.checked ? el.dataset.replacement : el.dataset.original;
-                });
-            });
-        }
-        
-        if (gmToggle) {
-            gmToggle.addEventListener('change', function() {
-                document.querySelectorAll('.gemination-m').forEach(el => {
-                    el.textContent = this.checked ? el.dataset.replacement : el.dataset.original;
-                });
-            });
-        }
-        
-        if (gnToggle) {
-            gnToggle.addEventListener('change', function() {
-                document.querySelectorAll('.gemination-n').forEach(el => {
-                    el.textContent = this.checked ? el.dataset.replacement : el.dataset.original;
-                });
-            });
-        }
-    }, 500);
-    
-});

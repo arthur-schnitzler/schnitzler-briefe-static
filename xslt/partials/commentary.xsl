@@ -82,9 +82,7 @@
     <xsl:template match="tei:c[@rendition = '#dots']" mode="lemma">
         <xsl:value-of select="mam:dots(@n)"/>
     </xsl:template>
-    <xsl:template match="tei:c[@rendition = '#langesS']" mode="lemma">
-        <xsl:apply-templates/>
-    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#langesS']" mode="lemma"><xsl:apply-templates/></xsl:template>
     <xsl:template match="tei:c[@rendition = '#kaufmannsund']" mode="lemma">
         <xsl:text>&amp;</xsl:text>
     </xsl:template>
