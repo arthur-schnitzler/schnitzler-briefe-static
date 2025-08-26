@@ -3,8 +3,10 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="http://dse-static.foo.bar"
     xmlns:mam="whatever" version="2.0" exclude-result-prefixes="xsl tei xs">
-    <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
-        omit-xml-declaration="yes"/>
+    <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" 
+        indent="yes" omit-xml-declaration="yes"/>
+    <xsl:strip-space elements="*"/>
+    <xsl:preserve-space elements="tei:p tei:div tei:span tei:hi tei:emph tei:title tei:foreign"/>
     <xsl:import href="./partials/shared.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
