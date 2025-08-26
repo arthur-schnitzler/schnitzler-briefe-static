@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             } else if (annotationType === 'add') {
-                // Handle additions - show/hide via display style
-                document.querySelectorAll('.add-zeichen, .add-content').forEach(el => {
+                // Handle additions - show/hide only the arrows, keep content visible
+                document.querySelectorAll('.add-zeichen').forEach(el => {
                     if (annotationToggle.checked) {
                         el.style.display = 'inline';
                     } else {

@@ -123,7 +123,7 @@
     </xsl:template>-->
     <xsl:template match="tei:add">
         <span class="add-zeichen badge-item" style="display:none;">↓</span>
-        <span class="add-content badge-item" style="display:none;">
+        <span class="add-content badge-item">
             <xsl:apply-templates/>
         </span>
         <span class="add-zeichen badge-item" style="display:none;">↓</span>
