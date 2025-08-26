@@ -200,21 +200,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     el.textContent = annotationToggle.checked ? el.dataset.replacement : el.dataset.original;
                 });
             } else if (annotationType === 'del') {
-                // Handle deletions
+                // Handle deletions - show/hide via display style
                 document.querySelectorAll('.del').forEach(el => {
                     if (annotationToggle.checked) {
-                        el.classList.add('strikethrough');
+                        el.style.display = 'inline';
                     } else {
-                        el.classList.remove('strikethrough');
+                        el.style.display = 'none';
                     }
                 });
             } else if (annotationType === 'add') {
-                // Handle additions
-                document.querySelectorAll('.add').forEach(el => {
+                // Handle additions - show/hide via display style
+                document.querySelectorAll('.add-zeichen, .add-content').forEach(el => {
                     if (annotationToggle.checked) {
-                        el.classList.add('add-zeichen');
+                        el.style.display = 'inline';
                     } else {
-                        el.classList.remove('add-zeichen');
+                        el.style.display = 'none';
                     }
                 });
             }
