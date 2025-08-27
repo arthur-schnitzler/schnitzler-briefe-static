@@ -14,10 +14,10 @@
         <div class="row" id="title-nav">
             <div class="col-md-2 col-lg-2 col-sm-12">
                 <xsl:if test="$correspContext/tei:ref/@subtype = 'previous_letter'">
-                    <nav class="navbar navbar-previous-next" style="text-indent: 1em;" aria-label="Vorheriger Brief">
-                        <span class="nav-link float-start" href="#"
-                            id="navbarDropdownLeft" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                    <nav class="navbar navbar-previous-next" style="text-indent: 1em;"
+                        aria-label="Vorheriger Brief">
+                        <span class="nav-link float-start" href="#" id="navbarDropdownLeft"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-chevron-left" title="Vorheriger Brief"/>
                         </span>
                         <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
@@ -33,18 +33,20 @@
                                 </xsl:for-each>
                             </xsl:if>
                             <xsl:choose>
-                                <xsl:when test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter'][1]">
-                                <span class="dropdown-item-text">… in der Korrespondenz</span>
-                                <xsl:for-each
-                                    select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter']">
-                                    <xsl:call-template name="mam:nav-li-item">
-                                        <xsl:with-param name="eintrag" select="."/>
-                                        <xsl:with-param name="direction" select="'prev-doc2'"/>
-                                    </xsl:call-template>
-                                </xsl:for-each>
+                                <xsl:when
+                                    test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter'][1]">
+                                    <span class="dropdown-item-text">… in der Korrespondenz</span>
+                                    <xsl:for-each
+                                        select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter']">
+                                        <xsl:call-template name="mam:nav-li-item">
+                                            <xsl:with-param name="eintrag" select="."/>
+                                            <xsl:with-param name="direction" select="'prev-doc2'"/>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <span class="dropdown-item-text">… in der Korrespondenz<br/>keine früheren Überlieferungen</span>
+                                    <span class="dropdown-item-text">… in der
+                                        Korrespondenz<br/>keine früheren Überlieferungen</span>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </ul>
@@ -58,10 +60,10 @@
             </div>
             <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right">
                 <xsl:if test="$correspContext/tei:ref/@subtype = 'next_letter'">
-                    <nav class="navbar navbar-previous-next float-end dropstart" aria-label="Nächster Brief">
-                        <span class="nav-link" href="#"
-                            id="navbarDropdownRight" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                    <nav class="navbar navbar-previous-next float-end dropstart"
+                        aria-label="Nächster Brief">
+                        <span class="nav-link" href="#" id="navbarDropdownRight" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-chevron-right" title="Nächster Brief"/>
                         </span>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -77,18 +79,20 @@
                                 </xsl:for-each>
                             </xsl:if>
                             <xsl:choose>
-                                <xsl:when test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter'][1]">
-                                <span class="dropdown-item-text">… in der Korrespondenz</span>
-                                <xsl:for-each
-                                    select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter']">
-                                    <xsl:call-template name="mam:nav-li-item">
-                                        <xsl:with-param name="eintrag" select="."/>
-                                        <xsl:with-param name="direction" select="'next-doc2'"/>
-                                    </xsl:call-template>
-                                </xsl:for-each>
+                                <xsl:when
+                                    test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter'][1]">
+                                    <span class="dropdown-item-text">… in der Korrespondenz</span>
+                                    <xsl:for-each
+                                        select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter']">
+                                        <xsl:call-template name="mam:nav-li-item">
+                                            <xsl:with-param name="eintrag" select="."/>
+                                            <xsl:with-param name="direction" select="'next-doc2'"/>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <span class="dropdown-item-text">… in der Korrespondenz<br/>keine späteren Überlieferungen</span>
+                                    <span class="dropdown-item-text">… in der
+                                        Korrespondenz<br/>keine späteren Überlieferungen</span>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </ul>
@@ -109,7 +113,7 @@
                     <xsl:text>dropdown-item theme-color</xsl:text>
                 </xsl:attribute>
                 <xsl:attribute name="href">
-                    <xsl:value-of select="concat($eintrag/@target, '.html')"/>
+                    <xsl:value-of select="concat(replace($eintrag/@target, '/', ''), '.html')"/>
                 </xsl:attribute>
                 <xsl:choose>
                     <xsl:when test="contains($eintrag/@subtype, 'next')">
