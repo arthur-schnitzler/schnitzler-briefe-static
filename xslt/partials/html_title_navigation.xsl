@@ -113,7 +113,7 @@
                     <xsl:text>dropdown-item theme-color</xsl:text>
                 </xsl:attribute>
                 <xsl:attribute name="href">
-                    <xsl:value-of select="concat(replace($eintrag/@target, '/', ''), '.html')"/>
+                    <xsl:value-of select="replace(concat($eintrag/@target, '.html'), '//', '/')"/>
                 </xsl:attribute>
                 <xsl:choose>
                     <xsl:when test="contains($eintrag/@subtype, 'next')">
