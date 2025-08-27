@@ -1078,7 +1078,7 @@
                                         <xsl:attribute name="target">
                                             <xsl:text>_blank</xsl:text>
                                         </xsl:attribute>
-                                        <i class="fa-lg far fa-file-code"/> <xsl:text>TEI</xsl:text> </a>
+                                        <i class="fa-lg far fa-file-code"/> <xsl:text> TEI</xsl:text> </a>
                                     <xsl:text>    (</xsl:text>
                                     <a class="ml-3" data-bs-toggle="tooltip"
                                         title="Brief als TEI-Datei">
