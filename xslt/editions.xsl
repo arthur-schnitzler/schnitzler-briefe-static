@@ -1073,9 +1073,22 @@
                                     <a class="ml-3" data-bs-toggle="tooltip"
                                         title="Brief als TEI-Datei">
                                         <xsl:attribute name="href">
-                                            <xsl:value-of select="$teiDoc"/>
+                                            <xsl:value-of select="concat('https://github.com/arthur-schnitzler/schnitzler-briefe-data/blob/main/data/editions/', $teiDoc)"/>
                                         </xsl:attribute>
-                                        <i class="fa-lg far fa-file-code"/> TEI </a>
+                                        <xsl:attribute name="target">
+                                            <xsl:text>_blank</xsl:text>
+                                        </xsl:attribute>
+                                        <i class="fa-lg far fa-file-code"/> <xsl:text>TEI</xsl:text> </a>
+                                    <xsl:text>    (</xsl:text>
+                                    <a class="ml-3" data-bs-toggle="tooltip"
+                                        title="Brief als TEI-Datei">
+                                        <xsl:attribute name="href">
+                                            <xsl:value-of select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/refs/heads/main/data/editions/', $teiDoc)"/>
+                                        </xsl:attribute>
+                                        <xsl:attribute name="target">
+                                            <xsl:text>_blank</xsl:text>
+                                        </xsl:attribute>
+                                         <xsl:text>raw</xsl:text> </a><xsl:text>)</xsl:text>
                                 </p>
                                 <p>
                                     <a class="ml-3" data-toggle="tooltip"
