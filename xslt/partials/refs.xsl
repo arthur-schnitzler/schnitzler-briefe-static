@@ -218,7 +218,7 @@
                         </xsl:when>
                         <xsl:when test="@type = 'schnitzler-kultur'">
                             <xsl:value-of
-                                select="document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/listEvent[1]/event[@xml:id = replace($ref-mit-endung, '.html', '')]/@when-iso/text()"
+                                select="document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/tei:listEvent[1]/tei:event[@xml:id = replace($ref-mit-endung, '.html', '')]/@when-iso/text()"
                             />
                         </xsl:when>
                     </xsl:choose>
