@@ -17,7 +17,9 @@
                     <nav class="navbar navbar-previous-next" style="text-indent: 1em;" aria-label="Vorheriger Brief">
                         <span class="nav-link float-start" href="#"
                             id="navbarDropdownLeft" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">‹</span>
+                            aria-expanded="false">
+                            <i class="fas fa-chevron-left" title="Vorheriger Brief"/>
+                        </span>
                         <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
                             <xsl:if
                                 test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]">
@@ -59,7 +61,9 @@
                     <nav class="navbar navbar-previous-next float-end dropstart" aria-label="Nächster Brief">
                         <span class="nav-link" href="#"
                             id="navbarDropdownRight" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">›</span>
+                            aria-expanded="false">
+                            <i class="fas fa-chevron-right" title="Nächster Brief"/>
+                        </span>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <xsl:if
                                 test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]">
