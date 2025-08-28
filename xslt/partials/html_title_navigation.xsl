@@ -18,7 +18,7 @@
                         aria-label="Vorheriger Brief">
                         <span class="nav-link float-start" href="#" id="navbarDropdownLeft"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-chevron-left" title="Vorheriger Brief"/>
+                            <i class="fas fa-chevron-left" title="Vorheriger Brief" style="font-size: 0.5em;"/>
                         </span>
                         <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
                             <xsl:if
@@ -64,7 +64,7 @@
                         aria-label="Nächster Brief">
                         <span class="nav-link" href="#" id="navbarDropdownRight" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-chevron-right" title="Nächster Brief"/>
+                            <i class="fas fa-chevron-right" title="Nächster Brief" style="font-size: 0.5em;"/>
                         </span>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <xsl:if

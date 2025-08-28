@@ -37,37 +37,41 @@ function nextPrevUrl() {
   }
   if (prev) {
     var prev_href = prev.getAttribute("href");
+    var basePath = path ? `/${path}` : '';
     if (urlparam.size > 0) {
-      var new_prev = new URL(`${domain}/${path}/${prev_href}?${urlparam}`);
+      var new_prev = new URL(`${domain}${basePath}/${prev_href}?${urlparam}`);
     } else {
-      var new_prev = new URL(`${domain}/${path}/${prev_href}`);
+      var new_prev = new URL(`${domain}${basePath}/${prev_href}`);
     }
     prev.setAttribute("href", new_prev);
   }
   if (next) {
     var next_href = next.getAttribute("href");
+    var basePath = path ? `/${path}` : '';
     if (urlparam.size > 0) {
-      var new_next = new URL(`${domain}/${path}/${next_href}?${urlparam}`);
+      var new_next = new URL(`${domain}${basePath}/${next_href}?${urlparam}`);
     } else {
-      var new_next = new URL(`${domain}/${path}/${next_href}`);
+      var new_next = new URL(`${domain}${basePath}/${next_href}`);
     }
     next.setAttribute("href", new_next);
   }
   if (prev2) {
     var prev_href = prev2.getAttribute("href");
+    var basePath = path ? `/${path}` : '';
     if (urlparam.size > 0) {
-      var new_prev = new URL(`${domain}/${path}/${prev_href}?${urlparam}`);
+      var new_prev = new URL(`${domain}${basePath}/${prev_href}?${urlparam}`);
     } else {
-      var new_prev = new URL(`${domain}/${path}/${prev_href}`);
+      var new_prev = new URL(`${domain}${basePath}/${prev_href}`);
     }
     prev2.setAttribute("href", new_prev);
   }
   if (next2) {
     var next_href = next2.getAttribute("href");
+    var basePath = path ? `/${path}` : '';
     if (urlparam.size > 0) {
-      var new_next = new URL(`${domain}/${path}/${next_href}?${urlparam}`);
+      var new_next = new URL(`${domain}${basePath}/${next_href}?${urlparam}`);
     } else {
-      var new_next = new URL(`${domain}/${path}/${next_href}`);
+      var new_next = new URL(`${domain}${basePath}/${next_href}`);
     }
     next2.setAttribute("href", new_next);
   }
