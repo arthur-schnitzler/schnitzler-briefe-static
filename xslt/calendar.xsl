@@ -59,9 +59,9 @@
                                     sind aufgeteilt in die Farben rot (Korrespondenzstücke von Arthur Schnitzler), blau (Korrespondenzstücke
                                     an Schnitzler) und grün (Umfeldbriefe: Korrespondenzstücke der jeweiligen Lebensgefährtin oder des jeweiligen
                                     Lebensgefährten an das jeweilige Gegenüber).</p>
-                                    <p>Zusätzlich werden in brauner Farbe gedruckte Korrespondenzstücke Schnitzlers angezeigt, die sich nicht
-                                    in der Edition finden. Ihr Inhalt ist nicht aufgenommen. Teilweise sind PDFs der Drucke hier zu finden:
-                                        <ref type="URL" target="drucke.html">Druckdigitalisate</ref>.
+                                    <p>Zusätzlich werden in brauner Farbe gedruckte Korrespondenzstücke Schnitzlers angezeigt. Solche, die sich 
+                                    auch in der vorliegenden Edition finden, werden nicht angezeigt. Auch der jeweilige Inhalt ist nicht aufgenommen. Teilweise sind PDFs der Drucke hier zu finden:
+                                        <a href="drucke.html">Druckdigitalisate</a>.
                                     </p>
                                 </div>
                                 <div class="modal-footer">
