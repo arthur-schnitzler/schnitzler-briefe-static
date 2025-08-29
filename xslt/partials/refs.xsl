@@ -192,6 +192,7 @@
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="@subtype = 'date-only'">
+                
                 <a>
                     <xsl:attribute name="class">
                         <xsl:value-of select="@type"/>
@@ -218,8 +219,11 @@
                         </xsl:when>
                         <xsl:when test="@type = 'schnitzler-kultur'">
                             <xsl:value-of
-                                select="document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/tei:listEvent[1]/tei:event[@xml:id = replace($ref-mit-endung, '.html', '')]/@when-iso/text()"
-                            />
+                                select="format-date(
+                                xs:date(document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/tei:listEvent[1]/tei:event[@xml:id = replace($ref-mit-endung, '.html', '')]/@when-iso),
+                                '[D].[M].[Y0001]'
+                                )"/>
+                            
                         </xsl:when>
                     </xsl:choose>
                 </a>
