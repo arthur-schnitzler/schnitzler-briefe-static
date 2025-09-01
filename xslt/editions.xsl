@@ -1280,14 +1280,14 @@
         </span>
     </xsl:template>
     <xsl:template match="tei:lg[@type = 'poem' and not(descendant::lg[@type = 'stanza'])]">
-        <div class="poem ">
+        <div class="editionText poem">
             <ul>
                 <xsl:apply-templates/>
             </ul>
         </div>
     </xsl:template>
     <xsl:template match="tei:lg[@type = 'poem' and descendant::lg[@type = 'stanza']]">
-        <div class="poem ">
+        <div class="editionText poem">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
