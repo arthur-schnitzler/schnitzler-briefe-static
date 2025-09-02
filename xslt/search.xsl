@@ -34,21 +34,94 @@
                                             <div id="searchbox"></div>
                                             <div id="current-refinements"></div>
                                             <div id="clear-refinements"></div>
-                                            <h4>Jahr</h4>
-                                            <div id="range-input"></div>
-                                            <h4>Sender</h4>
-                                            <div id="refinement-list-sender"></div>
-                                            <h4>Empfänger</h4>
-                                            <div id="refinement-list-receiver"></div>
-                                            <h4>Personen</h4>
-                                            <div id="refinement-list-persons"></div>
-                                            <h4>Orte</h4>
-                                            <div id="refinement-list-places"></div>
-                                            <h4>Institutionen</h4>
-                                            <div id="refinement-list-orgs"></div>
-                                            <h4>Werke</h4>
-                                            <div id="refinement-list-works"></div>
                                             
+                                            <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear" style="cursor: pointer;">
+                                                    Jahr <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapseYear" class="collapse show">
+                                                    <div class="card-body">
+                                                        <div id="range-input"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseSender" aria-expanded="false" aria-controls="collapseSender" style="cursor: pointer;">
+                                                    Sender <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapseSender" class="collapse">
+                                                    <div class="card-body">
+                                                        <div id="refinement-list-sender"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseReceiver" aria-expanded="false" aria-controls="collapseReceiver" style="cursor: pointer;">
+                                                    Empfänger <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapseReceiver" class="collapse">
+                                                    <div class="card-body">
+                                                        <div id="refinement-list-receiver"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapsePersons" aria-expanded="false" aria-controls="collapsePersons" style="cursor: pointer;">
+                                                    Personen <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapsePersons" class="collapse">
+                                                    <div class="card-body">
+                                                        <div id="refinement-list-persons"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapsePlaces" aria-expanded="false" aria-controls="collapsePlaces" style="cursor: pointer;">
+                                                    Orte <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapsePlaces" class="collapse">
+                                                    <div class="card-body">
+                                                        <div id="refinement-list-places"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseOrgs" aria-expanded="false" aria-controls="collapseOrgs" style="cursor: pointer;">
+                                                    Institutionen <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapseOrgs" class="collapse">
+                                                    <div class="card-body">
+                                                        <div id="refinement-list-orgs"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseWorks" aria-expanded="false" aria-controls="collapseWorks" style="cursor: pointer;">
+                                                    Werke <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapseWorks" class="collapse">
+                                                    <div class="card-body">
+                                                        <div id="refinement-list-works"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseEvents" aria-expanded="false" aria-controls="collapseEvents" style="cursor: pointer;">
+                                                    Ereignisse <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapseEvents" class="collapse">
+                                                    <div class="card-body">
+                                                        <div id="refinement-list-events"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-8">
                                             <div id="hits"></div>
