@@ -5,6 +5,7 @@ from typesense.api_call import ObjectNotFound
 from acdh_cfts_pyutils import TYPESENSE_CLIENT as client
 from acdh_cfts_pyutils import CFTS_COLLECTION
 from acdh_tei_pyutils.tei import TeiReader
+from acdh_xml_pyutils.xml import NSMAP
 from acdh_tei_pyutils.utils import (
     extract_fulltext,
     get_xmlid,
@@ -178,26 +179,20 @@ for x in tqdm(files, total=len(files)):
 
     record["events"] = []
     for y in doc.any_xpath(".//tei:back//tei:event[@xml:id]"):
-        try:
-            event_name = y.xpath(".//tei:eventName/text()")[0] if y.xpath(".//tei:eventName/text()") else "Unbekanntes Ereignis"
-            event_date = y.xpath("./@when-iso")[0] if y.xpath("./@when-iso") else None
-            event_type = y.xpath(".//tei:eventName/@n")[0] if y.xpath(".//tei:eventName/@n") else None
-            
-            item = {
-                "id": get_xmlid(y), 
-                "label": event_name,
-                "date": event_date,
-                "type": event_type
-            }
-            record["events"].append(item)
-        except Exception as e:
-            print(f"Error processing event in {x}: {e}")
-            
-    cfts_record["events"] = [x["label"] for x in record["events"]]
+        event_name = y.xpath(".//tei:eventName/text()", namespaces=NSMAP)[0] if y.xpath(".//tei:eventName/text()", namespaces=NSMAP) else "Unbekanntes Ereignis"
+        event_type = y.xpath(".//tei:eventName/@n", namespaces=NSMAP)[0] if y.xpath(".//tei:eventName/@n", namespaces=NSMAP) else None
+
+        item = {
+            "id": get_xmlid(y),
+            "label": event_name,
+            "type": event_type
+        }
+        record["events"].append(item)
+
     cfts_record["places"] = [x["label"] for x in record["places"]]
     record["full_text"] = f"{extract_fulltext(body)} {record['title']}".replace("(", " ")
     cfts_record["full_text"] = record["full_text"]
-    
+
     # Add accessibility metadata
     try:
         # Create accessible title with sender and receiver info
@@ -207,7 +202,7 @@ for x in tqdm(files, total=len(files)):
         elif sender_label != "Kein Absender":
             record["accessible_title"] = f"{record['title']} - Brief von {sender_label}"
             record["correspondence_description"] = f"Brief von {sender_label}"
-        elif receiver_label != "Kein Absender": 
+        elif receiver_label != "Kein Absender":
             record["accessible_title"] = f"{record['title']} - Brief an {receiver_label}"
             record["correspondence_description"] = f"Brief an {receiver_label}"
         else:
@@ -217,7 +212,7 @@ for x in tqdm(files, total=len(files)):
         print(f"accessibility metadata issues in {x}, due to: {e}")
         record["accessible_title"] = record["title"]
         record["correspondence_description"] = "Brief"
-    
+
     records.append(record)
     cfts_records.append(cfts_record)
 
