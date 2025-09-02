@@ -1845,7 +1845,7 @@
                             <xsl:text>damage-critical</xsl:text>
                         </xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="ancestor::tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(parent::tei:bibl)] or ancestor::tei:opener or ancestor::tei:addrLine or ancestor::tei:signed or ancestor::tei:salute[parent::tei:opener] or ancestor::tei:seg[not(parent::tei:seg)] or ancestor::tei:dateline or ancestor::tei:closer">
+                    <xsl:when test="ancestor::tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(parent::tei:bibl)] or ancestor::tei:opener or ancestor::tei:addrLine or ancestor::tei:signed or ancestor::tei:salute[parent::tei:opener] or ancestor::tei:seg[not(parent::tei:seg)] or ancestor::tei:dateline or ancestor::tei:closer or ancestor::tei:lg or ancestor::tei:l">
                         <xsl:attribute name="class">
                             <xsl:text>reference-black</xsl:text>
                         </xsl:attribute>
