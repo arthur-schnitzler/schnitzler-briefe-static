@@ -71,3 +71,10 @@ date_issues.txt
 
 CLAUDE.md
 .claude
+set_env_variables.sh
+make_typesense_index.py
+html/.htaccess
+html/seo-data/build-report.json
+.gitignore
+html/seo-data/seo-statistics.json
+html/.well-known/security.txt
