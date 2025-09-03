@@ -127,7 +127,7 @@
                                                   <td>
                                                   <a>
                                                   <xsl:attribute name="href">
-                                                  <xsl:value-of select="concat(@ref, '.html')"/>
+                                                  <xsl:value-of select="concat(@ref,@key, '.html')"/>
                                                   </xsl:attribute>
                                                   <xsl:value-of select="."/>
                                                   </a>
