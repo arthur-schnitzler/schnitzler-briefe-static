@@ -324,14 +324,14 @@
             <xsl:value-of select="concat(data(@xml:id), '.html')"/>
         </xsl:variable>
         <div class="modal fade" id="{@xml:id}" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="{concat(./tei:persName/tei:surname, ', ', ./tei:persName/tei:forename)}"
+            aria-labelledby="{concat(./tei:persName/tei:forename, ' ', ./tei:persName/tei:surname)}"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">
                             <xsl:value-of
-                                select="concat(./tei:persName/tei:surname, ', ', ./tei:persName/tei:forename)"
+                                select="concat(./tei:persName/tei:forename, ' ', ./tei:persName/tei:surname)"
                             />
                         </h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"

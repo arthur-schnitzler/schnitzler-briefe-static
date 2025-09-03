@@ -1771,7 +1771,14 @@
                                                     <xsl:value-of select="$eintrag/tei:eventName[1]"/>
                                                 </xsl:when>
                                                 <xsl:when test="$typ = 'person'">
-                                                  <xsl:value-of select="$eintrag/tei:persName[1]"/>
+                                                  <xsl:choose>
+                                                    <xsl:when test="$eintrag/tei:persName[1]/tei:forename and $eintrag/tei:persName[1]/tei:surname">
+                                                      <xsl:value-of select="concat($eintrag/tei:persName[1]/tei:forename, ' ', $eintrag/tei:persName[1]/tei:surname)"/>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                      <xsl:value-of select="$eintrag/tei:persName[1]"/>
+                                                    </xsl:otherwise>
+                                                  </xsl:choose>
                                                 </xsl:when>
                                                 <xsl:otherwise>
                                                   <xsl:text>offen</xsl:text>
