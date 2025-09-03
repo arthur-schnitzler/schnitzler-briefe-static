@@ -49,10 +49,11 @@ search.addWidgets([
         <h3><a href="${hit.id}.html">${hit.title}</a></h3>
         <p>${hit._snippetResult.full_text.matchedWords.length > 0 ? components.Snippet({ hit, attribute: 'full_text' }) : ''}</p>
         <p>
-        ${hit.persons.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #e74c3c; color: white;">${truncateLabel(item.label)}</span></a>`)}
-        ${hit.places.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #3498db; color: white;">${truncateLabel(item.label)}</span></a>`)}
-        ${hit.orgs.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #9b59b6; color: white;">${truncateLabel(item.label)}</span></a>`)}
-        ${hit.works.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #f39c12; color: white;">${truncateLabel(item.label)}</span></a>`)}
+        ${hit.persons.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #27ae60; color: white;">${truncateLabel(item.label)}</span></a>`)}
+        ${hit.places.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #27ae60; color: white;">${truncateLabel(item.label)}</span></a>`)}
+        ${hit.orgs.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #27ae60; color: white;">${truncateLabel(item.label)}</span></a>`)}
+        ${hit.works.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #27ae60; color: white;">${truncateLabel(item.label)}</span></a>`)}
+        ${hit.events && hit.events.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #27ae60; color: white;">${truncateLabel(item.label)}</span></a>`)}
         </p>`;
     },
   },
@@ -248,6 +249,15 @@ search.addWidgets([
       cssClasses: {
         delete: 'btn',
         label: 'badge'
+      },
+      transformItems(items) {
+        return items.map(item => ({
+          ...item,
+          refinements: item.refinements.map(refinement => ({
+            ...refinement,
+            label: refinement.value
+          }))
+        }));
       }
     })
 ]);
