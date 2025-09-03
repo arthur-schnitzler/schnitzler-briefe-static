@@ -47,10 +47,10 @@
                                             </div>
                                             
                                             <div class="card">
-                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseSender" aria-expanded="false" aria-controls="collapseSender" style="cursor: pointer;">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseSender" aria-expanded="true" aria-controls="collapseSender" style="cursor: pointer;">
                                                     Sender <i class="fa fa-chevron-down float-end"></i>
                                                 </h4>
-                                                <div id="collapseSender" class="collapse">
+                                                <div id="collapseSender" class="collapse show">
                                                     <div class="card-body">
                                                         <div id="refinement-list-sender"></div>
                                                     </div>
@@ -58,10 +58,10 @@
                                             </div>
                                             
                                             <div class="card">
-                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseReceiver" aria-expanded="false" aria-controls="collapseReceiver" style="cursor: pointer;">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseReceiver" aria-expanded="true" aria-controls="collapseReceiver" style="cursor: pointer;">
                                                     Empfänger <i class="fa fa-chevron-down float-end"></i>
                                                 </h4>
-                                                <div id="collapseReceiver" class="collapse">
+                                                <div id="collapseReceiver" class="collapse show">
                                                     <div class="card-body">
                                                         <div id="refinement-list-receiver"></div>
                                                     </div>
@@ -69,10 +69,10 @@
                                             </div>
                                             
                                             <div class="card">
-                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapsePersons" aria-expanded="false" aria-controls="collapsePersons" style="cursor: pointer;">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapsePersons" aria-expanded="true" aria-controls="collapsePersons" style="cursor: pointer;">
                                                     Personen <i class="fa fa-chevron-down float-end"></i>
                                                 </h4>
-                                                <div id="collapsePersons" class="collapse">
+                                                <div id="collapsePersons" class="collapse show">
                                                     <div class="card-body">
                                                         <div id="refinement-list-persons"></div>
                                                     </div>
@@ -80,10 +80,10 @@
                                             </div>
                                             
                                             <div class="card">
-                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapsePlaces" aria-expanded="false" aria-controls="collapsePlaces" style="cursor: pointer;">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapsePlaces" aria-expanded="true" aria-controls="collapsePlaces" style="cursor: pointer;">
                                                     Orte <i class="fa fa-chevron-down float-end"></i>
                                                 </h4>
-                                                <div id="collapsePlaces" class="collapse">
+                                                <div id="collapsePlaces" class="collapse show">
                                                     <div class="card-body">
                                                         <div id="refinement-list-places"></div>
                                                     </div>
@@ -91,10 +91,10 @@
                                             </div>
                                             
                                             <div class="card">
-                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseOrgs" aria-expanded="false" aria-controls="collapseOrgs" style="cursor: pointer;">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseOrgs" aria-expanded="true" aria-controls="collapseOrgs" style="cursor: pointer;">
                                                     Institutionen <i class="fa fa-chevron-down float-end"></i>
                                                 </h4>
-                                                <div id="collapseOrgs" class="collapse">
+                                                <div id="collapseOrgs" class="collapse show">
                                                     <div class="card-body">
                                                         <div id="refinement-list-orgs"></div>
                                                     </div>
@@ -102,10 +102,10 @@
                                             </div>
                                             
                                             <div class="card">
-                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseWorks" aria-expanded="false" aria-controls="collapseWorks" style="cursor: pointer;">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseWorks" aria-expanded="true" aria-controls="collapseWorks" style="cursor: pointer;">
                                                     Werke <i class="fa fa-chevron-down float-end"></i>
                                                 </h4>
-                                                <div id="collapseWorks" class="collapse">
+                                                <div id="collapseWorks" class="collapse show">
                                                     <div class="card-body">
                                                         <div id="refinement-list-works"></div>
                                                     </div>
@@ -113,10 +113,10 @@
                                             </div>
                                             
                                             <div class="card">
-                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseEvents" aria-expanded="false" aria-controls="collapseEvents" style="cursor: pointer;">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseEvents" aria-expanded="true" aria-controls="collapseEvents" style="cursor: pointer;">
                                                     Ereignisse <i class="fa fa-chevron-down float-end"></i>
                                                 </h4>
-                                                <div id="collapseEvents" class="collapse">
+                                                <div id="collapseEvents" class="collapse show">
                                                     <div class="card-body">
                                                         <div id="refinement-list-events"></div>
                                                     </div>
