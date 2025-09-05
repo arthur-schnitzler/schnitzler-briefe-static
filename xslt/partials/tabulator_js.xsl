@@ -116,6 +116,8 @@
                     // Fix header capitalization for events table
                     if (column.title === "datum") {
                         column.title = "Datum";
+                        column.sorter = "date";
+                        column.sorterParams = {format:"YYYY-MM-DD"};
                     } else if (column.title === "ereignis") {
                         column.title = "Ereignis";
                     } else if (column.title === "werk") {
