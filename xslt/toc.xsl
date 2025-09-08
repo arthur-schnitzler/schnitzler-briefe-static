@@ -233,8 +233,8 @@
                                                   <xsl:when test="$sortentyp/@corresp = 'telegramm'">
                                                   <xsl:text>Telegramm</xsl:text>
                                                   </xsl:when>
-                                                  <xsl:when test="$sortentyp/@corresp = 'umschlag'">
-                                                  <xsl:text>Umschlag</xsl:text>
+                                                  <xsl:when test="$sortentyp/@corresp = 'kuvert'">
+                                                  <xsl:text>Kuvert</xsl:text>
                                                   </xsl:when>
                                                   <xsl:when test="$sortentyp/@corresp = 'widmung'">
                                                   <xsl:text>Widmung</xsl:text>

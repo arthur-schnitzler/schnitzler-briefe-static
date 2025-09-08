@@ -1710,8 +1710,8 @@
             <xsl:when test="@corresp = 'telegramm'">
                 <xsl:text>Telegramm</xsl:text>
             </xsl:when>
-            <xsl:when test="@corresp = 'umschlag'">
-                <xsl:text>Umschlag</xsl:text>
+            <xsl:when test="@corresp = 'kuvert'">
+                <xsl:text>Kuvert</xsl:text>
             </xsl:when>
             <xsl:when test="@corresp = 'widmung'">
                 <xsl:text>Widmung</xsl:text>
