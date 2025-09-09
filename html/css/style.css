@@ -1630,22 +1630,22 @@ div#map {
 
 /* Typesense search filter badges with consistent events color */
 #refinement-list-persons .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #e74c3c !important;
     color: white !important;
 }
 
 #refinement-list-places .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #3498db !important;
     color: white !important;
 }
 
 #refinement-list-orgs .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #9b59b6 !important;
     color: white !important;
 }
 
 #refinement-list-works .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #f39c12 !important;
     color: white !important;
 }
 
@@ -1708,22 +1708,22 @@ div#map {
 
 /* Typesense search filter badges with consistent events color */
 #refinement-list-persons .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #e74c3c !important;
     color: white !important;
 }
 
 #refinement-list-places .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #3498db !important;
     color: white !important;
 }
 
 #refinement-list-orgs .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #9b59b6 !important;
     color: white !important;
 }
 
 #refinement-list-works .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #f39c12 !important;
     color: white !important;
 }
 
@@ -1771,14 +1771,14 @@ div#map {
 .pmb { color: #9B5F98; }
 .gnd { color: #006; }
 
-/* Sender and receiver filter badges in events color */
+/* Sender and receiver filter badges in project color */
 #refinement-list-sender .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #A63437 !important;
     color: white !important;
 }
 
 #refinement-list-receiver .ais-RefinementList-count {
-    background-color: #27ae60 !important;
+    background-color: #A63437 !important;
     color: white !important;
 }
 
