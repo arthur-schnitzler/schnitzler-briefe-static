@@ -27,42 +27,69 @@
                                 <div style="display: flex; justify-content: center;">
                                     <table class="table table-sm display" id="tabulator-table"
                                         style="width: auto; min-width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                tabulator-formatter="html">Titel</th>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                tabulator-formatter="html">Briefwechsel</th>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                tabulator-formatter="html">Datum (ISO)</th>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                tabulator-formatter="html">Art</th>
-                                            <th scope="col" tabulator-headerFilter="input"
-                                                tabulator-formatter="html">ID</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <xsl:variable name="collection"
-                                            select="collection('../data/editions/?select=*.xml')"/>
-                                        <xsl:for-each select="$collection/tei:TEI">
-                                            <xsl:variable name="full_path">
-                                                <xsl:value-of select="document-uri(/)"/>
-                                            </xsl:variable>
-                                            <xsl:variable name="schnitzler-als-empfänger">
-                                                <xsl:choose>
-                                                    <xsl:when test="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = '#pmb2121']">
-                                                        <xsl:text>as-sender</xsl:text>
-                                                    </xsl:when>
-                                                    <xsl:when
-                                                        test="not(child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = '#pmb2121'][1]) and not(child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'received'][1]/tei:persName[@ref = '#pmb2121'][1])"> 
-                                                        <xsl:text>umfeld</xsl:text> </xsl:when>
-                                                    <xsl:otherwise> 
-                                                        <xsl:text>as-empf</xsl:text>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </xsl:variable>
+                                        <thead>
                                             <tr>
-                                                <td>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Titel</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Briefwechsel</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Datum (ISO)</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">Art</th>
+                                                <th scope="col" tabulator-headerFilter="input"
+                                                  tabulator-formatter="html">ID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <xsl:variable name="collection"
+                                                select="collection('../data/editions/?select=*.xml')"/>
+                                            <xsl:for-each select="$collection/tei:TEI">
+                                                <xsl:variable name="full_path">
+                                                  <xsl:value-of select="document-uri(/)"/>
+                                                </xsl:variable>
+                                                <xsl:variable name="korrespondenzparter"
+                                                  as="xs:string">
+                                                  <xsl:for-each
+                                                  select="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspContext[1]/tei:belongsToCorrespondence/@target">
+                                                  <xsl:value-of
+                                                  select="replace(., 'correspondence_', '#pmb')"/>
+                                                  <xsl:if test="position() != last()">
+                                                  <xsl:text>,</xsl:text>
+                                                  </xsl:if>
+                                                  </xsl:for-each>
+                                                </xsl:variable>
+                                                <xsl:variable name="schnitzler-als-empfaenger" as="xs:string">
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = '#pmb2121']"
+                                                  >
+                                                      <xsl:choose>
+                                                          <xsl:when test="some $partner in tokenize($korrespondenzparter, ',') satisfies child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'received'][1]/tei:persName[@ref = $partner]">
+                                                              <xsl:text>as-sender</xsl:text>
+                                                          </xsl:when>
+                                                          <xsl:otherwise>
+                                                              <xsl:text>umfeld</xsl:text>
+                                                          </xsl:otherwise>
+                                                      </xsl:choose>
+                                                  </xsl:when>
+                                                  <xsl:when test="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'received'][1]/tei:persName[@ref = '#pmb2121']">
+                                                      <xsl:choose>
+                                                          <xsl:when test="some $partner in tokenize($korrespondenzparter, ',') satisfies child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = $partner]">
+                                                              <xsl:text>as-empf</xsl:text>
+                                                          </xsl:when>
+                                                          <xsl:otherwise>
+                                                              <xsl:text>umfeld</xsl:text>
+                                                          </xsl:otherwise>
+                                                      </xsl:choose>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                      <xsl:text>umfeld</xsl:text>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                </xsl:variable>
+                                                <tr>
+                                                  <td>
                                                   <sortdate hidden="true">
                                                   <xsl:value-of
                                                   select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()"/>
@@ -76,23 +103,25 @@
                                                   </xsl:attribute>
                                                   <xsl:attribute name="class">
                                                   <xsl:choose>
-                                                      <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
-                                                          <xsl:text>sender-color</xsl:text>
-                                                      </xsl:when>
-                                                      <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
-                                                          <xsl:text>umfeld-color</xsl:text>
-                                                      </xsl:when>
-                                                      <xsl:otherwise>
-                                                          <xsl:text>theme-color</xsl:text>
-                                                      </xsl:otherwise>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'as-empf'">
+                                                  <xsl:text>sender-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'umfeld'">
+                                                  <xsl:text>umfeld-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:text>theme-color</xsl:text>
+                                                  </xsl:otherwise>
                                                   </xsl:choose>
                                                   </xsl:attribute>
-                                                      <xsl:value-of
+                                                  <xsl:value-of
                                                   select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"
                                                   />
                                                   </a>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <xsl:for-each
                                                   select="descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspContext[1]/tei:ref[@type = 'belongsToCorrespondence']">
                                                   <a>
@@ -101,61 +130,67 @@
                                                   select="concat(replace(@target, 'correspondence_', 'toc_'), '.html')"
                                                   />
                                                   </xsl:attribute>
-                                                      <xsl:attribute name="class">
-                                                          <xsl:choose>
-                                                              <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
-                                                                  <xsl:text>sender-color</xsl:text>
-                                                              </xsl:when>
-                                                              <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
-                                                                  <xsl:text>umfeld-color</xsl:text>
-                                                              </xsl:when>
-                                                              <xsl:otherwise>
-                                                                  <xsl:text>theme-color</xsl:text>
-                                                              </xsl:otherwise>
-                                                          </xsl:choose>
-                                                      </xsl:attribute>
+                                                  <xsl:attribute name="class">
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'as-empf'">
+                                                  <xsl:text>sender-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'umfeld'">
+                                                  <xsl:text>umfeld-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:text>theme-color</xsl:text>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                  </xsl:attribute>
                                                   <xsl:value-of select="."/>
                                                   </a>
                                                   <xsl:if test="not(position() = last())">
                                                   <xsl:text>; </xsl:text>
                                                   </xsl:if>
                                                   </xsl:for-each>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <span>
-                                                      <xsl:attribute name="class">
-                                                          <xsl:choose>
-                                                              <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
-                                                                  <xsl:text>sender-color</xsl:text>
-                                                              </xsl:when>
-                                                              <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
-                                                                  <xsl:text>umfeld-color</xsl:text>
-                                                              </xsl:when>
-                                                              <xsl:otherwise>
-                                                                  <xsl:text>theme-color</xsl:text>
-                                                              </xsl:otherwise>
-                                                          </xsl:choose>
-                                                      </xsl:attribute>
+                                                  <xsl:attribute name="class">
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'as-empf'">
+                                                  <xsl:text>sender-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'umfeld'">
+                                                  <xsl:text>umfeld-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:text>theme-color</xsl:text>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                  </xsl:attribute>
                                                   <xsl:value-of
                                                   select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']/text()"
                                                   />
                                                   </span>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <span>
-                                                      <xsl:attribute name="class">
-                                                          <xsl:choose>
-                                                              <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
-                                                                  <xsl:text>sender-color</xsl:text>
-                                                              </xsl:when>
-                                                              <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
-                                                                  <xsl:text>umfeld-color</xsl:text>
-                                                              </xsl:when>
-                                                              <xsl:otherwise>
-                                                                  <xsl:text>theme-color</xsl:text>
-                                                              </xsl:otherwise>
-                                                          </xsl:choose>
-                                                      </xsl:attribute>
+                                                  <xsl:attribute name="class">
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'as-empf'">
+                                                  <xsl:text>sender-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'umfeld'">
+                                                  <xsl:text>umfeld-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:text>theme-color</xsl:text>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                  </xsl:attribute>
                                                   <xsl:variable name="sortentyp"
                                                   select="child::tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[1]/tei:objectType[1]"
                                                   as="node()?"/>
@@ -241,29 +276,31 @@
                                                   </xsl:when>
                                                   </xsl:choose>
                                                   </span>
-                                                </td>
-                                                <td>
+                                                  </td>
+                                                  <td>
                                                   <span>
-                                                      <xsl:attribute name="class">
-                                                          <xsl:choose>
-                                                              <xsl:when test="$schnitzler-als-empfänger = 'as-empf'">
-                                                                  <xsl:text>sender-color</xsl:text>
-                                                              </xsl:when>
-                                                              <xsl:when test="$schnitzler-als-empfänger = 'umfeld'">
-                                                                  <xsl:text>umfeld-color</xsl:text>
-                                                              </xsl:when>
-                                                              <xsl:otherwise>
-                                                                  <xsl:text>theme-color</xsl:text>
-                                                              </xsl:otherwise>
-                                                          </xsl:choose>
-                                                      </xsl:attribute>
+                                                  <xsl:attribute name="class">
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'as-empf'">
+                                                  <xsl:text>sender-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="$schnitzler-als-empfaenger = 'umfeld'">
+                                                  <xsl:text>umfeld-color</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:text>theme-color</xsl:text>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
+                                                  </xsl:attribute>
                                                   <xsl:value-of select="@xml:id"/>
                                                   </span>
-                                                </td>
-                                            </tr>
-                                        </xsl:for-each>
-                                    </tbody>
-                                </table>
+                                                  </td>
+                                                </tr>
+                                            </xsl:for-each>
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
