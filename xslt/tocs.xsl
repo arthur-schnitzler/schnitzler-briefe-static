@@ -62,6 +62,9 @@
                                                 <tr>
                                                   <td>
                                                   <a>
+                                                      <xsl:attribute name="class">
+                                                          <xsl:text>sender-color</xsl:text>
+                                                      </xsl:attribute>
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
                                                   select="concat(replace(@xml:id, 'correspondence', 'toc'), '.html')"
