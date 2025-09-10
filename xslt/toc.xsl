@@ -48,17 +48,12 @@
                                                 <xsl:variable name="full_path">
                                                   <xsl:value-of select="document-uri(/)"/>
                                                 </xsl:variable>
-                                                <xsl:variable name="korrespondenzparter"
-                                                  as="xs:string">
-                                                  <xsl:for-each
-                                                  select="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspContext[1]/tei:ref[@type='belongsToCorrespondence']/@target">
-                                                  <xsl:value-of
-                                                  select="replace(., 'correspondence_', '#pmb')"/>
-                                                  <xsl:if test="position() != last()">
-                                                  <xsl:text>,</xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:for-each>
-                                                </xsl:variable>
+                                                <xsl:variable name="korrespondenzparter" as="xs:string"
+                                                  select="string-join(
+                                                    for $target in child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspContext[1]/tei:belongsToCorrespondence/@target 
+                                                    return replace($target, 'correspondence_', '#pmb'), 
+                                                    ','
+                                                  )"/>
                                                 <xsl:variable name="schnitzler-als-empfaenger" as="xs:string">
                                                   <xsl:choose>
                                                   <xsl:when
