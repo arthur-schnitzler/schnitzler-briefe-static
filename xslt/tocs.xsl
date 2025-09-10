@@ -136,9 +136,16 @@
                                 var title = '<xsl:value-of select="$csvFilename"/>';
                                 return title;
                                 }
+                                function getCorrespondenceName() {
+                                var fullName = '<xsl:value-of select="descendant::tei:titleStmt/tei:title[@level = 'a']"/>';
+                                // Extract surname (everything before the comma)
+                                var surname = fullName.split(',')[0] || fullName;
+                                return surname.trim();
+                                }
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();
-                                createStatistik1(title);
+                                var correspondenceName = getCorrespondenceName();
+                                createStatistik1(title, correspondenceName);
                                 });
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();
@@ -146,7 +153,8 @@
                                 });
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();
-                                createStatistik3(title);
+                                var correspondenceName = getCorrespondenceName();
+                                createStatistik3(title, correspondenceName);
                                 });
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();

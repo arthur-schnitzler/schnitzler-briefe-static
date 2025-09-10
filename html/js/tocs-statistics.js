@@ -158,54 +158,112 @@ function createStatistik2(csvFilename) {
     });
 }
 
-function createStatistik3(csvFilename) {
+function createStatistik3(csvFilename, correspondenceName) {
     const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik3/${csvFilename}`;
     
-    const chart = Highcharts.chart('statistik3', {
-        data: {
-            csvURL,
-            seriesMapping:[ {
-                x: 0, // Year
-                y: 1 // Value
-            }]
-        },
-        chart: {
-            type: 'column',
-            inverted: false
-        },
-        title: {
-            text: 'Textmenge der Korrespondenzstücke'
-        },
-        xAxis: {
-            type: 'category' // Set x-axis type to category
-        },
-        yAxis: {
-            title: {
-                text: 'Zeichenanzahl'
-            },
-            labels: {
-                formatter: function () {
-                    return Math.abs(this.value);
-                    // Display absolute value without the leading "-"
-                }
-            }
-        },
-         tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.x + ': ' + Math.abs(this.y);
-                // Display positive values in the tooltip
-            }
-        },
-        series:[ {
-            name: 'von Schnitzler',
-            color: '#A63437',
-        }, 
-        {
-            name: 'an Schnitzler',
-            color: '#3785A6'
-        }]
-    });
+    // First load the data to process it manually
+    fetch(csvURL)
+        .then(response => response.text())
+        .then(csvText => {
+            const lines = csvText.trim().split('\n');
+            const processedData = [];
+            
+            // Process each line (skip header if exists)
+            lines.forEach((line, index) => {
+                if (index === 0 && isNaN(line.split(',')[1])) return; // Skip header
+                
+                const values = line.split(',');
+                const year = values[0];
+                const val1 = parseInt(values[1]) || 0; // von Schnitzler
+                const val2 = parseInt(values[2]) || 0; // von Schnitzler Umfeld  
+                const val3 = parseInt(values[3]) || 0; // an Schnitzler
+                const val4 = parseInt(values[4]) || 0; // an Schnitzler Umfeld
+                
+                processedData.push({
+                    year: year,
+                    val1: val1, // von Schnitzler direkt
+                    val2: val2, // von Schnitzler Umfeld
+                    val3: val3, // an Schnitzler direkt
+                    val4: val4, // an Schnitzler Umfeld
+                    negativePart: -(val1 + val2), // Combined negative (below x-axis)
+                    positivePart: val3 + val4      // Combined positive (above x-axis)
+                });
+            });
+            
+            // Create the chart with processed data
+            window.processedDataForTooltipStat3 = processedData; // Global scope for tooltip access
+            const chart = Highcharts.chart('statistik3', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Textmenge der Korrespondenzstücke'
+                },
+                xAxis: {
+                    categories: processedData.map(d => d.year)
+                },
+                yAxis: {
+                    title: {
+                        text: 'Zeichenanzahl'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return Math.abs(this.value);
+                        }
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        groupPadding: 0.1,
+                        pointPadding: 0.1
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        const year = this.x;
+                        const dataPoint = window.processedDataForTooltipStat3.find(d => d.year == year);
+                        
+                        if (!dataPoint) {
+                            return '<b>' + this.series.name + '</b><br/>' + year + ': ' + Math.abs(this.y);
+                        }
+                        
+                        let tooltipContent = '<b>' + year + '</b><br/>';
+                        
+                        // Von Schnitzler Sektion (negative Werte)
+                        tooltipContent += '<br/><b>Von Schnitzler:</b><br/>';
+                        tooltipContent += 'Schnitzler direkt: ' + (dataPoint.val1 || 0) + '<br/>';
+                        tooltipContent += 'Schnitzler Umfeld: ' + (dataPoint.val2 || 0) + '<br/>';
+                        tooltipContent += '<b>Gesamt: ' + ((dataPoint.val1 || 0) + (dataPoint.val2 || 0)) + '</b><br/>';
+                        
+                        // An Schnitzler Sektion (positive Werte)
+                        tooltipContent += '<br/><b>An Schnitzler:</b><br/>';
+                        tooltipContent += 'Schnitzler direkt: ' + (dataPoint.val3 || 0) + '<br/>';
+                        tooltipContent += 'Schnitzler Umfeld: ' + (dataPoint.val4 || 0) + '<br/>';
+                        tooltipContent += '<b>Gesamt: ' + ((dataPoint.val3 || 0) + (dataPoint.val4 || 0)) + '</b>';
+                        
+                        return tooltipContent;
+                    }
+                },
+                series: [{
+                    name: 'Umfeldbriefe',
+                    color: '#68825b',
+                    data: processedData.map(d => d.val4) // Positive für oberen Balken
+                }, {
+                    name: 'von ' + (correspondenceName || 'Partner'),
+                    color: '#3785A6', 
+                    data: processedData.map(d => d.val3) // Positive für oberen Balken
+                }, {
+                    name: 'Umfeldbriefe',
+                    color: '#68825b',
+                    data: processedData.map(d => -d.val2) // Negative für unteren Balken
+                }, {
+                    name: 'von Schnitzler',
+                    color: '#A63437',
+                    data: processedData.map(d => -d.val1) // Negative für unteren Balken
+                }]
+            });
+        });
 }
 
 var colorMapA = {
