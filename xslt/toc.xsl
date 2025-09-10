@@ -51,7 +51,7 @@
                                                 <xsl:variable name="korrespondenzparter"
                                                   as="xs:string">
                                                   <xsl:for-each
-                                                  select="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspContext[1]/tei:belongsToCorrespondence/@target">
+                                                  select="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspContext[1]/tei:ref[@type='belongsToCorrespondence']/@target">
                                                   <xsl:value-of
                                                   select="replace(., 'correspondence_', '#pmb')"/>
                                                   <xsl:if test="position() != last()">
