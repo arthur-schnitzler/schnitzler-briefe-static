@@ -30,22 +30,21 @@
                         select="replace(substring-after(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]/tei:idno[@type = 'URI'][1], 'https://id.acdh.oeaw.ac.at/schnitzler-briefe/tocs/toc_'), '.xml', '')"/>
                     <xsl:variable name="csvFilename"
                         select="concat('statistik_pmb', $korrespondenznummer, '.csv')"/>
-                    <script src="./js/tocs-statistics.js"/>
+                    <xsl:variable name="correspondenceName">
+                        <xsl:value-of select="tokenize(substring-after(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:titleStmt[1]/tei:title[@level='a'], '– '), ' ')[last()]"/>
+                    </xsl:variable>
+                    
+                                        <script src="./js/tocs-statistics.js"/>
                     <script>
     function getTitle() {
         var title = '<xsl:value-of select="$csvFilename"/>';
         return title;
     }
-    function getCorrespondenceName() {
-        var fullName = '<xsl:value-of select="descendant::tei:titleStmt/tei:title[@level = 'a']"/>';
-        // Extract surname (everything before the comma)
-        var surname = fullName.split(',')[0] || fullName;
-        return surname.trim();
-    }
+    
     document.addEventListener('DOMContentLoaded', function () {
         // Assuming your JavaScript function is defined in tocs-statistics-1.js
         var title = getTitle();
-        var correspondenceName = getCorrespondenceName();
+        var correspondenceName = '<xsl:value-of select="$correspondenceName"/>';
         createStatistik1(title, correspondenceName);
     });
                     </script>

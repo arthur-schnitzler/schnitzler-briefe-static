@@ -113,6 +113,9 @@
             <xsl:sort select="tei:persName[@role = 'main']/text()"/>
             <xsl:variable name="nummer-des-korrespondenzpartners"
                 select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
+            <xsl:variable name="correspondenceName">
+                <xsl:value-of select="tokenize(tei:persName[@role = 'main'], ',')[1]"/>
+            </xsl:variable>
             <xsl:variable name="filename"
                 select="concat('statistik_', $nummer-des-korrespondenzpartners, '.html')"/>
             <xsl:variable name="name"
@@ -134,20 +137,16 @@
                             <xsl:call-template name="nav_bar"/>
                             <xsl:variable name="csvFilename"
                                 select="concat('statistik_', $nummer-des-korrespondenzpartners, '.csv')"/>
+                            
                             <script>
                                 function getTitle() {
                                 var title = '<xsl:value-of select="$csvFilename"/>';
                                 return title;
                                 }
-                                function getCorrespondenceName() {
-                                var fullName = '<xsl:value-of select="descendant::tei:titleStmt/tei:title[@level = 'a']"/>';
-                                // Extract surname (everything before the comma)
-                                var surname = fullName.split(',')[0] || fullName;
-                                return surname.trim();
-                                }
+                               
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();
-                                var correspondenceName = getCorrespondenceName();
+                                var correspondenceName = '<xsl:value-of select="$correspondenceName"/>';
                                 createStatistik1(title, correspondenceName);
                                 });
                                 document.addEventListener('DOMContentLoaded', function () {
@@ -156,7 +155,7 @@
                                 });
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();
-                                var correspondenceName = getCorrespondenceName();
+                                var correspondenceName = '<xsl:value-of select="$correspondenceName"/>';
                                 createStatistik3(title, correspondenceName);
                                 });
                                 document.addEventListener('DOMContentLoaded', function () {
