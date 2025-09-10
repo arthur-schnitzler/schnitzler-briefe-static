@@ -54,13 +54,14 @@
                                                     return replace($target, 'correspondence_', '#pmb'), 
                                                     ','
                                                   )"/>
+                                                <xsl:variable name="current-node" select="."/>
                                                 <xsl:variable name="schnitzler-als-empfaenger" as="xs:string">
                                                   <xsl:choose>
                                                   <xsl:when
                                                   test="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = '#pmb2121']"
                                                   >
                                                       <xsl:choose>
-                                                          <xsl:when test="some $partner in tokenize($korrespondenzparter, ',') satisfies child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'received'][1]/tei:persName[@ref = $partner]">
+                                                          <xsl:when test="some $partner in tokenize($korrespondenzparter, ',') satisfies $current-node/child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'received'][1]/tei:persName[@ref = $partner]">
                                                               <xsl:text>as-sender</xsl:text>
                                                           </xsl:when>
                                                           <xsl:otherwise>
@@ -70,7 +71,7 @@
                                                   </xsl:when>
                                                   <xsl:when test="child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'received'][1]/tei:persName[@ref = '#pmb2121']">
                                                       <xsl:choose>
-                                                          <xsl:when test="some $partner in tokenize($korrespondenzparter, ',') satisfies child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = $partner]">
+                                                          <xsl:when test="some $partner in tokenize($korrespondenzparter, ',') satisfies $current-node/child::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = $partner]">
                                                               <xsl:text>as-empf</xsl:text>
                                                           </xsl:when>
                                                           <xsl:otherwise>

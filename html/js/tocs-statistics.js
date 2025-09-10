@@ -6,9 +6,18 @@ function createStatistik1(csvFilename) {
     const chart = Highcharts.chart('statistik1', {
         data: {
             csvURL,
-            seriesMapping:[ {
+            seriesMapping: [{
                 x: 0, // Year
-                y: 1 // Value
+                y: 1  // Value 1 - von Schnitzler
+            }, {
+                x: 0, // Year  
+                y: 2  // Value 2 - von Schnitzler Umfeld
+            }, {
+                x: 0, // Year
+                y: 3  // Value 3 - an Schnitzler  
+            }, {
+                x: 0, // Year
+                y: 4  // Value 4 - an Schnitzler Umfeld
             }]
         },
         chart: {
@@ -19,7 +28,7 @@ function createStatistik1(csvFilename) {
             text: 'Anzahl der Korrespondenzstücke'
         },
         xAxis: {
-            type: 'category' // Set x-axis type to category
+            type: 'category'
         },
         yAxis: {
             title: {
@@ -28,23 +37,38 @@ function createStatistik1(csvFilename) {
             labels: {
                 formatter: function () {
                     return Math.abs(this.value);
-                    // Display absolute value without the leading "-"
                 }
+            }
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal'
             }
         },
         tooltip: {
             formatter: function () {
                 return '<b>' + this.series.name + '</b><br/>' +
                     this.x + ': ' + Math.abs(this.y);
-                // Display positive values in the tooltip
             }
         },
-        series:[ {
+        series: [{
             name: 'von Schnitzler',
             color: '#A63437',
+            data: []
+        }, {
+            name: 'von Schnitzler Umfeld', 
+            color: '#68825b',
+            data: [],
+            linkedTo: ':previous'
         }, {
             name: 'an Schnitzler',
-            color: '#3785A6'
+            color: '#3785A6',
+            data: []
+        }, {
+            name: 'an Schnitzler Umfeld',
+            color: '#68825b', 
+            data: [],
+            linkedTo: ':previous'
         }]
     });
 }
