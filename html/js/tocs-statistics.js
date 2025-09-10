@@ -91,22 +91,22 @@ function createStatistik1(csvFilename, correspondenceName) {
                     reversed: false
                 },
                 series: [{
+                    name: 'Umfeldbriefe',
+                    color: '#68825b',
+                    data: processedData.map(d => -d.val2), // Negative für unteren Balken
+                    showInLegend: false
+                }, {
                     name: 'von Schnitzler',
                     color: '#A63437',
                     data: processedData.map(d => -d.val1) // Negative für unteren Balken
-                }, {
-                    name: 'von ' + (correspondenceName || 'Partner'),
-                    color: '#3785A6', 
-                    data: processedData.map(d => d.val3) // Positive für oberen Balken
                 }, {
                     name: 'Umfeldbriefe',
                     color: '#68825b',
                     data: processedData.map(d => d.val4) // Positive für oberen Balken
                 }, {
-                    name: 'Umfeldbriefe-hidden',
-                    color: '#68825b',
-                    data: processedData.map(d => -d.val2), // Negative für unteren Balken
-                    showInLegend: false
+                    name: 'von ' + (correspondenceName || 'Partner'),
+                    color: '#3785A6', 
+                    data: processedData.map(d => d.val3) // Positive für oberen Balken
                 }]
             });
         });
@@ -250,22 +250,22 @@ function createStatistik3(csvFilename, correspondenceName) {
                     }
                 },
                 series: [{
+                    name: 'Umfeldbriefe',
+                    color: '#68825b',
+                    data: processedData.map(d => -d.val2), // Negative für unteren Balken
+                    showInLegend: false
+                }, {
                     name: 'von Schnitzler',
                     color: '#A63437',
                     data: processedData.map(d => -d.val1) // Negative für unteren Balken
-                }, {
-                    name: 'von ' + (correspondenceName || 'Partner'),
-                    color: '#3785A6', 
-                    data: processedData.map(d => d.val3) // Positive für oberen Balken
                 }, {
                     name: 'Umfeldbriefe',
                     color: '#68825b',
                     data: processedData.map(d => d.val4) // Positive für oberen Balken
                 }, {
-                    name: 'Umfeldbriefe-hidden',
-                    color: '#68825b',
-                    data: processedData.map(d => -d.val2), // Negative für unteren Balken
-                    showInLegend: false
+                    name: 'von ' + (correspondenceName || 'Partner'),
+                    color: '#3785A6', 
+                    data: processedData.map(d => d.val3) // Positive für oberen Balken
                 }]
             });
         });
