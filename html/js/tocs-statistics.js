@@ -1,6 +1,6 @@
 
 // External JavaScript file
-function createStatistik1(csvFilename) {
+function createStatistik1(csvFilename, correspondenceName) {
     const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik1/${csvFilename}`;
     
     // First load the data to process it manually
@@ -88,15 +88,15 @@ function createStatistik1(csvFilename) {
                     }
                 },
                 series: [{
-                    name: 'an Schnitzler Umfeld',
+                    name: 'Umfeldbriefe',
                     color: '#68825b',
                     data: processedData.map(d => d.val4) // Positive für oberen Balken
                 }, {
-                    name: 'an Schnitzler',
+                    name: 'von ' + (correspondenceName || 'Partner'),
                     color: '#3785A6', 
                     data: processedData.map(d => d.val3) // Positive für oberen Balken
                 }, {
-                    name: 'von Schnitzler Umfeld',
+                    name: 'Umfeldbriefe',
                     color: '#68825b',
                     data: processedData.map(d => -d.val2) // Negative für unteren Balken
                 }, {
