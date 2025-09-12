@@ -324,7 +324,7 @@ function createStatistik3a(csvFilename, correspondenceName) {
                         zMax: maxValue,
                         dataLabels: {
                             enabled: true,
-                            format: '{point.value:,.0f} Zeichen',
+                            format: '<b>{point.label}</b><br/>{point.value:,.0f} Zeichen',
                             style: {
                                 fontSize: '11px',
                                 fontWeight: 'bold'
