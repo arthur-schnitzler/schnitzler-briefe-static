@@ -279,16 +279,21 @@ function createStatistik3a(csvFilename, correspondenceName) {
             const chart = Highcharts.chart('statistik3a', {
                 chart: {
                     type: 'bubble',
-                    plotBorderWidth: 1,
+                    plotBorderWidth: 0,
                     zoomType: 'xy'
                 },
                 title: {
-                    text: 'Textmenge nach Kategorien (Zeichenanzahl)'
+                    text: 'Zeichenanzahl der Korrespondenzstücke'
                 },
                 xAxis: {
-                    categories: ['', 'von Schnitzler', 'von ' + (correspondenceName || 'Partner'), 
+                    categories: ['', 'Schnitzler', (correspondenceName || 'Partner'), 
                                'Umfeld Schnitzler', 'Umfeld ' + (correspondenceName || 'Partner')],
-                    gridLineWidth: 1,
+                    gridLineWidth: 0,
+                    lineWidth: 0,
+                    tickWidth: 0,
+                    labels: {
+                        enabled: false
+                    },
                     title: {
                         text: null
                     }
@@ -303,6 +308,8 @@ function createStatistik3a(csvFilename, correspondenceName) {
                         enabled: false
                     },
                     gridLineWidth: 0,
+                    lineWidth: 0,
+                    tickWidth: 0,
                     min: 0.5,
                     max: 1.5
                 },
@@ -317,7 +324,7 @@ function createStatistik3a(csvFilename, correspondenceName) {
                         zMax: maxValue,
                         dataLabels: {
                             enabled: true,
-                            format: '<b>{point.label}</b><br/>{point.value:,.0f} Zeichen',
+                            format: '{point.value:,.0f} Zeichen',
                             style: {
                                 fontSize: '11px',
                                 fontWeight: 'bold'
