@@ -1,5 +1,91 @@
 
 // External JavaScript file
+function createStatistik1a(csvFilename, correspondenceName) {
+    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik1/${csvFilename}`;
+    
+    // Load data to calculate totals for pie chart
+    fetch(csvURL)
+        .then(response => response.text())
+        .then(csvText => {
+            const lines = csvText.trim().split('\n');
+            let totalVonSchnitzler = 0;
+            let totalVonPartner = 0;
+            let totalUmfeldSchnitzler = 0;
+            let totalUmfeldPartner = 0;
+            
+            // Process each line to calculate totals
+            lines.forEach((line, index) => {
+                if (index === 0 && isNaN(line.split(',')[1])) return; // Skip header
+                
+                const values = line.split(',');
+                totalVonSchnitzler += parseInt(values[1]) || 0; // von Schnitzler
+                totalUmfeldSchnitzler += parseInt(values[2]) || 0; // von Schnitzler Umfeld  
+                totalVonPartner += parseInt(values[3]) || 0; // an Schnitzler (vom Partner)
+                totalUmfeldPartner += parseInt(values[4]) || 0; // an Schnitzler Umfeld (vom Partner)
+            });
+            
+            // Create pie chart data
+            const pieData = [];
+            
+            if (totalVonSchnitzler > 0) {
+                pieData.push({
+                    name: 'von Schnitzler',
+                    y: totalVonSchnitzler,
+                    color: '#A63437'
+                });
+            }
+            
+            if (totalVonPartner > 0) {
+                pieData.push({
+                    name: 'von ' + (correspondenceName || 'Partner'),
+                    y: totalVonPartner,
+                    color: '#3785A6'
+                });
+            }
+            
+            if (totalUmfeldSchnitzler > 0) {
+                pieData.push({
+                    name: 'Umfeldbriefe von Schnitzler',
+                    y: totalUmfeldSchnitzler,
+                    color: '#68825b'
+                });
+            }
+            
+            if (totalUmfeldPartner > 0) {
+                pieData.push({
+                    name: 'Umfeldbriefe von ' + (correspondenceName || 'Partner'),
+                    y: totalUmfeldPartner,
+                    color: '#68825b'
+                });
+            }
+            
+            // Create the pie chart
+            const chart = Highcharts.chart('statistik1a', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Gesamtverteilung der Korrespondenzstücke'
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: '40%', // Donut chart
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Korrespondenzstücke',
+                    data: pieData
+                }]
+            });
+        });
+}
+
 function createStatistik1(csvFilename, correspondenceName) {
     const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik1/${csvFilename}`;
     
@@ -91,10 +177,9 @@ function createStatistik1(csvFilename, correspondenceName) {
                     reversed: false
                 },
                 series: [{
-                    name: 'Umfeldbriefe',
+                    name: 'Umfeldbriefe (unten)',
                     color: '#68825b',
-                    data: processedData.map(d => -d.val2), // Negative für unteren Balken
-                    showInLegend: false
+                    data: processedData.map(d => -d.val2) // Negative für unteren Balken
                 }, {
                     name: 'von Schnitzler',
                     color: '#A63437',
@@ -250,10 +335,9 @@ function createStatistik3(csvFilename, correspondenceName) {
                     }
                 },
                 series: [{
-                    name: 'Umfeldbriefe',
+                    name: 'Umfeldbriefe (unten)',
                     color: '#68825b',
-                    data: processedData.map(d => -d.val2), // Negative für unteren Balken
-                    showInLegend: false
+                    data: processedData.map(d => -d.val2) // Negative für unteren Balken
                 }, {
                     name: 'von Schnitzler',
                     color: '#A63437',

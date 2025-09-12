@@ -147,6 +147,11 @@
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();
                                 var correspondenceName = '<xsl:value-of select="$correspondenceName"/>';
+                                createStatistik1a(title, correspondenceName);
+                                });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                var title = getTitle();
+                                var correspondenceName = '<xsl:value-of select="$correspondenceName"/>';
                                 createStatistik1(title, correspondenceName);
                                 });
                                 document.addEventListener('DOMContentLoaded', function () {
@@ -176,6 +181,8 @@
                                         </h1>
                                     </div>
                                     <div class="body">
+                                        <div id="statistik1a"
+                                            style="width:100%; height:400px; margin-bottom:1.5em;"/>
                                         <div id="statistik1"
                                             style="width:100%; height:400px; margin-bottom:1.5em;"/>
                                         <div id="statistik3"
