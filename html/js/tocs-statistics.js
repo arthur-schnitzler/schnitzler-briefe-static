@@ -496,38 +496,56 @@ function createStatistik3(csvFilename, correspondenceName) {
         });
 }
 
+// Grundfarben für statistik4a (7 Kategorien)
 var colorMapA = {
-    'anderes': '#A63437',
-    'bild': '#3785A6',
-    'brief': '#A63437',
-    'karte': '#3785A6',
-    'kartenbrief': '#FF6347',
-    'telegramm': '#7FFFD4',
-    'umschlag': '#2E8B57',
-    'widmung': '#9932CC',
+    'anderes': '#A63437',        // Rot (dunkel)
+    'bild': '#3785A6',           // Blau (dunkel) 
+    'brief': '#2E8B57',          // Grün (dunkel)
+    'karte': '#FF8C00',          // Orange (dunkel)
+    'kartenbrief': '#9932CC',    // Violett (dunkel)
+    'telegramm': '#008B8B',      // Türkis (dunkel)
+    'umschlag': '#8B4513',       // Braun (dunkel)
+    'widmung': '#DC143C'         // Karmesinrot (dunkel)
 };
 
+// Farbvariationen für statistik4b basierend auf Grundfarben
 var colorMapB = {
+    // Anderes - Rot-Familie
     'anderes': '#A63437',
+    
+    // Bild - Blau-Familie  
     'bild': '#3785A6',
-    'bild-fotografie': '#FF7F50',
-    'brief': '#A63437',
-    'brief-entwurf': '#008080',
-    'karte': '#3785A6',
-    'karte-postkarte': '#1E6C8A',
-    'karte-bildpostkarte': '#226F93',
-    'karte-briefkarte': '#1C748F',
-    'karte-visitenkarte': '#1A6A7E',
-    'kartenbrief': '#FF6347',
-    'telegramm': '#7FFFD4',
-    'telegramm-entwurf': '#FF4500',
-    'umschlag': '#2E8B57',
-    'widmung': '#9932CC',
-    'widmung-widmung_umschlag': '#8531B6',
-    'widmung-widmung_vorsatzblatt': '#A233D8',
-    'widmung-widmung_schmutztitel': '#6F309F',
-    'widmung-widmung_vortitel': '#AC32E1',
-    'widmung-widmung_titelblatt': '#77308C'
+    'bild-fotografie': '#5AA3C7',
+    
+    // Brief - Grün-Familie
+    'brief': '#2E8B57',
+    'brief-entwurf': '#4AA371',
+    
+    // Karte - Orange-Familie
+    'karte': '#FF8C00',
+    'karte-postkarte': '#FFA500',
+    'karte-bildpostkarte': '#FFB84D',
+    'karte-briefkarte': '#FFCA80',
+    'karte-visitenkarte': '#FFDDB3',
+    
+    // Kartenbrief - Violett-Familie (bleibt gleich)
+    'kartenbrief': '#9932CC',
+    
+    // Telegramm - Türkis-Familie
+    'telegramm': '#008B8B',
+    'telegramm-entwurf': '#20B2AA',
+    
+    // Umschlag - Braun-Familie (bleibt gleich)
+    'umschlag': '#8B4513',
+    
+    // Widmung - Karmesinrot-Familie
+    'widmung': '#DC143C',
+    'widmung-widmung_umschlag': '#E6476F',
+    'widmung-widmung_vorsatzblatt': '#F04A9B',
+    'widmung-widmung_schmutztitel': '#C41E3A',
+    'widmung-widmung_reihentitelblatt': '#E8537A',
+    'widmung-widmung_titelblatt': '#B91831',
+    'widmung-widmung_einlegeblatt': '#ED5F8D'
 };
 
 
