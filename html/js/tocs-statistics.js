@@ -197,6 +197,147 @@ function createStatistik1(csvFilename, correspondenceName) {
         });
 }
 
+function createStatistik3a(csvFilename, correspondenceName) {
+    const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik3/${csvFilename}`;
+    
+    // Load data to calculate totals for bubble chart
+    fetch(csvURL)
+        .then(response => response.text())
+        .then(csvText => {
+            const lines = csvText.trim().split('\n');
+            let totalVonSchnitzler = 0;
+            let totalVonPartner = 0;
+            let totalUmfeldSchnitzler = 0;
+            let totalUmfeldPartner = 0;
+            
+            // Process each line to calculate totals
+            lines.forEach((line, index) => {
+                if (index === 0 && isNaN(line.split(',')[1])) return; // Skip header
+                
+                const values = line.split(',');
+                totalVonSchnitzler += parseInt(values[1]) || 0; // von Schnitzler
+                totalUmfeldSchnitzler += parseInt(values[2]) || 0; // von Schnitzler Umfeld  
+                totalVonPartner += parseInt(values[3]) || 0; // an Schnitzler (vom Partner)
+                totalUmfeldPartner += parseInt(values[4]) || 0; // an Schnitzler Umfeld (vom Partner)
+            });
+            
+            // Find maximum value for scaling
+            const maxValue = Math.max(totalVonSchnitzler, totalVonPartner, totalUmfeldSchnitzler, totalUmfeldPartner);
+            
+            // Create bubble chart data - each circle represents one category
+            const bubbleData = [
+                {
+                    name: 'von Schnitzler',
+                    data: [{
+                        x: 1,
+                        y: 1,
+                        z: totalVonSchnitzler,
+                        color: '#A63437',
+                        label: 'von Schnitzler',
+                        value: totalVonSchnitzler
+                    }]
+                },
+                {
+                    name: 'von ' + (correspondenceName || 'Partner'),
+                    data: [{
+                        x: 2,
+                        y: 1,
+                        z: totalVonPartner,
+                        color: '#3785A6',
+                        label: 'von ' + (correspondenceName || 'Partner'),
+                        value: totalVonPartner
+                    }]
+                },
+                {
+                    name: 'Umfeldbriefe von Schnitzler',
+                    data: [{
+                        x: 3,
+                        y: 1,
+                        z: totalUmfeldSchnitzler,
+                        color: '#68825b',
+                        label: 'Umfeldbriefe von Schnitzler',
+                        value: totalUmfeldSchnitzler
+                    }]
+                },
+                {
+                    name: 'Umfeldbriefe von ' + (correspondenceName || 'Partner'),
+                    data: [{
+                        x: 4,
+                        y: 1,
+                        z: totalUmfeldPartner,
+                        color: '#68825b',
+                        label: 'Umfeldbriefe von ' + (correspondenceName || 'Partner'),
+                        value: totalUmfeldPartner
+                    }]
+                }
+            ];
+            
+            // Filter out empty data sets
+            const filteredData = bubbleData.filter(series => series.data[0].z > 0);
+            
+            // Create the bubble chart
+            const chart = Highcharts.chart('statistik3a', {
+                chart: {
+                    type: 'bubble',
+                    plotBorderWidth: 1,
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: 'Textmenge nach Kategorien (Zeichenanzahl)'
+                },
+                xAxis: {
+                    categories: ['', 'von Schnitzler', 'von ' + (correspondenceName || 'Partner'), 
+                               'Umfeld Schnitzler', 'Umfeld ' + (correspondenceName || 'Partner')],
+                    gridLineWidth: 1,
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    startOnTick: false,
+                    endOnTick: false,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        enabled: false
+                    },
+                    gridLineWidth: 0,
+                    min: 0.5,
+                    max: 1.5
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    bubble: {
+                        minSize: 20,
+                        maxSize: 120,
+                        zMin: 0,
+                        zMax: maxValue,
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.label}</b><br/>{point.value:,.0f} Zeichen',
+                            style: {
+                                fontSize: '11px',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    useHTML: true,
+                    headerFormat: '<table>',
+                    pointFormat: '<tr><th colspan="2"><h3>{point.label}</h3></th></tr>' +
+                                '<tr><th>Zeichenanzahl:</th><td>{point.z:,.0f}</td></tr>',
+                    footerFormat: '</table>',
+                    followPointer: true
+                },
+                series: filteredData
+            });
+        });
+}
+
 function createStatistik2(csvFilename) {
     
     const csvURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/statistik2/${csvFilename}`;
