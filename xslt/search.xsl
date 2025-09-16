@@ -39,7 +39,7 @@
                                                         <i class="fas fa-info-circle text-muted"
                                                            data-bs-toggle="tooltip"
                                                            data-bs-placement="right"
-                                                           title="Typesense: Schnelle Volltextsuche mit Filtern | Noske: Erweiterte linguistische Suche (CQL)"></i>
+                                                           title="Typesense: Schnelle Volltextsuche mit Filtern | Noske: Linguistische Suche mit CQL (z.B. [lemma=&quot;sein&quot;] oder lieb*)"></i>
                                                     </div>
                                                     <div class="card-body">
                                                         <div class="btn-group d-grid gap-2" role="group" aria-label="Search engine selection">
@@ -165,7 +165,7 @@
                                                     <i class="fas fa-info-circle text-muted"
                                                        data-bs-toggle="tooltip"
                                                        data-bs-placement="right"
-                                                       title="Typesense: Schnelle Volltextsuche mit Filtern | Noske: Erweiterte linguistische Suche (CQL)"></i>
+                                                       title="Typesense: Schnelle Volltextsuche mit Filtern | Noske: Linguistische Suche mit CQL (z.B. [lemma=&quot;sein&quot;] oder lieb*)"></i>
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="btn-group d-grid gap-2" role="group" aria-label="Search engine selection">
@@ -182,9 +182,10 @@
                                             <div class="alert alert-info" role="alert">
                                                 <h6><i class="fas fa-info-circle"></i> Erweiterte Suche mit Noske</h6>
                                                 <p class="mb-2 small">
-                                                    <strong>Einfache Suche:</strong> Geben Sie ein Wort ein, z.B. <code>Liebe</code><br/>
-                                                    <strong>CQL-Suche:</strong> Verwenden Sie erweiterte Abfragen, z.B. <code>[lemma="lieben"]</code> oder <code>[pos="N.*"]</code><br/>
-                                                    <strong>Platzhalter:</strong> <code>.*</code> für beliebige Zeichen, <code>Lie.*</code> für Wörter die mit "Lie" beginnen
+                                                    <strong>Einfache Suche:</strong> <code>liebe</code> oder <code>lieb*</code> (mit * für beliebige Zeichen)<br/>
+                                                    <strong>CQL-Suche:</strong> <code>[lemma="lieben"]</code> • <code>[tag="N.*"]</code> • <code>[word=".*ing"]</code><br/>
+                                                    <strong>Platzhalter:</strong> Einfach: <code>*</code> und <code>?</code> • CQL: <code>.*</code> in Anführungszeichen<br/>
+                                                    <strong>Beispiele:</strong> <code>lieb*</code> • <code>[word="Lie.*"]</code> • <code>[lemma="sein"]</code>
                                                 </p>
                                             </div>
                                         </div>
@@ -192,7 +193,7 @@
                                             <div class="mb-3">
                                                 <div id="noske-stats" class="mb-2"></div>
                                                 <input type="text" id="noske-input" class="form-control form-control-lg"
-                                                       placeholder="Suchbegriff eingeben... (z.B. 'Liebe' oder '[lemma=&quot;lieben&quot;]')" />
+                                                       placeholder="Suchbegriff eingeben... (z.B. 'lieb*' oder '[lemma=&quot;lieben&quot;]')" />
                                             </div>
 
                                             <div id="noske-hits" class="mb-3"></div>
