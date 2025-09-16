@@ -27,13 +27,36 @@
                                 <h1><xsl:value-of select="$doc_title"/></h1>
                             </div>
                             <div class="card-body">
-                                <div class="ais-InstantSearch">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div id="stats-container"></div>
-                                            <div id="searchbox"></div>
-                                            <div id="current-refinements"></div>
-                                            <div id="clear-refinements"></div>
+                                <!-- Typesense Search Container -->
+                                <div id="typesense-search-container" style="display: block;">
+                                    <div class="ais-InstantSearch">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <!-- Search Engine Toggle -->
+                                                <div class="card mb-3">
+                                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                                        <span>Suchmaschine</span>
+                                                        <i class="fas fa-info-circle text-muted"
+                                                           data-bs-toggle="tooltip"
+                                                           data-bs-placement="right"
+                                                           title="Typesense: Schnelle Volltextsuche mit Filtern | Noske: Erweiterte linguistische Suche (CQL)"></i>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="btn-group d-grid gap-2" role="group" aria-label="Search engine selection">
+                                                            <button type="button" class="btn btn-primary btn-sm" id="btn-typesense">
+                                                                <i class="fas fa-search"></i> Typesense
+                                                            </button>
+                                                            <button type="button" class="btn btn-outline-primary btn-sm" id="btn-noske">
+                                                                <i class="fas fa-language"></i> Noske
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="stats-container"></div>
+                                                <div id="searchbox"></div>
+                                                <div id="current-refinements"></div>
+                                                <div id="clear-refinements"></div>
                                             
                                             <div class="card">
                                                 <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear" style="cursor: pointer;">
@@ -123,12 +146,60 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8">
-                                            <div id="hits"></div>
-                                            <div id="pagination"></div>
+                                            <div class="col-md-8">
+                                                <div id="hits"></div>
+                                                <div id="pagination"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>                          
+                                </div>
+
+                                <!-- Noske Search Container -->
+                                <div id="noske-search-container" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <!-- Search Engine Toggle (same as Typesense) -->
+                                            <div class="card mb-3">
+                                                <div class="card-header d-flex justify-content-between align-items-center">
+                                                    <span>Suchmaschine</span>
+                                                    <i class="fas fa-info-circle text-muted"
+                                                       data-bs-toggle="tooltip"
+                                                       data-bs-placement="right"
+                                                       title="Typesense: Schnelle Volltextsuche mit Filtern | Noske: Erweiterte linguistische Suche (CQL)"></i>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="btn-group d-grid gap-2" role="group" aria-label="Search engine selection">
+                                                        <button type="button" class="btn btn-outline-primary btn-sm" id="btn-typesense-noske">
+                                                            <i class="fas fa-search"></i> Typesense
+                                                        </button>
+                                                        <button type="button" class="btn btn-primary btn-sm" id="btn-noske-noske">
+                                                            <i class="fas fa-language"></i> Noske
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="alert alert-info" role="alert">
+                                                <h6><i class="fas fa-info-circle"></i> Erweiterte Suche mit Noske</h6>
+                                                <p class="mb-2 small">
+                                                    <strong>Einfache Suche:</strong> Geben Sie ein Wort ein, z.B. <code>Liebe</code><br/>
+                                                    <strong>CQL-Suche:</strong> Verwenden Sie erweiterte Abfragen, z.B. <code>[lemma="lieben"]</code> oder <code>[pos="N.*"]</code><br/>
+                                                    <strong>Platzhalter:</strong> <code>.*</code> für beliebige Zeichen, <code>Lie.*</code> für Wörter die mit "Lie" beginnen
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="mb-3">
+                                                <div id="noske-stats" class="mb-2"></div>
+                                                <input type="text" id="noske-input" class="form-control form-control-lg"
+                                                       placeholder="Suchbegriff eingeben... (z.B. 'Liebe' oder '[lemma=&quot;lieben&quot;]')" />
+                                            </div>
+
+                                            <div id="noske-hits" class="mb-3"></div>
+                                            <div id="noske-pagination"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,10 +208,14 @@
                     
                 </div>
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css" />
+                <link rel="stylesheet" href="css/noske-search.css" />
                 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.46.0"></script>
                 <script
                     src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script>
                  <script src="js/ts_index.js"></script>
+                 <script type="module" src="js/noske_search.js"></script>
+                 <script src="js/direct_noske_search.js"></script>
+                 <script src="js/search_toggle.js"></script>
             </body>
         </html>
     </xsl:template>
