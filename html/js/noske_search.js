@@ -7,11 +7,11 @@ class NoskeSearchImplementation {
         this.initialized = false;
         this.config = {
             client: {
-                base: "https://corpus-search.acdh.oeaw.ac.at/run.cgi/",
+                base: "https://corpus-search.acdh.oeaw.ac.at/",
                 corpname: "schnitzlerbriefe",
-                attrs: "word,lemma,tag",
-                structs: "doc,p,s",
-                refs: "doc.id,doc.title,p.id,s.id"
+                attrs: "word,id",
+                structs: "doc,docTitle,head,p,imprimatur,list",
+                refs: "doc.id,doc.corpus,docTitle.id,p.id,head.id,imprimatur.id,list.id"
             },
             hits: {
                 id: "noske-hits",
@@ -54,14 +54,32 @@ class NoskeSearchImplementation {
 
         try {
             // Create new NoskeSearch instance
-            this.search = new NoskeSearch({
-                container: "noske-search-container"
+            this.search = new NoskeSearch({container: "noske-search"});
+
+            this.search.search({
+                client: {
+                    base: "https://corpus-search.acdh.oeaw.ac.at/",
+                    corpname: "schnitzlerbriefe",
+                    attrs: "word,id",
+                    structs: "doc,docTitle,head,p,imprimatur,list",
+                    refs: "doc.id,doc.corpus,docTitle.id,p.id,head.id,imprimatur.id,list.id",
+                },
+                hits: {
+                    id: "hitsbox",
+                    css: {
+                        table: "table-auto",
+                    }
+                },
+                pagination: {
+                    id: "noske-pagination-test",
+                },
+                searchInput: {
+                    id: "noske-search",
+                },
+                stats: {
+                    id: "noske-stats",
+                },
             });
-
-            console.log('NoskeSearch instance created:', this.search);
-
-            // Configure the search with our parameters
-            this.search.search(this.config);
 
             // Add custom event listeners
             this.setupEventListeners();
