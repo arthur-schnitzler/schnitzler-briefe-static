@@ -46,11 +46,19 @@ class SearchToggle {
         this.updateButtonStates('typesense');
 
         // Hide Noske search if it exists
+        if (window.noskeSearch) {
+            window.noskeSearch.hide();
+        }
         if (window.directNoskeSearch) {
             window.directNoskeSearch.hide();
         }
-        if (window.noskeSearch) {
-            window.noskeSearch.hide();
+
+        // Ensure Typesense search is properly initialized and rendered
+        if (window.search && typeof window.search.refresh === 'function') {
+            // Wait a bit for DOM to update, then refresh
+            setTimeout(() => {
+                window.search.refresh();
+            }, 100);
         }
 
         console.log('Switched to Typesense search');
@@ -70,10 +78,10 @@ class SearchToggle {
         this.updateButtonStates('noske');
 
         // Initialize and show Noske search
-        if (window.directNoskeSearch) {
-            window.directNoskeSearch.show();
-        } else if (window.noskeSearch) {
+        if (window.noskeSearch) {
             window.noskeSearch.show();
+        } else if (window.directNoskeSearch) {
+            window.directNoskeSearch.show();
         }
 
         console.log('Switched to Noske search');

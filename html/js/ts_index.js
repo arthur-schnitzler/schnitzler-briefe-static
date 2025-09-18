@@ -22,6 +22,9 @@ const search = instantsearch({
     searchClient,
 });
 
+// Make search globally available for the toggle functionality
+window.search = search;
+
 search.addWidgets([
     instantsearch.widgets.searchBox({
         container: '#searchbox',
@@ -272,4 +275,10 @@ search.addWidgets([
 
 
 
-search.start();
+// Start search after DOM is loaded and toggle is initialized
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait a moment for toggle to initialize
+    setTimeout(() => {
+        search.start();
+    }, 200);
+});

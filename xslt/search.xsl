@@ -42,13 +42,13 @@
                                                            title="Typesense: Schnelle Volltextsuche mit Filtern | Noske: Linguistische Suche mit CQL (z.B. [lemma=&quot;sein&quot;] oder lieb*)"></i>
                                                     </div>
                                                     <div class="card-body">
-                                                        <div class="btn-group d-grid gap-2" role="group" aria-label="Search engine selection">
-                                                            <button type="button" class="btn btn-primary btn-sm" id="btn-typesense">
+                                                        <div class="btn-group btn-group-sm d-flex" role="group" aria-label="Search engine selection">
+                                                            <button type="button" class="btn btn-primary flex-fill" id="btn-typesense">
                                                                 <i class="fas fa-search"></i> Typesense
                                                             </button>
-                                                            <button type="button" class="btn btn-outline-primary btn-sm" id="btn-noske">
+                                                            <a href="https://corpus-search.acdh.oeaw.ac.at/crystal/#concordance?corpname=schnitzlerbriefe&tab=basic&keyword=Adresse&attrs=word&viewmode=sen&attr_allpos=all&refs_up=0&shorten_refs=1&glue=1&gdexcnt=300&show_gdex_scores=0&itemsPerPage=20&structs=s%2Cg&refs=doc&showresults=1&showTBL=0&tbl_template=&gdexconf=&f_tab=basic&f_showrelfrq=1&f_showperc=0&f_showreldens=0&f_showreltt=0&c_customrange=0&t_attr=&t_absfrq=0&t_trimempty=1&t_threshold=5&operations=%5B%7B%22name%22%3A%22iquery%22%2C%22arg%22%3A%22Adresse%22%2C%22query%22%3A%7B%22queryselector%22%3A%22iqueryrow%22%2C%22iquery%22%3A%22Adresse%22%7D%2C%22id%22%3A1536%7D%5D" target="_blank" class="btn btn-outline-primary flex-fill" role="button">
                                                                 <i class="fas fa-language"></i> Noske
-                                                            </button>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,13 +168,13 @@
                                                        title="Typesense: Schnelle Volltextsuche mit Filtern | Noske: Linguistische Suche mit CQL (z.B. [lemma=&quot;sein&quot;] oder lieb*)"></i>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="btn-group d-grid gap-2" role="group" aria-label="Search engine selection">
-                                                        <button type="button" class="btn btn-outline-primary btn-sm" id="btn-typesense-noske">
+                                                    <div class="btn-group btn-group-sm d-flex" role="group" aria-label="Search engine selection">
+                                                        <button type="button" class="btn btn-outline-primary flex-fill" id="btn-typesense-noske">
                                                             <i class="fas fa-search"></i> Typesense
                                                         </button>
-                                                        <button type="button" class="btn btn-primary btn-sm" id="btn-noske-noske">
+                                                        <a href="https://corpus-search.acdh.oeaw.ac.at/crystal/#concordance?corpname=schnitzlerbriefe&tab=basic&keyword=Adresse&attrs=word&viewmode=sen&attr_allpos=all&refs_up=0&shorten_refs=1&glue=1&gdexcnt=300&show_gdex_scores=0&itemsPerPage=20&structs=s%2Cg&refs=doc&showresults=1&showTBL=0&tbl_template=&gdexconf=&f_tab=basic&f_showrelfrq=1&f_showperc=0&f_showreldens=0&f_showreltt=0&c_customrange=0&t_attr=&t_absfrq=0&t_trimempty=1&t_threshold=5&operations=%5B%7B%22name%22%3A%22iquery%22%2C%22arg%22%3A%22Adresse%22%2C%22query%22%3A%7B%22queryselector%22%3A%22iqueryrow%22%2C%22iquery%22%3A%22Adresse%22%7D%2C%22id%22%3A1536%7D%5D" target="_blank" class="btn btn-primary flex-fill" role="button">
                                                             <i class="fas fa-language"></i> Noske
-                                                        </button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,7 +215,6 @@
                     src="https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js"></script>
                  <script src="js/ts_index.js"></script>
                  <script type="module" src="js/noske_search.js"></script>
-                 <script src="js/direct_noske_search.js"></script>
                  <script src="js/search_toggle.js"></script>
             </body>
         </html>
