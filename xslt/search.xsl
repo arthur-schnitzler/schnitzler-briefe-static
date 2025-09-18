@@ -182,10 +182,10 @@
                                             <div class="alert alert-info" role="alert">
                                                 <h6><i class="fas fa-info-circle"></i> Erweiterte Suche mit Noske</h6>
                                                 <p class="mb-2 small">
-                                                    <strong>Einfache Suche:</strong> <code>liebe</code> oder <code>lieb*</code> (mit * für beliebige Zeichen)<br/>
-                                                    <strong>CQL-Suche:</strong> <code>[lemma="lieben"]</code> • <code>[tag="N.*"]</code> • <code>[word=".*ing"]</code><br/>
-                                                    <strong>Platzhalter:</strong> Einfach: <code>*</code> und <code>?</code> • CQL: <code>.*</code> in Anführungszeichen<br/>
-                                                    <strong>Beispiele:</strong> <code>lieb*</code> • <code>[word="Lie.*"]</code> • <code>[lemma="sein"]</code>
+                                                    <strong>Einfache Suche: </strong> <code>liebe</code> oder <code>lieb*</code> (mit * für beliebige Zeichen)<br/>
+                                                    <strong>CQL-Suche: </strong> <code>[lemma="lieben"]</code> • <code>[word=".*ing"]</code><br/>
+                                                    <strong>Platzhalter: </strong> Einfach: <code>*</code> und <code>?</code> • CQL: <code>.*</code> in Anführungszeichen<br/>
+                                                    <strong>Beispiele: </strong> <code>lieb*</code> • <code>[word="Lie.*"]</code> • <code>[lemma="sein"]</code>
                                                 </p>
                                             </div>
                                         </div>
