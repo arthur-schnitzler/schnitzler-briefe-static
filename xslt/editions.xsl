@@ -1574,7 +1574,7 @@
         </div>
     </xsl:template>
     <!-- Tabellen -->
-    <xsl:template match="tei:table">
+    <xsl:template match="tei:table" >
         <xsl:element name="table">
             <xsl:if test="@xml:id">
                 <xsl:attribute name="id">
@@ -1582,9 +1582,12 @@
                 </xsl:attribute>
             </xsl:if>
             <xsl:attribute name="class">
-                <xsl:text>table </xsl:text>
+                <xsl:text>table editionText</xsl:text>
             </xsl:attribute>
             <xsl:element name="tbody">
+                <xsl:attribute name="class">
+                <xsl:text>table editionText</xsl:text>
+            </xsl:attribute>
                 <xsl:apply-templates/>
             </xsl:element>
         </xsl:element>
@@ -1852,7 +1855,7 @@
                             <xsl:text>damage-critical</xsl:text>
                         </xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="ancestor::tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(parent::tei:bibl)] or ancestor::tei:opener or ancestor::tei:addrLine or ancestor::tei:signed or ancestor::tei:salute[parent::tei:opener] or ancestor::tei:seg[not(parent::tei:seg)] or ancestor::tei:dateline or ancestor::tei:closer or ancestor::tei:lg or ancestor::tei:l">
+                    <xsl:when test="ancestor::tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(parent::tei:bibl)] or ancestor::tei:opener or ancestor::tei:addrLine or ancestor::tei:signed or ancestor::tei:salute[parent::tei:opener] or ancestor::tei:seg[not(parent::tei:seg)] or ancestor::tei:dateline or ancestor::tei:closer or ancestor::tei:lg or ancestor::tei:l or ancestor::tei:cell">
                         <xsl:attribute name="class">
                             <xsl:text>reference-black</xsl:text>
                         </xsl:attribute>
@@ -1962,7 +1965,7 @@
                             <xsl:text>damage-critical</xsl:text>
                         </xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="ancestor::tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(parent::tei:bibl)] or ancestor::tei:opener or ancestor::tei:addrLine or ancestor::tei:signed or ancestor::tei:salute[parent::tei:opener] or ancestor::tei:seg[not(parent::tei:seg)] or ancestor::tei:dateline or ancestor::tei:closer or ancestor::tei:lg">
+                    <xsl:when test="ancestor::tei:p[ancestor::tei:body and not(ancestor::tei:note) and not(parent::tei:bibl)] or ancestor::tei:opener or ancestor::tei:addrLine or ancestor::tei:signed or ancestor::tei:salute[parent::tei:opener] or ancestor::tei:seg[not(parent::tei:seg)] or ancestor::tei:dateline or ancestor::tei:closer or ancestor::tei:lg or ancestor::tei:cell">
                         <xsl:attribute name="class">
                             <xsl:text>reference-black</xsl:text>
                         </xsl:attribute>
