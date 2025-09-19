@@ -1470,6 +1470,15 @@ table {
 
 }
 
+/* Ensure editionText tables have no border-bottom-width */
+table.editionText {
+    border-bottom-width: 0 !important;
+}
+
+table.editionText td {
+    border-bottom-width: 0 !important;
+}
+
 tbody {
     border-color: none;
     border-style: none;
