@@ -28,7 +28,7 @@
                                     <h3 class="mt-3">Arthur Schnitzler</h3>
                                     <h1 class="mt-3" style="text-align: left;">Briefwechsel mit
                                         Autorinnen und Autoren </h1>
-                                    <h3 class="mt-3">1888–1931</h3>
+                                    <h3 class="mt-3">1885–1931</h3>
                                     <h4 style="font-style: italic">Herausgegeben von Martin Anton
                                         Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke, Wien
                                         2018–[2029]</h4>
@@ -57,16 +57,15 @@
                                 position: relative;
                                 top: -250px; visibility: hidden"
                                 id="body"/>
-                            <p class="mt-3">Diese Webseite enthält zur Zeit 45 vollständige
-                                Korrespondenzen mit über 3.600 Briefen von und an Arthur Schnitzler
+                            <p class="mt-3">Diese Webseite enthält zur Zeit 49 vollständige
+                                Korrespondenzen mit über 3.800 Briefen von und an Arthur Schnitzler
                                 (1862–1931). Viele davon werden erstmals veröffentlicht. Alle sind
                                 nach den Originalen in Archiven in Europa und Amerika durchgesehen
                                 und korrigiert.</p>
-                            <p class="mt-3" style="padding-bottom: 50px;">Seit 2022 wurden zwei
-                                große Korrespondenzen neu aufgenommen: Die 44. Korrespondenz, jene
-                                mit Paul Goldmann (rund 560 Briefe), und die 45. Korrespondenz,
-                                jene mit Felix Salten (ca. 430 Briefe). (<a
-                                    href="status.html">Projektstand</a>)</p>
+                            <p class="mt-3" style="padding-bottom: 50px;">In der seit 2025 laufenden 3. Projektlaufzeit wurden bereits die Korrespondenzen
+                                mit Karl Emil Franzos, Elsa Plessner und Stefan Zweig aufgenommen. Die Korrespondenz mit Theodor Herzl wird 
+                                nach und nach ergänzt (<a
+                                    href="status.html">Projektstand</a>).</p>
                             <a href="L00001.html">
                                 <button class="btn btn-round">Lesen</button>
                             </a>
