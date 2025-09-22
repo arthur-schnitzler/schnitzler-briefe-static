@@ -76,12 +76,24 @@ class NoskeSearchImplementation {
                 },
                 pagination: {
                     id: "noske-pagination-test",
+                    css: {
+                        pagination: "pagination justify-content-center",
+                        pageItem: "page-item",
+                        pageLink: "page-link"
+                    }
                 },
                 searchInput: {
                     id: "noske-search",
+                    css: {
+                        input: "form-control form-control-lg"
+                    }
                 },
                 stats: {
                     id: "noske-stats",
+                    css: {
+                        container: "alert alert-info",
+                        text: "mb-0"
+                    }
                 },
             });
 
