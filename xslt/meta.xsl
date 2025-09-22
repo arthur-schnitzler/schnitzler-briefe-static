@@ -142,34 +142,86 @@
         </p>
     </xsl:template>
     <xsl:template
-        match="tei:div[not(@xml:id = 'container-ohne-slider') and not(@xml:id = 'container-mit-slider')]">
+        match="tei:div[not(@xml:id = 'jung-wien-container-ohne-slider') and not(@xml:id = 'jung-wien-container-mit-slider') and not(@xml:id = 'jung-wien-container-nebeneinander') and not(@xml:id = 'jung-wien-container-nebeneinander-mit-slider')]">
         <div id="{generate-id()}">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
-    <xsl:template match="tei:div[@xml:id = 'container-ohne-slider']">
-        <div style="display: flex; width: 100%;">
-            <div
-                style="width: 40%; margin: auto; display: flex; flex-direction: column; height: 500px;">
-                   <div id="container-ohne-slider" style="width: 100%; flex-grow: 1;"/>
-                <div style="width: 100%; height: 55px;"/>
-                <figcaption style="text-align: center;">Abb. 8: Alle Korrespondenzen zwischen Arthur
-                    Schnitzler, Hermann Bahr, Richard Beer-Hofmann und Hugo von
-                    Hofmannsthal</figcaption>
-            </div>
-            <div
-                style="width: 40%; margin: auto; display: flex; flex-direction: column; height: 500px;">
-                <div id="container-mit-slider" style="width: 100%; flex-grow: 1;"></div>
-                <div style="width: 100%; text-align: center; margin-top: 5px;">
-                    <input type="range" id="yearSlider" min="1890" max="1931" value="1900" step="1" style="display: block; margin: 0 auto;"/>
-                    <span id="yearDisplay" style="display: block; margin-top: 2px;">1900</span>
-                </div>
-                <figcaption style="text-align: center; margin-top: auto;">Abb. 9: Alle
-                    Korrespondenzen zwischen Arthur Schnitzler, Hermann Bahr, Richard Beer-Hofmann
-                    und Hugo von Hofmannsthal im Timeslider</figcaption>
+    <!-- Template für jung-wien-container-ohne-slider: volle Breite -->
+    <xsl:template match="tei:div[@xml:id = 'jung-wien-container-ohne-slider']">
+        <div style="width: 100%; margin: 2rem 0;">
+            <div style="display: flex; flex-direction: column; height: 600px;">
+                <div id="jung-wien-container-ohne-slider" style="width: 100%; flex-grow: 1;"/>
+                <figcaption style="text-align: center; margin-top: 1rem;">
+                    Abb. 8: Alle Korrespondenzen zwischen Arthur Schnitzler, Hermann Bahr,
+                    Richard Beer-Hofmann und Hugo von Hofmannsthal
+                </figcaption>
             </div>
         </div>
-        <script src="js/jung-wien-exp-charts.js"/>
+        <script src="js/jung-wien-exp-charts-ohne-slider.js"/>
+    </xsl:template>
+
+    <!-- Template für jung-wien-container-mit-slider: volle Breite mit Slider -->
+    <xsl:template match="tei:div[@xml:id = 'jung-wien-container-mit-slider']">
+        <div style="width: 100%; margin: 2rem 0;">
+            <div style="display: flex; flex-direction: column; height: 600px;">
+                <div id="jung-wien-container-mit-slider" style="width: 100%; flex-grow: 1;"/>
+                <div style="width: 100%; text-align: center; margin: 1rem 0;">
+                    <input type="range" id="yearSlider" min="1890" max="1931" value="1900" step="1"
+                           style="width: 50%; margin: 0 auto;"/>
+                    <div id="yearDisplay" style="margin-top: 0.5rem; font-weight: bold;">1900</div>
+                </div>
+                <figcaption style="text-align: center;">
+                    Abb. 9: Alle Korrespondenzen zwischen Arthur Schnitzler, Hermann Bahr,
+                    Richard Beer-Hofmann und Hugo von Hofmannsthal im Timeslider
+                </figcaption>
+            </div>
+        </div>
+        <!-- Kein separates Script hier - wird vom ersten Container geladen -->
+    </xsl:template>
+
+    <!-- Template für nebeneinander Container: volle Breite mit zwei Netzwerken nebeneinander -->
+    <xsl:template match="tei:div[@xml:id = 'jung-wien-container-nebeneinander']">
+        <div style="width: 100%; margin: 2rem 0;">
+            <!-- Dropdowns oberhalb der Container -->
+            <div style="display: flex; width: 100%; margin-bottom: 1rem; justify-content: space-between;">
+                <div style="width: 48%;" id="dropdown-container-nebeneinander-left"></div>
+                <div style="width: 48%;" id="dropdown-container-nebeneinander-right"></div>
+            </div>
+            <!-- Chart-Container -->
+            <div style="display: flex; width: 100%; height: 600px;">
+                <div id="jung-wien-container-nebeneinander-left" style="width: 48%; margin-right: 2%;"/>
+                <div id="jung-wien-container-nebeneinander-right" style="width: 48%; margin-left: 2%;"/>
+            </div>
+            <figcaption style="text-align: center; margin-top: 1rem;">
+                Netzwerk-Ansicht: Vergleich verschiedener Datenansichten
+            </figcaption>
+        </div>
+        <script src="js/jung-wien-exp-charts-ohne-slider.js"/>
+    </xsl:template>
+
+    <xsl:template match="tei:div[@xml:id = 'jung-wien-container-nebeneinander-mit-slider']">
+        <div style="width: 100%; margin: 2rem 0;">
+            <!-- Dropdowns oberhalb der Container -->
+            <div style="display: flex; width: 100%; margin-bottom: 1rem; justify-content: space-between;">
+                <div style="width: 48%;" id="dropdown-container-nebeneinander-mit-slider-left"></div>
+                <div style="width: 48%;" id="dropdown-container-nebeneinander-mit-slider-right"></div>
+            </div>
+            <!-- Chart-Container -->
+            <div style="display: flex; width: 100%; height: 600px;">
+                <div id="jung-wien-container-nebeneinander-mit-slider-left" style="width: 48%; margin-right: 2%;"/>
+                <div id="jung-wien-container-nebeneinander-mit-slider-right" style="width: 48%; margin-left: 2%;"/>
+            </div>
+            <div style="width: 100%; text-align: center; margin: 1rem 0;">
+                <input type="range" id="yearSliderNebeneinander" min="1890" max="1931" value="1900" step="1"
+                       style="width: 50%; margin: 0 auto;"/>
+                <div id="yearDisplayNebeneinander" style="margin-top: 0.5rem; font-weight: bold;">1900</div>
+            </div>
+            <figcaption style="text-align: center;">
+                Netzwerk-Ansicht mit Timeline: Vergleich verschiedener Datenansichten
+            </figcaption>
+        </div>
+        <script src="js/jung-wien-exp-charts-mit-slider.js"/>
     </xsl:template>
     <xsl:template match="tei:lb">
         <br/>

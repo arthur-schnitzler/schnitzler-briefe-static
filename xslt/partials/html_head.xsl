@@ -65,10 +65,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"/>
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <link rel="stylesheet" href="css/micro-editor.css" type="text/css"/>
-        <xsl:if test="descendant::tei:div[@xml:id = 'container-ohne-slider']">
+        <xsl:if test="descendant::tei:div[@xml:id = 'jung-wien-container-ohne-slider'] or descendant::tei:div[@xml:id = 'jung-wien-container-mit-slider'] or descendant::tei:div[@xml:id = 'jung-wien-container-nebeneinander'] or descendant::tei:div[@xml:id = 'jung-wien-container-nebeneinander-mit-slider']">
             <script src="https://code.highcharts.com/highcharts.js"/>
             <script src="https://code.highcharts.com/modules/networkgraph.js"/>
             <script src="https://code.highcharts.com/modules/exporting.js"/>
+            <script src="https://d3js.org/d3.v7.min.js"/>
         </xsl:if>
         <!-- Matomo -->
         <script type="text/javascript">
