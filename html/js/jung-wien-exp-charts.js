@@ -143,7 +143,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 networkgraph: {
                     keys: ['from', 'to'],
                     layoutAlgorithm: {
-                        enableSimulation: false
+                        enableSimulation: true,
+                        type: 'reingold-fruchterman',
+                        initialPositions: 'random',
+                        maxIterations: 500,
+                        gravitationalConstant: 0,
+                        friction: -0.75,
+                        attractiveForce: function(d, k, link) {
+                            // Starke gewichtsbasierte Anziehung
+                            if (!link) return 0;
+                            const weight = link ? link.value || 1 : 1;
+                            // Exponentieller Anstieg für hohe Gewichte
+                            const weightFactor = Math.pow(weight / 10, 1.5);
+                            const force = Math.min(d * 0.02 * weightFactor, 50);
+
+                            // Debug: Log high-weight attractions
+                            if (weight >= 30 && Math.random() < 0.01) { // 1% sampling
+                                console.log(`⚡ Attraction: weight=${weight} factor=${weightFactor.toFixed(2)} force=${force.toFixed(2)}`);
+                            }
+
+                            return force;
+                        },
+                        repulsiveForce: function(d, k) {
+                            // Standard Abstoßung aber verstärkt
+                            return (k * k) / Math.max(d, 5);
+                        },
+                        maxSpeed: 100
                     },
                     dataLabels: {
                         enabled: true,

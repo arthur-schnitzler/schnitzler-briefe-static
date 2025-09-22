@@ -197,7 +197,10 @@
                 Netzwerk-Ansicht: Vergleich verschiedener Datenansichten
             </figcaption>
         </div>
-        <script src="js/jung-wien-exp-charts-ohne-slider.js"/>
+        <!-- Script wird nur geladen wenn kein ohne-slider Container vorhanden ist -->
+        <xsl:if test="not(//tei:div[@xml:id = 'jung-wien-container-ohne-slider'])">
+            <script src="js/jung-wien-exp-charts-ohne-slider.js"/>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="tei:div[@xml:id = 'jung-wien-container-nebeneinander-mit-slider']">

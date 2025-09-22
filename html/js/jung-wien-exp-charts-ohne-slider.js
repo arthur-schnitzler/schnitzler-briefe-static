@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
             option.textContent = label;
             csvDropdown.appendChild(option);
         }
+
+        // Bei rechten Containern (Vergleichsansicht) automatisch die zweite Option auswählen
+        if (containerId.includes('right')) {
+            csvDropdown.selectedIndex = 1; // Zweite Option (Index 1)
+        }
         // Dropdown oberhalb des Chart-Containers einfügen
         // Für nebeneinander-Container: in separaten Dropdown-Container einfügen
         if (containerId.includes('nebeneinander')) {
@@ -350,14 +355,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('jung-wien-container-ohne-slider')) {
         initChart('jung-wien-container-ohne-slider', 'csvDropdown-ohne-slider');
     }
-    // Nur nebeneinander-Container initialisieren, wenn ohne-slider Container nicht existiert
-    // (damit es keine Konflikte mit dem dedizierten ohne-slider Script gibt)
-    if (!document.getElementById('jung-wien-container-ohne-slider')) {
-        if (document.getElementById('jung-wien-container-nebeneinander-left')) {
-            initChart('jung-wien-container-nebeneinander-left', 'csvDropdown-nebeneinander-left');
-        }
-        if (document.getElementById('jung-wien-container-nebeneinander-right')) {
-            initChart('jung-wien-container-nebeneinander-right', 'csvDropdown-nebeneinander-right');
-        }
+    if (document.getElementById('jung-wien-container-nebeneinander-left')) {
+        initChart('jung-wien-container-nebeneinander-left', 'csvDropdown-nebeneinander-left');
+    }
+    if (document.getElementById('jung-wien-container-nebeneinander-right')) {
+        initChart('jung-wien-container-nebeneinander-right', 'csvDropdown-nebeneinander-right');
     }
 });

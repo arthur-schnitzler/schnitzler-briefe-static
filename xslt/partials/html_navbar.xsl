@@ -37,6 +37,9 @@
                                     <a class="nav-link" href="statistiken.html">Statistiken</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="jung-wien.html">Netzwerk Jung-Wien</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="danksagung.html">Danksagung</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
