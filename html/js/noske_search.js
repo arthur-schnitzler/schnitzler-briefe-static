@@ -16,11 +16,11 @@ class NoskeSearchImplementation {
             hits: {
                 id: "noske-hits",
                 css: {
-                    table: "table table-striped table-hover",
+                    table: "table-auto",
                     kwicContainer: "kwic-container",
-                    leftContext: "text-muted",
-                    rightContext: "text-muted",
-                    keyword: "fw-bold text-primary"
+                    leftContext: "context-left",
+                    rightContext: "context-right",
+                    keyword: "keyword"
                 }
             },
             pagination: {
@@ -68,6 +68,10 @@ class NoskeSearchImplementation {
                     id: "hitsbox",
                     css: {
                         table: "table-auto",
+                        kwicContainer: "kwic-container",
+                        leftContext: "context-left",
+                        rightContext: "context-right",
+                        keyword: "keyword"
                     }
                 },
                 pagination: {
