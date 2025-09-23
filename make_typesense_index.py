@@ -29,7 +29,16 @@ def extract_fulltext_with_spacing(root_node, tag_blacklist=None):
     }
 
     def extract_text_recursive(element):
-        if element.tag.split('}')[-1] in tag_blacklist:
+        # Handle the case where element.tag might not be a string
+        try:
+            if hasattr(element.tag, 'split'):
+                element_tag_name = element.tag.split('}')[-1]
+            else:
+                element_tag_name = str(element.tag).split('}')[-1]
+        except (AttributeError, TypeError):
+            element_tag_name = ''
+
+        if element_tag_name in tag_blacklist:
             return ""
 
         text_parts = []
