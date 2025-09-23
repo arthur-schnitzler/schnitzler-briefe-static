@@ -40,7 +40,17 @@ def extract_fulltext_with_spacing(root_node, tag_blacklist=None):
 
         # Process children
         for child in element:
-            tag_name = child.tag.split('}')[-1]  # Remove namespace
+            # Handle the case where child.tag might not be a string
+            try:
+                if hasattr(child.tag, 'split'):
+                    tag_name = child.tag.split('}')[-1]  # Remove namespace
+                else:
+                    tag_name = str(child.tag).split('}')[-1]
+            except (AttributeError, TypeError):
+                # Skip if we can't determine the tag name
+                if hasattr(child, 'tail') and child.tail:
+                    text_parts.append(child.tail)
+                continue
 
             # Handle space elements
             if tag_name == 'space':
