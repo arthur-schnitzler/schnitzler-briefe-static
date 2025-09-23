@@ -15,6 +15,67 @@ from acdh_tei_pyutils.utils import (
 from tqdm import tqdm
 
 
+def extract_fulltext_with_spacing(root_node, tag_blacklist=None):
+    """
+    Extract fulltext with proper spacing around block-level TEI elements.
+    Adds spaces around elements like tei:p, tei:salute, tei:dateline, tei:closer, tei:seg.
+    """
+    if tag_blacklist is None:
+        tag_blacklist = []
+
+    # Elements that should have spaces around them
+    block_elements = {
+        'p', 'salute', 'dateline', 'closer', 'seg', 'opener', 'div', 'head'
+    }
+
+    def extract_text_recursive(element):
+        if element.tag.split('}')[-1] in tag_blacklist:
+            return ""
+
+        text_parts = []
+
+        # Add element text
+        if element.text:
+            text_parts.append(element.text)
+
+        # Process children
+        for child in element:
+            tag_name = child.tag.split('}')[-1]  # Remove namespace
+
+            # Handle space elements
+            if tag_name == 'space':
+                unit = child.get('unit', '')
+                if unit == 'chars':
+                    # Add space for char-based spacing elements
+                    text_parts.append(" ")
+                continue
+
+            # Add space before block elements
+            if tag_name in block_elements:
+                text_parts.append(" ")
+
+            # Process child recursively
+            child_text = extract_text_recursive(child)
+            if child_text:
+                text_parts.append(child_text)
+
+            # Add space after block elements
+            if tag_name in block_elements:
+                text_parts.append(" ")
+
+            # Add tail text
+            if child.tail:
+                text_parts.append(child.tail)
+
+        return "".join(text_parts)
+
+    result = extract_text_recursive(root_node)
+    # Clean up multiple spaces
+    import re
+    result = re.sub(r'\s+', ' ', result).strip()
+    return result
+
+
 files = glob.glob("./data/editions/*.xml")
 COLLECTION_NAME = "schnitzler-briefe"
 MIN_DATE = "1000"
@@ -180,7 +241,7 @@ for x in tqdm(files, total=len(files)):
         record["events"].append(item)
 
     cfts_record["places"] = [x["label"] for x in record["places"]]
-    record["full_text"] = f"{extract_fulltext(body)} {record['title']}".replace("(", " ")
+    record["full_text"] = f"{extract_fulltext_with_spacing(body)} {record['title']}".replace("(", " ")
     cfts_record["full_text"] = record["full_text"]
 
     records.append(record)
