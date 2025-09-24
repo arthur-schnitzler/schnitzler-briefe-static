@@ -802,7 +802,18 @@
                             </div>
                             <div class="modal-body">
                                 <div>
-                                    <image-switch opt="es"/>
+                                    <legend>Ansicht</legend>
+                                    <ul>
+                                        <li>
+                                            <div class="annotation-toggle" data-type="faksimile" style="display: inline-block; margin-right: 20px;">
+                                                <label class="switch">
+                                                    <input type="checkbox" id="faksimile-slider" checked="checked"/>
+                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                </label>
+                                                <span class="opt-title"> Faksimile</span>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                                 <div>
                                     <legend>Textkritische Auszeichnungen</legend>

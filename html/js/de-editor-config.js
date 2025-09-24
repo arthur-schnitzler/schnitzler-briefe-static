@@ -217,6 +217,31 @@ document.addEventListener('DOMContentLoaded', function() {
                         el.style.display = 'none';
                     }
                 });
+            } else if (annotationType === 'faksimile') {
+                // Handle faksimile toggle - show/hide facsimile images
+                document.querySelectorAll('.facsimiles').forEach(el => {
+                    if (annotationToggle.checked) {
+                        el.style.display = 'block';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+                // Also toggle the column layout
+                const textElements = document.querySelectorAll('.text');
+                const transcriptContainer = document.querySelector('.transcript');
+                if (annotationToggle.checked) {
+                    // Show facsimile - use two-column layout
+                    textElements.forEach(el => {
+                        el.classList.remove('col-md-12');
+                        el.classList.add('col-md-6');
+                    });
+                } else {
+                    // Hide facsimile - use single-column layout
+                    textElements.forEach(el => {
+                        el.classList.remove('col-md-6');
+                        el.classList.add('col-md-12');
+                    });
+                }
             }
         }
         
@@ -257,6 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const gnToggle = document.getElementById('gemination-n-slider');
             const delToggle = document.getElementById('deleted-slider');
             const addToggle = document.getElementById('addition-slider');
+            const faksimileToggle = document.getElementById('faksimile-slider');
             
             if (ef2Toggle && ef2Toggle.checked) {
                 url.searchParams.set('textfeatures', '1');
@@ -293,7 +319,13 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 url.searchParams.delete('add');
             }
-            
+
+            if (faksimileToggle && faksimileToggle.checked) {
+                url.searchParams.set('img', '1');
+            } else {
+                url.searchParams.delete('img');
+            }
+
             // Update URL without reloading page
             window.history.replaceState({}, '', url);
             
@@ -314,7 +346,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'gem-m': 'gemination-m-slider',
                 'gem-n': 'gemination-n-slider',
                 'del': 'deleted-slider',
-                'add': 'addition-slider'
+                'add': 'addition-slider',
+                'img': 'faksimile-slider'
             };
             
             Object.entries(toggleMappings).forEach(([param, toggleId]) => {
@@ -335,39 +368,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 500);
 });
 
-var editor = new LoadEditor({
-    is: {
-        name: "Faksimile",
-        variants:[ {
-            opt: "es",
-            title: "Faksimile",
-            urlparam: "img",
-            chg_citation: "citation-url",
-            fade: "fade",
-            column_small: {
-                class: "col-md-6",
-                percent: "50",
-            },
-            column_full: {
-                class: "col-md-12",
-                percent: "100",
-            },
-            hide: {
-                hidden: false,
-                class_to_hide: "facsimiles",
-                class_to_show: "text",
-                class_parent: "transcript",
-                resize: "resize-hide",
-            },
-            image_size: "40px",
-        },],
-        active_class: "active",
-        rendered_element: {
-            a_class: "nav-link btn btn-round",
-            svg: "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-image' viewBox='0 0 16 16'><path d='M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'/><path d='M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a .5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z'/></svg>",
-        },
-    },
-    wr: false,
-    up: true,
-});
+// LoadEditor removed - replaced with standard toggle switch
 
