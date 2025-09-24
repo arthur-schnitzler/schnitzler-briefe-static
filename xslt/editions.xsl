@@ -820,35 +820,35 @@
                                             <div class="annotation-toggle" data-type="ls" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="langes-s-slider"/>
-                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                    <span class="i-slider round"></span>
                                                 </label>
                                                 <span class="opt-title"> Langes-s (ſ)</span>
                                             </div>
                                             <div class="annotation-toggle" data-type="gem-m" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="gemination-m-slider"/>
-                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                    <span class="i-slider round"></span>
                                                 </label>
                                                 <span class="opt-title"> Gemination m (m̅)</span>
                                             </div>
                                             <div class="annotation-toggle" data-type="gem-n" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="gemination-n-slider"/>
-                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                    <span class="i-slider round"></span>
                                                 </label>
                                                 <span class="opt-title"> Gemination n (n̅)</span>
                                             </div>
                                             <div class="annotation-toggle" data-type="del" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="deleted-slider"/>
-                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                    <span class="i-slider round"></span>
                                                 </label>
                                                 <span class="opt-title"> Streichung</span>
                                             </div>
                                             <div class="annotation-toggle" data-type="add" style="display: inline-block; margin-right: 20px;">
                                                 <label class="switch">
                                                     <input type="checkbox" id="addition-slider"/>
-                                                    <span class="i-slider round" style="background-color: #A63437;"></span>
+                                                    <span class="i-slider round"></span>
                                                 </label>
                                                 <span class="opt-title"> Hinzufügungen</span>
                                             </div>
