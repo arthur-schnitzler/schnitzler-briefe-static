@@ -44,18 +44,28 @@ def extract_fulltext_with_spacing(root_node, tag_blacklist=None):
         # Check if this is a tei:del element within tei:subst that should be excluded
         # Exclude tei:del elements within tei:subst that don't contain spaces
         if element_tag_name == 'del':
-            parent = element.getparent()
-            if parent is not None:
-                try:
+            try:
+                parent = element.getparent() if hasattr(element, 'getparent') else None
+                if parent is not None:
                     parent_tag = parent.tag.split('}')[-1] if hasattr(parent.tag, 'split') else str(parent.tag).split('}')[-1]
                     if parent_tag == 'subst':
                         # Get all text content of this del element
-                        del_text = ''.join(element.itertext())
+                        if hasattr(element, 'itertext'):
+                            del_text = ''.join(element.itertext())
+                        else:
+                            # Fallback for ElementTree
+                            del_text = element.text or ''
+                            for child in element:
+                                if child.text:
+                                    del_text += child.text
+                                if child.tail:
+                                    del_text += child.tail
+
                         if del_text and ' ' not in del_text:
                             # Skip this del element if it doesn't contain spaces
                             return ""
-                except (AttributeError, TypeError):
-                    pass
+            except (AttributeError, TypeError):
+                pass
 
         text_parts = []
 
