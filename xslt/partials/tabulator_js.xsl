@@ -128,7 +128,11 @@
                         column.title = "Typ";
                     } else if (column.title === "arbeitskraft") {
                         column.title = "Mitwirkende";
+                    } else if (column.title === "mitwirkend") {
+                        column.title = "Mitwirkende";
                     } else if (column.title === "teilnehmer_innen") {
+                        column.title = "Teilnehmende";
+                    } else if (column.title === "teilnehmend") {
                         column.title = "Teilnehmende";
                     } else if (column.title === "organisation") {
                         column.title = "Organisation";
