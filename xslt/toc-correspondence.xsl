@@ -31,7 +31,15 @@
                     <xsl:variable name="csvFilename"
                         select="concat('statistik_pmb', $korrespondenznummer, '.csv')"/>
                     <xsl:variable name="correspondenceName">
-                        <xsl:value-of select="tokenize(substring-after(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:titleStmt[1]/tei:title[@level='a'], '– '), ' ')[last()]"/>
+                        <xsl:choose>
+                            <xsl:when test="contains(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:titleStmt[1]/tei:title[@level='a'], ' (')">
+                                <xsl:value-of select="tokenize(substring-after(substring-before(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:titleStmt[1]/tei:title[@level='a'], ' ('), '– '), ' ')[last()]"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="tokenize(substring-after(child::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:titleStmt[1]/tei:title[@level='a'], '– '), ' ')[last()]"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        
                     </xsl:variable>
                     
                                         <script src="./js/tocs-statistics.js"/>
