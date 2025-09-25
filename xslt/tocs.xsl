@@ -61,7 +61,15 @@
                                                   select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
                                                 <tr>
                                                   <td>
-                                                  <a>
+                                                      <xsl:choose>
+                                                          <xsl:when test="@ana='planned'">
+                                                              <xsl:value-of
+                                                                  select="tei:persName[@role = 'main']/text()"/>
+                                                              <xsl:text> (geplant)</xsl:text>
+                                                          </xsl:when>
+                                                          <xsl:otherwise>
+                                                              
+                                                      <a>
                                                       <xsl:attribute name="class">
                                                           <xsl:text>sender-color</xsl:text>
                                                       </xsl:attribute>
@@ -73,6 +81,16 @@
                                                   <xsl:value-of
                                                   select="tei:persName[@role = 'main']/text()"/>
                                                   </a>
+                                                              <xsl:choose>
+                                                                  <xsl:when test="@ana = 'corrections-in-progress'">
+                                                                      <xsl:text> (Korrektur läuft)</xsl:text>
+                                                                  </xsl:when>
+                                                                  <xsl:when test="@ana = 'corrections-in-progress'">
+                                                                      <xsl:text> (Briefaufnahme läuft)</xsl:text>
+                                                                  </xsl:when>
+                                                              </xsl:choose>
+                                                          </xsl:otherwise>
+                                                      </xsl:choose>
                                                   </td>
                                                   <td>
                                                   <xsl:for-each
