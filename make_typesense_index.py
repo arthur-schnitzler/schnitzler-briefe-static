@@ -41,6 +41,22 @@ def extract_fulltext_with_spacing(root_node, tag_blacklist=None):
         if element_tag_name in tag_blacklist:
             return ""
 
+        # Check if this is a tei:del element within tei:subst that should be excluded
+        # Exclude tei:del elements within tei:subst that don't contain spaces
+        if element_tag_name == 'del':
+            parent = element.getparent()
+            if parent is not None:
+                try:
+                    parent_tag = parent.tag.split('}')[-1] if hasattr(parent.tag, 'split') else str(parent.tag).split('}')[-1]
+                    if parent_tag == 'subst':
+                        # Get all text content of this del element
+                        del_text = ''.join(element.itertext())
+                        if del_text and ' ' not in del_text:
+                            # Skip this del element if it doesn't contain spaces
+                            return ""
+                except (AttributeError, TypeError):
+                    pass
+
         text_parts = []
 
         # Add element text
