@@ -16,8 +16,8 @@ var table = new Tabulator("#tabulator-table-event", {
             {title:"Werk", field:"werk", minWidth:200, headerFilter:"input", formatter:"html", responsive:2, width:200},
             {title:"Ort", field:"ort", headerFilter:"input", formatter:"html", responsive:2, width:200, maxWidth:250},
             {title:"Typ", field:"typ", headerFilter:"input", formatter:"html", responsive:1, width:120},
-            {title:"Arbeitskraft", field:"arbeitskraft", headerFilter:"input", formatter:"html", responsive:1, width:200},
-            {title:"Teilnehmer_innen", field:"teilnehmer_innen", headerFilter:"input", formatter:"html", responsive:1, width:200},
+            {title:"Mitwirkende", field:"arbeitskraft", headerFilter:"input", formatter:"html", responsive:1, width:200},
+            {title:"Teilnehmende", field:"teilnehmer_innen", headerFilter:"input", formatter:"html", responsive:1, width:200},
             {title:"Organisation", field:"organisation", headerFilter:"input", formatter:"html", responsive:4, width:200, maxWidth:250},
             ],
             

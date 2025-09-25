@@ -64,7 +64,7 @@
                                                 <th scope="col" tabulator-headerFilter="input"
                                                   tabulator-formatter="html">Namensvarianten</th>
                                                 <th scope="col" tabulator-headerFilter="input"
-                                                  tabulator-formatter="html">Zugehörigkeiten</th>
+                                                  tabulator-formatter="html">Orte</th>
                                                 <th scope="col" tabulator-headerFilter="input"
                                                   tabulator-formatter="html">Typ</th>
                                             </tr>

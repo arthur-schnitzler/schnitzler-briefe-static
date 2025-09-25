@@ -127,9 +127,9 @@
                     } else if (column.title === "typ") {
                         column.title = "Typ";
                     } else if (column.title === "arbeitskraft") {
-                        column.title = "Arbeitskraft";
+                        column.title = "Mitwirkende";
                     } else if (column.title === "teilnehmer_innen") {
-                        column.title = "Teilnehmer:innen";
+                        column.title = "Teilnehmende";
                     } else if (column.title === "organisation") {
                         column.title = "Organisation";
                     }
@@ -240,7 +240,7 @@
             columns: [
             { title: "Name", field: "name", sorter: "string" },
             { title: "Namensvarianten", field: "namensvarianten", sorter: "string" },
-            { title: "Zugehörigkeiten", field: "zugehoerigkeiten", sorter: "string" },
+            { title: "Orte", field: "zugehoerigkeiten", sorter: "string" },
             { title: "Typ", field: "typ", sorter: "string" }
             ],
             initialSort: [
