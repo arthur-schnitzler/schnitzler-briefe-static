@@ -41,17 +41,17 @@
         </tr>
     </xsl:template>
     <xsl:template match="tei:additions">
-        <xsl:apply-templates select="tei:incident[@type = 'supplement']"/>
+        <xsl:apply-templates select="tei:incident[@type = 'attachment']"/>
         <xsl:apply-templates select="tei:incident[@type = 'postal']"/>
         <xsl:apply-templates select="tei:incident[@type = 'receiver']"/>
         <xsl:apply-templates select="tei:incident[@type = 'archival']"/>
         <xsl:apply-templates select="tei:incident[@type = 'additional-information']"/>
         <xsl:apply-templates select="tei:incident[@type = 'editorial']"/>
     </xsl:template>
-    <xsl:template match="tei:incident[@type = 'supplement']/tei:desc">
+    <xsl:template match="tei:incident[@type = 'attachment']/tei:desc">
         <tr>
             <xsl:variable name="poschitzion"
-                select="count(parent::tei:incident/preceding-sibling::tei:incident[@type = 'supplement'])"/>
+                select="count(parent::tei:incident/preceding-sibling::tei:incident[@type = 'attachment'])"/>
             <xsl:choose>
                 <xsl:when test="$poschitzion &gt; 0">
                     <td/>
@@ -63,7 +63,7 @@
                     </td>
                 </xsl:when>
                 <xsl:when
-                    test="$poschitzion = 0 and not(parent::tei:incident/following-sibling::tei:incident[@type = 'supplement'])">
+                    test="$poschitzion = 0 and not(parent::tei:incident/following-sibling::tei:incident[@type = 'attachment'])">
                     <th>Beilage</th>
                     <td>
                         <xsl:value-of select="mam:incident-rend(parent::tei:incident/@rend)"/>
@@ -71,7 +71,7 @@
                     </td>
                 </xsl:when>
                 <xsl:when
-                    test="$poschitzion = 0 and parent::tei:incident/following-sibling::tei:incident[@type = 'supplement']">
+                    test="$poschitzion = 0 and parent::tei:incident/following-sibling::tei:incident[@type = 'attachment']">
                     <th>Beilagen</th>
                     <td>
                         <xsl:value-of select="$poschitzion + 1"/>
