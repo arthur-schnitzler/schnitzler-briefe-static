@@ -99,35 +99,54 @@
                                                   name="nummer-des-korrespondenzpartners"
                                                   select="tei:persName[@role = 'main']/replace(@ref, '#', '')"/>
                                                 <tr>
-                                                  <td>
-                                                  <a>
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat(replace(@xml:id, 'correspondence', 'toc'), '.html')"
-                                                  />
-                                                  </xsl:attribute>
-                                                  <xsl:attribute name="class">
-                                                  <xsl:text>sender-color</xsl:text>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of
-                                                  select="tei:persName[@role = 'main']/text()"/>
-                                                  </a>
-                                                  </td>
-                                                  <td>
-                                                  <xsl:for-each
-                                                  select="tei:persName[not(@role = 'main')]">
-                                                  <xsl:value-of
-                                                  select="concat(substring-after(., ', '), ' ', substring-before(., ', '))"/>
-                                                  <xsl:if test="not(position() = last())">
-                                                  <br/>
-                                                  </xsl:if>
-                                                  </xsl:for-each>
-                                                  </td>
-                                                  <td>
-                                                  <xsl:value-of
-                                                  select="count(document(concat('../data/tocs/toc_', replace($nummer-des-korrespondenzpartners, 'pmb', ''), '.xml'))/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:list[1]/tei:item)"
-                                                  />
-                                                  </td>
+                                                    <td>
+                                                        <xsl:choose>
+                                                            <xsl:when test="@ana='planned'">
+                                                                <xsl:value-of
+                                                                    select="tei:persName[@role = 'main']/text()"/>
+                                                                <xsl:text> (geplant)</xsl:text>
+                                                            </xsl:when>
+                                                            <xsl:otherwise>
+                                                                
+                                                                <a>
+                                                                    <xsl:attribute name="class">
+                                                                        <xsl:text>sender-color</xsl:text>
+                                                                    </xsl:attribute>
+                                                                    <xsl:attribute name="href">
+                                                                        <xsl:value-of
+                                                                            select="concat(replace(@xml:id, 'correspondence', 'toc'), '.html')"
+                                                                        />
+                                                                    </xsl:attribute>
+                                                                    <xsl:value-of
+                                                                        select="tei:persName[@role = 'main']/text()"/>
+                                                                </a>
+                                                                <xsl:choose>
+                                                                    <xsl:when test="@ana = 'corrections-in-progress'">
+                                                                        <xsl:text> (Korrektur läuft)</xsl:text>
+                                                                    </xsl:when>
+                                                                    <xsl:when test="@ana = 'corrections-in-progress'">
+                                                                        <xsl:text> (Briefaufnahme läuft)</xsl:text>
+                                                                    </xsl:when>
+                                                                </xsl:choose>
+                                                            </xsl:otherwise>
+                                                        </xsl:choose>
+                                                    </td>
+                                                    <td>
+                                                        <xsl:for-each
+                                                            select="tei:persName[not(@role = 'main')]">
+                                                            <xsl:value-of
+                                                                select="concat(substring-after(., ', '), ' ', substring-before(., ', '))"/>
+                                                            <xsl:if test="not(position() = last())">
+                                                                <br/>
+                                                            </xsl:if>
+                                                        </xsl:for-each>
+                                                    </td>
+                                                    <td>
+                                                        <xsl:value-of
+                                                            select="count(document(concat('../data/tocs/toc_', replace($nummer-des-korrespondenzpartners, 'pmb', ''), '.xml'))/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:list[1]/tei:item)"
+                                                        />
+                                                    </td>
+                                                    
                                                 </tr>
                                             </xsl:for-each>
                                         </tbody>
