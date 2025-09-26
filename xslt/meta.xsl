@@ -152,10 +152,6 @@
         <div style="width: 100%; margin: 2rem 0;">
             <div style="display: flex; flex-direction: column; height: 600px;">
                 <div id="jung-wien-container-ohne-slider" style="width: 100%; flex-grow: 1;"/>
-                <figcaption style="text-align: center; margin-top: 1rem;">
-                    Abb. 8: Alle Korrespondenzen zwischen Arthur Schnitzler, Hermann Bahr,
-                    Richard Beer-Hofmann und Hugo von Hofmannsthal
-                </figcaption>
             </div>
         </div>
         <script src="js/jung-wien-exp-charts-ohne-slider.js"/>
@@ -171,10 +167,6 @@
             </div>
             <div style="display: flex; flex-direction: column; height: 600px; max-height: 600px; overflow: hidden;">
                 <div id="jung-wien-container-mit-slider" style="width: 100%; flex-grow: 1; max-height: 600px;"/>
-                <figcaption style="text-align: center;">
-                    Abb. 9: Alle Korrespondenzen zwischen Arthur Schnitzler, Hermann Bahr,
-                    Richard Beer-Hofmann und Hugo von Hofmannsthal im Timeslider
-                </figcaption>
             </div>
         </div>
         <!-- Kein separates Script hier - wird vom ersten Container geladen -->
@@ -199,9 +191,6 @@
                 <div id="jung-wien-container-nebeneinander-mit-slider-left" style="width: 48%; margin-right: 2%; max-height: 600px;"/>
                 <div id="jung-wien-container-nebeneinander-mit-slider-right" style="width: 48%; margin-left: 2%; max-height: 600px;"/>
             </div>
-            <figcaption style="text-align: center;">
-                Netzwerk-Ansicht mit Timeline: Vergleich verschiedener Datenansichten
-            </figcaption>
         </div>
         <script src="js/jung-wien-exp-charts-mit-slider.js"/>
     </xsl:template>
