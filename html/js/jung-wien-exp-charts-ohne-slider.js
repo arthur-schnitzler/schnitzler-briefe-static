@@ -99,8 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                     parseInt(row.Weight, 10) || 0
                                 ];
 
-                                if (!source || !target) {
-                                    return console.warn('Row missing source or target:', row);
+                                if (!source || !target || weight <= 0) {
+                                    if (weight <= 0) {
+                                        console.warn('Skipping row with zero or negative weight:', row);
+                                    } else {
+                                        console.warn('Row missing source or target:', row);
+                                    }
+                                    return;
                                 }
 
                                 if (!nodes[source]) {
