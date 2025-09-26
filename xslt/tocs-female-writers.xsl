@@ -31,7 +31,7 @@
                             <div style="display: flex; justify-content: center; width: 100%;">
                                 <div style="max-width: 800px; text-align: left;">
                                     <p>Die Korrespondenzen, die Schnitzler mit Schriftstellerinnen
-                                        geführt hat, sind nicht besonders umfangreich. Auf seiner <ref type="URL" target="https://schnitzler-lektueren.acdh.oeaw.ac.at/listperson.html">Leseliste</ref>
+                                        geführt hat, sind nicht besonders umfangreich. Auf seiner <a href="https://schnitzler-lektueren.acdh.oeaw.ac.at/listperson.html" target="_blank">Leseliste</a>
                                         kommt im Schnitt eine Autorin auf neun männliche Autoren. In beiden
                                         Fällen kann nicht ein ausgeglichenes Verhältnis konstatiert werden. Es lässt sich
                                         aber festhalten, dass Schnitzler Schriftstellerinnen
@@ -41,9 +41,9 @@
                                         Korrespondenzen an, sofern ein tatsächlicher Austausch
                                         anzunehmen ist. Nicht berücksichtigt wurden bislang zwei
                                         umfangreichere Korrespondenzen an der Grenzlinie zwischen
-                                        persönlicher und beruflicher Freundschaft, die beide
+                                        persönlicher und beruflicher Freundschaft. Beide liegen
                                         eingebettet in autobiografische Zeugnisse des Gegenübers
-                                        vorliegen: Clara Katharina Pollaczek, die Lebensgefährtin
+                                        vor: Clara Katharina Pollaczek, die Lebensgefährtin
                                         des letzten Lebensjahrzehnts, nahm die Korrespondenz in ihr
                                         nachgelassenes Memoirenwerk <a target="_blank"
                                             href="https://pollaczek.acdh.oeaw.ac.at/">Arthur
@@ -70,8 +70,7 @@
                                         deutlich mehr thematisiert als das seiner
                                         Schreibpartnerinnen. Aber es sind schreibkundige Autorinnen,
                                         die hier Schnitzler Feedback zu seinen Texten geben.</p>-->
-                                    <p>In nächster Zeit werden die Korrespondenzen mit Elsa Plessner
-                                        und Berta Zuckerkandl ediert.</p>
+                                    
                                 </div>
                             </div>
                             <div class="card-body">
