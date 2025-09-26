@@ -353,7 +353,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 }],
-                exporting: { enabled: true }
+                exporting: {
+                    enabled: true,
+                    buttons: {
+                        contextButton: {
+                            menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF']
+                        }
+                    }
+                }
             });
             forceRedraw();
         };

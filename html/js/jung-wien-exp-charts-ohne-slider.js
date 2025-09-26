@@ -335,7 +335,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                         }
                                     }
                                 }],
-                                exporting: { enabled: true }
+                                exporting: {
+                                    enabled: true,
+                                    buttons: {
+                                        contextButton: {
+                                            menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF']
+                                        }
+                                    }
+                                }
                             });
                         },
                         error: error => console.error('Error parsing the CSV file:', error)

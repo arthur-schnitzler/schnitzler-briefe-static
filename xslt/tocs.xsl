@@ -85,7 +85,7 @@
                                                                   <xsl:when test="@ana = 'corrections-in-progress'">
                                                                       <xsl:text> (Korrektur läuft)</xsl:text>
                                                                   </xsl:when>
-                                                                  <xsl:when test="@ana = 'corrections-in-progress'">
+                                                                  <xsl:when test="@ana = 'edition-in-progress'">
                                                                       <xsl:text> (Briefaufnahme läuft)</xsl:text>
                                                                   </xsl:when>
                                                               </xsl:choose>
