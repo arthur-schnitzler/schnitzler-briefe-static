@@ -172,6 +172,10 @@
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Wienbibliothek')]">
           <xsl:text>WBR</xsl:text>
         </xsl:when>
+        <!-- Library of Congress -->
+        <xsl:when test="$msIdentifier/tei:repository[contains(., 'Library of Congress')]">
+          <xsl:text>LOC</xsl:text>
+        </xsl:when>
         <xsl:when test="$msIdentifier/tei:repository[. = 'Privatbesitz']">
           <xsl:text>Privatbesitz</xsl:text>
         </xsl:when>
