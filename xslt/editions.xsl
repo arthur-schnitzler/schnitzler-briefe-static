@@ -433,15 +433,16 @@
                                         </table>
                                     </xsl:for-each>
                                     <xsl:for-each select="//tei:biblStruct">
-                                        <h5>DRUCK <xsl:value-of select="position()"/>
+                                        <h5>VERÖFFENTLICHUNG <xsl:value-of select="position()"/>
                                         </h5>
                                         <table class="table table-striped">
                                             <tbody>
                                                 <tr>
                                                   <th/>
                                                   <td>
-                                                  <xsl:value-of
-                                                  select="mam:bibliografische-angabe(.)"/>
+                                                  <xsl:call-template name="mam:bibliografische-angabe">
+                                                      <xsl:with-param name="biblStruct-input" select="."/>
+                                                  </xsl:call-template>
                                                   </td>
                                                 </tr>
                                             </tbody>
