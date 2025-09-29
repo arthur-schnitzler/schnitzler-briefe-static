@@ -172,6 +172,9 @@
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Wienbibliothek')]">
           <xsl:text>WBR</xsl:text>
         </xsl:when>
+        <xsl:when test="$msIdentifier/tei:repository[. = 'Privatbesitz']">
+          <xsl:text>Privatbesitz</xsl:text>
+        </xsl:when>
         <!-- otherwise -->
         <xsl:otherwise>
           <xsl:value-of select="$msIdentifier/tei:repository/replace(., ' ', '_')"/>
