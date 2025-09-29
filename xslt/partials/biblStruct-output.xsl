@@ -55,7 +55,7 @@
             </xsl:if>
             <xsl:text>)</xsl:text>
         </xsl:if>
-        <xsl:text>.</xsl:text>
+        <xsl:text>. </xsl:text>
     </xsl:template>
     <xsl:template name="mam:analytic-angabe">
         <xsl:param name="gedruckte-quellen" as="node()"/>
@@ -80,7 +80,7 @@
                         <xsl:when test="ends-with(normalize-space($analytic/tei:title), '!')"/>
                         <xsl:when test="ends-with(normalize-space($analytic/tei:title), '?')"/>
                         <xsl:otherwise>
-                            <xsl:text>.</xsl:text>
+                            <xsl:text>. </xsl:text>
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
@@ -91,7 +91,7 @@
                     <xsl:when test="ends-with(normalize-space($analytic/tei:title), '!')"/>
                     <xsl:when test="ends-with(normalize-space($analytic/tei:title), '?')"/>
                     <xsl:otherwise>
-                        <xsl:text>.</xsl:text>
+                        <xsl:text>. </xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:otherwise>
