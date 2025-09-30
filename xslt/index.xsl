@@ -16,7 +16,45 @@
             <head>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"/>
+                    <xsl:with-param name="html_url" select="'https://schnitzler-briefe.acdh.oeaw.ac.at/'"/>
                 </xsl:call-template>
+
+                <!-- Schema.org JSON-LD for Homepage -->
+                <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "WebSite",
+                  "name": "Arthur Schnitzler Briefwechsel",
+                  "alternateName": "Schnitzler Briefe",
+                  "url": "https://schnitzler-briefe.acdh.oeaw.ac.at/",
+                  "description": "Über 3.800 Briefe von und an Arthur Schnitzler (1862–1931) aus 49 vollständigen Korrespondenzen, viele erstmals veröffentlicht. Digitale Edition des ACDH-CH.",
+                  "inLanguage": "de",
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Austrian Centre for Digital Humanities and Cultural Heritage",
+                    "url": "https://www.oeaw.ac.at/acdh/",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://shared.acdh.oeaw.ac.at/schnitzler-briefe/project-logo.svg"
+                    }
+                  },
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                      "@type": "EntryPoint",
+                      "urlTemplate": "https://schnitzler-briefe.acdh.oeaw.ac.at/search.html?q={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                  },
+                  "about": {
+                    "@type": "Person",
+                    "name": "Arthur Schnitzler",
+                    "birthDate": "1862",
+                    "deathDate": "1931",
+                    "@id": "https://d-nb.info/gnd/118609807"
+                  }
+                }
+                </script>
             </head>
             <body class="page" style="background-color:#f1f1f1;">
                 <div class="hfeed site" id="page">

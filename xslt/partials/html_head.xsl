@@ -5,14 +5,30 @@
     <xsl:include href="./params.xsl"/>
     <xsl:template match="/" name="html_head">
         <xsl:param name="html_title" select="$project_short_title"/>
+        <xsl:param name="html_description" select="''"/>
+        <xsl:param name="html_url" select="$base_url"/>
+        <xsl:param name="html_image" select="concat($base_url, '/img/og-image.jpg')"/>
         <xsl:variable name="html_title1">
             <!-- brachialer Eingriff für index -->
             <xsl:choose>
                 <xsl:when test="$html_title = 'Meta' or $html_title = 'meta'">
-                    <xsl:text>schnitzler-briefe</xsl:text>
+                    <xsl:text>Arthur Schnitzler Briefwechsel – Digitale Edition (1885–1931) | ACDH-CH</xsl:text>
+                </xsl:when>
+                <xsl:when test="normalize-space(string-join($html_title, '')) = ''">
+                    <xsl:value-of select="$project_short_title"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$html_title"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="html_description1">
+            <xsl:choose>
+                <xsl:when test="normalize-space(string-join($html_description, '')) != ''">
+                    <xsl:value-of select="$html_description"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>Über 3.800 Briefe von und an Arthur Schnitzler (1862–1931) aus 49 vollständigen Korrespondenzen, viele erstmals veröffentlicht. Digitale Edition des ACDH-CH.</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -46,6 +62,27 @@
         <title>
             <xsl:value-of select="$html_title1"/>
         </title>
+
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="{$html_description1}"/>
+        <link rel="canonical" href="{$html_url}"/>
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="{$html_url}"/>
+        <meta property="og:title" content="{$html_title1}"/>
+        <meta property="og:description" content="{$html_description1}"/>
+        <meta property="og:image" content="{$html_image}"/>
+        <meta property="og:locale" content="de_AT"/>
+        <meta property="og:site_name" content="Arthur Schnitzler Briefwechsel"/>
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:url" content="{$html_url}"/>
+        <meta property="twitter:title" content="{$html_title1}"/>
+        <meta property="twitter:description" content="{$html_description1}"/>
+        <meta property="twitter:image" content="{$html_image}"/>
+
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
             integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="

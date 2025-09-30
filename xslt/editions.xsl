@@ -61,7 +61,11 @@
         <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
             <head>
                 <xsl:call-template name="html_head">
-                    <xsl:with-param name="html_title" select="$doc_title"/>
+                    <xsl:with-param name="html_title" select="concat($doc_title, ' | Schnitzler Briefe')"/>
+                    <xsl:with-param name="html_description">
+                        <xsl:value-of select="concat('Brief: ', $doc_title, '. Digital edierte Korrespondenz aus dem Nachlass Arthur Schnitzlers.')"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="html_url" select="$quotationURL"/>
                 </xsl:call-template>
                 <style>
                     .navBarNavDropdown ul li:nth-child(2) {
@@ -1153,6 +1157,46 @@
                 <script type="text/javascript" src="js/de-editor-config.js"/>
                 <script type="text/javascript" src="js/prev-next-urlupdate.js"/>
                 <script type="text/javascript" src="js/copy-to-clipboard.js"/>
+
+                <!-- Schema.org JSON-LD -->
+                <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "Letter",
+                  "identifier": "<xsl:value-of select="$teiSource"/>",
+                  "url": "<xsl:value-of select="$quotationURL"/>",
+                  "name": "<xsl:value-of select="normalize-space($doc_title)"/>",
+                  <xsl:if test="//tei:correspAction[@type='sent']//tei:persName">
+                  "author": {
+                    "@type": "Person",
+                    "name": "<xsl:value-of select="normalize-space(//tei:correspAction[@type='sent']//tei:persName[1])"/>"<xsl:if test="//tei:correspAction[@type='sent']//tei:persName[1]/@ref">,
+                    "@id": "<xsl:value-of select="replace(//tei:correspAction[@type='sent']//tei:persName[1]/@ref, '#pmb', 'https://pmb.acdh.oeaw.ac.at/entity/')"/>"</xsl:if>
+                  },
+                  </xsl:if>
+                  <xsl:if test="//tei:correspAction[@type='received']//tei:persName">
+                  "recipient": {
+                    "@type": "Person",
+                    "name": "<xsl:value-of select="normalize-space(//tei:correspAction[@type='received']//tei:persName[1])"/>"<xsl:if test="//tei:correspAction[@type='received']//tei:persName[1]/@ref">,
+                    "@id": "<xsl:value-of select="replace(//tei:correspAction[@type='received']//tei:persName[1]/@ref, '#pmb', 'https://pmb.acdh.oeaw.ac.at/entity/')"/>"</xsl:if>
+                  },
+                  </xsl:if>
+                  <xsl:if test="//tei:titleStmt/tei:title[@type='iso-date']/@when-iso">
+                  "dateCreated": "<xsl:value-of select="//tei:titleStmt/tei:title[@type='iso-date']/@when-iso"/>",
+                  </xsl:if>
+                  "inLanguage": "de",
+                  "isPartOf": {
+                    "@type": "Collection",
+                    "name": "Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren",
+                    "url": "https://schnitzler-briefe.acdh.oeaw.ac.at/"
+                  },
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Austrian Centre for Digital Humanities and Cultural Heritage",
+                    "url": "https://www.oeaw.ac.at/acdh/"
+                  },
+                  "license": "https://creativecommons.org/licenses/by/4.0/"
+                }
+                </script>
             </body>
         </html>
     </xsl:template>
