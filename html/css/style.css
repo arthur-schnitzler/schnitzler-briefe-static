@@ -797,7 +797,15 @@ div.dataTables_filter {
     border: none;
     text-align: center;
     padding: 0;
-    
+    height: 250px;
+    overflow: hidden;
+}
+
+.index-card .card-body img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .index-card {
@@ -865,7 +873,15 @@ h5 {
     border: none;
     text-align: center;
     padding: 0;
-    
+    height: 250px;
+    overflow: hidden;
+}
+
+.index-card .card-body img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .index-card:hover {
