@@ -9,6 +9,9 @@ python add_mentions.py
 echo "make calendar data"
 python make_calendar_data.py
 
+echo "generate letter statistics"
+python generate_letter_statistics.py
+
 echo "fetch and integrate CMIF printed letters data"
 python fetch_cmif_data.py
 

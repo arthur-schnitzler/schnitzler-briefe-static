@@ -63,7 +63,7 @@
                                 nach den Originalen in Archiven in Europa und Amerika durchgesehen
                                 und korrigiert.</p>
                             <p class="mt-3" style="padding-bottom: 50px;">In der seit 2025 laufenden 3. Projektlaufzeit wurden bereits die Korrespondenzen
-                                mit Karl Emil Franzos, Elsa Plessner und Stefan Zweig aufgenommen. Die Korrespondenz mit Theodor Herzl wird 
+                                mit Karl Emil Franzos, Sigmund Freud, Elsa Plessner, Romain Rolland, Wanda Sacher-Masoch und Stefan Zweig aufgenommen. Die Korrespondenz mit Theodor Herzl wird 
                                 nach und nach ergänzt (<a
                                     href="status.html">Projektstand</a>).</p>
                             <a href="L00001.html">
@@ -77,6 +77,18 @@
                     </div>
                     <div class="container-fluid" style="margin:2em auto;">
                         <div class="row wrapper img_bottom">
+                            <div class="col-md-12 mb-4">
+                                <div class="card" style="background-color: white;">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <i class="fa-solid fa-chart-simple"></i> Statistiken zur Korrespondenz
+                                        </h4>
+                                        <div id="stats-content">
+                                            <p>Lädt Statistiken...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <a href="tocs.html" class="index-link">
                                     <div class="card index-card">
@@ -245,6 +257,62 @@
                     </div>
                     <xsl:call-template name="html_footer"/>
                 </div>
+                <script src="js-data/letterStatistics.js"></script>
+                <xsl:text disable-output-escaping="yes"><![CDATA[
+                <script>
+                    // Load and display statistics on index page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        if (typeof letterStatistics !== 'undefined') {
+                            displayIndexStats(letterStatistics);
+                        }
+                    });
+
+                    function formatGermanDate(isoDate) {
+                        if (!isoDate) return '';
+                        const parts = isoDate.split('-');
+                        if (parts.length !== 3) return isoDate;
+                        const day = parseInt(parts[2], 10);
+                        const month = parseInt(parts[1], 10);
+                        const year = parts[0];
+                        return day + '.' + month + '.' + year;
+                    }
+
+                    function displayIndexStats(stats) {
+                        const container = document.getElementById('stats-content');
+                        if (!container) return;
+
+                        let html = '<div class="row">';
+                        html += '<div class="col-md-3 text-center">';
+                        html += '<h3 class="display-4">' + (stats.total_letters || 0) + '</h3>';
+                        html += '<p class="text-muted">Briefe gesamt</p>';
+                        html += '</div>';
+
+                        html += '<div class="col-md-3 text-center">';
+                        html += '<h3 class="display-4 theme-color">' + (stats.schnitzler_sent || 0) + '</h3>';
+                        html += '<p class="text-muted">von Schnitzler</p>';
+                        html += '</div>';
+
+                        html += '<div class="col-md-3 text-center">';
+                        html += '<h3 class="display-4 sender-color">' + (stats.schnitzler_received || 0) + '</h3>';
+                        html += '<p class="text-muted">an Schnitzler</p>';
+                        html += '</div>';
+
+                        html += '<div class="col-md-3 text-center">';
+                        if (stats.third_party && stats.third_party > 0) {
+                            html += '<h3 class="display-4 umfeld-color">' + stats.third_party + '</h3>';
+                            html += '<p class="text-muted">Umfeldbriefe</p>';
+                        } else if (stats.date_range && stats.date_range.earliest && stats.date_range.latest) {
+                            html += '<h5>' + formatGermanDate(stats.date_range.earliest) + '<br/>bis<br/>' + formatGermanDate(stats.date_range.latest) + '</h5>';
+                            html += '<p class="text-muted">Zeitraum</p>';
+                        }
+                        html += '</div>';
+
+                        html += '</div>';
+
+                        container.innerHTML = html;
+                    }
+                </script>
+                ]]></xsl:text>
             </body>
         </html>
     </xsl:template>

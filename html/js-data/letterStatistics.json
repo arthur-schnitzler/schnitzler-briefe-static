@@ -1,0 +1,34 @@
+{
+  "total_letters": 1,
+  "by_year": {
+    "1899": 1
+  },
+  "by_correspondence": {
+    "2128": 1
+  },
+  "by_sender": {
+    "pmb2128": 1
+  },
+  "by_receiver": {
+    "pmb2121": 1
+  },
+  "schnitzler_sent": 0,
+  "schnitzler_received": 1,
+  "third_party": 0,
+  "text_length_by_year": {
+    "1899": 1497
+  },
+  "person_names": {
+    "pmb2128": "Elsa Plessner",
+    "pmb2121": "Schnitzler Arthur"
+  },
+  "date_range": {
+    "earliest": "1899-01-02",
+    "latest": "1899-01-02"
+  },
+  "letters_by_year_and_correspondence": {
+    "1899": {
+      "2128": 1
+    }
+  }
+}
