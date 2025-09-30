@@ -372,7 +372,7 @@
                         const container = document.getElementById('stats-content');
                         if (!container || !statsData) return;
 
-                        let html = '<div class="row">';
+                        let html = '<div class="row" style="min-height: 400px;">';
                         html += '<div class="col-md-3 text-center">';
                         html += '<h3 class="display-4">' + (statsData.total_letters || 0) + '</h3>';
                         html += '<p class="text-muted">Briefe gesamt</p>';
@@ -445,13 +445,11 @@
                         setTimeout(() => {
                             Highcharts.chart('yearly-chart', {
                             chart: {
-                                type: 'column'
+                                type: 'column',
+                                height: 400
                             },
                             title: {
-                                text: 'Briefe nach Jahr und Typ',
-                                style: {
-                                    fontSize: '18px'
-                                }
+                                text: null
                             },
                             xAxis: {
                                 categories: years,
@@ -468,20 +466,11 @@
                                     text: 'Anzahl Briefe'
                                 },
                                 stackLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontWeight: 'bold',
-                                        color: 'gray'
-                                    }
+                                    enabled: false
                                 }
                             },
                             legend: {
-                                align: 'center',
-                                verticalAlign: 'bottom',
-                                backgroundColor: 'white',
-                                borderColor: '#CCC',
-                                borderWidth: 1,
-                                shadow: false
+                                enabled: false
                             },
                             tooltip: {
                                 headerFormat: '<b>{point.x}</b><br/>',
@@ -498,15 +487,15 @@
                             series: [{
                                 name: 'von Schnitzler',
                                 data: sentData,
-                                color: '#a4c2f4'
+                                color: '#A63437'
                             }, {
                                 name: 'an Schnitzler',
                                 data: receivedData,
-                                color: '#b4d7a8'
+                                color: '#1C6E8C'
                             }, {
                                 name: 'Umfeldbriefe',
                                 data: thirdPartyData,
-                                color: '#f9cb9c'
+                                color: '#68825b'
                             }]
                         });
                         }, 100);
