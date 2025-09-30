@@ -123,7 +123,7 @@
                                 <div class="card" style="background-color: white;">
                                     <div class="card-body">
                                         <h4 class="card-title" id="stats-title">
-                                            <i class="fa-solid fa-chart-simple"></i> <span id="stats-title-text">Anzahl der Korrespondenzstücke</span>
+                                            <i class="fa-solid fa-chart-simple" style="margin-right: 0.5em;"></i><span id="stats-title-text">Anzahl der Korrespondenzstücke</span>
                                         </h4>
                                         <div id="stats-content">
                                             <p>Lädt Statistiken...</p>
