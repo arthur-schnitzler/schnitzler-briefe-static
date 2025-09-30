@@ -8,18 +8,35 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof letterStatistics !== 'undefined') {
         statsData = letterStatistics;
         initStatsSlideshow();
+        updateTextStatistics();
     }
 });
+
+function updateTextStatistics() {
+    if (!statsData) return;
+
+    // Update correspondence count in intro text
+    const corrCount = document.getElementById('correspondence-count');
+    if (corrCount && statsData.complete_correspondences) {
+        corrCount.textContent = statsData.complete_correspondences;
+    }
+
+    // Update letter count in intro text
+    const letterCount = document.getElementById('letter-count');
+    if (letterCount && statsData.total_letters) {
+        letterCount.textContent = statsData.total_letters.toLocaleString('de-DE');
+    }
+}
 
 function initStatsSlideshow() {
     showSlide(0);
 
     // Setup navigation buttons
     document.getElementById('stats-prev-btn').addEventListener('click', () => {
-        if (currentSlide > 0) showSlide(currentSlide - 1);
+        showSlide(currentSlide > 0 ? currentSlide - 1 : totalSlides - 1);
     });
     document.getElementById('stats-next-btn').addEventListener('click', () => {
-        if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+        showSlide(currentSlide < totalSlides - 1 ? currentSlide + 1 : 0);
     });
 
     // Show navigation if we have slides
@@ -29,10 +46,6 @@ function initStatsSlideshow() {
 
 function showSlide(index) {
     currentSlide = index;
-
-    // Update navigation buttons
-    document.getElementById('stats-prev-btn').disabled = (index === 0);
-    document.getElementById('stats-next-btn').disabled = (index === totalSlides - 1);
 
     // Update indicator
     document.getElementById('stats-slide-indicator').textContent = (index + 1) + ' / ' + totalSlides;

@@ -99,8 +99,8 @@
                                 position: relative;
                                 top: -250px; visibility: hidden"
                                 id="body"/>
-                            <p class="mt-3">Diese Webseite enthält zur Zeit 49 vollständige
-                                Korrespondenzen mit über 3.800 Briefen von und an Arthur Schnitzler
+                            <p class="mt-3">Diese Webseite enthält zur Zeit <span id="correspondence-count">…</span> vollständige
+                                Korrespondenzen mit <span id="letter-count">…</span> Briefen von und an Arthur Schnitzler
                                 (1862–1931). Viele davon werden erstmals veröffentlicht. Alle sind
                                 nach den Originalen in Archiven in Europa und Amerika durchgesehen
                                 und korrigiert.</p>
