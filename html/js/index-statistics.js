@@ -62,11 +62,9 @@ function displayOverviewSlide() {
     const titleText = document.getElementById('stats-title-text');
     if (!container || !statsData) return;
 
-    // Update title with date range
-    if (titleText && statsData.date_range && statsData.date_range.earliest && statsData.date_range.latest) {
-        const earliest = formatGermanDate(statsData.date_range.earliest);
-        const latest = formatGermanDate(statsData.date_range.latest);
-        titleText.textContent = 'Anzahl der Korrespondenzstücke (' + earliest + ' bis ' + latest + ')';
+    // Update title with complete correspondences count
+    if (titleText && statsData.complete_correspondences) {
+        titleText.textContent = statsData.complete_correspondences + ' vollständige Korrespondenzen';
     }
 
     // Color mapping for object types
@@ -81,16 +79,16 @@ function displayOverviewSlide() {
         'widmung': '#DC143C'
     };
 
-    // Type name mapping (full names with first letter capitalized)
+    // Type name mapping (plural forms)
     const typeNames = {
         'anderes': 'Anderes',
-        'bild': 'Bild',
-        'brief': 'Brief',
-        'karte': 'Karte',
-        'kartenbrief': 'Kartenbrief',
-        'telegramm': 'Telegramm',
-        'umschlag': 'Umschlag',
-        'widmung': 'Widmung'
+        'bild': 'Bilder',
+        'brief': 'Briefe',
+        'karte': 'Karten',
+        'kartenbrief': 'Kartenbriefe',
+        'telegramm': 'Telegramme',
+        'umschlag': 'Umschläge',
+        'widmung': 'Widmungen'
     };
 
     let html = '<div style="min-height: 400px;">';
@@ -118,23 +116,37 @@ function displayOverviewSlide() {
     html += '</div>';
     html += '</div>';
 
-    // Second row: Object types in grid (sorted by count descending)
+    // Second row: Date range and Object types combined
+    html += '<div class="row mt-4">';
+
+    // Date range
+    if (statsData.date_range && statsData.date_range.earliest && statsData.date_range.latest) {
+        html += '<div class="col-md-2 text-center mb-2">';
+        html += '<h5 style="color: black; margin-bottom: 0.25rem;">' + formatGermanDate(statsData.date_range.earliest) + '</h5>';
+        html += '<p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">erstes Stück</p>';
+        html += '</div>';
+        html += '<div class="col-md-2 text-center mb-2">';
+        html += '<h5 style="color: black; margin-bottom: 0.25rem;">' + formatGermanDate(statsData.date_range.latest) + '</h5>';
+        html += '<p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">letztes Stück</p>';
+        html += '</div>';
+    }
+
+    // Object types (sorted by count descending)
     if (statsData.by_object_type) {
-        html += '<div class="row mt-3">';
         const types = Object.entries(statsData.by_object_type)
             .sort((a, b) => b[1] - a[1]); // Sort by count descending
-        const colClass = types.length <= 4 ? 'col-md-3' : (types.length <= 6 ? 'col-md-2' : 'col-md-2');
 
         types.forEach(([type, count]) => {
             const color = colorMap[type] || '#999999';
             const name = typeNames[type] || type.charAt(0).toUpperCase() + type.slice(1);
-            html += '<div class="' + colClass + ' text-center mb-2">';
+            html += '<div class="col-md-2 text-center mb-2">';
             html += '<h5 style="color: ' + color + '; margin-bottom: 0.25rem;">' + count + '</h5>';
             html += '<p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">' + name + '</p>';
             html += '</div>';
         });
-        html += '</div>';
     }
+
+    html += '</div>';
 
     html += '</div>';
 

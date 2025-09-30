@@ -59,6 +59,25 @@ def calculate_text_length(doc):
     return 0
 
 
+def count_complete_correspondences():
+    """Count complete correspondences from listcorrespondence.xml"""
+    try:
+        correspondence_file = "./data/indices/listcorrespondence.xml"
+        if not os.path.exists(correspondence_file):
+            print(f"WARNING: {correspondence_file} not found")
+            return 0
+
+        doc = TeiReader(correspondence_file)
+        # Count personGrp elements without @ana='planned' and without @xml:id='correspondence_null'
+        person_groups = doc.any_xpath("//tei:listPerson/tei:personGrp[not(@ana='planned') and not(@xml:id='correspondence_null')]")
+        count = len(person_groups) if person_groups else 0
+        print(f"Found {count} complete correspondences")
+        return count
+    except Exception as e:
+        print(f"Error counting correspondences: {e}")
+        return 0
+
+
 def main():
     print("Generating letter statistics from data/editions/...")
 
@@ -68,9 +87,13 @@ def main():
         print("WARNING: No XML files found in data/editions/")
         print("This script will create an empty statistics file.")
 
+    # Count complete correspondences
+    complete_correspondences = count_complete_correspondences()
+
     # Statistics containers
     stats = {
         'total_letters': 0,
+        'complete_correspondences': complete_correspondences,
         'by_year': defaultdict(int),
         'by_correspondence': defaultdict(int),
         'by_sender': defaultdict(int),
@@ -175,6 +198,7 @@ def main():
     # Convert defaultdicts to regular dicts for JSON serialization
     stats_output = {
         'total_letters': stats['total_letters'],
+        'complete_correspondences': stats['complete_correspondences'],
         'by_year': dict(sorted(stats['by_year'].items())),
         'by_correspondence': dict(sorted(stats['by_correspondence'].items(), key=lambda x: x[1], reverse=True)),
         'by_sender': dict(sorted(stats['by_sender'].items(), key=lambda x: x[1], reverse=True)),
