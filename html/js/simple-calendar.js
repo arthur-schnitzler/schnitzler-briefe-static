@@ -107,12 +107,14 @@ class SimpleCalendar {
           <button class="nav-btn prev" data-direction="-1">&lt;</button>
           <div class="current-period">
             <div class="period-navigation">
-              <h2 class="period-title">${this.getPeriodTitle()}</h2>
               <div class="calendar-controls">
                 <div class="view-buttons">
                   <button class="view-btn active" data-view="year">Jahr</button>
                   <button class="view-btn" data-view="month">Monat</button>
                   <button class="view-btn" data-view="week">Woche</button>
+                </div>
+                <div class="period-dropdowns">
+                  <!-- Dropdowns will be added dynamically -->
                 </div>
                 <div class="category-filters">
                   <button class="filter-toggle active" data-category="as-sender" title="Briefe von Schnitzler">
@@ -133,9 +135,6 @@ class SimpleCalendar {
                   </button>
                 </div>
               </div>
-              <div class="period-dropdowns" style="display: none;">
-                <!-- Dropdowns will be added dynamically -->
-              </div>
             </div>
           </div>
           <button class="nav-btn next" data-direction="1">&gt;</button>
@@ -143,10 +142,10 @@ class SimpleCalendar {
         <div class="calendar-grid"></div>
       </div>
     `;
-    
+
     // Add CSS
     this.addStyles();
-    
+
     // Add event listeners
     this.container.querySelectorAll('.nav-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -154,14 +153,14 @@ class SimpleCalendar {
         this.navigatePeriod(direction);
       });
     });
-    
+
     // Add view button listeners
     this.container.querySelectorAll('.view-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         this.switchView(e.target.dataset.view);
       });
     });
-    
+
     // Add category filter listeners
     this.container.querySelectorAll('.filter-toggle').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -169,7 +168,7 @@ class SimpleCalendar {
         this.toggleCategoryFilter(category);
       });
     });
-    
+
     // Create dropdown navigation
     this.createDropdownNavigation();
   }
@@ -207,25 +206,12 @@ class SimpleCalendar {
         }
         
         .period-dropdowns {
-          display: none;
-          gap: 15px;
+          display: flex;
+          gap: 10px;
           align-items: center;
           flex-wrap: wrap;
-          justify-content: center;
-          background: white;
-          padding: 15px;
-          border-radius: 8px;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-          border: 2px solid #007bff;
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 1000;
-          min-width: 320px;
-          margin-top: 5px;
         }
-        
+
         .period-dropdown {
           padding: 6px 10px;
           border: 1px solid #dee2e6;
@@ -233,25 +219,17 @@ class SimpleCalendar {
           font-size: 14px;
           background: white;
           cursor: pointer;
-          min-width: 120px;
+          min-width: 100px;
         }
-        
+
+        .period-dropdown:hover {
+          border-color: #007bff;
+        }
+
         .period-dropdown:focus {
           outline: none;
           border-color: #007bff;
           box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-        }
-        
-        .period-title:hover {
-          color: #007bff;
-          text-decoration: underline;
-        }
-        
-        .period-title::after {
-          content: ' ▼';
-          font-size: 0.8em;
-          color: #6c757d;
-          margin-left: 5px;
         }
         
         .calendar-controls {
@@ -721,62 +699,33 @@ class SimpleCalendar {
   
   createDropdownNavigation() {
     const dropdownContainer = this.container.querySelector('.period-dropdowns');
-    const titleElement = this.container.querySelector('.period-title');
-    
+
     // Clear existing dropdowns
     dropdownContainer.innerHTML = '';
-    
-    // Add click handler to title to toggle dropdowns
-    titleElement.style.cursor = 'pointer';
-    titleElement.title = 'Klicken für erweiterte Navigation';
-    
-    // Remove existing event listeners to avoid duplicates
-    titleElement.replaceWith(titleElement.cloneNode(true));
-    const newTitleElement = this.container.querySelector('.period-title');
-    newTitleElement.style.cursor = 'pointer';
-    newTitleElement.title = 'Klicken für erweiterte Navigation';
-    
-    newTitleElement.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const isVisible = dropdownContainer.style.display === 'flex';
-      dropdownContainer.style.display = isVisible ? 'none' : 'flex';
-    });
-    
+
     // Year dropdown for all views
     this.createYearDropdown(dropdownContainer);
-    
+
     // Month dropdown for month view
     if (this.currentView === 'month') {
       this.createMonthDropdown(dropdownContainer);
     }
-    
+
     // Week dropdown for week view
     if (this.currentView === 'week') {
       this.createWeekDropdown(dropdownContainer);
     }
-    
-    // Add outside click handler to close dropdowns
-    setTimeout(() => {
-      document.addEventListener('click', (e) => {
-        if (!dropdownContainer.contains(e.target) && 
-            !newTitleElement.contains(e.target) &&
-            dropdownContainer.style.display === 'flex') {
-          dropdownContainer.style.display = 'none';
-        }
-      });
-    }, 100);
   }
   
   createYearDropdown(container) {
     const yearSelect = document.createElement('select');
     yearSelect.className = 'period-dropdown year-dropdown';
-    
+
     // Get available years from events
-    const availableYears = [...new Set(this.events.map(event => 
+    const availableYears = [...new Set(this.events.map(event =>
       new Date(event.startDate).getFullYear()
     ))].sort();
-    
+
     availableYears.forEach(year => {
       const option = document.createElement('option');
       option.value = year;
@@ -784,26 +733,20 @@ class SimpleCalendar {
       option.selected = year === this.currentYear;
       yearSelect.appendChild(option);
     });
-    
+
     yearSelect.addEventListener('change', (e) => {
       this.currentYear = parseInt(e.target.value);
       this.renderCalendar();
-      container.style.display = 'none';
       this.updateURL();
     });
-    
-    const label = document.createElement('label');
-    label.textContent = 'Jahr: ';
-    label.style.fontWeight = '500';
-    
-    container.appendChild(label);
+
     container.appendChild(yearSelect);
   }
   
   createMonthDropdown(container) {
     const monthSelect = document.createElement('select');
     monthSelect.className = 'period-dropdown month-dropdown';
-    
+
     this.monthNames.forEach((monthName, index) => {
       const option = document.createElement('option');
       option.value = index;
@@ -811,50 +754,36 @@ class SimpleCalendar {
       option.selected = index === this.currentMonth;
       monthSelect.appendChild(option);
     });
-    
+
     monthSelect.addEventListener('change', (e) => {
       this.currentMonth = parseInt(e.target.value);
       this.renderCalendar();
-      container.style.display = 'none';
       this.updateURL();
     });
-    
-    const label = document.createElement('label');
-    label.textContent = 'Monat: ';
-    label.style.fontWeight = '500';
-    label.style.marginLeft = '20px';
-    
-    container.appendChild(label);
+
     container.appendChild(monthSelect);
   }
   
   createWeekDropdown(container) {
     const weekSelect = document.createElement('select');
     weekSelect.className = 'period-dropdown week-dropdown';
-    
+
     for (let week = 1; week <= 53; week++) {
       const option = document.createElement('option');
       option.value = week;
       const weekStart = this.getWeekStart(this.currentYear, week);
       const weekEnd = new Date(weekStart.getTime() + 6 * 24 * 60 * 60 * 1000);
-      option.textContent = `${weekStart.getDate()}.${weekStart.getMonth() + 1}. - ${weekEnd.getDate()}.${weekEnd.getMonth() + 1}.${weekEnd.getFullYear()}`;
+      option.textContent = `Woche ${week} (${weekStart.getDate()}.${weekStart.getMonth() + 1}. - ${weekEnd.getDate()}.${weekEnd.getMonth() + 1}.)`;
       option.selected = week === this.currentWeek;
       weekSelect.appendChild(option);
     }
-    
+
     weekSelect.addEventListener('change', (e) => {
       this.currentWeek = parseInt(e.target.value);
       this.renderCalendar();
-      container.style.display = 'none';
       this.updateURL();
     });
-    
-    const label = document.createElement('label');
-    label.textContent = 'Woche: ';
-    label.style.fontWeight = '500';
-    label.style.marginLeft = '20px';
-    
-    container.appendChild(label);
+
     container.appendChild(weekSelect);
   }
   
@@ -929,17 +858,13 @@ class SimpleCalendar {
   renderCalendar() {
     const grid = this.container.querySelector('.calendar-grid');
     grid.innerHTML = '';
-    
+
     // Remove all view classes and add current view
     grid.className = `calendar-grid ${this.currentView}-view`;
-    
-    // Update title
-    const titleElement = this.container.querySelector('.period-title');
-    titleElement.textContent = this.getPeriodTitle();
-    
+
     // Update dropdown navigation for current view
     this.createDropdownNavigation();
-    
+
     switch(this.currentView) {
       case 'year':
         this.renderYearView(grid);
