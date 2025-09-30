@@ -405,9 +405,28 @@
 
                     function displayYearlyChart() {
                         const container = document.getElementById('stats-content');
-                        if (!container || !statsData || !statsData.letters_by_year_and_type) return;
+                        if (!container) {
+                            console.error('Container not found');
+                            return;
+                        }
+                        if (!statsData) {
+                            console.error('Stats data not available');
+                            return;
+                        }
+                        if (!statsData.letters_by_year_and_type) {
+                            console.error('letters_by_year_and_type not available in stats');
+                            container.innerHTML = '<p class="text-muted">Jahresdaten werden geladen...</p>';
+                            return;
+                        }
 
-                        container.innerHTML = '<div id="yearly-chart" style="height: 400px;"></div>';
+                        container.innerHTML = '<div id="yearly-chart" style="height: 400px; width: 100%;"></div>';
+
+                        // Check if Highcharts is loaded
+                        if (typeof Highcharts === 'undefined') {
+                            console.error('Highcharts not loaded');
+                            container.innerHTML = '<p class="text-danger">Fehler: Highcharts konnte nicht geladen werden.</p>';
+                            return;
+                        }
 
                         // Prepare data for Highcharts
                         const years = Object.keys(statsData.letters_by_year_and_type).sort();
@@ -423,7 +442,8 @@
                         });
 
                         // Create Highcharts stacked column chart
-                        Highcharts.chart('yearly-chart', {
+                        setTimeout(() => {
+                            Highcharts.chart('yearly-chart', {
                             chart: {
                                 type: 'column'
                             },
@@ -489,6 +509,7 @@
                                 color: '#f9cb9c'
                             }]
                         });
+                        }, 100);
                     }
 
                     // Deprecated function for backwards compatibility
