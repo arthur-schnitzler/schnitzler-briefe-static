@@ -81,7 +81,7 @@
                                 <div class="card" style="background-color: white;">
                                     <div class="card-body">
                                         <h4 class="card-title">
-                                            <i class="fa-solid fa-chart-simple"></i> Statistiken zur Korrespondenz
+                                            <i class="fa-solid fa-chart-simple"></i> Anzahl der Korrespondenzstücke
                                         </h4>
                                         <div id="stats-content">
                                             <p>Lädt Statistiken...</p>
