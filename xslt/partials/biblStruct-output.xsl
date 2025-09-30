@@ -141,14 +141,14 @@
         <xsl:choose>
             <xsl:when test="$monogr/tei:ref[@type='URL' or @type='DOI']">
                 <xsl:for-each select="$monogr/tei:ref[@type='URL' or @type='DOI']">
-                    <xsl:element name="a">
+                    <xsl:text> </xsl:text><xsl:element name="a">
                         <xsl:attribute name="href">
                     <xsl:value-of select="@target"/>
                         </xsl:attribute>
                         <xsl:attribute name="target">
                             <xsl:text>_blank</xsl:text>
                         </xsl:attribute>
-                        <xsl:value-of select="@target"/>
+                        <xsl:text>ONLINE</xsl:text>
                     </xsl:element>
                     <xsl:if test="position() != last()">
                         <xsl:text> </xsl:text>
@@ -191,7 +191,7 @@
         <xsl:if test="$autor-count &lt; $autor-count-gesamt">
             <xsl:text>, </xsl:text>
             <xsl:value-of
-                select="mam:autor-rekursion($monogr, $autor-count + 1, $autor-count-gesamt)"/>
+                select="mam:editor-rekursion($monogr, $autor-count + 1, $autor-count-gesamt)"/>
         </xsl:if>
     </xsl:function>
     <xsl:function name="mam:jg-bd-nr">
@@ -296,6 +296,7 @@
                             ) and count($teile) = 2">
                         <xsl:text>Herausgegeben von </xsl:text>
                         <xsl:value-of select="normalize-space(concat($teile[2], ' ', $teile[1]))"/>
+                        <xsl:text>. </xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="$input-node/tei:editor[1]"/>
@@ -311,6 +312,5 @@
                 <xsl:value-of select="$input-node/tei:editor/text()"/>
             </xsl:otherwise>
         </xsl:choose>
-        <xsl:text>. </xsl:text>
     </xsl:function>
 </xsl:stylesheet>
