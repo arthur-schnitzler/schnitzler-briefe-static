@@ -83,6 +83,8 @@ def main():
         'person_names': {},
         'letters_by_year_and_correspondence': defaultdict(lambda: defaultdict(int)),
         'letters_by_year_and_type': defaultdict(lambda: {'schnitzler_sent': 0, 'schnitzler_received': 0, 'third_party': 0}),
+        'by_object_type': defaultdict(int),
+        'letters_by_year_and_object_type': defaultdict(lambda: defaultdict(int)),
         'date_range': {'earliest': None, 'latest': None}
     }
 
@@ -157,6 +159,15 @@ def main():
             text_length = calculate_text_length(doc)
             stats['text_length_by_year'][year] += text_length
 
+            # Get object type
+            object_type = doc.any_xpath('//tei:sourceDesc/tei:listWit/tei:witness/tei:objectType/@corresp')
+            if object_type:
+                # Extract just the type without any prefix
+                type_value = object_type[0].strip()
+                if type_value:
+                    stats['by_object_type'][type_value] += 1
+                    stats['letters_by_year_and_object_type'][year][type_value] += 1
+
         except Exception as e:
             print(f"Error processing {xml_file}: {e}")
             continue
@@ -181,6 +192,11 @@ def main():
         'letters_by_year_and_type': {
             year: dict(type_data)
             for year, type_data in sorted(stats['letters_by_year_and_type'].items())
+        },
+        'by_object_type': dict(sorted(stats['by_object_type'].items(), key=lambda x: x[1], reverse=True)),
+        'letters_by_year_and_object_type': {
+            year: dict(obj_data)
+            for year, obj_data in sorted(stats['letters_by_year_and_object_type'].items())
         }
     }
 
