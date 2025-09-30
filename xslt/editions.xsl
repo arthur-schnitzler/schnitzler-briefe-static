@@ -136,49 +136,95 @@
                 <!-- JSON-LD structured data for better Wikipedia/search engine recognition -->
                 <script type="application/ld+json">
                 {
-                  "@context": "http://schema.org",
-                  "@type": "ScholarlyArticle",
-                  "mainEntityOfPage": "<xsl:value-of select="$quotationURL"/>",
-                  "headline": "<xsl:value-of select="normalize-space($doc_title)"/>",
+                  "@context": "https://schema.org",
+                  "@type": "Letter",
+                  "url": "<xsl:value-of select="$quotationURL"/>",
                   "name": "<xsl:value-of select="normalize-space($doc_title)"/>",
-                  "datePublished": "<xsl:value-of select="//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso"/>",
-                  "publisher": {
-                    "@type": "Organization",
-                    "name": "Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren"
-                  },
-                  "isPartOf": {
-                    "@type": "Collection", 
-                    "name": "Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition",
-                    "editor": [
-                      {
-                        "@type": "Person",
-                        "name": "Martin Anton Müller"
-                      },
-                      {
-                        "@type": "Person", 
-                        "name": "Gerd-Hermann Susen"
-                      },
-                      {
-                        "@type": "Person",
-                        "name": "Laura Untner"
-                      },
-                      {
-                        "@type": "Person",
-                        "name": "Selma Jahnke"
-                      }
-                    ]
-                  }<xsl:if test="//tei:correspAction[@type='sent']/tei:persName">,
-                  "author": [<xsl:for-each select="//tei:correspAction[@type='sent']/tei:persName">
+                  "dateCreated": "<xsl:value-of select="//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso"/>",
+                  "inLanguage": "de"<xsl:if test="//tei:correspAction[@type='sent']/tei:persName">,
+                  "author": <xsl:choose>
+                    <xsl:when test="count(//tei:correspAction[@type='sent']/tei:persName) = 1">
+                      <xsl:for-each select="//tei:correspAction[@type='sent']/tei:persName">
+                        <xsl:variable name="author-id" select="substring-after(@ref, '#')"/>
+                        <xsl:variable name="author-gnd" select="//tei:back//tei:person[@xml:id = $author-id]/tei:idno[@type='gnd'][1]"/>{
+                      "@type": "Person",
+                      "name": "<xsl:choose>
+                        <xsl:when test="tei:surname and tei:forename"><xsl:value-of select="concat(tei:forename, ' ', tei:surname)"/></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+                      </xsl:choose>"<xsl:if test="$author-gnd != ''">,
+                      "@id": "<xsl:value-of select="$author-gnd"/>"</xsl:if>
+                    }</xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>[<xsl:for-each select="//tei:correspAction[@type='sent']/tei:persName">
+                      <xsl:variable name="author-id" select="substring-after(@ref, '#')"/>
+                      <xsl:variable name="author-gnd" select="//tei:back//tei:person[@xml:id = $author-id]/tei:idno[@type='gnd'][1]"/>
                     {
                       "@type": "Person",
                       "name": "<xsl:choose>
                         <xsl:when test="tei:surname and tei:forename"><xsl:value-of select="concat(tei:forename, ' ', tei:surname)"/></xsl:when>
                         <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
-                      </xsl:choose>"
-                    }<xsl:if test="position() != last()">,</xsl:if>
-                  </xsl:for-each>]</xsl:if>,
-                  "url": "<xsl:value-of select="$quotationURL"/>",
-                  "citation": "<xsl:value-of select="normalize-space($quotationString)"/>"
+                      </xsl:choose>"<xsl:if test="$author-gnd != ''">,
+                      "@id": "<xsl:value-of select="$author-gnd"/>"</xsl:if>
+                    }<xsl:if test="position() != last()">,</xsl:if></xsl:for-each>]</xsl:otherwise>
+                  </xsl:choose></xsl:if><xsl:if test="//tei:correspAction[@type='received']/tei:persName">,
+                  "recipient": <xsl:choose>
+                    <xsl:when test="count(//tei:correspAction[@type='received']/tei:persName) = 1">
+                      <xsl:for-each select="//tei:correspAction[@type='received']/tei:persName">
+                        <xsl:variable name="recipient-id" select="substring-after(@ref, '#')"/>
+                        <xsl:variable name="recipient-gnd" select="//tei:back//tei:person[@xml:id = $recipient-id]/tei:idno[@type='gnd'][1]"/>{
+                      "@type": "Person",
+                      "name": "<xsl:choose>
+                        <xsl:when test="tei:surname and tei:forename"><xsl:value-of select="concat(tei:forename, ' ', tei:surname)"/></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+                      </xsl:choose>"<xsl:if test="$recipient-gnd != ''">,
+                      "@id": "<xsl:value-of select="$recipient-gnd"/>"</xsl:if>
+                    }</xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>[<xsl:for-each select="//tei:correspAction[@type='received']/tei:persName">
+                      <xsl:variable name="recipient-id" select="substring-after(@ref, '#')"/>
+                      <xsl:variable name="recipient-gnd" select="//tei:back//tei:person[@xml:id = $recipient-id]/tei:idno[@type='gnd'][1]"/>
+                    {
+                      "@type": "Person",
+                      "name": "<xsl:choose>
+                        <xsl:when test="tei:surname and tei:forename"><xsl:value-of select="concat(tei:forename, ' ', tei:surname)"/></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+                      </xsl:choose>"<xsl:if test="$recipient-gnd != ''">,
+                      "@id": "<xsl:value-of select="$recipient-gnd"/>"</xsl:if>
+                    }<xsl:if test="position() != last()">,</xsl:if></xsl:for-each>]</xsl:otherwise>
+                  </xsl:choose></xsl:if>,
+                  "isPartOf": {
+                    "@type": "Collection",
+                    "name": "Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren. Digitale Edition",
+                    "editor": [
+                      {
+                        "@type": "Person",
+                        "name": "Martin Anton Müller",
+                        @id": "https://www.wikidata.org/wiki/Q100965214"
+                      },
+                      {
+                        "@type": "Person",
+                        "name": "Gerd-Hermann Susen",
+                        @id: "https://www.wikidata.org/wiki/Q112499182"
+                      },
+                      {
+                        "@type": "Person",
+                        "name": "Laura Untner",
+                        @id: "https://www.wikidata.org/wiki/Q122733533"
+
+                      },
+                      {
+                        "@type": "Person",
+                        "name": "Selma Jahnke",
+                        @id: "https://www.wikidata.org/wiki/Q133383086"
+                      }
+                    ]
+                  },
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Austrian Centre for Digital Humanities",
+                    "@id": "https://www.oeaw.ac.at/acdh/"
+                  },
+                  "license": "https://creativecommons.org/licenses/by/4.0/"
                 }
                 </script>
             </head>
@@ -1191,7 +1237,7 @@
                   },
                   "publisher": {
                     "@type": "Organization",
-                    "name": "Austrian Centre for Digital Humanities and Cultural Heritage",
+                    "name": "Austrian Centre for Digital Humanities",
                     "url": "https://www.oeaw.ac.at/acdh/"
                   },
                   "license": "https://creativecommons.org/licenses/by/4.0/"

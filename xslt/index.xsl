@@ -19,6 +19,9 @@
                     <xsl:with-param name="html_url" select="'https://schnitzler-briefe.acdh.oeaw.ac.at/'"/>
                 </xsl:call-template>
 
+                <!-- Highcharts for statistics visualization -->
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+
                 <!-- Schema.org JSON-LD for Homepage -->
                 <script type="application/ld+json">
                 {
@@ -27,7 +30,8 @@
                   "name": "Arthur Schnitzler Briefwechsel",
                   "alternateName": "Schnitzler Briefe",
                   "url": "https://schnitzler-briefe.acdh.oeaw.ac.at/",
-                  "description": "Über 3.800 Briefe von und an Arthur Schnitzler (1862–1931) aus 49 vollständigen Korrespondenzen, viele erstmals veröffentlicht. Digitale Edition des ACDH-CH.",
+                  "description": "Über 3.800 Briefe von und an Arthur Schnitzler (1862–1931) aus über 50 vollständigen Korrespondenzen, viele erstmals veröffentlicht. Digitale Edition von Martin Anton Müller
+                  mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke.",
                   "inLanguage": "de",
                   "publisher": {
                     "@type": "Organization",
@@ -123,6 +127,15 @@
                                         </h4>
                                         <div id="stats-content">
                                             <p>Lädt Statistiken...</p>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <button class="btn btn-sm btn-outline-secondary" id="stats-prev-btn" style="display:none;">
+                                                <i class="fa-solid fa-chevron-left"></i> Zurück
+                                            </button>
+                                            <span id="stats-slide-indicator" class="mx-3"></span>
+                                            <button class="btn btn-sm btn-outline-secondary" id="stats-next-btn" style="display:none;">
+                                                Weiter <i class="fa-solid fa-chevron-right"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -298,12 +311,52 @@
                 <script src="js-data/letterStatistics.js"></script>
                 <xsl:text disable-output-escaping="yes"><![CDATA[
                 <script>
+                    // Slideshow state
+                    let currentSlide = 0;
+                    let statsData = null;
+                    const totalSlides = 2;
+
                     // Load and display statistics on index page
                     document.addEventListener('DOMContentLoaded', function() {
                         if (typeof letterStatistics !== 'undefined') {
-                            displayIndexStats(letterStatistics);
+                            statsData = letterStatistics;
+                            initStatsSlideshow();
                         }
                     });
+
+                    function initStatsSlideshow() {
+                        showSlide(0);
+
+                        // Setup navigation buttons
+                        document.getElementById('stats-prev-btn').addEventListener('click', () => {
+                            if (currentSlide > 0) showSlide(currentSlide - 1);
+                        });
+                        document.getElementById('stats-next-btn').addEventListener('click', () => {
+                            if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+                        });
+
+                        // Show navigation if we have slides
+                        document.getElementById('stats-prev-btn').style.display = 'inline-block';
+                        document.getElementById('stats-next-btn').style.display = 'inline-block';
+                    }
+
+                    function showSlide(index) {
+                        currentSlide = index;
+
+                        // Update navigation buttons
+                        document.getElementById('stats-prev-btn').disabled = (index === 0);
+                        document.getElementById('stats-next-btn').disabled = (index === totalSlides - 1);
+
+                        // Update indicator
+                        document.getElementById('stats-slide-indicator').textContent = (index + 1) + ' / ' + totalSlides;
+
+                        // Display the slide
+                        if (index === 0) {
+                            displayOverviewSlide();
+                        } else if (index === 1) {
+                            displayYearlyChart();
+                        }
+                    }
 
                     function formatGermanDate(isoDate) {
                         if (!isoDate) return '';
@@ -315,32 +368,32 @@
                         return day + '.' + month + '.' + year;
                     }
 
-                    function displayIndexStats(stats) {
+                    function displayOverviewSlide() {
                         const container = document.getElementById('stats-content');
-                        if (!container) return;
+                        if (!container || !statsData) return;
 
                         let html = '<div class="row">';
                         html += '<div class="col-md-3 text-center">';
-                        html += '<h3 class="display-4">' + (stats.total_letters || 0) + '</h3>';
+                        html += '<h3 class="display-4">' + (statsData.total_letters || 0) + '</h3>';
                         html += '<p class="text-muted">Briefe gesamt</p>';
                         html += '</div>';
 
                         html += '<div class="col-md-3 text-center">';
-                        html += '<h3 class="display-4 theme-color">' + (stats.schnitzler_sent || 0) + '</h3>';
+                        html += '<h3 class="display-4 theme-color">' + (statsData.schnitzler_sent || 0) + '</h3>';
                         html += '<p class="text-muted">von Schnitzler</p>';
                         html += '</div>';
 
                         html += '<div class="col-md-3 text-center">';
-                        html += '<h3 class="display-4 sender-color">' + (stats.schnitzler_received || 0) + '</h3>';
+                        html += '<h3 class="display-4 sender-color">' + (statsData.schnitzler_received || 0) + '</h3>';
                         html += '<p class="text-muted">an Schnitzler</p>';
                         html += '</div>';
 
                         html += '<div class="col-md-3 text-center">';
-                        if (stats.third_party && stats.third_party > 0) {
-                            html += '<h3 class="display-4 umfeld-color">' + stats.third_party + '</h3>';
+                        if (statsData.third_party && statsData.third_party > 0) {
+                            html += '<h3 class="display-4 umfeld-color">' + statsData.third_party + '</h3>';
                             html += '<p class="text-muted">Umfeldbriefe</p>';
-                        } else if (stats.date_range && stats.date_range.earliest && stats.date_range.latest) {
-                            html += '<h5>' + formatGermanDate(stats.date_range.earliest) + '<br/>bis<br/>' + formatGermanDate(stats.date_range.latest) + '</h5>';
+                        } else if (statsData.date_range && statsData.date_range.earliest && statsData.date_range.latest) {
+                            html += '<h5>' + formatGermanDate(statsData.date_range.earliest) + '<br/>bis<br/>' + formatGermanDate(statsData.date_range.latest) + '</h5>';
                             html += '<p class="text-muted">Zeitraum</p>';
                         }
                         html += '</div>';
@@ -348,6 +401,100 @@
                         html += '</div>';
 
                         container.innerHTML = html;
+                    }
+
+                    function displayYearlyChart() {
+                        const container = document.getElementById('stats-content');
+                        if (!container || !statsData || !statsData.letters_by_year_and_type) return;
+
+                        container.innerHTML = '<div id="yearly-chart" style="height: 400px;"></div>';
+
+                        // Prepare data for Highcharts
+                        const years = Object.keys(statsData.letters_by_year_and_type).sort();
+                        const sentData = [];
+                        const receivedData = [];
+                        const thirdPartyData = [];
+
+                        years.forEach(year => {
+                            const data = statsData.letters_by_year_and_type[year];
+                            sentData.push(data.schnitzler_sent || 0);
+                            receivedData.push(data.schnitzler_received || 0);
+                            thirdPartyData.push(data.third_party || 0);
+                        });
+
+                        // Create Highcharts stacked column chart
+                        Highcharts.chart('yearly-chart', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Briefe nach Jahr und Typ',
+                                style: {
+                                    fontSize: '18px'
+                                }
+                            },
+                            xAxis: {
+                                categories: years,
+                                labels: {
+                                    rotation: -45,
+                                    style: {
+                                        fontSize: '11px'
+                                    }
+                                }
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Anzahl Briefe'
+                                },
+                                stackLabels: {
+                                    enabled: true,
+                                    style: {
+                                        fontWeight: 'bold',
+                                        color: 'gray'
+                                    }
+                                }
+                            },
+                            legend: {
+                                align: 'center',
+                                verticalAlign: 'bottom',
+                                backgroundColor: 'white',
+                                borderColor: '#CCC',
+                                borderWidth: 1,
+                                shadow: false
+                            },
+                            tooltip: {
+                                headerFormat: '<b>{point.x}</b><br/>',
+                                pointFormat: '{series.name}: {point.y}<br/>Gesamt: {point.stackTotal}'
+                            },
+                            plotOptions: {
+                                column: {
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: 'von Schnitzler',
+                                data: sentData,
+                                color: '#a4c2f4'
+                            }, {
+                                name: 'an Schnitzler',
+                                data: receivedData,
+                                color: '#b4d7a8'
+                            }, {
+                                name: 'Umfeldbriefe',
+                                data: thirdPartyData,
+                                color: '#f9cb9c'
+                            }]
+                        });
+                    }
+
+                    // Deprecated function for backwards compatibility
+                    function displayIndexStats(stats) {
+                        statsData = stats;
+                        initStatsSlideshow();
                     }
                 </script>
                 ]]></xsl:text>

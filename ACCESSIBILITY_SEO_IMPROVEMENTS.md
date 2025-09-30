@@ -43,7 +43,8 @@
 **Lösung**:
 ```xml
 <!-- Startseite -->
-<title>Arthur Schnitzler Briefwechsel – Digitale Edition (1885-1931) | ACDH-CH</title>
+<title>Arthur Schnitzler Briefwechsel – Digitale Edition (1885-1931) | Hg. Martin Anton Müller mit Gerd-Hermann
+Susen, Laura Untner und Selma Jahnke</title>
 
 <!-- Brief -->
 <title>Elsa Plessner an Arthur Schnitzler, 2.1.1899 | Schnitzler Briefe</title>
@@ -87,7 +88,7 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Austrian Centre for Digital Humanities and Cultural Heritage",
+    "name": "Austrian Centre for Digital Humanities",
     "@id": "https://www.oeaw.ac.at/acdh/"
   },
   "license": "https://creativecommons.org/licenses/by/4.0/"
@@ -554,4 +555,4 @@ Sitemap: https://schnitzler-briefe.acdh.oeaw.ac.at/sitemap.xml
 
 **Erstellt**: 30. September 2025
 **Für**: schnitzler-briefe-static (GitHub Pages)
-**Kontakt**: ACDH-CH, ÖAW
+**Kontakt**: Martin Anton Müller, ÖAW

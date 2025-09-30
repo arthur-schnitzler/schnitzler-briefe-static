@@ -82,6 +82,7 @@ def main():
         'correspondence_names': {},
         'person_names': {},
         'letters_by_year_and_correspondence': defaultdict(lambda: defaultdict(int)),
+        'letters_by_year_and_type': defaultdict(lambda: {'schnitzler_sent': 0, 'schnitzler_received': 0, 'third_party': 0}),
         'date_range': {'earliest': None, 'latest': None}
     }
 
@@ -124,10 +125,13 @@ def main():
 
             if is_schnitzler_sender:
                 stats['schnitzler_sent'] += 1
+                stats['letters_by_year_and_type'][year]['schnitzler_sent'] += 1
             elif is_schnitzler_receiver:
                 stats['schnitzler_received'] += 1
+                stats['letters_by_year_and_type'][year]['schnitzler_received'] += 1
             else:
                 stats['third_party'] += 1
+                stats['letters_by_year_and_type'][year]['third_party'] += 1
 
             # Get sender/receiver info
             sender_refs = doc.any_xpath('//tei:correspAction[@type="sent"]//tei:persName/@ref')
@@ -173,6 +177,10 @@ def main():
         'letters_by_year_and_correspondence': {
             year: dict(corr_data)
             for year, corr_data in sorted(stats['letters_by_year_and_correspondence'].items())
+        },
+        'letters_by_year_and_type': {
+            year: dict(type_data)
+            for year, type_data in sorted(stats['letters_by_year_and_type'].items())
         }
     }
 
@@ -206,7 +214,7 @@ def main():
         f.write('        <title level="a">Statistiken zur Korrespondenz (dynamisch generiert)</title>\n')
         f.write('      </titleStmt>\n')
         f.write('      <publicationStmt>\n')
-        f.write('        <publisher>Austrian Centre for Digital Humanities and Cultural Heritage</publisher>\n')
+        f.write('        <publisher>Austrian Centre for Digital Humanities</publisher>\n')
         f.write('        <pubPlace>Vienna</pubPlace>\n')
         f.write(f'        <date when="{datetime.now().strftime("%Y-%m-%d")}">{datetime.now().strftime("%Y")}</date>\n')
         f.write('      </publicationStmt>\n')

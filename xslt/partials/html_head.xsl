@@ -12,7 +12,8 @@
             <!-- brachialer Eingriff für index -->
             <xsl:choose>
                 <xsl:when test="$html_title = 'Meta' or $html_title = 'meta'">
-                    <xsl:text>Arthur Schnitzler Briefwechsel – Digitale Edition (1885–1931) | ACDH-CH</xsl:text>
+                    <xsl:text>Arthur Schnitzler Briefwechsel – Digitale Edition (1885–1931) | Hg. Martin Anton Müller mit Gerd-Hermann
+Susen, Laura Untner und Selma Jahnke</xsl:text>
                 </xsl:when>
                 <xsl:when test="normalize-space(string-join($html_title, '')) = ''">
                     <xsl:value-of select="$project_short_title"/>
@@ -28,7 +29,8 @@
                     <xsl:value-of select="$html_description"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:text>Über 3.800 Briefe von und an Arthur Schnitzler (1862–1931) aus 49 vollständigen Korrespondenzen, viele erstmals veröffentlicht. Digitale Edition des ACDH-CH.</xsl:text>
+                    <xsl:text>Über 3.800 Briefe von und an Arthur Schnitzler (1862–1931) aus über 50 vollständigen Korrespondenzen, viele erstmals veröffentlicht. Digitale Edition. Hg. Martin Anton Müller mit Gerd-Hermann
+Susen, Laura Untner und Selma Jahnke.</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
