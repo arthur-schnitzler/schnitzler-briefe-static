@@ -1,5 +1,5 @@
 function copyToClipboard(element) {
-                    const text = (element.textContent || element.innerText).trim();
+                    const text = (element.textContent || element.innerText).replace(/\s+/g, ' ').trim();
                     
                     if (navigator.clipboard && navigator.clipboard.writeText) {
                         navigator.clipboard.writeText(text).then(function() {
