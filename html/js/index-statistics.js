@@ -67,7 +67,9 @@ function formatGermanDate(isoDate) {
     const day = parseInt(parts[2], 10);
     const month = parseInt(parts[1], 10);
     const year = parts[0];
-    return day + '.' + month + '.' + year;
+    const monthNames = ['Jänner', 'Februar', 'März', 'April', 'Mai', 'Juni',
+                        'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+    return day + '. ' + monthNames[month - 1] + ' ' + year;
 }
 
 function displayOverviewSlide() {
@@ -130,7 +132,7 @@ function displayOverviewSlide() {
     html += '</div>';
 
     // Second row: Date range and Object types combined
-    html += '<div class="row mt-4">';
+    html += '<div class="row mt-5">';
 
     // Date range
     if (statsData.date_range && statsData.date_range.earliest && statsData.date_range.latest) {
@@ -142,6 +144,9 @@ function displayOverviewSlide() {
         html += '<h5 style="color: black; margin-bottom: 0.25rem;">' + formatGermanDate(statsData.date_range.latest) + '</h5>';
         html += '<p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">letztes Stück</p>';
         html += '</div>';
+
+        // Empty spacer box
+        html += '<div class="col-md-2"></div>';
     }
 
     // Object types (sorted by count descending)

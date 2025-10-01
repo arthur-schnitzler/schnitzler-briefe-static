@@ -530,17 +530,7 @@
                                 <p>Für Belege in der Wikipedia kann diese Vorlage benutzt
                                     werden:</p>
                                 <blockquote class="citation-quote" style="cursor: pointer; user-select: all; padding: 10px; background-color: #f8f9fa; border-left: 4px solid #A63437;" onclick="copyToClipboard(this)" title="Klicken zum Kopieren">
-                                    <code>{{Internetquelle
-                                            |url=https://schnitzler-briefe.acdh.oeaw.ac.at/<xsl:value-of
-                                            select="$link"/> |titel=<xsl:value-of
-                                            select="$doc_title"/> |werk=Arthur Schnitzler:
-                                        Briefwechsel mit Autorinnen und Autoren |hrsg=Martin Anton
-                                        Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke  |sprache=de
-                                            |datum=<xsl:value-of
-                                            select="//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso"
-                                        /> |abruf=<xsl:value-of
-                                            select="format-date(current-date(), '[Y4]-[M02]-[D02]')"
-                                        /> }} </code>
+                                    <code><xsl:text>{{Internetquelle |url=https://schnitzler-briefe.acdh.oeaw.ac.at/</xsl:text><xsl:value-of select="$link"/><xsl:text> |titel=</xsl:text><xsl:value-of select="$doc_title"/><xsl:text> |werk=Arthur Schnitzler: Briefwechsel mit Autorinnen und Autoren |hrsg=Martin Anton Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke |sprache=de |datum=</xsl:text><xsl:value-of select="//tei:titleStmt/tei:title[@type = 'iso-date']/@when-iso"/><xsl:text> |abruf=</xsl:text><xsl:value-of select="format-date(current-date(), '[Y4]-[M02]-[D02]')"/><xsl:text> }}</xsl:text></code>
                                 </blockquote>
                             </div>
                             <div class="modal-footer">
