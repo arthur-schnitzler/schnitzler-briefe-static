@@ -27,14 +27,11 @@
                 <main class="flex-shrink-0 flex-grow-1">
                     <div class="container 404-container">
                         <h1 class="viernullvier-h1">404</h1>
-                        <div style="text-align: center; margin: 2rem 0;">
-                            <img src="img/404.jpg" alt="404 - Seite nicht gefunden" style="max-width: 100%; height: auto;" />
-                        </div>
                         <p class="viernullvier-p lead">
                             Die gewünschte Seite existiert leider nicht.
                         </p>
                         <p class="viernullvier-p lead">Zur <a href="index.html">Startseite</a>.</p>
-
+                        
                     </div>
                 </main>
                 <xsl:call-template name="html_footer" />
