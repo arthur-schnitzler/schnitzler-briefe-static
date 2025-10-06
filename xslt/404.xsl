@@ -30,11 +30,8 @@
                         <p class="viernullvier-p lead">
                             Die gewünschte Seite existiert leider nicht.
                         </p>
-                        <div class="text-center my-4">
-                            <img src="img/404.jpg" alt="404 - Seite nicht gefunden" class="img-fluid" />
-                        </div>
                         <p class="viernullvier-p lead">Zur <a href="index.html">Startseite</a>.</p>
-
+                        
                     </div>
                 </main>
                 <xsl:call-template name="html_footer" />
