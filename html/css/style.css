@@ -1809,7 +1809,7 @@ div#map {
 
 /* 404 page styles */
 .viernullvier-body {
-    background-image: url('../images/404.jpg'); /* Hintergrundbild */
+    background-image: url('../img/404.jpg'); /* Hintergrundbild */
     background-size: cover; /* Bild vollständig sichtbar */
     background-position: center; /* Zentrieren */
     background-repeat: no-repeat; /* Kein Wiederholen */
