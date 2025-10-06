@@ -41,8 +41,7 @@ Susen, Laura Untner und Selma Jahnke.</xsl:text>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-title" content="{$html_title1}"/>
         <meta name="msapplication-TileColor" content="#ffffff"/>
-        <meta name="msapplication-TileImage" content="{$project_logo}"/>
-        <link rel="icon" type="image/svg+xml" href="{$project_logo}" sizes="any"/>
+        <meta name="msapplication-TileImage" content="./img/favicon/ms-icon-144x144.png"/>
         <link rel="icon" type="image/x-icon" href="./img/favicon/favicon.ico"/>
         <link rel="apple-touch-icon" sizes="57x57" href="./img/favicon/apple-icon-57x57.png"/>
         <link rel="apple-touch-icon" sizes="60x60" href="./img/favicon/apple-icon-60x60.png"/>
