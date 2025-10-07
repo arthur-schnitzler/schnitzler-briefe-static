@@ -28,6 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateCommentaryVisibility() {
         const commentaryVisible = toggleCheckbox.checked;
 
+        // Update slider color based on state
+        const slider = toggleCheckbox.nextElementSibling;
+        if (slider && slider.classList.contains('i-slider')) {
+            if (commentaryVisible) {
+                slider.style.backgroundColor = '#A63437'; // Red when checked
+            } else {
+                slider.style.backgroundColor = '#ccc'; // Grey when unchecked
+            }
+        }
+
         // Toggle list items
         const commentaryMentions = document.querySelectorAll('.mention-commentary');
         commentaryMentions.forEach(function(mention) {

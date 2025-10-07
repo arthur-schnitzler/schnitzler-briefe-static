@@ -1455,13 +1455,13 @@
                     <legend>Erwähnungen 
                     </legend>
                     <xsl:if test="$commentaryMentionCount > 0">
-                        <span class="ms-3" style="display: inline-flex; align-items: center;">
-                            <label class="toggle-switch" for="toggle-commentary-mentions">
-                                <input type="checkbox" checked="checked"
-                                    id="toggle-commentary-mentions"/><span class="i-slider round"
-                                        style="background-color: #A63437;"/></label>
-                            <span> Kommentar berücksichtigen</span>
-                        </span>
+                        <div class="annotation-toggle" data-type="commentary" style="display: inline-block; margin-left: 20px;">
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-commentary-mentions" checked="checked"/>
+                                <span class="i-slider round" style="background-color: #A63437;"></span>
+                            </label>
+                            <span class="opt-title"><i class="fas fa-comment me-1"></i>Kommentar</span>
+                        </div>
                     </xsl:if>
                     <div id="mentions-chart" class="mt-3 mb-3">
                         <xsl:variable name="start-year" as="xs:integer">
