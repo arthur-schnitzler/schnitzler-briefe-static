@@ -1309,7 +1309,7 @@
             </xsl:when>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="tei:gap[@unit = 'chars' and @reason = 'illegible']">
+    <xsl:template match="tei:gap[@unit = 'chars' and (@reason = 'illegible' or @reason = 'textualLoss')]">
         <span class="illegible">
             <xsl:value-of select="mam:gaps(@quantity)"/>
         </span>
@@ -1321,11 +1321,35 @@
             <xsl:value-of select="mam:gaps($anzahl - 1)"/>
         </xsl:if>
     </xsl:function>
+    
     <xsl:template match="tei:gap[@unit = 'lines' and @reason = 'illegible']">
         <div class="illegible">
             <xsl:text> [</xsl:text>
-            <xsl:value-of select="@quantity"/>
-            <xsl:text> Zeilen unleserlich] </xsl:text>
+            <xsl:choose>
+                <xsl:when test="@quantity = 1">
+                    <xsl:text>eine Zeile</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="@quantity"/>
+                    <xsl:text> Zeilen</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:text> unleserlich] </xsl:text>
+        </div>
+    </xsl:template>
+    <xsl:template match="tei:gap[@unit = 'lines' and @reason = 'textualLoss']">
+        <div class="illegible">
+            <xsl:text> [</xsl:text>
+            <xsl:choose>
+                <xsl:when test="@quantity = 1">
+                    <xsl:text>eine Zeile</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="@quantity"/>
+                    <xsl:text> Zeilen</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:text> Textverlust] </xsl:text>
         </div>
     </xsl:template>
     <xsl:template match="tei:gap[@reason = 'outOfScope']">
