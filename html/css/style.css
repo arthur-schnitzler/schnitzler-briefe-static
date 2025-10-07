@@ -1829,7 +1829,15 @@ div#map {
 .viernullvier-p,
 .viernullvier-small {
     color: black;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* Schlagschatten */
+    background-color: rgba(255, 255, 255, 0.9); /* Weißer Hintergrund für bessere Lesbarkeit */
+    padding: 0.5rem 1rem; /* Innenabstand */
+    display: inline-block; /* Hintergrund nur um Text */
+    text-shadow: none; /* Kein Schlagschatten mehr nötig */
     text-align: right;
+}
+
+/* Weißer Hintergrund für Impressumszeile im Footer */
+.viernullvier-body #wrapper-footer-secondary {
+    background-color: #fff;
 }
 
