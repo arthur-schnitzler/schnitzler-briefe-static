@@ -32,10 +32,8 @@
     <xsl:key name="work-day-lookup" match="item" use="ref"/>
     <xsl:key name="only-relevant-uris" match="item" use="abbr"/>
     <!-- Schnitzler-Lektüren -->
-    <xsl:param name="lektueren-konkordanz"
-        select="document('../../data/indices/konkordanz.xml')"/>
+    <xsl:param name="lektueren-konkordanz" select="document('../../data/indices/konkordanz.xml')"/>
     <xsl:key name="lektueren-konk-lookup" match="ref" use="@xml:id"/>
-    
     <!-- PERSON -->
     <xsl:template match="tei:person" name="person_detail">
         <xsl:param name="showNumberOfMentions" as="xs:integer" select="50000"/>
@@ -471,9 +469,8 @@
                         <xsl:variable name="link"
                             select="key('lektueren-konk-lookup', @xml:id, $lektueren-konkordanz)[1]/@target"/>
                         <a href="{concat($link, '#', @xml:id)}"
-                            style="display: inline-block; background-color: #022954; color: white; padding: 0.5em 1em; border-radius: 0.25rem; text-decoration: none;">
-                            Zur Leseliste
-                        </a>
+                            style="display: inline-block; background-color: #022954; color: white; padding: 0.5em 1em; border-radius: 0.25rem; text-decoration: none;"
+                            > Zur Leseliste </a>
                     </p>
                 </xsl:if>
             </div>
@@ -573,7 +570,6 @@
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
-                              
                                 <xsl:choose>
                                     <xsl:when
                                         test="$autor-ref = 'pmb2121' and $current-edition = 'schnitzler-tagebuch'">
@@ -583,11 +579,11 @@
                                         <a href="pmb2121.html">
                                             <xsl:text>Arthur Schnitzler</xsl:text>
                                         </a>
-                                    </xsl:when> 
+                                    </xsl:when>
                                     <xsl:when test="$current-edition = 'schnitzler-tagebuch'">
                                         <xsl:variable name="author-lookup-mit-schraegstrich"
                                             select="
-                                            key('author-lookup', concat('https://pmb.acdh.oeaw.ac.at/entity/', replace($autor-ref, 'pmb', ''), '/'),
+                                                key('author-lookup', concat('https://pmb.acdh.oeaw.ac.at/entity/', replace($autor-ref, 'pmb', ''), '/'),
                                                 $listperson)/tei:idno[@subtype = 'schnitzler-tagebuch' or @type = 'schnitzler-tagebuch'][1]/substring-after(., 'https://schnitzler-tagebuch.acdh.oeaw.ac.at/')"/>
                                         <xsl:variable name="autor-ref-schnitzler-tagebuch">
                                             <xsl:choose>
@@ -1174,7 +1170,8 @@
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="tei:listPerson/tei:person[@role = 'hat als Arbeitskraft' or contains(@role, 'mitwirkend')]">
+                        <xsl:if
+                            test="tei:listPerson/tei:person[@role = 'hat als Arbeitskraft' or contains(@role, 'mitwirkend')]">
                             <tr>
                                 <th>Mitwirkende</th>
                                 <td>
@@ -1227,7 +1224,7 @@
                             <td>
                                 <ul>
                                     <xsl:for-each
-                                        select="tei:listPerson/tei:person[(@role = 'hat als Teilnehmer:in' or @role='hat teilnehmend')]">
+                                        select="tei:listPerson/tei:person[(@role = 'hat als Teilnehmer:in' or @role = 'hat teilnehmend')]">
                                         <li>
                                             <xsl:variable name="name" select="tei:persName"/>
                                             <xsl:choose>
@@ -1433,20 +1430,35 @@
     </xsl:function>
     <xsl:template name="list-all-mentions">
         <xsl:param name="mentions" as="node()"/>
-        <xsl:variable name="mentionCount" select="count($mentions//tei:note)"/>
-        <xsl:variable name="commentaryMentionCount" select="count($mentions//tei:note[@subtype='commentary'])"/>
-        <xsl:if test="count($mentions//tei:note) > 0">
+        <xsl:param name="show-commentary" as="xs:boolean" select="true()"/>
+        <!-- Standardwert: Kommentar ein -->
+        <!-- Gesamte Liste nach Toggle filtern -->
+        <xsl:variable name="filteredMentions" as="node()*">
+            <xsl:choose>
+                <xsl:when test="$show-commentary">
+                    <!-- alle zeigen -->
+                    <xsl:sequence select="$mentions//tei:note"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- nur textuelle Erwähnungen -->
+                    <xsl:sequence select="$mentions//tei:note[not(@subtype = 'commentary')]"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="mentionCount" select="count($filteredMentions)"/>
+        <xsl:variable name="commentaryMentionCount"
+            select="count($filteredMentions[@subtype = 'commentary'])"/>
+        <xsl:if test="$mentionCount > 0">
             <!-- Balkendiagramm oben -->
             <div id="mentions">
                 <span class="infodesc mr-2">
-                    <legend>Erwähnungen
-                        <xsl:if test="$commentaryMentionCount > 0">
+                    <legend>Erwähnungen <xsl:if test="$commentaryMentionCount > 0">
                             <span class="ms-3" style="display: inline-flex; align-items: center;">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" checked="checked" id="toggle-commentary-mentions"/>
-                                        <span class="i-slider round" style="background-color: #A63437;"></span>
-                                </label>
-                                <span class="opt-title"> Kommentar berücksichtigen</span>
+                                <label class="toggle-switch" for="toggle-commentary-mentions">
+                                    <input type="checkbox" checked="checked"
+                                        id="toggle-commentary-mentions"/><span class="i-slider round"
+                                        style="background-color: #A63437;"/></label>
+                                <span> Kommentar</span>
                             </span>
                         </xsl:if>
                     </legend>
@@ -1494,44 +1506,55 @@
                             <!-- Balken -->
                             <xsl:for-each select="$years/*[local-name() = 'year']">
                                 <xsl:variable name="year" select="number(@val)"/>
-
                                 <!-- Count Editionstext mentions (not commentary) -->
                                 <xsl:variable name="editionstext-count"
-                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and not(@subtype='commentary')])"/>
-
+                                    select="count($filteredMentions[substring(@corresp, 1, 4) = string($year) and not(@subtype = 'commentary')])"/>
                                 <!-- Count Commentary-only mentions -->
                                 <xsl:variable name="commentary-only-count"
-                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and @subtype='commentary'])"/>
-
-                                <xsl:variable name="total-count" select="$editionstext-count + $commentary-only-count"/>
-                                <xsl:variable name="editionstext-height" select="($editionstext-count * 140) div 30"/>
-                                <xsl:variable name="commentary-height" select="($commentary-only-count * 140) div 30"/>
+                                    select="count($filteredMentions[substring(@corresp, 1, 4) = string($year) and @subtype = 'commentary'])"/>
+                                <xsl:variable name="total-count"
+                                    select="$editionstext-count + $commentary-only-count"/>
+                                <xsl:variable name="editionstext-height"
+                                    select="($editionstext-count * 140) div 30"/>
+                                <xsl:variable name="commentary-height"
+                                    select="($commentary-only-count * 140) div 30"/>
                                 <xsl:variable name="xPos"
                                     select="50 + ($year - $start-year) * $stepWidth - 2"/>
-
                                 <!-- Editionstext bar (main color, bottom) -->
                                 <xsl:if test="$editionstext-count > 0">
                                     <rect x="{$xPos}" y="{160 - $editionstext-height}" width="4"
                                         height="{$editionstext-height}" fill="{$current-colour}">
                                         <title>
-                                            <xsl:value-of select="concat($year, ': ', $editionstext-count, ' Erwähnung', if($editionstext-count = 1) then '' else 'en', ' (Editionstext)')"/>
+                                            <xsl:value-of select="
+                                                    concat($year, ': ', $editionstext-count, ' Erwähnung', if ($editionstext-count = 1) then
+                                                        ''
+                                                    else
+                                                        'en', ' (Editionstext)')"
+                                            />
                                         </title>
                                     </rect>
                                 </xsl:if>
-
                                 <!-- Commentary bar (lighter color, stacked on top) -->
                                 <xsl:if test="$commentary-only-count > 0">
                                     <!-- Lighter version of current color (adding opacity or using a lighter shade) -->
                                     <xsl:variable name="commentary-colour">
                                         <xsl:choose>
-                                            <xsl:when test="$current-colour = '#A63437'">#D98B8E</xsl:when>
+                                            <xsl:when test="$current-colour = '#A63437'"
+                                                >#D98B8E</xsl:when>
                                             <xsl:otherwise>#CCCCCC</xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:variable>
-                                    <rect x="{$xPos}" y="{160 - $editionstext-height - $commentary-height}" width="4"
-                                        height="{$commentary-height}" fill="{$commentary-colour}" data-type="commentary">
+                                    <rect x="{$xPos}"
+                                        y="{160 - $editionstext-height - $commentary-height}"
+                                        width="4" height="{$commentary-height}"
+                                        fill="{$commentary-colour}" data-type="commentary">
                                         <title>
-                                            <xsl:value-of select="concat($year, ': ', $commentary-only-count, ' Erwähnung', if($commentary-only-count = 1) then '' else 'en', ' (nur Kommentar)')"/>
+                                            <xsl:value-of select="
+                                                    concat($year, ': ', $commentary-only-count, ' Erwähnung', if ($commentary-only-count = 1) then
+                                                        ''
+                                                    else
+                                                        'en', ' (nur Kommentar)')"
+                                            />
                                         </title>
                                     </rect>
                                 </xsl:if>
@@ -1539,15 +1562,18 @@
                         </svg>
                         <xsl:if test="$commentaryMentionCount > 0">
                             <div class="text-center" style="font-size: 0.85rem; margin-top: 5px;">
-                                <span style="display: inline-block; width: 15px; height: 3px; background-color: {$current-colour}; vertical-align: middle; margin-right: 5px;"></span>
+                                <span
+                                    style="display: inline-block; width: 15px; height: 3px; background-color: {$current-colour}; vertical-align: middle; margin-right: 5px;"/>
                                 <span style="margin-right: 15px;">Editionstext</span>
                                 <xsl:variable name="legend-commentary-colour">
                                     <xsl:choose>
-                                        <xsl:when test="$current-colour = '#A63437'">#D98B8E</xsl:when>
+                                        <xsl:when test="$current-colour = '#A63437'"
+                                            >#D98B8E</xsl:when>
                                         <xsl:otherwise>#CCCCCC</xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
-                                <span style="display: inline-block; width: 15px; height: 3px; background-color: {$legend-commentary-colour}; vertical-align: middle; margin-right: 5px;"></span>
+                                <span
+                                    style="display: inline-block; width: 15px; height: 3px; background-color: {$legend-commentary-colour}; vertical-align: middle; margin-right: 5px;"/>
                                 <span>im Kommentar</span>
                             </div>
                         </xsl:if>
@@ -1559,7 +1585,7 @@
                                 <xsl:when test="$mentionCount > 10">
                                     <div class="accordion" id="mentionsAccordion">
                                         <!-- Gruppieren nach Jahr -->
-                                        <xsl:for-each-group select="$mentions//tei:note"
+                                        <xsl:for-each-group select="$filteredMentions"
                                             group-by="substring(@corresp, 1, 4)">
                                             <xsl:sort select="current-grouping-key()"
                                                 data-type="number" order="ascending"/>
@@ -1632,7 +1658,8 @@
                                                   select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"/>
                                                   <li>
                                                   <xsl:attribute name="class">
-                                                      <xsl:if test="@subtype='commentary'">mention-commentary</xsl:if>
+                                                  <xsl:if test="@subtype = 'commentary'"
+                                                  >mention-commentary</xsl:if>
                                                   </xsl:attribute>
                                                   <a href="{$linkToDocument}">
                                                   <xsl:value-of select="."/>
@@ -1656,7 +1683,8 @@
                                                   </xsl:variable>
                                                   <li>
                                                   <xsl:attribute name="class">
-                                                      <xsl:if test="@subtype='commentary'">mention-commentary</xsl:if>
+                                                  <xsl:if test="@subtype = 'commentary'"
+                                                  >mention-commentary</xsl:if>
                                                   </xsl:attribute>
                                                   <a href="{$linkToDocument}">
                                                   <xsl:value-of select="."/>
@@ -1677,7 +1705,7 @@
                                 <!-- Weniger als oder gleich 10: Standardliste -->
                                 <xsl:otherwise>
                                     <ul class="dashed" id="simple-mentions-list">
-                                        <xsl:for-each select="$mentions//tei:note">
+                                        <xsl:for-each select="$filteredMentions">
                                             <xsl:sort select="replace(@corresp, '-', '')"
                                                 order="ascending" data-type="number"/>
                                             <xsl:variable name="linkToDocument">
@@ -1687,7 +1715,8 @@
                                             </xsl:variable>
                                             <li>
                                                 <xsl:attribute name="class">
-                                                    <xsl:if test="@subtype='commentary'">mention-commentary</xsl:if>
+                                                  <xsl:if test="@subtype = 'commentary'"
+                                                  >mention-commentary</xsl:if>
                                                 </xsl:attribute>
                                                 <a href="{$linkToDocument}">
                                                   <xsl:value-of select="."/>

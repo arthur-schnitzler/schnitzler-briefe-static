@@ -8,8 +8,12 @@ from tqdm import tqdm
 files = glob.glob('./data/editions/*.xml')
 indices = glob.glob('./data/indices/list*.xml')
 
-d = defaultdict(set)
-d_commentary = defaultdict(set)  # Separate tracking for commentary mentions
+# Für Entitäten, die im Haupttext erwähnt sind (tei:body ohne Kommentar)
+d_text = defaultdict(set)
+# Für Entitäten, die in Kommentaren erwähnt sind (tei:note[@type='commentary'])
+d_commentary = defaultdict(set)
+# Für Entitäten, die im Rückwärtstext (back) erscheinen (wird nicht mehr gesondert behandelt)
+d_back = defaultdict(set)
 
 for x in tqdm(sorted(files), total=len(files)):
     doc = TeiReader(x)
@@ -18,37 +22,43 @@ for x in tqdm(sorted(files), total=len(files)):
     doc_date = doc.any_xpath('.//tei:titleStmt/tei:title[@type="iso-date"]/@when-iso')
     doc_date = doc_date[0] if doc_date else ""
 
-    # Collect all entities from back
+    # Entitäten aus <back> werden weiterhin gesammelt, aber nicht mehr im Index ausgegeben
     for entity in doc.any_xpath('.//tei:back//*[@xml:id]/@xml:id'):
-        d[entity].add(f"{file_name}_____{doc_title}_____{doc_date}")
+        d_back[entity].add(f"{file_name}_____{doc_title}_____{doc_date}")
 
-    # Separately track entities mentioned in commentary notes
-    # XPath: entities in back that are also referenced in body commentary notes
-    for entity_node in doc.any_xpath('.//tei:back//*[@xml:id]'):
-        entity_id = entity_node.attrib['{http://www.w3.org/XML/1998/namespace}id']
-        # Check if this entity is referenced in a commentary note
-        # Look for refs with target/ref attributes pointing to this entity in commentary
-        commentary_refs = doc.any_xpath(
-            f'.//tei:body//tei:note[@type="commentary"]//*[@ref="#{entity_id}" or @target="#{entity_id}" or contains(@ref, "{entity_id}") or contains(@target, "{entity_id}")]'
-        )
-        if commentary_refs:
-            d_commentary[entity_id].add(f"{file_name}_____{doc_title}_____{doc_date}")
+    # Entitäten, die im Haupttext erwähnt sind, aber nicht in Kommentaren
+    for node in doc.any_xpath('.//tei:body//*[@xml:id][not(ancestor::tei:note[@type="commentary"])]'):
+        entity_id = node.attrib['{http://www.w3.org/XML/1998/namespace}id']
+        d_text[entity_id].add(f"{file_name}_____{doc_title}_____{doc_date}")
+
+    # Entitäten, die in Kommentaren erwähnt sind
+    commentary_ref_targets = set()
+    for ref_node in doc.any_xpath('.//tei:body//tei:note[@type="commentary"]//*[@ref or @target]'):
+        targets = []
+        if 'ref' in ref_node.attrib:
+            targets.append(ref_node.attrib['ref'].lstrip('#'))
+        if 'target' in ref_node.attrib:
+            targets.append(ref_node.attrib['target'].lstrip('#'))
+        for t in targets:
+            d_commentary[t].add(f"{file_name}_____{doc_title}_____{doc_date}")
 
 for x in indices:
-    print(x)
     doc = TeiReader(x)
     for node in doc.any_xpath('.//tei:body//*[@xml:id]'):
         node_id = node.attrib['{http://www.w3.org/XML/1998/namespace}id']
-        for mention in d[node_id]:
+        # Nur noch Notizen erzeugen, wenn commentary oder text
+        mentions = set.union(d_text.get(node_id, set()), d_commentary.get(node_id, set()))
+        for mention in sorted(mentions):
             file_name, doc_title, doc_date = mention.split('_____')
             note = ET.Element('{http://www.tei-c.org/ns/1.0}note')
             note.attrib['target'] = file_name
             note.attrib['corresp'] = doc_date
             note.attrib['type'] = "mentions"
 
-            # Mark if this mention is from a commentary
-            if mention in d_commentary[node_id]:
+            if mention in d_commentary.get(node_id, set()) and mention not in d_text.get(node_id, set()):
                 note.attrib['subtype'] = "commentary"
+            elif mention in d_text.get(node_id, set()):
+                note.attrib['subtype'] = "text"
 
             note.text = doc_title
             node.append(note)
