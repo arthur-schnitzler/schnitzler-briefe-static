@@ -1442,13 +1442,11 @@
                     <legend>Erwähnungen
                         <xsl:if test="$commentaryMentionCount > 0">
                             <span class="ms-3" style="display: inline-flex; align-items: center;">
-                                <span style="margin-right: 8px; font-size: 0.9rem;">
-                                    <i class="fas fa-comment me-1"></i>Kommentar
-                                </span>
-                                <label class="toggle-switch" for="toggle-commentary-mentions" style="margin: 0;">
-                                    <input type="checkbox" id="toggle-commentary-mentions" checked="checked"/>
-                                    <span class="toggle-slider"></span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked="checked" id="toggle-commentary-mentions"/>
+                                        <span class="i-slider round" style="background-color: #A63437;"></span>
                                 </label>
+                                <span class="opt-title"> Kommentar berücksichtigen</span>
                             </span>
                         </xsl:if>
                     </legend>
