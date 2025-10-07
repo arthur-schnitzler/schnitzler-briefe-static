@@ -1434,11 +1434,21 @@
     <xsl:template name="list-all-mentions">
         <xsl:param name="mentions" as="node()"/>
         <xsl:variable name="mentionCount" select="count($mentions//tei:note)"/>
+        <xsl:variable name="commentaryMentionCount" select="count($mentions//tei:note[@subtype='commentary'])"/>
         <xsl:if test="count($mentions//tei:note) > 0">
             <!-- Balkendiagramm oben -->
             <div id="mentions">
                 <span class="infodesc mr-2">
-                    <legend>Erwähnungen</legend>
+                    <legend>Erwähnungen
+                        <xsl:if test="$commentaryMentionCount > 0">
+                            <button type="button" class="btn btn-sm btn-outline-secondary ms-3" id="toggle-commentary-mentions"
+                                    data-bs-toggle="tooltip"
+                                    title="Erwähnungen aus Kommentaren ein-/ausblenden">
+                                <i class="fas fa-comment"></i>
+                                <span id="toggle-commentary-text">Kommentar ausblenden</span>
+                            </button>
+                        </xsl:if>
+                    </legend>
                     <div id="mentions-chart" class="mt-3 mb-3">
                         <xsl:variable name="start-year" as="xs:integer">
                             <xsl:choose>
@@ -1577,6 +1587,9 @@
                                                   <xsl:variable name="linkToDocument"
                                                   select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"/>
                                                   <li>
+                                                  <xsl:attribute name="class">
+                                                      <xsl:if test="@subtype='commentary'">mention-commentary</xsl:if>
+                                                  </xsl:attribute>
                                                   <a href="{$linkToDocument}">
                                                   <xsl:value-of select="."/>
                                                   <xsl:text> </xsl:text>
@@ -1598,6 +1611,9 @@
                                                   />
                                                   </xsl:variable>
                                                   <li>
+                                                  <xsl:attribute name="class">
+                                                      <xsl:if test="@subtype='commentary'">mention-commentary</xsl:if>
+                                                  </xsl:attribute>
                                                   <a href="{$linkToDocument}">
                                                   <xsl:value-of select="."/>
                                                   <xsl:text> </xsl:text>
@@ -1626,6 +1642,9 @@
                                                 />
                                             </xsl:variable>
                                             <li>
+                                                <xsl:attribute name="class">
+                                                    <xsl:if test="@subtype='commentary'">mention-commentary</xsl:if>
+                                                </xsl:attribute>
                                                 <a href="{$linkToDocument}">
                                                   <xsl:value-of select="."/>
                                                   <xsl:text> </xsl:text>

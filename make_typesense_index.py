@@ -140,6 +140,21 @@ current_schema = {
         {"name": "title", "type": "string"},
         {"name": "full_text", "type": "string"},
         {
+            "name": "editionstext",
+            "type": "string",
+            "optional": True,
+        },
+        {
+            "name": "kommentar",
+            "type": "string",
+            "optional": True,
+        },
+        {
+            "name": "objektbeschreibung",
+            "type": "string",
+            "optional": True,
+        },
+        {
             "name": "year",
             "type": "int32",
             "optional": True,
@@ -295,29 +310,41 @@ for x in tqdm(files, total=len(files)):
     record["full_text"] = f"{extract_fulltext_with_spacing(body)} {record['title']}".replace("(", " ")
     cfts_record["full_text"] = record["full_text"]
 
-    # Determine text areas based on XPath criteria
+    # Extract separate text for each area
     text_areas = []
 
-    # Check for Editionstext (body text excluding commentary notes)
-    editionstext_nodes = doc.any_xpath(
-        ".//tei:body//text()[not(ancestor::tei:note[@type='commentary'])]"
+    # Editionstext: body text excluding commentary notes
+    editionstext_elements = doc.any_xpath(
+        ".//tei:body//*[not(self::tei:note[@type='commentary']) and not(ancestor::tei:note[@type='commentary'])]"
     )
-    if editionstext_nodes and any(node.strip() for node in editionstext_nodes):
-        text_areas.append("Editionstext")
+    if editionstext_elements:
+        editionstext = extract_fulltext_with_spacing(body)
+        # Remove commentary text from editionstext
+        for commentary in doc.any_xpath(".//tei:body//tei:note[@type='commentary']"):
+            commentary_text = extract_fulltext_with_spacing(commentary)
+            editionstext = editionstext.replace(commentary_text, " ")
+        editionstext = editionstext.strip()
+        if editionstext:
+            record["editionstext"] = editionstext.replace("(", " ")
+            text_areas.append("Editionstext")
 
-    # Check for Kommentar (commentary notes in body)
-    kommentar_nodes = doc.any_xpath(
-        ".//tei:body//tei:note[@type='commentary']//text()"
-    )
-    if kommentar_nodes and any(node.strip() for node in kommentar_nodes):
-        text_areas.append("Kommentar")
+    # Kommentar: commentary notes in body
+    kommentar_elements = doc.any_xpath(".//tei:body//tei:note[@type='commentary']")
+    if kommentar_elements:
+        kommentar_texts = [extract_fulltext_with_spacing(elem) for elem in kommentar_elements]
+        kommentar = " ".join(kommentar_texts).strip()
+        if kommentar:
+            record["kommentar"] = kommentar.replace("(", " ")
+            text_areas.append("Kommentar")
 
-    # Check for Objektbeschreibung (sourceDesc)
-    objektbeschreibung_nodes = doc.any_xpath(
-        ".//tei:sourceDesc//text()"
-    )
-    if objektbeschreibung_nodes and any(node.strip() for node in objektbeschreibung_nodes):
-        text_areas.append("Objektbeschreibung")
+    # Objektbeschreibung: sourceDesc
+    objektbeschreibung_elements = doc.any_xpath(".//tei:sourceDesc")
+    if objektbeschreibung_elements:
+        objektbeschreibung_texts = [extract_fulltext_with_spacing(elem) for elem in objektbeschreibung_elements]
+        objektbeschreibung = " ".join(objektbeschreibung_texts).strip()
+        if objektbeschreibung:
+            record["objektbeschreibung"] = objektbeschreibung.replace("(", " ")
+            text_areas.append("Objektbeschreibung")
 
     record["text_areas"] = text_areas
 

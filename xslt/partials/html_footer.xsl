@@ -98,5 +98,6 @@
         </div>
         <script src="js/listStopProp.js"/>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"/>
+        <script src="js/toggle-commentary-mentions.js"/>
     </xsl:template>
 </xsl:stylesheet>
