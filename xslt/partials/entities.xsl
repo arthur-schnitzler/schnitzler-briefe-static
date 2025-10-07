@@ -1583,7 +1583,7 @@
                         <div id="mentions-liste" class="mt-2">
                             <xsl:choose>
                                 <!-- Wenn mehr als 10 Erwähnungen -->
-                                <xsl:when test="$filteredMentions > 10">
+                                <xsl:when test="count($filteredMentions) > 10">
                                     <div class="accordion" id="mentionsAccordion">
                                         <!-- Gruppieren nach Jahr -->
                                         <xsl:for-each-group select="$filteredMentions"
