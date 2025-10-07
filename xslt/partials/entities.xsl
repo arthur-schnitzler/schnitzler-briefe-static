@@ -1440,8 +1440,8 @@
                     <xsl:sequence select="$mentions//tei:note"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <!-- nur textuelle Erwähnungen -->
-                    <xsl:sequence select="$mentions//tei:note[not(@subtype = 'commentary')]"/>
+                    <!-- textuelle Erwähnungen, kein Kommentar -->
+                    <xsl:sequence select="$mentions//tei:note[not(@subtype = 'commentary') or @subtype='text']"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -1452,16 +1452,17 @@
             <!-- Balkendiagramm oben -->
             <div id="mentions">
                 <span class="infodesc mr-2">
-                    <legend>Erwähnungen <xsl:if test="$commentaryMentionCount > 0">
-                            <span class="ms-3" style="display: inline-flex; align-items: center;">
-                                <label class="toggle-switch" for="toggle-commentary-mentions">
-                                    <input type="checkbox" checked="checked"
-                                        id="toggle-commentary-mentions"/><span class="i-slider round"
-                                        style="background-color: #A63437;"/></label>
-                                <span> Kommentar</span>
-                            </span>
-                        </xsl:if>
+                    <legend>Erwähnungen 
                     </legend>
+                    <xsl:if test="$commentaryMentionCount > 0">
+                        <span class="ms-3" style="display: inline-flex; align-items: center;">
+                            <label class="toggle-switch" for="toggle-commentary-mentions">
+                                <input type="checkbox" checked="checked"
+                                    id="toggle-commentary-mentions"/><span class="i-slider round"
+                                        style="background-color: #A63437;"/></label>
+                            <span> Kommentar berücksichtigen</span>
+                        </span>
+                    </xsl:if>
                     <div id="mentions-chart" class="mt-3 mb-3">
                         <xsl:variable name="start-year" as="xs:integer">
                             <xsl:choose>
@@ -1508,10 +1509,10 @@
                                 <xsl:variable name="year" select="number(@val)"/>
                                 <!-- Count Editionstext mentions (not commentary) -->
                                 <xsl:variable name="editionstext-count"
-                                    select="count($filteredMentions[substring(@corresp, 1, 4) = string($year) and not(@subtype = 'commentary')])"/>
+                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and not(@subtype = 'commentary')])"/>
                                 <!-- Count Commentary-only mentions -->
                                 <xsl:variable name="commentary-only-count"
-                                    select="count($filteredMentions[substring(@corresp, 1, 4) = string($year) and @subtype = 'commentary'])"/>
+                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and @subtype = 'commentary'])"/>
                                 <xsl:variable name="total-count"
                                     select="$editionstext-count + $commentary-only-count"/>
                                 <xsl:variable name="editionstext-height"
@@ -1582,7 +1583,7 @@
                         <div id="mentions-liste" class="mt-2">
                             <xsl:choose>
                                 <!-- Wenn mehr als 10 Erwähnungen -->
-                                <xsl:when test="$mentionCount > 10">
+                                <xsl:when test="$filteredMentions > 10">
                                     <div class="accordion" id="mentionsAccordion">
                                         <!-- Gruppieren nach Jahr -->
                                         <xsl:for-each-group select="$filteredMentions"
