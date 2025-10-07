@@ -1441,11 +1441,12 @@
                 <span class="infodesc mr-2">
                     <legend>Erwähnungen
                         <xsl:if test="$commentaryMentionCount > 0">
-                            <button type="button" class="btn btn-sm btn-outline-secondary ms-3" id="toggle-commentary-mentions"
+                            <button type="button" class="btn btn-sm ms-3" id="toggle-commentary-mentions"
+                                    style="background-color: #A63437; color: white; border: none;"
                                     data-bs-toggle="tooltip"
                                     title="Erwähnungen aus Kommentaren ein-/ausblenden">
-                                <i class="fas fa-comment"></i>
-                                <span id="toggle-commentary-text">&#160;ohne Kommentar</span>
+                                <i class="fas fa-comment me-1"></i>
+                                <span id="toggle-commentary-text">Kommentar</span>
                             </button>
                         </xsl:if>
                     </legend>
@@ -1493,20 +1494,63 @@
                             <!-- Balken -->
                             <xsl:for-each select="$years/*[local-name() = 'year']">
                                 <xsl:variable name="year" select="number(@val)"/>
-                                <xsl:variable name="count"
-                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year)])"/>
-                                <xsl:variable name="barHeight" select="($count * 140) div 30"/>
+
+                                <!-- Count Editionstext mentions (not commentary) -->
+                                <xsl:variable name="editionstext-count"
+                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and not(@subtype='commentary')])"/>
+
+                                <!-- Count Commentary-only mentions -->
+                                <xsl:variable name="commentary-only-count"
+                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and @subtype='commentary'])"/>
+
+                                <xsl:variable name="total-count" select="$editionstext-count + $commentary-only-count"/>
+                                <xsl:variable name="editionstext-height" select="($editionstext-count * 140) div 30"/>
+                                <xsl:variable name="commentary-height" select="($commentary-only-count * 140) div 30"/>
                                 <xsl:variable name="xPos"
                                     select="50 + ($year - $start-year) * $stepWidth - 2"/>
-                                <rect x="{$xPos}" y="{160 - $barHeight}" width="4"
-                                    height="{$barHeight}" fill="{$current-colour}">
-                                    <title>
-                                        <xsl:value-of
-                                            select="concat($year, ': ', $count, ' Erwähnungen')"/>
-                                    </title>
-                                </rect>
+
+                                <!-- Editionstext bar (main color, bottom) -->
+                                <xsl:if test="$editionstext-count > 0">
+                                    <rect x="{$xPos}" y="{160 - $editionstext-height}" width="4"
+                                        height="{$editionstext-height}" fill="{$current-colour}">
+                                        <title>
+                                            <xsl:value-of select="concat($year, ': ', $editionstext-count, ' Erwähnung', if($editionstext-count = 1) then '' else 'en', ' (Editionstext)')"/>
+                                        </title>
+                                    </rect>
+                                </xsl:if>
+
+                                <!-- Commentary bar (lighter color, stacked on top) -->
+                                <xsl:if test="$commentary-only-count > 0">
+                                    <!-- Lighter version of current color (adding opacity or using a lighter shade) -->
+                                    <xsl:variable name="commentary-colour">
+                                        <xsl:choose>
+                                            <xsl:when test="$current-colour = '#A63437'">#D98B8E</xsl:when>
+                                            <xsl:otherwise>#CCCCCC</xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
+                                    <rect x="{$xPos}" y="{160 - $editionstext-height - $commentary-height}" width="4"
+                                        height="{$commentary-height}" fill="{$commentary-colour}" data-type="commentary">
+                                        <title>
+                                            <xsl:value-of select="concat($year, ': ', $commentary-only-count, ' Erwähnung', if($commentary-only-count = 1) then '' else 'en', ' (nur Kommentar)')"/>
+                                        </title>
+                                    </rect>
+                                </xsl:if>
                             </xsl:for-each>
                         </svg>
+                        <xsl:if test="$commentaryMentionCount > 0">
+                            <div class="text-center mt-2" style="font-size: 0.85rem;">
+                                <span style="display: inline-block; width: 15px; height: 3px; background-color: {$current-colour}; vertical-align: middle; margin-right: 5px;"></span>
+                                <span style="margin-right: 15px;">Editionstext</span>
+                                <xsl:variable name="legend-commentary-colour">
+                                    <xsl:choose>
+                                        <xsl:when test="$current-colour = '#A63437'">#D98B8E</xsl:when>
+                                        <xsl:otherwise>#CCCCCC</xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:variable>
+                                <span style="display: inline-block; width: 15px; height: 3px; background-color: {$legend-commentary-colour}; vertical-align: middle; margin-right: 5px;"></span>
+                                <span>nur Kommentar</span>
+                            </div>
+                        </xsl:if>
                     </div>
                     <div id="mentions-liste" class="mt-2">
                         <div id="mentions-liste" class="mt-2">
