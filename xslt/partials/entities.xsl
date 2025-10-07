@@ -1445,7 +1445,7 @@
                                     data-bs-toggle="tooltip"
                                     title="Erwähnungen aus Kommentaren ein-/ausblenden">
                                 <i class="fas fa-comment"></i>
-                                <span id="toggle-commentary-text">Kommentar ausblenden</span>
+                                <span id="toggle-commentary-text">&#160;ohne Kommentar</span>
                             </button>
                         </xsl:if>
                     </legend>

@@ -15,6 +15,59 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     },
   });
 
+// Wrap the search client to modify query_by based on filters
+const originalSearch = typesenseInstantsearchAdapter.searchClient.search.bind(typesenseInstantsearchAdapter.searchClient);
+
+typesenseInstantsearchAdapter.searchClient.search = function(requests) {
+    // Modify requests to adjust query_by based on text_areas filter
+    const modifiedRequests = requests.map(request => {
+        const filters = request.params?.facetFilters || [];
+
+        // Look for text_areas filter
+        let selectedAreas = [];
+        filters.forEach(filterGroup => {
+            if (Array.isArray(filterGroup)) {
+                filterGroup.forEach(filter => {
+                    if (typeof filter === 'string' && filter.startsWith('text_areas:')) {
+                        selectedAreas.push(filter.replace('text_areas:', ''));
+                    }
+                });
+            } else if (typeof filterGroup === 'string' && filterGroup.startsWith('text_areas:')) {
+                selectedAreas.push(filterGroup.replace('text_areas:', ''));
+            }
+        });
+
+        // Determine query_by based on selected areas
+        let queryBy = 'full_text';
+
+        if (selectedAreas.length > 0) {
+            const fieldMap = {
+                'Editionstext': 'editionstext',
+                'Kommentar': 'kommentar',
+                'Objektbeschreibung': 'objektbeschreibung'
+            };
+
+            const fields = selectedAreas
+                .map(area => fieldMap[area])
+                .filter(field => field);
+
+            if (fields.length > 0) {
+                queryBy = fields.join(',');
+            }
+        }
+
+        // Override query_by in additional search parameters
+        return {
+            ...request,
+            params: {
+                ...request.params,
+                query_by: queryBy
+            }
+        };
+    });
+
+    return originalSearch(modifiedRequests);
+};
 
 const searchClient = typesenseInstantsearchAdapter.searchClient;
 const search = instantsearch({
@@ -279,43 +332,11 @@ search.addWidgets([
 
 
 
-// Configure dynamic query_by based on text_areas filter
 search.addWidgets([
     instantsearch.widgets.configure({
         attributesToSnippet: ['full_text', 'editionstext', 'kommentar', 'objektbeschreibung'],
     })
 ]);
-
-// Add middleware to dynamically adjust query_by based on selected text_areas
-search.use({
-    subscribe() {},
-    unsubscribe() {},
-    onStateChange({ uiState }) {
-        const selectedAreas = uiState['schnitzler-briefe']?.refinementList?.text_areas || [];
-
-        let queryBy = 'full_text';
-
-        if (selectedAreas.length > 0) {
-            // Map German names to field names
-            const fieldMap = {
-                'Editionstext': 'editionstext',
-                'Kommentar': 'kommentar',
-                'Objektbeschreibung': 'objektbeschreibung'
-            };
-
-            const fields = selectedAreas
-                .map(area => fieldMap[area])
-                .filter(field => field);
-
-            if (fields.length > 0) {
-                queryBy = fields.join(',');
-            }
-        }
-
-        // Update the search parameters
-        typesenseInstantsearchAdapter.additionalSearchParameters.query_by = queryBy;
-    }
-});
 
 
 

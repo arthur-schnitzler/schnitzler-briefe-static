@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
         commentaryMentions.forEach(function(mention) {
             if (commentaryVisible) {
                 mention.style.display = '';
-                toggleText.textContent = 'Kommentar ausblenden';
+                toggleText.textContent = '&#160;ohne Kommentar';
             } else {
                 mention.style.display = 'none';
-                toggleText.textContent = 'Kommentar einblenden';
+                toggleText.textContent = '&#160;mit Kommentar';
             }
         });
 
