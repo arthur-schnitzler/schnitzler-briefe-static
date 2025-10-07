@@ -22,32 +22,28 @@ for x in tqdm(sorted(files), total=len(files)):
     doc_date = doc.any_xpath('.//tei:titleStmt/tei:title[@type="iso-date"]/@when-iso')
     doc_date = doc_date[0] if doc_date else ""
 
-    # Entitäten aus <back> werden weiterhin gesammelt, aber nicht mehr im Index ausgegeben
+    # Sammle alle Entitäten, die in tei:back definiert sind
+    # Diese erscheinen dann als "mentions" in den Index-Dateien
     for entity in doc.any_xpath('.//tei:back//*[@xml:id]/@xml:id'):
-        d_back[entity].add(f"{file_name}_____{doc_title}_____{doc_date}")
+        d_text[entity].add(f"{file_name}_____{doc_title}_____{doc_date}")
 
-    # Entitäten, die im Haupttext erwähnt sind (via @ref/@key/@target), aber nicht in Kommentaren
-    for ref_node in doc.any_xpath('.//tei:body//*[@ref or @key or @target][not(ancestor::tei:note[@type="commentary"])]'):
-        targets = []
-        if 'ref' in ref_node.attrib:
-            targets.append(ref_node.attrib['ref'].lstrip('#'))
-        if 'key' in ref_node.attrib:
-            targets.append(ref_node.attrib['key'].lstrip('#'))
-        if 'target' in ref_node.attrib:
-            targets.append(ref_node.attrib['target'].lstrip('#'))
-        for t in targets:
-            d_text[t].add(f"{file_name}_____{doc_title}_____{doc_date}")
+    # Prüfe für jede Entity in back, ob sie NUR in Kommentaren erwähnt wird
+    for entity_node in doc.any_xpath('.//tei:back//*[@xml:id]'):
+        entity_id = entity_node.attrib['{http://www.w3.org/XML/1998/namespace}id']
 
-    # Entitäten, die in Kommentaren erwähnt sind
-    commentary_ref_targets = set()
-    for ref_node in doc.any_xpath('.//tei:body//tei:note[@type="commentary"]//*[@ref or @target]'):
-        targets = []
-        if 'ref' in ref_node.attrib:
-            targets.append(ref_node.attrib['ref'].lstrip('#'))
-        if 'target' in ref_node.attrib:
-            targets.append(ref_node.attrib['target'].lstrip('#'))
-        for t in targets:
-            d_commentary[t].add(f"{file_name}_____{doc_title}_____{doc_date}")
+        # Prüfe ob diese Entität im Kommentar referenziert wird
+        commentary_refs = doc.any_xpath(
+            f'.//tei:body//tei:note[@type="commentary"]//*[@ref="#{entity_id}" or @key="#{entity_id}" or @target="#{entity_id}"]'
+        )
+
+        # Prüfe ob diese Entität im normalen Text (nicht Kommentar) referenziert wird
+        text_refs = doc.any_xpath(
+            f'.//tei:body//*[@ref="#{entity_id}" or @key="#{entity_id}" or @target="#{entity_id}"][not(ancestor::tei:note[@type="commentary"])]'
+        )
+
+        # Wenn nur in Kommentaren erwähnt, markiere als commentary
+        if commentary_refs and not text_refs:
+            d_commentary[entity_id].add(f"{file_name}_____{doc_title}_____{doc_date}")
 
 for x in indices:
     doc = TeiReader(x)
