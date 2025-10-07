@@ -1441,13 +1441,15 @@
                 <span class="infodesc mr-2">
                     <legend>Erwähnungen
                         <xsl:if test="$commentaryMentionCount > 0">
-                            <button type="button" class="btn btn-sm ms-3" id="toggle-commentary-mentions"
-                                    style="background-color: #A63437; color: white; border: none;"
-                                    data-bs-toggle="tooltip"
-                                    title="Erwähnungen aus Kommentaren ein-/ausblenden">
-                                <i class="fas fa-comment me-1"></i>
-                                <span id="toggle-commentary-text">Kommentar</span>
-                            </button>
+                            <span class="ms-3" style="display: inline-flex; align-items: center;">
+                                <span style="margin-right: 8px; font-size: 0.9rem;">
+                                    <i class="fas fa-comment me-1"></i>Kommentar
+                                </span>
+                                <label class="toggle-switch" for="toggle-commentary-mentions" style="margin: 0;">
+                                    <input type="checkbox" id="toggle-commentary-mentions" checked="checked"/>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </span>
                         </xsl:if>
                     </legend>
                     <div id="mentions-chart" class="mt-3 mb-3">
@@ -1538,7 +1540,7 @@
                             </xsl:for-each>
                         </svg>
                         <xsl:if test="$commentaryMentionCount > 0">
-                            <div class="text-center mt-2" style="font-size: 0.85rem;">
+                            <div class="text-center" style="font-size: 0.85rem; margin-top: 5px;">
                                 <span style="display: inline-block; width: 15px; height: 3px; background-color: {$current-colour}; vertical-align: middle; margin-right: 5px;"></span>
                                 <span style="margin-right: 15px;">Editionstext</span>
                                 <xsl:variable name="legend-commentary-colour">
@@ -1548,7 +1550,7 @@
                                     </xsl:choose>
                                 </xsl:variable>
                                 <span style="display: inline-block; width: 15px; height: 3px; background-color: {$legend-commentary-colour}; vertical-align: middle; margin-right: 5px;"></span>
-                                <span>nur Kommentar</span>
+                                <span>im Kommentar</span>
                             </div>
                         </xsl:if>
                     </div>
@@ -1676,7 +1678,7 @@
                                 </xsl:when>
                                 <!-- Weniger als oder gleich 10: Standardliste -->
                                 <xsl:otherwise>
-                                    <ul class="dashed">
+                                    <ul class="dashed" id="simple-mentions-list">
                                         <xsl:for-each select="$mentions//tei:note">
                                             <xsl:sort select="replace(@corresp, '-', '')"
                                                 order="ascending" data-type="number"/>
