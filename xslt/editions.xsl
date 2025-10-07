@@ -586,7 +586,7 @@
                                         <div id="collapsePersons" class="accordion-collapse collapse show" aria-labelledby="headingPersons" data-bs-parent="#entitietenAccordion">
                                             <div class="accordion-body">
                                                 <ul>
-                                                    <xsl:for-each select=".//tei:listPerson//tei:person">
+                                                    <xsl:for-each select=".//tei:listPerson/tei:person">
                                                         <xsl:sort
                                                             select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
                                                         <xsl:variable name="naname" as="xs:string">

@@ -26,10 +26,17 @@ for x in tqdm(sorted(files), total=len(files)):
     for entity in doc.any_xpath('.//tei:back//*[@xml:id]/@xml:id'):
         d_back[entity].add(f"{file_name}_____{doc_title}_____{doc_date}")
 
-    # Entitäten, die im Haupttext erwähnt sind, aber nicht in Kommentaren
-    for node in doc.any_xpath('.//tei:body//*[@xml:id][not(ancestor::tei:note[@type="commentary"])]'):
-        entity_id = node.attrib['{http://www.w3.org/XML/1998/namespace}id']
-        d_text[entity_id].add(f"{file_name}_____{doc_title}_____{doc_date}")
+    # Entitäten, die im Haupttext erwähnt sind (via @ref/@key/@target), aber nicht in Kommentaren
+    for ref_node in doc.any_xpath('.//tei:body//*[@ref or @key or @target][not(ancestor::tei:note[@type="commentary"])]'):
+        targets = []
+        if 'ref' in ref_node.attrib:
+            targets.append(ref_node.attrib['ref'].lstrip('#'))
+        if 'key' in ref_node.attrib:
+            targets.append(ref_node.attrib['key'].lstrip('#'))
+        if 'target' in ref_node.attrib:
+            targets.append(ref_node.attrib['target'].lstrip('#'))
+        for t in targets:
+            d_text[t].add(f"{file_name}_____{doc_title}_____{doc_date}")
 
     # Entitäten, die in Kommentaren erwähnt sind
     commentary_ref_targets = set()
