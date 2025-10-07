@@ -1447,7 +1447,7 @@
         </xsl:variable>
         <xsl:variable name="mentionCount" select="count($filteredMentions)"/>
         <xsl:variable name="commentaryMentionCount"
-            select="count($filteredMentions[@subtype = 'commentary'])"/>
+            select="count($mentions//tei:note[@subtype = 'commentary'])"/>
         <xsl:if test="$mentionCount > 0">
             <!-- Balkendiagramm oben -->
             <div id="mentions">
