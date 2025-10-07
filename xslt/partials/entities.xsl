@@ -1460,7 +1460,7 @@
                                 <input type="checkbox" id="toggle-commentary-mentions" checked="checked"/>
                                 <span class="i-slider round" style="background-color: #A63437;"></span>
                             </label>
-                            <span class="opt-title">im Kommentar</span>
+                            <span class="opt-title"><i class="fas fa-comment me-1"></i>Kommentar</span>
                         </div>
                     </xsl:if>
                     <div id="mentions-chart" class="mt-3 mb-3">
