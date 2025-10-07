@@ -187,6 +187,12 @@ current_schema = {
             "facet": True,
             "optional": True,
         },
+        {
+            "name": "text_areas",
+            "type": "string[]",
+            "facet": True,
+            "optional": True,
+        },
     ],
 }
 
@@ -288,6 +294,32 @@ for x in tqdm(files, total=len(files)):
     cfts_record["places"] = [x["label"] for x in record["places"]]
     record["full_text"] = f"{extract_fulltext_with_spacing(body)} {record['title']}".replace("(", " ")
     cfts_record["full_text"] = record["full_text"]
+
+    # Determine text areas based on XPath criteria
+    text_areas = []
+
+    # Check for Editionstext (body text excluding commentary notes)
+    editionstext_nodes = doc.any_xpath(
+        ".//tei:body//text()[not(ancestor::tei:note[@type='commentary'])]"
+    )
+    if editionstext_nodes and any(node.strip() for node in editionstext_nodes):
+        text_areas.append("Editionstext")
+
+    # Check for Kommentar (commentary notes in body)
+    kommentar_nodes = doc.any_xpath(
+        ".//tei:body//tei:note[@type='commentary']//text()"
+    )
+    if kommentar_nodes and any(node.strip() for node in kommentar_nodes):
+        text_areas.append("Kommentar")
+
+    # Check for Objektbeschreibung (sourceDesc)
+    objektbeschreibung_nodes = doc.any_xpath(
+        ".//tei:sourceDesc//text()"
+    )
+    if objektbeschreibung_nodes and any(node.strip() for node in objektbeschreibung_nodes):
+        text_areas.append("Objektbeschreibung")
+
+    record["text_areas"] = text_areas
 
     records.append(record)
     cfts_records.append(cfts_record)

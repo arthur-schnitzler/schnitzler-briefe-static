@@ -59,6 +59,17 @@
                                                 <div id="clear-refinements"></div>
                                             
                                             <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTextArea" aria-expanded="true" aria-controls="collapseTextArea" style="cursor: pointer;">
+                                                    Textbereich <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapseTextArea" class="collapse show">
+                                                    <div class="card-body">
+                                                        <div id="refinement-list-text-areas"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
                                                 <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear" style="cursor: pointer;">
                                                     Jahr <i class="fa fa-chevron-down float-end"></i>
                                                 </h4>

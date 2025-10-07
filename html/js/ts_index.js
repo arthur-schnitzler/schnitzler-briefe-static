@@ -81,6 +81,18 @@ search.addWidgets([
         `,
       }
   }),
+  instantsearch.widgets.refinementList({
+    container: "#refinement-list-text-areas",
+    attribute: "text_areas",
+    sortBy: ["name:asc"],
+    cssClasses: {
+      list: "list-unstyled",
+      count: "badge ml-2 bg-secondary",
+      label: "d-flex align-items-center",
+      checkbox: "form-check",
+    },
+  }),
+
   instantsearch.widgets.rangeInput({
     container: "#range-input",
     attribute: "year",
