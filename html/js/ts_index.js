@@ -15,37 +15,49 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     }
   });
 
-// Wrap the search client to dynamically update query_by
-const originalSearch = typesenseInstantsearchAdapter.searchClient.search.bind(typesenseInstantsearchAdapter.searchClient);
-typesenseInstantsearchAdapter.searchClient.search = function(requests) {
-  // Get current text area selection from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const textAreasParam = urlParams.get('schnitzler-briefe[refinementList][text_areas][0]');
+// Wrap the search client to dynamically inject query_by
+const originalSearchClient = typesenseInstantsearchAdapter.searchClient;
+const searchClient = {
+    ...originalSearchClient,
+    search(requests) {
+        // Extract text_areas refinement from facet filters
+        const modifiedRequests = requests.map(request => {
+            const facetFilters = request.params?.facetFilters || [];
 
-  let queryBy = 'full_text';
+            let queryBy = 'full_text';
 
-  if (textAreasParam) {
-    const fieldMap = {
-      'Editionstext': 'editionstext',
-      'Kommentar': 'kommentar'
-    };
-    queryBy = fieldMap[textAreasParam] || 'full_text';
-  }
+            // Check for text_areas facet
+            const textAreasFilters = facetFilters.filter(filter =>
+                typeof filter === 'string' && filter.startsWith('text_areas:')
+            );
 
-  // Update query_by for all requests
-  requests = requests.map(request => ({
-    ...request,
-    params: {
-      ...request.params,
-      query_by: queryBy
+            if (textAreasFilters.length > 0) {
+                const fieldMap = {
+                    'text_areas:Editionstext': 'editionstext',
+                    'text_areas:Kommentar': 'kommentar'
+                };
+
+                const fields = textAreasFilters
+                    .map(filter => fieldMap[filter])
+                    .filter(field => field);
+
+                if (fields.length > 0) {
+                    queryBy = fields.join(',');
+                }
+            }
+
+            // Update the adapter's additionalSearchParameters before the search
+            typesenseInstantsearchAdapter.additionalSearchParameters.query_by = queryBy;
+
+            console.log('Wrapping search - facetFilters:', facetFilters, 'setting query_by to:', queryBy);
+
+            return request;
+        });
+
+        return originalSearchClient.search(modifiedRequests);
     }
-  }));
-
-  console.log('Search with query_by:', queryBy);
-  return originalSearch(requests);
 };
 
-const searchClient = typesenseInstantsearchAdapter.searchClient;
 const search = instantsearch({
     indexName: 'schnitzler-briefe',
     searchClient,
@@ -343,12 +355,68 @@ search.addWidgets([
 
 
 
-// Dynamic configure widget
-search.addWidgets([
-    instantsearch.widgets.configure({
+// Dynamic configure widget with query_by logic
+const configureWidget = instantsearch.widgets.configure(({ state }) => {
+    const selectedAreas = state?.refinementList?.text_areas || [];
+
+    let queryBy = 'full_text';
+
+    if (selectedAreas.length > 0) {
+        const fieldMap = {
+            'Editionstext': 'editionstext',
+            'Kommentar': 'kommentar'
+        };
+
+        const fields = selectedAreas
+            .map(area => fieldMap[area])
+            .filter(field => field);
+
+        if (fields.length > 0) {
+            queryBy = fields.join(',');
+        }
+    }
+
+    console.log('Configure widget - selected areas:', selectedAreas, 'query_by:', queryBy);
+
+    return {
         attributesToSnippet: ['full_text:50', 'editionstext:50', 'kommentar:50'],
-    })
-]);
+        // Try to set query_by here - may not work with Typesense adapter
+    };
+});
+
+search.addWidgets([configureWidget]);
+
+// Middleware to intercept searches and modify query_by
+search.use(() => {
+    return {
+        subscribe() {},
+        unsubscribe() {},
+        onStateChange({ uiState }) {
+            const selectedAreas = uiState['schnitzler-briefe']?.refinementList?.text_areas || [];
+
+            let queryBy = 'full_text';
+
+            if (selectedAreas.length > 0) {
+                const fieldMap = {
+                    'Editionstext': 'editionstext',
+                    'Kommentar': 'kommentar'
+                };
+
+                const fields = selectedAreas
+                    .map(area => fieldMap[area])
+                    .filter(field => field);
+
+                if (fields.length > 0) {
+                    queryBy = fields.join(',');
+                }
+            }
+
+            // Update the Typesense adapter's search parameters
+            typesenseInstantsearchAdapter.additionalSearchParameters.query_by = queryBy;
+            console.log('Middleware - updated query_by to:', queryBy);
+        }
+    };
+});
 
 
 // Start search after DOM is loaded and toggle is initialized
