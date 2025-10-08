@@ -23,7 +23,7 @@ const originalSearchClient = typesenseInstantsearchAdapter.searchClient;
 const searchClient = {
     ...originalSearchClient,
     search(requests) {
-        // Extract text_areas refinement from facet filters
+        // Extract text_areas refinement from facet filters and modify requests
         const modifiedRequests = requests.map(request => {
             const facetFilters = request.params?.facetFilters || [];
 
@@ -49,12 +49,16 @@ const searchClient = {
                 }
             }
 
-            // Update the search parameters
-            additionalSearchParameters.query_by = queryBy;
+            console.log('Search request - facetFilters:', facetFilters, 'setting query_by to:', queryBy);
 
-            console.log('Wrapping search - facetFilters:', facetFilters, 'setting query_by to:', queryBy);
-
-            return request;
+            // Inject query_by into the request params
+            return {
+                ...request,
+                params: {
+                    ...request.params,
+                    query_by: queryBy
+                }
+            };
         });
 
         return originalSearchClient.search(modifiedRequests);
@@ -364,38 +368,6 @@ const configureWidget = instantsearch.widgets.configure({
 });
 
 search.addWidgets([configureWidget]);
-
-// Middleware to intercept searches and modify query_by
-search.use(() => {
-    return {
-        subscribe() {},
-        unsubscribe() {},
-        onStateChange({ uiState }) {
-            const selectedAreas = uiState['schnitzler-briefe']?.refinementList?.text_areas || [];
-
-            let queryBy = 'full_text';
-
-            if (selectedAreas.length > 0) {
-                const fieldMap = {
-                    'Editionstext': 'editionstext',
-                    'Kommentar': 'kommentar'
-                };
-
-                const fields = selectedAreas
-                    .map(area => fieldMap[area])
-                    .filter(field => field);
-
-                if (fields.length > 0) {
-                    queryBy = fields.join(',');
-                }
-            }
-
-            // Update the search parameters
-            additionalSearchParameters.query_by = queryBy;
-            console.log('Middleware - updated query_by to:', queryBy);
-        }
-    };
-});
 
 
 // Start search after DOM is loaded and toggle is initialized
