@@ -1,8 +1,3 @@
-// Store search parameters in a variable we can modify
-const additionalSearchParameters = {
-    query_by: "full_text"
-};
-
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     server: {
       apiKey: "q1jDFeqfOj47rJD14NxWFVyQZj7FL7Xj",
@@ -15,59 +10,14 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
       ],
       cacheSearchResultsForSeconds: 2 * 60,
     },
-    additionalSearchParameters: additionalSearchParameters
-  });
-
-// Wrap the search client to dynamically inject query_by
-const originalSearchClient = typesenseInstantsearchAdapter.searchClient;
-const searchClient = {
-    ...originalSearchClient,
-    search(requests) {
-        // Extract text_areas refinement from facet filters and modify requests
-        const modifiedRequests = requests.map(request => {
-            const facetFilters = request.params?.facetFilters || [];
-
-            let queryBy = 'full_text';
-
-            // Check for text_areas facet
-            const textAreasFilters = facetFilters.filter(filter =>
-                typeof filter === 'string' && filter.startsWith('text_areas:')
-            );
-
-            if (textAreasFilters.length > 0) {
-                const fieldMap = {
-                    'text_areas:Editionstext': 'editionstext',
-                    'text_areas:Kommentar': 'kommentar'
-                };
-
-                const fields = textAreasFilters
-                    .map(filter => fieldMap[filter])
-                    .filter(field => field);
-
-                if (fields.length > 0) {
-                    queryBy = fields.join(',');
-                }
-            }
-
-            console.log('Search request - facetFilters:', facetFilters, 'setting query_by to:', queryBy);
-
-            // Inject query_by into the request params
-            return {
-                ...request,
-                params: {
-                    ...request.params,
-                    query_by: queryBy
-                }
-            };
-        });
-
-        return originalSearchClient.search(modifiedRequests);
+    additionalSearchParameters: {
+      query_by: "full_text"
     }
-};
+  });
 
 const search = instantsearch({
     indexName: 'schnitzler-briefe',
-    searchClient,
+    searchClient: typesenseInstantsearchAdapter.searchClient,
 });
 
 // Make search globally available for the toggle functionality
@@ -369,6 +319,52 @@ const configureWidget = instantsearch.widgets.configure({
 
 search.addWidgets([configureWidget]);
 
+// Function to update query_by based on selected text areas
+const updateQueryBy = (selectedAreas) => {
+    let queryBy = 'full_text';
+
+    if (selectedAreas && selectedAreas.length > 0) {
+        const fieldMap = {
+            'Editionstext': 'editionstext',
+            'Kommentar': 'kommentar'
+        };
+
+        const fields = selectedAreas
+            .map(area => fieldMap[area])
+            .filter(field => field);
+
+        if (fields.length > 0) {
+            queryBy = fields.join(',');
+        }
+    }
+
+    console.log('Updating query_by to:', queryBy, 'for selected areas:', selectedAreas);
+
+    const currentConfig = typesenseInstantsearchAdapter.configuration;
+    typesenseInstantsearchAdapter.updateConfiguration({
+        ...currentConfig,
+        additionalSearchParameters: {
+            query_by: queryBy
+        }
+    });
+
+    if (search.helper) {
+        search.helper.setClient(typesenseInstantsearchAdapter.searchClient);
+        search.helper.search();
+    }
+};
+
+// Listen to state changes to update query_by
+search.use(() => {
+    return {
+        subscribe() {},
+        unsubscribe() {},
+        onStateChange({ uiState }) {
+            const selectedAreas = uiState['schnitzler-briefe']?.refinementList?.text_areas || [];
+            updateQueryBy(selectedAreas);
+        }
+    };
+});
 
 // Start search after DOM is loaded and toggle is initialized
 document.addEventListener('DOMContentLoaded', function() {
