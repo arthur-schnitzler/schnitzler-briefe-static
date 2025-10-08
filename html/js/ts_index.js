@@ -1,3 +1,8 @@
+// Store search parameters in a variable we can modify
+const additionalSearchParameters = {
+    query_by: "full_text"
+};
+
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     server: {
       apiKey: "q1jDFeqfOj47rJD14NxWFVyQZj7FL7Xj",
@@ -10,9 +15,7 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
       ],
       cacheSearchResultsForSeconds: 2 * 60,
     },
-    additionalSearchParameters: {
-      query_by: "full_text"
-    }
+    additionalSearchParameters: additionalSearchParameters
   });
 
 // Wrap the search client to dynamically inject query_by
@@ -46,8 +49,8 @@ const searchClient = {
                 }
             }
 
-            // Update the adapter's additionalSearchParameters before the search
-            typesenseInstantsearchAdapter.additionalSearchParameters.query_by = queryBy;
+            // Update the search parameters
+            additionalSearchParameters.query_by = queryBy;
 
             console.log('Wrapping search - facetFilters:', facetFilters, 'setting query_by to:', queryBy);
 
@@ -387,8 +390,8 @@ search.use(() => {
                 }
             }
 
-            // Update the Typesense adapter's search parameters
-            typesenseInstantsearchAdapter.additionalSearchParameters.query_by = queryBy;
+            // Update the search parameters
+            additionalSearchParameters.query_by = queryBy;
             console.log('Middleware - updated query_by to:', queryBy);
         }
     };
