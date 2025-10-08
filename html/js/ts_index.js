@@ -12,14 +12,38 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     },
     additionalSearchParameters: {
       query_by: "full_text"
-    },
-    // Separate collections approach - we'll dynamically override this
-    collectionSpecificSearchParameters: {
-      'schnitzler-briefe': {
-        query_by: "full_text"
-      }
     }
   });
+
+// Wrap the search client to dynamically update query_by
+const originalSearch = typesenseInstantsearchAdapter.searchClient.search.bind(typesenseInstantsearchAdapter.searchClient);
+typesenseInstantsearchAdapter.searchClient.search = function(requests) {
+  // Get current text area selection from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const textAreasParam = urlParams.get('schnitzler-briefe[refinementList][text_areas][0]');
+
+  let queryBy = 'full_text';
+
+  if (textAreasParam) {
+    const fieldMap = {
+      'Editionstext': 'editionstext',
+      'Kommentar': 'kommentar'
+    };
+    queryBy = fieldMap[textAreasParam] || 'full_text';
+  }
+
+  // Update query_by for all requests
+  requests = requests.map(request => ({
+    ...request,
+    params: {
+      ...request.params,
+      query_by: queryBy
+    }
+  }));
+
+  console.log('Search with query_by:', queryBy);
+  return originalSearch(requests);
+};
 
 const searchClient = typesenseInstantsearchAdapter.searchClient;
 const search = instantsearch({
@@ -65,8 +89,7 @@ search.addWidgets([
       if (selectedAreas.length === 1) {
         const fieldMap = {
           'Editionstext': 'editionstext',
-          'Kommentar': 'kommentar',
-          'Objektbeschreibung': 'objektbeschreibung'
+          'Kommentar': 'kommentar'
         };
         const preferredAttribute = fieldMap[selectedAreas[0]];
 
@@ -323,43 +346,9 @@ search.addWidgets([
 // Dynamic configure widget
 search.addWidgets([
     instantsearch.widgets.configure({
-        attributesToSnippet: ['full_text:50', 'editionstext:50', 'kommentar:50', 'objektbeschreibung:50'],
+        attributesToSnippet: ['full_text:50', 'editionstext:50', 'kommentar:50'],
     })
 ]);
-
-// Middleware to dynamically update query_by based on selected text areas
-search.use(() => ({
-    onStateChange({ uiState }) {
-        const selectedAreas = uiState['schnitzler-briefe']?.refinementList?.text_areas || [];
-
-        let newQueryBy = 'full_text';
-
-        if (selectedAreas.length > 0) {
-            const fieldMap = {
-                'Editionstext': 'editionstext',
-                'Kommentar': 'kommentar',
-                'Objektbeschreibung': 'objektbeschreibung'
-            };
-
-            const fields = selectedAreas
-                .map(area => fieldMap[area])
-                .filter(field => field);
-
-            if (fields.length > 0) {
-                newQueryBy = fields.join(',');
-            }
-        }
-
-        // Update the query_by parameter
-        if (typesenseInstantsearchAdapter.additionalSearchParameters.query_by !== newQueryBy) {
-            console.log('Updating query_by from', typesenseInstantsearchAdapter.additionalSearchParameters.query_by, 'to', newQueryBy);
-            typesenseInstantsearchAdapter.additionalSearchParameters.query_by = newQueryBy;
-        }
-    },
-    subscribe() {},
-    unsubscribe() {}
-}));
-
 
 
 // Start search after DOM is loaded and toggle is initialized

@@ -150,11 +150,6 @@ current_schema = {
             "optional": True,
         },
         {
-            "name": "objektbeschreibung",
-            "type": "string",
-            "optional": True,
-        },
-        {
             "name": "year",
             "type": "int32",
             "optional": True,
@@ -336,15 +331,6 @@ for x in tqdm(files, total=len(files)):
         if kommentar:
             record["kommentar"] = kommentar.replace("(", " ")
             text_areas.append("Kommentar")
-
-    # Objektbeschreibung: sourceDesc
-    objektbeschreibung_elements = doc.any_xpath(".//tei:sourceDesc")
-    if objektbeschreibung_elements:
-        objektbeschreibung_texts = [extract_fulltext_with_spacing(elem) for elem in objektbeschreibung_elements]
-        objektbeschreibung = " ".join(objektbeschreibung_texts).strip()
-        if objektbeschreibung:
-            record["objektbeschreibung"] = objektbeschreibung.replace("(", " ")
-            text_areas.append("Objektbeschreibung")
 
     record["text_areas"] = text_areas
 
