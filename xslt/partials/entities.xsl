@@ -1441,13 +1441,13 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- textuelle Erwähnungen, kein Kommentar -->
-                    <xsl:sequence select="$mentions//tei:note[not(@subtype = 'commentary') or @subtype='text']"/>
+                    <xsl:sequence select="$mentions//tei:note[not(@ana = 'comment') or @subtype='text']"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="mentionCount" select="count($filteredMentions)"/>
         <xsl:variable name="commentaryMentionCount"
-            select="count($mentions//tei:note[@subtype = 'commentary'])"/>
+            select="count($mentions//tei:note[@ana = 'comment'])"/>
         <xsl:if test="$mentionCount > 0">
             <!-- Balkendiagramm oben -->
             <div id="mentions">
@@ -1509,10 +1509,10 @@
                                 <xsl:variable name="year" select="number(@val)"/>
                                 <!-- Count Editionstext mentions (not commentary) -->
                                 <xsl:variable name="editionstext-count"
-                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and not(@subtype = 'commentary')])"/>
+                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and not(@ana = 'comment')])"/>
                                 <!-- Count Commentary-only mentions -->
                                 <xsl:variable name="commentary-only-count"
-                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and @subtype = 'commentary'])"/>
+                                    select="count($mentions//tei:note[substring(@corresp, 1, 4) = string($year) and @ana = 'comment'])"/>
                                 <xsl:variable name="total-count"
                                     select="$editionstext-count + $commentary-only-count"/>
                                 <xsl:variable name="editionstext-height"
@@ -1659,7 +1659,7 @@
                                                   select="replace(tokenize(data(.//@target), '/')[last()], '.xml', '.html')"/>
                                                   <li>
                                                   <xsl:attribute name="class">
-                                                  <xsl:if test="@subtype = 'commentary'"
+                                                  <xsl:if test="@ana = 'comment'"
                                                   >mention-commentary</xsl:if>
                                                   </xsl:attribute>
                                                   <a href="{$linkToDocument}">
@@ -1684,7 +1684,7 @@
                                                   </xsl:variable>
                                                   <li>
                                                   <xsl:attribute name="class">
-                                                  <xsl:if test="@subtype = 'commentary'"
+                                                  <xsl:if test="@ana = 'comment'"
                                                   >mention-commentary</xsl:if>
                                                   </xsl:attribute>
                                                   <a href="{$linkToDocument}">
@@ -1716,7 +1716,7 @@
                                             </xsl:variable>
                                             <li>
                                                 <xsl:attribute name="class">
-                                                  <xsl:if test="@subtype = 'commentary'"
+                                                  <xsl:if test="@ana = 'comment'"
                                                   >mention-commentary</xsl:if>
                                                 </xsl:attribute>
                                                 <a href="{$linkToDocument}">

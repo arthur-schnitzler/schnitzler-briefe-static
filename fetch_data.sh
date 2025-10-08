@@ -14,14 +14,14 @@ rm -rf ./schnitzler-briefe-data-main
 # get schnitzler-chronik-data
 
 # Download XML files from GitHub repository
-wget https://github.com/arthur-schnitzler/schnitzler-chronik-data/archive/refs/heads/main.zip
 rm -rf chronik-data
-unzip main.zip
-
-mv schnitzler-chronik-data-main/editions/data chronik-data/
-rm -rf schnitzler-chronik-data-main
-
-rm main.zip
+mkdir -p chronik-data
+git clone --depth 1 --filter=blob:none --sparse https://github.com/arthur-schnitzler/schnitzler-chronik-data.git temp-chronik
+cd temp-chronik
+git sparse-checkout set editions/data
+cd ..
+find temp-chronik/editions/data -name "*.xml" -exec cp {} chronik-data/ \;
+rm -rf temp-chronik
 
 
 
@@ -33,13 +33,14 @@ find ./data/indices/ -type f -name "*.xml"  -print0 | xargs -0 sed -i '' -e 's@<
 
 # get schnitzler-briefe-tex
 
-rm -rf .html/L*.pdf
-wget https://github.com/arthur-schnitzler/schnitzler-briefe-tex/archive/refs/heads/main.zip
-unzip main
-
-mv ./schnitzler-briefe-tex-main/pdf-leseansicht/L*.pdf ./html
-rm main.zip
-rm -rf ./schnitzler-briefe-tex-main
+rm -rf ./html/L*.pdf
+mkdir -p ./html
+git clone --depth 1 --filter=blob:none --sparse https://github.com/arthur-schnitzler/schnitzler-briefe-tex.git temp-tex
+cd temp-tex
+git sparse-checkout set pdf-leseansicht
+cd ..
+find temp-tex/pdf-leseansicht -name "*.pdf" -exec cp {} ./html/ \;
+rm -rf temp-tex
 
 # get schnitzler-briefe-charts
 
