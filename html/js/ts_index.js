@@ -355,33 +355,9 @@ search.addWidgets([
 
 
 
-// Dynamic configure widget with query_by logic
-const configureWidget = instantsearch.widgets.configure(({ state }) => {
-    const selectedAreas = state?.refinementList?.text_areas || [];
-
-    let queryBy = 'full_text';
-
-    if (selectedAreas.length > 0) {
-        const fieldMap = {
-            'Editionstext': 'editionstext',
-            'Kommentar': 'kommentar'
-        };
-
-        const fields = selectedAreas
-            .map(area => fieldMap[area])
-            .filter(field => field);
-
-        if (fields.length > 0) {
-            queryBy = fields.join(',');
-        }
-    }
-
-    console.log('Configure widget - selected areas:', selectedAreas, 'query_by:', queryBy);
-
-    return {
-        attributesToSnippet: ['full_text:50', 'editionstext:50', 'kommentar:50'],
-        // Try to set query_by here - may not work with Typesense adapter
-    };
+// Configure widget with snippet settings
+const configureWidget = instantsearch.widgets.configure({
+    attributesToSnippet: ['full_text:50', 'editionstext:50', 'kommentar:50']
 });
 
 search.addWidgets([configureWidget]);
