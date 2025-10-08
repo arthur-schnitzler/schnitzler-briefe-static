@@ -461,28 +461,22 @@
         <xsl:if test="tei:support">
             <xsl:apply-templates select="tei:support"/>
         </xsl:if>
-        <xsl:template match="tei:supportDesc">
-            <xsl:apply-templates select="tei:extent"/>
-            <xsl:if test="tei:support">
-                <xsl:apply-templates select="tei:support"/>
-            </xsl:if>
-            <xsl:if test="tei:condition">
-                <xsl:choose>
-                    <xsl:when test="tei:condition/@ana = 'fragment'">
-                        <xsl:text>, Fragment</xsl:text>
-                        <xsl:if test=". != ''">
-                            <xsl:text> (</xsl:text>
-                            <xsl:value-of select="tei:condition"/>
-                            <xsl:text>)</xsl:text>
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text>, </xsl:text>
+        <xsl:if test="tei:condition">
+            <xsl:choose>
+                <xsl:when test="tei:condition/@ana = 'fragment'">
+                    <xsl:text>, Fragment</xsl:text>
+                    <xsl:if test=". != ''">
+                        <xsl:text> (</xsl:text>
                         <xsl:value-of select="tei:condition"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
-        </xsl:template>
+                        <xsl:text>)</xsl:text>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="tei:condition"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
     </xsl:template>
     <xsl:template match="tei:extent">
         <xsl:variable name="unitOrder" select="'blatt seite karte kartenbrief widmung kuvert zeichenanzahl'"/>
