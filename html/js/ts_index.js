@@ -53,9 +53,45 @@ search.addWidgets([
       // Helper function to truncate label
       const truncateLabel = (label) => label.length > 115 ? label.substring(0, 112) + '…' : label;
 
+      // Determine which snippet to show based on selected text areas
+      const uiState = search.getUiState();
+      const selectedAreas = uiState['schnitzler-briefe']?.refinementList?.text_areas || [];
+
+      let snippetAttribute = 'full_text';
+      let snippetResult = null;
+      let hasMatches = false;
+
+      // If there's exactly one text area selected, try to use that field for the snippet
+      if (selectedAreas.length === 1) {
+        const fieldMap = {
+          'Editionstext': 'editionstext',
+          'Kommentar': 'kommentar',
+          'Objektbeschreibung': 'objektbeschreibung'
+        };
+        const preferredAttribute = fieldMap[selectedAreas[0]];
+
+        if (preferredAttribute) {
+          const preferredSnippet = hit._snippetResult?.[preferredAttribute];
+          if (preferredSnippet?.matchedWords?.length > 0) {
+            // Use the preferred field if it has matches
+            snippetAttribute = preferredAttribute;
+            snippetResult = preferredSnippet;
+            hasMatches = true;
+          } else {
+            // Fall back to full_text if preferred field has no matches
+            snippetResult = hit._snippetResult?.full_text;
+            hasMatches = snippetResult?.matchedWords?.length > 0;
+          }
+        }
+      } else {
+        // No specific area selected or multiple areas, use full_text
+        snippetResult = hit._snippetResult?.full_text;
+        hasMatches = snippetResult?.matchedWords?.length > 0;
+      }
+
       return html`
         <h3><a href="${hit.id}.html">${hit.title}</a></h3>
-        <p>${hit._snippetResult.full_text.matchedWords.length > 0 ? components.Snippet({ hit, attribute: 'full_text' }) : ''}</p>
+        <p>${hasMatches ? components.Snippet({ hit, attribute: snippetAttribute }) : ''}</p>
         <p>
         ${hit.persons.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #e74c3c; color: white;">${truncateLabel(item.label)}</span></a>`)}
         ${hit.places.map((item) => html`<a href='${item.id}.html'><span class="badge rounded-pill m-1" style="background-color: #3498db; color: white;">${truncateLabel(item.label)}</span></a>`)}
@@ -284,53 +320,45 @@ search.addWidgets([
 
 
 
-// Dynamic configure widget that will be updated
-let currentConfigureWidget = instantsearch.widgets.configure({
-    attributesToSnippet: ['full_text', 'editionstext', 'kommentar', 'objektbeschreibung'],
-});
+// Dynamic configure widget
+search.addWidgets([
+    instantsearch.widgets.configure({
+        attributesToSnippet: ['full_text:50', 'editionstext:50', 'kommentar:50', 'objektbeschreibung:50'],
+    })
+]);
 
-search.addWidgets([currentConfigureWidget]);
+// Middleware to dynamically update query_by based on selected text areas
+search.use(() => ({
+    onStateChange({ uiState }) {
+        const selectedAreas = uiState['schnitzler-briefe']?.refinementList?.text_areas || [];
 
-// Listen to state changes and update query_by dynamically
-search.on('render', function() {
-    const uiState = search.getUiState();
-    const selectedAreas = uiState['schnitzler-briefe']?.refinementList?.text_areas || [];
+        let newQueryBy = 'full_text';
 
-    console.log('Current UI State:', uiState);
-    console.log('Selected text areas:', selectedAreas);
+        if (selectedAreas.length > 0) {
+            const fieldMap = {
+                'Editionstext': 'editionstext',
+                'Kommentar': 'kommentar',
+                'Objektbeschreibung': 'objektbeschreibung'
+            };
 
-    let newQueryBy = 'full_text';
+            const fields = selectedAreas
+                .map(area => fieldMap[area])
+                .filter(field => field);
 
-    if (selectedAreas.length > 0) {
-        const fieldMap = {
-            'Editionstext': 'editionstext',
-            'Kommentar': 'kommentar',
-            'Objektbeschreibung': 'objektbeschreibung'
-        };
-
-        const fields = selectedAreas
-            .map(area => fieldMap[area])
-            .filter(field => field);
-
-        if (fields.length > 0) {
-            newQueryBy = fields.join(',');
+            if (fields.length > 0) {
+                newQueryBy = fields.join(',');
+            }
         }
-    }
 
-    const currentQueryBy = typesenseInstantsearchAdapter.additionalSearchParameters.query_by;
-
-    console.log('Current query_by:', currentQueryBy);
-    console.log('New query_by:', newQueryBy);
-
-    // Only update if changed
-    if (currentQueryBy !== newQueryBy) {
-        console.log('Updating query_by to:', newQueryBy);
-        typesenseInstantsearchAdapter.additionalSearchParameters.query_by = newQueryBy;
-
-        // Force a new search with updated parameters
-        search.helper.search();
-    }
-});
+        // Update the query_by parameter
+        if (typesenseInstantsearchAdapter.additionalSearchParameters.query_by !== newQueryBy) {
+            console.log('Updating query_by from', typesenseInstantsearchAdapter.additionalSearchParameters.query_by, 'to', newQueryBy);
+            typesenseInstantsearchAdapter.additionalSearchParameters.query_by = newQueryBy;
+        }
+    },
+    subscribe() {},
+    unsubscribe() {}
+}));
 
 
 
