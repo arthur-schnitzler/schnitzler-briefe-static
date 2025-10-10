@@ -49,6 +49,18 @@
         <xsl:if test="not(empty($biblStruct-input/tei:series))">
             <xsl:text> (</xsl:text>
             <xsl:value-of select="$biblStruct-input/tei:series/tei:title"/>
+            <xsl:if test="$biblStruct-input/tei:series/tei:editor">
+                <xsl:value-of select="mam:herausgeber($biblStruct-input/tei:series/tei:editor)"/>
+            </xsl:if>
+            <xsl:if test="$biblStruct-input/tei:series//tei:respStmt">
+                <xsl:text>. </xsl:text>
+                <xsl:for-each select="$biblStruct-input/tei:series//tei:respStmt">
+                    <xsl:value-of select="mam:respStmt(.)"/>
+                    <xsl:if test="not(position() = last())">
+                        <xsl:text> </xsl:text>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:if>
             <xsl:if test="$biblStruct-input/tei:series/tei:biblScope">
                 <xsl:text>, </xsl:text>
                 <xsl:value-of select="$biblStruct-input/tei:series/tei:biblScope"/>
@@ -99,6 +111,15 @@
         <xsl:if test="$analytic/tei:editor[1]">
             <xsl:value-of select="mam:herausgeber($analytic)"/>
         </xsl:if>
+        <xsl:if test="$analytic/tei:respStmt">
+            <xsl:text>. </xsl:text>
+            <xsl:for-each select="$analytic/tei:respStmt">
+                <xsl:value-of select="mam:respStmt(.)"/>
+                <xsl:if test="not(fposition() = last())">
+                    <xsl:text> </xsl:text>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:if>
     </xsl:template>
     <xsl:template name="mam:monogr-angabe">
         <xsl:param name="monogr" as="node()"/>
@@ -116,6 +137,15 @@
         <xsl:if test="$monogr/tei:editor[1]">
             <xsl:text>. </xsl:text>
             <xsl:value-of select="mam:herausgeber($monogr)"/>
+        </xsl:if>
+        <xsl:if test="$monogr/tei:respStmt">
+            <xsl:text>. </xsl:text>
+            <xsl:for-each select="$monogr/tei:respStmt">
+                <xsl:value-of select="mam:respStmt(.)"/>
+                <xsl:if test="not(position() = last())">
+                    <xsl:text> </xsl:text>
+                </xsl:if>
+            </xsl:for-each>
         </xsl:if>
         <xsl:if test="$monogr/tei:edition">
             <xsl:text>. </xsl:text>
@@ -284,33 +314,32 @@
     </xsl:function>
     <xsl:function name="mam:herausgeber">
         <xsl:param name="input-node" as="node()"/>
-        <xsl:choose>
-            <xsl:when test="not($input-node/tei:editor[2])">
-                <xsl:variable name="teile" select="tokenize($input-node/tei:editor[1], ',')"/>
-                <xsl:choose>
-                    <xsl:when test="
-                            not(contains($input-node/tei:editor[1], 'Hg.') and
-                            contains($input-node/tei:editor[1], 'Hrsg.') and
-                            contains($input-node/tei:editor[1], 'Herausgeg') and
-                            contains($input-node/tei:editor[1], 'herausg')
-                            ) and count($teile) = 2">
-                        <xsl:text>Herausgegeben von </xsl:text>
-                        <xsl:value-of select="normalize-space(concat($teile[2], ' ', $teile[1]))"/>
-                        <xsl:text>. </xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="$input-node/tei:editor[1]"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:when test="$input-node/tei:editor[2]">
-                <xsl:text>Herausgegeben von </xsl:text>
-                <xsl:value-of
-                    select="mam:editor-rekursion($input-node, 1, count($input-node/tei:editor))"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$input-node/tei:editor/text()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:if test="$input-node/tei:editor">
+            <xsl:text>Herausgegeben von </xsl:text>
+            <xsl:value-of
+                select="mam:editor-rekursion($input-node, 1, count($input-node/tei:editor))"/>
+        </xsl:if>
+    </xsl:function>
+    <xsl:function name="mam:respStmt">
+        <xsl:param name="respStmt" as="node()"/>
+        <xsl:value-of select="$respStmt/tei:resp"/>
+        <xsl:if test="$respStmt/tei:persName">
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="mam:namensliste-mit-komma-und-und-getrennt($respStmt/tei:persName)"/>
+        </xsl:if>
+    </xsl:function>
+    <xsl:function name="mam:namensliste-mit-komma-und-und-getrennt">
+        <xsl:param name="namensliste" as="node()*"/>
+        <xsl:for-each select="$namensliste">
+            <xsl:value-of select="mam:vorname-vor-nachname(.)"/>
+            <xsl:choose>
+                <xsl:when test="position() = last() - 1">
+                    <xsl:text> und </xsl:text>
+                </xsl:when>
+                <xsl:when test="not(position() = last())">
+                    <xsl:text>, </xsl:text>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
     </xsl:function>
 </xsl:stylesheet>
