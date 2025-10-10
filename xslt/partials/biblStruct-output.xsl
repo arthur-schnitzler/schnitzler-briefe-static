@@ -109,7 +109,7 @@
             </xsl:otherwise>
         </xsl:choose>
         <xsl:if test="$analytic/tei:editor[1]">
-            <xsl:value-of select="mam:herausgeber($analytic)"/>
+            <xsl:value-of select="mam:herausgeber($analytic/tei:editor)"/>
         </xsl:if>
         <xsl:if test="$analytic/tei:respStmt">
             <xsl:text>. </xsl:text>
@@ -136,7 +136,7 @@
         <xsl:value-of select="$monogr/tei:title"/>
         <xsl:if test="$monogr/tei:editor[1]">
             <xsl:text>. </xsl:text>
-            <xsl:value-of select="mam:herausgeber($monogr)"/>
+            <xsl:value-of select="mam:herausgeber($monogr/tei:editor)"/>
         </xsl:if>
         <xsl:if test="$monogr/tei:respStmt">
             <xsl:text>. </xsl:text>
@@ -313,11 +313,15 @@
         </xsl:choose>
     </xsl:function>
     <xsl:function name="mam:herausgeber">
-        <xsl:param name="input-node" as="node()"/>
-        <xsl:if test="$input-node/tei:editor">
+        <xsl:param name="input-editors" as="node()*"/>
+        <xsl:if test="$input-editors">
             <xsl:text>Herausgegeben von </xsl:text>
-            <xsl:value-of
-                select="mam:editor-rekursion($input-node, 1, count($input-node/tei:editor))"/>
+            <xsl:for-each select="$input-editors">
+                <xsl:value-of select="mam:vorname-vor-nachname(.)"/>
+                <xsl:if test="position() &lt; last()">
+                    <xsl:text>, </xsl:text>
+                </xsl:if>
+            </xsl:for-each>
         </xsl:if>
     </xsl:function>
     <xsl:function name="mam:respStmt">
