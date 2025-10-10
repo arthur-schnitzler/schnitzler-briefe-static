@@ -115,7 +115,7 @@
             <xsl:text>. </xsl:text>
             <xsl:for-each select="$analytic/tei:respStmt">
                 <xsl:value-of select="mam:respStmt(.)"/>
-                <xsl:if test="not(fposition() = last())">
+                <xsl:if test="not(position() = last())">
                     <xsl:text> </xsl:text>
                 </xsl:if>
             </xsl:for-each>
