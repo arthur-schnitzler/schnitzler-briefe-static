@@ -135,7 +135,7 @@
         <!-- ÖNB -->
         <xsl:when
           test="$msIdentifier/tei:repository[contains(., 'Österreichische Nationalbibliothek')]">
-          <xsl:text>ONB_Literaturarchiv</xsl:text>
+          <xsl:text>ONB</xsl:text>
         </xsl:when>
         <!-- ORIEL LEIBZON -->
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Leibzon')]">
