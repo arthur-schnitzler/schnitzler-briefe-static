@@ -166,15 +166,15 @@
                                         </td>
                                         <td>
                                             <xsl:if
-                                                test="tei:listPerson/tei:person[(@role = 'hat als Teilnehmer:in' or @role='hat teilnehmend')]/tei:persName/@key = 'pmb2121'">
+                                                test="tei:listPerson/tei:person[(@role = 'hat als Teilnehmer:in' or contains(@role, 'teilnehmend'))]/tei:persName/@key = 'pmb2121'">
                                                 <xsl:text>AS</xsl:text>
                                                 <xsl:if
-                                                    test="tei:listPerson/tei:person[(@role = 'hat als Teilnehmer:in' or @role='hat teilnehmend')][2]">
+                                                    test="tei:listPerson/tei:person[(@role = 'hat als Teilnehmer:in' or contains(@role, 'teilnehmend'))][2]">
                                                     <xsl:text>; </xsl:text>
                                                 </xsl:if>
                                             </xsl:if>
                                             <xsl:for-each
-                                                select="tei:listPerson/tei:person[(@role = 'hat als Teilnehmer:in' or @role='hat teilnehmend') and not(tei:persName/@key = 'pmb2121')]">
+                                                select="tei:listPerson/tei:person[(@role = 'hat als Teilnehmer:in' or contains(@role, 'teilnehmend')) and not(tei:persName/@key = 'pmb2121')]">
                                                 <xsl:variable name="name" select="tei:persName"/>
                                                 <xsl:choose>
                                                     <!-- Wenn genau ein Komma enthalten ist -->
