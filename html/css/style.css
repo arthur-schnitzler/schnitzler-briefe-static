@@ -1419,9 +1419,9 @@ nav {
     border-top-color: #6c757d;
 }
 
-.editionText { 
-    margin: 0 !important;
-    line-height: 1.75; 
+.editionText {
+    margin: 0;
+    line-height: 1.75;
     font-size: 1.3rem;
     font-family:serif;
     color:#000;

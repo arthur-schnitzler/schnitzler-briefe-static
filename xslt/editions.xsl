@@ -1478,7 +1478,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:opener">
-        <div class="editionText opener" style="margin-bottom: 0.5em;">
+        <div class="editionText opener" style="margin-bottom: 0.75em;">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
