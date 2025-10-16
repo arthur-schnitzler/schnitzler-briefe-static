@@ -4,7 +4,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
     <xsl:include href="./params.xsl"/>
     <xsl:template match="/" name="nav_bar">
-        <nav class="navbar navbar-expand-md" role="navigation" aria-label="Hauptnavigation" style="padding-top:1px;">
+        <nav class="navbar navbar-expand-md" role="navigation" aria-label="Hauptnavigation" style="padding-top:1px; position: relative; z-index: 1050;">
             <div class="container-fluid">
                 <a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url" aria-label="Zur Startseite">
                     <img src="{$project_logo}" class="img-fluid" title="{$project_short_title}"
