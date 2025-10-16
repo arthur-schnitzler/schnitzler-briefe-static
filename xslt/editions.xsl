@@ -1058,7 +1058,7 @@
                                 <h5 class="modal-title" id="exampleModalLongTitle3">
                                     <a
                                         href="{concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum-iso, '.html')}"
-                                        target="_blank" style="color: #C67F53">
+                                        target="_blank" style="color: #008B8B">
                                         <xsl:value-of
                                             select="concat($wochentag, ', ', $datum-written)"/>
                                     </a>
@@ -1478,7 +1478,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:opener">
-        <div class="editionText opener">
+        <div class="editionText opener" style="margin-bottom: 0.5em;">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
@@ -1609,7 +1609,9 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:signed">
-        <xsl:text>&#160;</xsl:text>
+        <xsl:if test="not(preceding-sibling::node()[1][self::tei:lb])">
+            <xsl:text> </xsl:text>
+        </xsl:if>
         <span class="editionText signed">
             <xsl:apply-templates/>
         </span>
