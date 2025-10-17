@@ -251,43 +251,47 @@
                     <xsl:attribute name="href">
                         <xsl:value-of select="concat($type-url, $ref-mit-endung)"/>
                     </xsl:attribute>
-                    <xsl:variable name="dateiname-xml" as="xs:string?">
-                        <xsl:choose>
-                            <xsl:when test="@type = 'schnitzler-briefe'">
-                                <xsl:value-of
-                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
-                                />
-                            </xsl:when>
-                            <xsl:when test="@type = 'schnitzler-bahr'">
-                                <xsl:value-of
-                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
-                                />
-                            </xsl:when>
-                            <xsl:when test="@type = 'schnitzler-lektueren'">
-                                <xsl:value-of
-                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-lektueren/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
-                                />
-                            </xsl:when>
-                            <xsl:when test="@type = 'schnitzler-interviews'">
-                                <xsl:value-of
-                                    select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
-                                />
-                            </xsl:when>
-                            <xsl:when test="@type = 'schnitzler-kultur'">
-                                <xsl:value-of
-                                    select="normalize-space(document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/listEvent[1]/event[@xml:id = replace($ref-mit-endung, '.html', '')]/tei:eventName/text())"
-                                />
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:variable>
                     <xsl:choose>
-                        <xsl:when test="document($dateiname-xml)/child::*[1]">
+                        <xsl:when test="@type = 'schnitzler-kultur'">
                             <xsl:value-of
-                                select="document($dateiname-xml)/descendant::tei:titleStmt[1]/tei:title[@level = 'a'][1]/text()"
+                                select="normalize-space(document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/tei:listEvent[1]/tei:event[@xml:id = replace($ref-mit-endung, '.html', '')]/tei:eventName/text())"
                             />
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="$dateiname-xml"/>
+                            <xsl:variable name="dateiname-xml" as="xs:string?">
+                                <xsl:choose>
+                                    <xsl:when test="@type = 'schnitzler-briefe'">
+                                        <xsl:value-of
+                                            select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                        />
+                                    </xsl:when>
+                                    <xsl:when test="@type = 'schnitzler-bahr'">
+                                        <xsl:value-of
+                                            select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-bahr-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                        />
+                                    </xsl:when>
+                                    <xsl:when test="@type = 'schnitzler-lektueren'">
+                                        <xsl:value-of
+                                            select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-lektueren/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                        />
+                                    </xsl:when>
+                                    <xsl:when test="@type = 'schnitzler-interviews'">
+                                        <xsl:value-of
+                                            select="concat('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-interviews-data/main/data/editions/', replace($ref-mit-endung, '.html', '.xml'))"
+                                        />
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:variable>
+                            <xsl:choose>
+                                <xsl:when test="$dateiname-xml != '' and doc-available($dateiname-xml)">
+                                    <xsl:value-of
+                                        select="document($dateiname-xml)/descendant::tei:titleStmt[1]/tei:title[@level = 'a'][1]/text()"
+                                    />
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="$ref-mit-endung"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:otherwise>
                     </xsl:choose>
                 </a>
