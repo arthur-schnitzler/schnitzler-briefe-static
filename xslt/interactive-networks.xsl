@@ -54,7 +54,7 @@
                                                 <input type="text" id="correspondence-search" class="form-control mb-2" placeholder="Suchen..."/>
                                             </div>
                                             <div id="correspondence-list" class="correspondence-list">
-                                                <xsl:for-each select="//tei:personGrp[not(@xml:id = 'correspondence_null')]">
+                                                <xsl:for-each select="//tei:personGrp[not(@xml:id = 'correspondence_null') and not(@ana = 'planned')]">
                                                     <xsl:sort select="string-join(mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text()), '')"/>
                                                     <xsl:variable name="corr-id" select="substring-after(@xml:id, 'correspondence_')"/>
                                                     <xsl:variable name="corr-name" select="string-join(mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text()), '')"/>

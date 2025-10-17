@@ -57,17 +57,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load CSV data for a correspondence and entity type
     const loadCorrespondenceData = async (corrId, entityType) => {
         const config = getEntityTypeConfig(entityType);
-        const url = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/${config.path}/${config.path}_correspondence_${corrId}_alle.csv`;
+        // Try local file first, then GitHub as fallback
+        const localUrl = `network-data/${config.path}_correspondence_${corrId}_alle.csv`;
+        const githubUrl = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/${config.path}/${config.path}_correspondence_${corrId}_alle.csv`;
 
         try {
-            const response = await fetch(url);
-            if (!response.ok) return null;
+            // Try local file first
+            let response = await fetch(localUrl);
+            if (!response.ok) {
+                // Fallback to GitHub
+                console.log(`Local file not found, trying GitHub for ${corrId} ${entityType}`);
+                response = await fetch(githubUrl);
+                if (!response.ok) return null;
+            }
 
             const csvText = await response.text();
             return new Promise((resolve, reject) => {
                 Papa.parse(csvText, {
                     header: true,
-                    complete: ({ data }) => resolve({ corrId, entityType, data, config }),
+                    complete: ({ data }) => {
+                        console.log(`Loaded ${data.length} rows for ${corrId} ${entityType}`);
+                        resolve({ corrId, entityType, data, config });
+                    },
                     error: reject
                 });
             });

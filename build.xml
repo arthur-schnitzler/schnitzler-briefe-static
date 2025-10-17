@@ -108,4 +108,9 @@
             <include name="**/*.xml"/>
         </fileset>
     </copy>
+    <copy todir="${target}/network-data">
+        <fileset dir="./network-data/">
+            <include name="**/*.csv"/>
+        </fileset>
+    </copy>
 </project>
