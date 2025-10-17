@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Document is ready');
     
     const resizeChartContainer = () => {
-        const containers =[ 'person-container', 'place-container', 'institution-container', 'work-container'];
+        const containers =[ 'person-container', 'place-container', 'institution-container', 'work-container', 'event-container'];
         containers.forEach(id => {
             const container = document.getElementById(id);
             if (container) {
@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         break;
                         case 'work-container':
                         targetIdColumn = 'WorkID';
+                        break;
+                        case 'event-container':
+                        targetIdColumn = 'EventID';
                         break;
                         default:
                         console.error('Unknown containerId:', containerId);
@@ -211,6 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             urlTop30: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_${correspondenceId}_top30.csv`, urlAlle: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/work_freq_corr_weights_directed/work_freq_corr_weights_directed_correspondence_${correspondenceId}_alle.csv`, containerId: 'work-container'
+        },
+        {
+            urlTop30: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/event_freq_corr_weights_directed/event_freq_corr_weights_directed_correspondence_${correspondenceId}_top30.csv`, urlAlle: `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/event_freq_corr_weights_directed/event_freq_corr_weights_directed_correspondence_${correspondenceId}_alle.csv`, containerId: 'event-container'
         }];
         
         baseUrls.forEach(item => {
