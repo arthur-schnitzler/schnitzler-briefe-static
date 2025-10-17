@@ -90,6 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Combine data from multiple correspondences
     const combineNetworkData = (datasets, minMentions, maxNodes) => {
+        console.log('combineNetworkData called with:', {
+            datasetsCount: datasets.length,
+            minMentions,
+            maxNodes
+        });
+
         const nodes = {};
         const links = [];
         const correspondenceColors = [
@@ -99,12 +105,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Track which entities appear in multiple correspondences
         const entityOccurrences = {};
+        let processedRows = 0;
+        let skippedRows = 0;
 
         datasets.forEach((dataset, idx) => {
-            if (!dataset || !dataset.data) return;
+            if (!dataset || !dataset.data) {
+                console.warn('Empty dataset at index', idx);
+                return;
+            }
 
             const { corrId, data, config } = dataset;
             const color = correspondenceColors[idx % correspondenceColors.length];
+            console.log(`Processing dataset ${idx}: corrId=${corrId}, rows=${data.length}, idColumn=${config.idColumn}`);
 
             data.forEach(row => {
                 const source = row.Source?.trim();
@@ -114,7 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const weight = parseInt(row.Weight, 10) || 0;
                 const overallCount = parseInt(row.Overallcount, 10) || 0;
 
-                if (!source || !target || weight < minMentions) return;
+                if (!source || !target || weight < minMentions) {
+                    skippedRows++;
+                    return;
+                }
+
+                processedRows++;
 
                 // Track source nodes (correspondence partners)
                 if (!nodes[source]) {
@@ -129,10 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 nodes[source].correspondences.add(corrId);
 
                 // Track target nodes (entities)
-                const targetKey = `${target}_${targetId}`;
+                const targetKey = `${target}_${targetId || 'no-id'}`;
                 if (!nodes[targetKey]) {
                     nodes[targetKey] = {
-                        id: target,
+                        id: targetKey,  // Use targetKey as id for uniqueness
+                        name: target,   // Store display name separately
                         weight: 0,
                         overallWeight: overallCount,
                         correspondences: new Set(),
@@ -206,6 +224,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        console.log('combineNetworkData results:', {
+            processedRows,
+            skippedRows,
+            totalNodesBeforeFilter: Object.keys(nodes).length,
+            totalLinksBeforeFilter: links.length,
+            finalNodes: finalNodes.length,
+            filteredLinks: filteredLinks.length,
+            overlaps
+        });
+
         return {
             nodes: finalNodes,
             links: filteredLinks,
@@ -256,11 +284,12 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip: {
                 formatter: function () {
                     if (this.point.isNode) {
-                        const { id, weight, overallWeight, correspondences, isSource, isOverlap } = this.point;
+                        const { id, name, weight, overallWeight, correspondences, isSource, isOverlap } = this.point;
+                        const displayName = name || id;
                         if (isSource) {
-                            return `<b>${id}</b><br>Korrespondenz-Partner<br>Korrespondenzen: ${correspondences.size}`;
+                            return `<b>${displayName}</b><br>Korrespondenz-Partner<br>Korrespondenzen: ${correspondences.size}`;
                         }
-                        let tooltip = `<b>${id}</b><br>`;
+                        let tooltip = `<b>${displayName}</b><br>`;
                         tooltip += `Erwähnungen gesamt: ${overallWeight || weight}<br>`;
                         tooltip += `Erwähnungen in ausgewählten Korrespondenzen: ${weight}<br>`;
                         tooltip += `Vorkommend in ${correspondences.size} Korrespondenz${correspondences.size > 1 ? 'en' : ''}`;
@@ -290,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     allowOverlap: false,
                     style: { textOutline: 'none', fontSize: '11px' },
                     formatter: function () {
-                        return this.point.id;
+                        return this.point.name || this.point.id;
                     }
                 },
                 nodes: networkData.nodes,

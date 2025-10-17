@@ -55,7 +55,7 @@
                                             </div>
                                             <div id="correspondence-list" class="correspondence-list">
                                                 <xsl:for-each select="//tei:personGrp[not(@xml:id = 'correspondence_null') and not(@ana = 'planned')]">
-                                                    <xsl:sort select="string-join(mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text()), '')"/>
+                                                    <xsl:sort select="tei:persName[@role = 'main'][1]/text()"/>
                                                     <xsl:variable name="corr-id" select="substring-after(@xml:id, 'correspondence_')"/>
                                                     <xsl:variable name="corr-name" select="string-join(mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text()), '')"/>
                                                     <div class="form-check correspondence-item" data-id="{$corr-id}" data-name="{$corr-name}">
