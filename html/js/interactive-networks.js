@@ -48,12 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toggleLabelsBtn) {
         toggleLabelsBtn.addEventListener('click', () => {
             labelsEnabled = !labelsEnabled;
+            console.log('Toggle labels:', labelsEnabled);
             if (currentChart && currentChart.series[0]) {
                 currentChart.series[0].update({
                     dataLabels: {
-                        enabled: labelsEnabled
+                        enabled: labelsEnabled,
+                        linkFormat: '',
+                        allowOverlap: false,
+                        style: { textOutline: 'none', fontSize: '11px' },
+                        formatter: function () {
+                            return this.point.name || this.point.id;
+                        }
                     }
-                });
+                }, true);  // Redraw immediately
             }
         });
     }
