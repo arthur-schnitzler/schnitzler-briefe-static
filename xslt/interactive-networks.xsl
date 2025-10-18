@@ -122,6 +122,12 @@
                                                 <label for="max-nodes">Max. Knoten: <span id="max-nodes-value">100</span></label>
                                                 <input type="range" class="form-range" id="max-nodes" min="10" max="200" value="100" step="10"/>
                                             </div>
+                                            <div class="form-check mt-3">
+                                                <input class="form-check-input" type="checkbox" id="show-labels" checked="checked"/>
+                                                <label class="form-check-label" for="show-labels">
+                                                    Beschriftungen anzeigen
+                                                </label>
+                                            </div>
                                         </div>
 
                                         <div class="mt-4">
@@ -130,6 +136,14 @@
                                     </div>
 
                                     <div class="col-md-9">
+                                        <div id="network-controls" style="display: none; margin-bottom: 10px;">
+                                            <button id="toggle-labels" class="btn btn-sm btn-secondary">
+                                                <i class="fa fa-tag"></i> Beschriftungen aus/ein
+                                            </button>
+                                            <button id="toggle-fullscreen" class="btn btn-sm btn-secondary">
+                                                <i class="fa fa-expand"></i> Vollbild
+                                            </button>
+                                        </div>
                                         <div id="network-info" class="alert alert-info">
                                             <p>Wählen Sie mindestens eine Korrespondenz aus und klicken Sie auf "Netzwerk generieren".</p>
                                         </div>

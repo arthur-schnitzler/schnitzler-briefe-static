@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentChart = null;
     let allData = {};
+    let labelsEnabled = true;
 
     // Search functionality
     const searchInput = document.getElementById('correspondence-search');
@@ -41,6 +42,45 @@ document.addEventListener('DOMContentLoaded', () => {
     maxNodesSlider.addEventListener('input', (e) => {
         maxNodesValue.textContent = e.target.value;
     });
+
+    // Toggle labels button
+    const toggleLabelsBtn = document.getElementById('toggle-labels');
+    if (toggleLabelsBtn) {
+        toggleLabelsBtn.addEventListener('click', () => {
+            labelsEnabled = !labelsEnabled;
+            if (currentChart && currentChart.series[0]) {
+                currentChart.series[0].update({
+                    dataLabels: {
+                        enabled: labelsEnabled
+                    }
+                });
+            }
+        });
+    }
+
+    // Toggle fullscreen button
+    const toggleFullscreenBtn = document.getElementById('toggle-fullscreen');
+    const networkContainer = document.getElementById('network-container');
+    if (toggleFullscreenBtn && networkContainer) {
+        toggleFullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                networkContainer.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+                toggleFullscreenBtn.innerHTML = '<i class="fa fa-compress"></i> Vollbild beenden';
+            } else {
+                document.exitFullscreen();
+                toggleFullscreenBtn.innerHTML = '<i class="fa fa-expand"></i> Vollbild';
+            }
+        });
+
+        // Update button text when exiting fullscreen via ESC
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                toggleFullscreenBtn.innerHTML = '<i class="fa fa-expand"></i> Vollbild';
+            }
+        });
+    }
 
     // Helper function to get entity type configuration
     const getEntityTypeConfig = (entityType) => {
@@ -259,6 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('network-info').style.display = 'none';
         document.getElementById('network-stats').style.display = 'block';
+        document.getElementById('network-controls').style.display = 'block';
 
         // Update stats
         document.getElementById('stat-correspondences').textContent = correspondenceCount;
@@ -314,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             series: [{
                 dataLabels: {
-                    enabled: true,
+                    enabled: labelsEnabled,
                     linkFormat: '',
                     allowOverlap: false,
                     style: { textOutline: 'none', fontSize: '11px' },
@@ -360,6 +401,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const minMentions = parseInt(minMentionsSlider.value);
         const maxNodes = parseInt(maxNodesSlider.value);
+
+        // Update labels setting from checkbox
+        const showLabelsCheckbox = document.getElementById('show-labels');
+        if (showLabelsCheckbox) {
+            labelsEnabled = showLabelsCheckbox.checked;
+        }
 
         // Show loading indicator
         document.getElementById('loading-indicator').style.display = 'block';

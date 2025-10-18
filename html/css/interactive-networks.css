@@ -1,5 +1,29 @@
 /* Interactive Networks Styling */
 
+#network-controls {
+    text-align: right;
+}
+
+#network-controls .btn {
+    margin-left: 5px;
+}
+
+/* Fullscreen styling */
+#network-container:fullscreen {
+    background: white;
+    padding: 20px;
+}
+
+#network-container:-webkit-full-screen {
+    background: white;
+    padding: 20px;
+}
+
+#network-container:-moz-full-screen {
+    background: white;
+    padding: 20px;
+}
+
 .filter-section {
     background: #f8f9fa;
     padding: 15px;
