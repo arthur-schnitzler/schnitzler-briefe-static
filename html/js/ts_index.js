@@ -1,3 +1,15 @@
+// Default CSS classes for consistent styling across all widgets
+const DEFAULT_CSS_CLASSES = {
+  searchableInput: "form-control form-control-sm mb-2 border-light-2",
+  searchableSubmit: "d-none",
+  searchableReset: "d-none",
+  showMore: "btn btn-secondary btn-sm align-content-center",
+  list: "list-unstyled",
+  count: "badge ml-2 bg-secondary",
+  label: "d-flex align-items-center text-capitalize",
+  checkbox: "form-check",
+};
+
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     server: {
       apiKey: "q1jDFeqfOj47rJD14NxWFVyQZj7FL7Xj",
@@ -119,10 +131,10 @@ search.addWidgets([
     attribute: "text_areas",
     sortBy: ["name:asc"],
     cssClasses: {
-      list: "list-unstyled",
-      count: "badge ml-2 bg-secondary",
-      label: "d-flex align-items-center",
-      checkbox: "form-check",
+      list: DEFAULT_CSS_CLASSES.list,
+      count: DEFAULT_CSS_CLASSES.count,
+      label: DEFAULT_CSS_CLASSES.label,
+      checkbox: DEFAULT_CSS_CLASSES.checkbox,
     },
   }),
 
@@ -147,14 +159,8 @@ search.addWidgets([
     showMoreLimit: 50,
     searchablePlaceholder: "Suche",
     cssClasses: {
-      searchableInput: "form-control form-control-sm mb-2 border-light-2",
-      searchableSubmit: "d-none",
-      searchableReset: "d-none",
-      showMore: "btn btn-secondary btn-sm align-content-center",
-      list: "list-unstyled",
+      ...DEFAULT_CSS_CLASSES,
       count: "badge ml-2 bg-info",
-      label: "d-flex align-items-center text-capitalize",
-      checkbox: "form-check",
     },
   }),
 
@@ -166,14 +172,8 @@ search.addWidgets([
     showMoreLimit: 50,
     searchablePlaceholder: "Suche",
     cssClasses: {
-      searchableInput: "form-control form-control-sm mb-2 border-light-2",
-      searchableSubmit: "d-none",
-      searchableReset: "d-none",
-      showMore: "btn btn-secondary btn-sm align-content-center",
-      list: "list-unstyled",
+      ...DEFAULT_CSS_CLASSES,
       count: "badge ml-2 bg-info",
-      label: "d-flex align-items-center text-capitalize",
-      checkbox: "form-check",
     },
   }),
 
@@ -184,16 +184,7 @@ search.addWidgets([
         showMore: true,
         showMoreLimit: 50,
         searchablePlaceholder: 'Suche',
-        cssClasses: {
-          searchableInput: 'form-control form-control-sm mb-2 border-light-2',
-          searchableSubmit: 'd-none',
-          searchableReset: 'd-none',
-          showMore: 'btn btn-secondary btn-sm align-content-center',
-          list: 'list-unstyled',
-          count: 'badge ml-2',
-          label: 'd-flex align-items-center text-capitalize',
-          checkbox: 'form-check'
-        }
+        cssClasses: DEFAULT_CSS_CLASSES
     }),
 
     instantsearch.widgets.refinementList({
@@ -203,16 +194,7 @@ search.addWidgets([
         showMore: true,
         showMoreLimit: 50,
         searchablePlaceholder: 'Suche',
-        cssClasses: {
-          searchableInput: 'form-control form-control-sm mb-2 border-light-2',
-          searchableSubmit: 'd-none',
-          searchableReset: 'd-none',
-          showMore: 'btn btn-secondary btn-sm align-content-center',
-          list: 'list-unstyled',
-          count: 'badge ml-2',
-          label: 'd-flex align-items-center text-capitalize',
-          checkbox: 'form-check'
-        }
+        cssClasses: DEFAULT_CSS_CLASSES
     }),
 
     instantsearch.widgets.refinementList({
@@ -222,16 +204,7 @@ search.addWidgets([
         showMore: true,
         showMoreLimit: 50,
         searchablePlaceholder: 'Suche',
-        cssClasses: {
-          searchableInput: 'form-control form-control-sm mb-2 border-light-2',
-          searchableSubmit: 'd-none',
-          searchableReset: 'd-none',
-          showMore: 'btn btn-secondary btn-sm align-content-center',
-          list: 'list-unstyled',
-          count: 'badge ml-2',
-          label: 'd-flex align-items-center text-capitalize',
-          checkbox: 'form-check'
-        }
+        cssClasses: DEFAULT_CSS_CLASSES
     }),
 
     instantsearch.widgets.refinementList({
@@ -241,16 +214,7 @@ search.addWidgets([
       showMore: true,
       showMoreLimit: 50,
       searchablePlaceholder: 'Suche',
-      cssClasses: {
-        searchableInput: 'form-control form-control-sm mb-2 border-light-2',
-        searchableSubmit: 'd-none',
-        searchableReset: 'd-none',
-        showMore: 'btn btn-secondary btn-sm align-content-center',
-        list: 'list-unstyled',
-        count: 'badge ml-2',
-        label: 'd-flex align-items-center text-capitalize',
-        checkbox: 'form-check'
-      }
+      cssClasses: DEFAULT_CSS_CLASSES
   }),
 
     instantsearch.widgets.refinementList({
@@ -260,16 +224,7 @@ search.addWidgets([
       showMore: true,
       showMoreLimit: 50,
       searchablePlaceholder: 'Suche',
-      cssClasses: {
-        searchableInput: 'form-control form-control-sm mb-2 border-light-2',
-        searchableSubmit: 'd-none',
-        searchableReset: 'd-none',
-        showMore: 'btn btn-secondary btn-sm align-content-center',
-        list: 'list-unstyled',
-        count: 'badge ml-2',
-        label: 'd-flex align-items-center text-capitalize',
-        checkbox: 'form-check'
-      }
+      cssClasses: DEFAULT_CSS_CLASSES
   }),
     instantsearch.widgets.pagination({
         container: '#pagination',
@@ -365,6 +320,15 @@ search.use(() => {
         }
     };
 });
+
+// Show/hide the Filter panel on mobile
+const showFilter = document.querySelector("#filter-button");
+const filters = document.querySelector("#refinements-section");
+if (showFilter && filters) {
+  showFilter.addEventListener("click", function () {
+    filters.classList.toggle("d-none");
+  });
+}
 
 // Start search after DOM is loaded and toggle is initialized
 document.addEventListener('DOMContentLoaded', function() {
