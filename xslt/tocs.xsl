@@ -28,17 +28,18 @@
                         <div class="card">
                             <div class="card-header">
                                 <h1>Verzeichnis der Korrespondenzen</h1>
+                                <div class="btn-group mt-3" role="group" aria-label="Ansicht auswählen">
+                                    <button type="button" class="btn btn-outline-secondary active" id="view-table-btn" onclick="showTableView()">Tabelle</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="view-network-btn" onclick="showNetworkView()">Netzwerk</button>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <div id="chart-container" class="border rounded p-3 mb-3" style="background-color: white;">
-                                    <div class="d-flex justify-content-end mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('chart-container').style.display='none'" aria-label="Charts ausblenden">×</button>
-                                    </div>
+                                <div id="network-view" style="display: none;">
                                     <div id="tocs-container"
-                                        style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                        style="padding-bottom: 20px; width:100%; height: 800px; margin: auto"/>
                                     <script src="js/correspondence_weights_directed.js"/>
                                 </div>
-                                <div style="display: flex; justify-content: center;">
+                                <div id="table-view" style="display: flex; justify-content: center;">
                                     <table class="table-light table-striped display"
                                         id="tabulator-table-limited"
                                         style="width:100%; margin: auto;">
@@ -113,8 +114,8 @@
                                             </xsl:for-each>
                                         </tbody>
                                     </table>
+                                    <xsl:call-template name="tabulator_dl_buttons"/>
                                 </div>
-                                <xsl:call-template name="tabulator_dl_buttons"/>
                             </div>
                         </div>
                     </div>
@@ -122,6 +123,21 @@
                     <xsl:call-template name="html_footer"/>
                     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
                     <script src="tabulator-js/tabulator-limited.js"></script>
+                    <script>
+                        function showTableView() {
+                            document.getElementById('table-view').style.display = 'flex';
+                            document.getElementById('network-view').style.display = 'none';
+                            document.getElementById('view-table-btn').classList.add('active');
+                            document.getElementById('view-network-btn').classList.remove('active');
+                        }
+
+                        function showNetworkView() {
+                            document.getElementById('table-view').style.display = 'none';
+                            document.getElementById('network-view').style.display = 'block';
+                            document.getElementById('view-table-btn').classList.remove('active');
+                            document.getElementById('view-network-btn').classList.add('active');
+                        }
+                    </script>
                 </div>
             </body>
         </html>
