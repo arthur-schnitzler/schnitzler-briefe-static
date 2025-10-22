@@ -84,6 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (!Object.values(nodes).length || !links.length) return console.error('Nodes or links arrays are empty');
 
+                    // Get explicit dimensions from container
+                    const container = document.getElementById('tocs-container');
+                    const chartWidth = container.offsetWidth || 800;
+                    const chartHeight = container.offsetHeight || 600;
+
+                    console.log('Creating chart with dimensions:', chartWidth, 'x', chartHeight);
+
                     window.chart = Highcharts.chart('tocs-container', {
                         chart: {
                             type: 'networkgraph',
@@ -91,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             margin: [0, 0, 0, 0],
                             panKey: 'shift',
                             zoomType: 'xy',
-                            width: null,
-                            height: null,
+                            width: chartWidth,
+                            height: chartHeight,
                             reflow: true
                         },
                         title: { text: null },

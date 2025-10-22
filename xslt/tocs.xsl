@@ -136,10 +136,19 @@
                             document.getElementById('network-view').style.display = 'block';
                             document.getElementById('view-table-btn').classList.remove('active');
                             document.getElementById('view-network-btn').classList.add('active');
-                            // Trigger chart reflow after view is displayed
+                            // Trigger chart reflow and resize after view is displayed
                             setTimeout(function() {
                                 if (window.chart) {
-                                    window.chart.reflow();
+                                    const container = document.getElementById('tocs-container');
+                                    const networkView = document.getElementById('network-view');
+                                    if (container &amp;&amp; networkView) {
+                                        const newWidth = networkView.offsetWidth;
+                                        const newHeight = networkView.offsetHeight;
+                                        console.log('Resizing chart to:', newWidth, 'x', newHeight);
+                                        window.chart.setSize(newWidth, newHeight, true);
+                                    } else {
+                                        window.chart.reflow();
+                                    }
                                 }
                             }, 100);
                         }
