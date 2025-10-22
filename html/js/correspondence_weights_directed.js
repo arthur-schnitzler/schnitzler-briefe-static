@@ -4,17 +4,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const resizeChartContainer = () => {
         const container = document.getElementById('tocs-container');
         if (container) {
-            // Use parent container dimensions instead of window size
             const parentContainer = container.parentElement;
             if (parentContainer) {
-                container.style.width = '100%';
-                container.style.height = '100%';
+                // Get the actual computed height of the parent container
+                const parentHeight = parentContainer.offsetHeight;
+                const parentWidth = parentContainer.offsetWidth;
+
+                // Set explicit pixel dimensions
+                if (parentHeight > 0) {
+                    container.style.height = parentHeight + 'px';
+                }
+                if (parentWidth > 0) {
+                    container.style.width = parentWidth + 'px';
+                }
             }
             window.chart?.reflow();
         } else {
             console.error('Container not found');
         }
     };
+
+    // Use ResizeObserver to watch for container size changes
+    const networkView = document.getElementById('network-view');
+    if (networkView && window.ResizeObserver) {
+        const resizeObserver = new ResizeObserver(() => {
+            resizeChartContainer();
+        });
+        resizeObserver.observe(networkView);
+    }
 
     resizeChartContainer();
     window.addEventListener('resize', resizeChartContainer);

@@ -34,9 +34,9 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="network-view" style="display: none; width: 100%; height: calc(100vh - 250px); min-height: 600px;">
+                                <div id="network-view" style="display: none; width: 100%; height: calc(100vh - 300px); min-height: 600px; position: relative;">
                                     <div id="tocs-container"
-                                        style="width: 100%; height: 100%;"/>
+                                        style="width: 100%; height: 100%; display: block;"/>
                                     <script src="js/correspondence_weights_directed.js"/>
                                 </div>
                                 <div id="table-view">
