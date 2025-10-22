@@ -141,7 +141,7 @@
                                 if (window.chart) {
                                     const container = document.getElementById('tocs-container');
                                     const networkView = document.getElementById('network-view');
-                                    if (container &amp;&amp; networkView) {
+                                    if (container <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> networkView) {
                                         const newWidth = networkView.offsetWidth;
                                         const newHeight = networkView.offsetHeight;
                                         console.log('Resizing chart to:', newWidth, 'x', newHeight);
