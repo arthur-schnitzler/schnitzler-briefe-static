@@ -1634,11 +1634,11 @@
     <xsl:template match="tei:c[@rendition = '#gemination-n']" mode="verschachtelteA"><span class="gemination-n" data-original="nn" data-replacement="n̅">nn</span></xsl:template>
     <xsl:template match="tei:c[@rendition = '#langesS']" mode="verschachtelteA"><span class="langes-s" data-original="s" data-replacement="ſ">s</span></xsl:template>
     <xsl:template
-        match="text()[matches(., '\s+$') and following-sibling::node()[1][self::tei:space[@unit = 'chars' and @quantity = '1']]]">
+        match="text()[matches(., '\s+$') and following-sibling::node()[1][self::tei:space[@unit = 'chars' and @quantity = '1']]]" mode="verschachtelteA">
         <xsl:value-of select="replace(., '\s+$', '')"/>
     </xsl:template>
     <xsl:template
-        match="text()[matches(., '^\s+') and preceding-sibling::node()[1][self::tei:space[@unit = 'chars' and @quantity = '1']]]">
+        match="text()[matches(., '^\s+') and preceding-sibling::node()[1][self::tei:space[@unit = 'chars' and @quantity = '1']]]" mode="verschachtelteA">
         <xsl:value-of select="replace(., '^\s+', '')"/>
     </xsl:template>
     <xsl:template match="tei:note" mode="verschachtelteA"/>
