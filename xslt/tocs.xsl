@@ -35,6 +35,11 @@
                             </div>
                             <div class="card-body">
                                 <div id="network-view" style="display: none; width: 100%; height: calc(100vh - 300px); min-height: 600px; position: relative;">
+                                    <div style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="zoomIn()" title="Hineinzoomen">+</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="zoomOut()" title="Herauszoomen">−</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="resetZoom()" title="Zoom zurücksetzen">⊙</button>
+                                    </div>
                                     <div id="tocs-container"
                                         style="width: 100%; height: 100%; display: block;"/>
                                     <script src="js/correspondence_weights_directed.js"/>
@@ -151,6 +156,44 @@
                                     }
                                 }
                             }, 100);
+                        }
+
+                        function zoomIn() {
+                            if (window.chart <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> window.chart.series[0]) {
+                                var series = window.chart.series[0];
+                                var nodes = series.nodes;
+                                nodes.forEach(function(node) {
+                                    if (node.plotX <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> node.plotY) {
+                                        var centerX = window.chart.plotWidth / 2;
+                                        var centerY = window.chart.plotHeight / 2;
+                                        node.plotX = centerX + (node.plotX - centerX) * 1.2;
+                                        node.plotY = centerY + (node.plotY - centerY) * 1.2;
+                                    }
+                                });
+                                series.chart.redraw();
+                            }
+                        }
+
+                        function zoomOut() {
+                            if (window.chart <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> window.chart.series[0]) {
+                                var series = window.chart.series[0];
+                                var nodes = series.nodes;
+                                nodes.forEach(function(node) {
+                                    if (node.plotX <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> node.plotY) {
+                                        var centerX = window.chart.plotWidth / 2;
+                                        var centerY = window.chart.plotHeight / 2;
+                                        node.plotX = centerX + (node.plotX - centerX) * 0.8;
+                                        node.plotY = centerY + (node.plotY - centerY) * 0.8;
+                                    }
+                                });
+                                series.chart.redraw();
+                            }
+                        }
+
+                        function resetZoom() {
+                            if (window.chart <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> window.chart.series[0]) {
+                                window.chart.series[0].chart.redraw();
+                            }
                         }
                     </script>
                 </div>
