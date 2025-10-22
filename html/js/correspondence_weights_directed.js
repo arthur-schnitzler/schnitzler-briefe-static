@@ -4,8 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const resizeChartContainer = () => {
         const container = document.getElementById('tocs-container');
         if (container) {
-            container.style.width = window.innerWidth * 0.8 + 'px';
-            container.style.height = window.innerHeight * 0.6 + 'px';
+            // Use parent container dimensions instead of window size
+            const parentContainer = container.parentElement;
+            if (parentContainer) {
+                container.style.width = '100%';
+                container.style.height = '100%';
+            }
             window.chart?.reflow();
         } else {
             console.error('Container not found');
@@ -69,7 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             panning: { enabled: true, type: 'xy' },
                             margin: [0, 0, 0, 0],
                             panKey: 'shift',
-                            zoomType: 'xy'
+                            zoomType: 'xy',
+                            width: null,
+                            height: null,
+                            reflow: true
                         },
                         title: { text: null },
                         tooltip: {

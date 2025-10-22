@@ -34,12 +34,12 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="network-view" style="display: none;">
+                                <div id="network-view" style="display: none; width: 100%; height: calc(100vh - 250px); min-height: 600px;">
                                     <div id="tocs-container"
-                                        style="padding-bottom: 20px; width:100%; height: 800px; margin: auto"/>
+                                        style="width: 100%; height: 100%;"/>
                                     <script src="js/correspondence_weights_directed.js"/>
                                 </div>
-                                <div id="table-view" style="display: flex; justify-content: center;">
+                                <div id="table-view">
                                     <table class="table-light table-striped display"
                                         id="tabulator-table-limited"
                                         style="width:100%; margin: auto;">
@@ -125,7 +125,7 @@
                     <script src="tabulator-js/tabulator-limited.js"></script>
                     <script>
                         function showTableView() {
-                            document.getElementById('table-view').style.display = 'flex';
+                            document.getElementById('table-view').style.display = 'block';
                             document.getElementById('network-view').style.display = 'none';
                             document.getElementById('view-table-btn').classList.add('active');
                             document.getElementById('view-network-btn').classList.remove('active');
@@ -136,6 +136,12 @@
                             document.getElementById('network-view').style.display = 'block';
                             document.getElementById('view-table-btn').classList.remove('active');
                             document.getElementById('view-network-btn').classList.add('active');
+                            // Trigger chart reflow after view is displayed
+                            setTimeout(function() {
+                                if (window.chart) {
+                                    window.chart.reflow();
+                                }
+                            }, 100);
                         }
                     </script>
                 </div>
