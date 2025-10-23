@@ -35,7 +35,15 @@
                             <xsl:choose>
                                 <xsl:when
                                     test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter'][1]">
-                                    <span class="dropdown-item-text">… in der Korrespondenz</span>
+                                    <xsl:variable name="corrPmb"
+                                        select="substring-after($correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/@target, 'correspondence_')"/>
+                                    <xsl:variable name="corrName"
+                                        select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
+                                    <a class="dropdown-item" href="toc_{$corrPmb}.html"
+                                        style="background-color: #1C6E8C; color: white; padding: 10px; margin: 5px; border-radius: 5px; text-align: center; display: block; text-decoration: none;">
+                                        <xsl:text>Korrespondenz </xsl:text>
+                                        <xsl:value-of select="$corrName"/>
+                                    </a>
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
@@ -45,8 +53,16 @@
                                     </xsl:for-each>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <span class="dropdown-item-text">… in der
-                                        Korrespondenz<br/>keine früheren Überlieferungen</span>
+                                    <xsl:variable name="corrPmb"
+                                        select="substring-after($correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/@target, 'correspondence_')"/>
+                                    <xsl:variable name="corrName"
+                                        select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
+                                    <a class="dropdown-item" href="toc_{$corrPmb}.html"
+                                        style="background-color: #1C6E8C; color: white; padding: 10px; margin: 5px; border-radius: 5px; text-align: center; display: block; text-decoration: none;">
+                                        <xsl:text>Korrespondenz </xsl:text>
+                                        <xsl:value-of select="$corrName"/>
+                                    </a>
+                                    <span class="dropdown-item-text">keine früheren Überlieferungen</span>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </ul>
@@ -81,7 +97,15 @@
                             <xsl:choose>
                                 <xsl:when
                                     test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter'][1]">
-                                    <span class="dropdown-item-text">… in der Korrespondenz</span>
+                                    <xsl:variable name="corrPmb"
+                                        select="substring-after($correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/@target, 'correspondence_')"/>
+                                    <xsl:variable name="corrName"
+                                        select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
+                                    <a class="dropdown-item" href="toc_{$corrPmb}.html"
+                                        style="background-color: #1C6E8C; color: white; padding: 10px; margin: 5px; border-radius: 5px; text-align: center; display: block; text-decoration: none;">
+                                        <xsl:text>Korrespondenz </xsl:text>
+                                        <xsl:value-of select="$corrName"/>
+                                    </a>
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
@@ -91,8 +115,16 @@
                                     </xsl:for-each>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <span class="dropdown-item-text">… in der
-                                        Korrespondenz<br/>keine späteren Überlieferungen</span>
+                                    <xsl:variable name="corrPmb"
+                                        select="substring-after($correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/@target, 'correspondence_')"/>
+                                    <xsl:variable name="corrName"
+                                        select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
+                                    <a class="dropdown-item" href="toc_{$corrPmb}.html"
+                                        style="background-color: #1C6E8C; color: white; padding: 10px; margin: 5px; border-radius: 5px; text-align: center; display: block; text-decoration: none;">
+                                        <xsl:text>Korrespondenz </xsl:text>
+                                        <xsl:value-of select="$corrName"/>
+                                    </a>
+                                    <span class="dropdown-item-text">keine späteren Überlieferungen</span>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </ul>
