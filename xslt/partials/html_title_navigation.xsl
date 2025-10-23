@@ -40,7 +40,7 @@
                                     <xsl:variable name="corrName"
                                         select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
                                     <a class="dropdown-item" href="toc_{$corrPmb}.html"
-                                        style="background-color: #1C6E8C; color: white; padding: 10px; margin: 5px; border-radius: 5px; text-align: center; display: block; text-decoration: none;">
+                                        style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
                                         <xsl:text>Korrespondenz </xsl:text>
                                         <xsl:value-of select="$corrName"/>
                                     </a>
@@ -58,7 +58,7 @@
                                     <xsl:variable name="corrName"
                                         select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
                                     <a class="dropdown-item" href="toc_{$corrPmb}.html"
-                                        style="background-color: #1C6E8C; color: white; padding: 10px; margin: 5px; border-radius: 5px; text-align: center; display: block; text-decoration: none;">
+                                        style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
                                         <xsl:text>Korrespondenz </xsl:text>
                                         <xsl:value-of select="$corrName"/>
                                     </a>
@@ -102,7 +102,7 @@
                                     <xsl:variable name="corrName"
                                         select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
                                     <a class="dropdown-item" href="toc_{$corrPmb}.html"
-                                        style="background-color: #1C6E8C; color: white; padding: 10px; margin: 5px; border-radius: 5px; text-align: center; display: block; text-decoration: none;">
+                                        style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
                                         <xsl:text>Korrespondenz </xsl:text>
                                         <xsl:value-of select="$corrName"/>
                                     </a>
@@ -120,7 +120,7 @@
                                     <xsl:variable name="corrName"
                                         select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
                                     <a class="dropdown-item" href="toc_{$corrPmb}.html"
-                                        style="background-color: #1C6E8C; color: white; padding: 10px; margin: 5px; border-radius: 5px; text-align: center; display: block; text-decoration: none;">
+                                        style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
                                         <xsl:text>Korrespondenz </xsl:text>
                                         <xsl:value-of select="$corrName"/>
                                     </a>
