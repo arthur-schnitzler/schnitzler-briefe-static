@@ -37,8 +37,18 @@
                                     test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'previous_letter'][1]">
                                     <xsl:variable name="corrPmb"
                                         select="substring-after($correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/@target, 'correspondence_')"/>
-                                    <xsl:variable name="corrName"
+                                    <xsl:variable name="corrNameRaw"
                                         select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
+                                    <xsl:variable name="corrName">
+                                        <xsl:choose>
+                                            <xsl:when test="contains($corrNameRaw, ', ')">
+                                                <xsl:value-of select="concat(substring-after($corrNameRaw, ', '), ' ', substring-before($corrNameRaw, ', '))"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="$corrNameRaw"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
                                     <a class="dropdown-item" href="toc_{$corrPmb}.html"
                                         style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
                                         <xsl:text>Korrespondenz </xsl:text>
@@ -55,8 +65,18 @@
                                 <xsl:otherwise>
                                     <xsl:variable name="corrPmb"
                                         select="substring-after($correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/@target, 'correspondence_')"/>
-                                    <xsl:variable name="corrName"
+                                    <xsl:variable name="corrNameRaw"
                                         select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
+                                    <xsl:variable name="corrName">
+                                        <xsl:choose>
+                                            <xsl:when test="contains($corrNameRaw, ', ')">
+                                                <xsl:value-of select="concat(substring-after($corrNameRaw, ', '), ' ', substring-before($corrNameRaw, ', '))"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="$corrNameRaw"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
                                     <a class="dropdown-item" href="toc_{$corrPmb}.html"
                                         style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
                                         <xsl:text>Korrespondenz </xsl:text>
@@ -99,8 +119,18 @@
                                     test="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter'][1]">
                                     <xsl:variable name="corrPmb"
                                         select="substring-after($correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/@target, 'correspondence_')"/>
-                                    <xsl:variable name="corrName"
+                                    <xsl:variable name="corrNameRaw"
                                         select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
+                                    <xsl:variable name="corrName">
+                                        <xsl:choose>
+                                            <xsl:when test="contains($corrNameRaw, ', ')">
+                                                <xsl:value-of select="concat(substring-after($corrNameRaw, ', '), ' ', substring-before($corrNameRaw, ', '))"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="$corrNameRaw"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
                                     <a class="dropdown-item" href="toc_{$corrPmb}.html"
                                         style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
                                         <xsl:text>Korrespondenz </xsl:text>
@@ -117,8 +147,18 @@
                                 <xsl:otherwise>
                                     <xsl:variable name="corrPmb"
                                         select="substring-after($correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/@target, 'correspondence_')"/>
-                                    <xsl:variable name="corrName"
+                                    <xsl:variable name="corrNameRaw"
                                         select="$correspContext/tei:ref[@type = 'belongsToCorrespondence'][1]/text()"/>
+                                    <xsl:variable name="corrName">
+                                        <xsl:choose>
+                                            <xsl:when test="contains($corrNameRaw, ', ')">
+                                                <xsl:value-of select="concat(substring-after($corrNameRaw, ', '), ' ', substring-before($corrNameRaw, ', '))"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="$corrNameRaw"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
                                     <a class="dropdown-item" href="toc_{$corrPmb}.html"
                                         style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
                                         <xsl:text>Korrespondenz </xsl:text>
