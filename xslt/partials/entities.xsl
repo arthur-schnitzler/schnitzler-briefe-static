@@ -1016,7 +1016,7 @@
                         <p class="buttonreihe">
                             <xsl:variable name="idnos-of-current" as="node()">
                                 <xsl:element name="nodeset_place">
-                                    <xsl:for-each select="tei:idno">
+                                    <xsl:for-each select="tei:idno[not(@subtype = $current-edition)]">
                                         <xsl:copy-of select="."/>
                                     </xsl:for-each>
                                 </xsl:element>
@@ -1416,7 +1416,7 @@
             <xsl:when test="$typityp = 'gnd'">
                 <xsl:text> Wikipedia?</xsl:text>
             </xsl:when>
-            <xsl:when test="$typityp = 'schnitzler-briefe'">
+            <xsl:when test="$typityp = 'schnitzler-bahr'">
                 <xsl:text> Bahr/Schnitzler</xsl:text>
             </xsl:when>
             <xsl:when test="$typityp = 'widmungDLA'">
