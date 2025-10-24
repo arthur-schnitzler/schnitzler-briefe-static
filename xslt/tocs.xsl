@@ -161,38 +161,33 @@
                         function zoomIn() {
                             if (window.chart <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> window.chart.series[0]) {
                                 var series = window.chart.series[0];
-                                var nodes = series.nodes;
-                                nodes.forEach(function(node) {
-                                    if (node.plotX <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> node.plotY) {
-                                        var centerX = window.chart.plotWidth / 2;
-                                        var centerY = window.chart.plotHeight / 2;
-                                        node.plotX = centerX + (node.plotX - centerX) * 1.2;
-                                        node.plotY = centerY + (node.plotY - centerY) * 1.2;
-                                    }
-                                });
-                                series.chart.redraw();
+                                var options = series.options.layoutAlgorithm;
+                                if (options.linkLength) {
+                                    options.linkLength = options.linkLength * 1.2;
+                                    series.update({ layoutAlgorithm: options });
+                                }
                             }
                         }
 
                         function zoomOut() {
                             if (window.chart <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> window.chart.series[0]) {
                                 var series = window.chart.series[0];
-                                var nodes = series.nodes;
-                                nodes.forEach(function(node) {
-                                    if (node.plotX <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> node.plotY) {
-                                        var centerX = window.chart.plotWidth / 2;
-                                        var centerY = window.chart.plotHeight / 2;
-                                        node.plotX = centerX + (node.plotX - centerX) * 0.8;
-                                        node.plotY = centerY + (node.plotY - centerY) * 0.8;
-                                    }
-                                });
-                                series.chart.redraw();
+                                var options = series.options.layoutAlgorithm;
+                                if (options.linkLength) {
+                                    options.linkLength = options.linkLength * 0.8;
+                                    series.update({ layoutAlgorithm: options });
+                                }
                             }
                         }
 
                         function resetZoom() {
                             if (window.chart <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> window.chart.series[0]) {
-                                window.chart.series[0].chart.redraw();
+                                var series = window.chart.series[0];
+                                series.update({
+                                    layoutAlgorithm: {
+                                        linkLength: 85
+                                    }
+                                });
                             }
                         }
                     </script>
