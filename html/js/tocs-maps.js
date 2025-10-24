@@ -11,9 +11,11 @@ async function createKarte4(title) {
     const jsonURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/karte/${title}.json`;
 
     let chartInstance = null;
+    let arcChartInstance = null;
     let allLetters = [];
     let minYear = Infinity;
     let maxYear = -Infinity;
+    let currentView = 'map'; // 'map' or 'arc'
 
     fetch(jsonURL)
         .then(response => {
@@ -56,17 +58,17 @@ async function createKarte4(title) {
             document.getElementById('year-to-label').textContent = maxYear;
 
             // Event-Listener für Filter
-            document.getElementById('direction-filter').addEventListener('change', updateMap);
-            document.getElementById('show-umfeld').addEventListener('change', updateMap);
+            document.getElementById('direction-filter').addEventListener('change', updateVisualization);
+            document.getElementById('show-umfeld').addEventListener('change', updateVisualization);
             document.getElementById('year-from').addEventListener('input', function() {
                 document.getElementById('year-from-label').textContent = this.value;
                 updateRangeBackground('year-from');
-                updateMap();
+                updateVisualization();
             });
             document.getElementById('year-to').addEventListener('input', function() {
                 document.getElementById('year-to-label').textContent = this.value;
                 updateRangeBackground('year-to');
-                updateMap();
+                updateVisualization();
             });
 
             // Initiale Range-Backgrounds setzen
@@ -74,7 +76,7 @@ async function createKarte4(title) {
             updateRangeBackground('year-to');
 
             // Initialisiere Karte
-            updateMap();
+            updateVisualization();
         })
         .catch(error => {
             console.error('Fehler beim Laden der Kartendaten:', error);
@@ -91,6 +93,25 @@ async function createKarte4(title) {
             `;
         });
 
+    // View Switching Functions
+    window.showMapView = function() {
+        currentView = 'map';
+        document.getElementById('map-view').style.display = 'block';
+        document.getElementById('arc-view').style.display = 'none';
+        document.getElementById('view-map-btn').classList.add('active');
+        document.getElementById('view-arc-btn').classList.remove('active');
+        updateVisualization();
+    };
+
+    window.showArcView = function() {
+        currentView = 'arc';
+        document.getElementById('map-view').style.display = 'none';
+        document.getElementById('arc-view').style.display = 'block';
+        document.getElementById('view-map-btn').classList.remove('active');
+        document.getElementById('view-arc-btn').classList.add('active');
+        updateVisualization();
+    };
+
     function updateRangeBackground(id) {
         const input = document.getElementById(id);
         const min = parseFloat(input.min);
@@ -104,6 +125,14 @@ async function createKarte4(title) {
         } else {
             // Für year-to: rot links, grau rechts vom Thumb
             input.style.background = `linear-gradient(to right, #A63437 0%, #A63437 ${percentage}%, #e9ecef ${percentage}%, #e9ecef 100%)`;
+        }
+    }
+
+    function updateVisualization() {
+        if (currentView === 'map') {
+            updateMap();
+        } else {
+            updateArcDiagram();
         }
     }
 
@@ -412,6 +441,190 @@ async function createKarte4(title) {
                     color: flow.color,
                     fillColor: flow.color,
                     type: flow.type
+                }))
+            }]
+        });
+    }
+
+    function updateArcDiagram() {
+        const direction = document.getElementById('direction-filter').value;
+        const showUmfeld = document.getElementById('show-umfeld').checked;
+        const yearFrom = parseInt(document.getElementById('year-from').value);
+        const yearTo = parseInt(document.getElementById('year-to').value);
+
+        // Filtere Briefe (gleiche Logik wie bei der Karte)
+        let filteredLetters = allLetters.filter(letter => {
+            if (!letter.date) return false;
+            const year = parseInt(letter.date.substring(0, 4));
+            if (year < yearFrom || year > yearTo) return false;
+
+            if (!showUmfeld && letter.type && (
+                letter.type === 'umfeld' ||
+                letter.type === 'umfeld schnitzler' ||
+                letter.type === 'umfeld partner'
+            )) {
+                return false;
+            }
+
+            if (direction === 'from-schnitzler') {
+                if (letter.type === 'von schnitzler' || letter.type === 'umfeld schnitzler') {
+                    // OK
+                } else {
+                    return false;
+                }
+            } else if (direction === 'to-schnitzler') {
+                if (letter.type === 'von partner' || letter.type === 'umfeld partner') {
+                    // OK
+                } else {
+                    return false;
+                }
+            }
+
+            if (!letter.from || !letter.to) return false;
+            if (!letter.from.lat || !letter.from.lon || !letter.to.lat || !letter.to.lon) return false;
+
+            return true;
+        });
+
+        // Erstelle Nodes (Orte) und Links (Verbindungen)
+        const nodesMap = new Map();
+        const linksArray = [];
+
+        filteredLetters.forEach(letter => {
+            // Nodes sammeln
+            if (!nodesMap.has(letter.from.ref)) {
+                nodesMap.set(letter.from.ref, {
+                    id: letter.from.ref,
+                    name: letter.from.name
+                });
+            }
+            if (!nodesMap.has(letter.to.ref)) {
+                nodesMap.set(letter.to.ref, {
+                    id: letter.to.ref,
+                    name: letter.to.name
+                });
+            }
+
+            // Links mit Farbe
+            let color;
+            switch(letter.type) {
+                case 'von schnitzler': color = '#A63437'; break;
+                case 'von partner': color = '#1C6E8C'; break;
+                case 'umfeld schnitzler': color = '#D4787A'; break;
+                case 'umfeld partner': color = '#5A9CB8'; break;
+                case 'umfeld': color = '#68825b'; break;
+                default: color = '#999999';
+            }
+
+            linksArray.push({
+                from: letter.from.ref,
+                to: letter.to.ref,
+                weight: 1,
+                color: color,
+                title: letter.title
+            });
+        });
+
+        // Aggregiere Links nach from-to-Paar
+        const aggregatedLinks = new Map();
+        linksArray.forEach(link => {
+            const key = `${link.from}->${link.to}`;
+            if (!aggregatedLinks.has(key)) {
+                aggregatedLinks.set(key, {
+                    from: link.from,
+                    to: link.to,
+                    weight: 0,
+                    color: link.color,
+                    titles: []
+                });
+            }
+            const agg = aggregatedLinks.get(key);
+            agg.weight++;
+            agg.titles.push(link.title);
+        });
+
+        const nodes = Array.from(nodesMap.values());
+        const links = Array.from(aggregatedLinks.values());
+
+        let titleText = 'Versandwege aller Korrespondenzstücke';
+        if (direction === 'from-schnitzler') {
+            titleText = 'Versandwege von Schnitzler verfasster Korrespondenzstücke';
+        } else if (direction === 'to-schnitzler') {
+            titleText = 'Versandwege an Schnitzler gerichteter Korrespondenzstücke';
+        }
+
+        if (showUmfeld) {
+            titleText += ' (inkl. Umfeldbriefe)';
+        }
+
+        // Erstelle oder aktualisiere Arc-Diagram
+        if (arcChartInstance) {
+            arcChartInstance.destroy();
+        }
+
+        arcChartInstance = Highcharts.chart('arc-diagram', {
+            chart: {
+                type: 'arcdiagram'
+            },
+
+            title: {
+                text: titleText
+            },
+
+            subtitle: {
+                text: `Zeitraum: ${yearFrom}–${yearTo}`
+            },
+
+            plotOptions: {
+                arcdiagram: {
+                    linkWeight: 1,
+                    centeredLinks: true,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        rotation: 90,
+                        y: 20,
+                        color: '#333',
+                        style: {
+                            fontSize: '10px',
+                            textOutline: 'none'
+                        }
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '',
+                pointFormatter: function() {
+                    if (this.isNode) {
+                        return `<b>${this.name}</b>`;
+                    } else {
+                        let tooltipText = `<b>${this.fromNode.name} → ${this.toNode.name}</b><br>`;
+                        tooltipText += `Anzahl Briefe: ${this.weight}<br><br>`;
+                        tooltipText += '<ul style="margin:0; padding-left:20px;">';
+                        if (this.titles) {
+                            this.titles.forEach(title => {
+                                tooltipText += `<li>${title}</li>`;
+                            });
+                        }
+                        tooltipText += '</ul>';
+                        return tooltipText;
+                    }
+                }
+            },
+
+            series: [{
+                keys: ['from', 'to', 'weight'],
+                type: 'arcdiagram',
+                name: 'Briefe',
+                linkColorMode: 'from',
+                nodes: nodes,
+                data: links.map(link => ({
+                    from: link.from,
+                    to: link.to,
+                    weight: link.weight,
+                    color: link.color,
+                    titles: link.titles
                 }))
             }]
         });

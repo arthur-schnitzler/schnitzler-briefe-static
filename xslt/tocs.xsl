@@ -561,6 +561,9 @@
                     </style>
                     <script src="https://code.highcharts.com/maps/highmaps.js"/>
                     <script src="https://code.highcharts.com/maps/modules/flowmap.js"/>
+                    <script src="https://code.highcharts.com/highcharts.js"/>
+                    <script src="https://code.highcharts.com/modules/sankey.js"/>
+                    <script src="https://code.highcharts.com/modules/arc-diagram.js"/>
                     <script src="https://code.highcharts.com/maps/modules/exporting.js"/>
                     <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"/>
                     <script src="https://code.highcharts.com/maps/modules/accessibility.js"/>
@@ -590,12 +593,18 @@
                                     </div>
                                     <div class="body">
                                         <div style="margin-bottom: 1.5em; padding: 1em;">
+                                            <div style="margin-bottom: 1.5em;">
+                                                <div class="btn-group" role="group" aria-label="Ansicht auswählen">
+                                                    <button type="button" class="btn btn-outline-secondary active" id="view-map-btn" onclick="showMapView()">Kartenansicht</button>
+                                                    <button type="button" class="btn btn-outline-secondary" id="view-arc-btn" onclick="showArcView()">Arc-Diagram</button>
+                                                </div>
+                                            </div>
                                             <div style="display: flex; flex-wrap: wrap; gap: 2em; margin-bottom: 1em;">
                                                 <div style="flex: 1; min-width: 200px;">
                                                     <label for="direction-filter" style="font-weight: bold; margin-right: 1em;">Briefrichtung:</label>
                                                     <select id="direction-filter" style="padding: 5px 10px; border: 1px solid #ced4da; border-radius: 4px;">
                                                         <option value="both">Beide Richtungen</option>
-                                                        <option value="from-schnitzler">Von Schnitzler</option>
+                                                        <option value="from-schnitzler">Von Arthur Schnitzler</option>
                                                         <option value="to-schnitzler">
                                                             <xsl:text>Von </xsl:text>
                                                             <xsl:value-of select="$name"/>
@@ -625,11 +634,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="karte4" style="height: 600px;
-                                            min-width: 310px;
-                                            max-width: 100%;
-                                            margin: 0 auto; margin-bottom:2em;"
-                                        />
+                                        <div id="map-view" style="display: block;">
+                                            <div id="karte4" style="height: 600px;
+                                                min-width: 310px;
+                                                max-width: 100%;
+                                                margin: 0 auto; margin-bottom:2em;"
+                                            />
+                                        </div>
+                                        <div id="arc-view" style="display: none;">
+                                            <div id="arc-diagram" style="height: 600px;
+                                                min-width: 310px;
+                                                max-width: 100%;
+                                                margin: 0 auto; margin-bottom:2em;"
+                                            />
+                                        </div>
                                     </div>
                                     <p style="text-align:center;"><i>Die zu Grunde liegenden Daten
                                             können hier geladen werden: <a
