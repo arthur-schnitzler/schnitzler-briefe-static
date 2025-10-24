@@ -3,13 +3,13 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:mam="whatever" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:java="http://www.java.com/" version="2.0" exclude-result-prefixes="xsl tei xs">
-    <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
-        omit-xml-declaration="yes"/>
-
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/tabulator_js.xsl"/>
+    <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
+        omit-xml-declaration="yes"/>
+
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Verzeichnis der Korrespondenzen'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
@@ -158,36 +158,35 @@
                             }, 100);
                         }
 
+                        // Store current zoom level
+                        window.currentZoom = 1.0;
+
                         function zoomIn() {
-                            if (window.chart <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> window.chart.series[0]) {
-                                var series = window.chart.series[0];
-                                var options = series.options.layoutAlgorithm;
-                                if (options.linkLength) {
-                                    options.linkLength = options.linkLength * 1.2;
-                                    series.update({ layoutAlgorithm: options });
-                                }
+                            if (window.chart) {
+                                window.currentZoom = window.currentZoom * 1.2;
+                                applyZoom();
                             }
                         }
 
                         function zoomOut() {
-                            if (window.chart <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> window.chart.series[0]) {
-                                var series = window.chart.series[0];
-                                var options = series.options.layoutAlgorithm;
-                                if (options.linkLength) {
-                                    options.linkLength = options.linkLength * 0.8;
-                                    series.update({ layoutAlgorithm: options });
-                                }
+                            if (window.chart) {
+                                window.currentZoom = window.currentZoom * 0.8;
+                                applyZoom();
                             }
                         }
 
                         function resetZoom() {
-                            if (window.chart <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> window.chart.series[0]) {
-                                var series = window.chart.series[0];
-                                series.update({
-                                    layoutAlgorithm: {
-                                        linkLength: 85
-                                    }
-                                });
+                            if (window.chart) {
+                                window.currentZoom = 1.0;
+                                applyZoom();
+                            }
+                        }
+
+                        function applyZoom() {
+                            var container = document.querySelector('#tocs-container .highcharts-container');
+                            if (container) {
+                                container.style.transform = 'scale(' + window.currentZoom + ')';
+                                container.style.transformOrigin = 'center center';
                             }
                         }
                     </script>
