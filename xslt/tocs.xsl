@@ -516,11 +516,54 @@
                     <xsl:call-template name="html_head">
                         <xsl:with-param name="html_title" select="$name"/>
                     </xsl:call-template>
-                    <script src="https://code.highcharts.com/maps/modules/accessibility.js"/>
+                    <style>
+                        /* Range Input Styling */
+                        input[type="range"] {
+                            -webkit-appearance: none;
+                            appearance: none;
+                            height: 6px;
+                            border-radius: 3px;
+                            outline: none;
+                        }
+
+                        /* Thumb */
+                        input[type="range"]::-webkit-slider-thumb {
+                            -webkit-appearance: none;
+                            appearance: none;
+                            width: 18px;
+                            height: 18px;
+                            border-radius: 50%;
+                            background: #A63437;
+                            cursor: pointer;
+                            border: 2px solid white;
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                        }
+
+                        input[type="range"]::-moz-range-thumb {
+                            width: 18px;
+                            height: 18px;
+                            border-radius: 50%;
+                            background: #A63437;
+                            cursor: pointer;
+                            border: 2px solid white;
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                        }
+
+                        /* Track for year-from (red on right) */
+                        #year-from {
+                            background: linear-gradient(to right, #e9ecef 0%, #e9ecef 50%, #A63437 50%, #A63437 100%);
+                        }
+
+                        /* Track for year-to (red on left) */
+                        #year-to {
+                            background: linear-gradient(to right, #A63437 0%, #A63437 50%, #e9ecef 50%, #e9ecef 100%);
+                        }
+                    </style>
                     <script src="https://code.highcharts.com/maps/highmaps.js"/>
                     <script src="https://code.highcharts.com/maps/modules/flowmap.js"/>
                     <script src="https://code.highcharts.com/maps/modules/exporting.js"/>
                     <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"/>
+                    <script src="https://code.highcharts.com/maps/modules/accessibility.js"/>
                     <script src="./js/tocs-maps.js"/>
                     <body class="page">
                         <div class="hfeed site" id="page">
@@ -534,15 +577,7 @@
                                 }
                                 document.addEventListener('DOMContentLoaded', function () {
                                 var title = getTitle();
-                                createKarte1(title);
-                                });
-                                document.addEventListener('DOMContentLoaded', function () {
-                                var title = getTitle();
-                                createKarte2(title);
-                                });
-                                document.addEventListener('DOMContentLoaded', function () {
-                                var title = getTitle();
-                                createKarte3(title);
+                                createKarte4(title);
                                 });
                             </script>
                             <div class="container-fluid">
@@ -554,17 +589,45 @@
                                         </h1>
                                     </div>
                                     <div class="body">
-                                        <div id="karte1" style="height: 500px;
+                                        <div style="margin-bottom: 1.5em; padding: 1em;">
+                                            <div style="display: flex; flex-wrap: wrap; gap: 2em; margin-bottom: 1em;">
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <label for="direction-filter" style="font-weight: bold; margin-right: 1em;">Briefrichtung:</label>
+                                                    <select id="direction-filter" style="padding: 5px 10px; border: 1px solid #ced4da; border-radius: 4px;">
+                                                        <option value="both">Beide Richtungen</option>
+                                                        <option value="from-schnitzler">Von Schnitzler</option>
+                                                        <option value="to-schnitzler">
+                                                            <xsl:text>Von </xsl:text>
+                                                            <xsl:value-of select="$name"/>
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div style="flex: 0; min-width: 200px;">
+                                                    <label for="show-umfeld" style="font-weight: bold; margin-right: 0.5em; cursor: pointer;">
+                                                        <input type="checkbox" id="show-umfeld" checked="checked" style="margin-right: 0.5em; cursor: pointer;"/>
+                                                        Umfeldbriefe
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div style="margin-bottom: 0;">
+                                                <label style="font-weight: bold; display: block; margin-bottom: 0.5em;">Zeitspanne:</label>
+                                                <div style="display: flex; align-items: center; gap: 1em;">
+                                                    <div style="flex: 1;">
+                                                        <label for="year-from" style="margin-right: 0.5em;">Von:</label>
+                                                        <input type="range" id="year-from" style="width: 70%; vertical-align: middle;"/>
+                                                        <span id="year-from-label" style="margin-left: 0.5em; font-weight: bold;"></span>
+                                                    </div>
+                                                    <div style="flex: 1;">
+                                                        <label for="year-to" style="margin-right: 0.5em;">Bis:</label>
+                                                        <input type="range" id="year-to" style="width: 70%; vertical-align: middle;"/>
+                                                        <span id="year-to-label" style="margin-left: 0.5em; font-weight: bold;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="karte4" style="height: 600px;
                                             min-width: 310px;
-                                            max-width: 100%
-                                            margin: 0 auto; margin-bottom:2em;"/>
-                                        <div id="karte2" style="height: 500px;
-                                            min-width: 310px;
-                                            max-width: 100%
-                                            margin: 0 auto; margin-bottom:2em;"/>
-                                        <div id="karte3" style="height: 500px;
-                                            min-width: 310px;
-                                            max-width: 100%
+                                            max-width: 100%;
                                             margin: 0 auto; margin-bottom:2em;"
                                         />
                                     </div>

@@ -59,8 +59,10 @@ chronik-data/
 stopwords.txt
 words.txt
 /venv
-html/js-data/calendarData.js
+html/js-data/
 /network-data
+html/network-data
+html/seo-data/
 hansi.ttl
 play.*
 metadata
@@ -74,7 +76,5 @@ CLAUDE.md
 set_env_variables.sh
 make_typesense_index.py
 html/.htaccess
-html/seo-data/build-report.json
 .gitignore
-html/seo-data/seo-statistics.json
 html/.well-known/security.txt
