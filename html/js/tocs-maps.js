@@ -507,12 +507,18 @@ function updateArcDiagram() {
         });
     });
 
-    // Aggregiere Links nach from-to-Paar
-    const aggregatedLinks = new Map();
+    // Aggregiere Links nach from-to-Paar und separiere nach Richtung
+    const aggregatedLinksFromSchnitzler = new Map();
+    const aggregatedLinksToSchnitzler = new Map();
+
     linksArray.forEach(link => {
         const key = `${link.from}->${link.to}`;
-        if (!aggregatedLinks.has(key)) {
-            aggregatedLinks.set(key, {
+        const isFromSchnitzler = link.color === '#A63437' || link.color === '#D4787A'; // von schnitzler oder umfeld schnitzler
+
+        const targetMap = isFromSchnitzler ? aggregatedLinksFromSchnitzler : aggregatedLinksToSchnitzler;
+
+        if (!targetMap.has(key)) {
+            targetMap.set(key, {
                 from: link.from,
                 to: link.to,
                 weight: 0,
@@ -520,13 +526,14 @@ function updateArcDiagram() {
                 titles: []
             });
         }
-        const agg = aggregatedLinks.get(key);
+        const agg = targetMap.get(key);
         agg.weight++;
         agg.titles.push(link.title);
     });
 
     const nodes = Array.from(nodesMap.values());
-    const links = Array.from(aggregatedLinks.values());
+    const linksFromSchnitzler = Array.from(aggregatedLinksFromSchnitzler.values());
+    const linksToSchnitzler = Array.from(aggregatedLinksToSchnitzler.values());
 
     let titleText = 'Netzwerk aller Korrespondenzorte';
 
@@ -552,6 +559,7 @@ function updateArcDiagram() {
             arcdiagram: {
                 linkWeight: 1,
                 centeredLinks: true,
+                reversed: false,
                 dataLabels: {
                     enabled: true,
                     format: '{point.name}',
@@ -563,10 +571,14 @@ function updateArcDiagram() {
                         fontWeight: 'bold',
                         textOutline: 'none'
                     }
+                }
+            },
+            series: {
+                dataLabels: {
+                    enabled: false
                 },
-                link: {
-                    // Keine Beschriftung für die Links/Bögen
-                    dataLabels: {
+                states: {
+                    inactive: {
                         enabled: false
                     }
                 }
@@ -596,14 +608,31 @@ function updateArcDiagram() {
         series: [{
             keys: ['from', 'to', 'weight'],
             type: 'arcdiagram',
-            name: 'Briefe',
-            linkColorMode: 'from',
+            name: 'Von Schnitzler',
+            color: '#A63437', // theme-color
+            linkColorMode: 'solid',
+            reversed: false, // Nach unten gebogen
             nodes: nodes,
-            data: links.map(link => ({
+            data: linksFromSchnitzler.map(link => ({
                 from: link.from,
                 to: link.to,
                 weight: link.weight,
-                color: link.color,
+                color: '#A63437', // theme-color für alle von-Schnitzler-Bögen
+                titles: link.titles
+            }))
+        }, {
+            keys: ['from', 'to', 'weight'],
+            type: 'arcdiagram',
+            name: 'An Schnitzler',
+            color: '#1C6E8C', // sender-color
+            linkColorMode: 'solid',
+            reversed: true, // Nach oben gebogen
+            linkedTo: ':previous',
+            data: linksToSchnitzler.map(link => ({
+                from: link.from,
+                to: link.to,
+                weight: link.weight,
+                color: '#1C6E8C', // sender-color für alle an-Schnitzler-Bögen
                 titles: link.titles
             }))
         }]
