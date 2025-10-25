@@ -590,8 +590,15 @@ function updateArcDiagram() {
                     y: 20,
                     color: '#333',
                     style: {
-                        fontSize: '10px',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
                         textOutline: 'none'
+                    }
+                },
+                link: {
+                    // Keine Beschriftung für die Links/Bögen
+                    dataLabels: {
+                        enabled: false
                     }
                 }
             }
