@@ -599,7 +599,7 @@
                                                     <button type="button" class="btn btn-outline-secondary" id="view-arc-btn" onclick="showArcView()">Arc-Diagram</button>
                                                 </div>
                                             </div>
-                                            <div style="display: flex; flex-wrap: wrap; gap: 2em; margin-bottom: 1em;">
+                                            <div id="map-filters" style="display: flex; flex-wrap: wrap; gap: 2em; margin-bottom: 1em;">
                                                 <div style="flex: 1; min-width: 200px;">
                                                     <label for="direction-filter" style="font-weight: bold; margin-right: 1em;">Briefrichtung:</label>
                                                     <select id="direction-filter" style="padding: 5px 10px; border: 1px solid #ced4da; border-radius: 4px;">

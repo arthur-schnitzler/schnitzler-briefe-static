@@ -104,6 +104,7 @@ window.showMapView = function() {
     document.getElementById('arc-view').style.display = 'none';
     document.getElementById('view-map-btn').classList.add('active');
     document.getElementById('view-arc-btn').classList.remove('active');
+    document.getElementById('map-filters').style.display = 'flex';
     updateVisualization();
 };
 
@@ -113,6 +114,7 @@ window.showArcView = function() {
     document.getElementById('arc-view').style.display = 'block';
     document.getElementById('view-map-btn').classList.remove('active');
     document.getElementById('view-arc-btn').classList.add('active');
+    document.getElementById('map-filters').style.display = 'none';
     updateVisualization();
 };
 
@@ -451,38 +453,14 @@ function updateMap() {
 }
 
 function updateArcDiagram() {
-    const direction = document.getElementById('direction-filter').value;
-    const showUmfeld = document.getElementById('show-umfeld').checked;
     const yearFrom = parseInt(document.getElementById('year-from').value);
     const yearTo = parseInt(document.getElementById('year-to').value);
 
-    // Filtere Briefe (gleiche Logik wie bei der Karte)
+    // Filtere Briefe - nur nach Zeitspanne (keine Richtung oder Umfeld-Filter)
     let filteredLetters = allLetters.filter(letter => {
         if (!letter.date) return false;
         const year = parseInt(letter.date.substring(0, 4));
         if (year < yearFrom || year > yearTo) return false;
-
-        if (!showUmfeld && letter.type && (
-            letter.type === 'umfeld' ||
-            letter.type === 'umfeld schnitzler' ||
-            letter.type === 'umfeld partner'
-        )) {
-            return false;
-        }
-
-        if (direction === 'from-schnitzler') {
-            if (letter.type === 'von schnitzler' || letter.type === 'umfeld schnitzler') {
-                // OK
-            } else {
-                return false;
-            }
-        } else if (direction === 'to-schnitzler') {
-            if (letter.type === 'von partner' || letter.type === 'umfeld partner') {
-                // OK
-            } else {
-                return false;
-            }
-        }
 
         if (!letter.from || !letter.to) return false;
         if (!letter.from.lat || !letter.from.lon || !letter.to.lat || !letter.to.lon) return false;
@@ -550,16 +528,7 @@ function updateArcDiagram() {
     const nodes = Array.from(nodesMap.values());
     const links = Array.from(aggregatedLinks.values());
 
-    let titleText = 'Versandwege aller Korrespondenzstücke';
-    if (direction === 'from-schnitzler') {
-        titleText = 'Versandwege von Schnitzler verfasster Korrespondenzstücke';
-    } else if (direction === 'to-schnitzler') {
-        titleText = 'Versandwege an Schnitzler gerichteter Korrespondenzstücke';
-    }
-
-    if (showUmfeld) {
-        titleText += ' (inkl. Umfeldbriefe)';
-    }
+    let titleText = 'Netzwerk aller Korrespondenzorte';
 
     // Erstelle oder aktualisiere Arc-Diagram
     if (arcChartInstance) {
