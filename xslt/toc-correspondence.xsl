@@ -77,7 +77,7 @@
                                             href="{concat('netzwerke_pmb', $korrespondenznummer, '.html')}"
                                             >Entitäten</a>&#160;&#160;</xsl:if>
                                     <a href="{concat('karte_pmb', $korrespondenznummer, '.html')}"
-                                        >Karten</a>
+                                        >Karte</a>
                                 </p>
                                 <table class="table-light table-striped display"
                                     id="tabulator-table-limited" style="width:100%">

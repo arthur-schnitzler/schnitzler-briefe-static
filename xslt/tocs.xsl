@@ -587,7 +587,7 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h1>
-                                            <xsl:text>Karten zur Korrespondenz Arthur Schnitzler – </xsl:text>
+                                            <xsl:text>Karte zur Korrespondenz Arthur Schnitzler – </xsl:text>
                                             <xsl:value-of select="$name"/>
                                         </h1>
                                     </div>
