@@ -561,7 +561,6 @@
                     </style>
                     <script src="https://code.highcharts.com/maps/highmaps.js"/>
                     <script src="https://code.highcharts.com/maps/modules/flowmap.js"/>
-                    <script src="https://code.highcharts.com/highcharts.js"/>
                     <script src="https://code.highcharts.com/modules/sankey.js"/>
                     <script src="https://code.highcharts.com/modules/arc-diagram.js"/>
                     <script src="https://code.highcharts.com/maps/modules/exporting.js"/>

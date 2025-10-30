@@ -562,6 +562,10 @@ function updateArcDiagram() {
                 reversed: false,
                 dataLabels: {
                     enabled: true,
+                    linkTextPath: {
+                        enabled: false
+                    },
+                    linkFormat: '',
                     format: '{point.name}',
                     rotation: 90,
                     y: 20,
