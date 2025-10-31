@@ -108,9 +108,18 @@ async function createKarte4(title) {
             return response.json();
         })
         .then(data => {
-            if (data && data.letters && Array.isArray(data.letters)) {
-                arcData = data.letters;
-                console.log('Arc-Daten geladen:', arcData.length, 'Briefe');
+            if (data) {
+                // Prüfe ob es die neue Struktur ist (mit nodes, links_from_schnitzler, links_to_schnitzler)
+                if (data.nodes && data.links_from_schnitzler && data.links_to_schnitzler) {
+                    arcData = data;
+                    console.log('Arc-Daten geladen (neue Struktur):', data.nodes.length, 'Nodes,',
+                               data.links_from_schnitzler.length + data.links_to_schnitzler.length, 'Links');
+                }
+                // Oder alte Struktur (mit letters Array)
+                else if (data.letters && Array.isArray(data.letters)) {
+                    arcData = { letters: data.letters };
+                    console.log('Arc-Daten geladen (alte Struktur):', data.letters.length, 'Briefe');
+                }
             }
         })
         .catch(error => {
@@ -127,6 +136,7 @@ window.showMapView = function() {
     document.getElementById('view-map-btn').classList.add('active');
     document.getElementById('view-arc-btn').classList.remove('active');
     document.getElementById('map-filters').style.display = 'flex';
+    document.getElementById('time-filters').style.display = 'block';
     updateVisualization();
 };
 
@@ -137,6 +147,7 @@ window.showArcView = function() {
     document.getElementById('view-map-btn').classList.remove('active');
     document.getElementById('view-arc-btn').classList.add('active');
     document.getElementById('map-filters').style.display = 'none';
+    document.getElementById('time-filters').style.display = 'none';
     updateVisualization();
 };
 
@@ -478,8 +489,34 @@ function updateArcDiagram() {
     const yearFrom = parseInt(document.getElementById('year-from').value);
     const yearTo = parseInt(document.getElementById('year-to').value);
 
-    // Verwende Arc-Daten wenn verfügbar, sonst Karten-Daten
-    const sourceData = arcData || allLetters;
+    // Prüfe ob vordefinierte Arc-Daten vorhanden sind
+    if (arcData && arcData.nodes && arcData.links_from_schnitzler && arcData.links_to_schnitzler) {
+        // Verwende vordefinierte Arc-Struktur
+        const nodes = arcData.nodes;
+        const linksFromSchnitzler = arcData.links_from_schnitzler;
+        const linksToSchnitzler = arcData.links_to_schnitzler;
+
+        // Berechne marker.radius basierend auf count
+        const maxCount = Math.max(...nodes.map(n => n.count || 1));
+        const minRadius = 5;
+        const maxRadius = 20;
+
+        const processedNodes = nodes.map(node => ({
+            id: node.id,
+            name: node.name,
+            marker: {
+                radius: minRadius + ((node.count / maxCount) * (maxRadius - minRadius)),
+                lineWidth: 2,
+                lineColor: '#fff'
+            }
+        }));
+
+        renderArcDiagram(processedNodes, linksFromSchnitzler, linksToSchnitzler, yearFrom, yearTo);
+        return;
+    }
+
+    // Fallback: Verwende alte Logik mit allLetters
+    const sourceData = allLetters;
 
     // Filtere Briefe - nur nach Zeitspanne (keine Richtung oder Umfeld-Filter)
     let filteredLetters = sourceData.filter(letter => {
@@ -497,9 +534,7 @@ function updateArcDiagram() {
     const locationsByRef = new Map(); // ref -> {name, count}
 
     // Aggregiere Verbindungen nach geografischer Route UND Briefrichtung
-    // Wichtig: from/to ist geografisch (Versandort -> Empfangsort)
-    // type bestimmt nur die Farbe/Richtung des Bogens
-    const connectionsFromSchnitzler = new Map(); // "ref1->ref2" -> {count, titles}
+    const connectionsFromSchnitzler = new Map();
     const connectionsToSchnitzler = new Map();
 
     filteredLetters.forEach(letter => {
@@ -521,7 +556,6 @@ function updateArcDiagram() {
         locationsByRef.get(letter.to.ref).count++;
 
         // Die geografische Route ist from -> to
-        // Der type bestimmt, ob Schnitzler der Sender war
         const isFromSchnitzler = letter.type === 'von schnitzler' || letter.type === 'umfeld schnitzler';
         const connectionKey = `${letter.from.ref}->${letter.to.ref}`;
         const targetMap = isFromSchnitzler ? connectionsFromSchnitzler : connectionsToSchnitzler;
@@ -540,8 +574,6 @@ function updateArcDiagram() {
     });
 
     // Erstelle Nodes-Array für Highcharts
-    // Sortiere Nodes nach Häufigkeit (die häufigsten zuerst)
-    // Berechne marker.radius basierend auf Häufigkeit
     const maxCount = Math.max(...Array.from(locationsByRef.values()).map(d => d.count));
     const minRadius = 5;
     const maxRadius = 20;
@@ -549,13 +581,14 @@ function updateArcDiagram() {
     const nodes = Array.from(locationsByRef.entries())
         .sort((a, b) => b[1].count - a[1].count)
         .map(([ref, data]) => {
-            // Skaliere Radius proportional zur Häufigkeit
             const radius = minRadius + ((data.count / maxCount) * (maxRadius - minRadius));
             return {
                 id: ref,
                 name: data.name,
                 marker: {
-                    radius: radius
+                    radius: radius,
+                    lineWidth: 2,
+                    lineColor: '#fff'
                 }
             };
         });
@@ -575,6 +608,10 @@ function updateArcDiagram() {
         titles: conn.titles
     }));
 
+    renderArcDiagram(nodes, linksFromSchnitzler, linksToSchnitzler, yearFrom, yearTo);
+}
+
+function renderArcDiagram(nodes, linksFromSchnitzler, linksToSchnitzler, yearFrom, yearTo) {
     let titleText = 'Netzwerk aller Korrespondenzorte';
 
     // Erstelle oder aktualisiere Arc-Diagram

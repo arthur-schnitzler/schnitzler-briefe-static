@@ -617,7 +617,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div style="margin-bottom: 0;">
+                                            <div id="time-filters" style="margin-bottom: 0;">
                                                 <label style="font-weight: bold; display: block; margin-bottom: 0.5em;">Zeitspanne:</label>
                                                 <div style="display: flex; align-items: center; gap: 1em;">
                                                     <div style="flex: 1;">
