@@ -468,72 +468,68 @@ function updateArcDiagram() {
         return true;
     });
 
-    // Erstelle Nodes (Orte) und Links (Verbindungen)
-    const nodesMap = new Map();
-    const linksArray = [];
+    // Sammle alle einzigartigen Orte und aggregiere Verbindungen
+    const locationsByRef = new Map(); // ref -> {name, count}
+    const connectionsFromSchnitzler = new Map(); // "ref1->ref2" -> {count, titles}
+    const connectionsToSchnitzler = new Map();
 
     filteredLetters.forEach(letter => {
-        // Nodes sammeln
-        if (!nodesMap.has(letter.from.ref)) {
-            nodesMap.set(letter.from.ref, {
-                id: letter.from.ref,
-                name: letter.from.name
+        // Sammle Orte (dedupliziert nach ref)
+        if (!locationsByRef.has(letter.from.ref)) {
+            locationsByRef.set(letter.from.ref, {
+                name: letter.from.name,
+                count: 0
             });
         }
-        if (!nodesMap.has(letter.to.ref)) {
-            nodesMap.set(letter.to.ref, {
-                id: letter.to.ref,
-                name: letter.to.name
+        locationsByRef.get(letter.from.ref).count++;
+
+        if (!locationsByRef.has(letter.to.ref)) {
+            locationsByRef.set(letter.to.ref, {
+                name: letter.to.name,
+                count: 0
             });
         }
+        locationsByRef.get(letter.to.ref).count++;
 
-        // Links mit Farbe
-        let color;
-        switch(letter.type) {
-            case 'von schnitzler': color = '#A63437'; break;
-            case 'von partner': color = '#1C6E8C'; break;
-            case 'umfeld schnitzler': color = '#D4787A'; break;
-            case 'umfeld partner': color = '#5A9CB8'; break;
-            case 'umfeld': color = '#68825b'; break;
-            default: color = '#999999';
-        }
+        // Bestimme Richtung basierend auf Brieftyp
+        const isFromSchnitzler = letter.type === 'von schnitzler' || letter.type === 'umfeld schnitzler';
+        const connectionKey = `${letter.from.ref}->${letter.to.ref}`;
+        const targetMap = isFromSchnitzler ? connectionsFromSchnitzler : connectionsToSchnitzler;
 
-        linksArray.push({
-            from: letter.from.ref,
-            to: letter.to.ref,
-            weight: 1,
-            color: color,
-            title: letter.title
-        });
-    });
-
-    // Aggregiere Links nach from-to-Paar und separiere nach Richtung
-    const aggregatedLinksFromSchnitzler = new Map();
-    const aggregatedLinksToSchnitzler = new Map();
-
-    linksArray.forEach(link => {
-        const key = `${link.from}->${link.to}`;
-        const isFromSchnitzler = link.color === '#A63437' || link.color === '#D4787A'; // von schnitzler oder umfeld schnitzler
-
-        const targetMap = isFromSchnitzler ? aggregatedLinksFromSchnitzler : aggregatedLinksToSchnitzler;
-
-        if (!targetMap.has(key)) {
-            targetMap.set(key, {
-                from: link.from,
-                to: link.to,
-                weight: 0,
-                color: link.color,
+        if (!targetMap.has(connectionKey)) {
+            targetMap.set(connectionKey, {
+                fromRef: letter.from.ref,
+                toRef: letter.to.ref,
+                count: 0,
                 titles: []
             });
         }
-        const agg = targetMap.get(key);
-        agg.weight++;
-        agg.titles.push(link.title);
+        const conn = targetMap.get(connectionKey);
+        conn.count++;
+        conn.titles.push(letter.title);
     });
 
-    const nodes = Array.from(nodesMap.values());
-    const linksFromSchnitzler = Array.from(aggregatedLinksFromSchnitzler.values());
-    const linksToSchnitzler = Array.from(aggregatedLinksToSchnitzler.values());
+    // Erstelle Nodes-Array für Highcharts
+    // Nutze nur die eindeutigen refs als IDs
+    const nodes = Array.from(locationsByRef.entries()).map(([ref, data]) => ({
+        id: ref,
+        name: data.name
+    }));
+
+    // Erstelle Links-Arrays
+    const linksFromSchnitzler = Array.from(connectionsFromSchnitzler.values()).map(conn => ({
+        from: conn.fromRef,
+        to: conn.toRef,
+        weight: conn.count,
+        titles: conn.titles
+    }));
+
+    const linksToSchnitzler = Array.from(connectionsToSchnitzler.values()).map(conn => ({
+        from: conn.fromRef,
+        to: conn.toRef,
+        weight: conn.count,
+        titles: conn.titles
+    }));
 
     let titleText = 'Netzwerk aller Korrespondenzorte';
 
@@ -544,7 +540,8 @@ function updateArcDiagram() {
 
     arcChartInstance = Highcharts.chart('arc-diagram', {
         chart: {
-            type: 'arcdiagram'
+            type: 'arcdiagram',
+            height: 600
         },
 
         title: {
@@ -559,7 +556,6 @@ function updateArcDiagram() {
             arcdiagram: {
                 linkWeight: 1,
                 centeredLinks: true,
-                reversed: false,
                 dataLabels: {
                     enabled: true,
                     linkTextPath: {
@@ -575,12 +571,14 @@ function updateArcDiagram() {
                         fontWeight: 'bold',
                         textOutline: 'none'
                     }
+                },
+                marker: {
+                    radius: 8,
+                    lineWidth: 2,
+                    lineColor: '#fff'
                 }
             },
             series: {
-                dataLabels: {
-                    enabled: false
-                },
                 states: {
                     inactive: {
                         enabled: false
@@ -613,32 +611,20 @@ function updateArcDiagram() {
             keys: ['from', 'to', 'weight'],
             type: 'arcdiagram',
             name: 'Von Schnitzler',
-            color: '#A63437', // theme-color
+            color: '#A63437',
             linkColorMode: 'solid',
-            reversed: false, // Nach unten gebogen
+            reversed: false,
             nodes: nodes,
-            data: linksFromSchnitzler.map(link => ({
-                from: link.from,
-                to: link.to,
-                weight: link.weight,
-                color: '#A63437', // theme-color für alle von-Schnitzler-Bögen
-                titles: link.titles
-            }))
+            data: linksFromSchnitzler
         }, {
             keys: ['from', 'to', 'weight'],
             type: 'arcdiagram',
             name: 'An Schnitzler',
-            color: '#1C6E8C', // sender-color
+            color: '#1C6E8C',
             linkColorMode: 'solid',
-            reversed: true, // Nach oben gebogen
+            reversed: true,
             linkedTo: ':previous',
-            data: linksToSchnitzler.map(link => ({
-                from: link.from,
-                to: link.to,
-                weight: link.weight,
-                color: '#1C6E8C', // sender-color für alle an-Schnitzler-Bögen
-                titles: link.titles
-            }))
+            data: linksToSchnitzler
         }]
     });
 }
