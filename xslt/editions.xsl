@@ -278,7 +278,7 @@
                                                   <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#qualitaet" type="button"
                                                   data-bs-toggle="modal">
-                                                  <span style="color: orange;"> ENTWURF </span>
+                                                  <span style="filter: drop-shadow(0 0 2px white); text-shadow: 0 0 2px white, 0 0 2px white, 0 0 2px white;">⚠️</span><span style="color: orange;"> ENTWURF </span>
                                                   </a>&#160; </li>
                                                 </xsl:if>
                                                 <li class="nav-item"> &#160;<a href="#"

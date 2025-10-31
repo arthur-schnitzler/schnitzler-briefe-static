@@ -468,8 +468,12 @@ function updateArcDiagram() {
         return true;
     });
 
-    // Sammle alle einzigartigen Orte und aggregiere Verbindungen
+    // Sammle alle einzigartigen Orte und zähle ihre Vorkommen
     const locationsByRef = new Map(); // ref -> {name, count}
+
+    // Aggregiere Verbindungen nach geografischer Route UND Briefrichtung
+    // Wichtig: from/to ist geografisch (Versandort -> Empfangsort)
+    // type bestimmt nur die Farbe/Richtung des Bogens
     const connectionsFromSchnitzler = new Map(); // "ref1->ref2" -> {count, titles}
     const connectionsToSchnitzler = new Map();
 
@@ -491,7 +495,8 @@ function updateArcDiagram() {
         }
         locationsByRef.get(letter.to.ref).count++;
 
-        // Bestimme Richtung basierend auf Brieftyp
+        // Die geografische Route ist from -> to
+        // Der type bestimmt, ob Schnitzler der Sender war
         const isFromSchnitzler = letter.type === 'von schnitzler' || letter.type === 'umfeld schnitzler';
         const connectionKey = `${letter.from.ref}->${letter.to.ref}`;
         const targetMap = isFromSchnitzler ? connectionsFromSchnitzler : connectionsToSchnitzler;
@@ -510,11 +515,13 @@ function updateArcDiagram() {
     });
 
     // Erstelle Nodes-Array für Highcharts
-    // Nutze nur die eindeutigen refs als IDs
-    const nodes = Array.from(locationsByRef.entries()).map(([ref, data]) => ({
-        id: ref,
-        name: data.name
-    }));
+    // Sortiere Nodes nach Häufigkeit (die häufigsten zuerst)
+    const nodes = Array.from(locationsByRef.entries())
+        .sort((a, b) => b[1].count - a[1].count)
+        .map(([ref, data]) => ({
+            id: ref,
+            name: data.name
+        }));
 
     // Erstelle Links-Arrays
     const linksFromSchnitzler = Array.from(connectionsFromSchnitzler.values()).map(conn => ({
@@ -556,12 +563,13 @@ function updateArcDiagram() {
             arcdiagram: {
                 linkWeight: 1,
                 centeredLinks: true,
+                marker: {
+                    radius: 8,
+                    lineWidth: 2,
+                    lineColor: '#fff'
+                },
                 dataLabels: {
                     enabled: true,
-                    linkTextPath: {
-                        enabled: false
-                    },
-                    linkFormat: '',
                     format: '{point.name}',
                     rotation: 90,
                     y: 20,
@@ -571,14 +579,12 @@ function updateArcDiagram() {
                         fontWeight: 'bold',
                         textOutline: 'none'
                     }
-                },
-                marker: {
-                    radius: 8,
-                    lineWidth: 2,
-                    lineColor: '#fff'
                 }
             },
             series: {
+                dataLabels: {
+                    enabled: false
+                },
                 states: {
                     inactive: {
                         enabled: false
@@ -615,6 +621,18 @@ function updateArcDiagram() {
             linkColorMode: 'solid',
             reversed: false,
             nodes: nodes,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}',
+                rotation: 90,
+                y: 20,
+                color: '#333',
+                style: {
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    textOutline: 'none'
+                }
+            },
             data: linksFromSchnitzler
         }, {
             keys: ['from', 'to', 'weight'],
@@ -624,6 +642,9 @@ function updateArcDiagram() {
             linkColorMode: 'solid',
             reversed: true,
             linkedTo: ':previous',
+            dataLabels: {
+                enabled: false
+            },
             data: linksToSchnitzler
         }]
     });
