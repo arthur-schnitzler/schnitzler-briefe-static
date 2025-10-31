@@ -516,12 +516,24 @@ function updateArcDiagram() {
 
     // Erstelle Nodes-Array für Highcharts
     // Sortiere Nodes nach Häufigkeit (die häufigsten zuerst)
+    // Berechne marker.radius basierend auf Häufigkeit
+    const maxCount = Math.max(...Array.from(locationsByRef.values()).map(d => d.count));
+    const minRadius = 5;
+    const maxRadius = 20;
+
     const nodes = Array.from(locationsByRef.entries())
         .sort((a, b) => b[1].count - a[1].count)
-        .map(([ref, data]) => ({
-            id: ref,
-            name: data.name
-        }));
+        .map(([ref, data]) => {
+            // Skaliere Radius proportional zur Häufigkeit
+            const radius = minRadius + ((data.count / maxCount) * (maxRadius - minRadius));
+            return {
+                id: ref,
+                name: data.name,
+                marker: {
+                    radius: radius
+                }
+            };
+        });
 
     // Erstelle Links-Arrays
     const linksFromSchnitzler = Array.from(connectionsFromSchnitzler.values()).map(conn => ({
@@ -564,27 +576,11 @@ function updateArcDiagram() {
                 linkWeight: 1,
                 centeredLinks: true,
                 marker: {
-                    radius: 8,
                     lineWidth: 2,
                     lineColor: '#fff'
-                },
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.name}',
-                    rotation: 90,
-                    y: 20,
-                    color: '#333',
-                    style: {
-                        fontSize: '14px',
-                        fontWeight: 'bold',
-                        textOutline: 'none'
-                    }
                 }
             },
             series: {
-                dataLabels: {
-                    enabled: false
-                },
                 states: {
                     inactive: {
                         enabled: false
@@ -627,10 +623,17 @@ function updateArcDiagram() {
                 rotation: 90,
                 y: 20,
                 color: '#333',
+                align: 'center',
+                verticalAlign: 'top',
                 style: {
                     fontSize: '14px',
                     fontWeight: 'bold',
                     textOutline: 'none'
+                },
+                filter: {
+                    property: 'isNode',
+                    operator: '==',
+                    value: true
                 }
             },
             data: linksFromSchnitzler
