@@ -2,6 +2,7 @@
 let chartInstance = null;
 let arcChartInstance = null;
 let allLetters = [];
+let arcData = null; // Separate Daten für Arc-Diagramm
 let minYear = Infinity;
 let maxYear = -Infinity;
 let currentView = 'map'; // 'map' or 'arc'
@@ -19,6 +20,7 @@ async function createKarte4(title) {
 
     topology = await fetch(mapDataUrl).then(response => response.json());
     const jsonURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/karte/${title}.json`;
+    const arcURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/arcs/${title.replace('karte_', 'arc_')}.json`;
 
     fetch(jsonURL)
         .then(response => {
@@ -94,6 +96,26 @@ async function createKarte4(title) {
                     </div>
                 </div>
             `;
+        });
+
+    // Lade Arc-Daten separat
+    fetch(arcURL)
+        .then(response => {
+            if (!response.ok) {
+                console.warn('Arc-Daten nicht verfügbar, verwende Karten-Daten');
+                return null;
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data && data.letters && Array.isArray(data.letters)) {
+                arcData = data.letters;
+                console.log('Arc-Daten geladen:', arcData.length, 'Briefe');
+            }
+        })
+        .catch(error => {
+            console.warn('Fehler beim Laden der Arc-Daten:', error);
+            arcData = null;
         });
 }
 
@@ -456,8 +478,11 @@ function updateArcDiagram() {
     const yearFrom = parseInt(document.getElementById('year-from').value);
     const yearTo = parseInt(document.getElementById('year-to').value);
 
+    // Verwende Arc-Daten wenn verfügbar, sonst Karten-Daten
+    const sourceData = arcData || allLetters;
+
     // Filtere Briefe - nur nach Zeitspanne (keine Richtung oder Umfeld-Filter)
-    let filteredLetters = allLetters.filter(letter => {
+    let filteredLetters = sourceData.filter(letter => {
         if (!letter.date) return false;
         const year = parseInt(letter.date.substring(0, 4));
         if (year < yearFrom || year > yearTo) return false;
@@ -644,7 +669,7 @@ function updateArcDiagram() {
             color: '#1C6E8C',
             linkColorMode: 'solid',
             reversed: true,
-            linkedTo: ':previous',
+            nodes: nodes,
             dataLabels: {
                 enabled: false
             },
