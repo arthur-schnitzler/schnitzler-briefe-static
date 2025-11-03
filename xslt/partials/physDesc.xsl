@@ -429,10 +429,13 @@
         </xsl:choose>
         <xsl:if test="string-length(normalize-space($entry/.)) &gt; 1">
             <xsl:text> (</xsl:text>
-            <xsl:apply-templates select="($entry/.)"/>
+            <xsl:apply-templates select="$entry/tei:p" mode="handDesc"/>
             <xsl:text>)</xsl:text>
         </xsl:if>
     </xsl:function>
+    <xsl:template mode="handDesc" match="tei:p">
+        <xsl:apply-templates/>
+    </xsl:template>
     <xsl:template match="tei:objectDesc">
         <xsl:if test="@form">
             <xsl:choose>
