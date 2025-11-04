@@ -164,7 +164,10 @@ Sitemap: https://schnitzler-briefe.acdh.oeaw.ac.at/sitemap.xml
 # Crawl-delay for politeness
 Crawl-delay: 1
 
-# Disallow certain file types
+# Allow sitemap
+Allow: /sitemap.xml
+
+# Disallow certain file types and directories
 Disallow: *.xml$
 Disallow: *.xsl$
 Disallow: /data/
