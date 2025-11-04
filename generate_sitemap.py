@@ -72,15 +72,12 @@ def generate_sitemap():
             doc = TeiReader(file_path)
             filename = os.path.basename(file_path).replace(".xml", ".html")
             
-            # Get the document date for lastmod
+            # Get file modification date for lastmod (not the historical letter date)
+            # Google Sitemap requires dates after 1900, so we use file modification time
             try:
-                doc_date = doc.any_xpath('//tei:titleStmt/tei:title[@type="iso-date"]/@when-iso')[0]
-                # Convert to proper date format
-                if len(doc_date) >= 10:
-                    lastmod_date = doc_date[:10]  # YYYY-MM-DD
-                else:
-                    lastmod_date = datetime.now().strftime("%Y-%m-%d")
-            except (IndexError, ValueError):
+                file_mtime = os.path.getmtime(file_path)
+                lastmod_date = datetime.fromtimestamp(file_mtime).strftime("%Y-%m-%d")
+            except (OSError, ValueError):
                 lastmod_date = datetime.now().strftime("%Y-%m-%d")
             
             # Create URL entry for the letter
