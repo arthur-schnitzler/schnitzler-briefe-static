@@ -39,9 +39,6 @@
                                 <h2 align="center">
                                     <xsl:value-of select="$doc_title"/>
                                 </h2>
-                                <p class="text-center text-muted">
-                                    <em>Hinweis: Diese Statistiken basieren auf den lokalen Daten in diesem Repository und sind möglicherweise nicht vollständig.</em>
-                                </p>
                             </div>
                             <div class="card-body">
                                 <xsl:apply-templates select="descendant::tei:body"/>
