@@ -156,7 +156,6 @@ def generate_robots_txt():
     """Generate robots.txt file for SEO"""
     
     robots_content = """User-agent: *
-Allow: /
 
 # Sitemap
 Sitemap: https://schnitzler-briefe.acdh.oeaw.ac.at/sitemap.xml
@@ -164,20 +163,26 @@ Sitemap: https://schnitzler-briefe.acdh.oeaw.ac.at/sitemap.xml
 # Crawl-delay for politeness
 Crawl-delay: 1
 
-# Allow sitemap
-Allow: /sitemap.xml
-
-# Disallow certain file types and directories
-Disallow: *.xml$
-Disallow: *.xsl$
+# Disallow certain directories
 Disallow: /data/
 Disallow: /xslt/
 Disallow: /js-data/
+
+# Allow HTML pages and sitemap
+Allow: /*.html
+Allow: /sitemap.xml
+
+# Block other XML/XSL files
+Disallow: /*.xml
+Disallow: /*.xsl
 
 # Allow important static resources
 Allow: /css/
 Allow: /js/
 Allow: /img/
+
+# Allow everything else
+Allow: /
 """
     
     robots_path = "./html/robots.txt"
