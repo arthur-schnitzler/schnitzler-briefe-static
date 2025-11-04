@@ -60,6 +60,11 @@ cp schnitzler-briefe-charts-main/statistiken/allgemeiner-text/viz*.json html/js-
 
 rm -rf schnitzler-briefe-charts-main
 
+# Fetch Tagebuch index_days.xml
+echo "Fetching Tagebuch index_days.xml..."
+mkdir -p xslt/utils
+wget -q https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-tagebuch-data/refs/heads/main/indices/index_days.xml -O xslt/utils/index_days.xml
+
 rm main.zip
 
 CSV_DIR="network-data"

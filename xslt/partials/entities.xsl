@@ -10,7 +10,7 @@
     <xsl:param name="listperson" select="document('../../data/indices/listperson.xml')"/>
     <xsl:key name="author-lookup" match="tei:person" use="tei:idno[@subtype = 'pmb']"/>
     <!-- Liste der verfügbaren Tagebucheinträge -->
-    <xsl:param name="tagebuch-dates" select="document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-tagebuch-data/refs/heads/main/indices/index_days.xml')/list/date"/>
+    <xsl:param name="tagebuch-dates" select="document('../utils/index_days.xml')/list/date"/>
     <xsl:variable name="listbiblPath" select="'../../data/indices/listbibl.xml'"/>
     <xsl:variable name="listworkPath" select="'../../data/indices/listwork.xml'"/>
     <xsl:param name="events"
@@ -1096,7 +1096,7 @@
                                                    target="_blank" rel="noopener noreferrer"
                                                    aria-label="Schnitzler Chronik - öffnet in neuem Fenster">Schnitzler Chronik</a>
                                                 <!-- Schnitzler Tagebuch Link - nur wenn Eintrag für dieses Datum existiert -->
-                                                <xsl:if test="$tagebuch-dates[. = $date-iso]">
+                                                <xsl:if test="$tagebuch-dates[normalize-space(.) = $date-iso]">
                                                     <a class="btn btn-sm schnitzler-tagebuch-link" role="button"
                                                        href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__{$date-iso}.html"
                                                        target="_blank" rel="noopener noreferrer"
