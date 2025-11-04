@@ -23,6 +23,13 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
+
+            <head>
+                <!-- Highcharts for statistics visualization -->
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            </head>
+
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
@@ -43,129 +50,8 @@
                     </div>
                     <xsl:call-template name="html_footer"/>
                 </div>
-                <!-- Load Chart.js for visualizations -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-                <script src="js-data/letterStatistics.js"></script>
-                <script>
-                    // Create charts once the page is loaded
-                    document.addEventListener('DOMContentLoaded', function() {
-                        if (typeof letterStatistics !== 'undefined') {
-                            createLetterCharts(letterStatistics);
-                        }
-                    });
-
-                    function createLetterCharts(stats) {
-                        // Chart 1: Letters by Year
-                        const yearCtx = document.getElementById('chartByYear');
-                        if (yearCtx &amp;&amp; stats.by_year) {
-                            const years = Object.keys(stats.by_year).sort();
-                            const counts = years.map(y => stats.by_year[y]);
-
-                            new Chart(yearCtx, {
-                                type: 'bar',
-                                data: {
-                                    labels: years,
-                                    datasets: [{
-                                        label: 'Anzahl Briefe',
-                                        data: counts,
-                                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                                        borderColor: 'rgba(54, 162, 235, 1)',
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    responsive: true,
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true,
-                                            ticks: {
-                                                stepSize: 1
-                                            }
-                                        }
-                                    },
-                                    plugins: {
-                                        title: {
-                                            display: true,
-                                            text: 'Briefe nach Jahren'
-                                        }
-                                    }
-                                }
-                            });
-                        }
-
-                        // Chart 2: Schnitzler as Sender/Receiver
-                        const roleCtx = document.getElementById('chartByRole');
-                        if (roleCtx) {
-                            new Chart(roleCtx, {
-                                type: 'pie',
-                                data: {
-                                    labels: ['Von Schnitzler', 'An Schnitzler', 'Umfeldbriefe'],
-                                    datasets: [{
-                                        data: [
-                                            stats.schnitzler_sent || 0,
-                                            stats.schnitzler_received || 0,
-                                            stats.third_party || 0
-                                        ],
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.5)',
-                                            'rgba(54, 162, 235, 0.5)',
-                                            'rgba(255, 206, 86, 0.5)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)'
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    responsive: true,
-                                    plugins: {
-                                        title: {
-                                            display: true,
-                                            text: 'Verteilung nach Rolle Schnitzlers'
-                                        }
-                                    }
-                                }
-                            });
-                        }
-
-                        // Chart 3: Top Correspondences
-                        const corrCtx = document.getElementById('chartTopCorrespondences');
-                        if (corrCtx &amp;&amp; stats.by_correspondence) {
-                            const sortedCorr = Object.entries(stats.by_correspondence)
-                                .sort((a, b) => b[1] - a[1])
-                                .slice(0, 10);
-                            const corrLabels = sortedCorr.map(([id, count]) => 'corr_' + id);
-                            const corrCounts = sortedCorr.map(([id, count]) => count);
-
-                            new Chart(corrCtx, {
-                                type: 'bar',
-                                data: {
-                                    labels: corrLabels,
-                                    datasets: [{
-                                        label: 'Anzahl Briefe',
-                                        data: corrCounts,
-                                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                                        borderColor: 'rgba(75, 192, 192, 1)',
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    indexAxis: 'y',
-                                    responsive: true,
-                                    plugins: {
-                                        title: {
-                                            display: true,
-                                            text: 'Top 10 Korrespondenzen'
-                                        }
-                                    }
-                                }
-                            });
-                        }
-                    }
-                </script>
+                <!-- Load statistics charts -->
+                <script src="js/statistics-charts.js"></script>
             </body>
         </html>
     </xsl:template>
@@ -174,51 +60,43 @@
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="tei:div[@type='statistics']">
-        <div class="row mb-4">
+    <xsl:template match="tei:div[not(@type)]">
+        <div class="mb-4">
+            <xsl:apply-templates/>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="tei:div[@type='image']">
+        <div class="row mb-5">
             <div class="col-md-12">
-                <h3>Überblick</h3>
                 <xsl:apply-templates/>
             </div>
         </div>
     </xsl:template>
 
-    <xsl:template match="tei:div[@type='by_year']">
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <h3><xsl:value-of select="tei:head"/></h3>
-                <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
-                    <xsl:apply-templates select="tei:table"/>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <canvas id="chartByYear"></canvas>
-            </div>
-        </div>
+    <xsl:template match="tei:figure">
+        <xsl:variable name="image-url" select="tei:graphic/@url"/>
+        <xsl:variable name="chart-id">
+            <xsl:choose>
+                <xsl:when test="contains($image-url, 'image1.png')">chart1</xsl:when>
+                <xsl:when test="contains($image-url, 'image2.png')">chart2</xsl:when>
+                <xsl:when test="contains($image-url, 'image5.png')">chart3</xsl:when>
+                <xsl:when test="contains($image-url, 'image4.png')">chart4</xsl:when>
+                <xsl:when test="contains($image-url, 'image3.png')">chart5</xsl:when>
+                <xsl:when test="contains($image-url, 'image6.png')">chart6</xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+
+        <figure class="my-4">
+            <div id="{$chart-id}" style="width: 100%; min-height: 500px;"></div>
+            <figcaption class="text-center text-muted mt-2">
+                <xsl:apply-templates select="tei:caption"/>
+            </figcaption>
+        </figure>
     </xsl:template>
 
-    <xsl:template match="tei:div[@type='top_correspondences']">
-        <div class="row mb-4">
-            <div class="col-md-6 offset-md-3">
-                <canvas id="chartByRole"></canvas>
-            </div>
-        </div>
-    </xsl:template>
-
-    <xsl:template match="tei:div[@type='data_export']">
-        <div class="row mb-4">
-            <div class="col-md-12 text-center">
-                <p>
-                    <xsl:text>Daten herunterladen: </xsl:text>
-                    <a href="js-data/letterStatistics.json" title="JSON herunterladen" class="btn btn-sm btn-outline-secondary ms-2">
-                        <i class="fa-solid fa-download"></i> JSON
-                    </a>
-                    <a href="js-data/letterStatistics.js" title="JavaScript herunterladen" class="btn btn-sm btn-outline-secondary ms-2">
-                        <i class="fa-solid fa-download"></i> JS
-                    </a>
-                </p>
-            </div>
-        </div>
+    <xsl:template match="tei:caption">
+        <xsl:apply-templates/>
     </xsl:template>
 
     <xsl:template match="tei:table">
@@ -287,6 +165,16 @@
         <code>
             <xsl:apply-templates/>
         </code>
+    </xsl:template>
+
+    <xsl:template match="tei:hi[@rend='italics']">
+        <em>
+            <xsl:apply-templates/>
+        </em>
+    </xsl:template>
+
+    <xsl:template match="tei:c[@rendition='#prozent']">
+        <xsl:text>%</xsl:text>
     </xsl:template>
 
 </xsl:stylesheet>

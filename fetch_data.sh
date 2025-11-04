@@ -56,6 +56,7 @@ mv schnitzler-briefe-charts-main/netzwerke/*/*corr_weights_directed*.csv network
 echo "Fetching index statistics..."
 mkdir -p html/js-data
 cp schnitzler-briefe-charts-main/statistiken/allgemeiner-text/gesamtstatistik.json html/js-data/
+cp schnitzler-briefe-charts-main/statistiken/allgemeiner-text/viz*.json html/js-data/
 
 rm -rf schnitzler-briefe-charts-main
 
