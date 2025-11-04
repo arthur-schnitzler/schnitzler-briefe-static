@@ -9,6 +9,8 @@
     <!-- nur fürs Schnitzler-Tagebuch die folgenden beiden Einbindungen -->
     <xsl:param name="listperson" select="document('../../data/indices/listperson.xml')"/>
     <xsl:key name="author-lookup" match="tei:person" use="tei:idno[@subtype = 'pmb']"/>
+    <!-- Liste der verfügbaren Tagebucheinträge -->
+    <xsl:param name="tagebuch-dates" select="document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-tagebuch-data/refs/heads/main/indices/index_days.xml')/list/date"/>
     <xsl:variable name="listbiblPath" select="'../../data/indices/listbibl.xml'"/>
     <xsl:variable name="listworkPath" select="'../../data/indices/listwork.xml'"/>
     <xsl:param name="events"
@@ -1074,6 +1076,34 @@
                                                   select="format-date(@when-iso, ' [Y]')"/>
                                             </xsl:otherwise>
                                         </xsl:choose>
+                                        <!-- Links zu Chronik und Tagebuch -->
+                                        <xsl:text> </xsl:text>
+                                        <xsl:variable name="date-iso">
+                                            <xsl:choose>
+                                                <xsl:when test="@when-iso">
+                                                    <xsl:value-of select="@when-iso"/>
+                                                </xsl:when>
+                                                <xsl:when test="@from-iso">
+                                                    <xsl:value-of select="@from-iso"/>
+                                                </xsl:when>
+                                            </xsl:choose>
+                                        </xsl:variable>
+                                        <xsl:if test="$date-iso != ''">
+                                            <div class="mt-2 p-1 border rounded d-inline-block">
+                                                <!-- Schnitzler Chronik Link - immer vorhanden -->
+                                                <a class="btn btn-sm schnitzler-chronik-link me-2" role="button"
+                                                   href="https://schnitzler-chronik.acdh.oeaw.ac.at/{$date-iso}.html"
+                                                   target="_blank" rel="noopener noreferrer"
+                                                   aria-label="Schnitzler Chronik - öffnet in neuem Fenster">Schnitzler Chronik</a>
+                                                <!-- Schnitzler Tagebuch Link - nur wenn Eintrag für dieses Datum existiert -->
+                                                <xsl:if test="$tagebuch-dates[. = $date-iso]">
+                                                    <a class="btn btn-sm schnitzler-tagebuch-link" role="button"
+                                                       href="https://schnitzler-tagebuch.acdh.oeaw.ac.at/entry__{$date-iso}.html"
+                                                       target="_blank" rel="noopener noreferrer"
+                                                       aria-label="Schnitzler Tagebuch - öffnet in neuem Fenster">Schnitzler Tagebuch</a>
+                                                </xsl:if>
+                                            </div>
+                                        </xsl:if>
                                     </li>
                                 </ul>
                             </td>
