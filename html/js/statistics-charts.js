@@ -164,15 +164,21 @@ function createChart3(data) {
     });
 }
 
-// Chart 4: All text length (line chart)
+// Chart 4: All text length (area chart with all correspondents)
 function createChart4(data) {
     const container = document.getElementById('chart4');
     if (!container) return;
 
+    // Prepare series data from correspondents
+    const series = data.correspondents.map(corr => ({
+        name: corr.name,
+        data: corr.text_lengths
+    }));
+
     Highcharts.chart('chart4', {
         chart: {
-            type: 'line',
-            height: 500
+            type: 'area',
+            height: 600
         },
         title: {
             text: data.title
@@ -191,14 +197,17 @@ function createChart4(data) {
                 text: 'Textlänge (Zeichen)'
             }
         },
-        series: [{
-            name: 'Textlänge',
-            data: data.text_lengths,
-            color: '#A63437'
-        }],
-        legend: {
-            enabled: false
+        plotOptions: {
+            area: {
+                stacking: 'normal',
+                lineColor: '#666666',
+                lineWidth: 1,
+                marker: {
+                    enabled: false
+                }
+            }
         },
+        series: series,
         credits: {
             enabled: false
         }
@@ -247,79 +256,115 @@ function createChart5(data) {
     });
 }
 
-// Chart 6: Diary mentions (combination chart with letters and diary mentions)
+// Chart 6: Diary mentions (two separate charts for Goldmann and Hofmannsthal)
 function createChart6(data) {
-    const container = document.getElementById('chart6');
-    if (!container) return;
-
-    // Build series from the data structure
-    const series = [];
-
-    // Goldmann letters
-    series.push({
-        name: 'Goldmann (Briefe)',
-        data: data.goldmann.letters,
-        type: 'column',
-        color: '#FFCE56'
-    });
-
-    // Goldmann diary mentions (if available)
-    if (data.goldmann.diary_mentions && data.goldmann.diary_mentions.length > 0) {
-        series.push({
-            name: 'Goldmann (Tagebuch)',
-            data: data.goldmann.diary_mentions,
-            type: 'line',
-            color: '#FFA500'
-        });
-    }
-
-    // Hofmannsthal letters
-    series.push({
-        name: 'Hofmannsthal (Briefe)',
-        data: data.hofmannsthal.letters,
-        type: 'column',
-        color: '#4BC0C0'
-    });
-
-    // Hofmannsthal diary mentions (if available)
-    if (data.hofmannsthal.diary_mentions && data.hofmannsthal.diary_mentions.length > 0) {
-        series.push({
-            name: 'Hofmannsthal (Tagebuch)',
-            data: data.hofmannsthal.diary_mentions,
-            type: 'line',
-            color: '#20B2AA'
-        });
-    }
-
-    Highcharts.chart('chart6', {
-        chart: {
-            height: 500
-        },
-        title: {
-            text: data.title
-        },
-        xAxis: {
-            categories: data.years,
-            labels: {
-                rotation: -45,
-                style: {
-                    fontSize: '11px'
-                }
+    // Create Goldmann chart
+    const goldmannContainer = document.getElementById('chart6-goldmann');
+    if (goldmannContainer) {
+        const goldmannSeries = [
+            {
+                name: 'Erhaltene Korrespondenzstücke',
+                data: data.goldmann.letters,
+                type: 'column',
+                color: '#FFCE56'
             }
-        },
-        yAxis: {
-            title: {
-                text: 'Anzahl'
-            }
-        },
-        plotOptions: {
-            column: {
-                grouping: true
-            }
-        },
-        series: series,
-        credits: {
-            enabled: false
+        ];
+
+        // Add diary mentions if available
+        if (data.goldmann.diary_mentions && data.goldmann.diary_mentions.length > 0) {
+            goldmannSeries.push({
+                name: 'Erwähnungen im Tagebuch',
+                data: data.goldmann.diary_mentions,
+                type: 'line',
+                color: '#FFA500'
+            });
         }
-    });
+
+        Highcharts.chart('chart6-goldmann', {
+            chart: {
+                height: 400
+            },
+            title: {
+                text: 'Paul Goldmann'
+            },
+            xAxis: {
+                categories: data.years,
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '10px'
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Anzahl'
+                }
+            },
+            plotOptions: {
+                column: {
+                    grouping: false
+                }
+            },
+            series: goldmannSeries,
+            credits: {
+                enabled: false
+            }
+        });
+    }
+
+    // Create Hofmannsthal chart
+    const hofmannsthalContainer = document.getElementById('chart6-hofmannsthal');
+    if (hofmannsthalContainer) {
+        const hofmannsthalSeries = [
+            {
+                name: 'Erhaltene Korrespondenzstücke',
+                data: data.hofmannsthal.letters,
+                type: 'column',
+                color: '#4BC0C0'
+            }
+        ];
+
+        // Add diary mentions if available
+        if (data.hofmannsthal.diary_mentions && data.hofmannsthal.diary_mentions.length > 0) {
+            hofmannsthalSeries.push({
+                name: 'Erwähnungen im Tagebuch',
+                data: data.hofmannsthal.diary_mentions,
+                type: 'line',
+                color: '#20B2AA'
+            });
+        }
+
+        Highcharts.chart('chart6-hofmannsthal', {
+            chart: {
+                height: 400
+            },
+            title: {
+                text: 'Hugo von Hofmannsthal'
+            },
+            xAxis: {
+                categories: data.years,
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '10px'
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Anzahl'
+                }
+            },
+            plotOptions: {
+                column: {
+                    grouping: false
+                }
+            },
+            series: hofmannsthalSeries,
+            credits: {
+                enabled: false
+            }
+        });
+    }
 }

@@ -88,7 +88,22 @@
         </xsl:variable>
 
         <figure class="my-4">
-            <div id="{$chart-id}" style="width: 100%; min-height: 500px;"></div>
+            <xsl:choose>
+                <!-- Special handling for chart6: two separate charts -->
+                <xsl:when test="$chart-id = 'chart6'">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="chart6-goldmann" style="width: 100%; min-height: 400px;"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="chart6-hofmannsthal" style="width: 100%; min-height: 400px;"></div>
+                        </div>
+                    </div>
+                </xsl:when>
+                <xsl:otherwise>
+                    <div id="{$chart-id}" style="width: 100%; min-height: 500px;"></div>
+                </xsl:otherwise>
+            </xsl:choose>
             <figcaption class="text-center text-muted mt-2">
                 <xsl:apply-templates select="tei:caption"/>
             </figcaption>
