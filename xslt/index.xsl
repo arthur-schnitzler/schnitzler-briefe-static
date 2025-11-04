@@ -308,7 +308,6 @@
                     </div>
                     <xsl:call-template name="html_footer"/>
                 </div>
-                <script src="js-data/letterStatistics.js"></script>
                 <script src="js/index-statistics.js"></script>
             </body>
         </html>

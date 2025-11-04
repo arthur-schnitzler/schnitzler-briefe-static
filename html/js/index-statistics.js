@@ -5,11 +5,21 @@ const totalSlides = 3;
 
 // Load and display statistics on index page
 document.addEventListener('DOMContentLoaded', function() {
-    if (typeof letterStatistics !== 'undefined') {
-        statsData = letterStatistics;
-        initStatsSlideshow();
-        updateTextStatistics();
-    }
+    // Load statistics from JSON
+    fetch('js-data/gesamtstatistik.json')
+        .then(response => response.json())
+        .then(data => {
+            statsData = data;
+            initStatsSlideshow();
+            updateTextStatistics();
+        })
+        .catch(error => {
+            console.error('Error loading statistics:', error);
+            const container = document.getElementById('stats-content');
+            if (container) {
+                container.innerHTML = '<p class="text-danger">Fehler beim Laden der Statistiken.</p>';
+            }
+        });
 });
 
 function updateTextStatistics() {

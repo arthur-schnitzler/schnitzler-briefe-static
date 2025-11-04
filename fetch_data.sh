@@ -51,6 +51,12 @@ unzip main.zip
 mkdir network-data
 
 mv schnitzler-briefe-charts-main/netzwerke/*/*corr_weights_directed*.csv network-data/
+
+# Fetch index statistics from charts repo
+echo "Fetching index statistics..."
+mkdir -p html/js-data
+cp schnitzler-briefe-charts-main/statistiken/allgemeiner-text/gesamtstatistik.json html/js-data/
+
 rm -rf schnitzler-briefe-charts-main
 
 rm main.zip
