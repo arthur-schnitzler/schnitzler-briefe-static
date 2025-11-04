@@ -1,6 +1,13 @@
 // Statistics Charts using Highcharts
 // Loads visualization data from JSON files and creates interactive charts
 
+// Set global Highcharts options
+Highcharts.setOptions({
+    accessibility: {
+        enabled: false
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     // Load all visualization data
     Promise.all([
