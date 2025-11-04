@@ -8,4 +8,8 @@
     <xsl:param name="html_title">schnitzler-briefe</xsl:param>
     <xsl:param name="project_logo">https://shared.acdh.oeaw.ac.at//schnitzler-briefe/project-logo.svg</xsl:param>
     <xsl:param name="base_url">https://schnitzler-briefe.acdh.oeaw.ac.at</xsl:param>
+    <xsl:param name="total_letters">3936</xsl:param>
+    <xsl:param name="total_letters_formatted">3.936</xsl:param>
+    <xsl:param name="complete_correspondences">52</xsl:param>
+    <xsl:param name="complete_correspondences_formatted">52</xsl:param>
 </xsl:stylesheet>

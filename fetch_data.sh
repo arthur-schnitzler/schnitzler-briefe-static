@@ -58,6 +58,10 @@ mkdir -p html/js-data
 cp schnitzler-briefe-charts-main/statistiken/allgemeiner-text/gesamtstatistik.json html/js-data/
 cp schnitzler-briefe-charts-main/statistiken/allgemeiner-text/viz*.json html/js-data/
 
+# Update XSLT parameters with statistics
+echo "Updating XSLT parameters with statistics..."
+python3 update_stats_params.py
+
 rm -rf schnitzler-briefe-charts-main
 
 # Fetch Tagebuch index_days.xml

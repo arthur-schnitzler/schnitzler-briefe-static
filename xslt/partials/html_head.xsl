@@ -29,8 +29,11 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
                     <xsl:value-of select="$html_description"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:text>Über 3.800 Briefe von und an Arthur Schnitzler (1862–1931) aus über 50 vollständigen Korrespondenzen, viele erstmals veröffentlicht. Digitale Edition. Hg. Martin Anton Müller mit Gerd-Hermann
-Susen, Laura Untner und Selma Jahnke.</xsl:text>
+                    <xsl:text>Die Website enthält </xsl:text>
+                    <xsl:value-of select="$total_letters_formatted"/>
+                    <xsl:text> Briefe von und an Arthur Schnitzler (1862–1931). Veröffentlicht werden </xsl:text>
+                    <xsl:value-of select="$complete_correspondences_formatted"/>
+                    <xsl:text> vollständigen Korrespondenzen in textkritischer Wiedergabe mit Faksimiles. Digitale Edition. Herausgegeben von Martin Anton Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke.</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>

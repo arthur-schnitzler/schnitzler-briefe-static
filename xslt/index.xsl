@@ -30,8 +30,7 @@
                   "name": "Arthur Schnitzler Briefwechsel",
                   "alternateName": "Schnitzler Briefe",
                   "url": "https://schnitzler-briefe.acdh.oeaw.ac.at/",
-                  "description": "Über 3.800 Briefe von und an Arthur Schnitzler (1862–1931) aus über 50 vollständigen Korrespondenzen, viele erstmals veröffentlicht. Digitale Edition von Martin Anton Müller
-                  mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke.",
+                  "description": "Über <xsl:value-of select="$total_letters_formatted"/> Briefe von und an Arthur Schnitzler (1862–1931) aus <xsl:value-of select="$complete_correspondences_formatted"/> vollständigen Korrespondenzen, viele erstmals veröffentlicht. Digitale Edition von Martin Anton Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke.",
                   "inLanguage": "de",
                   "publisher": {
                     "@type": "Organization",
