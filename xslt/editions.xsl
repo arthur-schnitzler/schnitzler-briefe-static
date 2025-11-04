@@ -356,7 +356,7 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <table class="table table-striped">
+                                <table class="table table-striped align-top">
                                     <tbody>
                                         <xsl:for-each select="//tei:correspAction">
                                             <tr>
