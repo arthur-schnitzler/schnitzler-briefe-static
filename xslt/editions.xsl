@@ -425,7 +425,7 @@
                                     <xsl:for-each select="descendant::tei:witness">
                                         <h5>TEXTZEUGE <xsl:value-of select="@n"/>
                                         </h5>
-                                        <table class="table table-striped">
+                                        <table class="table table-striped  align-top">
                                             <tbody>
                                                 <xsl:if test="tei:msDesc/tei:msIdentifier">
                                                   <tr>
@@ -485,7 +485,7 @@
                                     <xsl:for-each select="//tei:biblStruct">
                                         <h5>VERÖFFENTLICHUNG <xsl:value-of select="position()"/>
                                         </h5>
-                                        <table class="table table-striped">
+                                        <table class="table table-striped  align-top">
                                             <tbody>
                                                 <tr>
                                                   <th/>
