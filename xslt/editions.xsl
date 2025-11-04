@@ -199,23 +199,22 @@
                       {
                         "@type": "Person",
                         "name": "Martin Anton Müller",
-                        @id": "https://www.wikidata.org/wiki/Q100965214"
+                        "@id": "https://www.wikidata.org/wiki/Q100965214"
                       },
                       {
                         "@type": "Person",
                         "name": "Gerd-Hermann Susen",
-                        @id: "https://www.wikidata.org/wiki/Q112499182"
+                        "@id": "https://www.wikidata.org/wiki/Q112499182"
                       },
                       {
                         "@type": "Person",
                         "name": "Laura Untner",
-                        @id: "https://www.wikidata.org/wiki/Q122733533"
-
+                        "@id": "https://www.wikidata.org/wiki/Q122733533"
                       },
                       {
                         "@type": "Person",
                         "name": "Selma Jahnke",
-                        @id: "https://www.wikidata.org/wiki/Q133383086"
+                        "@id": "https://www.wikidata.org/wiki/Q133383086"
                       }
                     ]
                   },
