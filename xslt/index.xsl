@@ -18,6 +18,7 @@
                     <xsl:with-param name="html_title" select="$doc_title"/>
                     <xsl:with-param name="html_url" select="'https://schnitzler-briefe.acdh.oeaw.ac.at/'"/>
                 </xsl:call-template>
+                <meta name="google-site-verification" content="dc888ZmCroA0_VKEB86Vss7wy4Jbkaro0j2QfM8GOak" />
 
                 <!-- Highcharts for statistics visualization -->
                 <script src="https://code.highcharts.com/highcharts.js"></script>
