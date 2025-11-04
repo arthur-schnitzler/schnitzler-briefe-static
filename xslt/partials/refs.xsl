@@ -221,7 +221,7 @@
                             <xsl:value-of
                                 select="format-date(
                                 xs:date(document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/tei:listEvent[1]/tei:event[@xml:id = replace($ref-mit-endung, '.html', '')]/@when-iso),
-                                '[D].[M].[Y0001]'
+                                '[D].&#160;[M].&#160;[Y]'
                                 )"/>
                             
                         </xsl:when>

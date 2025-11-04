@@ -263,32 +263,14 @@ function createChart5(data) {
     });
 }
 
-// Chart 6: Diary mentions (two separate charts for Goldmann and Hofmannsthal)
+// Chart 6: Diary mentions (two separate charts with grouped columns)
 function createChart6(data) {
     // Create Goldmann chart
     const goldmannContainer = document.getElementById('chart6-goldmann');
     if (goldmannContainer) {
-        const goldmannSeries = [
-            {
-                name: 'Erhaltene Korrespondenzstücke',
-                data: data.goldmann.letters,
-                type: 'column',
-                color: '#FFCE56'
-            }
-        ];
-
-        // Add diary mentions if available
-        if (data.goldmann.diary_mentions && data.goldmann.diary_mentions.length > 0) {
-            goldmannSeries.push({
-                name: 'Erwähnungen im Tagebuch',
-                data: data.goldmann.diary_mentions,
-                type: 'line',
-                color: '#FFA500'
-            });
-        }
-
         Highcharts.chart('chart6-goldmann', {
             chart: {
+                type: 'column',
                 height: 400
             },
             title: {
@@ -310,10 +292,23 @@ function createChart6(data) {
             },
             plotOptions: {
                 column: {
-                    grouping: false
+                    grouping: true,
+                    pointPadding: 0.1,
+                    borderWidth: 0
                 }
             },
-            series: goldmannSeries,
+            series: [
+                {
+                    name: 'Erhaltene Korrespondenzstücke',
+                    data: data.goldmann.letters,
+                    color: '#FFCE56'
+                },
+                {
+                    name: 'Erwähnungen im Tagebuch',
+                    data: data.goldmann.diary_mentions,
+                    color: '#037A33'
+                }
+            ],
             credits: {
                 enabled: false
             }
@@ -323,27 +318,9 @@ function createChart6(data) {
     // Create Hofmannsthal chart
     const hofmannsthalContainer = document.getElementById('chart6-hofmannsthal');
     if (hofmannsthalContainer) {
-        const hofmannsthalSeries = [
-            {
-                name: 'Erhaltene Korrespondenzstücke',
-                data: data.hofmannsthal.letters,
-                type: 'column',
-                color: '#4BC0C0'
-            }
-        ];
-
-        // Add diary mentions if available
-        if (data.hofmannsthal.diary_mentions && data.hofmannsthal.diary_mentions.length > 0) {
-            hofmannsthalSeries.push({
-                name: 'Erwähnungen im Tagebuch',
-                data: data.hofmannsthal.diary_mentions,
-                type: 'line',
-                color: '#20B2AA'
-            });
-        }
-
         Highcharts.chart('chart6-hofmannsthal', {
             chart: {
+                type: 'column',
                 height: 400
             },
             title: {
@@ -365,10 +342,23 @@ function createChart6(data) {
             },
             plotOptions: {
                 column: {
-                    grouping: false
+                    grouping: true,
+                    pointPadding: 0.1,
+                    borderWidth: 0
                 }
             },
-            series: hofmannsthalSeries,
+            series: [
+                {
+                    name: 'Erhaltene Korrespondenzstücke',
+                    data: data.hofmannsthal.letters,
+                    color: '#4BC0C0'
+                },
+                {
+                    name: 'Erwähnungen im Tagebuch',
+                    data: data.hofmannsthal.diary_mentions,
+                    color: '#037A33'
+                }
+            ],
             credits: {
                 enabled: false
             }
