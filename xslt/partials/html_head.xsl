@@ -116,12 +116,21 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
                 integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
                 crossorigin="anonymous"/>
         </noscript>
-        <!-- Own stylesheet loaded first for critical styles -->
-        <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <!-- Critical CSS inline for immediate rendering -->
+        <style>
+/* Critical CSS for above-the-fold */
+*,:after,:before{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.5}.theme-color{color:#A63437}a{color:#A63437;text-decoration:none}.navbar{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:.5rem 1rem}.navbar-brand{display:inline-block;padding-top:.3125rem;padding-bottom:.3125rem;margin-right:1rem;font-size:1.25rem;line-height:inherit;white-space:nowrap}.intro{background-color:#fff;height:93vh;overflow:hidden;border-bottom:3px solid #A63437}.intro_left{padding:2rem}.intro_left h1,.intro_left h3,.intro_left h4{margin:1rem 0}.btn{display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out}.btn-round{background-color:#A63437;color:#fff;border-radius:2rem;padding:.5rem 2rem}.btn-round:hover{background-color:#8a2a2d;color:#fff}.d-block{display:block!important}.w-100{width:100%!important}.img-fluid{max-width:100%;height:auto}.container,.container-fluid{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}.row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.col-md-6{flex:0 0 50%;max-width:50%;padding-right:15px;padding-left:15px}@media (max-width:768px){.col-md-6{flex:0 0 100%;max-width:100%}.intro{height:auto}}
+        </style>
+        <!-- Full stylesheet loaded asynchronously -->
+        <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+        <noscript>
+            <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        </noscript>
         <!-- Scripts with defer for optimal loading -->
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous" defer="defer"/>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" defer="defer"/>
         <script src="js/listStopProp.js" defer="defer"/>
+        <script src="js/toggle-commentary-mentions.js" defer="defer"/>
         <script src="js/fragezeichen.js" defer="defer"></script>
         <script src="js/accessibility-enhancements.js" defer="defer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" defer="defer"/>

@@ -98,8 +98,6 @@
             style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;"> © Copyright OEAW | <a
                 href="imprint.html">Impressum</a>
         </div>
-        <script src="js/listStopProp.js"/>
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"/>
-        <script src="js/toggle-commentary-mentions.js"/>
+        <!-- Scripts already loaded in head with defer -->
     </xsl:template>
 </xsl:stylesheet>

@@ -20,6 +20,12 @@
                 </xsl:call-template>
                 <meta name="google-site-verification" content="dc888ZmCroA0_VKEB86Vss7wy4Jbkaro0j2QfM8GOak" />
 
+                <!-- Preload LCP image for faster rendering -->
+                <link rel="preload" as="image" href="img/index/hero-bg.webp" type="image/webp" fetchpriority="high"/>
+
+                <!-- Preload statistics data to reduce request chain -->
+                <link rel="preload" as="fetch" href="js-data/gesamtstatistik.json" crossorigin="anonymous"/>
+
                 <!-- Highcharts for statistics visualization - deferred for performance -->
                 <script src="https://code.highcharts.com/highcharts.js" defer="defer"></script>
 
@@ -91,7 +97,9 @@
                                             src="img/index/hero-bg.jpg"
                                             class="d-block w-100" style="max-width=30%;"
                                             alt="Arthur Schnitzer, gezeichnet von Léandre"
-                                            width="1200" height="750"/>
+                                            width="1200" height="750"
+                                            fetchpriority="high"
+                                            loading="eager"/>
                                     </picture>
                                 </div>
                             </div>
