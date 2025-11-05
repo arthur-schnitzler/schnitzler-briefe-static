@@ -20,8 +20,8 @@
                 </xsl:call-template>
                 <meta name="google-site-verification" content="dc888ZmCroA0_VKEB86Vss7wy4Jbkaro0j2QfM8GOak" />
 
-                <!-- Highcharts for statistics visualization -->
-                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <!-- Highcharts for statistics visualization - deferred for performance -->
+                <script src="https://code.highcharts.com/highcharts.js" defer="defer"></script>
 
                 <!-- Schema.org JSON-LD for Homepage -->
                 <script type="application/ld+json">

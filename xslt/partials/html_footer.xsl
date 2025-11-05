@@ -41,7 +41,8 @@
                                 <img
                                     src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg"
                                     class="image" alt="ACDH Logo"
-                                    style="max-width: 90%; height: auto;" title="ACDH Logo"/>
+                                    style="max-width: 90%; height: auto;" title="ACDH Logo"
+                                    width="91" height="100"/>
                             </a>
                         </div>
                     </div>
@@ -77,7 +78,8 @@
                                         src="https://www.fwf.ac.at/fileadmin/Website/Logos/FWF_Logo_Zusatz_Blau_RGB_DE.svg"
                                         alt="FWF Österreichischer Wissenschaftsfond Logo"
                                         style="max-width: 140px; height: auto; margin-top:1em;"
-                                        title="FWF Der Wissenschaftsfond"/>
+                                        title="FWF Der Wissenschaftsfond"
+                                        width="140" height="38"/>
                                 </a>
                                 <p/>
                                 <p>Gefördert aus Mitteln des<br/> Wissenschaftsfonds FWF,<br/>
