@@ -91,7 +91,7 @@
                                             src="img/index/hero-bg.jpg"
                                             class="d-block w-100" style="max-width=30%;"
                                             alt="Arthur Schnitzer, gezeichnet von Léandre"
-                                            width="412" height="258"/>
+                                            width="1200" height="750"/>
                                     </picture>
                                 </div>
                             </div>

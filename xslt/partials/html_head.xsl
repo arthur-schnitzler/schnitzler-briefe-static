@@ -86,17 +86,13 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
         <meta property="twitter:description" content="{$html_description1}"/>
         <meta property="twitter:image" content="{$html_image}"/>
 
+        <!-- Font Awesome with font-display:swap for better performance -->
         <link rel="preload"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            href="css/fontawesome-optimized.min.css"
             as="style"
-            onload="this.onload=null;this.rel='stylesheet'"
-            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"/>
+            onload="this.onload=null;this.rel='stylesheet'"/>
         <noscript>
-            <link rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-                integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"/>
+            <link rel="stylesheet" href="css/fontawesome-optimized.min.css"/>
         </noscript>
         <link rel="preload" type="text/css"
             href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.css"
