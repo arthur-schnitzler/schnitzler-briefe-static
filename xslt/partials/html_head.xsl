@@ -86,25 +86,38 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
         <meta property="twitter:description" content="{$html_description1}"/>
         <meta property="twitter:image" content="{$html_image}"/>
 
-        <link rel="stylesheet"
+        <link rel="preload"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
             integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"/>
-        <link rel="stylesheet" type="text/css"
-            href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.css"/>
+        <noscript>
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        </noscript>
+        <link rel="preload" type="text/css"
+            href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"/>
+        <noscript>
+            <link rel="stylesheet" type="text/css"
+                href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.11.0/b-2.0.0/b-html5-2.0.0/cr-1.5.4/r-2.2.9/sp-1.4.0/datatables.min.css"/>
+        </noscript>
         <link rel="profile" href="http://gmpg.org/xfn/11"/>
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"/>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous" defer="defer"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
             crossorigin="anonymous"/>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"/>
-        <script src="js/listStopProp.js"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" defer="defer"/>
+        <script src="js/listStopProp.js" defer="defer"/>
         <script src="js/fragezeichen.js" defer="defer"></script>
         <script src="js/accessibility-enhancements.js" defer="defer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" defer="defer"/>
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="css/micro-editor.css" type="text/css"/>
         <xsl:if test="descendant::tei:div[@xml:id = 'jung-wien-container-ohne-slider'] or descendant::tei:div[@xml:id = 'jung-wien-container-mit-slider'] or descendant::tei:div[@xml:id = 'jung-wien-container-nebeneinander'] or descendant::tei:div[@xml:id = 'jung-wien-container-nebeneinander-mit-slider']">
             <script src="https://code.highcharts.com/highcharts.js"/>
             <script src="https://code.highcharts.com/modules/networkgraph.js"/>
