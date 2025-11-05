@@ -85,10 +85,14 @@
                             </div>
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="intro_right wrapper">
-                                    <img
-                                        src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/hero-bg.jpg"
-                                        class="d-block w-100" style="max-width=30%;"
-                                        alt="Arthur Schnitzer, gezeichnet von Léandre"/>
+                                    <picture>
+                                        <source srcset="img/index/hero-bg.webp" type="image/webp"/>
+                                        <img
+                                            src="img/index/hero-bg.jpg"
+                                            class="d-block w-100" style="max-width=30%;"
+                                            alt="Arthur Schnitzer, gezeichnet von Léandre"
+                                            width="412" height="258"/>
+                                    </picture>
                                 </div>
                             </div>
                         </div>
@@ -144,10 +148,14 @@
                                 <a href="tocs.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img class="d-block w-100"
-                                                src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/korrespondenzen.jpg"
-                                                title="Quelle: ANNO, Die Bühne, datum=19310315"
-                                                alt="Schnitzlers Arbeitstisch"/>
+                                            <picture>
+                                                <source srcset="img/index/korrespondenzen.webp" type="image/webp"/>
+                                                <img class="d-block w-100"
+                                                    src="img/index/korrespondenzen.jpg"
+                                                    title="Quelle: ANNO, Die Bühne, datum=19310315"
+                                                    alt="Schnitzlers Arbeitstisch"
+                                                    width="468" height="250"/>
+                                            </picture>
                                         </div>
                                         <div class="card-header">
                                             <h4>Korrespondenzen </h4>
@@ -161,10 +169,13 @@
                                 <a href="toc.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img class="d-block w-100"
-                                                src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/brief.jpg"
-                                                alt="Briefumschlag mit Schnitzlers aufgedruckter Absenderadresse"
-                                            />
+                                            <picture>
+                                                <source srcset="img/index/brief.webp" type="image/webp"/>
+                                                <img class="d-block w-100"
+                                                    src="img/index/brief.jpg"
+                                                    alt="Briefumschlag mit Schnitzlers aufgedruckter Absenderadresse"
+                                                    width="468" height="250"/>
+                                            </picture>
                                         </div>
                                         <div class="card-header">
                                             <h4>Korrespondenzstücke</h4>
@@ -178,10 +189,14 @@
                                 <a href="calendar.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img class="d-block w-100"
-                                                src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/calendar.jpg"
-                                                title="Detail aus http://www.ifm-wolfen.de/index.php?id=110005000534 CC BY-NC-SA"
-                                                alt="Kalenderdetail"/>
+                                            <picture>
+                                                <source srcset="img/index/calendar.webp" type="image/webp"/>
+                                                <img class="d-block w-100"
+                                                    src="img/index/calendar.jpg"
+                                                    title="Detail aus http://www.ifm-wolfen.de/index.php?id=110005000534 CC BY-NC-SA"
+                                                    alt="Kalenderdetail"
+                                                    width="468" height="250"/>
+                                            </picture>
                                         </div>
                                         <div class="card-header">
                                             <h4>Kalender</h4>
@@ -194,11 +209,14 @@
                                 <a href="listperson.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img class="d-block w-100"
-                                                src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/persons.jpg"
-                                                title="Zwei der Kinder von Felix Salten, aus einem Brief von Salten an Schnitzler, Cambridge University Library"
-                                                alt="Zwei der Kinder von Felix Salten, aus einem Brief von diesem an Schnitzler, Cambridge University Library"
-                                            />
+                                            <picture>
+                                                <source srcset="img/index/persons.webp" type="image/webp"/>
+                                                <img class="d-block w-100"
+                                                    src="img/index/persons.jpg"
+                                                    title="Zwei der Kinder von Felix Salten, aus einem Brief von Salten an Schnitzler, Cambridge University Library"
+                                                    alt="Zwei der Kinder von Felix Salten, aus einem Brief von diesem an Schnitzler, Cambridge University Library"
+                                                    width="468" height="250"/>
+                                            </picture>
                                         </div>
                                         <div class="card-header">
                                             <h4>Personen</h4>
@@ -211,10 +229,14 @@
                                 <a href="listbibl.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img class="d-block w-100"
-                                                src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/werke.jpg"
-                                                title="Nahaufnahme von Buchrücken CC BY 0"
-                                                alt="Nahaufnahme von Buchrücken"/>
+                                            <picture>
+                                                <source srcset="img/index/werke.webp" type="image/webp"/>
+                                                <img class="d-block w-100"
+                                                    src="img/index/werke.jpg"
+                                                    title="Nahaufnahme von Buchrücken CC BY 0"
+                                                    alt="Nahaufnahme von Buchrücken"
+                                                    width="468" height="250"/>
+                                            </picture>
                                         </div>
                                         <div class="card-header">
                                             <h4>Werkverzeichnis</h4>
@@ -228,11 +250,14 @@
                                 <a href="listplace.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img class="d-block w-100"
-                                                src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/places.jpg"
-                                                alt="Stadtplan von Wien innerhalb des Gürtels, Beilage zum Meyers Konversationslexikon von 1905."
-                                                title="Stadtplan von Wien innerhalb des Gürtels, Beilage zum Meyers Konversationslexikon von 1905."
-                                            />
+                                            <picture>
+                                                <source srcset="img/index/places.webp" type="image/webp"/>
+                                                <img class="d-block w-100"
+                                                    src="img/index/places.jpg"
+                                                    alt="Stadtplan von Wien innerhalb des Gürtels, Beilage zum Meyers Konversationslexikon von 1905."
+                                                    title="Stadtplan von Wien innerhalb des Gürtels, Beilage zum Meyers Konversationslexikon von 1905."
+                                                    width="468" height="250"/>
+                                            </picture>
                                         </div>
                                         <div class="card-header">
                                             <h4>Orte</h4>
@@ -247,9 +272,13 @@
                                 <a href="listorg.html" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img class="d-block w-100"
-                                                src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/org.jpg"
-                                                title="Briefkopf d’Ora" alt="Briefkopf d’Ora"/>
+                                            <picture>
+                                                <source srcset="img/index/org.webp" type="image/webp"/>
+                                                <img class="d-block w-100"
+                                                    src="img/index/org.jpg"
+                                                    title="Briefkopf d'Ora" alt="Briefkopf d'Ora"
+                                                    width="427" height="250"/>
+                                            </picture>
                                         </div>
                                         <div class="card-header">
                                             <h4>Institutionen und Organisationen</h4>
@@ -265,10 +294,14 @@
                                     target="_blank">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img class="d-block w-100"
-                                                src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/schnitzler-acdh.jpg"
-                                                title="Schnitzler am ACDH"
-                                                alt="Schnitzler am ACDH"/>
+                                            <picture>
+                                                <source srcset="img/index/schnitzler-acdh.webp" type="image/webp"/>
+                                                <img class="d-block w-100"
+                                                    src="img/index/schnitzler-acdh.jpg"
+                                                    title="Schnitzler am ACDH"
+                                                    alt="Schnitzler am ACDH"
+                                                    width="468" height="250"/>
+                                            </picture>
                                         </div>
                                         <div class="card-header">
                                             <p>Schnitzler am ACDH</p>
@@ -280,10 +313,14 @@
                                 <a href="https://github.com/arthur-schnitzler" class="index-link">
                                     <div class="card index-card">
                                         <div class="card-body">
-                                            <img class="d-block w-100"
-                                                src="https://shared.acdh.oeaw.ac.at/schnitzler-briefe/img/schnitzler-github.jpg"
-                                                title="Schnitzler Repositories auf Github"
-                                                alt="Schnitzler Repositories auf Github"/>
+                                            <picture>
+                                                <source srcset="img/index/schnitzler-github.webp" type="image/webp"/>
+                                                <img class="d-block w-100"
+                                                    src="img/index/schnitzler-github.jpg"
+                                                    title="Schnitzler Repositories auf Github"
+                                                    alt="Schnitzler Repositories auf Github"
+                                                    width="468" height="250"/>
+                                            </picture>
                                         </div>
                                         <div class="card-header">
                                             <p>Quelldaten dieser Webseite auf GitHub</p>
