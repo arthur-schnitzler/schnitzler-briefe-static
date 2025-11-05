@@ -67,7 +67,16 @@ rm -rf schnitzler-briefe-charts-main
 # Fetch Tagebuch index_days.xml
 echo "Fetching Tagebuch index_days.xml..."
 mkdir -p xslt/utils
-wget -q https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-tagebuch-data/refs/heads/main/indices/index_days.xml -O xslt/utils/index_days.xml
+# Try main branch first, fallback to master if it doesn't exist
+if ! wget -q https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-tagebuch-data/main/indices/index_days.xml -O xslt/utils/index_days.xml 2>/dev/null; then
+    echo "Branch 'main' not found, trying 'master'..."
+    wget -q https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-tagebuch-data/master/indices/index_days.xml -O xslt/utils/index_days.xml
+fi
+# Verify download was successful
+if [ ! -s xslt/utils/index_days.xml ]; then
+    echo "ERROR: Failed to download index_days.xml or file is empty"
+    exit 1
+fi
 
 rm main.zip
 
