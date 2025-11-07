@@ -21,8 +21,14 @@
                         <div class="card">
                             <div class="card-header">
                                 <h1>Archive</h1>
+                                <div class="btn-group" role="group" aria-label="Ansicht wechseln">
+                                    <button type="button" class="btn btn-primary active" id="btn-detail-view">Detailansicht</button>
+                                    <button type="button" class="btn btn-outline-primary" id="btn-summary-view">Archivübersicht</button>
+                                </div>
                             </div>
                             <div class="card-body">
+                                <!-- Detail View -->
+                                <div id="detail-view">
                                 <table class="table table-sm display" id="tabulator-table-archives">
                                     <thead>
                                         <tr>
@@ -117,6 +123,37 @@
                                         </xsl:for-each>
                                     </tbody>
                                 </table>
+                                </div>
+
+                                <!-- Summary View -->
+                                <div id="summary-view" style="display: none;">
+                                <table class="table table-sm display" id="tabulator-table-archives-summary">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Archiv</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Ort</th>
+                                            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Anzahl</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <xsl:for-each-group select="collection('../data/editions/?select=*.xml')/tei:TEI/descendant::tei:listWit[1]/tei:witness"
+                                            group-by="concat(descendant::tei:repository[1]/text(), '|', descendant::tei:settlement[1]/text())">
+                                            <xsl:sort select="descendant::tei:repository[1]/text()"/>
+                                            <tr>
+                                                <td>
+                                                    <xsl:value-of select="descendant::tei:repository[1]/text()"/>
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="descendant::tei:settlement[1]/text()"/>
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="count(current-group())"/>
+                                                </td>
+                                            </tr>
+                                        </xsl:for-each-group>
+                                    </tbody>
+                                </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -127,6 +164,7 @@
                     <script src="tabulator-js/config.js"></script>
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
+                            // Detail View Table
                             var table = new Tabulator("#tabulator-table-archives", {
                                 pagination: "local",
                                 paginationSize: 25,
@@ -151,6 +189,59 @@
                                     {title: "Ort", field: "ort", headerFilter: "input", formatter: "html"},
                                     {title: "Land", field: "land", headerFilter: "input", formatter: "html"}
                                 ]
+                            });
+
+                            // Summary View Table
+                            var summaryTable = new Tabulator("#tabulator-table-archives-summary", {
+                                pagination: "local",
+                                paginationSize: 25,
+                                paginationCounter: "rows",
+                                layout: "fitColumns",
+                                responsiveLayout: "hide",
+                                autoResize: true,
+                                tooltips: true,
+                                addRowPos: "top",
+                                history: true,
+                                movableColumns: true,
+                                resizableRows: false,
+                                responsiveLayoutCollapseStartOpen: false,
+                                placeholder: "Keine Daten verfügbar",
+                                initialSort: [
+                                    {column: "anzahl", dir: "desc"}
+                                ],
+                                columns: [
+                                    {title: "Archiv", field: "archiv", headerFilter: "input", formatter: "html"},
+                                    {title: "Ort", field: "ort", headerFilter: "input", formatter: "html"},
+                                    {title: "Anzahl", field: "anzahl", headerFilter: "input", formatter: "html", sorter: "number"}
+                                ]
+                            });
+
+                            // View Toggle
+                            var btnDetailView = document.getElementById("btn-detail-view");
+                            var btnSummaryView = document.getElementById("btn-summary-view");
+                            var detailView = document.getElementById("detail-view");
+                            var summaryView = document.getElementById("summary-view");
+
+                            btnDetailView.addEventListener("click", function() {
+                                detailView.style.display = "block";
+                                summaryView.style.display = "none";
+                                btnDetailView.classList.add("active");
+                                btnDetailView.classList.remove("btn-outline-primary");
+                                btnDetailView.classList.add("btn-primary");
+                                btnSummaryView.classList.remove("active");
+                                btnSummaryView.classList.remove("btn-primary");
+                                btnSummaryView.classList.add("btn-outline-primary");
+                            });
+
+                            btnSummaryView.addEventListener("click", function() {
+                                detailView.style.display = "none";
+                                summaryView.style.display = "block";
+                                btnSummaryView.classList.add("active");
+                                btnSummaryView.classList.remove("btn-outline-primary");
+                                btnSummaryView.classList.add("btn-primary");
+                                btnDetailView.classList.remove("active");
+                                btnDetailView.classList.remove("btn-primary");
+                                btnDetailView.classList.add("btn-outline-primary");
                             });
 
                             // Download buttons
