@@ -157,6 +157,10 @@
         <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Salzburg')]">
           <xsl:text>UB_Salzburg</xsl:text>
         </xsl:when>
+        <!-- THEATERMUSEUM -->
+        <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Wien')] and $msIdentifier/tei:repository[. = 'Theatermuseum']">
+          <xsl:text>Theatermuseum</xsl:text>
+        </xsl:when>
         <!-- UB WROCLAW -->
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Uniwersytecka')]">
           <xsl:text>UB_Wroclaw</xsl:text>
