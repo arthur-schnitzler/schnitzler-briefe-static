@@ -42,7 +42,6 @@ requirements_dev.txt
 schnitzler-bahr-static.xpr
 data/
 html/dist/
-saxon/
 /html/oai-pmh
 html/*.html
 html/*.xml
