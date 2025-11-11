@@ -39,41 +39,59 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     links =[];
                     const[sourceColor, targetColor, minNodeSize, maxNodeSize] =[ '#A63437', '#3785A6', 2, 20];
-                    
+
+                    // Check if we have the new CSV format (Source,Target,Weight,Type) or old format
+                    const isNewFormat = !('CorrID' in data[0]);
+
                     let sourceNodeName = data[0].Source ?.trim();
-                    let sourceId = data[0].CorrID ?.trim();
-                    
+                    let sourceId = isNewFormat ? null : data[0].CorrID ?.trim();
+
                     let targetIdColumn;
-                    switch (containerId) {
-                        case 'person-container':
-                        targetIdColumn = 'PersID';
-                        break;
-                        case 'place-container':
-                        targetIdColumn = 'PlaceID';
-                        break;
-                        case 'institution-container':
-                        targetIdColumn = 'OrgID';
-                        break;
-                        case 'work-container':
-                        targetIdColumn = 'WorkID';
-                        break;
-                        case 'event-container':
-                        targetIdColumn = 'EventID';
-                        break;
-                        default:
-                        console.error('Unknown containerId:', containerId);
-                        return;
+                    if (!isNewFormat) {
+                        switch (containerId) {
+                            case 'person-container':
+                            targetIdColumn = 'PersID';
+                            break;
+                            case 'place-container':
+                            targetIdColumn = 'PlaceID';
+                            break;
+                            case 'institution-container':
+                            targetIdColumn = 'OrgID';
+                            break;
+                            case 'work-container':
+                            targetIdColumn = 'WorkID';
+                            break;
+                            case 'event-container':
+                            targetIdColumn = 'EventID';
+                            break;
+                            default:
+                            console.error('Unknown containerId:', containerId);
+                            return;
+                        }
                     }
-                    
+
                     data.forEach(row => {
-                        const[source, corrId, target, targetId, overallCount, weight] =[
-                        row.Source ?.trim(),
-                        row.CorrID ?.trim(),
-                        row.Target ?.trim(),
-                        row[targetIdColumn] ?.trim(),
-                        parseInt(row.Overallcount, 10) || 0,
-                        parseInt(row.Weight, 10) || 0];
-                        if (! source || ! target || ! corrId) return console.warn('Row missing source, target, or corrId:', row);
+                        let source, corrId, target, targetId, overallCount, weight;
+
+                        if (isNewFormat) {
+                            // New format: Source,Target,Weight,Type
+                            source = row.Source ?.trim();
+                            target = row.Target ?.trim();
+                            weight = parseInt(row.Weight, 10) || 0;
+                            corrId = null;
+                            targetId = null;
+                            overallCount = 0;
+                        } else {
+                            // Old format: Source,CorrID,Target,PersID,Overallcount,Type,Label,Weight
+                            source = row.Source ?.trim();
+                            corrId = row.CorrID ?.trim();
+                            target = row.Target ?.trim();
+                            targetId = row[targetIdColumn] ?.trim();
+                            overallCount = parseInt(row.Overallcount, 10) || 0;
+                            weight = parseInt(row.Weight, 10) || 0;
+                        }
+
+                        if (! source || ! target) return console.warn('Row missing source or target:', row);
                         
                         nodes[source] = nodes[source] || {
                             id: source, weight: 0, marker: {
@@ -88,8 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         };
                         
                         nodes[target].weight += weight;
-                        
-                        nodes[target].url = `https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${targetId}.html`;
+
+                        // Only set URL if we have targetId (old format)
+                        if (targetId) {
+                            nodes[target].url = `https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${targetId}.html`;
+                        }
                         
                         links.push({
                             from: source, to: target, value: weight
