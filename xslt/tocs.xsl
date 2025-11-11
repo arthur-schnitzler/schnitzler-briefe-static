@@ -335,7 +335,7 @@
                                                   Personen</h3>
                                                 <div id="person-container"
                                                   style="width:100%; margin: auto"/>
-                                                <div id="chart-buttons" class="text-center mt-3"
+                                                <div id="person-chart-buttons" class="chart-buttons text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
                                                   test="unparsed-text-available(resolve-uri(concat('../../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.csv'), document-uri(/)))">
@@ -365,7 +365,7 @@
                                                 <h3 style="text-align: center;">Erwähnte Orte</h3>
                                                 <div id="place-container"
                                                   style="width:100%; margin: auto"/>
-                                                <div id="chart-buttons" class="text-center mt-3"
+                                                <div id="place-chart-buttons" class="chart-buttons text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
                                                   test="unparsed-text-available(resolve-uri(concat('../../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.csv'), document-uri(/)))">
@@ -396,7 +396,7 @@
                                                   Institutionen</h3>
                                                 <div id="institution-container"
                                                   style="width:100%; margin: auto"/>
-                                                <div id="chart-buttons" class="text-center mt-3"
+                                                <div id="institution-chart-buttons" class="chart-buttons text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
                                                   test="unparsed-text-available(resolve-uri(concat('../../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.csv'), document-uri(/)))">
@@ -426,7 +426,7 @@
                                                 <h3 style="text-align: center;">Erwähnte Werke</h3>
                                                 <div id="work-container"
                                                   style="width:100%; margin: auto"/>
-                                                <div id="chart-buttons" class="text-center mt-3"
+                                                <div id="work-chart-buttons" class="chart-buttons text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
                                                   test="unparsed-text-available(resolve-uri(concat('../../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.csv'), document-uri(/)))">
@@ -456,7 +456,7 @@
                                                 <h3 style="text-align: center;">Erwähnte Ereignisse</h3>
                                                 <div id="event-container"
                                                   style="width:100%; margin: auto"/>
-                                                <div id="chart-buttons" class="text-center mt-3"
+                                                <div id="event-chart-buttons" class="chart-buttons text-center mt-3"
                                                   style="margin: auto; padding-bottom: 40px">
                                                   <xsl:if
                                                   test="unparsed-text-available(resolve-uri(concat('../../network-data/event_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_top30.csv'), document-uri(/)))">

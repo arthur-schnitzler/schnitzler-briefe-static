@@ -226,12 +226,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        const buttons = document.querySelectorAll('#chart-buttons button');
+        const buttons = document.querySelectorAll('.chart-buttons button');
         buttons.forEach(button => {
             button.style.fontSize = '12px'; // Smaller button size
             button.addEventListener('click', (event) => {
                 // Find the corresponding container (previous sibling of the button's parent)
-                const chartButtonsDiv = button.closest('#chart-buttons');
+                const chartButtonsDiv = button.closest('.chart-buttons');
                 const containerDiv = chartButtonsDiv ? chartButtonsDiv.previousElementSibling : null;
 
                 if (!containerDiv || !containerDiv.id.endsWith('-container')) {
