@@ -307,13 +307,7 @@
             <xsl:variable name="filename" select="concat('netzwerke_', $corr-id, '.html')"/>
             <xsl:variable name="corr-name"
                 select="mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text())"/>
-            <xsl:if test="
-                    unparsed-text-available(resolve-uri(concat('../../network-data/person_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.csv'), document-uri(/))) or
-                    unparsed-text-available(resolve-uri(concat('../../network-data/place_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.csv'), document-uri(/))) or
-                    unparsed-text-available(resolve-uri(concat('../../network-data/institution_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.csv'), document-uri(/))) or
-                    unparsed-text-available(resolve-uri(concat('../../network-data/work_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.csv'), document-uri(/))) or
-                    unparsed-text-available(resolve-uri(concat('../../network-data/event_freq_corr_weights_directed_correspondence_', substring-after($corr-id, 'pmb'), '_alle.csv'), document-uri(/)))">
-                <xsl:result-document href="{$filename}">
+            <xsl:result-document href="{$filename}">
                     <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
                     <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
                         <xsl:call-template name="html_head">
@@ -498,7 +492,6 @@
                         </body>
                     </html>
                 </xsl:result-document>
-            </xsl:if>
         </xsl:for-each>
         <!-- Karten -->
         <xsl:for-each
