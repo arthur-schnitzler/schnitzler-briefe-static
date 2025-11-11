@@ -95,7 +95,7 @@
                                         <source srcset="img/index/hero-bg.webp" type="image/webp"/>
                                         <img
                                             src="img/index/hero-bg.jpg"
-                                            class="d-block w-100" style="max-width=30%;"
+                                            class="d-block w-100" style="max-width: 100%; height: auto; object-fit: contain;"
                                             alt="Arthur Schnitzer, gezeichnet von Léandre"
                                             width="1200" height="750"
                                             fetchpriority="high"
