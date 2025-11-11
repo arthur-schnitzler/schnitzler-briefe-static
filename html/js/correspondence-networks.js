@@ -220,19 +220,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }];
         
         baseUrls.forEach(item => {
-            checkCSVAndLoad(item.urlTop30, item.urlAlle, item.containerId, item.title);
+            // Only load data if the container exists in the DOM
+            if (document.getElementById(item.containerId)) {
+                checkCSVAndLoad(item.urlTop30, item.urlAlle, item.containerId, item.title);
+            }
         });
         
         const buttons = document.querySelectorAll('#chart-buttons button');
         buttons.forEach(button => {
             button.style.fontSize = '12px'; // Smaller button size
             button.addEventListener('click', (event) => {
-                // Remove selected state from all buttons
-                buttons.forEach(btn => btn.style.backgroundColor = '#A63437');
+                // Find the corresponding container (previous sibling of the button's parent)
+                const chartButtonsDiv = button.closest('#chart-buttons');
+                const containerDiv = chartButtonsDiv ? chartButtonsDiv.previousElementSibling : null;
+
+                if (!containerDiv || !containerDiv.id.endsWith('-container')) {
+                    console.error('Could not find container for button', button);
+                    return;
+                }
+
+                // Remove selected state from sibling buttons only
+                const siblingButtons = chartButtonsDiv.querySelectorAll('button');
+                siblingButtons.forEach(btn => btn.style.backgroundColor = '#A63437');
+
                 // Set selected state to the clicked button
                 event.target.style.backgroundColor = '#C04040';
-                const containerId = button.closest('.container').querySelector('div[id$="-container"]').id;
-                loadCSVData(event.target.getAttribute('data-csv'), containerId, button.innerText);
+
+                loadCSVData(event.target.getAttribute('data-csv'), containerDiv.id, button.innerText);
             });
         });
     } else {
