@@ -35,7 +35,7 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
-    <xslt in="${index}" out="${target}/netzwerke_dummy.html" style="./xslt/networks.xsl">
+    <xslt in="${index}" out="${target}/netzwerke_dummy.html" style="./xslt/correspondence-netzwerke.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
