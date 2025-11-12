@@ -154,7 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                     const {
                                         id, weight, overallWeight
                                     } = this.point;
-                                    return `<b>${id}</b><br>Erwähnungen in allen Korrespondenzstücken: ${overallWeight}<br>Erwähnungen in Korrespondenz ${sourceNodeName}: ${weight}`;
+                                    // Only show overall count if we have the data (old CSV format)
+                                    if (overallWeight && overallWeight > 0) {
+                                        return `<b>${id}</b><br>Erwähnungen in allen Korrespondenzstücken: ${overallWeight}<br>Erwähnungen in Korrespondenz ${sourceNodeName}: ${weight}`;
+                                    } else {
+                                        return `<b>${id}</b><br>Erwähnungen in Korrespondenz ${sourceNodeName}: ${weight}`;
+                                    }
                                 }
                                 return false;
                             }
