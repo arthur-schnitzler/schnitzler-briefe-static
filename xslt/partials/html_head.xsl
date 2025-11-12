@@ -6,8 +6,42 @@
     <xsl:template match="/" name="html_head">
         <xsl:param name="html_title" select="$project_short_title"/>
         <xsl:param name="html_description" select="''"/>
-        <xsl:param name="html_url" select="$base_url"/>
+        <xsl:param name="html_url" select="''"/>
         <xsl:param name="html_image" select="concat($base_url, '/img/og-image.jpg')"/>
+
+        <!-- Construct canonical URL if not provided -->
+        <xsl:variable name="canonical_url">
+            <xsl:choose>
+                <!-- If caller provided a URL, use it -->
+                <xsl:when test="normalize-space($html_url) != ''">
+                    <xsl:value-of select="$html_url"/>
+                </xsl:when>
+                <!-- Otherwise, construct URL from source filename -->
+                <xsl:otherwise>
+                    <xsl:variable name="current_file">
+                        <xsl:choose>
+                            <!-- For index/meta pages, use base URL -->
+                            <xsl:when test="contains(base-uri(), 'index.xml') or contains(base-uri(), 'meta.xml')">
+                                <xsl:value-of select="''"/>
+                            </xsl:when>
+                            <!-- For other files, extract filename and change extension to .html -->
+                            <xsl:otherwise>
+                                <xsl:value-of select="replace(tokenize(base-uri(), '/')[last()], '.xml', '.html')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:choose>
+                        <xsl:when test="$current_file != ''">
+                            <xsl:value-of select="concat($base_url, '/', $current_file)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$base_url"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
         <xsl:variable name="html_title1">
             <!-- brachialer Eingriff für index -->
             <xsl:choose>
@@ -68,11 +102,11 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
 
         <!-- SEO Meta Tags -->
         <meta name="description" content="{$html_description1}"/>
-        <link rel="canonical" href="{$html_url}"/>
+        <link rel="canonical" href="{$canonical_url}"/>
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website"/>
-        <meta property="og:url" content="{$html_url}"/>
+        <meta property="og:url" content="{$canonical_url}"/>
         <meta property="og:title" content="{$html_title1}"/>
         <meta property="og:description" content="{$html_description1}"/>
         <meta property="og:image" content="{$html_image}"/>
@@ -81,7 +115,7 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image"/>
-        <meta property="twitter:url" content="{$html_url}"/>
+        <meta property="twitter:url" content="{$canonical_url}"/>
         <meta property="twitter:title" content="{$html_title1}"/>
         <meta property="twitter:description" content="{$html_description1}"/>
         <meta property="twitter:image" content="{$html_image}"/>

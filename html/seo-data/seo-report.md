@@ -1,37 +1,49 @@
 # SEO Analysis Report
 
 ## Website Statistics
-- Total Letters: 1
-- Date Range: 1895-09-24 to 1895-09-24
-- Most Active Year: 1895 (1 letters)
-- Letters from Schnitzler: 0
-- Letters to Schnitzler: 1
+- Total Letters: 3859
+- Date Range: 1885-01-20 to 1931-09-14
+- Most Active Year: 1899 (205 letters)
+- Letters from Schnitzler: 1357
+- Letters to Schnitzler: 2502
 
 ## Top Correspondents
-- Beer-Hofmann, Richard: 1 letters
-- Schnitzler, Arthur: 1 letters
+- Schnitzler, Arthur: 3789 letters
+- Beer-Hofmann, Richard: 841 letters
+- Hofmannsthal, Hugo von: 604 letters
+- Goldmann, Paul: 551 letters
+- Salten, Felix: 448 letters
+- Bahr, Hermann: 359 letters
+- Zweig, Stefan: 151 letters
+- Brandes, Georg: 115 letters
+- Adam, Robert: 111 letters
+- Burckhard, Max: 54 letters
 
 ## Top Places  
-- Garda: 1 mentions
-- Salò: 1 mentions
-- Borromäische Inseln: 1 mentions
-- Manerba del Garda: 1 mentions
-- Italien: 1 mentions
-- Riva del Garda: 1 mentions
-- Wien: 1 mentions
+- Wien: 3534 mentions
+- Berlin: 735 mentions
+- XVIII., Währing: 340 mentions
+- Sternwartestraße 71: 339 mentions
+- Edmund-Weiß-Gasse 7: 321 mentions
+- Paris: 294 mentions
+- Salzburg: 287 mentions
+- Bad Ischl: 285 mentions
+- IX., Alsergrund: 282 mentions
+- Österreich: 237 mentions
 
 ## SEO Recommendations
-- Main Description: Digitale Edition der Korrespondenz Arthur Schnitzlers mit über 1 Briefen aus den Jahren 1895 bis 1895. Vollständig durchsuchbare Sammlung mit Faksimiles und wissenschaftlichem Kommentar.
-- Recommended Keywords: Arthur Schnitzler, Briefwechsel, Korrespondenz, Wien, Literatur, Fin de Siècle, Jung Wien, digitale Edition...
-- Temporal Coverage: 1895-1895
+- Main Description: Digitale Edition der Korrespondenz Arthur Schnitzlers mit über 3859 Briefen aus den Jahren 1885 bis 1931. Vollständig durchsuchbare Sammlung mit Faksimiles und wissenschaftlichem Kommentar.
+- Recommended Keywords: Arthur Schnitzler, Briefwechsel, Korrespondenz, Wien, Literatur, Fin de Siècle, Jung Wien, digitale Edition, Beer-Hofmann, Richard, Hofmannsthal, Hugo von, Goldmann, Paul, Salten, Felix, Bahr, Hermann...
+- Temporal Coverage: 1885-1931
 
 ## Popular Topics
-- Das Märchen. Schauspiel in drei Aufzügen: 1 mentions
-- Liebelei. Schauspiel in drei Akten: 1 mentions
-- Spiegelbild der Freundschaft: 1 mentions
-- Anthologie lyrischer und epigrammatischer Dichtungen der alten Griechen: 1 mentions
-- Das Kind: 1 mentions
-- Die drei Elixire: 1 mentions
-- Die kleine Komödie: 1 mentions
-- Vorzug der Magd vor der vornehmen Frau: 1 mentions
-- [Wähne, Philänis…]: 1 mentions
+- Tagebuch: 176 mentions
+- Liebelei. Schauspiel in drei Akten: 167 mentions
+- Der Schleier der Beatrice. Schauspiel in fünf Akten: 141 mentions
+- Neue Freie Presse: 135 mentions
+- Anatol: 116 mentions
+- Das Märchen. Schauspiel in drei Aufzügen: 104 mentions
+- Freiwild. Schauspiel in 3 Akten: 82 mentions
+- Frankfurter Zeitung: 81 mentions
+- Der einsame Weg. Schauspiel in fünf Akten: 70 mentions
+- Der grüne Kakadu. Groteske in einem Akt: 67 mentions

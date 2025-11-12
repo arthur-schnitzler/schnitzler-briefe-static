@@ -166,10 +166,11 @@ Disallow: /data/
 Disallow: /xslt/
 Disallow: /js-data/
 
-# Block duplicate XML versions of HTML pages
-Disallow: /L*.xml
-Disallow: /p*.xml
+# Block XSL files
 Disallow: /*.xsl
+
+# Note: XML versions are handled via X-Robots-Tag meta tag
+# We cannot use wildcards like /L*.xml as they may block HTML files too
 
 # Allow important static resources
 Allow: /css/
@@ -184,8 +185,25 @@ Allow: /img/
     print(f"Robots.txt generated: {robots_path}")
     return robots_path
 
+def generate_htaccess():
+    """Generate .htaccess file to block XML files from indexing"""
+
+    htaccess_content = """# Block XML files from search engine indexing
+<FilesMatch "\\.xml$">
+  Header set X-Robots-Tag "noindex, nofollow"
+</FilesMatch>
+"""
+
+    htaccess_path = "./html/.htaccess"
+    with open(htaccess_path, 'w', encoding='utf-8') as f:
+        f.write(htaccess_content)
+
+    print(f".htaccess generated: {htaccess_path}")
+    return htaccess_path
+
 if __name__ == "__main__":
     print("Generating SEO files...")
     generate_sitemap()
     generate_robots_txt()
+    generate_htaccess()
     print("SEO file generation completed!")
