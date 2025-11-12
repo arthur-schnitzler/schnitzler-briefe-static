@@ -295,7 +295,6 @@
                     <script>
                             var lat = <xsl:value-of select="replace(tokenize(descendant::tei:location[1]/tei:geo[1]/text(), ' ')[1], ',', '.')"/>;
                             var long = <xsl:value-of select="replace(tokenize(descendant::tei:location[1]/tei:geo[1]/text(), ' ')[2], ',', '.')"/>;
-                            $("#map_detail").css("height", "300px");
                             var map = L.map('map_detail').setView([Number(lat), Number(long)], 13);
                             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
                             maxZoom: 19,

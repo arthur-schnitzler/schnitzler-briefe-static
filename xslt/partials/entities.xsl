@@ -1128,7 +1128,7 @@
                                             <xsl:if test="./tei:location/tei:geo">
                                                 <!-- Karte -->
                                                 <div id="map_detail"
-                                                  style="height: 250px; width: 475px;"/>
+                                                  style="height: 300px; width: 475px;"/>
                                                 <!-- Koordinaten vorbereiten -->
                                                 <xsl:variable name="mlat"
                                                   select="replace(tokenize(./tei:location[1]/tei:geo[1], '\s')[1], ',', '.')"/>
