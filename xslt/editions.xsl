@@ -1268,7 +1268,7 @@
     </xsl:template>
     <xsl:template match="tei:cell">
         <xsl:element name="td">
-            <xsl:apply-templates select="node()[not(self::text() and normalize-space(.) = '')]"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
