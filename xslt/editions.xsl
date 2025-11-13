@@ -1268,23 +1268,12 @@
     </xsl:template>
     <xsl:template match="tei:cell">
         <xsl:element name="td">
-            <xsl:for-each select="node()">
-                <xsl:choose>
-                    <xsl:when test="self::text() and normalize-space(.) = ''">
-                        <!-- Leerzeilen/Whitespace-only nodes werden übersprungen -->
-                    </xsl:when>
-                    <xsl:when test="self::text()">
-                        <xsl:value-of select="normalize-space(.)"/>
-                        <xsl:if test="position() != last() and following-sibling::*">
-                            <xsl:text> </xsl:text>
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:apply-templates select="."/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
+            <xsl:apply-templates select="node()[not(self::text() and normalize-space(.) = '')]"/>
         </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="tei:cell/text()">
+        <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
     <xsl:template match="tei:date[@*]">
         <xsl:apply-templates/>
