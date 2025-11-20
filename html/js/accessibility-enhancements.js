@@ -174,7 +174,7 @@ $(document).ready(function() {
             var listId = $list.attr('id') || 'list-' + Math.random().toString(36).substr(2, 9);
             $list.attr('id', listId);
             
-            var $skipLink = $('<a href="#after-' + listId + '" class="skip-link">Liste überspringen (' + $list.children('li').length + ' Einträge)</a>');
+            var $skipLink = $('<a href="#after-' + listId + '" class="skip-link">Zum Ende der Liste springen ↓</a>');
             var $skipTarget = $('<div id="after-' + listId + '" tabindex="-1"></div>');
             
             $list.before($skipLink);
@@ -259,14 +259,19 @@ $(document).ready(function() {
                 /* Skip link improvements */
                 .skip-link {
                     display: block;
-                    padding: 0.5rem 1rem;
-                    background: #000;
-                    color: #fff;
+                    text-align: right;
+                    padding: 0.25rem 0.5rem;
+                    background: #fff;
+                    color: #005fcc;
                     text-decoration: none;
-                    font-weight: bold;
+                    font-size: 0.875rem;
                     z-index: 9999;
                 }
-                
+
+                .skip-link:hover {
+                    text-decoration: underline;
+                }
+
                 .skip-link:focus {
                     position: static;
                     transform: none;
