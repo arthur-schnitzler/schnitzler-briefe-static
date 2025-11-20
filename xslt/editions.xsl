@@ -1187,7 +1187,6 @@
                         <xsl:with-param name="back" select="$back"/>
                     </xsl:call-template>
                 </xsl:for-each>
-                <script src="https://unpkg.com/de-micro-editor@0.4.0/dist/de-editor.min.js"/>
                 <script type="text/javascript" src="js/text-replacer.js"/>
                 <script type="text/javascript" src="js/de-editor-config.js"/>
                 <script type="text/javascript" src="js/prev-next-urlupdate.js"/>
