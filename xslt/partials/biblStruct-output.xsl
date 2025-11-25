@@ -50,6 +50,7 @@
             <xsl:text> (</xsl:text>
             <xsl:value-of select="$biblStruct-input/tei:series/tei:title"/>
             <xsl:if test="$biblStruct-input/tei:series/tei:editor">
+                <xsl:text>. </xsl:text>
                 <xsl:value-of select="mam:herausgeber($biblStruct-input/tei:series/tei:editor)"/>
             </xsl:if>
             <xsl:if test="$biblStruct-input/tei:series//tei:respStmt">
