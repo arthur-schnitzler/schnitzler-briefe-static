@@ -606,9 +606,9 @@
                                         select="//tei:correspDesc//tei:persName/@ref/substring-after(., '#')"/>
 
                                     <!-- Beteiligte an der Korrespondenz -->
-                                    <details>
+                                    <details style="margin-bottom: 1em;">
                                         <summary>Beteiligte an der Korrespondenz</summary>
-                                        <div class="details-content" style="padding-left: 20px;">
+                                        <div class="details-content" style="padding-left: 20px; margin-top: 0.5em;">
                                             <xsl:for-each select="//tei:correspDesc//tei:persName">
                                                 <xsl:variable name="person-id" select="substring-after(@ref, '#')"/>
                                                 <div style="display: block; margin-bottom: 8px;">
@@ -624,9 +624,9 @@
                                     </details>
 
                                     <!-- Personen -->
-                                    <details open="open">
+                                    <details open="open" style="margin-bottom: 1em;">
                                         <summary>Personen</summary>
-                                        <div class="details-content">
+                                        <div class="details-content" style="margin-top: 0.5em;">
                                             <xsl:for-each select=".//tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)]">
                                                 <xsl:sort
                                                   select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
@@ -676,9 +676,9 @@
                                     </details>
                                     <!-- Werke -->
                                     <xsl:if test=".//tei:back/tei:listBibl/tei:bibl[1]">
-                                        <details>
+                                        <details style="margin-bottom: 1em;">
                                             <summary>Werke</summary>
-                                            <div class="details-content">
+                                            <div class="details-content" style="margin-top: 0.5em;">
                                                 <xsl:for-each
                                                   select=".//tei:back/tei:listBibl/tei:bibl">
                                                   <xsl:sort select="child::tei:title[1]"/>
@@ -749,9 +749,9 @@
                                     </xsl:if>
                                     <!-- Institutionen -->
                                     <xsl:if test=".//tei:back/tei:listOrg/tei:org[1]">
-                                        <details>
+                                        <details style="margin-bottom: 1em;">
                                             <summary>Institutionen</summary>
-                                            <div class="details-content">
+                                            <div class="details-content" style="margin-top: 0.5em;">
                                                 <xsl:for-each select=".//tei:listOrg//tei:org">
                                                   <xsl:sort select="child::tei:orgName[1]"/>
                                                   <div class="entity-highlight-toggle"
@@ -782,9 +782,9 @@
                                     </xsl:if>
                                     <!-- Ereignisse -->
                                     <xsl:if test=".//tei:back/tei:listEvent/tei:event[1]">
-                                        <details>
+                                        <details style="margin-bottom: 1em;">
                                             <summary>Ereignisse</summary>
-                                            <div class="details-content">
+                                            <div class="details-content" style="margin-top: 0.5em;">
                                                 <xsl:for-each
                                                   select=".//tei:back/tei:listEvent/tei:event">
                                                   <xsl:sort select="child::tei:eventName[1]"/>
@@ -816,9 +816,9 @@
                                     </xsl:if>
                                     <!-- Orte -->
                                     <xsl:if test=".//tei:back/tei:listPlace/tei:place[1]">
-                                        <details>
+                                        <details style="margin-bottom: 1em;">
                                             <summary>Orte</summary>
-                                            <div class="details-content">
+                                            <div class="details-content" style="margin-top: 0.5em;">
                                                 <xsl:for-each select=".//tei:listPlace/tei:place">
                                                   <xsl:sort select="child::tei:placeName[1]"/>
                                                   <div class="entity-highlight-toggle"
@@ -908,9 +908,9 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <div>
-                                    <legend>Ansicht</legend>
-                                    <div>
+                                <details open="open" style="margin-bottom: 1em;">
+                                    <summary>Ansicht</summary>
+                                    <div style="margin-top: 0.5em;">
                                         <div class="annotation-toggle" data-type="faksimile"
                                             style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
@@ -922,10 +922,11 @@
                                             <span class="opt-title"> Faksimile</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <legend>Textkritische Auszeichnungen</legend>
-                                    <div>
+                                </details>
+
+                                <details open="open" style="margin-bottom: 1em;">
+                                    <summary>Textkritische Auszeichnungen</summary>
+                                    <div style="margin-top: 0.5em;">
                                         <div class="annotation-toggle" data-type="ef2"
                                             style="display: inline-block; margin-right: 20px;">
                                             <label class="switch">
@@ -979,10 +980,11 @@
                                             <span class="opt-title"> Hinzufügungen</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <legend>Links markieren</legend>
-                                    <div>
+                                </details>
+
+                                <details open="open" style="margin-bottom: 1em;">
+                                    <summary>Links markieren</summary>
+                                    <div style="margin-top: 0.5em;">
                                         <div class="entity-toggle" data-type="master"
                                             style="display: inline-block;">
                                             <label class="switch">
@@ -1052,7 +1054,7 @@
                                               />)</span>
                                         </div>
                                     </div>
-                                </div>
+                                </details>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
