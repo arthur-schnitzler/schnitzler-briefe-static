@@ -616,7 +616,7 @@
                                                         </xsl:attribute>
                                                         <label class="switch" style="vertical-align: middle;">
                                                             <input type="checkbox"/>
-                                                            <span class="i-slider round" style="background-color: #e74c3c;"></span>
+                                                            <span class="i-slider round" style="background-color: #ccc;"></span>
                                                         </label>
                                                         <span class="opt-title" style="margin-left: 10px;">
                                                             <a class="persons">
@@ -651,7 +651,7 @@
                                                             </xsl:attribute>
                                                             <label class="switch" style="vertical-align: middle;">
                                                                 <input type="checkbox"/>
-                                                                <span class="i-slider round" style="background-color: #f39c12;"></span>
+                                                                <span class="i-slider round" style="background-color: #ccc;"></span>
                                                             </label>
                                                             <span class="opt-title" style="margin-left: 10px;">
                                                               <a class="works">
@@ -726,7 +726,7 @@
                                                             </xsl:attribute>
                                                             <label class="switch" style="vertical-align: middle;">
                                                                 <input type="checkbox"/>
-                                                                <span class="i-slider round" style="background-color: #9b59b6;"></span>
+                                                                <span class="i-slider round" style="background-color: #ccc;"></span>
                                                             </label>
                                                             <span class="opt-title" style="margin-left: 10px;">
                                                               <a class="orgs">
@@ -762,7 +762,7 @@
                                                             </xsl:attribute>
                                                             <label class="switch" style="vertical-align: middle;">
                                                                 <input type="checkbox"/>
-                                                                <span class="i-slider round" style="background-color: #27ae60;"></span>
+                                                                <span class="i-slider round" style="background-color: #ccc;"></span>
                                                             </label>
                                                             <span class="opt-title" style="margin-left: 10px;">
                                                                 <a class="events">
@@ -798,7 +798,7 @@
                                                             </xsl:attribute>
                                                             <label class="switch" style="vertical-align: middle;">
                                                                 <input type="checkbox"/>
-                                                                <span class="i-slider round" style="background-color: #3498db;"></span>
+                                                                <span class="i-slider round" style="background-color: #ccc;"></span>
                                                             </label>
                                                             <span class="opt-title" style="margin-left: 10px;">
                                                               <a class="places">

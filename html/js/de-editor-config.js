@@ -391,6 +391,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const entityClass = typeToClassMap[entityType];
 
+            // Color map for each entity type
+            const colorMap = {
+                'person': '#e74c3c',
+                'work': '#f39c12',
+                'org': '#9b59b6',
+                'event': '#27ae60',
+                'place': '#3498db'
+            };
+
+            const slider = toggle.nextElementSibling;
+
+            // Initialize slider as grey (unchecked state)
+            slider.style.backgroundColor = '#ccc';
+
             toggle.addEventListener('change', function() {
                 // Find all entity mentions in the text (not in the modal)
                 // Format: <span class="persons badge-item entity"><a href="pmb2121.html">...</a></span>
@@ -404,17 +418,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                const slider = toggle.nextElementSibling;
-                const highlightColor = getComputedStyle(slider).backgroundColor;
-
                 if (toggle.checked) {
+                    // Change slider to entity color
+                    slider.style.backgroundColor = colorMap[entityType];
+
                     // Highlight all references to this entity in the text
                     matchingEntities.forEach(function(span) {
-                        span.style.backgroundColor = highlightColor;
+                        span.style.backgroundColor = colorMap[entityType];
                         span.style.padding = '2px 4px';
                         span.style.borderRadius = '3px';
                     });
                 } else {
+                    // Change slider back to grey
+                    slider.style.backgroundColor = '#ccc';
+
                     // Remove highlight
                     matchingEntities.forEach(function(span) {
                         span.style.backgroundColor = '';
