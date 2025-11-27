@@ -392,24 +392,34 @@ document.addEventListener('DOMContentLoaded', function() {
             const entityClass = typeToClassMap[entityType];
 
             toggle.addEventListener('change', function() {
-                // Find all references to this entity in the document
-                const entityLinks = document.querySelectorAll('a.' + entityClass + '[href="' + entityId + '.html"]');
+                // Find all entity mentions in the text (not in the modal)
+                // Format: <span class="persons badge-item entity"><a href="pmb2121.html">...</a></span>
+                const allEntitySpans = document.querySelectorAll('.' + entityClass + '.badge-item.entity');
+                const matchingEntities = [];
+
+                allEntitySpans.forEach(function(span) {
+                    const link = span.querySelector('a[href="' + entityId + '.html"]');
+                    if (link) {
+                        matchingEntities.push(span);
+                    }
+                });
 
                 const slider = toggle.nextElementSibling;
+                const highlightColor = getComputedStyle(slider).backgroundColor;
 
                 if (toggle.checked) {
-                    // Highlight all references to this entity
-                    entityLinks.forEach(function(link) {
-                        link.style.backgroundColor = getComputedStyle(slider).backgroundColor;
-                        link.style.padding = '2px 4px';
-                        link.style.borderRadius = '3px';
+                    // Highlight all references to this entity in the text
+                    matchingEntities.forEach(function(span) {
+                        span.style.backgroundColor = highlightColor;
+                        span.style.padding = '2px 4px';
+                        span.style.borderRadius = '3px';
                     });
                 } else {
                     // Remove highlight
-                    entityLinks.forEach(function(link) {
-                        link.style.backgroundColor = '';
-                        link.style.padding = '';
-                        link.style.borderRadius = '';
+                    matchingEntities.forEach(function(span) {
+                        span.style.backgroundColor = '';
+                        span.style.padding = '';
+                        span.style.borderRadius = '';
                     });
                 }
             });
