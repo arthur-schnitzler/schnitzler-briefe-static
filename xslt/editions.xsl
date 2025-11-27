@@ -654,15 +654,15 @@
                                                   </xsl:choose>
                                                 </xsl:variable>
                                                 <!-- All persons here have toggles, corresp persons are already filtered out -->
-                                                <div class="entity-highlight-toggle" data-type="person" style="display: block; margin-bottom: 8px;">
+                                                <div class="entity-highlight-toggle" data-type="person" style="display: flex; align-items: flex-start; margin-bottom: 8px;">
                                                     <xsl:attribute name="data-entity-id">
                                                         <xsl:value-of select="data(@xml:id)"/>
                                                     </xsl:attribute>
-                                                    <label class="switch" style="vertical-align: middle;">
+                                                    <label class="switch" style="flex-shrink: 0;">
                                                         <input type="checkbox"/>
                                                         <span class="i-slider round" style="background-color: #ccc;"></span>
                                                     </label>
-                                                    <span class="opt-title" style="margin-left: 10px;">
+                                                    <span class="opt-title" style="margin-left: 10px; flex: 1;">
                                                         <a class="persons">
                                                             <xsl:attribute name="href">
                                                                 <xsl:value-of select="concat(data(@xml:id), '.html')"/>
@@ -684,17 +684,17 @@
                                                   <xsl:sort select="child::tei:title[1]"/>
                                                   <div class="entity-highlight-toggle"
                                                   data-type="work"
-                                                  style="display: block; margin-bottom: 8px;">
+                                                  style="display: flex; align-items: flex-start; margin-bottom: 8px;">
                                                   <xsl:attribute name="data-entity-id">
                                                   <xsl:value-of select="data(@xml:id)"/>
                                                   </xsl:attribute>
                                                   <label class="switch"
-                                                  style="vertical-align: middle;">
+                                                  style="flex-shrink: 0;">
                                                   <input type="checkbox"/>
                                                   <span class="i-slider round"
                                                   style="background-color: #ccc;"/>
                                                   </label>
-                                                  <span class="opt-title" style="margin-left: 10px;">
+                                                  <span class="opt-title" style="margin-left: 10px; flex: 1;">
                                                   <a class="works">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -756,17 +756,17 @@
                                                   <xsl:sort select="child::tei:orgName[1]"/>
                                                   <div class="entity-highlight-toggle"
                                                   data-type="org"
-                                                  style="display: block; margin-bottom: 8px;">
+                                                  style="display: flex; align-items: flex-start; margin-bottom: 8px;">
                                                   <xsl:attribute name="data-entity-id">
                                                   <xsl:value-of select="data(@xml:id)"/>
                                                   </xsl:attribute>
                                                   <label class="switch"
-                                                  style="vertical-align: middle;">
+                                                  style="flex-shrink: 0;">
                                                   <input type="checkbox"/>
                                                   <span class="i-slider round"
                                                   style="background-color: #ccc;"/>
                                                   </label>
-                                                  <span class="opt-title" style="margin-left: 10px;">
+                                                  <span class="opt-title" style="margin-left: 10px; flex: 1;">
                                                   <a class="orgs">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -790,17 +790,17 @@
                                                   <xsl:sort select="child::tei:eventName[1]"/>
                                                   <div class="entity-highlight-toggle"
                                                   data-type="event"
-                                                  style="display: block; margin-bottom: 8px;">
+                                                  style="display: flex; align-items: flex-start; margin-bottom: 8px;">
                                                   <xsl:attribute name="data-entity-id">
                                                   <xsl:value-of select="data(@xml:id)"/>
                                                   </xsl:attribute>
                                                   <label class="switch"
-                                                  style="vertical-align: middle;">
+                                                  style="flex-shrink: 0;">
                                                   <input type="checkbox"/>
                                                   <span class="i-slider round"
                                                   style="background-color: #ccc;"/>
                                                   </label>
-                                                  <span class="opt-title" style="margin-left: 10px;">
+                                                  <span class="opt-title" style="margin-left: 10px; flex: 1;">
                                                   <a class="events">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -823,17 +823,17 @@
                                                   <xsl:sort select="child::tei:placeName[1]"/>
                                                   <div class="entity-highlight-toggle"
                                                   data-type="place"
-                                                  style="display: block; margin-bottom: 8px;">
+                                                  style="display: flex; align-items: flex-start; margin-bottom: 8px;">
                                                   <xsl:attribute name="data-entity-id">
                                                   <xsl:value-of select="data(@xml:id)"/>
                                                   </xsl:attribute>
                                                   <label class="switch"
-                                                  style="vertical-align: middle;">
+                                                  style="flex-shrink: 0;">
                                                   <input type="checkbox"/>
                                                   <span class="i-slider round"
                                                   style="background-color: #ccc;"/>
                                                   </label>
-                                                  <span class="opt-title" style="margin-left: 10px;">
+                                                  <span class="opt-title" style="margin-left: 10px; flex: 1;">
                                                   <a class="places">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -910,154 +910,148 @@
                             <div class="modal-body">
                                 <div>
                                     <legend>Ansicht</legend>
-                                    <ul>
-                                        <li>
-                                            <div class="annotation-toggle" data-type="faksimile"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" id="faksimile-slider"
-                                                  checked="checked"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #A63437;"/>
-                                                </label>
-                                                <span class="opt-title"> Faksimile</span>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <div>
+                                        <div class="annotation-toggle" data-type="faksimile"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" id="faksimile-slider"
+                                              checked="checked"/>
+                                              <span class="i-slider round"
+                                              style="background-color: #A63437;"/>
+                                            </label>
+                                            <span class="opt-title"> Faksimile</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <legend>Textkritische Auszeichnungen</legend>
-                                    <ul>
-                                        <li>
-                                            <div class="annotation-toggle" data-type="ef2"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" id="ef2-slider"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #A63437;"/>
-                                                </label>
-                                                <span class="opt-title"> Textkritische
-                                                  Zeichen</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="annotation-toggle" data-type="ls"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" id="langes-s-slider"/>
-                                                  <span class="i-slider round"/>
-                                                </label>
-                                                <span class="opt-title"> Langes-s (ſ)</span>
-                                            </div>
-                                            <div class="annotation-toggle" data-type="gem-m"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" id="gemination-m-slider"/>
-                                                  <span class="i-slider round"/>
-                                                </label>
-                                                <span class="opt-title"> Gemination m (m̅)</span>
-                                            </div>
-                                            <div class="annotation-toggle" data-type="gem-n"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" id="gemination-n-slider"/>
-                                                  <span class="i-slider round"/>
-                                                </label>
-                                                <span class="opt-title"> Gemination n (n̅)</span>
-                                            </div>
-                                            <div class="annotation-toggle" data-type="del"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" id="deleted-slider"/>
-                                                  <span class="i-slider round"/>
-                                                </label>
-                                                <span class="opt-title"> Streichung</span>
-                                            </div>
-                                            <div class="annotation-toggle" data-type="add"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" id="addition-slider"/>
-                                                  <span class="i-slider round"/>
-                                                </label>
-                                                <span class="opt-title"> Hinzufügungen</span>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <div>
+                                        <div class="annotation-toggle" data-type="ef2"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" id="ef2-slider"/>
+                                              <span class="i-slider round"
+                                              style="background-color: #A63437;"/>
+                                            </label>
+                                            <span class="opt-title"> Textkritische
+                                              Zeichen</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="annotation-toggle" data-type="ls"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" id="langes-s-slider"/>
+                                              <span class="i-slider round"/>
+                                            </label>
+                                            <span class="opt-title"> Langes-s (ſ)</span>
+                                        </div>
+                                        <div class="annotation-toggle" data-type="gem-m"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" id="gemination-m-slider"/>
+                                              <span class="i-slider round"/>
+                                            </label>
+                                            <span class="opt-title"> Gemination m (m̅)</span>
+                                        </div>
+                                        <div class="annotation-toggle" data-type="gem-n"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" id="gemination-n-slider"/>
+                                              <span class="i-slider round"/>
+                                            </label>
+                                            <span class="opt-title"> Gemination n (n̅)</span>
+                                        </div>
+                                        <div class="annotation-toggle" data-type="del"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" id="deleted-slider"/>
+                                              <span class="i-slider round"/>
+                                            </label>
+                                            <span class="opt-title"> Streichung</span>
+                                        </div>
+                                        <div class="annotation-toggle" data-type="add"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" id="addition-slider"/>
+                                              <span class="i-slider round"/>
+                                            </label>
+                                            <span class="opt-title"> Hinzufügungen</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <legend>Links markieren</legend>
-                                    <ul>
-                                        <li>
-                                            <div class="entity-toggle" data-type="master"
-                                                style="display: inline-block;">
-                                                <label class="switch">
-                                                  <input type="checkbox" checked="checked"
-                                                  id="master-entity-toggle"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #A63437;"/>
-                                                </label>
-                                                <span class="opt-title"> Alle</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="entity-toggle" data-type="persons"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" checked="checked"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #e74c3c;"/>
-                                                </label>
-                                                <span class="opt-title"> Personen (<xsl:value-of
-                                                  select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person)"
-                                                  />)</span>
-                                            </div>
-                                            <div class="entity-toggle" data-type="works"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" checked="checked"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #f39c12;"/>
-                                                </label>
-                                                <span class="opt-title"> Werke (<xsl:value-of
-                                                  select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"
-                                                  />)</span>
-                                            </div>
-                                            <div class="entity-toggle" data-type="places"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" checked="checked"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #3498db;"/>
-                                                </label>
-                                                <span class="opt-title"> Orte (<xsl:value-of
-                                                  select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"
-                                                  />)</span>
-                                            </div>
-                                            <div class="entity-toggle" data-type="orgs"
-                                                style="display: inline-block; margin-right: 20px;">
-                                                <label class="switch">
-                                                  <input type="checkbox" checked="checked"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #9b59b6;"/>
-                                                </label>
-                                                <span class="opt-title"> Institutionen
-                                                  (<xsl:value-of
-                                                  select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"
-                                                  />)</span>
-                                            </div>
-                                            <div class="entity-toggle" data-type="events"
-                                                style="display: inline-block;">
-                                                <label class="switch">
-                                                  <input type="checkbox" checked="checked"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #27ae60;"/>
-                                                </label>
-                                                <span class="opt-title"> Ereignisse (<xsl:value-of
-                                                  select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"
-                                                  />)</span>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <div>
+                                        <div class="entity-toggle" data-type="master"
+                                            style="display: inline-block;">
+                                            <label class="switch">
+                                              <input type="checkbox" checked="checked"
+                                              id="master-entity-toggle"/>
+                                              <span class="i-slider round"
+                                              style="background-color: #A63437;"/>
+                                            </label>
+                                            <span class="opt-title"> Alle</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="entity-toggle" data-type="persons"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" checked="checked"/>
+                                              <span class="i-slider round"
+                                              style="background-color: #e74c3c;"/>
+                                            </label>
+                                            <span class="opt-title"> Personen (<xsl:value-of
+                                              select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person)"
+                                              />)</span>
+                                        </div>
+                                        <div class="entity-toggle" data-type="works"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" checked="checked"/>
+                                              <span class="i-slider round"
+                                              style="background-color: #f39c12;"/>
+                                            </label>
+                                            <span class="opt-title"> Werke (<xsl:value-of
+                                              select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"
+                                              />)</span>
+                                        </div>
+                                        <div class="entity-toggle" data-type="places"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" checked="checked"/>
+                                              <span class="i-slider round"
+                                              style="background-color: #3498db;"/>
+                                            </label>
+                                            <span class="opt-title"> Orte (<xsl:value-of
+                                              select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"
+                                              />)</span>
+                                        </div>
+                                        <div class="entity-toggle" data-type="orgs"
+                                            style="display: inline-block; margin-right: 20px;">
+                                            <label class="switch">
+                                              <input type="checkbox" checked="checked"/>
+                                              <span class="i-slider round"
+                                              style="background-color: #9b59b6;"/>
+                                            </label>
+                                            <span class="opt-title"> Institutionen
+                                              (<xsl:value-of
+                                              select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"
+                                              />)</span>
+                                        </div>
+                                        <div class="entity-toggle" data-type="events"
+                                            style="display: inline-block;">
+                                            <label class="switch">
+                                              <input type="checkbox" checked="checked"/>
+                                              <span class="i-slider round"
+                                              style="background-color: #27ae60;"/>
+                                            </label>
+                                            <span class="opt-title"> Ereignisse (<xsl:value-of
+                                              select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"
+                                              />)</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
