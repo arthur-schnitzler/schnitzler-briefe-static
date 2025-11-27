@@ -406,6 +406,10 @@ document.addEventListener('DOMContentLoaded', function() {
             slider.style.backgroundColor = '#ccc';
 
             toggle.addEventListener('change', function() {
+                // Get the entity color from the colorMap
+                const entityColor = colorMap[entityType];
+                console.log('Toggle changed for entity:', entityId, 'Type:', entityType, 'Color:', entityColor);
+
                 // Find all entity mentions in the text (not in the modal)
                 // Format: <span class="persons badge-item entity"><a href="pmb2121.html">...</a></span>
                 const allEntitySpans = document.querySelectorAll('.' + entityClass + '.badge-item.entity');
@@ -420,11 +424,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (toggle.checked) {
                     // Change slider to entity color
-                    slider.style.backgroundColor = colorMap[entityType];
+                    slider.style.backgroundColor = entityColor;
 
-                    // Highlight all references to this entity in the text
+                    // Highlight all references to this entity in the text with the entity color
                     matchingEntities.forEach(function(span) {
-                        span.style.backgroundColor = colorMap[entityType];
+                        span.style.backgroundColor = entityColor;
                         span.style.padding = '2px 4px';
                         span.style.borderRadius = '3px';
                     });
