@@ -574,16 +574,11 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
-                                <div class="accordion" id="entitietenAccordion">
+                                <div class="entity-details-container">
                                     <!-- Personen -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingPersons">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePersons" aria-expanded="true" aria-controls="collapsePersons">
-                                                Personen
-                                            </button>
-                                        </h2>
-                                        <div id="collapsePersons" class="accordion-collapse collapse show" aria-labelledby="headingPersons" data-bs-parent="#entitietenAccordion">
-                                            <div class="accordion-body">
+                                    <details open="open">
+                                        <summary>Personen</summary>
+                                        <div class="details-content">
                                                 <xsl:for-each select=".//tei:listPerson/tei:person">
                                                     <xsl:sort
                                                         select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
@@ -610,39 +605,54 @@
                                                           </xsl:otherwise>
                                                         </xsl:choose>
                                                     </xsl:variable>
-                                                    <div class="entity-highlight-toggle" data-type="person" style="display: block; margin-bottom: 8px;">
-                                                        <xsl:attribute name="data-entity-id">
-                                                            <xsl:value-of select="data(@xml:id)"/>
-                                                        </xsl:attribute>
-                                                        <label class="switch" style="vertical-align: middle;">
-                                                            <input type="checkbox"/>
-                                                            <span class="i-slider round" style="background-color: #ccc;"></span>
-                                                        </label>
-                                                        <span class="opt-title" style="margin-left: 10px;">
-                                                            <a class="persons">
-                                                              <xsl:attribute name="href">
-                                                              <xsl:value-of
-                                                              select="concat(data(@xml:id), '.html')"/>
-                                                              </xsl:attribute>
-                                                              <xsl:value-of select="$naname"/>
-                                                            </a>
-                                                        </span>
-                                                    </div>
+                                                    <xsl:variable name="current-id" select="data(@xml:id)"/>
+                                                    <xsl:variable name="is-corresp-person"
+                                                        select="//tei:correspDesc//tei:persName[substring-after(@ref, '#') = $current-id]"/>
+
+                                                    <xsl:choose>
+                                                        <xsl:when test="$is-corresp-person">
+                                                            <!-- Person in correspDesc: no toggle, just indented link -->
+                                                            <div style="display: block; margin-bottom: 8px; margin-left: 30px;">
+                                                                <a class="persons">
+                                                                  <xsl:attribute name="href">
+                                                                  <xsl:value-of
+                                                                  select="concat(data(@xml:id), '.html')"/>
+                                                                  </xsl:attribute>
+                                                                  <xsl:value-of select="$naname"/>
+                                                                </a>
+                                                            </div>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <!-- Regular person: with toggle -->
+                                                            <div class="entity-highlight-toggle" data-type="person" style="display: block; margin-bottom: 8px;">
+                                                                <xsl:attribute name="data-entity-id">
+                                                                    <xsl:value-of select="data(@xml:id)"/>
+                                                                </xsl:attribute>
+                                                                <label class="switch" style="vertical-align: middle;">
+                                                                    <input type="checkbox"/>
+                                                                    <span class="i-slider round" style="background-color: #ccc;"></span>
+                                                                </label>
+                                                                <span class="opt-title" style="margin-left: 10px;">
+                                                                    <a class="persons">
+                                                                      <xsl:attribute name="href">
+                                                                      <xsl:value-of
+                                                                      select="concat(data(@xml:id), '.html')"/>
+                                                                      </xsl:attribute>
+                                                                      <xsl:value-of select="$naname"/>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
                                                 </xsl:for-each>
-                                            </div>
                                         </div>
-                                    </div>
-                                    
+                                    </details>
+
                                     <!-- Werke -->
                                     <xsl:if test=".//tei:back/tei:listBibl/tei:bibl[1]">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingWorks">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWorks" aria-expanded="false" aria-controls="collapseWorks">
-                                                    Werke
-                                                </button>
-                                            </h2>
-                                            <div id="collapseWorks" class="accordion-collapse collapse" aria-labelledby="headingWorks" data-bs-parent="#entitietenAccordion">
-                                                <div class="accordion-body">
+                                        <details>
+                                            <summary>Werke</summary>
+                                            <div class="details-content">
                                                     <xsl:for-each select=".//tei:back/tei:listBibl/tei:bibl">
                                                         <xsl:sort select="child::tei:title[1]"/>
                                                         <div class="entity-highlight-toggle" data-type="work" style="display: block; margin-bottom: 8px;">
@@ -703,21 +713,15 @@
                                                             </span>
                                                         </div>
                                                     </xsl:for-each>
-                                                </div>
                                             </div>
-                                        </div>
+                                        </details>
                                     </xsl:if>
-                                    
+
                                     <!-- Institutionen -->
                                     <xsl:if test=".//tei:back/tei:listOrg/tei:org[1]">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingOrgs">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrgs" aria-expanded="false" aria-controls="collapseOrgs">
-                                                    Institutionen
-                                                </button>
-                                            </h2>
-                                            <div id="collapseOrgs" class="accordion-collapse collapse" aria-labelledby="headingOrgs" data-bs-parent="#entitietenAccordion">
-                                                <div class="accordion-body">
+                                        <details>
+                                            <summary>Institutionen</summary>
+                                            <div class="details-content">
                                                     <xsl:for-each select=".//tei:listOrg//tei:org">
                                                         <xsl:sort select="child::tei:orgName[1]"/>
                                                         <div class="entity-highlight-toggle" data-type="org" style="display: block; margin-bottom: 8px;">
@@ -739,21 +743,15 @@
                                                             </span>
                                                         </div>
                                                     </xsl:for-each>
-                                                </div>
                                             </div>
-                                        </div>
+                                        </details>
                                     </xsl:if>
-                                    
+
                                     <!-- Ereignisse -->
                                     <xsl:if test=".//tei:back/tei:listEvent/tei:event[1]">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingEvents">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEvents" aria-expanded="false" aria-controls="collapseEvents">
-                                                    Ereignisse
-                                                </button>
-                                            </h2>
-                                            <div id="collapseEvents" class="accordion-collapse collapse" aria-labelledby="headingEvents" data-bs-parent="#entitietenAccordion">
-                                                <div class="accordion-body">
+                                        <details>
+                                            <summary>Ereignisse</summary>
+                                            <div class="details-content">
                                                     <xsl:for-each select=".//tei:back/tei:listEvent/tei:event">
                                                         <xsl:sort select="child::tei:eventName[1]"/>
                                                         <div class="entity-highlight-toggle" data-type="event" style="display: block; margin-bottom: 8px;">
@@ -775,21 +773,15 @@
                                                             </span>
                                                         </div>
                                                     </xsl:for-each>
-                                                </div>
                                             </div>
-                                        </div>
+                                        </details>
                                     </xsl:if>
-                                    
+
                                     <!-- Orte -->
                                     <xsl:if test=".//tei:back/tei:listPlace/tei:place[1]">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingPlaces">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlaces" aria-expanded="false" aria-controls="collapsePlaces">
-                                                    Orte
-                                                </button>
-                                            </h2>
-                                            <div id="collapsePlaces" class="accordion-collapse collapse" aria-labelledby="headingPlaces" data-bs-parent="#entitietenAccordion">
-                                                <div class="accordion-body">
+                                        <details>
+                                            <summary>Orte</summary>
+                                            <div class="details-content">
                                                     <xsl:for-each select=".//tei:listPlace/tei:place">
                                                         <xsl:sort select="child::tei:placeName[1]"/>
                                                         <div class="entity-highlight-toggle" data-type="place" style="display: block; margin-bottom: 8px;">
@@ -851,9 +843,8 @@
                                                             </span>
                                                         </div>
                                                     </xsl:for-each>
-                                                </div>
                                             </div>
-                                        </div>
+                                        </details>
                                     </xsl:if>
                                 </div>
                             </div>
