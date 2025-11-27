@@ -370,3 +370,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // LoadEditor removed - replaced with standard toggle switch
 
+// Individual entity highlight toggles
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        const entityHighlightToggles = document.querySelectorAll('.entity-highlight-toggle input[type="checkbox"]');
+
+        entityHighlightToggles.forEach(function(toggle) {
+            const container = toggle.closest('.entity-highlight-toggle');
+            const entityId = container.getAttribute('data-entity-id');
+            const entityType = container.getAttribute('data-type');
+
+            // Map entity types to their plural forms used in class names
+            const typeToClassMap = {
+                'person': 'persons',
+                'work': 'works',
+                'org': 'orgs',
+                'event': 'events',
+                'place': 'places'
+            };
+
+            const entityClass = typeToClassMap[entityType];
+
+            toggle.addEventListener('change', function() {
+                // Find all references to this entity in the document
+                const entityLinks = document.querySelectorAll('a.' + entityClass + '[href="' + entityId + '.html"]');
+
+                const slider = toggle.nextElementSibling;
+
+                if (toggle.checked) {
+                    // Highlight all references to this entity
+                    entityLinks.forEach(function(link) {
+                        link.style.backgroundColor = getComputedStyle(slider).backgroundColor;
+                        link.style.padding = '2px 4px';
+                        link.style.borderRadius = '3px';
+                    });
+                } else {
+                    // Remove highlight
+                    entityLinks.forEach(function(link) {
+                        link.style.backgroundColor = '';
+                        link.style.padding = '';
+                        link.style.borderRadius = '';
+                    });
+                }
+            });
+        });
+    }, 500);
+});
+

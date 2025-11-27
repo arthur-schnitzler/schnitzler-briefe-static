@@ -3,10 +3,6 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="http://dse-static.foo.bar"
     xmlns:mam="whatever" version="2.0" exclude-result-prefixes="xsl tei xs">
-    <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" 
-        indent="yes" omit-xml-declaration="yes"/>
-    <xsl:strip-space elements="*"/>
-    <xsl:preserve-space elements="tei:p tei:div tei:span tei:hi tei:emph tei:title tei:foreign"/>
     <xsl:import href="./partials/shared.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
@@ -19,6 +15,10 @@
     <xsl:import
         href="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-static/refs/heads/main/xslt/export/schnitzler-chronik.xsl"/>
     <!--<xsl:import href="../../schnitzler-chronik-static/xslt/export/schnitzler-chronik.xsl"/>-->
+    <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" 
+        indent="yes" omit-xml-declaration="yes"/>
+    <xsl:strip-space elements="*"/>
+    <xsl:preserve-space elements="tei:p tei:div tei:span tei:hi tei:emph tei:title tei:foreign"/>
     <xsl:param name="schnitzler-chronik_fetch-locally" as="xs:boolean" select="true()"/>
     <xsl:param name="schnitzler-chronik_current-type" as="xs:string" select="'schnitzler-briefe'"/>
     <xsl:variable name="quotationURL">
@@ -584,34 +584,41 @@
                                         </h2>
                                         <div id="collapsePersons" class="accordion-collapse collapse show" aria-labelledby="headingPersons" data-bs-parent="#entitietenAccordion">
                                             <div class="accordion-body">
-                                                <ul>
-                                                    <xsl:for-each select=".//tei:listPerson/tei:person">
-                                                        <xsl:sort
-                                                            select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
-                                                        <xsl:variable name="naname" as="xs:string">
-                                                            <xsl:choose>
-                                                              <xsl:when
-                                                              test="child::tei:persName[1]/tei:surname[1] and child::tei:persName[1]/tei:forename[1]">
-                                                              <xsl:value-of
-                                                              select="concat(child::tei:persName[1]/tei:surname[1], ' ', child::tei:persName[1]/tei:forename[1])"
-                                                              />
-                                                              </xsl:when>
-                                                              <xsl:when
-                                                              test="child::tei:persName[1]/tei:forename[1]">
-                                                              <xsl:value-of select="child::tei:forename[1]"/>
-                                                              </xsl:when>
-                                                              <xsl:when
-                                                              test="child::tei:persName[1]/tei:surname[1]">
-                                                              <xsl:value-of
-                                                              select="child::tei:persName[1]/tei:surname[1]"/>
-                                                              </xsl:when>
-                                                              <xsl:otherwise>
-                                                              <xsl:value-of
-                                                              select="normalize-space(child::tei:persName)"/>
-                                                              </xsl:otherwise>
-                                                            </xsl:choose>
-                                                        </xsl:variable>
-                                                        <li>
+                                                <xsl:for-each select=".//tei:listPerson/tei:person">
+                                                    <xsl:sort
+                                                        select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
+                                                    <xsl:variable name="naname" as="xs:string">
+                                                        <xsl:choose>
+                                                          <xsl:when
+                                                          test="child::tei:persName[1]/tei:surname[1] and child::tei:persName[1]/tei:forename[1]">
+                                                          <xsl:value-of
+                                                          select="concat(child::tei:persName[1]/tei:surname[1], ' ', child::tei:persName[1]/tei:forename[1])"
+                                                          />
+                                                          </xsl:when>
+                                                          <xsl:when
+                                                          test="child::tei:persName[1]/tei:forename[1]">
+                                                          <xsl:value-of select="child::tei:forename[1]"/>
+                                                          </xsl:when>
+                                                          <xsl:when
+                                                          test="child::tei:persName[1]/tei:surname[1]">
+                                                          <xsl:value-of
+                                                          select="child::tei:persName[1]/tei:surname[1]"/>
+                                                          </xsl:when>
+                                                          <xsl:otherwise>
+                                                          <xsl:value-of
+                                                          select="normalize-space(child::tei:persName)"/>
+                                                          </xsl:otherwise>
+                                                        </xsl:choose>
+                                                    </xsl:variable>
+                                                    <div class="entity-highlight-toggle" data-type="person" style="display: block; margin-bottom: 8px;">
+                                                        <xsl:attribute name="data-entity-id">
+                                                            <xsl:value-of select="data(@xml:id)"/>
+                                                        </xsl:attribute>
+                                                        <label class="switch" style="vertical-align: middle;">
+                                                            <input type="checkbox"/>
+                                                            <span class="i-slider round" style="background-color: #e74c3c;"></span>
+                                                        </label>
+                                                        <span class="opt-title" style="margin-left: 10px;">
                                                             <a class="persons">
                                                               <xsl:attribute name="href">
                                                               <xsl:value-of
@@ -619,9 +626,9 @@
                                                               </xsl:attribute>
                                                               <xsl:value-of select="$naname"/>
                                                             </a>
-                                                        </li>
-                                                    </xsl:for-each>
-                                                </ul>
+                                                        </span>
+                                                    </div>
+                                                </xsl:for-each>
                                             </div>
                                         </div>
                                     </div>
@@ -636,10 +643,17 @@
                                             </h2>
                                             <div id="collapseWorks" class="accordion-collapse collapse" aria-labelledby="headingWorks" data-bs-parent="#entitietenAccordion">
                                                 <div class="accordion-body">
-                                                    <ul>
-                                                        <xsl:for-each select=".//tei:back/tei:listBibl/tei:bibl">
-                                                            <xsl:sort select="child::tei:title[1]"/>
-                                                            <li>
+                                                    <xsl:for-each select=".//tei:back/tei:listBibl/tei:bibl">
+                                                        <xsl:sort select="child::tei:title[1]"/>
+                                                        <div class="entity-highlight-toggle" data-type="work" style="display: block; margin-bottom: 8px;">
+                                                            <xsl:attribute name="data-entity-id">
+                                                                <xsl:value-of select="data(@xml:id)"/>
+                                                            </xsl:attribute>
+                                                            <label class="switch" style="vertical-align: middle;">
+                                                                <input type="checkbox"/>
+                                                                <span class="i-slider round" style="background-color: #f39c12;"></span>
+                                                            </label>
+                                                            <span class="opt-title" style="margin-left: 10px;">
                                                               <a class="works">
                                                               <xsl:attribute name="href">
                                                               <xsl:value-of
@@ -686,9 +700,9 @@
                                                               </xsl:if>
                                                               <xsl:value-of select="./tei:title[1]"/>
                                                               </a>
-                                                            </li>
-                                                        </xsl:for-each>
-                                                    </ul>
+                                                            </span>
+                                                        </div>
+                                                    </xsl:for-each>
                                                 </div>
                                             </div>
                                         </div>
@@ -704,10 +718,17 @@
                                             </h2>
                                             <div id="collapseOrgs" class="accordion-collapse collapse" aria-labelledby="headingOrgs" data-bs-parent="#entitietenAccordion">
                                                 <div class="accordion-body">
-                                                    <ul>
-                                                        <xsl:for-each select=".//tei:listOrg//tei:org">
-                                                            <xsl:sort select="child::tei:orgName[1]"/>
-                                                            <li>
+                                                    <xsl:for-each select=".//tei:listOrg//tei:org">
+                                                        <xsl:sort select="child::tei:orgName[1]"/>
+                                                        <div class="entity-highlight-toggle" data-type="org" style="display: block; margin-bottom: 8px;">
+                                                            <xsl:attribute name="data-entity-id">
+                                                                <xsl:value-of select="data(@xml:id)"/>
+                                                            </xsl:attribute>
+                                                            <label class="switch" style="vertical-align: middle;">
+                                                                <input type="checkbox"/>
+                                                                <span class="i-slider round" style="background-color: #9b59b6;"></span>
+                                                            </label>
+                                                            <span class="opt-title" style="margin-left: 10px;">
                                                               <a class="orgs">
                                                               <xsl:attribute name="href">
                                                               <xsl:value-of
@@ -715,9 +736,9 @@
                                                               </xsl:attribute>
                                                               <xsl:value-of select="./tei:orgName[1]"/>
                                                               </a>
-                                                            </li>
-                                                        </xsl:for-each>
-                                                    </ul>
+                                                            </span>
+                                                        </div>
+                                                    </xsl:for-each>
                                                 </div>
                                             </div>
                                         </div>
@@ -733,10 +754,17 @@
                                             </h2>
                                             <div id="collapseEvents" class="accordion-collapse collapse" aria-labelledby="headingEvents" data-bs-parent="#entitietenAccordion">
                                                 <div class="accordion-body">
-                                                    <ul>
-                                                        <xsl:for-each select=".//tei:back/tei:listEvent/tei:event">
-                                                            <xsl:sort select="child::tei:eventName[1]"/>
-                                                            <li>
+                                                    <xsl:for-each select=".//tei:back/tei:listEvent/tei:event">
+                                                        <xsl:sort select="child::tei:eventName[1]"/>
+                                                        <div class="entity-highlight-toggle" data-type="event" style="display: block; margin-bottom: 8px;">
+                                                            <xsl:attribute name="data-entity-id">
+                                                                <xsl:value-of select="data(@xml:id)"/>
+                                                            </xsl:attribute>
+                                                            <label class="switch" style="vertical-align: middle;">
+                                                                <input type="checkbox"/>
+                                                                <span class="i-slider round" style="background-color: #27ae60;"></span>
+                                                            </label>
+                                                            <span class="opt-title" style="margin-left: 10px;">
                                                                 <a class="events">
                                                                     <xsl:attribute name="href">
                                                                         <xsl:value-of
@@ -744,9 +772,9 @@
                                                                     </xsl:attribute>
                                                                     <xsl:value-of select="./tei:eventName[1]"/>
                                                                 </a>
-                                                            </li>
-                                                        </xsl:for-each>
-                                                    </ul>
+                                                            </span>
+                                                        </div>
+                                                    </xsl:for-each>
                                                 </div>
                                             </div>
                                         </div>
@@ -762,10 +790,17 @@
                                             </h2>
                                             <div id="collapsePlaces" class="accordion-collapse collapse" aria-labelledby="headingPlaces" data-bs-parent="#entitietenAccordion">
                                                 <div class="accordion-body">
-                                                    <ul>
-                                                        <xsl:for-each select=".//tei:listPlace/tei:place">
-                                                            <xsl:sort select="child::tei:placeName[1]"/>
-                                                            <li>
+                                                    <xsl:for-each select=".//tei:listPlace/tei:place">
+                                                        <xsl:sort select="child::tei:placeName[1]"/>
+                                                        <div class="entity-highlight-toggle" data-type="place" style="display: block; margin-bottom: 8px;">
+                                                            <xsl:attribute name="data-entity-id">
+                                                                <xsl:value-of select="data(@xml:id)"/>
+                                                            </xsl:attribute>
+                                                            <label class="switch" style="vertical-align: middle;">
+                                                                <input type="checkbox"/>
+                                                                <span class="i-slider round" style="background-color: #3498db;"></span>
+                                                            </label>
+                                                            <span class="opt-title" style="margin-left: 10px;">
                                                               <a class="places">
                                                               <xsl:attribute name="href">
                                                               <xsl:value-of
@@ -813,9 +848,9 @@
                                                               <i class="fa-solid fa-location-dot"/>
                                                               </a>
                                                               </xsl:if>
-                                                            </li>
-                                                        </xsl:for-each>
-                                                    </ul>
+                                                            </span>
+                                                        </div>
+                                                    </xsl:for-each>
                                                 </div>
                                             </div>
                                         </div>
