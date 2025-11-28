@@ -328,6 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
             facsimilesCol.style.height = 'auto';
             facsimilesCol.style.maxHeight = 'none';
             facsimilesCol.style.overflow = 'visible';
+            facsimilesCol.style.position = 'static'; // Remove absolute positioning
 
             // Also fix parent containers
             const viewer = facsimilesCol.querySelector('#viewer');
@@ -335,6 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 viewer.style.height = 'auto';
                 viewer.style.maxHeight = 'none';
                 viewer.style.overflow = 'visible';
+                viewer.style.position = 'static';
             }
 
             const containerFacsimile = facsimilesCol.querySelector('#container_facsimile');
@@ -342,7 +344,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 containerFacsimile.style.height = 'auto';
                 containerFacsimile.style.maxHeight = 'none';
                 containerFacsimile.style.overflow = 'visible';
+                containerFacsimile.style.position = 'static';
             }
+
+            // Make sure the main transcript container grows with content
+            container.style.height = 'auto';
+            container.style.minHeight = 'auto';
 
             // Create inline images container in right column
             let inlineContainer = facsimilesCol.querySelector('#inline-images-container');

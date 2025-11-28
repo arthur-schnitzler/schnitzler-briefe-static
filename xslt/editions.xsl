@@ -651,7 +651,7 @@
                                                       <span class="i-slider round"
                                                       style="background-color: #e74c3c;"/>
                                                     </label>
-                                                    <span class="opt-title">Unterstreichungen</span>
+                                                    <span class="opt-title"> Unterstreichungen</span>
                                                 </div>
                                             </div>
                                             <xsl:for-each select="descendant::tei:text/tei:back/tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)]">
