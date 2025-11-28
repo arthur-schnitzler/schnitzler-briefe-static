@@ -321,10 +321,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Keep facsimiles column visible
-            facsimilesCol.style.display = 'block';
-            facsimilesCol.style.visibility = 'visible';
-            facsimilesCol.style.opacity = '1';
+            // Keep facsimiles column visible with !important equivalent
+            facsimilesCol.style.setProperty('display', 'block', 'important');
+            facsimilesCol.style.setProperty('visibility', 'visible', 'important');
+            facsimilesCol.style.setProperty('opacity', '1', 'important');
 
             // Remove all positioning and sizing constraints - let it flow naturally
             const viewer = facsimilesCol.querySelector('#viewer');
@@ -346,6 +346,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!inlineContainer) {
                 inlineContainer = document.createElement('div');
                 inlineContainer.id = 'inline-images-container';
+                inlineContainer.style.setProperty('display', 'block', 'important');
+                inlineContainer.style.setProperty('visibility', 'visible', 'important');
                 inlineContainer.style.padding = '1rem';
                 inlineContainer.style.backgroundColor = '#fff';
 
@@ -355,9 +357,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     facsimilesCol.insertBefore(inlineContainer, facsimilesCol.firstChild);
                 }
+            } else {
+                // If container already exists, ensure it's visible
+                inlineContainer.style.setProperty('display', 'block', 'important');
+                inlineContainer.style.setProperty('visibility', 'visible', 'important');
             }
 
             console.log('Inline container created/found:', inlineContainer);
+
+            // Add MutationObserver to detect if container gets removed
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.removedNodes.forEach((node) => {
+                        if (node === inlineContainer || (node.contains && node.contains(inlineContainer))) {
+                            console.error('🚨 INLINE CONTAINER WAS REMOVED FROM DOM!', new Error().stack);
+                        }
+                    });
+                });
+            });
+            observer.observe(facsimilesCol, { childList: true, subtree: true });
 
             // Get all pagebreaks and insert corresponding images in right column
             const pagebreaks = container.querySelectorAll('.pagebreak[data-facs]');
