@@ -362,8 +362,77 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get all pagebreaks and insert corresponding images in right column
             const pagebreaks = container.querySelectorAll('.pagebreak[data-facs]');
             console.log('Found pagebreaks with data-facs:', pagebreaks.length);
+
             for (let i = 0; i < pagebreaks.length; i++) {
-                await insertInlineImageInRightColumn(pagebreaks[i], i + 1, inlineContainer);
+                const pbElement = pagebreaks[i];
+                const nextPbElement = pagebreaks[i + 1] || null;
+
+                await insertInlineImageInRightColumn(pbElement, i + 1, inlineContainer, nextPbElement);
+            }
+
+            // After all images are loaded, synchronize positions
+            setTimeout(() => {
+                synchronizeImagePositions(pagebreaks, inlineContainer);
+            }, 500);
+        }
+
+        function synchronizeImagePositions(pagebreaks, inlineContainer) {
+            console.log('Synchronizing image positions...');
+
+            const textColumn = document.querySelector('.text');
+            const facsimilesColumn = document.querySelector('.facsimiles');
+
+            if (!textColumn || !facsimilesColumn) return;
+
+            // Get the top offset of the text column
+            const textColumnTop = textColumn.getBoundingClientRect().top + window.scrollY;
+
+            for (let i = 0; i < pagebreaks.length; i++) {
+                const pbElement = pagebreaks[i];
+                const nextPbElement = pagebreaks[i + 1];
+
+                // Find the corresponding image container
+                const facsId = pbElement.getAttribute('data-facs');
+                const imageContainer = inlineContainer.querySelector(`.inline-image-container[data-facs="${facsId}"]`);
+
+                if (!imageContainer) continue;
+
+                // Calculate the vertical position of this pb element
+                const pbTop = pbElement.getBoundingClientRect().top + window.scrollY;
+                const pbOffsetFromTextTop = pbTop - textColumnTop;
+
+                // Get current position of this image in the images container
+                const imageTop = imageContainer.offsetTop;
+
+                // Calculate how much space we need before this image
+                const neededSpaceBefore = pbOffsetFromTextTop - imageTop;
+
+                if (neededSpaceBefore > 0) {
+                    // Add a spacer div before the image
+                    const spacer = document.createElement('div');
+                    spacer.className = 'image-position-spacer';
+                    spacer.style.height = neededSpaceBefore + 'px';
+                    imageContainer.parentNode.insertBefore(spacer, imageContainer);
+                }
+
+                // If there's a next pb, calculate spacing after this image
+                if (nextPbElement) {
+                    const nextPbTop = nextPbElement.getBoundingClientRect().top + window.scrollY;
+                    const textSectionHeight = nextPbTop - pbTop;
+
+                    const img = imageContainer.querySelector('img');
+                    if (img && img.complete) {
+                        const imageHeight = img.height;
+
+                        // If image is shorter than text section, add whitespace after
+                        if (imageHeight < textSectionHeight) {
+                            const spacerAfter = document.createElement('div');
+                            spacerAfter.className = 'image-whitespace-spacer';
+                            spacerAfter.style.height = (textSectionHeight - imageHeight) + 'px';
+                            imageContainer.appendChild(spacerAfter);
+                        }
+                    }
+                }
             }
         }
 
