@@ -380,6 +380,19 @@ document.addEventListener('DOMContentLoaded', function() {
             for (let i = 0; i < pagebreaks.length; i++) {
                 await insertInlineImageInRightColumn(pagebreaks[i], i + 1, inlineContainer);
             }
+
+            // Add a clearfix div after both columns to ensure footer appears below
+            const clearDiv = document.createElement('div');
+            clearDiv.style.clear = 'both';
+            clearDiv.style.height = '1px';
+            container.appendChild(clearDiv);
+
+            // Also ensure the card footer has proper clearing
+            const cardFooter = document.querySelector('.card-footer');
+            if (cardFooter) {
+                cardFooter.style.clear = 'both';
+                cardFooter.style.position = 'relative';
+            }
         }
 
         function disableInlineImageMode(container) {
