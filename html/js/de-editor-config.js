@@ -308,100 +308,138 @@ document.addEventListener('DOMContentLoaded', function() {
 
             container.classList.add('inline-mode');
 
-            // Hide Openseadragon viewer
-            const osdViewer = document.getElementById('openseadragon-photo');
-            if (osdViewer) {
-                osdViewer.style.display = 'none';
-            }
-
-            // Get right column (facsimiles)
+            // Hide the original two-column layout
+            const textCol = container.querySelector('.text');
             const facsimilesCol = container.querySelector('.facsimiles');
-            if (!facsimilesCol) {
-                console.warn('No .facsimiles column found');
-                return;
-            }
 
-            // Keep facsimiles column visible with !important equivalent
-            facsimilesCol.style.setProperty('display', 'block', 'important');
-            facsimilesCol.style.setProperty('visibility', 'visible', 'important');
-            facsimilesCol.style.setProperty('opacity', '1', 'important');
+            if (textCol) textCol.style.display = 'none';
+            if (facsimilesCol) facsimilesCol.style.display = 'none';
 
-            // Remove all positioning and sizing constraints - let it flow naturally
-            const viewer = facsimilesCol.querySelector('#viewer');
-            const containerFacsimile = facsimilesCol.querySelector('#container_facsimile');
-
-            // Reset all parent containers to natural flow
-            [facsimilesCol, viewer, containerFacsimile].forEach(el => {
-                if (el) {
-                    el.style.height = '';
-                    el.style.maxHeight = '';
-                    el.style.minHeight = '';
-                    el.style.overflow = '';
-                    el.style.position = '';
-                }
-            });
-
-            // Create inline images container in right column
-            let inlineContainer = facsimilesCol.querySelector('#inline-images-container');
-            if (!inlineContainer) {
-                inlineContainer = document.createElement('div');
-                inlineContainer.id = 'inline-images-container';
-                inlineContainer.style.setProperty('display', 'block', 'important');
-                inlineContainer.style.setProperty('visibility', 'visible', 'important');
-                inlineContainer.style.padding = '1rem';
-                inlineContainer.style.backgroundColor = '#fff';
-
-                // Insert at the beginning of viewer
-                if (viewer) {
-                    viewer.insertBefore(inlineContainer, viewer.firstChild);
-                } else {
-                    facsimilesCol.insertBefore(inlineContainer, facsimilesCol.firstChild);
-                }
-            } else {
-                // If container already exists, ensure it's visible
-                inlineContainer.style.setProperty('display', 'block', 'important');
-                inlineContainer.style.setProperty('visibility', 'visible', 'important');
-            }
-
-            console.log('Inline container created/found:', inlineContainer);
-
-            // Add MutationObserver to detect if container gets removed
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    mutation.removedNodes.forEach((node) => {
-                        if (node === inlineContainer || (node.contains && node.contains(inlineContainer))) {
-                            console.error('🚨 INLINE CONTAINER WAS REMOVED FROM DOM!', new Error().stack);
-                        }
-                    });
-                });
-            });
-            observer.observe(facsimilesCol, { childList: true, subtree: true });
-
-            // Get all pagebreaks and insert corresponding images in right column
+            // Get all pagebreaks from the text
             const pagebreaks = container.querySelectorAll('.pagebreak[data-facs]');
             console.log('Found pagebreaks with data-facs:', pagebreaks.length);
 
+            // Create new container for paired rows
+            let pairedContainer = container.querySelector('#paired-text-images-container');
+            if (!pairedContainer) {
+                pairedContainer = document.createElement('div');
+                pairedContainer.id = 'paired-text-images-container';
+                pairedContainer.className = 'container-fluid';
+                container.appendChild(pairedContainer);
+            } else {
+                // Clear existing content
+                pairedContainer.innerHTML = '';
+            }
+
+            // Build paired rows: one row per pagebreak section
             for (let i = 0; i < pagebreaks.length; i++) {
                 const pbElement = pagebreaks[i];
                 const nextPbElement = pagebreaks[i + 1] || null;
+                const facsId = pbElement.getAttribute('data-facs');
 
-                await insertInlineImageInRightColumn(pbElement, i + 1, inlineContainer, nextPbElement);
+                if (!facsId) continue;
+
+                // Extract text between this pb and the next pb
+                const textContent = extractTextBetweenPagebreaks(pbElement, nextPbElement);
+
+                // Get IIIF URL for this pagebreak
+                const iiifUrl = extractIIIFUrlFromTileSources(facsId);
+
+                if (!iiifUrl) {
+                    console.warn(`No IIIF URL found for ${facsId}, skipping this section`);
+                    // Still create a row with just text, no image
+                    const row = createPairedRow(textContent, null, i + 1, facsId);
+                    pairedContainer.appendChild(row);
+                    continue;
+                }
+
+                // Create paired row with text and image
+                const row = createPairedRow(textContent, iiifUrl, i + 1, facsId);
+                pairedContainer.appendChild(row);
             }
 
-            // Wait for all images to load before synchronizing
-            const allImages = inlineContainer.querySelectorAll('img');
-            const imageLoadPromises = Array.from(allImages).map(img => {
-                if (img.complete) return Promise.resolve();
-                return new Promise(resolve => {
-                    img.onload = resolve;
-                    img.onerror = resolve; // Also resolve on error to avoid blocking
-                });
+            console.log('Paired rows created');
+        }
+
+        function extractTextBetweenPagebreaks(startPb, endPb) {
+            // Clone nodes between startPb and endPb (or until end of parent if endPb is null)
+            const textNodes = [];
+            let currentNode = startPb.nextSibling;
+
+            while (currentNode && currentNode !== endPb) {
+                // Clone the node to avoid modifying the original
+                const clonedNode = currentNode.cloneNode(true);
+                textNodes.push(clonedNode);
+                currentNode = currentNode.nextSibling;
+            }
+
+            // Create a container for this text section
+            const textContainer = document.createElement('div');
+            textContainer.className = 'text-section';
+
+            // Add the pagebreak itself
+            const clonedPb = startPb.cloneNode(true);
+            textContainer.appendChild(clonedPb);
+
+            // Add all text nodes
+            textNodes.forEach(node => {
+                textContainer.appendChild(node);
             });
 
-            await Promise.all(imageLoadPromises);
+            return textContainer;
+        }
 
-            // After all images are loaded, synchronize positions
-            synchronizeImagePositions(pagebreaks, inlineContainer);
+        function createPairedRow(textContent, iiifUrl, pageNum, facsId) {
+            // Create Bootstrap row
+            const row = document.createElement('div');
+            row.className = 'row paired-text-image-row mb-4';
+            row.setAttribute('data-page', pageNum);
+            row.setAttribute('data-facs', facsId);
+
+            // Create text column (left, 50%)
+            const textCol = document.createElement('div');
+            textCol.className = 'col-md-6 paired-text-col';
+            textCol.appendChild(textContent);
+
+            // Create image column (right, 50%)
+            const imageCol = document.createElement('div');
+            imageCol.className = 'col-md-6 paired-image-col';
+
+            if (iiifUrl) {
+                // Create image element
+                const img = document.createElement('img');
+                img.className = 'paired-facsimile img-fluid';
+                img.alt = `Seite ${pageNum}`;
+
+                // Get IIIF image URL (1200px width)
+                const imageUrl = iiifUrl.replace('/info.json', `/full/,1200/0/default.jpg`);
+                img.src = imageUrl;
+                img.style.width = '100%';
+                img.style.height = 'auto';
+
+                imageCol.appendChild(img);
+
+                // Add error handling
+                img.addEventListener('error', function() {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'alert alert-warning';
+                    errorDiv.textContent = `Bild konnte nicht geladen werden (${facsId})`;
+                    imageCol.innerHTML = '';
+                    imageCol.appendChild(errorDiv);
+                });
+            } else {
+                // No image available
+                const noImageDiv = document.createElement('div');
+                noImageDiv.className = 'alert alert-info';
+                noImageDiv.textContent = 'Kein Bild verfügbar';
+                imageCol.appendChild(noImageDiv);
+            }
+
+            // Append columns to row
+            row.appendChild(textCol);
+            row.appendChild(imageCol);
+
+            return row;
         }
 
         function synchronizeImagePositions(pagebreaks, inlineContainer) {
@@ -511,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function disableInlineImageMode(container) {
-            console.log('🔴 disableInlineImageMode called!', new Error().stack);
+            console.log('Disabling inline image mode');
             if (!container) {
                 console.warn('No container in disableInlineImageMode');
                 return;
@@ -519,17 +557,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
             container.classList.remove('inline-mode');
 
+            // Show original two-column layout again
+            const textCol = container.querySelector('.text');
+            const facsimilesCol = container.querySelector('.facsimiles');
+
+            if (textCol) textCol.style.display = '';
+            if (facsimilesCol) facsimilesCol.style.display = '';
+
             // Show Openseadragon viewer again
             const osdViewer = document.getElementById('openseadragon-photo');
             if (osdViewer) {
                 osdViewer.style.display = 'block';
-                console.log('Showing Openseadragon viewer');
             }
 
-            // Remove inline images container
+            // Remove paired container
+            const pairedContainer = document.getElementById('paired-text-images-container');
+            if (pairedContainer) {
+                pairedContainer.remove();
+            }
+
+            // Also remove old inline container if it exists
             const inlineContainer = document.getElementById('inline-images-container');
             if (inlineContainer) {
-                console.log('Removing inline images container');
                 inlineContainer.remove();
             }
         }
