@@ -325,7 +325,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 pairedContainer = document.createElement('div');
                 pairedContainer.id = 'paired-text-images-container';
                 pairedContainer.className = 'container-fluid';
-                container.appendChild(pairedContainer);
+                // Insert at the beginning of the container, before all other content
+                container.insertBefore(pairedContainer, container.firstChild);
             } else {
                 // Clear existing content
                 pairedContainer.innerHTML = '';

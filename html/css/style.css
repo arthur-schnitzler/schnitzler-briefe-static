@@ -2230,15 +2230,27 @@ input:checked + .i-slider:before {
 }
 
 .text-section {
-  font-size: 1rem;
-  line-height: 1.6;
   margin-top: 0 !important;
   padding-top: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
 }
 
 .text-section > *:first-child {
   margin-top: 0 !important;
   padding-top: 0 !important;
+}
+
+/* Ensure text content uses full width in paired layout */
+.paired-text-col .editionText {
+  max-width: none !important;
+  width: 100% !important;
+  font-size: 1.3rem !important;
+  line-height: 1.75 !important;
+}
+
+.paired-text-col .editionText * {
+  font-size: inherit;
 }
 
 /* Responsive: Mobile */
