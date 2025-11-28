@@ -921,6 +921,18 @@
                                             </label>
                                             <span class="opt-title"> Faksimile</span>
                                         </div>
+
+                                        <!-- NEW: Inline image mode toggle -->
+                                        <div class="annotation-toggle" data-type="imgmode"
+                                            style="display: inline-block; margin-right: 20px;"
+                                            id="imgmode-toggle-container">
+                                            <label class="switch">
+                                              <input type="checkbox" id="image-mode-slider"
+                                              disabled="disabled"/>
+                                              <span class="i-slider round"/>
+                                            </label>
+                                            <span class="opt-title"> Bilder inline</span>
+                                        </div>
                                     </div>
                                 </details>
 

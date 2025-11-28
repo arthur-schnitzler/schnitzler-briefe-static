@@ -2138,3 +2138,94 @@ input:checked + .i-slider:before {
 .nav-link.btn-backlink {
   background-color: transparent !important;
 }
+
+/* ============================================================ */
+/* INLINE IMAGE MODE STYLES                                     */
+/* ============================================================ */
+
+/* Inline-Modus Layout */
+.transcript.inline-mode .text {
+  max-width: 100%;
+}
+
+.transcript.inline-mode .facsimiles {
+  display: none !important;
+}
+
+/* Inline-Bild-Container */
+.inline-image-container {
+  float: right;
+  width: 45%;
+  margin: 0 0 1rem 1rem;
+  clear: right;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.inline-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-caption {
+  font-size: 0.8rem;
+  color: #666;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  text-align: right;
+}
+
+/* Whitespace-Spacer */
+.inline-image-spacer {
+  clear: both;
+  width: 100%;
+  visibility: hidden;
+}
+
+/* Pagebreak in Inline-Modus */
+.inline-mode .pagebreak {
+  font-weight: bold;
+  color: #A63437;
+  font-size: 1.1rem;
+}
+
+/* Fehleranzeige */
+.inline-image-error {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+/* Disabled toggle styling */
+#imgmode-toggle-container {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+  .inline-image-container {
+    width: 100%;
+    float: none;
+    margin: 1.5rem 0;
+  }
+
+  .inline-image-spacer {
+    display: none; /* Kein Whitespace auf Mobile */
+  }
+
+  .inline-mode .pagebreak {
+    display: block;
+    margin: 1rem 0;
+  }
+
+  /* Auf Mobile: Inline-Bilder werden als Blöcke zwischen Text angezeigt (100% Breite) */
+  .inline-mode .facsimiles {
+    display: none !important; /* Openseadragon bleibt versteckt */
+  }
+}

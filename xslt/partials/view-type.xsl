@@ -307,4 +307,169 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <!-- Named template to get facs-folder for reuse in shared.xsl -->
+  <xsl:template name="mam:get-facs-folder">
+    <xsl:variable name="msIdentifier"
+      select="ancestor::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]/tei:witness[@n = '1']/tei:msDesc[1]/tei:msIdentifier[1]"
+      as="node()?"/>
+    <xsl:choose>
+      <!-- DRUCKE -->
+      <xsl:when
+        test="ancestor::tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1][not(tei:listWit)]/tei:listBibl">
+        <xsl:text>Drucke</xsl:text>
+      </xsl:when>
+      <!-- BEINECKE -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Beinecke')]">
+        <xsl:choose>
+          <xsl:when test="descendant::tei:pb[not(@facs = '')][1]/@facs[starts-with(., 'ASanRBH')]">
+            <xsl:text>Beinecke_ASanRBH</xsl:text>
+          </xsl:when>
+          <xsl:when
+            test="descendant::tei:pb[not(@facs = '')][1]/@facs[starts-with(., 'Foto-Innen')]">
+            <xsl:text>Beinecke_RBH_Foto-Innen</xsl:text>
+          </xsl:when>
+          <xsl:when
+            test="descendant::tei:pb[not(@facs = '')][1]/@facs[starts-with(., 'undatiert')]">
+            <xsl:text>Beinecke_undatiert</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of
+              select="concat('Beinecke_', substring(descendant::tei:pb[not(@facs = '')][1]/@facs, 1, 4))"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <!-- BSB -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Bayerische Staatsbibliothek')]">
+        <xsl:text>BSB</xsl:text>
+      </xsl:when>
+      <!-- ADK -->
+      <xsl:when
+        test="$msIdentifier/tei:repository[contains(., 'Akademie der Künste')] and $msIdentifier/tei:settlement = 'Berlin'">
+        <xsl:text>ADK</xsl:text>
+      </xsl:when>
+      <!-- BURGERBIBLIOTHEK -->
+      <xsl:when test="descendant::tei:repository[contains(., 'Burgerbibliothek')]">
+        <xsl:text>Burgerbibliothek</xsl:text>
+      </xsl:when>
+      <!-- CUL -->
+      <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Cambridge')]">
+        <xsl:variable name="Folder-Number">
+          <xsl:choose>
+            <xsl:when test="descendant::tei:pb[not(@facs = '')][1]/@facs[contains(., '-')]">
+              <xsl:value-of
+                select="replace(tokenize(substring-after(descendant::tei:pb[not(@facs = '')][1]/@facs, '-0')[1], '-')[1], '^0+', '')"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>noFolderNumber</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$msIdentifier/tei:idno[contains(., 'Schnitzler, A')]">
+            <xsl:text>CUL_A</xsl:text>
+          </xsl:when>
+          <xsl:when test="$msIdentifier/tei:idno[contains(., 'Abschrift')]">
+            <xsl:text>CUL_Abschriften</xsl:text>
+          </xsl:when>
+          <xsl:when test="$Folder-Number != 'noFolderNumber'">
+            <xsl:value-of select="concat('CUL_MS_B', $Folder-Number)"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- DLA -->
+      <xsl:when test="$msIdentifier/tei:settlement = 'Marbach am Neckar'">
+        <xsl:value-of
+          select="concat('DLA_', substring(descendant::tei:pb[not(@facs = '')][1]/@facs, 1, 5))"/>
+      </xsl:when>
+      <!-- HOCHSTIFT -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Hochstift')]">
+        <xsl:text>Hochstift</xsl:text>
+      </xsl:when>
+      <!-- KLASSIK STIFTUNG WEIMAR -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Klassik Stiftung')]">
+        <xsl:text>Klassik_Stiftung_Weimar</xsl:text>
+      </xsl:when>
+      <!-- KÖNIGLICHE BIBLIOTHEK KOPENHAGEN -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Kongelige')]">
+        <xsl:text>Koenigliche_Bibliothek_Kopenhagen</xsl:text>
+      </xsl:when>
+      <!-- LEO BAECK INSTITUTE -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Leo Baeck')]">
+        <xsl:text>Leo_Baeck_Institute</xsl:text>
+      </xsl:when>
+      <!-- MONACENSIA -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Monacensia')]">
+        <xsl:text>Monacensia</xsl:text>
+      </xsl:when>
+      <!-- NATIONAL LIBRARY ISRAEL -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Israel')]">
+        <xsl:text>National_Library_Israel</xsl:text>
+      </xsl:when>
+      <!-- NDL KIEL -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Christian-Albrechts')]">
+        <xsl:text>NDL_Kiel</xsl:text>
+      </xsl:when>
+      <!-- ÖGL -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Gesellschaft für Literatur')]">
+        <xsl:text>OGL</xsl:text>
+      </xsl:when>
+      <!-- ÖNB -->
+      <xsl:when
+        test="$msIdentifier/tei:repository[contains(., 'Österreichische Nationalbibliothek')]">
+        <xsl:text>ONB</xsl:text>
+      </xsl:when>
+      <!-- ORIEL LEIBZON -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Leibzon')]">
+        <xsl:text>Privatbesitz_Oriel_Leibzon</xsl:text>
+      </xsl:when>
+      <!-- REINHARD URBACH -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Urbach')]">
+        <xsl:text>Privatbesitz_Reinhard_Urbach</xsl:text>
+      </xsl:when>
+      <!-- SBB -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Staatsbibliothek Berlin')]">
+        <xsl:text>SBB</xsl:text>
+      </xsl:when>
+      <!-- SUB HAMBURG -->
+      <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Hamburg')]">
+        <xsl:text>SUB_Hamburg</xsl:text>
+      </xsl:when>
+      <!-- UB SALZBURG -->
+      <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Salzburg')]">
+        <xsl:text>UB_Salzburg</xsl:text>
+      </xsl:when>
+      <!-- THEATERMUSEUM -->
+      <xsl:when test="$msIdentifier/tei:settlement[contains(., 'Wien')] and $msIdentifier/tei:repository[. = 'Theatermuseum']">
+        <xsl:text>Theatermuseum</xsl:text>
+      </xsl:when>
+      <!-- UB WROCLAW -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Uniwersytecka')]">
+        <xsl:text>UB_Wroclaw</xsl:text>
+      </xsl:when>
+      <!-- UNITED NATIONS ARCHIVE -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'United Nations')]">
+        <xsl:text>United_Nations_Archives</xsl:text>
+      </xsl:when>
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Zionist Archives')]">
+        <xsl:text>Central_Zionist_Archives</xsl:text>
+      </xsl:when>
+      <!-- WBR -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Wienbibliothek')]">
+        <xsl:text>WBR</xsl:text>
+      </xsl:when>
+      <!-- Library of Congress -->
+      <xsl:when test="$msIdentifier/tei:repository[contains(., 'Library of Congress')]">
+        <xsl:text>LOC</xsl:text>
+      </xsl:when>
+      <xsl:when test="$msIdentifier/tei:repository[. = 'Privatbesitz']">
+        <xsl:text>Privatbesitz</xsl:text>
+      </xsl:when>
+      <!-- otherwise -->
+      <xsl:otherwise>
+        <xsl:value-of select="$msIdentifier/tei:repository/replace(., ' ', '_')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

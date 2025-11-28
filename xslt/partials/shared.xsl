@@ -829,6 +829,13 @@
             </xsl:when>
             <xsl:otherwise>
                 <span class="pagebreak" title="Beginn einer neuen Seite">
+                    <!-- Add data-facs attribute for inline image mode -->
+                    <!-- JavaScript will extract full IIIF URL from Openseadragon tileSources -->
+                    <xsl:if test="@facs and @facs != ''">
+                        <xsl:attribute name="data-facs">
+                            <xsl:value-of select="@facs"/>
+                        </xsl:attribute>
+                    </xsl:if>
                     <xsl:text>|</xsl:text>
                 </span>
             </xsl:otherwise>

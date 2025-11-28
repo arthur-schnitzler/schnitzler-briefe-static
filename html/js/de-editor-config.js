@@ -244,7 +244,195 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-        
+
+        // ============================================================
+        // INLINE IMAGE MODE IMPLEMENTATION
+        // ============================================================
+
+        // Image Mode Toggle Handler
+        const imageModeToggle = document.getElementById('image-mode-slider');
+        const faksimileToggle = document.getElementById('faksimile-slider');
+
+        if (imageModeToggle && faksimileToggle) {
+            // Faksimile-Toggle kontrolliert die Verfügbarkeit des Bildmodus-Toggles
+            faksimileToggle.addEventListener('change', function() {
+                if (faksimileToggle.checked) {
+                    imageModeToggle.disabled = false;
+                    document.getElementById('imgmode-toggle-container').style.opacity = '1';
+                } else {
+                    imageModeToggle.disabled = true;
+                    imageModeToggle.checked = false;
+                    document.getElementById('imgmode-toggle-container').style.opacity = '0.5';
+                    // Wenn Faksimile ausgeschaltet wird, deaktiviere auch Inline-Modus
+                    const transcriptContainer = document.querySelector('.transcript');
+                    if (transcriptContainer && transcriptContainer.classList.contains('inline-mode')) {
+                        disableInlineImageMode(transcriptContainer);
+                    }
+                }
+            });
+
+            imageModeToggle.addEventListener('change', function() {
+                const transcriptContainer = document.querySelector('.transcript');
+                const slider = imageModeToggle.nextElementSibling;
+
+                if (imageModeToggle.checked) {
+                    enableInlineImageMode(transcriptContainer);
+                    slider.style.backgroundColor = '#A63437';
+                } else {
+                    disableInlineImageMode(transcriptContainer);
+                    slider.style.backgroundColor = '#ccc';
+                }
+
+                updateURLParameters();
+            });
+
+            // Initial state: Bildmodus nur verfügbar wenn Faksimile aktiv
+            if (!faksimileToggle.checked) {
+                imageModeToggle.disabled = true;
+                document.getElementById('imgmode-toggle-container').style.opacity = '0.5';
+            }
+        }
+
+        async function enableInlineImageMode(container) {
+            if (!container) return;
+
+            container.classList.add('inline-mode');
+
+            const facsimilesCol = container.querySelector('.facsimiles');
+            if (facsimilesCol) facsimilesCol.style.display = 'none';
+
+            const textCol = container.querySelector('.text');
+            if (textCol) {
+                textCol.classList.remove('col-md-6');
+                textCol.classList.add('col-md-12');
+            }
+
+            const pagebreaks = container.querySelectorAll('.pagebreak[data-facs]');
+            for (let i = 0; i < pagebreaks.length; i++) {
+                await insertInlineImage(pagebreaks[i], i + 1);
+            }
+        }
+
+        function disableInlineImageMode(container) {
+            if (!container) return;
+
+            container.classList.remove('inline-mode');
+
+            const facsimilesCol = container.querySelector('.facsimiles');
+            if (facsimilesCol) facsimilesCol.style.display = 'block';
+
+            const textCol = container.querySelector('.text');
+            if (textCol) {
+                textCol.classList.remove('col-md-12');
+                textCol.classList.add('col-md-6');
+            }
+
+            container.querySelectorAll('.inline-image-container, .inline-image-spacer')
+                .forEach(el => el.remove());
+        }
+
+        function extractIIIFUrlFromTileSources(facsId) {
+            // Try to extract IIIF URL from Openseadragon's tileSources in the page
+            const scripts = document.querySelectorAll('script');
+            for (let script of scripts) {
+                if (script.textContent && script.textContent.includes('tileSources')) {
+                    const match = script.textContent.match(/tileSources:\[(.*?)\]/);
+                    if (match) {
+                        const urls = match[1].match(/"([^"]+)"/g);
+                        if (urls) {
+                            // Find the URL that matches this facs ID
+                            for (let urlStr of urls) {
+                                const url = urlStr.replace(/"/g, '');
+                                if (url.includes(facsId)) {
+                                    return url;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        async function insertInlineImage(pbElement, pageNum) {
+            const facsId = pbElement.getAttribute('data-facs');
+
+            if (!facsId) return;
+
+            if (pbElement.nextElementSibling?.classList.contains('inline-image-container')) {
+                return;
+            }
+
+            // Extract IIIF URL from Openseadragon tileSources
+            const iiifUrl = extractIIIFUrlFromTileSources(facsId);
+
+            if (!iiifUrl) {
+                console.warn(`Could not find IIIF URL for facs ID: ${facsId}`);
+                return;
+            }
+
+            const container = document.createElement('div');
+            container.className = 'inline-image-container';
+            container.setAttribute('data-facs', facsId);
+
+            const img = document.createElement('img');
+            img.className = 'inline-facsimile';
+            img.alt = `Seite ${pageNum}`;
+
+            // Responsive Bildgröße: 800px Desktop, 600px Mobile
+            const isMobile = window.innerWidth <= 768;
+            const imageWidth = isMobile ? 600 : 800;
+            const imageUrl = iiifUrl.replace('/info.json', `/full/${imageWidth},/0/default.jpg`);
+            img.src = imageUrl;
+
+            const caption = document.createElement('div');
+            caption.className = 'image-caption';
+            caption.textContent = `Seite ${pageNum}`;
+
+            container.appendChild(img);
+            container.appendChild(caption);
+
+            pbElement.parentNode.insertBefore(container, pbElement.nextSibling);
+
+            img.addEventListener('load', function() {
+                const spacerHeight = calculateWhitespace(pbElement, container.offsetHeight);
+                if (spacerHeight > 0) {
+                    insertSpacer(container, spacerHeight);
+                }
+            });
+
+            img.addEventListener('error', function() {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'inline-image-error';
+                errorDiv.innerHTML = `<strong>⚠ Bild konnte nicht geladen werden</strong><br><small>Faksimile-ID: ${facsId}</small>`;
+                container.replaceWith(errorDiv);
+            });
+        }
+
+        function calculateWhitespace(pbElement, imageHeight) {
+            let nextPb = findNextPagebreak(pbElement);
+            let textHeight = nextPb ?
+                (nextPb.offsetTop - pbElement.offsetTop) : 1000;
+            // 50px Puffer für besseren visuellen Abstand
+            return Math.max(0, imageHeight - textHeight + 50);
+        }
+
+        function insertSpacer(imageContainer, height) {
+            const spacer = document.createElement('div');
+            spacer.className = 'inline-image-spacer';
+            spacer.style.height = height + 'px';
+            imageContainer.parentNode.insertBefore(spacer, imageContainer.nextSibling);
+        }
+
+        function findNextPagebreak(currentPb) {
+            let next = currentPb.nextElementSibling;
+            while (next) {
+                if (next.classList?.contains('pagebreak')) return next;
+                next = next.nextElementSibling;
+            }
+            return null;
+        }
+
         // Function to update master annotation toggle state based on individual annotation toggles
         function updateMasterAnnotationToggleState() {
             const masterAnnotationToggle = document.getElementById('ef2-slider');
@@ -326,6 +514,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 url.searchParams.delete('img');
             }
 
+            // Image mode toggle
+            const imageModeToggle = document.getElementById('image-mode-slider');
+            if (imageModeToggle && imageModeToggle.checked) {
+                url.searchParams.set('imgmode', 'inline');
+            } else {
+                url.searchParams.delete('imgmode');
+            }
+
             // Update URL without reloading page
             window.history.replaceState({}, '', url);
             
@@ -349,13 +545,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 'add': 'addition-slider',
                 'img': 'faksimile-slider'
             };
-            
+
             Object.entries(toggleMappings).forEach(([param, toggleId]) => {
                 const toggle = document.getElementById(toggleId);
                 if (toggle && urlParams.get(param) === '1') {
                     toggle.checked = true;
                     // Trigger change event to apply styles
                     toggle.dispatchEvent(new Event('change'));
+                }
+            });
+
+            // Handle imgmode parameter separately (value is 'inline', not '1')
+            const imageModeToggle = document.getElementById('image-mode-slider');
+            if (imageModeToggle && urlParams.get('imgmode') === 'inline') {
+                // Only activate if faksimile is enabled
+                const faksimileToggle = document.getElementById('faksimile-slider');
+                if (faksimileToggle && faksimileToggle.checked) {
+                    imageModeToggle.checked = true;
+                    imageModeToggle.dispatchEvent(new Event('change'));
                 }
             });
         }
