@@ -406,26 +406,40 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Facsimiles column top:', facsimilesRect.top);
             console.log('Inline container top:', inlineContainerRect.top);
 
+            // Build a list of pb elements that actually have images
+            const pbWithImages = [];
             for (let i = 0; i < pagebreaks.length; i++) {
                 const pbElement = pagebreaks[i];
-                const nextPbElement = pagebreaks[i + 1];
-
-                // Find the corresponding image container
                 const facsId = pbElement.getAttribute('data-facs');
                 if (!facsId) continue;
 
-                const imageContainer = inlineContainer.querySelector(`.inline-image-container[data-facs="${facsId}"]`);
+                // Get ALL image containers with this facsId (there might be duplicates)
+                const imageContainers = inlineContainer.querySelectorAll(`.inline-image-container[data-facs="${facsId}"]`);
 
-                if (!imageContainer) {
-                    console.warn('Image container not found for:', facsId);
-                    continue;
+                if (imageContainers.length > 0) {
+                    // For now, use the first matching container
+                    // TODO: In case of duplicates, we might need more sophisticated matching
+                    pbWithImages.push({
+                        pb: pbElement,
+                        facs: facsId,
+                        container: imageContainers[0],
+                        originalIndex: i
+                    });
                 }
+            }
+
+            console.log(`Found ${pbWithImages.length} pagebreaks with images out of ${pagebreaks.length} total pagebreaks`);
+
+            // Now synchronize only the pb elements that have images
+            for (let i = 0; i < pbWithImages.length; i++) {
+                const { pb: pbElement, facs: facsId, container: imageContainer, originalIndex } = pbWithImages[i];
+                const nextPbWithImage = pbWithImages[i + 1];
 
                 // Calculate the vertical position of this pb element relative to viewport
                 const pbRect = pbElement.getBoundingClientRect();
                 const pbOffsetFromTextTop = pbRect.top - textColumnRect.top;
 
-                console.log(`PB ${i + 1} (${facsId}):`, pbOffsetFromTextTop);
+                console.log(`PB ${originalIndex + 1} (${facsId}):`, pbOffsetFromTextTop);
 
                 // Get current position of this image relative to inline container
                 const imageContainerRect = imageContainer.getBoundingClientRect();
@@ -449,16 +463,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log(`Added spacer of ${neededSpaceBefore}px before image ${i + 1}`);
                 }
 
-                // If there's a next pb, calculate spacing after this image
-                if (nextPbElement) {
-                    const nextPbRect = nextPbElement.getBoundingClientRect();
+                // Calculate spacing after this image
+                if (nextPbWithImage) {
+                    // Use the next pb that has an image
+                    const nextPbRect = nextPbWithImage.pb.getBoundingClientRect();
                     const textSectionHeight = nextPbRect.top - pbRect.top;
 
                     const img = imageContainer.querySelector('img');
                     if (img && img.complete) {
                         const imageHeight = img.naturalHeight || img.height;
 
-                        console.log(`Text section ${i + 1} height:`, textSectionHeight, 'Image height:', imageHeight);
+                        console.log(`Text section from PB ${originalIndex + 1} to ${nextPbWithImage.originalIndex + 1}:`, textSectionHeight, 'Image height:', imageHeight);
 
                         // If image is shorter than text section, add whitespace after
                         if (imageHeight < textSectionHeight - 10) { // Use threshold
