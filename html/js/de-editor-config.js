@@ -321,10 +321,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Keep facsimiles column visible
+            // Keep facsimiles column visible and remove height restrictions
             facsimilesCol.style.display = 'block';
             facsimilesCol.style.visibility = 'visible';
             facsimilesCol.style.opacity = '1';
+            facsimilesCol.style.height = 'auto';
+            facsimilesCol.style.maxHeight = 'none';
+            facsimilesCol.style.overflow = 'visible';
+
+            // Also fix parent containers
+            const viewer = facsimilesCol.querySelector('#viewer');
+            if (viewer) {
+                viewer.style.height = 'auto';
+                viewer.style.maxHeight = 'none';
+                viewer.style.overflow = 'visible';
+            }
+
+            const containerFacsimile = facsimilesCol.querySelector('#container_facsimile');
+            if (containerFacsimile) {
+                containerFacsimile.style.height = 'auto';
+                containerFacsimile.style.maxHeight = 'none';
+                containerFacsimile.style.overflow = 'visible';
+            }
 
             // Create inline images container in right column
             let inlineContainer = facsimilesCol.querySelector('#inline-images-container');
@@ -337,10 +355,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 inlineContainer.style.visibility = 'visible';
                 inlineContainer.style.width = '100%';
                 inlineContainer.style.height = 'auto';
-                inlineContainer.style.minHeight = '100vh';
+                inlineContainer.style.overflow = 'visible';
 
-                // Insert at the beginning of facsimiles column
-                const viewer = facsimilesCol.querySelector('#viewer');
+                // Insert at the beginning of viewer
                 if (viewer) {
                     viewer.insertBefore(inlineContainer, viewer.firstChild);
                 } else {
