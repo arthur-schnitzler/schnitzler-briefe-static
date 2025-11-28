@@ -1014,7 +1014,7 @@
                                               disabled="disabled"/>
                                               <span class="i-slider round"/>
                                             </label>
-                                            <span class="opt-title"> Bilder inline</span>
+                                            <span class="opt-title"> Bilder neben dem Text</span>
                                         </div>
                                     </div>
                                 </details>
@@ -1072,7 +1072,7 @@
                                               <input type="checkbox" id="addition-slider"/>
                                               <span class="i-slider round"/>
                                             </label>
-                                            <span class="opt-title"> Hinzufügungen</span>
+                                            <span class="opt-title"> Hinzufügung</span>
                                         </div>
                                     </div>
                                 </details>

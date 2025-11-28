@@ -272,13 +272,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             imageModeToggle.addEventListener('change', function() {
+                console.log('Image mode toggle changed, checked:', imageModeToggle.checked);
                 const transcriptContainer = document.querySelector('.transcript');
                 const slider = imageModeToggle.nextElementSibling;
 
                 if (imageModeToggle.checked) {
+                    console.log('Enabling inline image mode...');
                     enableInlineImageMode(transcriptContainer);
                     slider.style.backgroundColor = '#A63437';
                 } else {
+                    console.log('Disabling inline image mode...');
                     disableInlineImageMode(transcriptContainer);
                     slider.style.backgroundColor = '#ccc';
                 }
@@ -287,14 +290,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Initial state: Bildmodus nur verfügbar wenn Faksimile aktiv
-            if (!faksimileToggle.checked) {
+            if (faksimileToggle.checked) {
+                imageModeToggle.disabled = false;
+                document.getElementById('imgmode-toggle-container').style.opacity = '1';
+            } else {
                 imageModeToggle.disabled = true;
                 document.getElementById('imgmode-toggle-container').style.opacity = '0.5';
             }
         }
 
         async function enableInlineImageMode(container) {
-            if (!container) return;
+            console.log('enableInlineImageMode called', container);
+            if (!container) {
+                console.warn('No container found for inline image mode');
+                return;
+            }
 
             container.classList.add('inline-mode');
 
@@ -329,6 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Get all pagebreaks and insert corresponding images in right column
             const pagebreaks = container.querySelectorAll('.pagebreak[data-facs]');
+            console.log('Found pagebreaks with data-facs:', pagebreaks.length);
             for (let i = 0; i < pagebreaks.length; i++) {
                 await insertInlineImageInRightColumn(pagebreaks[i], i + 1, inlineContainer);
             }
@@ -377,11 +388,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         async function insertInlineImageInRightColumn(pbElement, pageNum, rightColumnContainer) {
             const facsId = pbElement.getAttribute('data-facs');
+            console.log(`Processing pagebreak ${pageNum}, facs ID: ${facsId}`);
 
-            if (!facsId) return;
+            if (!facsId) {
+                console.warn(`No facs ID for pagebreak ${pageNum}`);
+                return;
+            }
 
             // Extract IIIF URL from Openseadragon tileSources
             const iiifUrl = extractIIIFUrlFromTileSources(facsId);
+            console.log(`IIIF URL for ${facsId}:`, iiifUrl);
 
             if (!iiifUrl) {
                 console.warn(`Could not find IIIF URL for facs ID: ${facsId}`);
