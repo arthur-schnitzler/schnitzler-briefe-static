@@ -609,13 +609,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Find all entity mentions in the text (not in the modal)
                 // Format: <span class="persons badge-item entity"><a href="pmb2121.html">...</a></span>
-                const allEntitySpans = document.querySelectorAll('.' + entityClass + '.badge-item.entity');
+                // OR for multi-ref: <span class="persons entity"><a data-bs-target="#pmb27525pmb10685">...</a></span>
+                // Only search within the transcript container to avoid modal elements
+                const transcriptContainer = document.querySelector('.transcript');
+                if (!transcriptContainer) return;
+
+                const allEntitySpans = transcriptContainer.querySelectorAll('.' + entityClass + '.entity');
                 const matchingEntities = [];
 
                 allEntitySpans.forEach(function(span) {
-                    const link = span.querySelector('a[href="' + entityId + '.html"]');
-                    if (link) {
+                    // Check for single reference with href
+                    const hrefLink = span.querySelector('a[href="' + entityId + '.html"]');
+                    if (hrefLink) {
                         matchingEntities.push(span);
+                        return;
+                    }
+
+                    // Check for multi-reference with data-bs-target containing this entityId
+                    const modalLink = span.querySelector('a[data-bs-target]');
+                    if (modalLink) {
+                        const target = modalLink.getAttribute('data-bs-target');
+                        // target format: "#pmb27525pmb10685" - check if our entityId is in there
+                        if (target && target.includes(entityId)) {
+                            matchingEntities.push(span);
+                        }
                     }
                 });
 
