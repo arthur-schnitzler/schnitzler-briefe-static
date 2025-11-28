@@ -362,29 +362,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function extractTextBetweenPagebreaks(startPb, endPb) {
-            // Clone nodes between startPb and endPb (or until end of parent if endPb is null)
-            const textNodes = [];
-            let currentNode = startPb.nextSibling;
-
-            while (currentNode && currentNode !== endPb) {
-                // Clone the node to avoid modifying the original
-                const clonedNode = currentNode.cloneNode(true);
-                textNodes.push(clonedNode);
-                currentNode = currentNode.nextSibling;
+            // Find the parent text container
+            const textColumn = startPb.closest('.text');
+            if (!textColumn) {
+                console.warn('Could not find .text parent for pagebreak');
+                return document.createElement('div');
             }
 
-            // Create a container for this text section
+            // Create a Range to extract content between the two pagebreaks
+            const range = document.createRange();
+
+            // Set the start after the startPb element
+            range.setStartAfter(startPb);
+
+            // Set the end: either before endPb, or at the end of textColumn
+            if (endPb) {
+                range.setEndBefore(endPb);
+            } else {
+                range.setEndAfter(textColumn.lastChild);
+            }
+
+            // Clone the range contents
+            const clonedContents = range.cloneContents();
+
+            // Create final container with editionText class
             const textContainer = document.createElement('div');
-            textContainer.className = 'text-section';
+            textContainer.className = 'text-section editionText';
 
-            // Add the pagebreak itself
-            const clonedPb = startPb.cloneNode(true);
-            textContainer.appendChild(clonedPb);
+            // Add the startPb itself at the beginning
+            textContainer.appendChild(startPb.cloneNode(true));
 
-            // Add all text nodes
-            textNodes.forEach(node => {
-                textContainer.appendChild(node);
-            });
+            // Add the extracted content
+            textContainer.appendChild(clonedContents);
 
             return textContainer;
         }

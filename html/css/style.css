@@ -2194,12 +2194,19 @@ input:checked + .i-slider:before {
 /* Paired text-image rows */
 #paired-text-images-container {
   width: 100%;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .paired-text-image-row {
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 2rem;
   margin-bottom: 2rem !important;
+}
+
+.paired-text-image-row:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .paired-text-image-row:last-child {
@@ -2225,6 +2232,13 @@ input:checked + .i-slider:before {
 .text-section {
   font-size: 1rem;
   line-height: 1.6;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.text-section > *:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* Responsive: Mobile */
