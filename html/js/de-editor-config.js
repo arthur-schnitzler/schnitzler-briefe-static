@@ -332,12 +332,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 inlineContainer = document.createElement('div');
                 inlineContainer.id = 'inline-images-container';
                 inlineContainer.style.padding = '1rem';
-                inlineContainer.style.overflowY = 'auto';
-                inlineContainer.style.maxHeight = '800px';
                 inlineContainer.style.backgroundColor = '#fff';
                 inlineContainer.style.display = 'block';
                 inlineContainer.style.visibility = 'visible';
                 inlineContainer.style.width = '100%';
+                inlineContainer.style.height = 'auto';
+                inlineContainer.style.minHeight = '100vh';
 
                 // Insert at the beginning of facsimiles column
                 const viewer = facsimilesCol.querySelector('#viewer');
