@@ -370,10 +370,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 await insertInlineImageInRightColumn(pbElement, i + 1, inlineContainer, nextPbElement);
             }
 
+            // Wait for all images to load before synchronizing
+            const allImages = inlineContainer.querySelectorAll('img');
+            const imageLoadPromises = Array.from(allImages).map(img => {
+                if (img.complete) return Promise.resolve();
+                return new Promise(resolve => {
+                    img.onload = resolve;
+                    img.onerror = resolve; // Also resolve on error to avoid blocking
+                });
+            });
+
+            await Promise.all(imageLoadPromises);
+
             // After all images are loaded, synchronize positions
-            setTimeout(() => {
-                synchronizeImagePositions(pagebreaks, inlineContainer);
-            }, 500);
+            synchronizeImagePositions(pagebreaks, inlineContainer);
         }
 
         function synchronizeImagePositions(pagebreaks, inlineContainer) {
@@ -382,10 +392,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const textColumn = document.querySelector('.text');
             const facsimilesColumn = document.querySelector('.facsimiles');
 
-            if (!textColumn || !facsimilesColumn) return;
+            if (!textColumn || !facsimilesColumn) {
+                console.error('Text or facsimiles column not found');
+                return;
+            }
 
-            // Get the top offset of the text column
-            const textColumnTop = textColumn.getBoundingClientRect().top + window.scrollY;
+            // Get the top offset of both columns relative to the page
+            const textColumnRect = textColumn.getBoundingClientRect();
+            const facsimilesRect = facsimilesColumn.getBoundingClientRect();
+            const inlineContainerRect = inlineContainer.getBoundingClientRect();
+
+            console.log('Text column top:', textColumnRect.top);
+            console.log('Facsimiles column top:', facsimilesRect.top);
+            console.log('Inline container top:', inlineContainerRect.top);
 
             for (let i = 0; i < pagebreaks.length; i++) {
                 const pbElement = pagebreaks[i];
@@ -393,47 +412,69 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Find the corresponding image container
                 const facsId = pbElement.getAttribute('data-facs');
+                if (!facsId) continue;
+
                 const imageContainer = inlineContainer.querySelector(`.inline-image-container[data-facs="${facsId}"]`);
 
-                if (!imageContainer) continue;
+                if (!imageContainer) {
+                    console.warn('Image container not found for:', facsId);
+                    continue;
+                }
 
-                // Calculate the vertical position of this pb element
-                const pbTop = pbElement.getBoundingClientRect().top + window.scrollY;
-                const pbOffsetFromTextTop = pbTop - textColumnTop;
+                // Calculate the vertical position of this pb element relative to viewport
+                const pbRect = pbElement.getBoundingClientRect();
+                const pbOffsetFromTextTop = pbRect.top - textColumnRect.top;
 
-                // Get current position of this image in the images container
-                const imageTop = imageContainer.offsetTop;
+                console.log(`PB ${i + 1} (${facsId}):`, pbOffsetFromTextTop);
+
+                // Get current position of this image relative to inline container
+                const imageContainerRect = imageContainer.getBoundingClientRect();
+                const imageOffsetFromContainerTop = imageContainerRect.top - inlineContainerRect.top;
+
+                console.log(`Image ${i + 1} offset from container:`, imageOffsetFromContainerTop);
 
                 // Calculate how much space we need before this image
-                const neededSpaceBefore = pbOffsetFromTextTop - imageTop;
+                // We want the image to start at the same offset from the top as the pb element
+                const neededSpaceBefore = pbOffsetFromTextTop - imageOffsetFromContainerTop;
 
-                if (neededSpaceBefore > 0) {
+                console.log(`Needed space before image ${i + 1}:`, neededSpaceBefore);
+
+                if (neededSpaceBefore > 5) { // Use a small threshold to avoid tiny spacers
                     // Add a spacer div before the image
                     const spacer = document.createElement('div');
                     spacer.className = 'image-position-spacer';
                     spacer.style.height = neededSpaceBefore + 'px';
+                    spacer.style.backgroundColor = 'transparent';
                     imageContainer.parentNode.insertBefore(spacer, imageContainer);
+                    console.log(`Added spacer of ${neededSpaceBefore}px before image ${i + 1}`);
                 }
 
                 // If there's a next pb, calculate spacing after this image
                 if (nextPbElement) {
-                    const nextPbTop = nextPbElement.getBoundingClientRect().top + window.scrollY;
-                    const textSectionHeight = nextPbTop - pbTop;
+                    const nextPbRect = nextPbElement.getBoundingClientRect();
+                    const textSectionHeight = nextPbRect.top - pbRect.top;
 
                     const img = imageContainer.querySelector('img');
                     if (img && img.complete) {
-                        const imageHeight = img.height;
+                        const imageHeight = img.naturalHeight || img.height;
+
+                        console.log(`Text section ${i + 1} height:`, textSectionHeight, 'Image height:', imageHeight);
 
                         // If image is shorter than text section, add whitespace after
-                        if (imageHeight < textSectionHeight) {
+                        if (imageHeight < textSectionHeight - 10) { // Use threshold
                             const spacerAfter = document.createElement('div');
                             spacerAfter.className = 'image-whitespace-spacer';
-                            spacerAfter.style.height = (textSectionHeight - imageHeight) + 'px';
+                            const whiteSpaceHeight = textSectionHeight - imageHeight;
+                            spacerAfter.style.height = whiteSpaceHeight + 'px';
+                            spacerAfter.style.backgroundColor = 'transparent';
                             imageContainer.appendChild(spacerAfter);
+                            console.log(`Added whitespace of ${whiteSpaceHeight}px after image ${i + 1}`);
                         }
                     }
                 }
             }
+
+            console.log('Synchronization complete');
         }
 
         function disableInlineImageMode(container) {
@@ -463,13 +504,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (match) {
                         const urls = match[1].match(/"([^"]+)"/g);
                         if (urls) {
-                            // Find the URL that matches this facs ID
+                            // Find the URL that matches this facs ID exactly
+                            // The URL should end with the facsId before the file extension
                             for (let urlStr of urls) {
                                 const url = urlStr.replace(/"/g, '');
-                                if (url.includes(facsId)) {
+                                // Extract the filename without extension
+                                const filename = url.split('/').pop().replace(/\.(jp2|jpg|jpeg|png|tif|tiff)$/i, '');
+
+                                console.log(`Comparing facsId "${facsId}" with filename "${filename}"`);
+
+                                // Exact match
+                                if (filename === facsId) {
+                                    console.log(`✓ Exact match found: ${url}`);
                                     return url;
                                 }
                             }
+
+                            // If no exact match, log warning
+                            console.warn(`No exact match found for facsId: ${facsId}`);
                         }
                     }
                 }
@@ -479,7 +531,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         async function insertInlineImageInRightColumn(pbElement, pageNum, rightColumnContainer) {
             const facsId = pbElement.getAttribute('data-facs');
-            console.log(`Processing pagebreak ${pageNum}, facs ID: ${facsId}`);
+
+            // Check if this facsId was already used
+            const existingContainers = rightColumnContainer.querySelectorAll(`[data-facs="${facsId}"]`);
+            const isDuplicate = existingContainers.length > 0;
+
+            console.log(`Processing pagebreak ${pageNum}, facs ID: ${facsId}${isDuplicate ? ' (DUPLICATE - will show again)' : ''}`);
 
             if (!facsId) {
                 console.warn(`No facs ID for pagebreak ${pageNum}`);
@@ -497,6 +554,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const container = document.createElement('div');
             container.className = 'inline-image-container';
+            if (isDuplicate) {
+                container.classList.add('duplicate-image');
+            }
             container.setAttribute('data-facs', facsId);
             container.setAttribute('data-page-num', pageNum);
 
