@@ -544,18 +544,24 @@ document.addEventListener('DOMContentLoaded', function() {
                         const urls = match[1].match(/"([^"]+)"/g);
                         if (urls) {
                             // Find the URL that matches this facs ID exactly
-                            // The URL should end with the facsId before the file extension
+                            // The URL format is: .../HS.NZ85.1.3163_0040-0.jp2/info.json
                             for (let urlStr of urls) {
                                 const url = urlStr.replace(/"/g, '');
-                                // Extract the filename without extension
-                                const filename = url.split('/').pop().replace(/\.(jp2|jpg|jpeg|png|tif|tiff)$/i, '');
+                                // Extract just the image ID part (between last two slashes, before /info.json)
+                                const parts = url.split('/');
+                                // parts[-2] is the image file with extension, parts[-1] is "info.json"
+                                if (parts.length >= 2) {
+                                    const imageFileWithExt = parts[parts.length - 2];
+                                    // Remove the file extension (.jp2, .jpg, etc.)
+                                    const imageId = imageFileWithExt.replace(/\.(jp2|jpg|jpeg|png|tif|tiff)$/i, '');
 
-                                console.log(`Comparing facsId "${facsId}" with filename "${filename}"`);
+                                    console.log(`Comparing facsId "${facsId}" with imageId "${imageId}"`);
 
-                                // Exact match
-                                if (filename === facsId) {
-                                    console.log(`✓ Exact match found: ${url}`);
-                                    return url;
+                                    // Exact match
+                                    if (imageId === facsId) {
+                                        console.log(`✓ Exact match found: ${url}`);
+                                        return url;
+                                    }
                                 }
                             }
 
