@@ -316,26 +316,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Get right column (facsimiles)
             const facsimilesCol = container.querySelector('.facsimiles');
-            if (!facsimilesCol) return;
+            if (!facsimilesCol) {
+                console.warn('No .facsimiles column found');
+                return;
+            }
 
-            // Keep facsimiles column visible but hide OSD
+            // Keep facsimiles column visible
             facsimilesCol.style.display = 'block';
+            facsimilesCol.style.visibility = 'visible';
+            facsimilesCol.style.opacity = '1';
 
             // Create inline images container in right column
             let inlineContainer = facsimilesCol.querySelector('#inline-images-container');
             if (!inlineContainer) {
                 inlineContainer = document.createElement('div');
                 inlineContainer.id = 'inline-images-container';
-                inlineContainer.className = 'card-body-iif';
+                inlineContainer.style.padding = '1rem';
                 inlineContainer.style.overflowY = 'auto';
                 inlineContainer.style.maxHeight = '800px';
-                const cardBody = facsimilesCol.querySelector('.card-body-iif');
-                if (cardBody && cardBody.parentNode) {
-                    cardBody.parentNode.insertBefore(inlineContainer, cardBody);
+                inlineContainer.style.backgroundColor = '#fff';
+                inlineContainer.style.display = 'block';
+                inlineContainer.style.visibility = 'visible';
+                inlineContainer.style.width = '100%';
+
+                // Insert at the beginning of facsimiles column
+                const viewer = facsimilesCol.querySelector('#viewer');
+                if (viewer) {
+                    viewer.insertBefore(inlineContainer, viewer.firstChild);
                 } else {
-                    facsimilesCol.appendChild(inlineContainer);
+                    facsimilesCol.insertBefore(inlineContainer, facsimilesCol.firstChild);
                 }
             }
+
+            console.log('Inline container created/found:', inlineContainer);
 
             // Get all pagebreaks and insert corresponding images in right column
             const pagebreaks = container.querySelectorAll('.pagebreak[data-facs]');
