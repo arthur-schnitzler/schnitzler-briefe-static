@@ -2253,6 +2253,15 @@ input:checked + .i-slider:before {
   font-size: inherit;
 }
 
+/* Remove width restrictions from nested containers in paired layout */
+.paired-text-col .card-body,
+.paired-text-col .card-body-text,
+.paired-text-col .card-body-iif,
+.paired-text-col div {
+  max-width: none !important;
+  width: 100% !important;
+}
+
 /* Responsive: Mobile */
 @media (max-width: 768px) {
   #inline-images-container {
