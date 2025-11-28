@@ -564,7 +564,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     imageModeToggle.checked = true;
                     imageModeToggle.dispatchEvent(new Event('change'));
                 }
-            });
+            }
         }
         
         // Initialize from URL parameters
