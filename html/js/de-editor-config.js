@@ -298,18 +298,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
             container.classList.add('inline-mode');
 
-            const facsimilesCol = container.querySelector('.facsimiles');
-            if (facsimilesCol) facsimilesCol.style.display = 'none';
-
-            const textCol = container.querySelector('.text');
-            if (textCol) {
-                textCol.classList.remove('col-md-6');
-                textCol.classList.add('col-md-12');
+            // Hide Openseadragon viewer
+            const osdViewer = document.getElementById('openseadragon-photo');
+            if (osdViewer) {
+                osdViewer.style.display = 'none';
             }
 
+            // Get right column (facsimiles)
+            const facsimilesCol = container.querySelector('.facsimiles');
+            if (!facsimilesCol) return;
+
+            // Keep facsimiles column visible but hide OSD
+            facsimilesCol.style.display = 'block';
+
+            // Create inline images container in right column
+            let inlineContainer = facsimilesCol.querySelector('#inline-images-container');
+            if (!inlineContainer) {
+                inlineContainer = document.createElement('div');
+                inlineContainer.id = 'inline-images-container';
+                inlineContainer.className = 'card-body-iif';
+                inlineContainer.style.overflowY = 'auto';
+                inlineContainer.style.maxHeight = '800px';
+                const cardBody = facsimilesCol.querySelector('.card-body-iif');
+                if (cardBody && cardBody.parentNode) {
+                    cardBody.parentNode.insertBefore(inlineContainer, cardBody);
+                } else {
+                    facsimilesCol.appendChild(inlineContainer);
+                }
+            }
+
+            // Get all pagebreaks and insert corresponding images in right column
             const pagebreaks = container.querySelectorAll('.pagebreak[data-facs]');
             for (let i = 0; i < pagebreaks.length; i++) {
-                await insertInlineImage(pagebreaks[i], i + 1);
+                await insertInlineImageInRightColumn(pagebreaks[i], i + 1, inlineContainer);
             }
         }
 
@@ -318,17 +339,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
             container.classList.remove('inline-mode');
 
-            const facsimilesCol = container.querySelector('.facsimiles');
-            if (facsimilesCol) facsimilesCol.style.display = 'block';
-
-            const textCol = container.querySelector('.text');
-            if (textCol) {
-                textCol.classList.remove('col-md-12');
-                textCol.classList.add('col-md-6');
+            // Show Openseadragon viewer again
+            const osdViewer = document.getElementById('openseadragon-photo');
+            if (osdViewer) {
+                osdViewer.style.display = 'block';
             }
 
-            container.querySelectorAll('.inline-image-container, .inline-image-spacer')
-                .forEach(el => el.remove());
+            // Remove inline images container
+            const inlineContainer = document.getElementById('inline-images-container');
+            if (inlineContainer) {
+                inlineContainer.remove();
+            }
         }
 
         function extractIIIFUrlFromTileSources(facsId) {
@@ -354,14 +375,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return null;
         }
 
-        async function insertInlineImage(pbElement, pageNum) {
+        async function insertInlineImageInRightColumn(pbElement, pageNum, rightColumnContainer) {
             const facsId = pbElement.getAttribute('data-facs');
 
             if (!facsId) return;
-
-            if (pbElement.nextElementSibling?.classList.contains('inline-image-container')) {
-                return;
-            }
 
             // Extract IIIF URL from Openseadragon tileSources
             const iiifUrl = extractIIIFUrlFromTileSources(facsId);
@@ -374,31 +391,28 @@ document.addEventListener('DOMContentLoaded', function() {
             const container = document.createElement('div');
             container.className = 'inline-image-container';
             container.setAttribute('data-facs', facsId);
+            container.setAttribute('data-page-num', pageNum);
 
             const img = document.createElement('img');
             img.className = 'inline-facsimile';
             img.alt = `Seite ${pageNum}`;
 
-            // Responsive Bildgröße: 800px Desktop, 600px Mobile
-            const isMobile = window.innerWidth <= 768;
-            const imageWidth = isMobile ? 600 : 800;
-            const imageUrl = iiifUrl.replace('/info.json', `/full/${imageWidth},/0/default.jpg`);
+            // Images up to 1200px wide
+            const imageUrl = iiifUrl.replace('/info.json', `/full/,1200/0/default.jpg`);
             img.src = imageUrl;
-
-            const caption = document.createElement('div');
-            caption.className = 'image-caption';
-            caption.textContent = `Seite ${pageNum}`;
+            img.style.width = '100%';
+            img.style.height = 'auto';
+            img.style.display = 'block';
+            img.style.marginBottom = '2rem';
 
             container.appendChild(img);
-            container.appendChild(caption);
 
-            pbElement.parentNode.insertBefore(container, pbElement.nextSibling);
+            // Add to right column container
+            rightColumnContainer.appendChild(container);
 
-            img.addEventListener('load', function() {
-                const spacerHeight = calculateWhitespace(pbElement, container.offsetHeight);
-                if (spacerHeight > 0) {
-                    insertSpacer(container, spacerHeight);
-                }
+            // Add scroll synchronization: when clicking image, scroll text to corresponding pagebreak
+            container.addEventListener('click', function() {
+                pbElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
             });
 
             img.addEventListener('error', function() {
@@ -407,30 +421,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorDiv.innerHTML = `<strong>⚠ Bild konnte nicht geladen werden</strong><br><small>Faksimile-ID: ${facsId}</small>`;
                 container.replaceWith(errorDiv);
             });
-        }
-
-        function calculateWhitespace(pbElement, imageHeight) {
-            let nextPb = findNextPagebreak(pbElement);
-            let textHeight = nextPb ?
-                (nextPb.offsetTop - pbElement.offsetTop) : 1000;
-            // 50px Puffer für besseren visuellen Abstand
-            return Math.max(0, imageHeight - textHeight + 50);
-        }
-
-        function insertSpacer(imageContainer, height) {
-            const spacer = document.createElement('div');
-            spacer.className = 'inline-image-spacer';
-            spacer.style.height = height + 'px';
-            imageContainer.parentNode.insertBefore(spacer, imageContainer.nextSibling);
-        }
-
-        function findNextPagebreak(currentPb) {
-            let next = currentPb.nextElementSibling;
-            while (next) {
-                if (next.classList?.contains('pagebreak')) return next;
-                next = next.nextElementSibling;
-            }
-            return null;
         }
 
         // Function to update master annotation toggle state based on individual annotation toggles

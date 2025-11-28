@@ -2143,53 +2143,39 @@ input:checked + .i-slider:before {
 /* INLINE IMAGE MODE STYLES                                     */
 /* ============================================================ */
 
-/* Inline-Modus Layout */
-.transcript.inline-mode .text {
-  max-width: 100%;
+/* Inline images container in right column */
+#inline-images-container {
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: 800px;
 }
 
-.transcript.inline-mode .facsimiles {
-  display: none !important;
-}
-
-/* Inline-Bild-Container */
+/* Individual inline image container */
 .inline-image-container {
-  float: right;
-  width: 45%;
-  margin: 0 0 1rem 1rem;
-  clear: right;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.inline-image-container:hover {
+  opacity: 0.9;
 }
 
 .inline-image-container img {
   width: 100%;
   height: auto;
   display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .image-caption {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #666;
-  padding: 0.5rem;
-  background: #f9f9f9;
-  text-align: right;
-}
-
-/* Whitespace-Spacer */
-.inline-image-spacer {
-  clear: both;
-  width: 100%;
-  visibility: hidden;
-}
-
-/* Pagebreak in Inline-Modus */
-.inline-mode .pagebreak {
-  font-weight: bold;
-  color: #A63437;
-  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
 /* Fehleranzeige */
@@ -2209,23 +2195,12 @@ input:checked + .i-slider:before {
 
 /* Responsive: Mobile */
 @media (max-width: 768px) {
+  #inline-images-container {
+    padding: 0.5rem;
+    max-height: 600px;
+  }
+
   .inline-image-container {
-    width: 100%;
-    float: none;
-    margin: 1.5rem 0;
-  }
-
-  .inline-image-spacer {
-    display: none; /* Kein Whitespace auf Mobile */
-  }
-
-  .inline-mode .pagebreak {
-    display: block;
-    margin: 1rem 0;
-  }
-
-  /* Auf Mobile: Inline-Bilder werden als Blöcke zwischen Text angezeigt (100% Breite) */
-  .inline-mode .facsimiles {
-    display: none !important; /* Openseadragon bleibt versteckt */
+    margin-bottom: 1.5rem;
   }
 }
