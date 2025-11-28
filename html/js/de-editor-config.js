@@ -493,7 +493,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function disableInlineImageMode(container) {
-            if (!container) return;
+            console.log('🔴 disableInlineImageMode called!', new Error().stack);
+            if (!container) {
+                console.warn('No container in disableInlineImageMode');
+                return;
+            }
 
             container.classList.remove('inline-mode');
 
@@ -501,11 +505,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const osdViewer = document.getElementById('openseadragon-photo');
             if (osdViewer) {
                 osdViewer.style.display = 'block';
+                console.log('Showing Openseadragon viewer');
             }
 
             // Remove inline images container
             const inlineContainer = document.getElementById('inline-images-container');
             if (inlineContainer) {
+                console.log('Removing inline images container');
                 inlineContainer.remove();
             }
         }
