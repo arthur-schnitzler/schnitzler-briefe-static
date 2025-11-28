@@ -302,7 +302,7 @@
                                                   data-bs-target="#entitaeten" type="button"
                                                   data-bs-toggle="modal">
                                                   <i class="fas fa-sharp fa-solid fa-people-group"/>
-                                                  ENTITÄTEN </a>&#160; </li>
+                                                  LINKS </a>&#160; </li>
                                                 <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#zitat" type="button"
                                                   data-bs-toggle="modal">
@@ -610,7 +610,7 @@
                                               <span class="i-slider round"
                                               style="background-color: #A63437;"/>
                                             </label>
-                                            <span class="opt-title"> Alle</span>
+                                            <span class="opt-title"> Alle Unterstreichungen</span>
                                         </div>
                                     </div>
 
@@ -638,7 +638,9 @@
 
                                     <!-- Personen -->
                                     <details open="open" style="margin-bottom: 1em;">
-                                        <summary>Personen</summary>
+                                        <summary>Personen (<xsl:value-of
+                                                select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)])"
+                                        />)</summary>
                                         <div class="details-content" style="margin-top: 0.5em;">
                                             <!-- Personen toggle -->
                                             <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
@@ -649,12 +651,10 @@
                                                       <span class="i-slider round"
                                                       style="background-color: #e74c3c;"/>
                                                     </label>
-                                                    <span class="opt-title"> Personen markieren (<xsl:value-of
-                                                      select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person)"
-                                                      />)</span>
+                                                    <span class="opt-title">Unterstreichungen</span>
                                                 </div>
                                             </div>
-                                            <xsl:for-each select=".//tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)]">
+                                            <xsl:for-each select="descendant::tei:text/tei:back/tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)]">
                                                 <xsl:sort
                                                   select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
                                                 <xsl:variable name="naname" as="xs:string">
@@ -704,7 +704,9 @@
                                     <!-- Werke -->
                                     <xsl:if test=".//tei:back/tei:listBibl/tei:bibl[1]">
                                         <details style="margin-bottom: 1em;">
-                                            <summary>Werke</summary>
+                                            <summary>Werke (<xsl:value-of
+                                                    select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"
+                                            />)</summary>
                                             <div class="details-content" style="margin-top: 0.5em;">
                                                 <!-- Werke toggle -->
                                                 <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
@@ -715,13 +717,11 @@
                                                           <span class="i-slider round"
                                                           style="background-color: #f39c12;"/>
                                                         </label>
-                                                        <span class="opt-title"> Werke markieren (<xsl:value-of
-                                                          select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"
-                                                          />)</span>
+                                                        <span class="opt-title"> Unterstreichungen</span>
                                                     </div>
                                                 </div>
                                                 <xsl:for-each
-                                                  select=".//tei:back/tei:listBibl/tei:bibl">
+                                                    select="descendant::tei:text/tei:back/tei:listBibl/tei:bibl">
                                                   <xsl:sort select="child::tei:title[1]"/>
                                                   <div class="entity-highlight-toggle"
                                                   data-type="work"
@@ -791,7 +791,9 @@
                                     <!-- Institutionen -->
                                     <xsl:if test=".//tei:back/tei:listOrg/tei:org[1]">
                                         <details style="margin-bottom: 1em;">
-                                            <summary>Institutionen</summary>
+                                            <summary>Institutionen (<xsl:value-of
+                                                    select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"
+                                            />)</summary>
                                             <div class="details-content" style="margin-top: 0.5em;">
                                                 <!-- Institutionen toggle -->
                                                 <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
@@ -802,12 +804,10 @@
                                                           <span class="i-slider round"
                                                           style="background-color: #9b59b6;"/>
                                                         </label>
-                                                        <span class="opt-title"> Institutionen markieren (<xsl:value-of
-                                                          select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"
-                                                          />)</span>
+                                                        <span class="opt-title"> Unterstreichungen</span>
                                                     </div>
                                                 </div>
-                                                <xsl:for-each select=".//tei:listOrg//tei:org">
+                                                <xsl:for-each select="descendant::tei:text/tei:back/tei:listOrg//tei:org">
                                                   <xsl:sort select="child::tei:orgName[1]"/>
                                                   <div class="entity-highlight-toggle"
                                                   data-type="org"
@@ -838,7 +838,9 @@
                                     <!-- Ereignisse -->
                                     <xsl:if test=".//tei:back/tei:listEvent/tei:event[1]">
                                         <details style="margin-bottom: 1em;">
-                                            <summary>Ereignisse</summary>
+                                            <summary>Ereignisse (<xsl:value-of
+                                                    select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"
+                                            />)</summary>
                                             <div class="details-content" style="margin-top: 0.5em;">
                                                 <!-- Ereignisse toggle -->
                                                 <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
@@ -849,13 +851,11 @@
                                                           <span class="i-slider round"
                                                           style="background-color: #27ae60;"/>
                                                         </label>
-                                                        <span class="opt-title"> Ereignisse markieren (<xsl:value-of
-                                                          select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"
-                                                          />)</span>
+                                                        <span class="opt-title"> Ereignisse markieren </span>
                                                     </div>
                                                 </div>
                                                 <xsl:for-each
-                                                  select=".//tei:back/tei:listEvent/tei:event">
+                                                    select="descendant::tei:text/tei:back/tei:listEvent/tei:event">
                                                   <xsl:sort select="child::tei:eventName[1]"/>
                                                   <div class="entity-highlight-toggle"
                                                   data-type="event"
@@ -886,7 +886,9 @@
                                     <!-- Orte -->
                                     <xsl:if test=".//tei:back/tei:listPlace/tei:place[1]">
                                         <details style="margin-bottom: 1em;">
-                                            <summary>Orte</summary>
+                                            <summary>Orte (<xsl:value-of
+                                                    select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"
+                                            />)</summary>
                                             <div class="details-content" style="margin-top: 0.5em;">
                                                 <!-- Orte toggle -->
                                                 <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
@@ -897,12 +899,10 @@
                                                           <span class="i-slider round"
                                                           style="background-color: #3498db;"/>
                                                         </label>
-                                                        <span class="opt-title"> Orte markieren (<xsl:value-of
-                                                          select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"
-                                                          />)</span>
+                                                        <span class="opt-title"> Unterstreichungen</span>
                                                     </div>
                                                 </div>
-                                                <xsl:for-each select=".//tei:listPlace/tei:place">
+                                                <xsl:for-each select="descendant::tei:text/tei:back/tei:listPlace/tei:place">
                                                   <xsl:sort select="child::tei:placeName[1]"/>
                                                   <div class="entity-highlight-toggle"
                                                   data-type="place"
