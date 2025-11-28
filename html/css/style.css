@@ -2146,8 +2146,6 @@ input:checked + .i-slider:before {
 /* Inline images container in right column */
 #inline-images-container {
   padding: 1rem;
-  overflow-y: auto;
-  max-height: 800px;
 }
 
 /* Individual inline image container */

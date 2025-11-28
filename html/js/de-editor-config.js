@@ -321,35 +321,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Keep facsimiles column visible and remove height restrictions
+            // Keep facsimiles column visible
             facsimilesCol.style.display = 'block';
             facsimilesCol.style.visibility = 'visible';
             facsimilesCol.style.opacity = '1';
-            facsimilesCol.style.height = 'auto';
-            facsimilesCol.style.maxHeight = 'none';
-            facsimilesCol.style.overflow = 'visible';
-            facsimilesCol.style.position = 'static'; // Remove absolute positioning
 
-            // Also fix parent containers
+            // Remove all positioning and sizing constraints - let it flow naturally
             const viewer = facsimilesCol.querySelector('#viewer');
-            if (viewer) {
-                viewer.style.height = 'auto';
-                viewer.style.maxHeight = 'none';
-                viewer.style.overflow = 'visible';
-                viewer.style.position = 'static';
-            }
-
             const containerFacsimile = facsimilesCol.querySelector('#container_facsimile');
-            if (containerFacsimile) {
-                containerFacsimile.style.height = 'auto';
-                containerFacsimile.style.maxHeight = 'none';
-                containerFacsimile.style.overflow = 'visible';
-                containerFacsimile.style.position = 'static';
-            }
 
-            // Make sure the main transcript container grows with content
-            container.style.height = 'auto';
-            container.style.minHeight = 'auto';
+            // Reset all parent containers to natural flow
+            [facsimilesCol, viewer, containerFacsimile].forEach(el => {
+                if (el) {
+                    el.style.height = '';
+                    el.style.maxHeight = '';
+                    el.style.minHeight = '';
+                    el.style.overflow = '';
+                    el.style.position = '';
+                }
+            });
 
             // Create inline images container in right column
             let inlineContainer = facsimilesCol.querySelector('#inline-images-container');
@@ -358,11 +348,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 inlineContainer.id = 'inline-images-container';
                 inlineContainer.style.padding = '1rem';
                 inlineContainer.style.backgroundColor = '#fff';
-                inlineContainer.style.display = 'block';
-                inlineContainer.style.visibility = 'visible';
-                inlineContainer.style.width = '100%';
-                inlineContainer.style.height = 'auto';
-                inlineContainer.style.overflow = 'visible';
 
                 // Insert at the beginning of viewer
                 if (viewer) {
@@ -379,19 +364,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Found pagebreaks with data-facs:', pagebreaks.length);
             for (let i = 0; i < pagebreaks.length; i++) {
                 await insertInlineImageInRightColumn(pagebreaks[i], i + 1, inlineContainer);
-            }
-
-            // Add a clearfix div after both columns to ensure footer appears below
-            const clearDiv = document.createElement('div');
-            clearDiv.style.clear = 'both';
-            clearDiv.style.height = '1px';
-            container.appendChild(clearDiv);
-
-            // Also ensure the card footer has proper clearing
-            const cardFooter = document.querySelector('.card-footer');
-            if (cardFooter) {
-                cardFooter.style.clear = 'both';
-                cardFooter.style.position = 'relative';
             }
         }
 
