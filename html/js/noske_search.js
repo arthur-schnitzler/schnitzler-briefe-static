@@ -5,6 +5,8 @@ class NoskeSearchImplementation {
     constructor() {
         this.search = null;
         this.initialized = false;
+        this.searchResults = null;
+        this.latestApiData = null;
         this.config = {
             client: {
                 base: "https://corpus-search.acdh.oeaw.ac.at/",
@@ -47,12 +49,52 @@ class NoskeSearchImplementation {
         };
     }
 
+    interceptNoskeAPI() {
+        // Store original fetch and keep reference to 'this'
+        const originalFetch = window.fetch;
+        const self = this;
+
+        // Override fetch to intercept Noske API calls
+        window.fetch = async (...args) => {
+            const response = await originalFetch(...args);
+
+            // Check if this is a Noske API call
+            const url = args[0];
+            if (typeof url === 'string' && url.includes('corpus-search.acdh.oeaw.ac.at')) {
+                console.log('Intercepted Noske API call:', url);
+
+                // Clone response so we can read it without consuming it
+                const clonedResponse = response.clone();
+
+                try {
+                    const data = await clonedResponse.json();
+                    console.log('Noske API response data:', data);
+
+                    // Store in the class instance using 'self' reference
+                    self.latestApiData = data;
+                    self.searchResults = data;
+
+                    console.log('Stored API data in self.latestApiData');
+                } catch (e) {
+                    console.warn('Could not parse Noske API response:', e);
+                }
+            }
+
+            return response;
+        };
+
+        console.log('Noske API interceptor installed');
+    }
+
     init() {
         if (this.initialized) return;
 
         console.log('Initializing Noske search with acdh-noske-search package...');
 
         try {
+            // Intercept fetch calls to capture Noske API responses
+            this.interceptNoskeAPI();
+
             // Create new NoskeSearch instance
             this.search = new NoskeSearch({container: "noske-search"});
 
@@ -61,6 +103,7 @@ class NoskeSearchImplementation {
 
             this.search.search({
                 client: {
+                    id: "noske-client",
                     base: "https://corpus-search.acdh.oeaw.ac.at/",
                     corpname: "schnitzlerbriefe",
                     attrs: "word",
@@ -75,12 +118,6 @@ class NoskeSearchImplementation {
                         leftContext: "context-left",
                         rightContext: "context-right",
                         keyword: "keyword"
-                    },
-                    // Custom render function to add links
-                    customRender: (data) => {
-                        console.log('Custom render called with data:', data);
-                        this.searchResults = data;
-                        return null; // Let default renderer handle it, then we'll modify
                     }
                 },
                 pagination: {
@@ -142,14 +179,20 @@ class NoskeSearchImplementation {
 
     setupResultsObserver() {
         const hitsContainer = document.getElementById('hitsbox');
-        if (!hitsContainer) return;
+        if (!hitsContainer) {
+            console.warn('hitsbox container not found, retrying in 100ms...');
+            setTimeout(() => this.setupResultsObserver(), 100);
+            return;
+        }
 
         // Create observer to watch for new search results
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.addedNodes.length > 0) {
-                    // Process the new results and add links
-                    this.addLinksToResults();
+                    // Add a small delay to ensure DOM is fully rendered
+                    setTimeout(() => {
+                        this.addLinksToResults();
+                    }, 100);
                 }
             });
         });
@@ -159,14 +202,27 @@ class NoskeSearchImplementation {
             childList: true,
             subtree: true
         });
+
+        console.log('Results observer set up successfully');
     }
 
     addLinksToResults() {
         const hitsContainer = document.getElementById('hitsbox');
         if (!hitsContainer) return;
 
+        console.log('Adding links to results...');
+        console.log('this.latestApiData available?', !!this.latestApiData);
+        console.log('Latest API data:', this.latestApiData);
+
+        // Try to access via window.noskeSearch as well
+        if (!this.latestApiData && window.noskeSearch && window.noskeSearch.latestApiData) {
+            console.log('Using latestApiData from window.noskeSearch');
+            this.latestApiData = window.noskeSearch.latestApiData;
+        }
+
         // Find all table rows in the results
         const rows = hitsContainer.querySelectorAll('tr');
+        console.log('Found', rows.length, 'rows');
 
         rows.forEach((row, index) => {
             // Skip if already processed
@@ -195,13 +251,32 @@ class NoskeSearchImplementation {
                 }
             }
 
-            // 3. Try to extract from searchResults if available
-            if (!docRef && this.searchResults && this.searchResults.Lines) {
-                const line = this.searchResults.Lines[index];
-                if (line && line.Refs) {
-                    const docRefObj = line.Refs.find(ref => ref.name === 'doc.id' || ref.name === 'doc');
-                    if (docRefObj) {
-                        docRef = docRefObj.val || docRefObj.value;
+            // 3. Try to extract from latestApiData if available
+            if (!docRef && this.latestApiData) {
+                const lines = this.latestApiData.Lines || this.latestApiData.lines;
+                if (lines && lines[index]) {
+                    const line = lines[index];
+                    console.log('Line', index, 'data:', line);
+
+                    // Check different possible structures
+                    if (line.Refs && Array.isArray(line.Refs)) {
+                        console.log('Line', index, 'Refs:', line.Refs);
+                        const docRefObj = line.Refs.find(ref =>
+                            ref.name === 'doc.id' || ref.name === 'doc' || ref.name === 'text'
+                        );
+                        if (docRefObj) {
+                            docRef = docRefObj.val || docRefObj.value;
+                            console.log('Found docRef in Refs:', docRef);
+                        }
+                    }
+
+                    if (!docRef && line.refs && Array.isArray(line.refs)) {
+                        const docRefObj = line.refs.find(ref =>
+                            ref.name === 'doc.id' || ref.name === 'doc' || ref.name === 'text'
+                        );
+                        if (docRefObj) {
+                            docRef = docRefObj.val || docRefObj.value;
+                        }
                     }
                 }
             }
@@ -216,8 +291,7 @@ class NoskeSearchImplementation {
             }
 
             // Log for debugging
-            console.log('Row', index, 'attributes:', Array.from(row.attributes).map(a => `${a.name}=${a.value}`).join(', '));
-            console.log('Row', index, 'docRef:', docRef);
+            console.log('Row', index, 'final docRef:', docRef);
 
             if (docRef) {
                 const letterId = docRef.replace(/\.xml$/, '').replace(/^.*\//, '');
@@ -227,7 +301,13 @@ class NoskeSearchImplementation {
 
                 // Make the entire row clickable
                 row.style.cursor = 'pointer';
-                row.addEventListener('click', (e) => {
+                row.classList.add('clickable-row');
+
+                // Remove any existing click handlers
+                const newRow = row.cloneNode(true);
+                row.parentNode.replaceChild(newRow, row);
+
+                newRow.addEventListener('click', (e) => {
                     // Don't navigate if clicking on an existing link
                     if (e.target.tagName !== 'A') {
                         window.location.href = letterUrl;
@@ -235,7 +315,8 @@ class NoskeSearchImplementation {
                 });
 
                 // Add link to the keyword (middle cell)
-                const keywordCell = cells[1];
+                const newCells = newRow.querySelectorAll('td');
+                const keywordCell = newCells[1];
                 if (keywordCell && !keywordCell.querySelector('a')) {
                     const keyword = keywordCell.innerHTML;
                     keywordCell.innerHTML = `<a href="${letterUrl}">${keyword}</a>`;
