@@ -56,13 +56,16 @@ class NoskeSearchImplementation {
             // Create new NoskeSearch instance
             this.search = new NoskeSearch({container: "noske-search"});
 
+            // Store reference to search results for later processing
+            this.searchResults = null;
+
             this.search.search({
                 client: {
                     base: "https://corpus-search.acdh.oeaw.ac.at/",
                     corpname: "schnitzlerbriefe",
-                    attrs: "word,id",
+                    attrs: "word",
                     structs: "doc,docTitle,head,p,imprimatur,list",
-                    refs: "doc.id,doc.corpus,docTitle.id,p.id,head.id,imprimatur.id,list.id",
+                    refs: "doc.id",
                 },
                 hits: {
                     id: "hitsbox",
@@ -72,6 +75,12 @@ class NoskeSearchImplementation {
                         leftContext: "context-left",
                         rightContext: "context-right",
                         keyword: "keyword"
+                    },
+                    // Custom render function to add links
+                    customRender: (data) => {
+                        console.log('Custom render called with data:', data);
+                        this.searchResults = data;
+                        return null; // Let default renderer handle it, then we'll modify
                     }
                 },
                 pagination: {
@@ -126,6 +135,115 @@ class NoskeSearchImplementation {
 
         // Add clear results button
         this.addClearButton();
+
+        // Set up MutationObserver to watch for results and add links
+        this.setupResultsObserver();
+    }
+
+    setupResultsObserver() {
+        const hitsContainer = document.getElementById('hitsbox');
+        if (!hitsContainer) return;
+
+        // Create observer to watch for new search results
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length > 0) {
+                    // Process the new results and add links
+                    this.addLinksToResults();
+                }
+            });
+        });
+
+        // Start observing the hits container
+        observer.observe(hitsContainer, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    addLinksToResults() {
+        const hitsContainer = document.getElementById('hitsbox');
+        if (!hitsContainer) return;
+
+        // Find all table rows in the results
+        const rows = hitsContainer.querySelectorAll('tr');
+
+        rows.forEach((row, index) => {
+            // Skip if already processed
+            if (row.dataset.processed === 'true') return;
+
+            // Mark as processed
+            row.dataset.processed = 'true';
+
+            const cells = row.querySelectorAll('td');
+            if (cells.length < 3) return;
+
+            // Try to extract document reference from various sources
+            let docRef = null;
+
+            // 1. Check row data attributes
+            docRef = row.dataset.doc || row.dataset.docId || row.dataset.ref;
+
+            // 2. Check all attributes for doc-related info
+            if (!docRef) {
+                const allAttrs = Array.from(row.attributes);
+                const docAttr = allAttrs.find(attr =>
+                    attr.name.includes('doc') || attr.name.includes('ref')
+                );
+                if (docAttr) {
+                    docRef = docAttr.value;
+                }
+            }
+
+            // 3. Try to extract from searchResults if available
+            if (!docRef && this.searchResults && this.searchResults.Lines) {
+                const line = this.searchResults.Lines[index];
+                if (line && line.Refs) {
+                    const docRefObj = line.Refs.find(ref => ref.name === 'doc.id' || ref.name === 'doc');
+                    if (docRefObj) {
+                        docRef = docRefObj.val || docRefObj.value;
+                    }
+                }
+            }
+
+            // 4. Look in cells for hidden data
+            if (!docRef) {
+                cells.forEach(cell => {
+                    if (cell.dataset.doc || cell.dataset.docId) {
+                        docRef = cell.dataset.doc || cell.dataset.docId;
+                    }
+                });
+            }
+
+            // Log for debugging
+            console.log('Row', index, 'attributes:', Array.from(row.attributes).map(a => `${a.name}=${a.value}`).join(', '));
+            console.log('Row', index, 'docRef:', docRef);
+
+            if (docRef) {
+                const letterId = docRef.replace(/\.xml$/, '').replace(/^.*\//, '');
+                const letterUrl = `${letterId}.html`;
+
+                console.log('Row', index, 'linking to:', letterUrl);
+
+                // Make the entire row clickable
+                row.style.cursor = 'pointer';
+                row.addEventListener('click', (e) => {
+                    // Don't navigate if clicking on an existing link
+                    if (e.target.tagName !== 'A') {
+                        window.location.href = letterUrl;
+                    }
+                });
+
+                // Add link to the keyword (middle cell)
+                const keywordCell = cells[1];
+                if (keywordCell && !keywordCell.querySelector('a')) {
+                    const keyword = keywordCell.innerHTML;
+                    keywordCell.innerHTML = `<a href="${letterUrl}">${keyword}</a>`;
+                }
+            } else {
+                console.warn('No document reference found for row', index);
+            }
+        });
     }
 
     addSearchButton(searchInput) {
