@@ -159,6 +159,7 @@ class DirectNoskeSearch {
                     let leftContext = '';
                     let keyword = '';
                     let rightContext = '';
+                    let docRef = '';
 
                     // Handle different possible line structures
                     if (line.Left || line.Kwic || line.Right) {
@@ -179,6 +180,29 @@ class DirectNoskeSearch {
                         keyword = JSON.stringify(line);
                     }
 
+                    // Extract document reference (Editionseinheit)
+                    // Noske typically provides this in line.Refs or line.refs
+                    if (line.Refs && Array.isArray(line.Refs)) {
+                        docRef = line.Refs.find(ref => ref.name === 'doc' || ref.name === 'text')?.val || '';
+                    } else if (line.refs && Array.isArray(line.refs)) {
+                        docRef = line.refs.find(ref => ref.name === 'doc' || ref.name === 'text')?.val || '';
+                    } else if (line.ref) {
+                        docRef = line.ref;
+                    } else if (line.doc) {
+                        docRef = line.doc;
+                    }
+
+                    // Create link to the letter/edition unit
+                    let letterLink = '';
+                    if (docRef) {
+                        // Assuming the docRef is the letter ID (e.g., L00123)
+                        // Adjust the URL pattern based on your site structure
+                        const letterId = docRef.replace(/\.xml$/, '');
+                        letterLink = `<a href="${letterId}.html" class="btn btn-sm btn-outline-primary mt-2">
+                            <i class="fas fa-envelope"></i> Zum Brief ${letterId}
+                        </a>`;
+                    }
+
                     html += `
                         <div class="list-group-item">
                             <div class="search-result">
@@ -186,7 +210,10 @@ class DirectNoskeSearch {
                                 <strong class="keyword">${keyword}</strong>
                                 <span class="context-right">${rightContext}</span>
                             </div>
-                            <small class="text-muted">Treffer ${index + 1}</small>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <small class="text-muted">Treffer ${index + 1}${docRef ? ' in ' + docRef : ''}</small>
+                                ${letterLink}
+                            </div>
                         </div>
                     `;
                 });
