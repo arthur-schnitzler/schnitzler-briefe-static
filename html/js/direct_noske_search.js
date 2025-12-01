@@ -153,7 +153,7 @@ class DirectNoskeSearch {
             const lines = data.Lines || data.lines || data.results || [];
 
             if (lines.length > 0) {
-                let html = '<div class="list-group">';
+                let html = '<table class="table table-hover"><tbody>';
 
                 lines.slice(0, 20).forEach((line, index) => {
                     let leftContext = '';
@@ -183,42 +183,45 @@ class DirectNoskeSearch {
                     // Extract document reference (Editionseinheit)
                     // Noske typically provides this in line.Refs or line.refs
                     if (line.Refs && Array.isArray(line.Refs)) {
-                        docRef = line.Refs.find(ref => ref.name === 'doc' || ref.name === 'text')?.val || '';
+                        const docRefObj = line.Refs.find(ref => ref.name === 'doc' || ref.name === 'text');
+                        docRef = docRefObj?.val || docRefObj?.value || '';
                     } else if (line.refs && Array.isArray(line.refs)) {
-                        docRef = line.refs.find(ref => ref.name === 'doc' || ref.name === 'text')?.val || '';
+                        const docRefObj = line.refs.find(ref => ref.name === 'doc' || ref.name === 'text');
+                        docRef = docRefObj?.val || docRefObj?.value || '';
+                    } else if (line.Ref) {
+                        docRef = line.Ref;
                     } else if (line.ref) {
                         docRef = line.ref;
                     } else if (line.doc) {
                         docRef = line.doc;
                     }
 
-                    // Create link to the letter/edition unit
-                    let letterLink = '';
+                    console.log('Document reference for line', index, ':', docRef);
+
+                    // Create link URL to the letter/edition unit
+                    let letterUrl = '';
                     if (docRef) {
-                        // Assuming the docRef is the letter ID (e.g., L00123)
-                        // Adjust the URL pattern based on your site structure
-                        const letterId = docRef.replace(/\.xml$/, '');
-                        letterLink = `<a href="${letterId}.html" class="btn btn-sm btn-outline-primary mt-2">
-                            <i class="fas fa-envelope"></i> Zum Brief ${letterId}
-                        </a>`;
+                        // Clean up the docRef and create proper link
+                        const letterId = docRef.replace(/\.xml$/, '').replace(/^.*\//, '');
+                        letterUrl = `${letterId}.html`;
                     }
 
+                    // Make the entire row clickable
+                    const rowClass = letterUrl ? 'cursor-pointer' : '';
+                    const rowClick = letterUrl ? `onclick="window.location.href='${letterUrl}'"` : '';
+
                     html += `
-                        <div class="list-group-item">
-                            <div class="search-result">
-                                <span class="context-left">${leftContext}</span>
-                                <strong class="keyword">${keyword}</strong>
-                                <span class="context-right">${rightContext}</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <small class="text-muted">Treffer ${index + 1}${docRef ? ' in ' + docRef : ''}</small>
-                                ${letterLink}
-                            </div>
-                        </div>
+                        <tr class="p-2 ${rowClass}" ${rowClick} style="${letterUrl ? 'cursor: pointer;' : ''}">
+                            <td class="text-sm text-gray-500 p-2 text-right">${leftContext}</td>
+                            <td class="text-lg text-red-500">
+                                ${letterUrl ? `<a href="${letterUrl}">${keyword}</a>` : keyword}
+                            </td>
+                            <td class="text-sm text-gray-500 p-2 text-left">${rightContext}</td>
+                        </tr>
                     `;
                 });
 
-                html += '</div>';
+                html += '</tbody></table>';
                 hitsContainer.innerHTML = html;
             } else {
                 hitsContainer.innerHTML = '<div class="alert alert-info">Keine Treffer gefunden.</div>';
