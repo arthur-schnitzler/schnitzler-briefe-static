@@ -233,23 +233,53 @@ class NoskeSearchImplementation {
     }
 
     async fetchNoskeDataDirectly(query) {
-        try {
-            const url = `https://corpus-search.acdh.oeaw.ac.at/run.cgi/first?corpname=schnitzlerbriefe&iquery=${encodeURIComponent(query)}&queryselector=iqueryrow&format=json&attrs=word&refs=doc.id&structs=doc,docTitle,head,p,imprimatur,list`;
+        return new Promise((resolve, reject) => {
+            try {
+                // Use JSONP to avoid CORS issues
+                const callbackName = 'noskeCallback_' + Date.now();
 
-            console.log('Fetching Noske data directly:', url);
+                window[callbackName] = (data) => {
+                    console.log('Direct fetch Noske API response:', data);
+                    this.latestApiData = data;
+                    this.searchResults = data;
 
-            const response = await fetch(url);
-            const data = await response.json();
+                    // Clean up
+                    document.head.removeChild(script);
+                    delete window[callbackName];
 
-            console.log('Direct fetch Noske API response:', data);
-            this.latestApiData = data;
-            this.searchResults = data;
+                    resolve(data);
+                };
 
-            return data;
-        } catch (error) {
-            console.error('Error fetching Noske data directly:', error);
-            return null;
-        }
+                const script = document.createElement('script');
+                const url = `https://corpus-search.acdh.oeaw.ac.at/bonito/run.cgi/first?corpname=schnitzlerbriefe&iquery=${encodeURIComponent(query)}&queryselector=iqueryrow&format=json&attrs=word&refs=doc.id&structs=doc,docTitle,head,p,imprimatur,list&callback=${callbackName}`;
+
+                console.log('Fetching Noske data directly via JSONP:', url);
+
+                script.src = url;
+                script.onerror = () => {
+                    console.error('JSONP script loading failed');
+                    document.head.removeChild(script);
+                    delete window[callbackName];
+                    reject(new Error('JSONP loading failed'));
+                };
+
+                document.head.appendChild(script);
+
+                // Timeout after 10 seconds
+                setTimeout(() => {
+                    if (window[callbackName]) {
+                        console.error('JSONP timeout');
+                        document.head.removeChild(script);
+                        delete window[callbackName];
+                        reject(new Error('JSONP timeout'));
+                    }
+                }, 10000);
+
+            } catch (error) {
+                console.error('Error fetching Noske data directly:', error);
+                reject(error);
+            }
+        });
     }
 
     addLinksToResults() {
