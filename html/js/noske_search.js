@@ -191,7 +191,18 @@ class NoskeSearchImplementation {
                 if (mutation.addedNodes.length > 0) {
                     // Add a small delay to ensure DOM is fully rendered
                     setTimeout(() => {
-                        this.addLinksToResults();
+                        // Try to get the current query from the search input
+                        const searchInput = document.getElementById('noske-search');
+                        const query = searchInput ? searchInput.value : null;
+
+                        if (query) {
+                            console.log('Search detected, fetching API data for query:', query);
+                            this.fetchNoskeDataDirectly(query).then(() => {
+                                this.addLinksToResults();
+                            });
+                        } else {
+                            this.addLinksToResults();
+                        }
                     }, 100);
                 }
             });
@@ -204,6 +215,26 @@ class NoskeSearchImplementation {
         });
 
         console.log('Results observer set up successfully');
+    }
+
+    async fetchNoskeDataDirectly(query) {
+        try {
+            const url = `https://corpus-search.acdh.oeaw.ac.at/run.cgi/first?corpname=schnitzlerbriefe&iquery=${encodeURIComponent(query)}&queryselector=iqueryrow&format=json&attrs=word&refs=doc.id&structs=doc,docTitle,head,p,imprimatur,list`;
+
+            console.log('Fetching Noske data directly:', url);
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            console.log('Direct fetch Noske API response:', data);
+            this.latestApiData = data;
+            this.searchResults = data;
+
+            return data;
+        } catch (error) {
+            console.error('Error fetching Noske data directly:', error);
+            return null;
+        }
     }
 
     addLinksToResults() {
