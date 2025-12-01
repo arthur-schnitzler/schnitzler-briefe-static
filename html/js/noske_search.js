@@ -187,25 +187,40 @@ class NoskeSearchImplementation {
 
         // Create observer to watch for new search results
         const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.addedNodes.length > 0) {
-                    // Add a small delay to ensure DOM is fully rendered
-                    setTimeout(() => {
-                        // Try to get the current query from the search input
-                        const searchInput = document.getElementById('noske-search');
-                        const query = searchInput ? searchInput.value : null;
+            let hasNewTable = false;
 
-                        if (query) {
-                            console.log('Search detected, fetching API data for query:', query);
-                            this.fetchNoskeDataDirectly(query).then(() => {
-                                this.addLinksToResults();
-                            });
-                        } else {
-                            this.addLinksToResults();
-                        }
-                    }, 100);
-                }
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach(node => {
+                    // Check if a table was added (the actual results)
+                    if (node.nodeName === 'TABLE' || (node.querySelector && node.querySelector('table'))) {
+                        hasNewTable = true;
+                    }
+                });
             });
+
+            if (hasNewTable) {
+                console.log('New results table detected');
+                // Add a delay to ensure table is fully rendered
+                setTimeout(() => {
+                    // Try to find the search input - it might be created dynamically
+                    const searchContainer = document.getElementById('noske-search');
+                    const searchInput = searchContainer ? searchContainer.querySelector('input') : null;
+                    const query = searchInput ? searchInput.value : null;
+
+                    console.log('Search input found:', !!searchInput);
+                    console.log('Query value:', query);
+
+                    if (query) {
+                        console.log('Search detected, fetching API data for query:', query);
+                        this.fetchNoskeDataDirectly(query).then(() => {
+                            this.addLinksToResults();
+                        });
+                    } else {
+                        console.warn('No query found, trying to add links anyway...');
+                        this.addLinksToResults();
+                    }
+                }, 500);
+            }
         });
 
         // Start observing the hits container
