@@ -107,8 +107,8 @@ class NoskeSearchImplementation {
                     base: "https://corpus-search.acdh.oeaw.ac.at/",
                     corpname: "schnitzlerbriefe",
                     attrs: "word",
-                    structs: "doc,docTitle,head,p,imprimatur,list",
-                    refs: "doc.id",
+                    structs: "chapter",
+                    refs: "chapter.id",
                 },
                 hits: {
                     id: "hitsbox",
@@ -251,7 +251,7 @@ class NoskeSearchImplementation {
                 };
 
                 const script = document.createElement('script');
-                const url = `https://corpus-search.acdh.oeaw.ac.at/bonito/run.cgi/first?corpname=schnitzlerbriefe&iquery=${encodeURIComponent(query)}&queryselector=iqueryrow&format=json&attrs=word&refs=doc.id&structs=doc,docTitle,head,p,imprimatur,list&callback=${callbackName}`;
+                const url = `https://corpus-search.acdh.oeaw.ac.at/bonito/run.cgi/first?corpname=schnitzlerbriefe&iquery=${encodeURIComponent(query)}&queryselector=iqueryrow&format=json&attrs=word&refs=chapter.id&structs=chapter&callback=${callbackName}`;
 
                 console.log('Fetching Noske data directly via JSONP:', url);
 
@@ -338,7 +338,7 @@ class NoskeSearchImplementation {
                     if (line.Refs && Array.isArray(line.Refs)) {
                         console.log('Line', index, 'Refs:', line.Refs);
                         const docRefObj = line.Refs.find(ref =>
-                            ref.name === 'doc.id' || ref.name === 'doc' || ref.name === 'text'
+                            ref.name === 'chapter.id' || ref.name === 'chapter' || ref.name === 'doc.id' || ref.name === 'doc' || ref.name === 'text'
                         );
                         if (docRefObj) {
                             docRef = docRefObj.val || docRefObj.value;
@@ -348,7 +348,7 @@ class NoskeSearchImplementation {
 
                     if (!docRef && line.refs && Array.isArray(line.refs)) {
                         const docRefObj = line.refs.find(ref =>
-                            ref.name === 'doc.id' || ref.name === 'doc' || ref.name === 'text'
+                            ref.name === 'chapter.id' || ref.name === 'chapter' || ref.name === 'doc.id' || ref.name === 'doc' || ref.name === 'text'
                         );
                         if (docRefObj) {
                             docRef = docRefObj.val || docRefObj.value;
