@@ -234,10 +234,23 @@ class NoskeSearchImplementation {
 
     async fetchNoskeDataDirectly(query) {
         try {
+            // Detect if query is CQL (starts with [ or contains lemma=, word=, etc.)
+            const isCQL = query.trim().startsWith('[') || /\b(lemma|word|tag|pos)=/i.test(query);
+
+            let q;
+            if (isCQL) {
+                // For CQL queries, use 'q' parameter directly
+                q = `q${encodeURIComponent(query)}`;
+            } else {
+                // For simple queries, wrap in quotes
+                q = `q${encodeURIComponent(`"${query}"`)}`;
+            }
+
             // Use the correct SketchEngine API endpoint
-            const url = `https://corpus-search.acdh.oeaw.ac.at/search/concordance?corpname=schnitzlerbriefe&q=q${encodeURIComponent(`"${query}"`)}&attrs=word,landingPageURI&attr_allpos=kw&viewmode=sen&structs=s,g&fromp=1&pagesize=50&kwicleftctx=100&format=json`;
+            const url = `https://corpus-search.acdh.oeaw.ac.at/search/concordance?corpname=schnitzlerbriefe&q=${q}&attrs=word,landingPageURI&attr_allpos=kw&viewmode=sen&structs=s,g&fromp=1&pagesize=50&kwicleftctx=100&format=json`;
 
             console.log('Fetching Noske data directly via fetch:', url);
+            console.log('Query type:', isCQL ? 'CQL' : 'Simple');
 
             const response = await fetch(url);
             const data = await response.json();
