@@ -304,13 +304,16 @@ class NoskeSearchImplementation {
                 const lines = this.latestApiData.Lines || this.latestApiData.lines;
                 if (lines && lines[index]) {
                     const line = lines[index];
-                    console.log('Line', index, 'data:', line);
+                    console.log('Line', index, 'full data:', JSON.stringify(line, null, 2));
 
                     // First try to get landingPageURI from the line structure
                     // The landingPageURI is in the 'attr' field of Kwic tokens
                     if (line.Kwic && Array.isArray(line.Kwic)) {
-                        for (const token of line.Kwic) {
-                            if (token && token.attr) {
+                        console.log('Kwic array length:', line.Kwic.length);
+                        for (let i = 0; i < line.Kwic.length; i++) {
+                            const token = line.Kwic[i];
+                            console.log('Kwic token', i, ':', JSON.stringify(token));
+                            if (token && typeof token === 'object' && token.attr) {
                                 // The attr field contains the landingPageURI with a leading slash
                                 // e.g., "/https://arthur-schnitzler.github.io/schnitzler-briefe-static/L00182.html"
                                 docRef = token.attr.replace(/^\//, ''); // Remove leading slash
@@ -322,8 +325,9 @@ class NoskeSearchImplementation {
 
                     // Fallback: check Left tokens
                     if (!docRef && line.Left && Array.isArray(line.Left)) {
+                        console.log('Left array length:', line.Left.length);
                         for (const token of line.Left) {
-                            if (token && token.attr) {
+                            if (token && typeof token === 'object' && token.attr) {
                                 docRef = token.attr.replace(/^\//, '');
                                 console.log('Found landingPageURI in Left token attr:', docRef);
                                 break;
@@ -333,14 +337,17 @@ class NoskeSearchImplementation {
 
                     // Fallback: check Right tokens
                     if (!docRef && line.Right && Array.isArray(line.Right)) {
+                        console.log('Right array length:', line.Right.length);
                         for (const token of line.Right) {
-                            if (token && token.attr) {
+                            if (token && typeof token === 'object' && token.attr) {
                                 docRef = token.attr.replace(/^\//, '');
                                 console.log('Found landingPageURI in Right token attr:', docRef);
                                 break;
                             }
                         }
                     }
+
+                    console.log('After checking all tokens, docRef:', docRef);
 
                     // Fallback: Check Refs for chapter.id
                     if (!docRef && line.Refs && Array.isArray(line.Refs)) {
