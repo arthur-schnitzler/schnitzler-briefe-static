@@ -106,7 +106,7 @@ class NoskeSearchImplementation {
                     id: "noske-client",
                     base: "https://corpus-search.acdh.oeaw.ac.at/",
                     corpname: "schnitzlerbriefe",
-                    attrs: "word",
+                    attrs: "word,landingPageURI",
                     structs: "chapter",
                     refs: "chapter.id",
                 },
@@ -251,7 +251,7 @@ class NoskeSearchImplementation {
                 };
 
                 const script = document.createElement('script');
-                const url = `https://corpus-search.acdh.oeaw.ac.at/bonito/run.cgi/first?corpname=schnitzlerbriefe&iquery=${encodeURIComponent(query)}&queryselector=iqueryrow&format=json&attrs=word&refs=chapter.id&structs=chapter&callback=${callbackName}`;
+                const url = `https://corpus-search.acdh.oeaw.ac.at/bonito/run.cgi/first?corpname=schnitzlerbriefe&iquery=${encodeURIComponent(query)}&queryselector=iqueryrow&format=json&attrs=word,landingPageURI&refs=chapter.id&structs=chapter&callback=${callbackName}`;
 
                 console.log('Fetching Noske data directly via JSONP:', url);
 
@@ -334,8 +334,45 @@ class NoskeSearchImplementation {
                     const line = lines[index];
                     console.log('Line', index, 'data:', line);
 
-                    // Check different possible structures
-                    if (line.Refs && Array.isArray(line.Refs)) {
+                    // First try to get landingPageURI from the line structure
+                    if (line.Left || line.Kwic || line.Right) {
+                        // Check in Kwic (keyword) tokens for landingPageURI attribute
+                        const kwicTokens = line.Kwic || [];
+                        for (const token of kwicTokens) {
+                            if (token && token.landingPageURI) {
+                                docRef = token.landingPageURI;
+                                console.log('Found landingPageURI in Kwic token:', docRef);
+                                break;
+                            }
+                        }
+
+                        // If not in Kwic, check Left tokens
+                        if (!docRef) {
+                            const leftTokens = line.Left || [];
+                            for (const token of leftTokens) {
+                                if (token && token.landingPageURI) {
+                                    docRef = token.landingPageURI;
+                                    console.log('Found landingPageURI in Left token:', docRef);
+                                    break;
+                                }
+                            }
+                        }
+
+                        // If not in Left, check Right tokens
+                        if (!docRef) {
+                            const rightTokens = line.Right || [];
+                            for (const token of rightTokens) {
+                                if (token && token.landingPageURI) {
+                                    docRef = token.landingPageURI;
+                                    console.log('Found landingPageURI in Right token:', docRef);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // Fallback: Check Refs for chapter.id
+                    if (!docRef && line.Refs && Array.isArray(line.Refs)) {
                         console.log('Line', index, 'Refs:', line.Refs);
                         const docRefObj = line.Refs.find(ref =>
                             ref.name === 'chapter.id' || ref.name === 'chapter' || ref.name === 'doc.id' || ref.name === 'doc' || ref.name === 'text'
@@ -370,10 +407,17 @@ class NoskeSearchImplementation {
             console.log('Row', index, 'final docRef:', docRef);
 
             if (docRef) {
-                const letterId = docRef.replace(/\.xml$/, '').replace(/^.*\//, '');
-                const letterUrl = `${letterId}.html`;
-
-                console.log('Row', index, 'linking to:', letterUrl);
+                // If docRef is already a full URL (from landingPageURI), use it directly
+                let letterUrl;
+                if (docRef.startsWith('http://') || docRef.startsWith('https://')) {
+                    letterUrl = docRef;
+                    console.log('Row', index, 'using full URL:', letterUrl);
+                } else {
+                    // Otherwise, treat it as a file ID and construct the URL
+                    const letterId = docRef.replace(/\.xml$/, '').replace(/^.*\//, '');
+                    letterUrl = `${letterId}.html`;
+                    console.log('Row', index, 'linking to:', letterUrl);
+                }
 
                 // Make the entire row clickable
                 row.style.cursor = 'pointer';
