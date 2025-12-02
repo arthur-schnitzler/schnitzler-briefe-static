@@ -251,7 +251,8 @@ class NoskeSearchImplementation {
                 };
 
                 const script = document.createElement('script');
-                const url = `https://corpus-search.acdh.oeaw.ac.at/bonito/run.cgi/first?corpname=schnitzlerbriefe&iquery=${encodeURIComponent(query)}&queryselector=iqueryrow&format=json&attrs=word,landingPageURI&refs=chapter.id&structs=chapter&callback=${callbackName}`;
+                // Try with 'jsonp' parameter instead of 'callback'
+                const url = `https://corpus-search.acdh.oeaw.ac.at/bonito/run.cgi/first?corpname=schnitzlerbriefe&iquery=${encodeURIComponent(query)}&queryselector=iqueryrow&format=json&attrs=word,landingPageURI&refs=chapter.id&structs=chapter&jsonp=${callbackName}`;
 
                 console.log('Fetching Noske data directly via JSONP:', url);
 
@@ -394,11 +395,34 @@ class NoskeSearchImplementation {
                 }
             }
 
-            // 4. Look in cells for hidden data
+            // 4. Look in cells for hidden data or landingPageURI in the rendered HTML
             if (!docRef) {
                 cells.forEach(cell => {
                     if (cell.dataset.doc || cell.dataset.docId) {
                         docRef = cell.dataset.doc || cell.dataset.docId;
+                    }
+
+                    // Also check for landingPageURI in the rendered HTML
+                    // Look for <concordance-result-items> or <span> with URL
+                    if (!docRef) {
+                        const resultItems = cell.querySelectorAll('concordance-result-items span.itm, span.itm');
+                        resultItems.forEach(item => {
+                            const text = item.textContent.trim();
+                            if (text.startsWith('http://') || text.startsWith('https://')) {
+                                docRef = text;
+                                console.log('Found landingPageURI in rendered HTML:', docRef);
+                            }
+                        });
+                    }
+
+                    // Also check all text content for URLs
+                    if (!docRef) {
+                        const text = cell.textContent;
+                        const urlMatch = text.match(/(https?:\/\/[^\s]+\.html)/);
+                        if (urlMatch) {
+                            docRef = urlMatch[1];
+                            console.log('Found URL in cell text:', docRef);
+                        }
                     }
                 });
             }
@@ -407,11 +431,14 @@ class NoskeSearchImplementation {
             console.log('Row', index, 'final docRef:', docRef);
 
             if (docRef) {
-                // If docRef is already a full URL (from landingPageURI), use it directly
+                // If docRef is already a full URL (from landingPageURI), extract just the filename
                 let letterUrl;
                 if (docRef.startsWith('http://') || docRef.startsWith('https://')) {
-                    letterUrl = docRef;
-                    console.log('Row', index, 'using full URL:', letterUrl);
+                    // Extract just the filename from the full URL
+                    // e.g., "https://arthur-schnitzler.github.io/schnitzler-briefe-static/L01761.html" -> "L01761.html"
+                    const urlParts = docRef.split('/');
+                    letterUrl = urlParts[urlParts.length - 1];
+                    console.log('Row', index, 'extracted filename from URL:', letterUrl);
                 } else {
                     // Otherwise, treat it as a file ID and construct the URL
                     const letterId = docRef.replace(/\.xml$/, '').replace(/^.*\//, '');
