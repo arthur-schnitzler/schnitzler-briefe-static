@@ -307,38 +307,37 @@ class NoskeSearchImplementation {
                     console.log('Line', index, 'data:', line);
 
                     // First try to get landingPageURI from the line structure
-                    if (line.Left || line.Kwic || line.Right) {
-                        // Check in Kwic (keyword) tokens for landingPageURI attribute
-                        const kwicTokens = line.Kwic || [];
-                        for (const token of kwicTokens) {
-                            if (token && token.landingPageURI) {
-                                docRef = token.landingPageURI;
-                                console.log('Found landingPageURI in Kwic token:', docRef);
+                    // The landingPageURI is in the 'attr' field of Kwic tokens
+                    if (line.Kwic && Array.isArray(line.Kwic)) {
+                        for (const token of line.Kwic) {
+                            if (token && token.attr) {
+                                // The attr field contains the landingPageURI with a leading slash
+                                // e.g., "/https://arthur-schnitzler.github.io/schnitzler-briefe-static/L00182.html"
+                                docRef = token.attr.replace(/^\//, ''); // Remove leading slash
+                                console.log('Found landingPageURI in Kwic token attr:', docRef);
                                 break;
                             }
                         }
+                    }
 
-                        // If not in Kwic, check Left tokens
-                        if (!docRef) {
-                            const leftTokens = line.Left || [];
-                            for (const token of leftTokens) {
-                                if (token && token.landingPageURI) {
-                                    docRef = token.landingPageURI;
-                                    console.log('Found landingPageURI in Left token:', docRef);
-                                    break;
-                                }
+                    // Fallback: check Left tokens
+                    if (!docRef && line.Left && Array.isArray(line.Left)) {
+                        for (const token of line.Left) {
+                            if (token && token.attr) {
+                                docRef = token.attr.replace(/^\//, '');
+                                console.log('Found landingPageURI in Left token attr:', docRef);
+                                break;
                             }
                         }
+                    }
 
-                        // If not in Left, check Right tokens
-                        if (!docRef) {
-                            const rightTokens = line.Right || [];
-                            for (const token of rightTokens) {
-                                if (token && token.landingPageURI) {
-                                    docRef = token.landingPageURI;
-                                    console.log('Found landingPageURI in Right token:', docRef);
-                                    break;
-                                }
+                    // Fallback: check Right tokens
+                    if (!docRef && line.Right && Array.isArray(line.Right)) {
+                        for (const token of line.Right) {
+                            if (token && token.attr) {
+                                docRef = token.attr.replace(/^\//, '');
+                                console.log('Found landingPageURI in Right token attr:', docRef);
+                                break;
                             }
                         }
                     }
