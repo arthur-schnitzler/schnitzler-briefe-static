@@ -12,4 +12,6 @@
     <xsl:param name="total_letters_formatted">3.936</xsl:param>
     <xsl:param name="complete_correspondences">52</xsl:param>
     <xsl:param name="complete_correspondences_formatted">52</xsl:param>
+    <xsl:param name="current-edition" select="'schnitzler-briefe'"/>
+    <xsl:param name="current-colour" select="'#A63437'"/>
 </xsl:stylesheet>
