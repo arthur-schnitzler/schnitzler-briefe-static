@@ -32,9 +32,13 @@
                                 </h1>
                             </div>
                             <div class="card-body">
-                                <div id="chart-container" class="border rounded p-3 mb-3" style="background-color: white;">
+                                <div id="chart-container" class="border rounded p-3 mb-3"
+                                    style="background-color: white;">
                                     <div class="d-flex justify-content-end mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('chart-container').style.display='none'" aria-label="Charts ausblenden">×</button>
+                                        <button type="button"
+                                            class="btn btn-sm btn-outline-secondary"
+                                            onclick="document.getElementById('chart-container').style.display='none'"
+                                            aria-label="Charts ausblenden">×</button>
                                     </div>
                                     <div id="container"
                                         style="padding-bottom: 20px; width:100%; margin: auto"/>
@@ -82,14 +86,19 @@
                                             <tr>
                                                 <td>
                                                   <span hidden="true">
-                                                      <xsl:choose>
-                                                          <xsl:when test="starts-with($entity/tei:persName[1]/tei:forename[1]/text(), '??')">
-                                                              <xsl:text>ZZZ </xsl:text><!-- Vornamen mit ?? nach unten reihen -->
-                                                          </xsl:when>
-                                                          <xsl:when test="normalize-space($entity/tei:persName[1]/tei:forename[1]/text()) = ''">
-                                                              <xsl:value-of select="substring($entity/tei:persName[1]/tei:surname/text(), 1, 1)"/>
-                                                          </xsl:when>
-                                                      </xsl:choose>
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="starts-with($entity/tei:persName[1]/tei:forename[1]/text(), '??')">
+                                                  <xsl:text>ZZZ </xsl:text>
+                                                  <!-- Vornamen mit ?? nach unten reihen -->
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="normalize-space($entity/tei:persName[1]/tei:forename[1]/text()) = ''">
+                                                  <xsl:value-of
+                                                  select="substring($entity/tei:persName[1]/tei:surname/text(), 1, 1)"
+                                                  />
+                                                  </xsl:when>
+                                                  </xsl:choose>
                                                   <xsl:value-of
                                                   select="$entity/tei:persName[1]/tei:forename[1]/text()"
                                                   />
@@ -110,10 +119,10 @@
                                                   test="starts-with($entity/tei:persName[1]/tei:surname[1]/text(), '??')">
                                                   <xsl:text>ZZZ </xsl:text>
                                                   </xsl:if>
-                                                      <xsl:if
-                                                          test="not($entity/tei:persName[1]/tei:surname[1]) or normalize-space($entity/tei:persName[1]/tei:surname[1]/text())=''">
-                                                          <xsl:text>ZZ </xsl:text>
-                                                      </xsl:if>
+                                                  <xsl:if
+                                                  test="not($entity/tei:persName[1]/tei:surname[1]) or normalize-space($entity/tei:persName[1]/tei:surname[1]/text()) = ''">
+                                                  <xsl:text>ZZ </xsl:text>
+                                                  </xsl:if>
                                                   <xsl:value-of
                                                   select="$entity/tei:persName[1]/tei:surname[1]/text()"
                                                   />
@@ -265,8 +274,10 @@
                                                   >adoptierter Name</item>
                                                   <item type="namensvariante">Namensvariante</item>
                                                   <item type="person_rufname">Rufname</item>
+                                                  <item type="person_rufname_vorname">Rufname</item>
                                                   <item type="person_pseudonym">Pseudonym</item>
-                                                   <item type="person_geschieden_nachname">geschieden</item>
+                                                  <item type="person_geschieden_nachname"
+                                                  >geschieden</item>
                                                   <item type="person_ehename">Ehename</item>
                                                   <item type="person_ehename_nachname"
                                                   >Ehename</item>
@@ -330,20 +341,20 @@
                                                   </xsl:if>
                                                 </td>
                                                 <td>
-                                                    <xsl:choose>
-                                                        <xsl:when test="tei:sex/@value = 'female'">
-                                                            <xsl:text>weiblich</xsl:text>
-                                                        </xsl:when>
-                                                        <xsl:when test="tei:sex/@value = 'male'">
-                                                            <xsl:text>männlich</xsl:text>
-                                                        </xsl:when>
-                                                        <xsl:when test="tei:sex/@value = 'third gender'">
-                                                            <xsl:text>drittes Geschlecht</xsl:text>
-                                                        </xsl:when>
-                                                        <xsl:otherwise>
-                                                            <xsl:text>unbekannt</xsl:text>
-                                                        </xsl:otherwise>
-                                                    </xsl:choose>
+                                                  <xsl:choose>
+                                                  <xsl:when test="tei:sex/@value = 'female'">
+                                                  <xsl:text>weiblich</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when test="tei:sex/@value = 'male'">
+                                                  <xsl:text>männlich</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when test="tei:sex/@value = 'third gender'">
+                                                  <xsl:text>drittes Geschlecht</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:text>unbekannt</xsl:text>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
                                                 </td>
                                             </tr>
                                         </xsl:for-each>
@@ -379,7 +390,8 @@
             <xsl:variable name="entity" select="." as="node()"/>
             <xsl:result-document href="{$filename}">
                 <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-                <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
+                <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de"
+                    xml:lang="de">
                     <xsl:call-template name="html_head">
                         <xsl:with-param name="html_title" select="$name"/>
                     </xsl:call-template>
