@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit immediately if any command fails
+set -e
+
 echo "check and delete faulty files"
 python3 delete_faulty_files.py
 
