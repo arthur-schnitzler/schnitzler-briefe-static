@@ -16,7 +16,7 @@
                     <xsl:copy-of select="child::*"/>
                 </item>
             </xsl:variable>
-            <xsl:variable name="abbr" select="child::abbr" as="xs:string"/>
+            <xsl:variable name="abbr" select="child::abbr" as="xs:string?"/>
             <xsl:choose>
                 <xsl:when
                     test="$idnos-of-current/descendant::tei:idno[@subtype = $abbr][2] and @ana = 'multiple'">
