@@ -1394,6 +1394,9 @@
     </xsl:template>
     <xsl:template match="tei:cell">
         <xsl:element name="td">
+            <xsl:attribute name="class">
+                <xsl:text>editionText</xsl:text>
+            </xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
