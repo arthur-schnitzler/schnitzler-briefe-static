@@ -11,6 +11,7 @@
     <xsl:import href="./partials/html_title_navigation.xsl"/>
     <xsl:import href="./partials/view-type.xsl"/>
     <xsl:import href="./partials/entities.xsl"/>
+    <xsl:import href="partials/zotero.xsl"/>
     <!-- Einstellungen für die Schnitzler-Chronik. Das entfernte XSL wird nur benützt, wenn fetch-locally auf  -->
     <xsl:import
         href="https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-chronik-static/refs/heads/main/xslt/export/schnitzler-chronik.xsl"/>
@@ -69,6 +70,10 @@
                         />
                     </xsl:with-param>
                     <xsl:with-param name="html_url" select="$quotationURL"/>
+                </xsl:call-template>
+                <xsl:call-template name="zoterMetaTags">
+                    <xsl:with-param name="pageId" select="$link"/>
+                    <xsl:with-param name="zoteroTitle" select="$doc_title"/>
                 </xsl:call-template>
                 <style>
                     .navBarNavDropdown ul li:nth-child(2) {
