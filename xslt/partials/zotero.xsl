@@ -13,10 +13,14 @@
         <xsl:if test="$zoteroTitle">
             <meta name="citation_title" content="{$zoteroTitle}"/>
         </xsl:if>
-        <!-- Extract editors from TEI header -->
-        <xsl:for-each select="//tei:titleStmt/tei:editor/tei:name">
+        <!--<xsl:for-each select="//tei:titleStmt/tei:author">
             <meta name="citation_author" content="{normalize-space(.)}"/>
-        </xsl:for-each>
+        </xsl:for-each>-->
+        
+        <meta name="citation_editor" content="Martin Anton Müller"/>
+        <meta name="citation_editor" content="Gerd-Hermann Susen"/>
+        <meta name="citation_editor" content="Laura Untner"/>
+        <meta name="citation_editor" content="Selma Jahnke"/>
         <meta name="citation_publisher" content="Austrian Centre for Digital Humanities (ACDH)"/>
         <meta name="citation_book_title" content="{$project_title}"/>
         <meta name="citation_public_url" content="{$fullUrl}"/>
