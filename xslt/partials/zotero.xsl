@@ -26,7 +26,10 @@
         <meta name="citation_inbook_title" content="{$project_title}"/>
         <meta name="citation_public_url" content="{$fullUrl}"/>
         <!-- Extract publication date from TEI header -->
+        <meta name="citation_publication_date" content="{//tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]/tei:date[1]/@when}"/>
+        <meta name="citation_fulltext_html_url" content="{$fullUrl}"/>
+        
         <xsl:variable name="pubDate" select="//tei:publicationStmt/tei:date/@when"/>
-        <meta name="citation_date" content="{if ($pubDate) then $pubDate else '2023'}"/>
+        <meta name="citation_date" content="{format-date(current-date(), '[D]. [MNn] [Y0001]', 'de', (), ())}"/>
     </xsl:template>
 </xsl:stylesheet>
