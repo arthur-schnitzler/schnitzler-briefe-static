@@ -12,21 +12,38 @@
         <xsl:variable name="fullUrl" select="concat($customUrl, '/', $pageId)"/>
         <xsl:if test="$zoteroTitle">
             <meta name="citation_title" content="{$zoteroTitle}"/>
+            <meta name="DC.Title" content="{$zoteroTitle}"/>
         </xsl:if>
-        <!--<xsl:for-each select="//tei:titleStmt/tei:author">
+        <!-- Extract authors of the letter/chapter -->
+        <xsl:for-each select="//tei:titleStmt/tei:author">
             <meta name="citation_author" content="{normalize-space(.)}"/>
-        </xsl:for-each>-->
+            <meta name="DC.Creator" content="{normalize-space(.)}"/>
+        </xsl:for-each>
 
-        <meta name="citation_editors" content="Martin Anton Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke"/>
-        <meta name="citation_publisher" content="Austrian Centre for Digital Humanities (ACDH)"/>
+        <!-- Editors of the book/collection -->
+        <meta name="citation_editor" content="Müller, Martin Anton"/>
+        <meta name="citation_editor" content="Susen, Gerd-Hermann"/>
+        <meta name="citation_editor" content="Untner, Laura"/>
+        <meta name="citation_editor" content="Jahnke, Selma"/>
+        <meta name="DC.Contributor.Editor" content="Müller, Martin Anton"/>
+        <meta name="DC.Contributor.Editor" content="Susen, Gerd-Hermann"/>
+        <meta name="DC.Contributor.Editor" content="Untner, Laura"/>
+        <meta name="DC.Contributor.Editor" content="Jahnke, Selma"/>
+        <!--<meta name="citation_publisher" content="Austrian Centre for Digital Humanities (ACDH)"/>-->
         <meta name="citation_book_title" content="{$project_title}"/>
         <meta name="citation_inbook_title" content="{$project_title}"/>
         <meta name="citation_public_url" content="{$fullUrl}"/>
+        <meta name="DC.Relation.IsPartOf" content="{$project_title}"/>
         <!-- Extract publication date from TEI header -->
         <meta name="citation_publication_date" content="{//tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]/tei:date[1]/@when}"/>
         <meta name="citation_fulltext_html_url" content="{$fullUrl}"/>
-        
+        <meta name="DC.Identifier" content="{$fullUrl}"/>
+        <meta name="DC.Type" content="Text"/>
+        <meta name="DC.Format" content="text/html"/>
+        <meta name="DC.Language" content="de"/>
+
         <xsl:variable name="pubDate" select="//tei:publicationStmt/tei:date/@when"/>
         <meta name="citation_date" content="{format-date(current-date(), '[D]. [MNn] [Y0001]', 'de', (), ())}"/>
+        <meta name="DC.Date" content="{if ($pubDate) then $pubDate else '2023'}"/>
     </xsl:template>
 </xsl:stylesheet>
