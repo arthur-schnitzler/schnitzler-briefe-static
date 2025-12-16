@@ -2,6 +2,29 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:local="http://dse-static.foo.bar" exclude-result-prefixes="xs" version="3.0">
+
+    <!-- Funktion für See/Cf-Präfixe -->
+    <xsl:function name="local:seecf-prefix" as="xs:string">
+        <xsl:param name="subtype" as="xs:string?"/>
+        <xsl:choose>
+            <xsl:when test="$subtype = 'See'">
+                <xsl:text>Siehe </xsl:text>
+            </xsl:when>
+            <xsl:when test="$subtype = 'Cf'">
+                <xsl:text>Vgl. </xsl:text>
+            </xsl:when>
+            <xsl:when test="$subtype = 'see'">
+                <xsl:text>siehe </xsl:text>
+            </xsl:when>
+            <xsl:when test="$subtype = 'cf'">
+                <xsl:text>vgl. </xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
     <xsl:template match="tei:ref[@type = 'URL']">
         <xsl:element name="a">
             <xsl:attribute name="href">
@@ -21,7 +44,7 @@
         </xsl:element>
     </xsl:template>
     <xsl:template
-        match="tei:ref[not(@type = 'schnitzler-tagebuch') and not(@type = 'schnitzler-briefe') and not(@type = 'schnitzler-bahr') and not(@type = 'schnitzler-lektueren') and not(@type = 'schnitzler-interviews') and not(@type = 'URL') and not(@type = 'schnitzler-kultur') and not(@type = 'wienerschnitzler') ]">
+        match="tei:ref[not(@type = 'schnitzler-tagebuch') and not(@type = 'schnitzler-briefe') and not(@type = 'schnitzler-bahr') and not(@type = 'schnitzler-lektueren') and not(@type = 'schnitzler-interviews') and not(@type = 'URL') and not(@type = 'schnitzler-kultur') and not(@type = 'wienerschnitzler') and not(@type = 'schnitzler-zeitungen') and not(@type = 'schnitzler-mikrofilme')]">
         <xsl:choose>
             <xsl:when test="@target[ends-with(., '.xml')]">
                 <xsl:element name="a">
@@ -71,20 +94,7 @@
                 </a>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:choose>
-                    <xsl:when test="@subtype = 'See'">
-                        <xsl:text>Siehe </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@subtype = 'Cf'">
-                        <xsl:text>Vgl. </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@subtype = 'see'">
-                        <xsl:text>siehe </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@subtype = 'cf'">
-                        <xsl:text>vgl. </xsl:text>
-                    </xsl:when>
-                </xsl:choose>
+                <xsl:value-of select="local:seecf-prefix(@subtype)"/>
                 <a>
                     <xsl:attribute name="class">
                         <xsl:value-of select="@type"/>
@@ -111,8 +121,7 @@
                     </xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of
-                            select="concat('https://wienerschnitzler.org/tag.html#', @target)"
-                        />
+                            select="concat('https://wienerschnitzler.org/tag.html#', @target)"/>
                     </xsl:attribute>
                     <xsl:choose>
                         <xsl:when test="@target = ''">
@@ -125,20 +134,7 @@
                 </a>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:choose>
-                    <xsl:when test="@subtype = 'See'">
-                        <xsl:text>Siehe </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@subtype = 'Cf'">
-                        <xsl:text>Vgl. </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@subtype = 'see'">
-                        <xsl:text>siehe </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@subtype = 'cf'">
-                        <xsl:text>vgl. </xsl:text>
-                    </xsl:when>
-                </xsl:choose>
+                <xsl:value-of select="local:seecf-prefix(@subtype)"/>
                 <a>
                     <xsl:attribute name="class">
                         <xsl:value-of select="@type"/>
@@ -146,8 +142,7 @@
                     </xsl:attribute>
                     <xsl:attribute name="href">
                         <xsl:value-of
-                            select="concat('https://wienerschnitzler.org/tag.html#', @target)"
-                        />
+                            select="concat('https://wienerschnitzler.org/tag.html#', @target)"/>
                     </xsl:attribute>
                     <xsl:text>Wiener Schnitzler – Schnitzlers Wien, </xsl:text>
                     <xsl:value-of select="format-date(@target, '[D].&#160;[M].&#160;[Y]')"/>
@@ -155,9 +150,41 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template
-        match="tei:ref[@type = 'schnitzler-briefe' or @type = 'schnitzler-bahr' or @type = 'schnitzler-lektueren' or @type = 'schnitzler-interviews'  or @type = 'schnitzler-kultur'
-        ]">
+    <xsl:template match="tei:ref[@type = 'schnitzler-zeitungen']">
+        <xsl:value-of select="local:seecf-prefix(@subtype)"/>
+        <a>
+            <xsl:attribute name="class">
+                <xsl:value-of select="@type"/>
+                <xsl:text> font-weight-bold</xsl:text>
+            </xsl:attribute>
+            <xsl:attribute name="href">
+                <xsl:value-of
+                    select="concat('https://schnitzler-zeitungen.acdh.oeaw.ac.at/', @target, '.html')"
+                />
+            </xsl:attribute>
+            <xsl:text>Arthur Schnitzler: Archiv der Zeitungssausschitte, </xsl:text>
+            <xsl:value-of select="@target"/>
+        </a>
+    </xsl:template>
+    <xsl:template match="tei:ref[@type = 'schnitzler-mikrofilme']">
+        <xsl:value-of select="local:seecf-prefix(@subtype)"/>
+        <a>
+            <xsl:attribute name="class">
+                <xsl:value-of select="@type"/>
+                <xsl:text> font-weight-bold</xsl:text>
+            </xsl:attribute>
+            <xsl:attribute name="href">
+                <xsl:value-of
+                    select="concat('https://schnitzler-mikrofilme.acdh.oeaw.ac.at/', @target, '.html')"
+                />
+            </xsl:attribute>
+            <xsl:text>Arthur Schnitzler: Mikrofilme, </xsl:text>
+            <xsl:value-of select="@target"/>
+        </a>
+    </xsl:template>
+    <xsl:template match="
+            tei:ref[@type = 'schnitzler-briefe' or @type = 'schnitzler-bahr' or @type = 'schnitzler-lektueren' or @type = 'schnitzler-interviews' or @type = 'schnitzler-kultur'
+            ]">
         <xsl:variable name="type-url" as="xs:string">
             <xsl:choose>
                 <xsl:when test="@type = 'schnitzler-briefe'">
@@ -192,7 +219,6 @@
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="@subtype = 'date-only'">
-                
                 <a>
                     <xsl:attribute name="class">
                         <xsl:value-of select="@type"/>
@@ -218,31 +244,17 @@
                             />
                         </xsl:when>
                         <xsl:when test="@type = 'schnitzler-kultur'">
-                            <xsl:value-of
-                                select="format-date(
-                                xs:date(document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/tei:listEvent[1]/tei:event[@xml:id = replace($ref-mit-endung, '.html', '')]/@when-iso),
-                                '[D].&#160;[M].&#160;[Y]'
-                                )"/>
-                            
+                            <xsl:value-of select="
+                                    format-date(
+                                    xs:date(document('https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-kultur/refs/heads/main/data/editions/listevent.xml')/tei:TEI/tei:text[1]/tei:body[1]/tei:listEvent[1]/tei:event[@xml:id = replace($ref-mit-endung, '.html', '')]/@when-iso),
+                                    '[D].&#160;[M].&#160;[Y]'
+                                    )"/>
                         </xsl:when>
                     </xsl:choose>
                 </a>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:choose>
-                    <xsl:when test="@subtype = 'See'">
-                        <xsl:text>Siehe </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@subtype = 'Cf'">
-                        <xsl:text>Vgl. </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@subtype = 'see'">
-                        <xsl:text>siehe </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@subtype = 'cf'">
-                        <xsl:text>vgl. </xsl:text>
-                    </xsl:when>
-                </xsl:choose>
+                <xsl:value-of select="local:seecf-prefix(@subtype)"/>
                 <a>
                     <xsl:attribute name="class">
                         <xsl:value-of select="@type"/>
@@ -283,7 +295,8 @@
                                 </xsl:choose>
                             </xsl:variable>
                             <xsl:choose>
-                                <xsl:when test="$dateiname-xml != '' and doc-available($dateiname-xml)">
+                                <xsl:when
+                                    test="$dateiname-xml != '' and doc-available($dateiname-xml)">
                                     <xsl:value-of
                                         select="document($dateiname-xml)/descendant::tei:titleStmt[1]/tei:title[@level = 'a'][1]/text()"
                                     />
