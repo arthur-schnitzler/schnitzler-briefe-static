@@ -105,8 +105,8 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" id="statistikenDropdown" aria-haspopup="true">Statistiken</a>
-                            <ul class="dropdown-menu" aria-labelledby="statistikenDropdown">
+                                data-bs-toggle="dropdown" aria-expanded="false" id="visualisierungenDropdown" aria-haspopup="true">Visualisierungen</a>
+                            <ul class="dropdown-menu" aria-labelledby="visualisierungenDropdown">
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="statistiken.html">Allgemein</a>
                                 </li>
