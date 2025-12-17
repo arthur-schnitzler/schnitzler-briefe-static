@@ -56,12 +56,6 @@
                                                 <div class="correspondence-card" data-name="{$corr-name}">
                                                     <div class="card mb-3">
                                                         <div class="card-body">
-                                                            <h5 class="card-title">
-                                                                <xsl:if test="$is-female">
-                                                                    <span class="badge bg-info me-2">Schriftstellerin</span>
-                                                                </xsl:if>
-                                                                <xsl:value-of select="$corr-name"/>
-                                                            </h5>
                                                             <xsl:if test="$status = 'corrections-in-progress'">
                                                                 <p class="text-muted small">
                                                                     <i class="fa fa-info-circle"></i> Alle Korrespondenzstücke aufgenommen, Korrekturen laufen noch
@@ -72,9 +66,15 @@
                                                                     <i class="fa fa-info-circle"></i> Edition noch nicht vollständig
                                                                 </p>
                                                             </xsl:if>
+                                                            <h5 class="card-title">
+                                                                <xsl:value-of select="$corr-name"/>
+                                                                <xsl:if test="$is-female">
+                                                                    <span class="badge bg-info me-2">Schriftstellerin</span>
+                                                                </xsl:if>
+                                                            </h5>
 
                                                             <div class="btn-group" role="group">
-                                                                <a href="{concat('toc_pmb', $corr-id, '.html')}" class="btn btn-sm btn-primary">
+                                                                <a href="{concat('toc_', $corr-id, '.html')}" class="btn btn-sm btn-primary">
                                                                     <i class="fa fa-list"></i> Briefe
                                                                 </a>
                                                                 <a href="{concat('statistik_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
