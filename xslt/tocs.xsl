@@ -66,7 +66,7 @@
                                                         <xsl:when test="$person-image != ''">
                                                             <img src="{$person-image}" class="card-img-top" alt="{$corr-name}"/>
                                                         </xsl:when>
-                                                        <xsl:when test="unparsed-text-available(concat('../html/', $chatgpt-image))">
+                                                        <xsl:when test="$person-number = '11527' or $person-number = '12438' or $person-number = '4986'">
                                                             <img src="{$chatgpt-image}" class="card-img-top" alt="{$corr-name}"/>
                                                         </xsl:when>
                                                         <xsl:otherwise>
