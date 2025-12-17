@@ -113,18 +113,24 @@
                                         </div>
 
                                         <div class="filter-section mt-4">
-                                            <h4>Optionen</h4>
+                                            <h4>Filter</h4>
                                             <div class="form-group">
-                                                <label for="min-mentions">Mindestanzahl Erwähnungen: <span id="min-mentions-value">1</span></label>
+                                                <label for="min-mentions" data-bs-toggle="tooltip" title="Minimale Anzahl der Erwähnungen einer Entität in allen ausgewählten Korrespondenzen zusammen">
+                                                    Mindestanzahl Erwähnungen: <span id="min-mentions-value">1</span>
+                                                </label>
                                                 <input type="range" class="form-range" id="min-mentions" min="1" max="50" value="1"/>
+                                                <small class="form-text text-muted">Filtert Entitäten nach Gesamtzahl der Erwähnungen</small>
                                             </div>
-                                            <div class="form-group mt-2">
+                                            <div class="form-group mt-3">
+                                                <label for="min-correspondence-overlap" data-bs-toggle="tooltip" title="In wie vielen der ausgewählten Korrespondenzen muss eine Entität mindestens vorkommen">
+                                                    Überschneidungen (min. Korrespondenzen): <span id="min-correspondence-overlap-value">1</span>
+                                                </label>
+                                                <input type="range" class="form-range" id="min-correspondence-overlap" min="1" max="10" value="1"/>
+                                                <small class="form-text text-muted">Zeigt nur Entitäten, die in mindestens X Korrespondenzen vorkommen</small>
+                                            </div>
+                                            <div class="form-group mt-3">
                                                 <label for="max-nodes">Max. Knoten: <span id="max-nodes-value">100</span></label>
                                                 <input type="range" class="form-range" id="max-nodes" min="10" max="200" value="100" step="10"/>
-                                            </div>
-                                            <div class="form-group mt-2">
-                                                <label for="min-correspondence-overlap">Min. Korrespondenzen pro Verbindung: <span id="min-correspondence-overlap-value">1</span></label>
-                                                <input type="range" class="form-range" id="min-correspondence-overlap" min="1" max="5" value="1"/>
                                             </div>
                                             <div class="form-check mt-3">
                                                 <input class="form-check-input" type="checkbox" id="show-labels" checked="checked"/>
