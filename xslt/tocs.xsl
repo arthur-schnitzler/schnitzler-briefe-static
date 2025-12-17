@@ -79,13 +79,21 @@
                                                                 <i class="fa fa-info-circle"></i> Edition noch nicht vollständig
                                                             </p>
                                                         </xsl:if>
-                                                        <div class="btn-group" role="group">
-                                                            <a href="{concat('toc_pmb', $corr-id, '.html')}" class="btn btn-sm btn-primary">
+                                                        <div class="correspondence-buttons">
+                                                            <a href="{concat('toc_pmb', $corr-id, '.html')}" class="btn btn-primary btn-briefe w-100 mb-2">
                                                                 <i class="fa fa-list"></i> Briefe
                                                             </a>
-                                                            <a href="{concat('statistik_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
-                                                                <i class="fa fa-chart-bar"></i> Statistiken
-                                                            </a>
+                                                            <div class="btn-group-viz" role="group">
+                                                                <a href="{concat('statistik_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
+                                                                    <i class="fa fa-chart-bar"></i> Statistiken
+                                                                </a>
+                                                                <a href="{concat('netzwerke_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
+                                                                    <i class="fa fa-project-diagram"></i> Netzwerke
+                                                                </a>
+                                                                <a href="{concat('karte_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
+                                                                    <i class="fa fa-map-marked-alt"></i> Karte
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -242,14 +250,25 @@
                             min-height: 2.5em;
                         }
 
-                        .correspondence-card .btn-group {
+                        .correspondence-buttons {
                             display: flex;
-                            flex-wrap: wrap;
-                            gap: 0.25rem;
+                            flex-direction: column;
+                            gap: 0.5rem;
                             margin-top: auto;
                         }
 
-                        .correspondence-card .btn-group .btn {
+                        .btn-briefe {
+                            font-size: 0.95rem;
+                            padding: 0.5rem 1rem;
+                            font-weight: 500;
+                        }
+
+                        .btn-group-viz {
+                            display: flex;
+                            gap: 0.25rem;
+                        }
+
+                        .btn-group-viz .btn {
                             flex: 1;
                             min-width: 0;
                             font-size: 0.85rem;
