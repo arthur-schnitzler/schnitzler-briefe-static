@@ -51,9 +51,14 @@
 
                                             <div class="correspondence-card">
                                                 <div class="card mb-3">
-                                                    <xsl:if test="$person-image != ''">
-                                                        <img src="{$person-image}" class="card-img-top" alt="{$corr-name}"/>
-                                                    </xsl:if>
+                                                    <xsl:choose>
+                                                        <xsl:when test="$person-image != ''">
+                                                            <img src="{$person-image}" class="card-img-top" alt="{$corr-name}"/>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <img src="img/schattenriss_1900.svg" class="card-img-top" alt="{$corr-name}"/>
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
                                                     <div class="card-body">
                                                         <h5 class="card-title">
                                                             <xsl:value-of select="$corr-name"/>
@@ -80,7 +85,7 @@
                                                             </p>
                                                         </xsl:if>
                                                         <div class="correspondence-buttons">
-                                                            <a href="{concat('toc_pmb', $corr-id, '.html')}" class="btn btn-primary btn-briefe w-100 mb-2">
+                                                            <a href="{concat('toc_pmb', $corr-id, '.html')}" class="btn btn-briefe w-100 mb-2" style="background-color: #A63437; border-color: #A63437; color: white;">
                                                                 <i class="fa fa-list"></i> Briefe
                                                             </a>
                                                             <div class="btn-group-viz" role="group">
@@ -228,14 +233,6 @@
                             flex-shrink: 0;
                         }
 
-                        .correspondence-card .card:not(:has(.card-img-top))::before {
-                            content: '';
-                            display: block;
-                            height: 280px;
-                            width: 100%;
-                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                            flex-shrink: 0;
-                        }
 
                         .correspondence-card .card-body {
                             display: flex;

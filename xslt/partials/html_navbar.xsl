@@ -110,11 +110,12 @@
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="statistiken.html">Allgemein</a>
                                 </li>
-                                <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="correspondence-overview.html">Einzelne Korrespondenzen</a>
-                                </li>
+                            
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="jung-wien.html">Netzwerk Jung-Wien</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="tocs.html">Korrespondenzen</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="interactive-networks.html">Korrespondenznetzwerke</a>
