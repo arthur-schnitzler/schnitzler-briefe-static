@@ -13,7 +13,12 @@
     <xsl:param name="output-type" select="'briefe'"/>
 
     <xsl:template match="/">
-        <xsl:variable name="doc_title" select="'Verzeichnis der Korrespondenzen'"/>
+        <xsl:variable name="doc_title">
+            <xsl:choose>
+                <xsl:when test="$output-type = 'briefe'">Verzeichnis der Korrespondenzen</xsl:when>
+                <xsl:when test="$output-type = 'viz'">Visualisierung von Korrespondenzen</xsl:when>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="listperson" select="document('../data/indices/listperson.xml')"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
         <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
@@ -30,7 +35,7 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-header">
-                                <h1>Verzeichnis der Korrespondenzen</h1>
+                                <h1><xsl:value-of select="$doc_title"/></h1>
                                 <xsl:if test="$output-type = 'briefe'">
                                     <div class="btn-group mt-3" role="group" aria-label="Ansicht auswählen">
                                         <button type="button" class="btn btn-primary active" id="view-gallery-btn" onclick="showGalleryView()">Galerie</button>
