@@ -99,7 +99,11 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
-    <xslt in="./data/indices/listcorrespondence.xml" out="${target}/interaktive-netzwerke.html" style="./xslt/interactive-networks.xsl">
+    <xslt in="./data/indices/listcorrespondence.xml" out="${target}/interactive-networks.html" style="./xslt/interactive-networks.xsl">
+        <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        <classpath location="${basedir}/saxon/saxon9he.jar"/>
+    </xslt>
+    <xslt in="./data/indices/listcorrespondence.xml" out="${target}/correspondence-overview.html" style="./xslt/correspondence-overview.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>

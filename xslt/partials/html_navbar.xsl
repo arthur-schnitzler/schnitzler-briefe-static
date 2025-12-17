@@ -35,12 +35,6 @@
                                     <a class="nav-link" href="ansichten.html">Ansichten</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="statistiken.html">Statistiken</a>
-                                </li>
-                                <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="jung-wien.html">Netzwerk Jung-Wien</a>
-                                </li>
-                                <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="danksagung.html">Danksagung</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
@@ -106,6 +100,24 @@
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="listevent.html">Ereignisse</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" id="statistikenDropdown" aria-haspopup="true">Statistiken</a>
+                            <ul class="dropdown-menu" aria-labelledby="statistikenDropdown">
+                                <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="statistiken.html">Allgemein</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="correspondence-overview.html">Einzelne Korrespondenzen</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="jung-wien.html">Netzwerk Jung-Wien</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="interactive-networks.html">Korrespondenznetzwerke</a>
                                 </li>
                             </ul>
                         </li>
