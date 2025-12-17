@@ -111,6 +111,8 @@
                     }
 
                     .correspondence-card .card {
+                        display: flex;
+                        flex-direction: column;
                         height: 100%;
                         transition: transform 0.2s, box-shadow 0.2s;
                         overflow: hidden;
@@ -123,14 +125,27 @@
 
                     .correspondence-card .card-img-top {
                         height: 280px;
+                        width: 100%;
                         object-fit: cover;
                         object-position: top;
+                        flex-shrink: 0;
+                    }
+
+                    /* Platzhalter für Karten ohne Bild */
+                    .correspondence-card .card:not(:has(.card-img-top))::before {
+                        content: '';
+                        display: block;
+                        height: 280px;
+                        width: 100%;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        flex-shrink: 0;
                     }
 
                     .correspondence-card .card-body {
                         display: flex;
                         flex-direction: column;
                         gap: 0.75rem;
+                        flex: 1;
                     }
 
                     .correspondence-card .card-title {

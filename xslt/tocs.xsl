@@ -12,6 +12,7 @@
 
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Verzeichnis der Korrespondenzen'"/>
+        <xsl:variable name="listperson" select="document('../data/indices/listperson.xml')"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
         <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
             <xsl:call-template name="html_head">
@@ -24,16 +25,76 @@
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="card">
                             <div class="card-header">
                                 <h1>Verzeichnis der Korrespondenzen</h1>
                                 <div class="btn-group mt-3" role="group" aria-label="Ansicht auswählen">
-                                    <button type="button" class="btn btn-outline-secondary active" id="view-table-btn" onclick="showTableView()">Tabelle</button>
-                                    <button type="button" class="btn btn-outline-secondary" id="view-network-btn" onclick="showNetworkView()">Netzwerk</button>
+                                    <button type="button" class="btn btn-primary active" id="view-gallery-btn" onclick="showGalleryView()">Galerie</button>
+                                    <button type="button" class="btn btn-outline-primary" id="view-table-btn" onclick="showTableView()">Tabelle</button>
+                                    <button type="button" class="btn btn-outline-primary" id="view-network-btn" onclick="showNetworkView()">Netzwerk</button>
                                 </div>
                             </div>
                             <div class="card-body">
+                                <!-- Gallery View -->
+                                <div id="gallery-view">
+                                    <div class="correspondence-grid">
+                                        <xsl:for-each select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null') and not(@ana = 'planned')]">
+                                            <xsl:sort select="tei:persName[@role = 'main'][1]/text()"/>
+                                            <xsl:variable name="corr-id" select="replace(@xml:id, 'correspondence_', '')"/>
+                                            <xsl:variable name="person-ref" select="substring-after(tei:persName[@role = 'main'][1]/@ref, '#')"/>
+                                            <xsl:variable name="corr-name" select="mam:vorname-vor-nachname(tei:persName[@role = 'main'][1]/text())"/>
+                                            <xsl:variable name="is-female" select="@corresp = 'female-correspondence-partner'"/>
+                                            <xsl:variable name="status" select="@ana"/>
+                                            <xsl:variable name="person-image" select="$listperson//tei:person[@xml:id = $person-ref]/tei:figure/tei:graphic/@url"/>
+                                            <xsl:variable name="brief-count" select="count(document(concat('../data/tocs/toc_', $corr-id, '.xml'))/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:list[1]/tei:item)"/>
+
+                                            <div class="correspondence-card">
+                                                <div class="card mb-3">
+                                                    <xsl:if test="$person-image != ''">
+                                                        <img src="{$person-image}" class="card-img-top" alt="{$corr-name}"/>
+                                                    </xsl:if>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">
+                                                            <xsl:value-of select="$corr-name"/>
+                                                            <xsl:if test="$is-female">
+                                                                <span class="badge bg-info ms-2">Schriftstellerin</span>
+                                                            </xsl:if>
+                                                        </h5>
+                                                        <p class="card-text">
+                                                            <strong><xsl:value-of select="$brief-count"/></strong>
+                                                            <xsl:text> </xsl:text>
+                                                            <xsl:choose>
+                                                                <xsl:when test="$brief-count = 1">Brief</xsl:when>
+                                                                <xsl:otherwise>Briefe</xsl:otherwise>
+                                                            </xsl:choose>
+                                                        </p>
+                                                        <xsl:if test="$status = 'corrections-in-progress'">
+                                                            <p class="text-muted small mb-2">
+                                                                <i class="fa fa-info-circle"></i> Alle Korrespondenzstücke aufgenommen, Korrekturen laufen noch
+                                                            </p>
+                                                        </xsl:if>
+                                                        <xsl:if test="$status = 'edition-in-progress'">
+                                                            <p class="text-muted small mb-2">
+                                                                <i class="fa fa-info-circle"></i> Edition noch nicht vollständig
+                                                            </p>
+                                                        </xsl:if>
+                                                        <div class="btn-group" role="group">
+                                                            <a href="{concat('toc_pmb', $corr-id, '.html')}" class="btn btn-sm btn-primary">
+                                                                <i class="fa fa-list"></i> Briefe
+                                                            </a>
+                                                            <a href="{concat('statistik_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
+                                                                <i class="fa fa-chart-bar"></i> Statistiken
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </xsl:for-each>
+                                    </div>
+                                </div>
+
+                                <!-- Network View -->
                                 <div id="network-view" style="display: none; width: 100%; height: calc(100vh - 300px); min-height: 600px; position: relative;">
                                     <div style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
                                         <button type="button" class="btn btn-sm btn-outline-secondary" onclick="zoomIn()" title="Hineinzoomen">+</button>
@@ -44,7 +105,9 @@
                                         style="width: 100%; height: 100%; display: block;"/>
                                     <script src="js/correspondence_weights_directed.js"/>
                                 </div>
-                                <div id="table-view">
+
+                                <!-- Table View -->
+                                <div id="table-view" style="display: none;">
                                     <table class="table-light table-striped display"
                                         id="tabulator-table-limited"
                                         style="width:100%; margin: auto;">
@@ -128,19 +191,111 @@
                     <xsl:call-template name="html_footer"/>
                     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
                     <script src="tabulator-js/tabulator-limited.js"></script>
+                    <style>
+                        .correspondence-grid {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                            gap: 1.5rem;
+                            margin-top: 1rem;
+                        }
+
+                        .correspondence-card .card {
+                            display: flex;
+                            flex-direction: column;
+                            height: 100%;
+                            transition: transform 0.2s, box-shadow 0.2s;
+                            overflow: hidden;
+                        }
+
+                        .correspondence-card .card:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+                        }
+
+                        .correspondence-card .card-img-top {
+                            height: 280px;
+                            width: 100%;
+                            object-fit: cover;
+                            object-position: top;
+                            flex-shrink: 0;
+                        }
+
+                        .correspondence-card .card:not(:has(.card-img-top))::before {
+                            content: '';
+                            display: block;
+                            height: 280px;
+                            width: 100%;
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            flex-shrink: 0;
+                        }
+
+                        .correspondence-card .card-body {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.75rem;
+                            flex: 1;
+                        }
+
+                        .correspondence-card .card-title {
+                            margin-bottom: 0;
+                            font-size: 1.1rem;
+                            min-height: 2.5em;
+                        }
+
+                        .correspondence-card .btn-group {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 0.25rem;
+                            margin-top: auto;
+                        }
+
+                        .correspondence-card .btn-group .btn {
+                            flex: 1;
+                            min-width: 0;
+                            font-size: 0.85rem;
+                            padding: 0.375rem 0.5rem;
+                        }
+
+                        .badge {
+                            font-size: 0.75rem;
+                            font-weight: normal;
+                        }
+                    </style>
                     <script>
+                        function showGalleryView() {
+                            document.getElementById('gallery-view').style.display = 'block';
+                            document.getElementById('table-view').style.display = 'none';
+                            document.getElementById('network-view').style.display = 'none';
+                            document.getElementById('view-gallery-btn').classList.remove('btn-outline-primary');
+                            document.getElementById('view-gallery-btn').classList.add('btn-primary');
+                            document.getElementById('view-table-btn').classList.remove('btn-primary');
+                            document.getElementById('view-table-btn').classList.add('btn-outline-primary');
+                            document.getElementById('view-network-btn').classList.remove('btn-primary');
+                            document.getElementById('view-network-btn').classList.add('btn-outline-primary');
+                        }
+
                         function showTableView() {
+                            document.getElementById('gallery-view').style.display = 'none';
                             document.getElementById('table-view').style.display = 'block';
                             document.getElementById('network-view').style.display = 'none';
-                            document.getElementById('view-table-btn').classList.add('active');
-                            document.getElementById('view-network-btn').classList.remove('active');
+                            document.getElementById('view-gallery-btn').classList.remove('btn-primary');
+                            document.getElementById('view-gallery-btn').classList.add('btn-outline-primary');
+                            document.getElementById('view-table-btn').classList.remove('btn-outline-primary');
+                            document.getElementById('view-table-btn').classList.add('btn-primary');
+                            document.getElementById('view-network-btn').classList.remove('btn-primary');
+                            document.getElementById('view-network-btn').classList.add('btn-outline-primary');
                         }
 
                         function showNetworkView() {
+                            document.getElementById('gallery-view').style.display = 'none';
                             document.getElementById('table-view').style.display = 'none';
                             document.getElementById('network-view').style.display = 'block';
-                            document.getElementById('view-table-btn').classList.remove('active');
-                            document.getElementById('view-network-btn').classList.add('active');
+                            document.getElementById('view-gallery-btn').classList.remove('btn-primary');
+                            document.getElementById('view-gallery-btn').classList.add('btn-outline-primary');
+                            document.getElementById('view-table-btn').classList.remove('btn-primary');
+                            document.getElementById('view-table-btn').classList.add('btn-outline-primary');
+                            document.getElementById('view-network-btn').classList.remove('btn-outline-primary');
+                            document.getElementById('view-network-btn').classList.add('btn-primary');
                             // Trigger chart reflow and resize after view is displayed
                             setTimeout(function() {
                                 if (window.chart) {
