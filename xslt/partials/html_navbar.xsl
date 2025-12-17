@@ -84,7 +84,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" id="indexDropdown" aria-haspopup="true">Index</a>
+                                data-bs-toggle="dropdown" aria-expanded="false" id="indexDropdown" aria-haspopup="true">Register</a>
                             <ul class="dropdown-menu" aria-labelledby="indexDropdown">
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="listperson.html">Personen</a>
@@ -115,7 +115,7 @@
                                     <a class="nav-link" href="jung-wien.html">Netzwerk Jung-Wien</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="tocs.html">Korrespondenzen</a>
+                                    <a class="nav-link" href="tocs_viz.html">Korrespondenzen</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="interactive-networks.html">Korrespondenznetzwerke</a>

@@ -34,6 +34,12 @@
     <xslt in="${index}" out="${target}/tocs.html" style="./xslt/tocs.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
+        <param name="output-type" expression="briefe"/>
+    </xslt>
+    <xslt in="${index}" out="${target}/tocs_viz.html" style="./xslt/tocs.xsl">
+        <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        <classpath location="${basedir}/saxon/saxon9he.jar"/>
+        <param name="output-type" expression="viz"/>
     </xslt>
     <xslt in="${index}" out="${target}/netzwerke_dummy.html" style="./xslt/correspondence-netzwerke.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>

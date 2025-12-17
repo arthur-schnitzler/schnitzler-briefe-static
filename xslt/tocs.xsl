@@ -10,6 +10,8 @@
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
 
+    <xsl:param name="output-type" select="'briefe'"/>
+
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Verzeichnis der Korrespondenzen'"/>
         <xsl:variable name="listperson" select="document('../data/indices/listperson.xml')"/>
@@ -29,11 +31,13 @@
                         <div class="card">
                             <div class="card-header">
                                 <h1>Verzeichnis der Korrespondenzen</h1>
-                                <div class="btn-group mt-3" role="group" aria-label="Ansicht auswählen">
-                                    <button type="button" class="btn btn-primary active" id="view-gallery-btn" onclick="showGalleryView()">Galerie</button>
-                                    <button type="button" class="btn btn-outline-primary" id="view-table-btn" onclick="showTableView()">Tabelle</button>
-                                    <button type="button" class="btn btn-outline-primary" id="view-network-btn" onclick="showNetworkView()">Netzwerk</button>
-                                </div>
+                                <xsl:if test="$output-type = 'briefe'">
+                                    <div class="btn-group mt-3" role="group" aria-label="Ansicht auswählen">
+                                        <button type="button" class="btn btn-primary active" id="view-gallery-btn" onclick="showGalleryView()">Galerie</button>
+                                        <button type="button" class="btn btn-outline-primary" id="view-table-btn" onclick="showTableView()">Tabelle</button>
+                                        <button type="button" class="btn btn-outline-primary" id="view-network-btn" onclick="showNetworkView()">Netzwerk</button>
+                                    </div>
+                                </xsl:if>
                             </div>
                             <div class="card-body">
                                 <!-- Gallery View -->
@@ -85,20 +89,26 @@
                                                             </p>
                                                         </xsl:if>
                                                         <div class="correspondence-buttons">
-                                                            <a href="{concat('toc_pmb', $corr-id, '.html')}" class="btn btn-briefe w-100 mb-2" style="background-color: #A63437; border-color: #A63437; color: white;">
-                                                                <i class="fa fa-list"></i> Briefe
-                                                            </a>
-                                                            <div class="btn-group-viz" role="group">
-                                                                <a href="{concat('statistik_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
-                                                                    <i class="fa fa-chart-bar"></i> Statistiken
-                                                                </a>
-                                                                <a href="{concat('netzwerke_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
-                                                                    <i class="fa fa-project-diagram"></i> Netzwerke
-                                                                </a>
-                                                                <a href="{concat('karte_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
-                                                                    <i class="fa fa-map-marked-alt"></i> Karte
-                                                                </a>
-                                                            </div>
+                                                            <xsl:choose>
+                                                                <xsl:when test="$output-type = 'briefe'">
+                                                                    <a href="{concat('toc_', $corr-id, '.html')}" class="btn btn-briefe w-100 mb-2" style="background-color: #A63437; border-color: #A63437; color: white;">
+                                                                        <i class="fa fa-list"></i> Briefe
+                                                                    </a>
+                                                                </xsl:when>
+                                                                <xsl:when test="$output-type = 'viz'">
+                                                                    <div class="btn-group-viz" role="group">
+                                                                        <a href="{concat('statistik_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
+                                                                            <i class="fa fa-chart-bar"></i> Statistiken
+                                                                        </a>
+                                                                        <a href="{concat('netzwerke_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
+                                                                            <i class="fa fa-project-diagram"></i> Netzwerke
+                                                                        </a>
+                                                                        <a href="{concat('karte_pmb', $corr-id, '.html')}" class="btn btn-sm btn-secondary">
+                                                                            <i class="fa fa-map-marked-alt"></i> Karte
+                                                                        </a>
+                                                                    </div>
+                                                                </xsl:when>
+                                                            </xsl:choose>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -108,19 +118,22 @@
                                 </div>
 
                                 <!-- Network View -->
-                                <div id="network-view" style="display: none; width: 100%; height: calc(100vh - 300px); min-height: 600px; position: relative;">
-                                    <div style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="zoomIn()" title="Hineinzoomen">+</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="zoomOut()" title="Herauszoomen">−</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="resetZoom()" title="Zoom zurücksetzen">⊙</button>
+                                <xsl:if test="$output-type = 'briefe'">
+                                    <div id="network-view" style="display: none; width: 100%; height: calc(100vh - 300px); min-height: 600px; position: relative;">
+                                        <div style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="zoomIn()" title="Hineinzoomen">+</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="zoomOut()" title="Herauszoomen">−</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="resetZoom()" title="Zoom zurücksetzen">⊙</button>
+                                        </div>
+                                        <div id="tocs-container"
+                                            style="width: 100%; height: 100%; display: block;"/>
+                                        <script src="js/correspondence_weights_directed.js"/>
                                     </div>
-                                    <div id="tocs-container"
-                                        style="width: 100%; height: 100%; display: block;"/>
-                                    <script src="js/correspondence_weights_directed.js"/>
-                                </div>
+                                </xsl:if>
 
                                 <!-- Table View -->
-                                <div id="table-view" style="display: none;">
+                                <xsl:if test="$output-type = 'briefe'">
+                                    <div id="table-view" style="display: none;">
                                     <table class="table-light table-striped display"
                                         id="tabulator-table-limited"
                                         style="width:100%; margin: auto;">
@@ -196,14 +209,17 @@
                                         </tbody>
                                     </table>
                                     <xsl:call-template name="tabulator_dl_buttons"/>
-                                </div>
+                                    </div>
+                                </xsl:if>
                             </div>
                         </div>
                     </div>
 
                     <xsl:call-template name="html_footer"/>
-                    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
-                    <script src="tabulator-js/tabulator-limited.js"></script>
+                    <xsl:if test="$output-type = 'briefe'">
+                        <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+                        <script src="tabulator-js/tabulator-limited.js"></script>
+                    </xsl:if>
                     <style>
                         .correspondence-grid {
                             display: grid;
@@ -277,7 +293,8 @@
                             font-weight: normal;
                         }
                     </style>
-                    <script>
+                    <xsl:if test="$output-type = 'briefe'">
+                        <script>
                         function showGalleryView() {
                             document.getElementById('gallery-view').style.display = 'block';
                             document.getElementById('table-view').style.display = 'none';
@@ -360,7 +377,8 @@
                                 container.style.transformOrigin = 'center center';
                             }
                         }
-                    </script>
+                        </script>
+                    </xsl:if>
                 </div>
             </body>
         </html>
