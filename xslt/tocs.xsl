@@ -56,6 +56,8 @@
                                             <xsl:variable name="is-female" select="@corresp = 'female-correspondence-partner'"/>
                                             <xsl:variable name="status" select="@ana"/>
                                             <xsl:variable name="person-image" select="$listperson//tei:person[@xml:id = $person-ref]/tei:figure/tei:graphic/@url"/>
+                                            <xsl:variable name="person-number" select="replace($person-ref, 'pmb', '')"/>
+                                            <xsl:variable name="chatgpt-image" select="concat('img/chatgpt/ChatGPT_', $person-number, '.jpg')"/>
                                             <xsl:variable name="brief-count" select="count(document(concat('../data/tocs/toc_', $corr-id, '.xml'))/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:list[1]/tei:item)"/>
 
                                             <div class="correspondence-card">
@@ -63,6 +65,9 @@
                                                     <xsl:choose>
                                                         <xsl:when test="$person-image != ''">
                                                             <img src="{$person-image}" class="card-img-top" alt="{$corr-name}"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="unparsed-text-available(concat('../html/', $chatgpt-image))">
+                                                            <img src="{$chatgpt-image}" class="card-img-top" alt="{$corr-name}"/>
                                                         </xsl:when>
                                                         <xsl:otherwise>
                                                             <img src="img/schattenriss_1900.svg" class="card-img-top" alt="{$corr-name}"/>
