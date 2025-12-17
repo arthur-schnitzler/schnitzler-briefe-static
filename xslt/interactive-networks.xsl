@@ -122,6 +122,10 @@
                                                 <label for="max-nodes">Max. Knoten: <span id="max-nodes-value">100</span></label>
                                                 <input type="range" class="form-range" id="max-nodes" min="10" max="200" value="100" step="10"/>
                                             </div>
+                                            <div class="form-group mt-2">
+                                                <label for="min-correspondence-overlap">Min. Korrespondenzen pro Verbindung: <span id="min-correspondence-overlap-value">1</span></label>
+                                                <input type="range" class="form-range" id="min-correspondence-overlap" min="1" max="5" value="1"/>
+                                            </div>
                                             <div class="form-check mt-3">
                                                 <input class="form-check-input" type="checkbox" id="show-labels" checked="checked"/>
                                                 <label class="form-check-label" for="show-labels">

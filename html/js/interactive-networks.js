@@ -43,6 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
         maxNodesValue.textContent = e.target.value;
     });
 
+    const minCorrespondenceOverlapSlider = document.getElementById('min-correspondence-overlap');
+    const minCorrespondenceOverlapValue = document.getElementById('min-correspondence-overlap-value');
+    if (minCorrespondenceOverlapSlider && minCorrespondenceOverlapValue) {
+        minCorrespondenceOverlapSlider.addEventListener('input', (e) => {
+            minCorrespondenceOverlapValue.textContent = e.target.value;
+        });
+    }
+
     // Toggle labels button
     const toggleLabelsBtn = document.getElementById('toggle-labels');
     if (toggleLabelsBtn) {
@@ -50,17 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
             labelsEnabled = !labelsEnabled;
             console.log('Toggle labels:', labelsEnabled);
             if (currentChart && currentChart.series[0]) {
-                currentChart.series[0].update({
-                    dataLabels: {
-                        enabled: labelsEnabled,
-                        linkFormat: '',
-                        allowOverlap: false,
-                        style: { textOutline: 'none', fontSize: '11px' },
-                        formatter: function () {
-                            return this.point.name || this.point.id;
-                        }
+                currentChart.series[0].nodes.forEach(node => {
+                    if (labelsEnabled) {
+                        node.dataLabel.show();
+                    } else {
+                        node.dataLabel.hide();
                     }
-                }, true);  // Redraw immediately
+                });
             }
         });
     }
@@ -136,11 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Combine data from multiple correspondences
-    const combineNetworkData = (datasets, minMentions, maxNodes) => {
+    const combineNetworkData = (datasets, minMentions, maxNodes, minCorrespondenceOverlap = 1) => {
         console.log('combineNetworkData called with:', {
             datasetsCount: datasets.length,
             minMentions,
-            maxNodes
+            maxNodes,
+            minCorrespondenceOverlap
         });
 
         const nodes = {};
@@ -152,6 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Track which entities appear in multiple correspondences
         const entityOccurrences = {};
+        // Track entity-correspondence combinations for filtering
+        const entityCorrespondences = {};
         let processedRows = 0;
         let skippedRows = 0;
 
@@ -211,6 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 nodes[targetKey].correspondences.add(corrId);
                 entityOccurrences[targetKey]++;
 
+                // Track entity-correspondence combinations
+                if (!entityCorrespondences[targetKey]) {
+                    entityCorrespondences[targetKey] = new Set();
+                }
+                entityCorrespondences[targetKey].add(corrId);
+
                 // Create link
                 links.push({
                     from: source,
@@ -233,8 +246,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Filter entities based on minimum correspondence overlap
+        const filteredEntities = Object.values(nodes)
+            .filter(n => {
+                if (n.isSource) return true; // Always keep source nodes
+                // Check if entity appears in at least minCorrespondenceOverlap correspondences
+                return n.correspondences.size >= minCorrespondenceOverlap;
+            });
+
         // Sort nodes by weight and limit to maxNodes
-        const sortedNodes = Object.values(nodes)
+        const sortedNodes = filteredEntities
             .filter(n => !n.isSource) // Don't count source nodes in limit
             .sort((a, b) => b.weight - a.weight)
             .slice(0, maxNodes);
@@ -408,6 +429,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const minMentions = parseInt(minMentionsSlider.value);
         const maxNodes = parseInt(maxNodesSlider.value);
+        const minCorrespondenceOverlap = minCorrespondenceOverlapSlider ?
+            parseInt(minCorrespondenceOverlapSlider.value) : 1;
 
         // Update labels setting from checkbox
         const showLabelsCheckbox = document.getElementById('show-labels');
@@ -440,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Combine and render
-            const networkData = combineNetworkData(validDatasets, minMentions, maxNodes);
+            const networkData = combineNetworkData(validDatasets, minMentions, maxNodes, minCorrespondenceOverlap);
             renderNetwork(networkData, selectedCorrespondences.length);
 
         } catch (error) {
