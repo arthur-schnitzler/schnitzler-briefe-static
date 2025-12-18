@@ -76,6 +76,16 @@
                                                     <div class="card-body">
                                                         <h5 class="card-title">
                                                             <xsl:value-of select="$corr-name"/>
+                                                            <xsl:if test="$person-number = '11527' or $person-number = '12438' or $person-number = '4986'">
+                                                                <sup>
+                                                                    <i class="fa fa-info-circle"
+                                                                       style="cursor: help; color: #6c757d;"
+                                                                       data-bs-toggle="tooltip"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-html="true"
+                                                                       title="Leider konnten wir kein rechtefreies Bild aufstellen. Wir haben also die KI benutzt, um eins auf Basis eines alten Fotos zu erstellen. Die Anweisung lautete: ›in the style of 1970s Nippon Animation anime, Heidi, soft watercolor‹."></i>
+                                                                </sup>
+                                                            </xsl:if>
                                                             <xsl:if test="$is-female">
                                                                 <span class="badge bg-info ms-2">Schriftstellerin</span>
                                                             </xsl:if>
@@ -305,6 +315,14 @@
                     </style>
                     <xsl:if test="$output-type = 'briefe'">
                         <script>
+                        // Initialize Bootstrap tooltips
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                                return new bootstrap.Tooltip(tooltipTriggerEl);
+                            });
+                        });
+
                         function showGalleryView() {
                             document.getElementById('gallery-view').style.display = 'block';
                             document.getElementById('table-view').style.display = 'none';
