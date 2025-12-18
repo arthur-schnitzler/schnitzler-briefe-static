@@ -315,12 +315,15 @@
                     </style>
                     <xsl:if test="$output-type = 'briefe'">
                         <script>
-                        // Initialize Bootstrap tooltips
-                        document.addEventListener('DOMContentLoaded', function() {
-                            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                                return new bootstrap.Tooltip(tooltipTriggerEl);
-                            });
+                        // Initialize Bootstrap tooltips after Bootstrap is loaded
+                        window.addEventListener('load', function() {
+                            // Wait for Bootstrap to be available
+                            if (typeof bootstrap !== 'undefined') {
+                                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                                var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                                });
+                            }
                         });
 
                         function showGalleryView() {
