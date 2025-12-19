@@ -70,7 +70,7 @@
                                                             <img src="{$chatgpt-image}" class="card-img-top" alt="{$corr-name}"/>
                                                         </xsl:when>
                                                         <xsl:otherwise>
-                                                            <img src="img/schattenriss_1900.svg" class="card-img-top" alt="{$corr-name}"/>
+                                                            <img src="img/schattenriss_1900.jpg" class="card-img-top" alt="{$corr-name}"/>
                                                         </xsl:otherwise>
                                                     </xsl:choose>
                                                     <div class="card-body">
