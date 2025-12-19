@@ -60,6 +60,10 @@
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Bayerische Staatsbibliothek')]">
           <xsl:text>BSB</xsl:text>
         </xsl:when>
+        <!-- BNF -->
+        <xsl:when test="$msIdentifier/tei:repository[contains(., 'Bibliothèque Nationale de France')]">
+          <xsl:text>BNF</xsl:text>
+        </xsl:when>
         <!-- ADK -->
         <xsl:when
           test="$msIdentifier/tei:repository[contains(., 'Akademie der Künste')] and $msIdentifier/tei:settlement = 'Berlin'">
