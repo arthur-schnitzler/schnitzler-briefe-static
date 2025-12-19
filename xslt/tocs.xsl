@@ -25,9 +25,9 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
-            <script src="https://code.highcharts.com/highcharts.js"/>
-            <script src="https://code.highcharts.com/modules/networkgraph.js"/>
-            <script src="https://code.highcharts.com/modules/exporting.js"/>
+            <script src="https://code.highcharts.com/highcharts.js" defer="defer"/>
+            <script src="https://code.highcharts.com/modules/networkgraph.js" defer="defer"/>
+            <script src="https://code.highcharts.com/modules/exporting.js" defer="defer"/>
             <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
             <body class="page">
                 <div class="hfeed site" id="page">
@@ -144,7 +144,7 @@
                                         </div>
                                         <div id="tocs-container"
                                             style="width: 100%; height: 100%; display: block;"/>
-                                        <script src="js/correspondence_weights_directed.js"/>
+                                        <script src="js/correspondence_weights_directed.js" defer="defer"/>
                                     </div>
                                 </xsl:if>
 
