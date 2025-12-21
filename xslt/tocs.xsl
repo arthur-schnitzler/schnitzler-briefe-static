@@ -57,7 +57,6 @@
                                             <xsl:variable name="status" select="@ana"/>
                                             <xsl:variable name="person-image" select="$listperson//tei:person[@xml:id = $person-ref]/tei:figure/tei:graphic/@url"/>
                                             <xsl:variable name="person-number" select="replace($person-ref, 'pmb', '')"/>
-                                            <xsl:variable name="chatgpt-image" select="concat('img/chatgpt/ChatGPT_', $person-number, '.jpg')"/>
                                             <xsl:variable name="brief-count" select="count(document(concat('../data/tocs/toc_', $corr-id, '.xml'))/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:list[1]/tei:item)"/>
 
                                             <div class="correspondence-card">
@@ -66,9 +65,6 @@
                                                         <xsl:when test="$person-image != ''">
                                                             <img src="{$person-image}" class="card-img-top" alt="{$corr-name}"/>
                                                         </xsl:when>
-                                                        <xsl:when test="$person-number = '11527' or $person-number = '12438' or $person-number = '4986'">
-                                                            <img src="{$chatgpt-image}" class="card-img-top" alt="{$corr-name}"/>
-                                                        </xsl:when>
                                                         <xsl:otherwise>
                                                             <img src="img/schattenriss_1900.jpg" class="card-img-top" alt="{$corr-name}"/>
                                                         </xsl:otherwise>
@@ -76,13 +72,6 @@
                                                     <div class="card-body">
                                                         <h5 class="card-title">
                                                             <xsl:value-of select="$corr-name"/>
-                                                            <xsl:if test="$person-number = '11527' or $person-number = '12438' or $person-number = '4986'">
-                                                                <sup>
-                                                                    <i class="fa fa-info-circle"
-                                                                       style="cursor: help; color: #6c757d;"
-                                                                       title="Leider konnten wir kein rechtefreies Bild aufstellen. Wir haben also die KI benutzt, um eins auf Basis eines alten Fotos zu erstellen. Die Anweisung lautete: ›in the style of 1970s Nippon Animation anime, Heidi, soft watercolor‹. An unsere Daten kommt aber keine KI."></i>
-                                                                </sup>
-                                                            </xsl:if>
                                                             <xsl:if test="$is-female">
                                                                 <span class="badge bg-info ms-2">Schriftstellerin</span>
                                                             </xsl:if>
