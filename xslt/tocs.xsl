@@ -38,7 +38,7 @@
                                 <h1><xsl:value-of select="$doc_title"/></h1>
                                 <xsl:if test="$output-type = 'briefe'">
                                     <div class="btn-group mt-3" role="group" aria-label="Ansicht auswählen">
-                                        <button type="button" class="btn btn-primary active" id="view-gallery-btn" onclick="showGalleryView()">Galerie</button>
+                                        <button type="button" class="btn btn-primary" id="view-gallery-btn" onclick="showGalleryView()">Galerie</button>
                                         <button type="button" class="btn btn-outline-primary" id="view-table-btn" onclick="showTableView()">Tabelle</button>
                                         <button type="button" class="btn btn-outline-primary" id="view-network-btn" onclick="showNetworkView()">Netzwerk</button>
                                     </div>
