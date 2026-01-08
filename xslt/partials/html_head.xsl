@@ -167,6 +167,7 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
         <script src="js/toggle-commentary-mentions.js" defer="defer"/>
         <script src="js/fragezeichen.js" defer="defer"></script>
         <script src="js/accessibility-enhancements.js" defer="defer"></script>
+        <script src="js/lemma-anchor-scroll.js" defer="defer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" defer="defer"/>
         <xsl:if test="descendant::tei:div[@xml:id = 'jung-wien-container-ohne-slider'] or descendant::tei:div[@xml:id = 'jung-wien-container-mit-slider'] or descendant::tei:div[@xml:id = 'jung-wien-container-nebeneinander'] or descendant::tei:div[@xml:id = 'jung-wien-container-nebeneinander-mit-slider']">
             <script src="https://code.highcharts.com/highcharts.js" defer="defer"/>

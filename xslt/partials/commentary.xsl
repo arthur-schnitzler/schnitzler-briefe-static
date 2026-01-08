@@ -51,7 +51,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <span class="lemma">
+            <a class="lemma" href="#{@corresp}">
                 <xsl:choose>
                     <xsl:when test="string-length($lemma) &gt; 0">
                         <xsl:value-of select="$lemma"/>
@@ -61,7 +61,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:text>]&#160;</xsl:text>
-            </span>
+            </a>
             <span class="kommentar-text">
                 <xsl:attribute name="id">
                     <xsl:value-of select="@xml:id"/>

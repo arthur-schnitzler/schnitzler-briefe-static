@@ -1179,6 +1179,33 @@ color: #A23B72;
 
 .lemma {
     font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+.lemma:hover {
+    text-decoration: underline;
+  }
+
+@keyframes highlight-pulse {
+    0% {
+        background-color: rgba(255, 255, 0, 0.7);
+        box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+    }
+    50% {
+        background-color: rgba(255, 255, 0, 0.9);
+        box-shadow: 0 0 15px rgba(255, 255, 0, 0.7);
+    }
+    100% {
+        background-color: transparent;
+        box-shadow: none;
+    }
+  }
+
+.highlight-anchor {
+    animation: highlight-pulse 2s ease-in-out;
+    padding: 0.2em;
+    border-radius: 3px;
   }
 
   .indent {

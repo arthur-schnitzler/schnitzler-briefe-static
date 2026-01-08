@@ -153,6 +153,13 @@
     <xsl:template match="tei:lb">
         <br/>
     </xsl:template>
+    <xsl:template match="tei:anchor[@type='commentary' or @type='textConst']">
+        <span>
+            <xsl:attribute name="id">
+                <xsl:value-of select="@xml:id"/>
+            </xsl:attribute>
+        </span>
+    </xsl:template>
     <!--  <xsl:template match="tei:note">
         <xsl:element name="a">
             <xsl:attribute name="name">
