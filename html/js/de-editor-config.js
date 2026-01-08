@@ -8,23 +8,23 @@ document.addEventListener('DOMContentLoaded', function() {
         // Individual entity toggles
         entityToggles.forEach(function(toggle) {
             const entityType = toggle.closest('.entity-toggle').getAttribute('data-type');
-            
+
             // Skip master toggle for individual handling
             if (entityType === 'master') return;
-            
+
             toggle.addEventListener('change', function() {
                 // Find all entities that have the current entity type class
                 // This includes both single entities (.persons.entity) and mixed entities (.persons.places.entity)
                 const allEntities = document.querySelectorAll('.entity');
                 const matchingEntities = [];
-                
+
                 allEntities.forEach(function(entity) {
                     // Check if this entity has the current entityType class
                     if (entity.classList.contains(entityType)) {
                         matchingEntities.push(entity);
                     }
                 });
-                
+
                 matchingEntities.forEach(function(entity) {
                     if (toggle.checked) {
                         // Show borders - remove the hidden class
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         entity.classList.add('entity-hidden');
                     }
                 });
-                
+
                 // Update slider color (grey when unchecked)
                 const slider = toggle.nextElementSibling;
                 if (!toggle.checked) {
@@ -43,17 +43,32 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Restore original entity colors
                     const colorMap = {
                         'persons': '#e74c3c',
-                        'works': '#f39c12', 
+                        'works': '#f39c12',
                         'places': '#3498db',
                         'orgs': '#9b59b6',
                         'events': '#27ae60'
                     };
                     slider.style.backgroundColor = colorMap[entityType];
                 }
-                
+
                 // Update master toggle state based on individual toggles
                 updateMasterToggleState();
             });
+
+            // Initialize the state on page load based on checkbox status
+            // For unchecked toggles, trigger change event to hide entities
+            if (!toggle.checked) {
+                // Find all entities that have the current entity type class
+                const allEntities = document.querySelectorAll('.entity');
+                allEntities.forEach(function(entity) {
+                    if (entity.classList.contains(entityType)) {
+                        entity.classList.add('entity-hidden');
+                    }
+                });
+                // Update slider color to grey
+                const slider = toggle.nextElementSibling;
+                slider.style.backgroundColor = '#ccc';
+            }
         });
         
         // Annotation toggles
