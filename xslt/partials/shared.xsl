@@ -154,11 +154,10 @@
         <br/>
     </xsl:template>
     <xsl:template match="tei:anchor[@type='commentary' or @type='textConst']">
-        <span>
-            <xsl:attribute name="id">
-                <xsl:value-of select="@xml:id"/>
-            </xsl:attribute>
-        </span>
+        <span class="lemma-anchor-start" id="{@xml:id}" data-corresp="{@xml:id}"></span>
+    </xsl:template>
+    <xsl:template match="tei:note[@type='commentary' or @type='textConst']">
+        <span class="lemma-anchor-end" data-corresp="{@corresp}"></span>
     </xsl:template>
     <!--  <xsl:template match="tei:note">
         <xsl:element name="a">

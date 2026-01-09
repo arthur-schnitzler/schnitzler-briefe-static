@@ -10,60 +10,75 @@ document.addEventListener('DOMContentLoaded', function() {
     function highlightAnchor(targetElement) {
         if (!targetElement) return;
 
-        // Wait for scroll to finish, then highlight
+        // Scroll to the target with smooth behavior
+        targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+
+        // Wait a moment for scroll to complete before highlighting
         setTimeout(() => {
-            // Scroll to the target with smooth behavior
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
+            const anchorId = targetElement.id || targetElement.getAttribute('data-corresp');
+            if (!anchorId) return;
 
-            // Wait a moment for scroll to complete before highlighting
-            setTimeout(() => {
-                // Get the position of the target or its next visible sibling
-                let referenceElement = targetElement;
-                if (targetElement.tagName === 'SPAN' && !targetElement.textContent.trim()) {
-                    referenceElement = targetElement.nextElementSibling || targetElement;
+            // Find the start and end markers
+            const startMarker = document.querySelector(`.lemma-anchor-start[data-corresp="${anchorId}"]`);
+            const endMarker = document.querySelector(`.lemma-anchor-end[data-corresp="${anchorId}"]`);
+
+            if (!startMarker || !endMarker) {
+                console.warn('Could not find anchor markers for', anchorId);
+                return;
+            }
+
+            // Collect all elements between start and end marker
+            let currentNode = startMarker.nextSibling;
+            const nodesToHighlight = [];
+
+            while (currentNode && currentNode !== endMarker) {
+                if (currentNode.nodeType === Node.ELEMENT_NODE) {
+                    nodesToHighlight.push(currentNode);
+                } else if (currentNode.nodeType === Node.TEXT_NODE && currentNode.textContent.trim()) {
+                    // For text nodes, we need to create a span wrapper
+                    const wrapper = document.createElement('span');
+                    wrapper.textContent = currentNode.textContent;
+                    currentNode.parentNode.replaceChild(wrapper, currentNode);
+                    nodesToHighlight.push(wrapper);
+                    currentNode = wrapper;
                 }
+                currentNode = currentNode.nextSibling;
+            }
 
-                // Create a visual highlight marker
-                const highlight = document.createElement('div');
-                highlight.className = 'highlight-anchor-marker';
+            // Highlight all collected elements
+            nodesToHighlight.forEach(node => {
+                const originalBg = node.style.backgroundColor;
+                const originalShadow = node.style.boxShadow;
+                const originalPadding = node.style.padding;
+                const originalBorderRadius = node.style.borderRadius;
 
-                const rect = referenceElement.getBoundingClientRect();
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-                // Position the highlight
-                highlight.style.cssText = `
-                    position: absolute;
-                    top: ${rect.top + scrollTop - 4}px;
-                    left: ${rect.left + scrollLeft - 4}px;
-                    width: ${rect.width + 8}px;
-                    height: ${rect.height + 8}px;
-                    background-color: rgba(255, 255, 0, 0.7);
-                    pointer-events: none;
-                    z-index: 1000;
-                    border-radius: 4px;
-                    box-shadow: 0 0 15px rgba(255, 255, 0, 0.7);
-                `;
-
-                document.body.appendChild(highlight);
+                node.style.backgroundColor = 'rgba(166, 52, 55, 0.3)';
+                node.style.boxShadow = '0 0 10px rgba(166, 52, 55, 0.4)';
+                node.style.padding = '2px 4px';
+                node.style.borderRadius = '3px';
+                node.style.transition = 'all 0.3s ease-out';
 
                 // Fade out animation
-                let opacity = 0.7;
+                let opacity = 0.3;
                 const fadeInterval = setInterval(() => {
-                    opacity -= 0.05;
+                    opacity -= 0.02;
                     if (opacity <= 0) {
                         clearInterval(fadeInterval);
-                        highlight.remove();
+                        // Restore original styles
+                        node.style.backgroundColor = originalBg;
+                        node.style.boxShadow = originalShadow;
+                        node.style.padding = originalPadding;
+                        node.style.borderRadius = originalBorderRadius;
                     } else {
-                        highlight.style.backgroundColor = `rgba(255, 255, 0, ${opacity})`;
-                        highlight.style.boxShadow = `0 0 15px rgba(255, 255, 0, ${opacity})`;
+                        node.style.backgroundColor = `rgba(166, 52, 55, ${opacity})`;
+                        node.style.boxShadow = `0 0 10px rgba(166, 52, 55, ${opacity * 1.3})`;
                     }
                 }, 100);
-            }, 500); // Wait for scroll to finish
-        }, 100);
+            });
+        }, 600); // Wait for scroll to finish
     }
 
     // Get all lemma links
