@@ -120,7 +120,7 @@
                                 mit Karl Emil Franzos, Sigmund Freud, Elsa Plessner, Romain Rolland, Wanda Sacher-Masoch und Stefan Zweig aufgenommen. Die Korrespondenz mit Theodor Herzl wird 
                                 nach und nach ergänzt (<a
                                     href="status.html">Projektstand</a>).</p>
-                            <a href="L00001.html">
+                            <a href="L03821.html">
                                 <button class="btn btn-round">Lesen</button>
                             </a>
                             <span>&#160;&#160;&#160;&#160;</span>
