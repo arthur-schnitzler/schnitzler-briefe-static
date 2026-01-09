@@ -117,7 +117,7 @@
                                 nach den Originalen in Archiven in Europa und Amerika durchgesehen
                                 und korrigiert.</p>
                             <p class="mt-3" style="padding-bottom: 50px;">In der seit 2025 laufenden 3. Projektlaufzeit wurden bereits die Korrespondenzen
-                                mit Karl Emil Franzos, Sigmund Freud, Elsa Plessner, Romain Rolland, Wanda Sacher-Masoch und Stefan Zweig aufgenommen. Die Korrespondenz mit Theodor Herzl wird 
+                                mit Karl Emil Franzos, Sigmund Freud, Theodor Herzl, Elsa Plessner, Romain Rolland, Wanda Sacher-Masoch und Stefan Zweig aufgenommen. Die Korrespondenz mit Gustav Schwarzkopf wird 
                                 nach und nach ergänzt (<a
                                     href="status.html">Projektstand</a>).</p>
                             <a href="L03821.html">
