@@ -167,16 +167,22 @@ $(document).ready(function() {
         });
     });
     
-    // Add skip links for long lists
+    // Add skip links for long lists (excluding TOC)
     $('ul, ol').each(function() {
         var $list = $(this);
+
+        // Skip TOC lists and lists inside TOC
+        if ($list.hasClass('toc-list') || $list.closest('#page-toc').length > 0) {
+            return;
+        }
+
         if ($list.children('li').length > 20) {
             var listId = $list.attr('id') || 'list-' + Math.random().toString(36).substr(2, 9);
             $list.attr('id', listId);
-            
+
             var $skipLink = $('<a href="#after-' + listId + '" class="skip-link">Zum Ende der Liste springen ↓</a>');
             var $skipTarget = $('<div id="after-' + listId + '" tabindex="-1"></div>');
-            
+
             $list.before($skipLink);
             $list.after($skipTarget);
         }

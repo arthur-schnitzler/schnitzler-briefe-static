@@ -2315,25 +2315,50 @@ input:checked + .i-slider:before {
 /* TABLE OF CONTENTS (TOC) STYLES                               */
 /* ============================================================ */
 
-/* TOC Card - modern card-based design */
-#page-toc .card-header {
-    background-color: #A63437 !important;
-    border-bottom: 2px solid #8a2a2d;
+/* TOC Details/Summary - modern card-based design */
+#page-toc {
+    border: none;
 }
 
-#page-toc .card-header h5 {
+#page-toc summary {
+    background-color: #A63437;
+    border-bottom: 2px solid #8a2a2d;
+    padding: 1rem;
+    list-style: none;
+    transition: background-color 0.2s ease;
+}
+
+#page-toc summary::-webkit-details-marker {
+    display: none;
+}
+
+#page-toc summary:hover {
+    background-color: #8a2a2d;
+}
+
+#page-toc summary h5 {
     margin: 0;
     font-size: 1.2rem;
     font-weight: 600;
-    color: white !important;
+    color: white;
 }
 
-#page-toc .card-header i {
+#page-toc summary i {
+    color: white;
+}
+
+/* Arrow indicator for details element */
+#page-toc summary::after {
+    content: "\f077";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    float: right;
     transition: transform 0.3s ease;
+    color: white;
 }
 
-#page-toc .card-header[aria-expanded="false"] i.fa-chevron-down {
-    transform: rotate(-90deg);
+#page-toc:not([open]) summary::after {
+    transform: rotate(180deg);
 }
 
 /* TOC scrollable content area */

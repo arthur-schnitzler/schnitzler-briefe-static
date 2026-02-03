@@ -54,29 +54,21 @@
     </xsl:template>
     <xsl:template match="tei:body">
         <xsl:if test="descendant::tei:div[starts-with(@type, 'level')]">
-            <div class="card shadow-sm mb-4" id="page-toc" style="position: sticky; top: 20px; z-index: 100;">
-                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
-                     style="cursor: pointer;"
-                     data-bs-toggle="collapse"
-                     data-bs-target="#tocContent"
-                     aria-expanded="true"
-                     aria-controls="tocContent">
+            <details class="card shadow-sm mb-4" id="page-toc" style="position: sticky; top: 20px; z-index: 100;" open="open">
+                <summary class="card-header text-white d-flex justify-content-between align-items-center" style="cursor: pointer; background-color: #A63437; border-bottom: 2px solid #8a2a2d;">
                     <h5 class="mb-0">
                         <i class="fas fa-list-ul me-2"/>
                         <xsl:text>Inhaltsverzeichnis</xsl:text>
                     </h5>
-                    <i class="fas fa-chevron-down"/>
+                </summary>
+                <div class="card-body" style="max-height: 70vh; overflow-y: auto; background-color: #fafafa;">
+                    <nav>
+                        <ul class="list-unstyled toc-list">
+                            <xsl:apply-templates select="child::tei:div[@type = 'level1']" mode="nav"/>
+                        </ul>
+                    </nav>
                 </div>
-                <div class="collapse show" id="tocContent">
-                    <div class="card-body" style="max-height: 70vh; overflow-y: auto;">
-                        <nav>
-                            <ul class="list-unstyled toc-list">
-                                <xsl:apply-templates select="child::tei:div[@type = 'level1']" mode="nav"/>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+            </details>
         </xsl:if>
         <xsl:apply-templates/>
     </xsl:template>
