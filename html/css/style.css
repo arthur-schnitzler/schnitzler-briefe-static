@@ -2310,3 +2310,129 @@ input:checked + .i-slider:before {
     margin-top: 1rem;
   }
 }
+
+/* ============================================================ */
+/* TABLE OF CONTENTS (TOC) STYLES                               */
+/* ============================================================ */
+
+/* TOC Card - modern card-based design */
+#page-toc .card-header {
+    background-color: #A63437 !important;
+    border-bottom: 2px solid #8a2a2d;
+}
+
+#page-toc .card-header h5 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white !important;
+}
+
+#page-toc .card-header i {
+    transition: transform 0.3s ease;
+}
+
+#page-toc .card-header[aria-expanded="false"] i.fa-chevron-down {
+    transform: rotate(-90deg);
+}
+
+/* TOC scrollable content area */
+#page-toc .card-body {
+    padding: 1rem;
+    background-color: #fafafa;
+}
+
+#page-toc .card-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+#page-toc .card-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#page-toc .card-body::-webkit-scrollbar-thumb {
+    background: #A63437;
+    border-radius: 4px;
+}
+
+#page-toc .card-body::-webkit-scrollbar-thumb:hover {
+    background: #8a2a2d;
+}
+
+/* TOC List Styles */
+.toc-list {
+    margin-bottom: 0;
+}
+
+.toc-item {
+    position: relative;
+}
+
+/* TOC Links */
+.toc-link {
+    color: #333;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.toc-link:hover {
+    color: #A63437;
+    background-color: #fff;
+    border-left-color: #A63437;
+    text-decoration: none;
+}
+
+/* Level 1 items - bold and slightly larger */
+.toc-level-1 > .toc-link {
+    font-weight: 600;
+    font-size: 1rem;
+    padding-left: 0.75rem;
+}
+
+/* Level 2+ items - indented and smaller */
+.toc-level-2 > .toc-link {
+    font-weight: 400;
+    font-size: 0.9rem;
+    padding-left: 0.5rem;
+}
+
+/* Nested list styling */
+.toc-item ul {
+    border-left: 1px solid #e0e0e0;
+    margin-left: 0.5rem;
+}
+
+/* Active state (can be added via JavaScript) */
+.toc-link.active {
+    color: #A63437;
+    background-color: #fff;
+    border-left-color: #A63437;
+    font-weight: 600;
+}
+
+/* Smooth scroll behavior for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #page-toc {
+        position: relative !important;
+        top: 0 !important;
+    }
+
+    #page-toc .card-body {
+        max-height: 50vh !important;
+    }
+
+    .toc-link {
+        font-size: 0.9rem;
+    }
+
+    .toc-level-1 > .toc-link {
+        font-size: 0.95rem;
+    }
+}

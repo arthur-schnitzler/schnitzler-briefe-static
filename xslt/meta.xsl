@@ -54,77 +54,58 @@
     </xsl:template>
     <xsl:template match="tei:body">
         <xsl:if test="descendant::tei:div[starts-with(@type, 'level')]">
-            <xsl:element name="nav">
-                <xsl:attribute name="style">
-                    <xsl:text>z-index: 0;</xsl:text>
-                    <xsl:text>margin: 3em;</xsl:text>
-                </xsl:attribute>
-                <xsl:attribute name="id">
-                    <xsl:text>page-toc</xsl:text>
-                </xsl:attribute>
-                <xsl:attribute name="class">
-                    <xsl:text>navbar navbar-light</xsl:text>
-                </xsl:attribute>
-                <div class="container">
-                    <a class="navbar-brand" href="#">Inhaltsverzeichnis</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#verticalNavbar" aria-controls="verticalNavbar"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"/>
-                    </button>
-                    <div class="collapse navbar-collapse" id="verticalNavbar">
-                        <!-- Wenn es divs mit level gibt, Inhaltsverzeichnis am Anfang der Seite -->
-                        <xsl:element name="ul">
-                            <xsl:attribute name="class">
-                                <xsl:text>navbar-nav</xsl:text>
-                            </xsl:attribute>
-                            <xsl:apply-templates select="child::tei:div[@type = 'level1']"
-                                mode="nav"/>
-                        </xsl:element>
+            <div class="card shadow-sm mb-4" id="page-toc" style="position: sticky; top: 20px; z-index: 100;">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+                     style="cursor: pointer;"
+                     data-bs-toggle="collapse"
+                     data-bs-target="#tocContent"
+                     aria-expanded="true"
+                     aria-controls="tocContent">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list-ul me-2"/>
+                        <xsl:text>Inhaltsverzeichnis</xsl:text>
+                    </h5>
+                    <i class="fas fa-chevron-down"/>
+                </div>
+                <div class="collapse show" id="tocContent">
+                    <div class="card-body" style="max-height: 70vh; overflow-y: auto;">
+                        <nav>
+                            <ul class="list-unstyled toc-list">
+                                <xsl:apply-templates select="child::tei:div[@type = 'level1']" mode="nav"/>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
-            </xsl:element>
+            </div>
         </xsl:if>
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:div[@type = 'level1']" mode="nav">
-        <xsl:apply-templates select="child::tei:head" mode="nav"/>
-        <xsl:if test="child::tei:div">
-            <xsl:element name="li">
-                <xsl:attribute name="class">
-                    <xsl:text>nav-item</xsl:text>
-                </xsl:attribute>
-                <xsl:apply-templates select="child::tei:div" mode="nav"/>
-            </xsl:element>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:div[not(@type = 'level1')]" mode="nav">
-        <xsl:element name="ul">
-            <xsl:attribute name="class">
-                <xsl:text>navbar-nav</xsl:text>
-            </xsl:attribute>
+        <li class="toc-item toc-level-1 mb-2">
             <xsl:apply-templates select="child::tei:head" mode="nav"/>
             <xsl:if test="child::tei:div">
-                <xsl:element name="li">
-                    <xsl:attribute name="class">
-                        <xsl:text>nav-item</xsl:text>
-                    </xsl:attribute>
+                <ul class="list-unstyled ps-3 mt-1">
                     <xsl:apply-templates select="child::tei:div" mode="nav"/>
-                </xsl:element>
+                </ul>
             </xsl:if>
-        </xsl:element>
+        </li>
+    </xsl:template>
+    <xsl:template match="tei:div[not(@type = 'level1')]" mode="nav">
+        <li class="toc-item toc-level-2 mb-1">
+            <xsl:apply-templates select="child::tei:head" mode="nav"/>
+            <xsl:if test="child::tei:div">
+                <ul class="list-unstyled ps-3 mt-1">
+                    <xsl:apply-templates select="child::tei:div" mode="nav"/>
+                </ul>
+            </xsl:if>
+        </li>
     </xsl:template>
     <!-- Match the head element -->
     <xsl:template match="tei:head" mode="nav">
         <xsl:variable name="linktarget" select="concat('#', @xml:id)"/>
-        <li>
-            <xsl:attribute name="class">
-                <xsl:text>nav-item</xsl:text>
-            </xsl:attribute>
-            <a href="{$linktarget}">
-                <xsl:value-of select="normalize-space(.)"/>
-            </a>
-        </li>
+        <a href="{$linktarget}" class="toc-link text-decoration-none d-block py-1 px-2 rounded">
+            <xsl:value-of select="normalize-space(.)"/>
+        </a>
     </xsl:template>
     <xsl:template match="tei:p[@rend = 'center']">
         <p align="center">
