@@ -2363,22 +2363,22 @@ input:checked + .i-slider:before {
 
 /* TOC scrollable content area */
 #page-toc .card-body {
-    padding: 1rem;
+    padding: 0.5rem;
     background-color: #fafafa;
 }
 
 #page-toc .card-body::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 #page-toc .card-body::-webkit-scrollbar-track {
     background: #f1f1f1;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 #page-toc .card-body::-webkit-scrollbar-thumb {
     background: #A63437;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 #page-toc .card-body::-webkit-scrollbar-thumb:hover {
@@ -2392,14 +2392,17 @@ input:checked + .i-slider:before {
 
 .toc-item {
     position: relative;
+    line-height: 1.3;
 }
 
-/* TOC Links */
+/* TOC Links - kompakter */
 .toc-link {
     color: #333;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     transition: all 0.2s ease;
     border-left: 3px solid transparent;
+    padding: 0.25rem 0.5rem;
+    line-height: 1.3;
 }
 
 .toc-link:hover {
@@ -2409,24 +2412,34 @@ input:checked + .i-slider:before {
     text-decoration: none;
 }
 
-/* Level 1 items - bold and slightly larger */
+/* Level 1 items - kompakter */
+.toc-level-1 {
+    margin-bottom: 0.3rem;
+}
+
 .toc-level-1 > .toc-link {
     font-weight: 600;
-    font-size: 1rem;
-    padding-left: 0.75rem;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.5rem;
 }
 
-/* Level 2+ items - indented and smaller */
+/* Level 2+ items - kompakter */
+.toc-level-2 {
+    margin-bottom: 0.2rem;
+}
+
 .toc-level-2 > .toc-link {
     font-weight: 400;
-    font-size: 0.9rem;
-    padding-left: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
 }
 
-/* Nested list styling */
+/* Nested list styling - kompakter */
 .toc-item ul {
     border-left: 1px solid #e0e0e0;
-    margin-left: 0.5rem;
+    margin-left: 0.4rem;
+    margin-top: 0.2rem;
+    padding-left: 0.4rem;
 }
 
 /* Active state (can be added via JavaScript) */

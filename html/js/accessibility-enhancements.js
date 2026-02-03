@@ -214,16 +214,22 @@ $(document).ready(function() {
     
     // Expose utility function globally
     window.announceToScreenReader = announceToScreenReader;
-    
+
     // Add ARIA landmarks if missing
     if (!$('main').length && $('#main-content').length) {
         $('#main-content').attr('role', 'main');
     }
-    
+
     if (!$('nav[role="navigation"], nav[aria-label]').length && $('nav').length) {
         $('nav').first().attr('role', 'navigation').attr('aria-label', 'Hauptnavigation');
     }
-    
+
+    // Auto-collapse TOC when a link is clicked
+    $('#page-toc .toc-link').on('click', function() {
+        // Close the details element
+        $('#page-toc')[0].removeAttribute('open');
+    });
+
     console.log('Accessibility enhancements loaded');
 });
 
