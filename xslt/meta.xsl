@@ -54,14 +54,14 @@
     </xsl:template>
     <xsl:template match="tei:body">
         <xsl:if test="descendant::tei:div[starts-with(@type, 'level')]">
-            <details class="card shadow-sm mb-4" id="page-toc" style="position: sticky; top: 20px; z-index: 100;" open="open">
+            <details class="card shadow-sm mb-4" id="page-toc" open="open">
                 <summary class="card-header text-white d-flex justify-content-between align-items-center" style="cursor: pointer; background-color: #A63437; border-bottom: 2px solid #8a2a2d;">
                     <h5 class="mb-0">
                         <i class="fas fa-list-ul me-2"/>
                         <xsl:text>Inhaltsverzeichnis</xsl:text>
                     </h5>
                 </summary>
-                <div class="card-body" style="max-height: 70vh; overflow-y: auto; background-color: #fafafa;">
+                <div class="card-body" style="background-color: #fafafa;">
                     <nav>
                         <ul class="list-unstyled toc-list">
                             <xsl:apply-templates select="child::tei:div[@type = 'level1']" mode="nav"/>
@@ -227,6 +227,12 @@
                 </xsl:attribute>
             </xsl:if>
             <xsl:apply-templates/>
+            <xsl:if test="ancestor::tei:body/descendant::tei:div[starts-with(@type, 'level')]">
+                <xsl:text> </xsl:text>
+                <a href="#page-toc" class="back-to-toc" title="Zurück zum Inhaltsverzeichnis">
+                    <i class="fas fa-arrow-up"/>
+                </a>
+            </xsl:if>
         </h2>
     </xsl:template>
     <xsl:template match="tei:head[(@type = 'sub')]">
@@ -237,6 +243,12 @@
                 </xsl:attribute>
             </xsl:if>
             <xsl:apply-templates/>
+            <xsl:if test="ancestor::tei:body/descendant::tei:div[starts-with(@type, 'level')]">
+                <xsl:text> </xsl:text>
+                <a href="#page-toc" class="back-to-toc" title="Zurück zum Inhaltsverzeichnis">
+                    <i class="fas fa-arrow-up"/>
+                </a>
+            </xsl:if>
         </h3>
     </xsl:template>
     <xsl:template match="tei:note[@type = 'footnote']">

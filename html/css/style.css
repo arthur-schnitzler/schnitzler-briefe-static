@@ -2318,6 +2318,7 @@ input:checked + .i-slider:before {
 /* TOC Details/Summary - modern card-based design */
 #page-toc {
     border: none;
+    scroll-margin-top: 20px;
 }
 
 #page-toc summary {
@@ -2361,28 +2362,10 @@ input:checked + .i-slider:before {
     transform: rotate(180deg);
 }
 
-/* TOC scrollable content area */
+/* TOC content area */
 #page-toc .card-body {
     padding: 0.5rem;
     background-color: #fafafa;
-}
-
-#page-toc .card-body::-webkit-scrollbar {
-    width: 6px;
-}
-
-#page-toc .card-body::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 3px;
-}
-
-#page-toc .card-body::-webkit-scrollbar-thumb {
-    background: #A63437;
-    border-radius: 3px;
-}
-
-#page-toc .card-body::-webkit-scrollbar-thumb:hover {
-    background: #8a2a2d;
 }
 
 /* TOC List Styles */
@@ -2455,22 +2438,37 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Back to TOC arrow links */
+.back-to-toc {
+    font-size: 0.7em;
+    color: #A63437;
+    text-decoration: none;
+    margin-left: 0.5em;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    vertical-align: middle;
+}
+
+.back-to-toc:hover {
+    opacity: 1;
+    color: #A63437;
+}
+
+.back-to-toc i {
+    font-size: 0.9em;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-    #page-toc {
-        position: relative !important;
-        top: 0 !important;
-    }
-
-    #page-toc .card-body {
-        max-height: 50vh !important;
-    }
-
     .toc-link {
         font-size: 0.9rem;
     }
 
     .toc-level-1 > .toc-link {
         font-size: 0.95rem;
+    }
+
+    .back-to-toc {
+        font-size: 0.8em;
     }
 }
