@@ -429,60 +429,64 @@ class SimpleCalendar {
           flex-direction: column;
           justify-content: flex-start;
           align-items: center;
-          padding: 2px;
+          padding: 4px 2px 2px 2px;
           min-height: 40px;
         }
-        
+
         .day:hover {
           background-color: #f8f9fa;
         }
-        
+
         .day.other-month {
           color: #adb5bd;
           background-color: #fafbfc;
         }
-        
+
         .day.has-events {
           font-weight: 600;
         }
-        
+
         .day-number {
-          font-size: 12px;
+          font-size: 13px;
           line-height: 1;
-          margin-bottom: 2px;
+          margin-bottom: 3px;
           z-index: 2;
         }
-        
-        .event-dots {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 1px;
-          max-width: 100%;
-          overflow: hidden;
-        }
-        
-        .event-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          flex-shrink: 0;
-          border: 1px solid rgba(255,255,255,0.8);
-        }
-        
+
+        /* Option A: Kompakte Balken direkt unter der Ziffer */
         .event-bars {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
           display: flex;
           flex-direction: column;
-        }
-        
-        .event-bar {
-          height: 4px;
+          gap: 1px;
           width: 100%;
+          max-width: 24px;
         }
+
+        .event-bar {
+          height: 3px;
+          width: 100%;
+          border-radius: 1px;
+        }
+
+        /* Option B: Farbige Punkte (auskommentiert - zum Testen aktivieren) */
+        /*
+        .event-bars {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 2px;
+          max-width: 100%;
+          padding: 0 2px;
+        }
+
+        .event-bar {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.9);
+        }
+        */
         
         .events-count {
           display: none !important;
@@ -1033,23 +1037,29 @@ class SimpleCalendar {
     const dayEl = document.createElement('div');
     dayEl.className = 'day';
     if (isOtherMonth) dayEl.classList.add('other-month');
-    
+
     const dayNumberEl = document.createElement('div');
     dayNumberEl.className = 'day-number';
     dayNumberEl.textContent = day;
     dayEl.appendChild(dayNumberEl);
-    
+
     // Check for events on this day
     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const dayEvents = eventsByDate[dateStr] || [];
-    
+
     if (dayEvents.length > 0 && !isOtherMonth) {
       dayEl.classList.add('has-events');
-      
+
+      // Calculate background color based on event categories and count
+      const backgroundColor = this.calculateDayBackgroundColor(dayEvents);
+      if (backgroundColor) {
+        dayEl.style.backgroundColor = backgroundColor;
+      }
+
       // Create event bars
       const barsEl = document.createElement('div');
       barsEl.className = 'event-bars';
-      
+
       dayEvents.forEach(event => {
         const barEl = document.createElement('div');
         barEl.className = 'event-bar';
@@ -1057,22 +1067,79 @@ class SimpleCalendar {
         barEl.title = event.name;
         barsEl.appendChild(barEl);
       });
-      
+
       dayEl.appendChild(barsEl);
-      
+
       // Add click handler for days with events
       dayEl.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        
+
         const date = new Date(year, month, day);
         this.onDayClick({ events: dayEvents, date: date });
       });
     }
-    
+
     return dayEl;
   }
   
+  calculateDayBackgroundColor(dayEvents) {
+    if (!dayEvents || dayEvents.length === 0) return null;
+
+    // Count events per category
+    const categoryCounts = {
+      'as-sender': 0,
+      'as-empf': 0,
+      'umfeld': 0,
+      'gedruckt': 0
+    };
+
+    dayEvents.forEach(event => {
+      if (categoryCounts.hasOwnProperty(event.category)) {
+        categoryCounts[event.category]++;
+      }
+    });
+
+    // Parse RGB colors from hex
+    const parseColor = (hex) => {
+      // Handle both formats: #A63437 and rgb(101, 67, 33)
+      if (hex.startsWith('rgb')) {
+        const matches = hex.match(/\d+/g);
+        return { r: parseInt(matches[0]), g: parseInt(matches[1]), b: parseInt(matches[2]) };
+      }
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return { r, g, b };
+    };
+
+    // Calculate weighted average color
+    let totalR = 0, totalG = 0, totalB = 0;
+    let totalEvents = 0;
+
+    Object.keys(categoryCounts).forEach(category => {
+      const count = categoryCounts[category];
+      if (count > 0) {
+        const color = parseColor(this.eventCategories[category]);
+        totalR += color.r * count;
+        totalG += color.g * count;
+        totalB += color.b * count;
+        totalEvents += count;
+      }
+    });
+
+    if (totalEvents === 0) return null;
+
+    const avgR = Math.round(totalR / totalEvents);
+    const avgG = Math.round(totalG / totalEvents);
+    const avgB = Math.round(totalB / totalEvents);
+
+    // Calculate opacity: 5% per event, max 25% at 5+ events
+    const opacity = Math.min(0.05 + (totalEvents - 1) * 0.05, 0.25);
+
+    return `rgba(${avgR}, ${avgG}, ${avgB}, ${opacity})`;
+  }
+
   getWeekOfYear(date) {
     const onejan = new Date(date.getFullYear(), 0, 1);
     return Math.ceil((((date - onejan) / 86400000) + onejan.getDay() + 1) / 7);
