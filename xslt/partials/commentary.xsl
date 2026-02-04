@@ -60,7 +60,7 @@
                         <xsl:text>XXXX Lemmafehler</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:text>]&#160;</xsl:text>
+                <xsl:text>&#160;&#8593;&#160;&#160;</xsl:text>
             </a>
             <span class="kommentar-text">
                 <xsl:attribute name="id">
