@@ -46,8 +46,14 @@ class SimpleCalendar {
   init() {
     this.container.innerHTML = '';
     this.loadStateFromURL();
+
+    // Calculate available years from events
+    this.availableYears = [...new Set(this.events.map(event =>
+      new Date(event.startDate).getFullYear()
+    ))].sort((a, b) => a - b);
+
     this.createCalendarStructure();
-    
+
     // Initialize view button states
     this.container.querySelectorAll('.view-btn').forEach(btn => {
       btn.classList.remove('active');
@@ -55,7 +61,7 @@ class SimpleCalendar {
         btn.classList.add('active');
       }
     });
-    
+
     // Initialize filter button states
     if (typeof window.activeFilters !== 'undefined') {
       this.container.querySelectorAll('.filter-toggle').forEach(btn => {
@@ -67,7 +73,7 @@ class SimpleCalendar {
         }
       });
     }
-    
+
     this.render();
   }
   
@@ -725,12 +731,8 @@ class SimpleCalendar {
     const yearSelect = document.createElement('select');
     yearSelect.className = 'period-dropdown year-dropdown';
 
-    // Get available years from events
-    const availableYears = [...new Set(this.events.map(event =>
-      new Date(event.startDate).getFullYear()
-    ))].sort();
-
-    availableYears.forEach(year => {
+    // Use pre-calculated available years
+    this.availableYears.forEach(year => {
       const option = document.createElement('option');
       option.value = year;
       option.textContent = year;
@@ -805,24 +807,47 @@ class SimpleCalendar {
   
   navigatePeriod(direction) {
     if (this.currentView === 'year') {
-      this.currentYear += direction;
+      // Navigate to next/previous available year
+      const currentIndex = this.availableYears.indexOf(this.currentYear);
+      const newIndex = currentIndex + direction;
+
+      // Only navigate if there is a next/previous year
+      if (newIndex >= 0 && newIndex < this.availableYears.length) {
+        this.currentYear = this.availableYears[newIndex];
+      }
     } else if (this.currentView === 'month') {
       this.currentMonth += direction;
       if (this.currentMonth > 11) {
         this.currentMonth = 0;
-        this.currentYear++;
+        // Navigate to next available year
+        const currentIndex = this.availableYears.indexOf(this.currentYear);
+        if (currentIndex + 1 < this.availableYears.length) {
+          this.currentYear = this.availableYears[currentIndex + 1];
+        }
       } else if (this.currentMonth < 0) {
         this.currentMonth = 11;
-        this.currentYear--;
+        // Navigate to previous available year
+        const currentIndex = this.availableYears.indexOf(this.currentYear);
+        if (currentIndex - 1 >= 0) {
+          this.currentYear = this.availableYears[currentIndex - 1];
+        }
       }
     } else if (this.currentView === 'week') {
       this.currentWeek += direction;
       if (this.currentWeek > 52) {
         this.currentWeek = 1;
-        this.currentYear++;
+        // Navigate to next available year
+        const currentIndex = this.availableYears.indexOf(this.currentYear);
+        if (currentIndex + 1 < this.availableYears.length) {
+          this.currentYear = this.availableYears[currentIndex + 1];
+        }
       } else if (this.currentWeek < 1) {
         this.currentWeek = 52;
-        this.currentYear--;
+        // Navigate to previous available year
+        const currentIndex = this.availableYears.indexOf(this.currentYear);
+        if (currentIndex - 1 >= 0) {
+          this.currentYear = this.availableYears[currentIndex - 1];
+        }
       }
     }
     this.renderCalendar();
@@ -1057,9 +1082,10 @@ class SimpleCalendar {
       }
 
       // Sort events by tageszaehler before rendering
+      // Printed letters (gedruckt) without tageszaehler should appear last
       const sortedEvents = [...dayEvents].sort((a, b) => {
-        const posA = parseInt(a.tageszaehler) || 0;
-        const posB = parseInt(b.tageszaehler) || 0;
+        const posA = parseInt(a.tageszaehler) || 999;
+        const posB = parseInt(b.tageszaehler) || 999;
         return posA - posB;
       });
 
@@ -1250,9 +1276,10 @@ class SimpleCalendar {
 
     if (dayEvents.length > 0 && !isOtherMonth) {
       // Sort events by tageszaehler before rendering
+      // Printed letters (gedruckt) without tageszaehler should appear last
       const sortedEvents = [...dayEvents].sort((a, b) => {
-        const posA = parseInt(a.tageszaehler) || 0;
-        const posB = parseInt(b.tageszaehler) || 0;
+        const posA = parseInt(a.tageszaehler) || 999;
+        const posB = parseInt(b.tageszaehler) || 999;
         return posA - posB;
       });
 
@@ -1334,9 +1361,10 @@ class SimpleCalendar {
       const dayEvents = eventsByDate[dateStr] || [];
 
       // Sort events by tageszaehler before rendering
+      // Printed letters (gedruckt) without tageszaehler should appear last
       const sortedEvents = [...dayEvents].sort((a, b) => {
-        const posA = parseInt(a.tageszaehler) || 0;
-        const posB = parseInt(b.tageszaehler) || 0;
+        const posA = parseInt(a.tageszaehler) || 999;
+        const posB = parseInt(b.tageszaehler) || 999;
         return posA - posB;
       });
 
