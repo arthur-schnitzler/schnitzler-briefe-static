@@ -7,6 +7,7 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
+    <xsl:import href="./partials/params.xsl"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title">
             <xsl:value-of select="descendant::tei:titleStmt/tei:title[@level = 'a'][1]/text()"/>
@@ -111,8 +112,8 @@
                                 position: relative;
                                 top: -250px; visibility: hidden"
                                 id="body"/>
-                            <p class="mt-3">Diese Webseite enthält zur Zeit <span id="correspondence-count">…</span> vollständige
-                                Korrespondenzen mit <span id="letter-count">…</span> Briefen von und an Arthur Schnitzler
+                            <p class="mt-3">Diese Webseite enthält zur Zeit <xsl:value-of select="$complete_correspondences"/> vollständige
+                                Korrespondenzen mit <xsl:value-of select="$total_letters_formatted"/> Briefen von und an Arthur Schnitzler
                                 (1862–1931). Viele davon werden erstmals veröffentlicht. Alle sind
                                 nach den Originalen in Archiven in Europa und Amerika durchgesehen
                                 und korrigiert.</p>

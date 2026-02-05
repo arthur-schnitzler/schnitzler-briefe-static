@@ -23,19 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function updateTextStatistics() {
-    if (!statsData) return;
-
-    // Update correspondence count in intro text
-    const corrCount = document.getElementById('correspondence-count');
-    if (corrCount && statsData.complete_correspondences) {
-        corrCount.textContent = statsData.complete_correspondences;
-    }
-
-    // Update letter count in intro text
-    const letterCount = document.getElementById('letter-count');
-    if (letterCount && statsData.total_letters) {
-        letterCount.textContent = statsData.total_letters.toLocaleString('de-DE');
-    }
+    // No longer needed - values are now rendered server-side in index.xsl
+    // using params from params.xsl which are updated by update_params.py
+    return;
 }
 
 function initStatsSlideshow() {

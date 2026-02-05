@@ -6,6 +6,9 @@ set -e
 echo "check and delete faulty files"
 python3 delete_faulty_files.py
 
+echo "update params.xsl with current statistics"
+python3 update_params.py
+
 echo "add mentions"
 python3 add_mentions.py
 
