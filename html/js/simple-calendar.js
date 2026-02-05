@@ -1056,11 +1056,18 @@ class SimpleCalendar {
         dayEl.style.backgroundColor = backgroundColor;
       }
 
+      // Sort events by tageszaehler before rendering
+      const sortedEvents = [...dayEvents].sort((a, b) => {
+        const posA = parseInt(a.tageszaehler) || 0;
+        const posB = parseInt(b.tageszaehler) || 0;
+        return posA - posB;
+      });
+
       // Create event bars
       const barsEl = document.createElement('div');
       barsEl.className = 'event-bars';
 
-      dayEvents.forEach(event => {
+      sortedEvents.forEach(event => {
         const barEl = document.createElement('div');
         barEl.className = 'event-bar';
         barEl.style.backgroundColor = this.eventCategories[event.category] || '#999';
@@ -1070,13 +1077,13 @@ class SimpleCalendar {
 
       dayEl.appendChild(barsEl);
 
-      // Add click handler for days with events
+      // Add click handler for days with events (use sorted events)
       dayEl.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
         const date = new Date(year, month, day);
-        this.onDayClick({ events: dayEvents, date: date });
+        this.onDayClick({ events: sortedEvents, date: date });
       });
     }
 
@@ -1240,9 +1247,16 @@ class SimpleCalendar {
     // Check for events on this day
     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const dayEvents = eventsByDate[dateStr] || [];
-    
+
     if (dayEvents.length > 0 && !isOtherMonth) {
-      dayEvents.slice(0, 5).forEach(event => {
+      // Sort events by tageszaehler before rendering
+      const sortedEvents = [...dayEvents].sort((a, b) => {
+        const posA = parseInt(a.tageszaehler) || 0;
+        const posB = parseInt(b.tageszaehler) || 0;
+        return posA - posB;
+      });
+
+      sortedEvents.slice(0, 5).forEach(event => {
         const eventEl = document.createElement('div');
         eventEl.className = 'event-item-large';
         eventEl.style.backgroundColor = this.eventCategories[event.category] || '#999';
@@ -1264,22 +1278,22 @@ class SimpleCalendar {
         });
         eventsContainer.appendChild(eventEl);
       });
-      
-      if (dayEvents.length > 5) {
+
+      if (sortedEvents.length > 5) {
         const moreEl = document.createElement('div');
         moreEl.className = 'more-events-large';
-        moreEl.textContent = `+${dayEvents.length - 5} weitere`;
+        moreEl.textContent = `+${sortedEvents.length - 5} weitere`;
         eventsContainer.appendChild(moreEl);
       }
-      
-      // Add click handler for the day
+
+      // Add click handler for the day (use sorted events)
       dayEl.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         const date = new Date(year, month, day);
-        this.onDayClick({ events: dayEvents, date: date });
+        this.onDayClick({ events: sortedEvents, date: date });
       });
-      
+
       dayEl.style.cursor = 'pointer';
     }
     
@@ -1318,12 +1332,19 @@ class SimpleCalendar {
       const date = new Date(weekStart.getTime() + i * 24 * 60 * 60 * 1000);
       const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
       const dayEvents = eventsByDate[dateStr] || [];
-      
+
+      // Sort events by tageszaehler before rendering
+      const sortedEvents = [...dayEvents].sort((a, b) => {
+        const posA = parseInt(a.tageszaehler) || 0;
+        const posB = parseInt(b.tageszaehler) || 0;
+        return posA - posB;
+      });
+
       const dayColumn = document.createElement('div');
       dayColumn.className = 'week-day-column';
-      
+
       // Add events for this specific day
-      dayEvents.forEach(event => {
+      sortedEvents.forEach(event => {
         const eventEl = document.createElement('div');
         eventEl.className = 'week-event';
         eventEl.style.backgroundColor = this.eventCategories[event.category] || '#999';
@@ -1345,7 +1366,7 @@ class SimpleCalendar {
         });
         dayColumn.appendChild(eventEl);
       });
-      
+
       daysContainer.appendChild(dayColumn);
     }
     
