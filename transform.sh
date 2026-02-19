@@ -18,6 +18,9 @@ python3 make_calendar_data.py
 echo "generate letter statistics"
 python3 generate_letter_statistics.py
 
+echo "generate langes-s word statistics"
+python3 make_langes_s_stats.py
+
 echo "fetch and integrate CMIF printed letters data"
 python3 fetch_cmif_data.py
 
