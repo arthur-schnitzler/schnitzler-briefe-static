@@ -120,9 +120,9 @@
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="interactive-networks.html">Korrespondenznetzwerke</a>
                                 </li>
-                                <li class="nav-item dropdown-submenu">
+                                <!--<li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="langes_s.html">Wörter mit langem ſ</a>
-                                </li>
+                                </li>-->
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
