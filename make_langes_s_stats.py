@@ -211,7 +211,10 @@ words_el = ET.SubElement(root_el, 'words')
 for word, count in sorted(word_counter.items(), key=lambda x: -x[1]):
     w_el = ET.SubElement(words_el, 'word')
     w_el.set('count', str(count))
+    # Spalte 1: Wort mit ſ (wie kodiert)
     w_el.text = word
+    # Spalte 2: Normalform – einfach ſ → s
+    w_el.set('normal', word.replace('ſ', 's'))
 
 tree_out = ET.ElementTree(root_el)
 ET.indent(tree_out, space='  ')
