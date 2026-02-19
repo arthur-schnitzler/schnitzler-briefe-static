@@ -141,6 +141,9 @@
           test="$msIdentifier/tei:repository[contains(., 'Österreichische Nationalbibliothek')]">
           <xsl:text>ONB</xsl:text>
         </xsl:when>
+        <xsl:when test="$msIdentifier/tei:repository[contains(., 'Dostal')]">
+          <xsl:text>Privatbesitz</xsl:text>
+        </xsl:when>
         <!-- ORIEL LEIBZON -->
         <xsl:when test="$msIdentifier/tei:repository[contains(., 'Leibzon')]">
           <xsl:text>Privatbesitz_Oriel_Leibzon</xsl:text>
