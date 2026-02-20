@@ -67,7 +67,7 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
                     <xsl:value-of select="$total_letters_formatted"/>
                     <xsl:text> Briefe von und an Arthur Schnitzler (1862–1931). Veröffentlicht werden </xsl:text>
                     <xsl:value-of select="$complete_correspondences_formatted"/>
-                    <xsl:text> vollständigen Korrespondenzen in textkritischer Wiedergabe mit Faksimiles. Digitale Edition. Herausgegeben von Martin Anton Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke.</xsl:text>
+                    <xsl:text> vollständige Korrespondenzen in textkritischer Wiedergabe mit Faksimiles. Digitale Edition. Herausgegeben von Martin Anton Müller mit Gerd-Hermann Susen, Laura Untner und Selma Jahnke.</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
