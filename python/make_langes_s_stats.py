@@ -20,7 +20,7 @@ WORD_BOUNDARY_TAGS = {
 SKIP_TAGS = {
     f'{{{TEI_NS}}}note',
     f'{{{TEI_NS}}}fw',      # Bogwort / Kustode
-    f'{{{TEI_NS}}}figDesc', # Bildbeschreibung
+    f'{{{TEI_NS}}}figDesc',  # Bildbeschreibung
 }
 
 # Elemente, die Inline-Text enthalten können (kein Wortbruch)
@@ -47,8 +47,8 @@ INLINE_TAGS = {
     f'{{{TEI_NS}}}c',  # andere <c>-Elemente (z.B. weiteres langes S im selben Wort)
 }
 
-# Wortgrenzen: Leerzeichen, Satzzeichen, festes Leerzeichen
-WORD_BOUNDARY_RE = re.compile(r'[\s\u00a0\u202f,\.;:!?\(\)\[\]{}\"\'\-–—/\\|]')
+# Wortgrenzen: Leerzeichen, Satzzeichen, festes Leerzeichen, Anführungszeichen
+WORD_BOUNDARY_RE = re.compile(r'[\s\u00a0\u202f,\.;:!?\(\)\[\]{}\"\'\-–—/\\|»«„\u201c\u201d‹›]')
 
 # Container-Elemente, an deren Anfang ein neues Wort beginnt
 BLOCK_TAGS = {
@@ -173,7 +173,7 @@ def get_word_around(elem):
     before_part = before_part.replace(placeholder, 'ſ')
     after_part = after_part.replace(placeholder, 'ſ')
 
-    word = (before_part + s_char + after_part).lower()
+    word = before_part + s_char + after_part
 
     # Leerstring oder nur Satzzeichen ignorieren
     if not re.search(r'\w', word, re.UNICODE):
