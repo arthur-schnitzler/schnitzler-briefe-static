@@ -15,6 +15,14 @@ WORD_BOUNDARY_TAGS = {
     f'{{{TEI_NS}}}cb',
 }
 
+# Elemente, deren Inhalt vollständig übersprungen wird (Wortgrenze einfügen,
+# Inhalt ignorieren) – editorische Zutaten, die nicht Teil des Lesetexts sind.
+SKIP_TAGS = {
+    f'{{{TEI_NS}}}note',
+    f'{{{TEI_NS}}}fw',      # Bogwort / Kustode
+    f'{{{TEI_NS}}}figDesc', # Bildbeschreibung
+}
+
 # Elemente, die Inline-Text enthalten können (kein Wortbruch)
 INLINE_TAGS = {
     f'{{{TEI_NS}}}hi',
@@ -86,6 +94,12 @@ def serialize_inline(node, target_elem, parts, placeholder='§'):
             # Weiteres <c rendition="#langesS"> im gleichen Wort → Platzhalter (wird zu ſ)
             # Keinesfalls den Textinhalt 's' direkt einfügen – s ≠ ſ!
             parts.append(placeholder)
+            if child.tail:
+                parts.append(child.tail)
+        elif tag in SKIP_TAGS:
+            # Editorisches Element (z.B. <note>): Wortgrenze einfügen,
+            # Inhalt komplett überspringen
+            parts.append(' ')
             if child.tail:
                 parts.append(child.tail)
         elif tag in INLINE_TAGS or tag not in BLOCK_TAGS:

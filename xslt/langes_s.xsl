@@ -179,21 +179,18 @@
                     }
 
                     function filterTable() {
-                        var input = document.getElementById('wordFilter');
-                        var filter = input.value.toLowerCase();
-                        var tbody = document.querySelector('#langesS-table tbody');
-                        var rows = tbody.getElementsByTagName('tr');
+                        var filter = document.getElementById('wordFilter').value.toLowerCase();
                         var rank = 1;
-                        for (var i = 0; i &lt; rows.length; i++) {
-                            var cells = rows[i].getElementsByTagName('td');
+                        Array.from(document.querySelectorAll('#langesS-table tbody tr')).forEach(function(row) {
+                            var cells = row.getElementsByTagName('td');
                             var word = cells[1] ? cells[1].textContent.toLowerCase() : '';
-                            if (word.indexOf(filter) &gt; -1) {
-                                rows[i].style.display = '';
+                            if (word.includes(filter)) {
+                                row.style.display = '';
                                 cells[0].textContent = rank++;
                             } else {
-                                rows[i].style.display = 'none';
+                                row.style.display = 'none';
                             }
-                        }
+                        });
                     }
                 </script>
             </body>
