@@ -5,7 +5,7 @@ Diese Funktionalität generiert dynamische Statistiken aus den Brief-XMLs im `da
 ## Dateien
 
 ### Python-Script
-- **`generate_letter_statistics.py`**: Analysiert alle Brief-XMLs und erstellt Statistiken
+- **`python/generate_letter_statistics.py`**: Analysiert alle Brief-XMLs und erstellt Statistiken
 
 ### XSLT-Stylesheet
 - **`xslt/statistics.xsl`**: Transformiert die Statistik-XML in HTML mit interaktiven Charts
@@ -21,7 +21,7 @@ Diese Funktionalität generiert dynamische Statistiken aus den Brief-XMLs im `da
 ### Manuell
 ```bash
 # Statistiken generieren
-python3 generate_letter_statistics.py
+python3 python/generate_letter_statistics.py
 
 # HTML erstellen
 ant
@@ -32,7 +32,7 @@ ant
 ./transform.sh
 ```
 
-Das Script wird automatisch zwischen `make_calendar_data.py` und `fetch_cmif_data.py` ausgeführt.
+Das Script wird automatisch zwischen `python/make_calendar_data.py` und `python/fetch_cmif_data.py` ausgeführt.
 
 ## Generierte Statistiken
 

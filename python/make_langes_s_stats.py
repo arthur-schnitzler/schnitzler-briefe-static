@@ -82,6 +82,12 @@ def serialize_inline(node, target_elem, parts, placeholder='§'):
             parts.append(' ')
             if child.tail:
                 parts.append(child.tail)
+        elif tag == LANGES_S_TAG and child.get('rendition') == '#langesS':
+            # Weiteres <c rendition="#langesS"> im gleichen Wort → Platzhalter (wird zu ſ)
+            # Keinesfalls den Textinhalt 's' direkt einfügen – s ≠ ſ!
+            parts.append(placeholder)
+            if child.tail:
+                parts.append(child.tail)
         elif tag in INLINE_TAGS or tag not in BLOCK_TAGS:
             # Inline-Element: Inhalt einbetten
             sub_found = serialize_inline(child, target_elem, parts, placeholder)

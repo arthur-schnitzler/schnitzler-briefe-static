@@ -4,7 +4,7 @@ Diese Dokumentation beschreibt alle implementierten SEO-Verbesserungen für die 
 
 ## Übersicht der implementierten Features
 
-### 1. Sitemap-Generierung (`generate_sitemap.py`)
+### 1. Sitemap-Generierung (`python/generate_sitemap.py`)
 
 **Features:**
 - Automatische Generierung einer XML-Sitemap mit allen Briefen und statischen Seiten
@@ -61,7 +61,7 @@ Diese Dokumentation beschreibt alle implementierten SEO-Verbesserungen für die 
 - Keyword-Arrays mit relevanten Begriffen
 - Bilder mit ImageObject-Schema
 
-### 5. SEO-Analytics und Metadata (`generate_seo_metadata.py`)
+### 5. SEO-Analytics und Metadata (`python/generate_seo_metadata.py`)
 
 **Generierte Daten:**
 - Korrespondenten-Statistiken
@@ -73,10 +73,10 @@ Diese Dokumentation beschreibt alle implementierten SEO-Verbesserungen für die 
 ### 6. Build-Integration
 
 **Automatischer SEO-Build-Prozess:**
-1. `generate_seo_metadata.py` - Analyse und Metadaten
+1. `python/generate_seo_metadata.py` - Analyse und Metadaten
 2. Standard XSLT-Transformation mit SEO-Features
-3. `generate_sitemap.py` - Sitemap und Robots.txt
-4. `seo_build.py` - Validierung und zusätzliche Dateien
+3. `python/generate_sitemap.py` - Sitemap und Robots.txt
+4. `python/seo_build.py` - Validierung und zusätzliche Dateien
 
 ### 7. Performance-Optimierungen
 
@@ -117,9 +117,9 @@ Diese Dokumentation beschreibt alle implementierten SEO-Verbesserungen für die 
 - `xslt/editions.xsl` - Brief-spezifische Meta-Tags und JSON-LD
 
 ### Python-Scripts:
-- `generate_sitemap.py` - Sitemap-Generierung
-- `generate_seo_metadata.py` - SEO-Analyse
-- `seo_build.py` - Build-Validierung und zusätzliche Dateien
+- `python/generate_sitemap.py` - Sitemap-Generierung
+- `python/generate_seo_metadata.py` - SEO-Analyse
+- `python/seo_build.py` - Build-Validierung und zusätzliche Dateien
 
 ### JavaScript-Erweiterungen:
 - Schema.org Breadcrumb-Daten
@@ -169,9 +169,9 @@ Das SEO-System ist vollständig in den Build-Prozess integriert:
 ./transform.sh
 
 # Nur SEO-Komponenten
-python generate_sitemap.py
-python generate_seo_metadata.py
-python seo_build.py
+python python/generate_sitemap.py
+python python/generate_seo_metadata.py
+python python/seo_build.py
 ```
 
 Alle generierten SEO-Dateien befinden sich in `./html/` und sind sofort einsatzbereit.

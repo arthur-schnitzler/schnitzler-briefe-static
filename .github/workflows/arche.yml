@@ -20,9 +20,9 @@ jobs:
     - name: Fetch the data
       run: ./fetch_data.sh
     - name: check and delete faulty files
-      run: python delete_faulty_files.py
+      run: python python/delete_faulty_files.py
     - name: add mentions
-      run: python add_mentions.py
+      run: python python/add_mentions.py
     - name: create arche metadata
       run: python arche/make_metadata.py
     - name: run metadata import

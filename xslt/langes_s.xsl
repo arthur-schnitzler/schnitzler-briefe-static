@@ -33,10 +33,22 @@
                         <div class="card">
                             <div class="card-header text-center">
                                 <h2>Wörter mit langem ſ</h2>
-                                <p class="text-muted mb-0">
-                                    Häufigkeitsverteilung von Wörtern, in denen
-                                    <code>&lt;c rendition="#langesS"&gt;</code> vorkommt
-                                </p>
+                                <p class="text-muted mb-0">Die meisten Schreibenden, deren Texte hier
+                                    ediert werden, verwendeten zwei unterschiedliche Formen von s: »s« und »ſ«. Diese
+                                    sind lautlich nicht zu unterscheiden, aber das trifft auch für andere
+                                    Zeichen und Zeichenketten zu (»f«, »ph«, »v«) zu. Eine wissenschaftliche
+                                    Edition sollte dieser Unterscheidung Rechnung tragen.</p>
+                                <p class="text-muted mb-0">Zudem sind viele der
+                                    Schreibenden im österreichischen Schulsystem vor der Orthografiereform 1901
+                                    ausgebildet und verwendeten andere Rechtschreibregeln. Dazu gehörten Unterschiede
+                                    bei der »ſs«- und »ß«-Schreibung. Während lange Zeit die Ersetzungsregel 
+                                    »ſs« wird zu »ß« galt, ist seit der Reform von 1997 der Ersatz »ſ« wird zu »s« und folglich 
+                                    »ſs« zu »ss«
+                                    sinnvoller, da er genauer den damals angewandten Regeln entspricht.</p>
+                                <p class="text-muted mb-0">Wir kennen keine unmittelbare Verwendung für die folgende
+                                    Liste. Auch sind Wortformen (»iſt«, »ſein«; »dieſer«, »dieſe« …) nicht zusammengeführt.
+                                    Wir glauben aber trotzdem, dass jemand sie hilfreich finden wird, als Mosaiksteinchen der 
+                                    Sprachpraxis in Österreich um 1900.</p>
                             </div>
                             <div class="card-body">
                                 <div class="row mb-4">
@@ -77,11 +89,14 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3 d-flex gap-2">
                                     <input type="text" id="wordFilter" class="form-control"
-                                        placeholder="Wort suchen …"
+                                        placeholder="Wort suchen (heutige Schreibweise)"
                                         onkeyup="filterTable()"
                                         aria-label="Wörter filtern"/>
+                                    <button class="btn btn-outline-secondary text-nowrap" onclick="downloadCSV()">
+                                        &#x2B07; CSV
+                                    </button>
                                 </div>
 
                                 <div style="max-height: 75vh; overflow-y: auto;">
@@ -109,7 +124,7 @@
                                                         <xsl:value-of select="$word_text"/>
                                                     </td>
                                                     <td class="font-monospace">
-                                                        <xsl:value-of select="replace($word_text, 's', 'ſ')"/>
+                                                        <xsl:value-of select="@langesS"/>
                                                     </td>
                                                     <td class="text-end">
                                                         <xsl:value-of select="$count"/>
@@ -141,6 +156,28 @@
                     <xsl:call-template name="html_footer"/>
                 </div>
                 <script>
+                    function downloadCSV() {
+                        var rows = document.querySelectorAll('#langesS-table tbody tr');
+                        var lines = ['Rang\tWort (modern)\tWort (mit \u017F)\tAnzahl'];
+                        var rank = 1;
+                        rows.forEach(function(row) {
+                            if (row.style.display === 'none') return;
+                            var cells = row.getElementsByTagName('td');
+                            var modern = cells[1] ? cells[1].textContent.trim() : '';
+                            var langesS = cells[2] ? cells[2].textContent.trim() : '';
+                            var count  = cells[3] ? cells[3].textContent.trim() : '';
+                            lines.push(rank++ + '\t' + modern + '\t' + langesS + '\t' + count);
+                        });
+                        var bom = '\uFEFF';
+                        var blob = new Blob([bom + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+                        var url = URL.createObjectURL(blob);
+                        var a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'langes-s.csv';
+                        a.click();
+                        URL.revokeObjectURL(url);
+                    }
+
                     function filterTable() {
                         var input = document.getElementById('wordFilter');
                         var filter = input.value.toLowerCase();
@@ -150,8 +187,7 @@
                         for (var i = 0; i &lt; rows.length; i++) {
                             var cells = rows[i].getElementsByTagName('td');
                             var word = cells[1] ? cells[1].textContent.toLowerCase() : '';
-                            var wordLanges = cells[2] ? cells[2].textContent.toLowerCase() : '';
-                            if (word.indexOf(filter) &gt; -1 || wordLanges.indexOf(filter) &gt; -1) {
+                            if (word.indexOf(filter) &gt; -1) {
                                 rows[i].style.display = '';
                                 cells[0].textContent = rank++;
                             } else {
