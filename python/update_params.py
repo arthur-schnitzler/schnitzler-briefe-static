@@ -123,8 +123,8 @@ def update_params_xsl(params_file, total_letters, complete_correspondences):
 
 def main():
     """Main function."""
-    # Set up paths relative to script location
-    script_dir = Path(__file__).parent
+    # Set up paths relative to project root (one level above the python/ directory)
+    script_dir = Path(__file__).parent.parent
 
     editions_dir = script_dir / "data" / "editions"
     listcorrespondence_file = script_dir / "data" / "indices" / "listcorrespondence.xml"
