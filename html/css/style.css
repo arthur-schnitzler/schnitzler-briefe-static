@@ -142,34 +142,19 @@ a {
     cursor: pointer;
 }
 
-/* Entity highlighting with colored underlines - active by default for independent toggle system */
-/* Using border-bottom for multiline support */
+/* Entity highlighting with colored backgrounds */
 .persons.entity {
     position: relative;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, background-image 0.2s ease;
     hyphens: none;
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px dotted #e74c3c;
+    background-color: rgba(231, 76, 60, 0.15);
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-/* Keep after pseudo-element for backwards compatibility, but make it invisible */
-.persons.entity::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 0px;
-    background-color: transparent;
-    border-radius: 1px;
-    transition: all 0.2s ease;
 }
 
 .persons.entity:hover {
@@ -179,29 +164,16 @@ a {
 
 .places.entity {
     position: relative;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, background-image 0.2s ease;
     hyphens: none;
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px dotted #3498db;
+    background-color: rgba(52, 152, 219, 0.15);
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.places.entity::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 0px;
-    background-color: transparent;
-    border-radius: 1px;
-    transition: all 0.2s ease;
 }
 
 .places.entity:hover {
@@ -211,29 +183,16 @@ a {
 
 .orgs.entity {
     position: relative;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, background-image 0.2s ease;
     hyphens: none;
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px dotted #9b59b6;
+    background-color: rgba(155, 89, 182, 0.15);
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.orgs.entity::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 0px;
-    background-color: transparent;
-    border-radius: 1px;
-    transition: all 0.2s ease;
 }
 
 .orgs.entity:hover {
@@ -243,29 +202,16 @@ a {
 
 .works.entity {
     position: relative;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, background-image 0.2s ease;
     hyphens: none;
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px dotted #f39c12;
+    background-color: rgba(243, 156, 18, 0.15);
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.works.entity::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 0px;
-    background-color: transparent;
-    border-radius: 1px;
-    transition: all 0.2s ease;
 }
 
 .works.entity:hover {
@@ -275,29 +221,16 @@ a {
 
 .events.entity {
     position: relative;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, background-image 0.2s ease;
     hyphens: none;
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    border-bottom: 2px dotted #27ae60;
+    background-color: rgba(39, 174, 96, 0.15);
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.events.entity::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 0px;
-    background-color: transparent;
-    border-radius: 1px;
-    transition: all 0.2s ease;
 }
 
 .events.entity:hover {
@@ -307,238 +240,297 @@ a {
 
 /* Hidden state for entities when toggled off */
 .entity.entity-hidden {
-    border-bottom: none !important;
+    background: none !important;
 }
 
-.entity.entity-hidden::after {
-    display: none;
-}
-
-/* Mixed entity types for nested rs elements - use primary color with dashed border for indication */
-/* For mixed entities, use the first entity type's color with a dashed border to indicate multiple types */
+/* Mixed entity types - stacked gradients blend the colors additively */
 .persons.places.entity {
-    border-bottom: 2px dashed #e74c3c;
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.persons.places.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .persons.works.entity {
-    border-bottom: 2px dashed #e74c3c;
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.persons.works.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .persons.orgs.entity {
-    border-bottom: 2px dashed #e74c3c;
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.persons.orgs.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .persons.events.entity {
-    border-bottom: 2px dashed #e74c3c;
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.persons.events.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .places.works.entity {
-    border-bottom: 2px dashed #3498db;
+    background-image: linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.places.works.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .places.orgs.entity {
-    border-bottom: 2px dashed #3498db;
+    background-image: linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.places.orgs.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .places.events.entity {
-    border-bottom: 2px dashed #3498db;
+    background-image: linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.places.events.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .works.orgs.entity {
-    border-bottom: 2px dashed #f39c12;
+    background-image: linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.works.orgs.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .works.events.entity {
-    border-bottom: 2px dashed #f39c12;
+    background-image: linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.works.events.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .orgs.events.entity {
-    border-bottom: 2px dashed #9b59b6;
+    background-image: linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
 }
 
-.orgs.events.entity::after {
-    background: transparent;
-    height: 0px;
-}
-
-/* Three or more entity types - use dotted pattern to indicate multiple types */
+/* Three entity types */
 .persons.places.works.entity {
-    border-bottom: 2px dotted #e74c3c;
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.persons.places.works.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .persons.places.orgs.entity {
-    border-bottom: 2px dotted #e74c3c;
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
-}
-
-.persons.places.orgs.entity::after {
-    background: transparent;
-    height: 0px;
 }
 
 .persons.places.events.entity {
-    border-bottom: 2px dotted #e74c3c;
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
 }
 
-.persons.places.events.entity::after {
-    background: transparent;
-    height: 0px;
+.persons.works.orgs.entity {
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
 }
 
-/* All remaining 3+, 4+, and 5+ entity combinations use dotted pattern */
-.persons.works.orgs.entity,
-.persons.works.events.entity,
-.persons.orgs.events.entity,
-.places.works.orgs.entity,
-.places.works.events.entity,
-.places.orgs.events.entity,
-.works.orgs.events.entity,
-.persons.places.works.orgs.entity,
-.persons.places.works.events.entity,
-.persons.places.orgs.events.entity,
-.persons.works.orgs.events.entity,
-.places.works.orgs.events.entity,
+.persons.works.events.entity {
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+.persons.orgs.events.entity {
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+.places.works.orgs.entity {
+    background-image: linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+.places.works.events.entity {
+    background-image: linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+.places.orgs.events.entity {
+    background-image: linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+.works.orgs.events.entity {
+    background-image: linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+/* Four entity types */
+.persons.places.works.orgs.entity {
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+.persons.places.works.events.entity {
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+.persons.places.orgs.events.entity {
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+.persons.works.orgs.events.entity {
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+.places.works.orgs.events.entity {
+    background-image: linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: 1.4;
+}
+
+/* All five entity types */
 .persons.places.works.orgs.events.entity {
-    border-bottom: 2px dotted #e74c3c;
+    background-image: linear-gradient(rgba(231,76,60,0.15), rgba(231,76,60,0.15)),
+                      linear-gradient(rgba(52,152,219,0.15), rgba(52,152,219,0.15)),
+                      linear-gradient(rgba(243,156,18,0.15), rgba(243,156,18,0.15)),
+                      linear-gradient(rgba(155,89,182,0.15), rgba(155,89,182,0.15)),
+                      linear-gradient(rgba(39,174,96,0.15), rgba(39,174,96,0.15));
+    background-color: transparent;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     display: inline;
     line-height: 1.4;
-    padding-bottom: 1px;
 }
 
-.persons.works.orgs.entity::after,
-.persons.works.events.entity::after,
-.persons.orgs.events.entity::after,
-.places.works.orgs.entity::after,
-.places.works.events.entity::after,
-.places.orgs.events.entity::after,
-.works.orgs.events.entity::after,
-.persons.places.works.orgs.entity::after,
-.persons.places.works.events.entity::after,
-.persons.places.orgs.events.entity::after,
-.persons.works.orgs.events.entity::after,
-.places.works.orgs.events.entity::after,
-.persons.places.works.orgs.events.entity::after {
-    background: transparent;
-    height: 0px;
-}
-
-/* Hover states for all mixed entities - since we use border-bottom now, adjust border style on hover */
+/* Hover state for all mixed entities */
 .persons.places.entity:hover,
 .persons.works.entity:hover,
 .persons.orgs.entity:hover,
@@ -565,7 +557,7 @@ a {
 .persons.works.orgs.events.entity:hover,
 .places.works.orgs.events.entity:hover,
 .persons.places.works.orgs.events.entity:hover {
-    border-bottom-width: 3px;
+    box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.08);
 }
 
 .entity-table {
