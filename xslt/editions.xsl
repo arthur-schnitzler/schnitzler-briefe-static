@@ -304,11 +304,6 @@
                                                   <i class="fas fa-landmark"/> ÜBERLIEFERUNG
                                                   </a>&#160; </li>
                                                 <li class="nav-item"> &#160;<a href="#"
-                                                  data-bs-target="#entitaeten" type="button"
-                                                  data-bs-toggle="modal">
-                                                  <i class="fas fa-sharp fa-solid fa-people-group"/>
-                                                  LINKS </a>&#160; </li>
-                                                <li class="nav-item"> &#160;<a href="#"
                                                   data-bs-target="#zitat" type="button"
                                                   data-bs-toggle="modal">
                                                   <i class="fas fa-quote-right"/> ZITIEREN</a>&#160; </li>
@@ -593,397 +588,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Modal LINKS -->
-                <div class="modal fade" id="entitaeten" tabindex="-1"
-                    aria-labelledby="entitaetenModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">MARKIERUNG</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Schließen"/>
-                            </div>
-                            <div class="modal-body">
-                                <div class="entity-details-container">
-                                    <!-- Master toggle for all entity links -->
-                                    <div style="margin-bottom: 1.5em; padding-bottom: 1em; border-bottom: 1px solid #ddd;">
-                                        <div class="entity-toggle" data-type="master"
-                                            style="display: inline-block;">
-                                            <label class="switch">
-                                              <input type="checkbox" checked="checked"
-                                              id="master-entity-toggle"/>
-                                              <span class="i-slider round"
-                                              style="background-color: #A63437;"/>
-                                            </label>
-                                            <span class="opt-title"> Alle Unterstreichungen</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Variable: IDs der Korrespondenz-Personen -->
-                                    <xsl:variable name="corresp-person-ids"
-                                        select="//tei:correspDesc//tei:persName/@ref/substring-after(., '#')"/>
-
-                                    <!-- Beteiligte an der Korrespondenz -->
-                                    <details style="margin-bottom: 1em;">
-                                        <summary>Beteiligte an der Korrespondenz</summary>
-                                        <div class="details-content" style="padding-left: 20px; margin-top: 0.5em;">
-                                            <xsl:for-each select="//tei:correspDesc//tei:persName">
-                                                <xsl:variable name="person-id" select="substring-after(@ref, '#')"/>
-                                                <div style="display: block; margin-bottom: 8px;">
-                                                    <a class="persons">
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of select="concat($person-id, '.html')"/>
-                                                        </xsl:attribute>
-                                                        <xsl:value-of select="."/>
-                                                    </a>
-                                                </div>
-                                            </xsl:for-each>
-                                        </div>
-                                    </details>
-
-                                    <!-- Personen -->
-                                    <details open="open" style="margin-bottom: 1em;">
-                                        <summary>Personen (<xsl:value-of
-                                                select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)])"
-                                        />)</summary>
-                                        <div class="details-content" style="margin-top: 0.5em;">
-                                            <!-- Personen toggle -->
-                                            <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                <div class="entity-toggle" data-type="persons"
-                                                    style="display: inline-block;">
-                                                    <label class="switch">
-                                                      <input type="checkbox" checked="checked"/>
-                                                      <span class="i-slider round"
-                                                      style="background-color: #e74c3c;"/>
-                                                    </label>
-                                                    <span class="opt-title"> Unterstreichungen</span>
-                                                </div>
-                                            </div>
-                                            <xsl:for-each select="descendant::tei:text/tei:back/tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)]">
-                                                <xsl:sort
-                                                  select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
-                                                <xsl:variable name="naname" as="xs:string">
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="child::tei:persName[1]/tei:surname[1] and child::tei:persName[1]/tei:forename[1]">
-                                                  <xsl:value-of
-                                                  select="concat(child::tei:persName[1]/tei:surname[1], ' ', child::tei:persName[1]/tei:forename[1])"
-                                                  />
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="child::tei:persName[1]/tei:forename[1]">
-                                                  <xsl:value-of select="child::tei:forename[1]"/>
-                                                  </xsl:when>
-                                                  <xsl:when
-                                                  test="child::tei:persName[1]/tei:surname[1]">
-                                                  <xsl:value-of
-                                                  select="child::tei:persName[1]/tei:surname[1]"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of
-                                                  select="normalize-space(child::tei:persName)"/>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                </xsl:variable>
-                                                <!-- All persons here have toggles, corresp persons are already filtered out -->
-                                                <div class="entity-highlight-toggle" data-type="person" style="display: flex; align-items: flex-start; margin-bottom: 8px;">
-                                                    <xsl:attribute name="data-entity-id">
-                                                        <xsl:value-of select="data(@xml:id)"/>
-                                                    </xsl:attribute>
-                                                    <label class="switch" style="flex-shrink: 0;">
-                                                        <input type="checkbox"/>
-                                                        <span class="i-slider round" style="background-color: #ccc;"></span>
-                                                    </label>
-                                                    <span class="opt-title" style="margin-left: 10px; flex: 1;">
-                                                        <a class="persons">
-                                                            <xsl:attribute name="href">
-                                                                <xsl:value-of select="concat(data(@xml:id), '.html')"/>
-                                                            </xsl:attribute>
-                                                            <xsl:value-of select="$naname"/>
-                                                        </a>
-                                                    </span>
-                                                </div>
-                                            </xsl:for-each>
-                                        </div>
-                                    </details>
-                                    <!-- Werke -->
-                                    <xsl:if test=".//tei:back/tei:listBibl/tei:bibl[1]">
-                                        <details style="margin-bottom: 1em;">
-                                            <summary>Werke (<xsl:value-of
-                                                    select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"
-                                            />)</summary>
-                                            <div class="details-content" style="margin-top: 0.5em;">
-                                                <!-- Werke toggle -->
-                                                <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                    <div class="entity-toggle" data-type="works"
-                                                        style="display: inline-block;">
-                                                        <label class="switch">
-                                                          <input type="checkbox" checked="checked"/>
-                                                          <span class="i-slider round"
-                                                          style="background-color: #f39c12;"/>
-                                                        </label>
-                                                        <span class="opt-title"> Unterstreichungen</span>
-                                                    </div>
-                                                </div>
-                                                <xsl:for-each
-                                                    select="descendant::tei:text/tei:back/tei:listBibl/tei:bibl">
-                                                  <xsl:sort select="child::tei:title[1]"/>
-                                                  <div class="entity-highlight-toggle"
-                                                  data-type="work"
-                                                  style="display: flex; align-items: flex-start; margin-bottom: 8px;">
-                                                  <xsl:attribute name="data-entity-id">
-                                                  <xsl:value-of select="data(@xml:id)"/>
-                                                  </xsl:attribute>
-                                                  <label class="switch"
-                                                  style="flex-shrink: 0;">
-                                                  <input type="checkbox"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #ccc;"/>
-                                                  </label>
-                                                  <span class="opt-title" style="margin-left: 10px; flex: 1;">
-                                                  <a class="works">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat(data(@xml:id), '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:if
-                                                  test="child::tei:author[@role = 'hat-geschaffen' or @role = 'author']">
-                                                  <xsl:for-each
-                                                  select="child::tei:author[@role = 'hat-geschaffen' or @role = 'author']">
-                                                  <xsl:sort
-                                                  select="concat(., child::tei:surname[1], child::tei:forename[1])"/>
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="child::tei:surname[1] or child::tei:forename[1]">
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="child::tei:surname[1] and child::tei:forename[1]">
-                                                  <xsl:value-of
-                                                  select="concat(child::tei:surname[1], ' ', child::tei:forename[1])"
-                                                  />
-                                                  </xsl:when>
-                                                  <xsl:when test="child::tei:forename[1]">
-                                                  <xsl:value-of select="child::tei:forename[1]"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="child::tei:surname[1]"/>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  <xsl:if test="position() != last()">
-                                                  <xsl:text>, </xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="."/>
-                                                  <xsl:if test="position() != last()">
-                                                  <xsl:text>; </xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  <xsl:if test="position() = last()">
-                                                  <xsl:text>: </xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:for-each>
-                                                  </xsl:if>
-                                                  <xsl:value-of select="./tei:title[1]"/>
-                                                  </a>
-                                                  </span>
-                                                  </div>
-                                                </xsl:for-each>
-                                            </div>
-                                        </details>
-                                    </xsl:if>
-                                    <!-- Institutionen -->
-                                    <xsl:if test=".//tei:back/tei:listOrg/tei:org[1]">
-                                        <details style="margin-bottom: 1em;">
-                                            <summary>Institutionen (<xsl:value-of
-                                                    select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"
-                                            />)</summary>
-                                            <div class="details-content" style="margin-top: 0.5em;">
-                                                <!-- Institutionen toggle -->
-                                                <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                    <div class="entity-toggle" data-type="orgs"
-                                                        style="display: inline-block;">
-                                                        <label class="switch">
-                                                          <input type="checkbox" checked="checked"/>
-                                                          <span class="i-slider round"
-                                                          style="background-color: #9b59b6;"/>
-                                                        </label>
-                                                        <span class="opt-title"> Unterstreichungen</span>
-                                                    </div>
-                                                </div>
-                                                <xsl:for-each select="descendant::tei:text/tei:back/tei:listOrg//tei:org">
-                                                  <xsl:sort select="child::tei:orgName[1]"/>
-                                                  <div class="entity-highlight-toggle"
-                                                  data-type="org"
-                                                  style="display: flex; align-items: flex-start; margin-bottom: 8px;">
-                                                  <xsl:attribute name="data-entity-id">
-                                                  <xsl:value-of select="data(@xml:id)"/>
-                                                  </xsl:attribute>
-                                                  <label class="switch"
-                                                  style="flex-shrink: 0;">
-                                                  <input type="checkbox"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #ccc;"/>
-                                                  </label>
-                                                  <span class="opt-title" style="margin-left: 10px; flex: 1;">
-                                                  <a class="orgs">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat(data(@xml:id), '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of select="./tei:orgName[1]"/>
-                                                  </a>
-                                                  </span>
-                                                  </div>
-                                                </xsl:for-each>
-                                            </div>
-                                        </details>
-                                    </xsl:if>
-                                    <!-- Ereignisse -->
-                                    <xsl:if test=".//tei:back/tei:listEvent/tei:event[1]">
-                                        <details style="margin-bottom: 1em;">
-                                            <summary>Ereignisse (<xsl:value-of
-                                                    select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"
-                                            />)</summary>
-                                            <div class="details-content" style="margin-top: 0.5em;">
-                                                <!-- Ereignisse toggle -->
-                                                <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                    <div class="entity-toggle" data-type="events"
-                                                        style="display: inline-block;">
-                                                        <label class="switch">
-                                                          <input type="checkbox" checked="checked"/>
-                                                          <span class="i-slider round"
-                                                          style="background-color: #27ae60;"/>
-                                                        </label>
-                                                        <span class="opt-title"> Ereignisse markieren </span>
-                                                    </div>
-                                                </div>
-                                                <xsl:for-each
-                                                    select="descendant::tei:text/tei:back/tei:listEvent/tei:event">
-                                                  <xsl:sort select="child::tei:eventName[1]"/>
-                                                  <div class="entity-highlight-toggle"
-                                                  data-type="event"
-                                                  style="display: flex; align-items: flex-start; margin-bottom: 8px;">
-                                                  <xsl:attribute name="data-entity-id">
-                                                  <xsl:value-of select="data(@xml:id)"/>
-                                                  </xsl:attribute>
-                                                  <label class="switch"
-                                                  style="flex-shrink: 0;">
-                                                  <input type="checkbox"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #ccc;"/>
-                                                  </label>
-                                                  <span class="opt-title" style="margin-left: 10px; flex: 1;">
-                                                  <a class="events">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat(data(@xml:id), '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of select="./tei:eventName[1]"/>
-                                                  </a>
-                                                  </span>
-                                                  </div>
-                                                </xsl:for-each>
-                                            </div>
-                                        </details>
-                                    </xsl:if>
-                                    <!-- Orte -->
-                                    <xsl:if test=".//tei:back/tei:listPlace/tei:place[1]">
-                                        <details style="margin-bottom: 1em;">
-                                            <summary>Orte (<xsl:value-of
-                                                    select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"
-                                            />)</summary>
-                                            <div class="details-content" style="margin-top: 0.5em;">
-                                                <!-- Orte toggle -->
-                                                <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                    <div class="entity-toggle" data-type="places"
-                                                        style="display: inline-block;">
-                                                        <label class="switch">
-                                                          <input type="checkbox" checked="checked"/>
-                                                          <span class="i-slider round"
-                                                          style="background-color: #3498db;"/>
-                                                        </label>
-                                                        <span class="opt-title"> Unterstreichungen</span>
-                                                    </div>
-                                                </div>
-                                                <xsl:for-each select="descendant::tei:text/tei:back/tei:listPlace/tei:place">
-                                                  <xsl:sort select="child::tei:placeName[1]"/>
-                                                  <div class="entity-highlight-toggle"
-                                                  data-type="place"
-                                                  style="display: flex; align-items: flex-start; margin-bottom: 8px;">
-                                                  <xsl:attribute name="data-entity-id">
-                                                  <xsl:value-of select="data(@xml:id)"/>
-                                                  </xsl:attribute>
-                                                  <label class="switch"
-                                                  style="flex-shrink: 0;">
-                                                  <input type="checkbox"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #ccc;"/>
-                                                  </label>
-                                                  <span class="opt-title" style="margin-left: 10px; flex: 1;">
-                                                  <a class="places">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of
-                                                  select="concat(data(@xml:id), '.html')"/>
-                                                  </xsl:attribute>
-                                                  <xsl:value-of
-                                                  select="child::tei:placeName[1]/text()"/>
-                                                  </a>
-                                                  <xsl:if
-                                                  test="child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')][1]">
-                                                  <xsl:text> (</xsl:text>
-                                                  <xsl:for-each
-                                                  select="distinct-values(child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')])">
-                                                  <xsl:value-of select="normalize-space(.)"/>
-                                                  <xsl:if test="position() != last()">
-                                                  <xsl:text>, </xsl:text>
-                                                  </xsl:if>
-                                                  </xsl:for-each>
-                                                  <xsl:text>)</xsl:text>
-                                                  </xsl:if>
-                                                  <xsl:if
-                                                  test="child::tei:location[@type = 'coords']">
-                                                  <xsl:text> </xsl:text>
-                                                  <xsl:variable name="mlat"
-                                                  select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[1], ',', '.')"
-                                                  as="xs:string"/>
-                                                  <xsl:variable name="mlong"
-                                                  select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[2], ',', '.')"
-                                                  as="xs:string"/>
-                                                  <xsl:variable name="mappin"
-                                                  select="concat('mlat=',$mlat, '&amp;mlon=', $mlong)"
-                                                  as="xs:string"/>
-                                                  <xsl:variable name="openstreetmapurl"
-                                                  select="concat('https://www.openstreetmap.org/?', $mappin, '#map=12/', $mlat, '/', $mlong)"/>
-                                                  <a class="theme-color">
-                                                  <xsl:attribute name="href">
-                                                  <xsl:value-of select="$openstreetmapurl"/>
-                                                  </xsl:attribute>
-                                                  <xsl:attribute name="target">
-                                                  <xsl:text>_blank</xsl:text>
-                                                  </xsl:attribute>
-                                                  <xsl:attribute name="rel">
-                                                  <xsl:text>noopener</xsl:text>
-                                                  </xsl:attribute>
-                                                  <i class="fa-solid fa-location-dot"/>
-                                                  </a>
-                                                  </xsl:if>
-                                                  </span>
-                                                  </div>
-                                                </xsl:for-each>
-                                            </div>
-                                        </details>
-                                    </xsl:if>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Schließen</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Einstellungen Modal -->
                 <div class="modal fade" id="editor-widget" tabindex="-1"
                     aria-labelledby="ueberlieferungLabel" aria-hidden="true">
@@ -1079,6 +683,381 @@
                                             </label>
                                             <span class="opt-title"> Hinzufügung</span>
                                         </div>
+                                    </div>
+                                </details>
+
+                                <details open="open" style="margin-bottom: 1em;">
+                                    <summary>Markierung</summary>
+                                    <div class="entity-details-container" style="margin-top: 0.5em;">
+                                        <!-- Master toggle for all entity links -->
+                                        <div style="margin-bottom: 1.5em; padding-bottom: 1em; border-bottom: 1px solid #ddd;">
+                                            <div class="entity-toggle" data-type="master"
+                                                style="display: inline-block;">
+                                                <label class="switch">
+                                                  <input type="checkbox" checked="checked"
+                                                  id="master-entity-toggle"/>
+                                                  <span class="i-slider round"
+                                                  style="background-color: #A63437;"/>
+                                                </label>
+                                                <span class="opt-title"> Alle Markierungen</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Variable: IDs der Korrespondenz-Personen -->
+                                        <xsl:variable name="corresp-person-ids"
+                                            select="//tei:correspDesc//tei:persName/@ref/substring-after(., '#')"/>
+
+                                        <!-- Beteiligte an der Korrespondenz -->
+                                        <details style="margin-bottom: 1em;">
+                                            <summary>Beteiligte an der Korrespondenz</summary>
+                                            <div class="details-content" style="padding-left: 20px; margin-top: 0.5em;">
+                                                <xsl:for-each select="//tei:correspDesc//tei:persName">
+                                                    <xsl:variable name="person-id" select="substring-after(@ref, '#')"/>
+                                                    <div style="display: block; margin-bottom: 8px;">
+                                                        <a class="persons">
+                                                            <xsl:attribute name="href">
+                                                                <xsl:value-of select="concat($person-id, '.html')"/>
+                                                            </xsl:attribute>
+                                                            <xsl:value-of select="."/>
+                                                        </a>
+                                                    </div>
+                                                </xsl:for-each>
+                                            </div>
+                                        </details>
+
+                                        <!-- Personen -->
+                                        <details open="open" style="margin-bottom: 1em;">
+                                            <summary>Personen (<xsl:value-of
+                                                    select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)])"
+                                            />)</summary>
+                                            <div class="details-content" style="margin-top: 0.5em;">
+                                                <!-- Personen toggle -->
+                                                <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
+                                                    <div class="entity-toggle" data-type="persons"
+                                                        style="display: inline-block;">
+                                                        <label class="switch">
+                                                          <input type="checkbox" checked="checked"/>
+                                                          <span class="i-slider round"
+                                                          style="background-color: #e74c3c;"/>
+                                                        </label>
+                                                        <span class="opt-title"> Markierungen</span>
+                                                    </div>
+                                                </div>
+                                                <xsl:for-each select="descendant::tei:text/tei:back/tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)]">
+                                                    <xsl:sort
+                                                      select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
+                                                    <xsl:variable name="naname" as="xs:string">
+                                                      <xsl:choose>
+                                                      <xsl:when
+                                                      test="child::tei:persName[1]/tei:surname[1] and child::tei:persName[1]/tei:forename[1]">
+                                                      <xsl:value-of
+                                                      select="concat(child::tei:persName[1]/tei:surname[1], ' ', child::tei:persName[1]/tei:forename[1])"
+                                                      />
+                                                      </xsl:when>
+                                                      <xsl:when
+                                                      test="child::tei:persName[1]/tei:forename[1]">
+                                                      <xsl:value-of select="child::tei:forename[1]"/>
+                                                      </xsl:when>
+                                                      <xsl:when
+                                                      test="child::tei:persName[1]/tei:surname[1]">
+                                                      <xsl:value-of
+                                                      select="child::tei:persName[1]/tei:surname[1]"/>
+                                                      </xsl:when>
+                                                      <xsl:otherwise>
+                                                      <xsl:value-of
+                                                      select="normalize-space(child::tei:persName)"/>
+                                                      </xsl:otherwise>
+                                                      </xsl:choose>
+                                                    </xsl:variable>
+                                                    <div class="entity-highlight-toggle" data-type="person" style="display: flex; align-items: flex-start; margin-bottom: 8px;">
+                                                        <xsl:attribute name="data-entity-id">
+                                                            <xsl:value-of select="data(@xml:id)"/>
+                                                        </xsl:attribute>
+                                                        <label class="switch" style="flex-shrink: 0;">
+                                                            <input type="checkbox"/>
+                                                            <span class="i-slider round" style="background-color: #ccc;"></span>
+                                                        </label>
+                                                        <span class="opt-title" style="margin-left: 10px; flex: 1;">
+                                                            <a class="persons">
+                                                                <xsl:attribute name="href">
+                                                                    <xsl:value-of select="concat(data(@xml:id), '.html')"/>
+                                                                </xsl:attribute>
+                                                                <xsl:value-of select="$naname"/>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </xsl:for-each>
+                                            </div>
+                                        </details>
+                                        <!-- Werke -->
+                                        <xsl:if test=".//tei:back/tei:listBibl/tei:bibl[1]">
+                                            <details style="margin-bottom: 1em;">
+                                                <summary>Werke (<xsl:value-of
+                                                        select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"
+                                                />)</summary>
+                                                <div class="details-content" style="margin-top: 0.5em;">
+                                                    <!-- Werke toggle -->
+                                                    <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
+                                                        <div class="entity-toggle" data-type="works"
+                                                            style="display: inline-block;">
+                                                            <label class="switch">
+                                                              <input type="checkbox" checked="checked"/>
+                                                              <span class="i-slider round"
+                                                              style="background-color: #f39c12;"/>
+                                                            </label>
+                                                            <span class="opt-title"> Markierungen</span>
+                                                        </div>
+                                                    </div>
+                                                    <xsl:for-each
+                                                        select="descendant::tei:text/tei:back/tei:listBibl/tei:bibl">
+                                                      <xsl:sort select="child::tei:title[1]"/>
+                                                      <div class="entity-highlight-toggle"
+                                                      data-type="work"
+                                                      style="display: flex; align-items: flex-start; margin-bottom: 8px;">
+                                                      <xsl:attribute name="data-entity-id">
+                                                      <xsl:value-of select="data(@xml:id)"/>
+                                                      </xsl:attribute>
+                                                      <label class="switch"
+                                                      style="flex-shrink: 0;">
+                                                      <input type="checkbox"/>
+                                                      <span class="i-slider round"
+                                                      style="background-color: #ccc;"/>
+                                                      </label>
+                                                      <span class="opt-title" style="margin-left: 10px; flex: 1;">
+                                                      <a class="works">
+                                                      <xsl:attribute name="href">
+                                                      <xsl:value-of
+                                                      select="concat(data(@xml:id), '.html')"/>
+                                                      </xsl:attribute>
+                                                      <xsl:if
+                                                      test="child::tei:author[@role = 'hat-geschaffen' or @role = 'author']">
+                                                      <xsl:for-each
+                                                      select="child::tei:author[@role = 'hat-geschaffen' or @role = 'author']">
+                                                      <xsl:sort
+                                                      select="concat(., child::tei:surname[1], child::tei:forename[1])"/>
+                                                      <xsl:choose>
+                                                      <xsl:when
+                                                      test="child::tei:surname[1] or child::tei:forename[1]">
+                                                      <xsl:choose>
+                                                      <xsl:when
+                                                      test="child::tei:surname[1] and child::tei:forename[1]">
+                                                      <xsl:value-of
+                                                      select="concat(child::tei:surname[1], ' ', child::tei:forename[1])"
+                                                      />
+                                                      </xsl:when>
+                                                      <xsl:when test="child::tei:forename[1]">
+                                                      <xsl:value-of select="child::tei:forename[1]"/>
+                                                      </xsl:when>
+                                                      <xsl:otherwise>
+                                                      <xsl:value-of select="child::tei:surname[1]"/>
+                                                      </xsl:otherwise>
+                                                      </xsl:choose>
+                                                      <xsl:if test="position() != last()">
+                                                      <xsl:text>, </xsl:text>
+                                                      </xsl:if>
+                                                      </xsl:when>
+                                                      <xsl:otherwise>
+                                                      <xsl:value-of select="."/>
+                                                      <xsl:if test="position() != last()">
+                                                      <xsl:text>; </xsl:text>
+                                                      </xsl:if>
+                                                      </xsl:otherwise>
+                                                      </xsl:choose>
+                                                      <xsl:if test="position() = last()">
+                                                      <xsl:text>: </xsl:text>
+                                                      </xsl:if>
+                                                      </xsl:for-each>
+                                                      </xsl:if>
+                                                      <xsl:value-of select="./tei:title[1]"/>
+                                                      </a>
+                                                      </span>
+                                                      </div>
+                                                    </xsl:for-each>
+                                                </div>
+                                            </details>
+                                        </xsl:if>
+                                        <!-- Institutionen -->
+                                        <xsl:if test=".//tei:back/tei:listOrg/tei:org[1]">
+                                            <details style="margin-bottom: 1em;">
+                                                <summary>Institutionen (<xsl:value-of
+                                                        select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"
+                                                />)</summary>
+                                                <div class="details-content" style="margin-top: 0.5em;">
+                                                    <!-- Institutionen toggle -->
+                                                    <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
+                                                        <div class="entity-toggle" data-type="orgs"
+                                                            style="display: inline-block;">
+                                                            <label class="switch">
+                                                              <input type="checkbox" checked="checked"/>
+                                                              <span class="i-slider round"
+                                                              style="background-color: #9b59b6;"/>
+                                                            </label>
+                                                            <span class="opt-title"> Markierungen</span>
+                                                        </div>
+                                                    </div>
+                                                    <xsl:for-each select="descendant::tei:text/tei:back/tei:listOrg//tei:org">
+                                                      <xsl:sort select="child::tei:orgName[1]"/>
+                                                      <div class="entity-highlight-toggle"
+                                                      data-type="org"
+                                                      style="display: flex; align-items: flex-start; margin-bottom: 8px;">
+                                                      <xsl:attribute name="data-entity-id">
+                                                      <xsl:value-of select="data(@xml:id)"/>
+                                                      </xsl:attribute>
+                                                      <label class="switch"
+                                                      style="flex-shrink: 0;">
+                                                      <input type="checkbox"/>
+                                                      <span class="i-slider round"
+                                                      style="background-color: #ccc;"/>
+                                                      </label>
+                                                      <span class="opt-title" style="margin-left: 10px; flex: 1;">
+                                                      <a class="orgs">
+                                                      <xsl:attribute name="href">
+                                                      <xsl:value-of
+                                                      select="concat(data(@xml:id), '.html')"/>
+                                                      </xsl:attribute>
+                                                      <xsl:value-of select="./tei:orgName[1]"/>
+                                                      </a>
+                                                      </span>
+                                                      </div>
+                                                    </xsl:for-each>
+                                                </div>
+                                            </details>
+                                        </xsl:if>
+                                        <!-- Ereignisse -->
+                                        <xsl:if test=".//tei:back/tei:listEvent/tei:event[1]">
+                                            <details style="margin-bottom: 1em;">
+                                                <summary>Ereignisse (<xsl:value-of
+                                                        select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"
+                                                />)</summary>
+                                                <div class="details-content" style="margin-top: 0.5em;">
+                                                    <!-- Ereignisse toggle -->
+                                                    <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
+                                                        <div class="entity-toggle" data-type="events"
+                                                            style="display: inline-block;">
+                                                            <label class="switch">
+                                                              <input type="checkbox" checked="checked"/>
+                                                              <span class="i-slider round"
+                                                              style="background-color: #27ae60;"/>
+                                                            </label>
+                                                            <span class="opt-title"> Ereignisse markieren</span>
+                                                        </div>
+                                                    </div>
+                                                    <xsl:for-each
+                                                        select="descendant::tei:text/tei:back/tei:listEvent/tei:event">
+                                                      <xsl:sort select="child::tei:eventName[1]"/>
+                                                      <div class="entity-highlight-toggle"
+                                                      data-type="event"
+                                                      style="display: flex; align-items: flex-start; margin-bottom: 8px;">
+                                                      <xsl:attribute name="data-entity-id">
+                                                      <xsl:value-of select="data(@xml:id)"/>
+                                                      </xsl:attribute>
+                                                      <label class="switch"
+                                                      style="flex-shrink: 0;">
+                                                      <input type="checkbox"/>
+                                                      <span class="i-slider round"
+                                                      style="background-color: #ccc;"/>
+                                                      </label>
+                                                      <span class="opt-title" style="margin-left: 10px; flex: 1;">
+                                                      <a class="events">
+                                                      <xsl:attribute name="href">
+                                                      <xsl:value-of
+                                                      select="concat(data(@xml:id), '.html')"/>
+                                                      </xsl:attribute>
+                                                      <xsl:value-of select="./tei:eventName[1]"/>
+                                                      </a>
+                                                      </span>
+                                                      </div>
+                                                    </xsl:for-each>
+                                                </div>
+                                            </details>
+                                        </xsl:if>
+                                        <!-- Orte -->
+                                        <xsl:if test=".//tei:back/tei:listPlace/tei:place[1]">
+                                            <details style="margin-bottom: 1em;">
+                                                <summary>Orte (<xsl:value-of
+                                                        select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"
+                                                />)</summary>
+                                                <div class="details-content" style="margin-top: 0.5em;">
+                                                    <!-- Orte toggle -->
+                                                    <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
+                                                        <div class="entity-toggle" data-type="places"
+                                                            style="display: inline-block;">
+                                                            <label class="switch">
+                                                              <input type="checkbox" checked="checked"/>
+                                                              <span class="i-slider round"
+                                                              style="background-color: #3498db;"/>
+                                                            </label>
+                                                            <span class="opt-title"> Markierungen</span>
+                                                        </div>
+                                                    </div>
+                                                    <xsl:for-each select="descendant::tei:text/tei:back/tei:listPlace/tei:place">
+                                                      <xsl:sort select="child::tei:placeName[1]"/>
+                                                      <div class="entity-highlight-toggle"
+                                                      data-type="place"
+                                                      style="display: flex; align-items: flex-start; margin-bottom: 8px;">
+                                                      <xsl:attribute name="data-entity-id">
+                                                      <xsl:value-of select="data(@xml:id)"/>
+                                                      </xsl:attribute>
+                                                      <label class="switch"
+                                                      style="flex-shrink: 0;">
+                                                      <input type="checkbox"/>
+                                                      <span class="i-slider round"
+                                                      style="background-color: #ccc;"/>
+                                                      </label>
+                                                      <span class="opt-title" style="margin-left: 10px; flex: 1;">
+                                                      <a class="places">
+                                                      <xsl:attribute name="href">
+                                                      <xsl:value-of
+                                                      select="concat(data(@xml:id), '.html')"/>
+                                                      </xsl:attribute>
+                                                      <xsl:value-of
+                                                      select="child::tei:placeName[1]/text()"/>
+                                                      </a>
+                                                      <xsl:if
+                                                      test="child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')][1]">
+                                                      <xsl:text> (</xsl:text>
+                                                      <xsl:for-each
+                                                      select="distinct-values(child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')])">
+                                                      <xsl:value-of select="normalize-space(.)"/>
+                                                      <xsl:if test="position() != last()">
+                                                      <xsl:text>, </xsl:text>
+                                                      </xsl:if>
+                                                      </xsl:for-each>
+                                                      <xsl:text>)</xsl:text>
+                                                      </xsl:if>
+                                                      <xsl:if
+                                                      test="child::tei:location[@type = 'coords']">
+                                                      <xsl:text> </xsl:text>
+                                                      <xsl:variable name="mlat"
+                                                      select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[1], ',', '.')"
+                                                      as="xs:string"/>
+                                                      <xsl:variable name="mlong"
+                                                      select="replace(tokenize(tei:location[@type = 'coords'][1]/tei:geo, ' ')[2], ',', '.')"
+                                                      as="xs:string"/>
+                                                      <xsl:variable name="mappin"
+                                                      select="concat('mlat=',$mlat, '&amp;mlon=', $mlong)"
+                                                      as="xs:string"/>
+                                                      <xsl:variable name="openstreetmapurl"
+                                                      select="concat('https://www.openstreetmap.org/?', $mappin, '#map=12/', $mlat, '/', $mlong)"/>
+                                                      <a class="theme-color">
+                                                      <xsl:attribute name="href">
+                                                      <xsl:value-of select="$openstreetmapurl"/>
+                                                      </xsl:attribute>
+                                                      <xsl:attribute name="target">
+                                                      <xsl:text>_blank</xsl:text>
+                                                      </xsl:attribute>
+                                                      <xsl:attribute name="rel">
+                                                      <xsl:text>noopener</xsl:text>
+                                                      </xsl:attribute>
+                                                      <i class="fa-solid fa-location-dot"/>
+                                                      </a>
+                                                      </xsl:if>
+                                                      </span>
+                                                      </div>
+                                                    </xsl:for-each>
+                                                </div>
+                                            </details>
+                                        </xsl:if>
                                     </div>
                                 </details>
 
