@@ -689,17 +689,54 @@
                                 <details open="open" style="margin-bottom: 1em;">
                                     <summary>Markierung</summary>
                                     <div class="entity-details-container" style="margin-top: 0.5em;">
-                                        <!-- Master toggle for all entity links -->
-                                        <div style="margin-bottom: 1.5em; padding-bottom: 1em; border-bottom: 1px solid #ddd;">
-                                            <div class="entity-toggle" data-type="master"
-                                                style="display: inline-block;">
+                                        <!-- Master toggle -->
+                                        <div class="entity-toggle" data-type="master"
+                                            style="display: inline-block; margin-bottom: 0.75em;">
+                                            <label class="switch">
+                                              <input type="checkbox" checked="checked"
+                                              id="master-entity-toggle"/>
+                                              <span class="i-slider round"
+                                              style="background-color: #A63437;"/>
+                                            </label>
+                                            <span class="opt-title"> Alle Markierungen</span>
+                                        </div>
+
+                                        <!-- Typ-Toggles direkt unter dem Master-Toggle -->
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.5em; padding-bottom: 1em; border-bottom: 1px solid #ddd;">
+                                            <div class="entity-toggle" data-type="persons" style="display: inline-block;">
                                                 <label class="switch">
-                                                  <input type="checkbox" checked="checked"
-                                                  id="master-entity-toggle"/>
-                                                  <span class="i-slider round"
-                                                  style="background-color: #A63437;"/>
+                                                  <input type="checkbox" checked="checked"/>
+                                                  <span class="i-slider round" style="background-color: #e74c3c;"/>
                                                 </label>
-                                                <span class="opt-title"> Alle Markierungen</span>
+                                                <span class="opt-title"> Personen</span>
+                                            </div>
+                                            <div class="entity-toggle" data-type="works" style="display: inline-block;">
+                                                <label class="switch">
+                                                  <input type="checkbox" checked="checked"/>
+                                                  <span class="i-slider round" style="background-color: #f39c12;"/>
+                                                </label>
+                                                <span class="opt-title"> Werke</span>
+                                            </div>
+                                            <div class="entity-toggle" data-type="places" style="display: inline-block;">
+                                                <label class="switch">
+                                                  <input type="checkbox" checked="checked"/>
+                                                  <span class="i-slider round" style="background-color: #3498db;"/>
+                                                </label>
+                                                <span class="opt-title"> Orte</span>
+                                            </div>
+                                            <div class="entity-toggle" data-type="orgs" style="display: inline-block;">
+                                                <label class="switch">
+                                                  <input type="checkbox" checked="checked"/>
+                                                  <span class="i-slider round" style="background-color: #9b59b6;"/>
+                                                </label>
+                                                <span class="opt-title"> Institutionen</span>
+                                            </div>
+                                            <div class="entity-toggle" data-type="events" style="display: inline-block;">
+                                                <label class="switch">
+                                                  <input type="checkbox" checked="checked"/>
+                                                  <span class="i-slider round" style="background-color: #27ae60;"/>
+                                                </label>
+                                                <span class="opt-title"> Ereignisse</span>
                                             </div>
                                         </div>
 
@@ -731,18 +768,6 @@
                                                     select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)])"
                                             />)</summary>
                                             <div class="details-content" style="margin-top: 0.5em;">
-                                                <!-- Personen toggle -->
-                                                <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                    <div class="entity-toggle" data-type="persons"
-                                                        style="display: inline-block;">
-                                                        <label class="switch">
-                                                          <input type="checkbox" checked="checked"/>
-                                                          <span class="i-slider round"
-                                                          style="background-color: #e74c3c;"/>
-                                                        </label>
-                                                        <span class="opt-title"> Markierungen</span>
-                                                    </div>
-                                                </div>
                                                 <xsl:for-each select="descendant::tei:text/tei:back/tei:listPerson/tei:person[not(@xml:id = $corresp-person-ids)]">
                                                     <xsl:sort
                                                       select="concat(child::tei:persName[1]/tei:surname[1], child::tei:persName[1]/tei:forename[1])"/>
@@ -796,18 +821,6 @@
                                                         select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"
                                                 />)</summary>
                                                 <div class="details-content" style="margin-top: 0.5em;">
-                                                    <!-- Werke toggle -->
-                                                    <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                        <div class="entity-toggle" data-type="works"
-                                                            style="display: inline-block;">
-                                                            <label class="switch">
-                                                              <input type="checkbox" checked="checked"/>
-                                                              <span class="i-slider round"
-                                                              style="background-color: #f39c12;"/>
-                                                            </label>
-                                                            <span class="opt-title"> Markierungen</span>
-                                                        </div>
-                                                    </div>
                                                     <xsl:for-each
                                                         select="descendant::tei:text/tei:back/tei:listBibl/tei:bibl">
                                                       <xsl:sort select="child::tei:title[1]"/>
@@ -883,18 +896,6 @@
                                                         select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"
                                                 />)</summary>
                                                 <div class="details-content" style="margin-top: 0.5em;">
-                                                    <!-- Institutionen toggle -->
-                                                    <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                        <div class="entity-toggle" data-type="orgs"
-                                                            style="display: inline-block;">
-                                                            <label class="switch">
-                                                              <input type="checkbox" checked="checked"/>
-                                                              <span class="i-slider round"
-                                                              style="background-color: #9b59b6;"/>
-                                                            </label>
-                                                            <span class="opt-title"> Markierungen</span>
-                                                        </div>
-                                                    </div>
                                                     <xsl:for-each select="descendant::tei:text/tei:back/tei:listOrg//tei:org">
                                                       <xsl:sort select="child::tei:orgName[1]"/>
                                                       <div class="entity-highlight-toggle"
@@ -930,18 +931,6 @@
                                                         select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"
                                                 />)</summary>
                                                 <div class="details-content" style="margin-top: 0.5em;">
-                                                    <!-- Ereignisse toggle -->
-                                                    <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                        <div class="entity-toggle" data-type="events"
-                                                            style="display: inline-block;">
-                                                            <label class="switch">
-                                                              <input type="checkbox" checked="checked"/>
-                                                              <span class="i-slider round"
-                                                              style="background-color: #27ae60;"/>
-                                                            </label>
-                                                            <span class="opt-title"> Ereignisse markieren</span>
-                                                        </div>
-                                                    </div>
                                                     <xsl:for-each
                                                         select="descendant::tei:text/tei:back/tei:listEvent/tei:event">
                                                       <xsl:sort select="child::tei:eventName[1]"/>
@@ -978,18 +967,6 @@
                                                         select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"
                                                 />)</summary>
                                                 <div class="details-content" style="margin-top: 0.5em;">
-                                                    <!-- Orte toggle -->
-                                                    <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #eee;">
-                                                        <div class="entity-toggle" data-type="places"
-                                                            style="display: inline-block;">
-                                                            <label class="switch">
-                                                              <input type="checkbox" checked="checked"/>
-                                                              <span class="i-slider round"
-                                                              style="background-color: #3498db;"/>
-                                                            </label>
-                                                            <span class="opt-title"> Markierungen</span>
-                                                        </div>
-                                                    </div>
                                                     <xsl:for-each select="descendant::tei:text/tei:back/tei:listPlace/tei:place">
                                                       <xsl:sort select="child::tei:placeName[1]"/>
                                                       <div class="entity-highlight-toggle"

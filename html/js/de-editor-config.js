@@ -853,98 +853,79 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // LoadEditor removed - replaced with standard toggle switch
 
-// Individual entity highlight toggles
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-        const entityHighlightToggles = document.querySelectorAll('.entity-highlight-toggle input[type="checkbox"]');
+// Individual entity highlight toggles - event delegation for robustness
+(function() {
+    const typeToClassMap = {
+        'person': 'persons',
+        'work': 'works',
+        'org': 'orgs',
+        'event': 'events',
+        'place': 'places'
+    };
 
-        entityHighlightToggles.forEach(function(toggle) {
-            const container = toggle.closest('.entity-highlight-toggle');
-            const entityId = container.getAttribute('data-entity-id');
-            const entityType = container.getAttribute('data-type');
+    const colorMap = {
+        'person': '#e74c3c',
+        'work': '#f39c12',
+        'org': '#9b59b6',
+        'event': '#27ae60',
+        'place': '#3498db'
+    };
 
-            // Map entity types to their plural forms used in class names
-            const typeToClassMap = {
-                'person': 'persons',
-                'work': 'works',
-                'org': 'orgs',
-                'event': 'events',
-                'place': 'places'
-            };
+    function findMatchingEntitySpans(entityId, entityClass) {
+        const transcriptContainer = document.querySelector('.transcript');
+        if (!transcriptContainer) return [];
 
-            const entityClass = typeToClassMap[entityType];
+        const allEntitySpans = transcriptContainer.querySelectorAll('.' + entityClass + '.entity');
+        const matchingEntities = [];
 
-            // Color map for each entity type
-            const colorMap = {
-                'person': '#e74c3c',
-                'work': '#f39c12',
-                'org': '#9b59b6',
-                'event': '#27ae60',
-                'place': '#3498db'
-            };
-
-            const slider = toggle.nextElementSibling;
-
-            // Initialize slider as grey (unchecked state)
-            slider.style.backgroundColor = '#ccc';
-
-            toggle.addEventListener('change', function() {
-                // Get the entity color from the colorMap
-                const entityColor = colorMap[entityType];
-                console.log('Toggle changed for entity:', entityId, 'Type:', entityType, 'Color:', entityColor);
-
-                // Find all entity mentions in the text (not in the modal)
-                // Format: <span class="persons badge-item entity"><a href="pmb2121.html">...</a></span>
-                // OR for multi-ref: <span class="persons entity"><a data-bs-target="#pmb27525pmb10685">...</a></span>
-                // Only search within the transcript container to avoid modal elements
-                const transcriptContainer = document.querySelector('.transcript');
-                if (!transcriptContainer) return;
-
-                const allEntitySpans = transcriptContainer.querySelectorAll('.' + entityClass + '.entity');
-                const matchingEntities = [];
-
-                allEntitySpans.forEach(function(span) {
-                    // Check for single reference with href
-                    const hrefLink = span.querySelector('a[href="' + entityId + '.html"]');
-                    if (hrefLink) {
-                        matchingEntities.push(span);
-                        return;
-                    }
-
-                    // Check for multi-reference with data-bs-target containing this entityId
-                    const modalLink = span.querySelector('a[data-bs-target]');
-                    if (modalLink) {
-                        const target = modalLink.getAttribute('data-bs-target');
-                        // target format: "#pmb27525pmb10685" - check if our entityId is in there
-                        if (target && target.includes(entityId)) {
-                            matchingEntities.push(span);
-                        }
-                    }
-                });
-
-                if (toggle.checked) {
-                    // Change slider to entity color
-                    slider.style.backgroundColor = entityColor;
-
-                    // Highlight all references to this entity in the text with the entity color
-                    matchingEntities.forEach(function(span) {
-                        span.style.backgroundColor = entityColor;
-                        span.style.padding = '2px 4px';
-                        span.style.borderRadius = '3px';
-                    });
-                } else {
-                    // Change slider back to grey
-                    slider.style.backgroundColor = '#ccc';
-
-                    // Remove highlight
-                    matchingEntities.forEach(function(span) {
-                        span.style.backgroundColor = '';
-                        span.style.padding = '';
-                        span.style.borderRadius = '';
-                    });
+        allEntitySpans.forEach(function(span) {
+            const hrefLink = span.querySelector('a[href="' + entityId + '.html"]');
+            if (hrefLink) {
+                matchingEntities.push(span);
+                return;
+            }
+            const modalLink = span.querySelector('a[data-bs-target]');
+            if (modalLink) {
+                const target = modalLink.getAttribute('data-bs-target');
+                if (target && target.includes(entityId)) {
+                    matchingEntities.push(span);
                 }
-            });
+            }
         });
-    }, 500);
-});
+
+        return matchingEntities;
+    }
+
+    // Event delegation: handles clicks regardless of when the modal content is rendered
+    document.addEventListener('change', function(e) {
+        const toggle = e.target;
+        if (!toggle.matches('.entity-highlight-toggle input[type="checkbox"]')) return;
+
+        const container = toggle.closest('.entity-highlight-toggle');
+        const entityId = container.getAttribute('data-entity-id');
+        const entityType = container.getAttribute('data-type');
+        const entityClass = typeToClassMap[entityType];
+        const entityColor = colorMap[entityType];
+        const slider = toggle.nextElementSibling;
+
+        const matchingEntities = findMatchingEntitySpans(entityId, entityClass);
+
+        if (toggle.checked) {
+            slider.style.backgroundColor = entityColor;
+            matchingEntities.forEach(function(span) {
+                // Use setProperty with 'important' to override any entity-hidden CSS rule
+                span.style.setProperty('background-color', entityColor, 'important');
+                span.style.padding = '2px 4px';
+                span.style.borderRadius = '3px';
+            });
+        } else {
+            slider.style.backgroundColor = '#ccc';
+            matchingEntities.forEach(function(span) {
+                span.style.removeProperty('background-color');
+                span.style.padding = '';
+                span.style.borderRadius = '';
+            });
+        }
+    });
+}());
 
