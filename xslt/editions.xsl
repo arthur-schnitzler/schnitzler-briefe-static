@@ -2133,7 +2133,26 @@
     </xsl:template>
     <!-- Ein rs, das in einem anderen enthalten wird, wird ausgegeben, aber nicht mehr weiter zu einem Link etc. -->
     <xsl:template match="tei:rs" mode="verschachtelteA">
-        <xsl:apply-templates mode="verschachtelteA"/>
+        <xsl:variable name="entity-typ" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="@type = 'person'">persons</xsl:when>
+                <xsl:when test="@type = 'work'">works</xsl:when>
+                <xsl:when test="@type = 'place'">places</xsl:when>
+                <xsl:when test="@type = 'org'">orgs</xsl:when>
+                <xsl:when test="@type = 'event'">events</xsl:when>
+                <xsl:otherwise></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="$entity-typ != ''">
+                <span class="{$entity-typ} entity">
+                    <xsl:apply-templates mode="verschachtelteA"/>
+                </span>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:apply-templates mode="verschachtelteA"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <!-- Nun ein einfaches rs in einer note -->
     <xsl:template
