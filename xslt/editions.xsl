@@ -1763,7 +1763,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="verschachtelteA"/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:space[@unit = 'line']">
@@ -2132,8 +2132,8 @@
         </span>
     </xsl:template>
     <!-- Ein rs, das in einem anderen enthalten wird, wird ausgegeben, aber nicht mehr weiter zu einem Link etc. -->
-    <xsl:template match="tei_rs" mode="verschachtelteA">
-        <xsl:apply-templates/>
+    <xsl:template match="tei:rs" mode="verschachtelteA">
+        <xsl:apply-templates mode="verschachtelteA"/>
     </xsl:template>
     <!-- Nun ein einfaches rs in einer note -->
     <xsl:template
