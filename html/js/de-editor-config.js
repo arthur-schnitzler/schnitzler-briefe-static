@@ -872,10 +872,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     function findMatchingEntitySpans(entityId, entityClass) {
-        const transcriptContainer = document.querySelector('.transcript');
-        if (!transcriptContainer) return [];
-
-        const allEntitySpans = transcriptContainer.querySelectorAll('.' + entityClass + '.entity');
+        const allEntitySpans = document.querySelectorAll('.' + entityClass + '.entity');
         const matchingEntities = [];
 
         allEntitySpans.forEach(function(span) {
