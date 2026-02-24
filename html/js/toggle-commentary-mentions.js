@@ -58,57 +58,52 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update accordion headers dynamically
-        const accordionButtons = document.querySelectorAll('#mentionsAccordion .accordion-button');
-        accordionButtons.forEach(function(button) {
-            // Extract year from button text
-            const buttonText = button.textContent.trim();
-            const yearMatch = buttonText.match(/^(\d{4})/);
+        // Update year-details headers dynamically (details/summary structure)
+        const yearDetails = document.querySelectorAll('.year-details');
+        yearDetails.forEach(function(details) {
+            const summary = details.querySelector('.year-summary');
+            if (!summary) return;
 
-            if (yearMatch) {
-                const year = yearMatch[1];
-                const accordionId = button.getAttribute('data-bs-target').replace('#', '');
-                const accordionBody = document.getElementById(accordionId);
+            // Extract year from summary text
+            const summaryText = summary.textContent.trim();
+            const yearMatch = summaryText.match(/^(\d{4})/);
+            if (!yearMatch) return;
 
-                if (accordionBody) {
-                    // Count visible items in this year's accordion
-                    const visibleCount = countVisibleItems(accordionBody);
+            const year = yearMatch[1];
+            const yearContent = details.querySelector('.year-content');
+            if (!yearContent) return;
 
-                    // Update button text
-                    if (visibleCount === 1) {
-                        button.textContent = year + ' (1 Eintrag)';
-                    } else if (visibleCount > 1) {
-                        button.textContent = year + ' (' + visibleCount + ' Einträge)';
-                    } else {
-                        button.textContent = year + ' (0 Einträge)';
-                    }
+            // Count visible items in this year's content
+            const visibleCount = countVisibleItems(yearContent);
 
-                    // Hide accordion item if no visible entries
-                    const accordionItem = button.closest('.accordion-item');
-                    if (visibleCount === 0) {
-                        accordionItem.style.display = 'none';
-                    } else {
-                        accordionItem.style.display = '';
-                    }
-                }
+            // Update summary text
+            if (visibleCount === 1) {
+                summary.textContent = year + ' (1 Eintrag)';
+            } else {
+                summary.textContent = year + ' (' + visibleCount + ' Einträge)';
+            }
+
+            // Hide year section if no visible entries
+            if (visibleCount === 0) {
+                details.style.display = 'none';
+            } else {
+                details.style.display = '';
             }
         });
 
-        // Update month headers within accordions (for years with >10 entries)
-        const monthHeaders = document.querySelectorAll('#mentionsAccordion h3');
-        monthHeaders.forEach(function(header) {
-            const list = header.nextElementSibling;
-            if (list && list.tagName === 'UL') {
-                const visibleCount = countVisibleItems(list);
+        // Update month-details within year sections
+        const monthDetails = document.querySelectorAll('.month-details');
+        monthDetails.forEach(function(details) {
+            const monthContent = details.querySelector('.month-content');
+            if (!monthContent) return;
 
-                // Hide month section if no visible entries
-                if (visibleCount === 0) {
-                    header.style.display = 'none';
-                    list.style.display = 'none';
-                } else {
-                    header.style.display = '';
-                    list.style.display = '';
-                }
+            const visibleCount = countVisibleItems(monthContent);
+
+            // Hide month section if no visible entries
+            if (visibleCount === 0) {
+                details.style.display = 'none';
+            } else {
+                details.style.display = '';
             }
         });
 
