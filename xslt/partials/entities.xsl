@@ -1466,17 +1466,16 @@
             <!-- Balkendiagramm oben -->
             <div id="mentions">
                 <span class="infodesc mr-2">
-                    <legend>Erwähnungen
-                        <xsl:if test="$commentaryMentionCount > 0">
-                            <div class="annotation-toggle" data-type="commentary" style="display: inline-block; margin-left: 20px;">
-                                <label class="switch">
-                                    <input type="checkbox" id="toggle-commentary-mentions" checked="checked"/>
-                                    <span class="i-slider round" style="background-color: #A63437;"/>
-                                </label>
-                                <span class="opt-title">Kommentar</span>
-                            </div>
-                        </xsl:if>
-                    </legend>
+                    <legend>Erwähnungen</legend>
+                    <xsl:if test="$commentaryMentionCount > 0">
+                        <div class="annotation-toggle" data-type="commentary" style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 0.9rem; font-weight: normal;">
+                            <label class="switch" style="margin: 0;">
+                                <input type="checkbox" id="toggle-commentary-mentions" checked="checked"/>
+                                <span class="i-slider round" style="background-color: #A63437;"/>
+                            </label>
+                            <span class="opt-title">Kommentar ein-/ausblenden</span>
+                        </div>
+                    </xsl:if>
                     <div id="mentions-chart" class="mt-3 mb-3">
                         <xsl:variable name="start-year" as="xs:integer">
                             <xsl:choose>
