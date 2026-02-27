@@ -319,6 +319,9 @@
                                         } else {
                                             column.formatter = "html";
                                             column.headerFilter = "input";
+                                            if (column.title) {
+                                                column.title = column.title.charAt(0).toUpperCase() + column.title.slice(1);
+                                            }
                                         }
                                     });
                                     return definitions;
@@ -416,8 +419,10 @@
                                 });
                             });
 
-                            window.mapChart.series[1].setData(newFlowData, false);
-                            window.mapChart.series[2].setData(newCityData, true);
+                            var flowSeries = window.mapChart.get('flowmap');
+                            var citySeries = window.mapChart.get('world');
+                            if (flowSeries) flowSeries.setData(newFlowData, false);
+                            if (citySeries) citySeries.setData(newCityData, true);
                         }
                     </script>
                 </div>
