@@ -426,7 +426,7 @@
                                 window.mapChart.redraw(false);
 
                                 // Auto-Zoom auf die gefilterten Punkte
-                                if (newCityData.length > 0) {
+                                if (newCityData.length !== 0) {
                                     var lons = newCityData.map(function(d) { return d.lon; });
                                     var lats = newCityData.map(function(d) { return d.lat; });
                                     window.mapChart.mapView.fitBounds(
