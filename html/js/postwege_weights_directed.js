@@ -137,28 +137,30 @@ async function createKarte1() {
     });
 
     function updateFlowData() {
-        if (window._mapFilterActive) return;
         const mapView = chart.mapView;
         const flowmapSeries = chart.get('flowmap');
         if (flowmapSeries && mapView) {
-            const newFlowData = data.connections.map(connection => {
-                const fromLocation = data.locations.get(connection.from);
-                const toLocation = data.locations.get(connection.to);
-                const reverseConnection = data.connections.find(conn => conn.from === connection.to && conn.to === connection.from);
-                const reverseWeight = reverseConnection ? reverseConnection.weight : 0;
+            // Wenn ein Filter aktiv ist, gefilterter Datensatz verwenden; sonst Volldata
+            const activeFlowData = window._currentFlowData !== undefined
+                ? window._currentFlowData
+                : data.connections.map(connection => {
+                    const fromLocation = data.locations.get(connection.from);
+                    const toLocation = data.locations.get(connection.to);
+                    const reverseConnection = data.connections.find(conn => conn.from === connection.to && conn.to === connection.from);
+                    const reverseWeight = reverseConnection ? reverseConnection.weight : 0;
 
-                return {
-                    id: connection.id,
-                    from: { id: connection.from, lat: fromLocation.lat, lon: fromLocation.lon },
-                    to: { id: connection.to, lat: toLocation.lat, lon: toLocation.lon },
-                    weight: connection.weight,
-                    lineWidth: Math.max(0.1, Math.min(connection.weight, 2)),
-                    color: '#8B5F8F',
-                    tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}<br>${toLocation.name} → ${fromLocation.name}: ${reverseWeight}`
-                };
-            });
+                    return {
+                        id: connection.id,
+                        from: { id: connection.from, lat: fromLocation.lat, lon: fromLocation.lon },
+                        to: { id: connection.to, lat: toLocation.lat, lon: toLocation.lon },
+                        weight: connection.weight,
+                        lineWidth: Math.max(0.1, Math.min(connection.weight, 2)),
+                        color: '#8B5F8F',
+                        tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}<br>${toLocation.name} → ${fromLocation.name}: ${reverseWeight}`
+                    };
+                });
 
-            flowmapSeries.setData(newFlowData, true, false, false);
+            flowmapSeries.setData(activeFlowData, true, false, false);
         }
     }
 

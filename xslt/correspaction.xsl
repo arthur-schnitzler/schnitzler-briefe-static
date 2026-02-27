@@ -353,7 +353,6 @@
 
                         function updateMapFromRows(rows) {
                             if (!window.mapLocations || !window.mapChart) return;
-                            window._mapFilterActive = true;
 
                             var locationCounts = {};
                             var connectionCounts = {};
@@ -421,9 +420,21 @@
                             });
 
                             if (window.mapChart.series[2]) {
+                                window._currentFlowData = newFlowData;
                                 window.mapChart.series[1].setData(newFlowData, false, false, false);
                                 window.mapChart.series[2].setData(newCityData, false, false, false);
                                 window.mapChart.redraw(false);
+
+                                // Auto-Zoom auf die gefilterten Punkte
+                                if (newCityData.length > 0) {
+                                    var lons = newCityData.map(function(d) { return d.lon; });
+                                    var lats = newCityData.map(function(d) { return d.lat; });
+                                    window.mapChart.mapView.fitBounds(
+                                        [Math.min.apply(null, lons) - 3, Math.min.apply(null, lats) - 3,
+                                         Math.max.apply(null, lons) + 3, Math.max.apply(null, lats) + 3],
+                                        { padding: 30 }
+                                    );
+                                }
                             }
                         }
                     </script>
