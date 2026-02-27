@@ -419,7 +419,7 @@
                                 });
                             });
 
-                            if (window.mapChart.series.length >= 3) {
+                            if (window.mapChart.series[2]) {
                                 window.mapChart.series[1].setData(newFlowData, false, false, false);
                                 window.mapChart.series[2].setData(newCityData, false, false, false);
                                 window.mapChart.redraw(false);
