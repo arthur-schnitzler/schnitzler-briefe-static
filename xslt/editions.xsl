@@ -404,6 +404,7 @@
                                                   </xsl:choose>
                                                   </xsl:for-each>
                                                   <xsl:for-each select="child::tei:placeName">
+                                                  <span class="places corresp-action-place">
                                                   <a class="theme-color">
                                                   <xsl:attribute name="href">
                                                   <xsl:value-of
@@ -412,6 +413,7 @@
                                                   </xsl:attribute>
                                                   <xsl:value-of select="."/>
                                                   </a>
+                                                  </span>
                                                   <xsl:choose>
                                                   <xsl:when test="not(position() = last())">
                                                   <xsl:text>; </xsl:text>

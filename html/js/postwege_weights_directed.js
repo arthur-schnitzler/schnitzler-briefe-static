@@ -55,6 +55,7 @@ async function createKarte1() {
     };
 
     const data = processData(csvData);
+    window.mapLocations = data.locations;
     console.log("Data processed:", data);
 
     const maxWeight = Math.max(...Array.from(data.locations.values()).map(loc => loc.weight));
@@ -87,7 +88,7 @@ async function createKarte1() {
 
     console.log("Initial cityData and flowData generated.");
 
-    const chart = Highcharts.mapChart('container', {
+    const chart = window.mapChart = Highcharts.mapChart('container', {
         chart: {
             map: topology,
             events: {

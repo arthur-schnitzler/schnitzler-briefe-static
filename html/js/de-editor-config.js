@@ -872,7 +872,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     function findMatchingEntitySpans(entityId, entityClass) {
-        const allEntitySpans = document.querySelectorAll('.' + entityClass + '.entity');
+        const allEntitySpans = document.querySelectorAll('.' + entityClass + '.entity, .' + entityClass + '.corresp-action-place');
         const matchingEntities = [];
 
         allEntitySpans.forEach(function(span) {

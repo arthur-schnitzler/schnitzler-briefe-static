@@ -30,6 +30,10 @@
                                 <div id="container"
                                     style="padding-bottom: 20px; width:100%; margin: auto"/>
                                 <script src="js/postwege_weights_directed.js"/>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="toggle-uncertain" checked="checked"/>
+                                    <label class="form-check-label" for="toggle-uncertain">Unsichere Datierungen anzeigen</label>
+                                </div>
                                 <div>
                                 <table class="table table-sm display"
                                     id="tabulator-table-correspaction">
@@ -47,6 +51,9 @@
                                                 tabulator-formatter="html">Empfangsdatum</th>
                                             <th scope="col" tabulator-headerFilter="input"
                                                 tabulator-formatter="html">Empfangsort</th>
+                                            <th scope="col">fromId</th>
+                                            <th scope="col">toId</th>
+                                            <th scope="col">uncertain</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -54,6 +61,22 @@
                                             select="collection('../data/editions/?select=*.xml')/tei:TEI">
                                             <xsl:variable name="full_path">
                                                 <xsl:value-of select="document-uri(/)"/>
+                                            </xsl:variable>
+                                            <xsl:variable name="uncertain">
+                                                <xsl:choose>
+                                                    <xsl:when test="contains(descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type='sent'][1]/tei:date, '?') or contains(descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type='received'][1]/tei:date, '?')">
+                                                        <xsl:text>true</xsl:text>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:text>false</xsl:text>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:variable>
+                                            <xsl:variable name="from-id">
+                                                <xsl:value-of select="replace(descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type='sent'][1]/tei:placeName[1]/@ref, '#pmb', '')"/>
+                                            </xsl:variable>
+                                            <xsl:variable name="to-id">
+                                                <xsl:value-of select="replace(descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type='received'][1]/tei:placeName[1]/@ref, '#pmb', '')"/>
                                             </xsl:variable>
                                             <xsl:variable name="schnitzler-als-empfänger">
                                                 <xsl:choose>
@@ -68,7 +91,7 @@
                                                     </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:variable>
-                                            <tr>
+                                            <tr data-uncertain="{$uncertain}">
                                                 <td>
                                                   <span hidden="true">
                                                       <xsl:value-of
@@ -249,6 +272,9 @@
                                                         <xsl:text> (?)</xsl:text>
                                                     </xsl:if>
                                                 </td>
+                                                <td><xsl:value-of select="$from-id"/></td>
+                                                <td><xsl:value-of select="$to-id"/></td>
+                                                <td><xsl:value-of select="$uncertain"/></td>
                                             </tr>
                                         </xsl:for-each>
                                     </tbody>
@@ -287,8 +313,25 @@
                                     {title: "Sendeort", field: "sendeort", headerFilter: "input", formatter: "html"},
                                     {title: "weitere Stationen", field: "stationen", headerFilter: "input", formatter: "html"},
                                     {title: "Empfangsdatum", field: "empfangsdatum", headerFilter: "input", formatter: "html"},
-                                    {title: "Empfangsort", field: "empfangsort", headerFilter: "input", formatter: "html"}
+                                    {title: "Empfangsort", field: "empfangsort", headerFilter: "input", formatter: "html"},
+                                    {title: "fromId", field: "fromId", visible: false},
+                                    {title: "toId", field: "toId", visible: false},
+                                    {title: "uncertain", field: "uncertain", visible: false}
                                 ]
+                            });
+
+                            // Karte aktualisieren wenn Tabelle gefiltert wird
+                            table.on("dataFiltered", function(filters, rows) {
+                                updateMapFromRows(rows);
+                            });
+
+                            // Toggle: unsichere Datierungen aus-/einblenden
+                            document.getElementById("toggle-uncertain").addEventListener("change", function() {
+                                if (this.checked) {
+                                    table.removeFilter("uncertain", "!=", "true");
+                                } else {
+                                    table.addFilter("uncertain", "!=", "true");
+                                }
                             });
 
                             // Download buttons
@@ -302,6 +345,78 @@
                                 table.download("xlsx", "postwege.xlsx", {sheetName: "Postwege"});
                             });
                         });
+
+                        function updateMapFromRows(rows) {
+                            if (!window.mapLocations || !window.mapChart) return;
+
+                            var locationCounts = {};
+                            var connectionCounts = {};
+
+                            rows.forEach(function(row) {
+                                var data = row.getData();
+                                var fromId = data.fromId;
+                                var toId = data.toId;
+                                if (!fromId || !toId) return;
+
+                                if (!locationCounts[fromId]) locationCounts[fromId] = {sourceCount: 0, targetCount: 0};
+                                if (!locationCounts[toId]) locationCounts[toId] = {sourceCount: 0, targetCount: 0};
+                                locationCounts[fromId].sourceCount++;
+                                locationCounts[toId].targetCount++;
+
+                                var key = fromId + "|" + toId;
+                                connectionCounts[key] = (connectionCounts[key] || 0) + 1;
+                            });
+
+                            // Stadtpunkte berechnen
+                            var maxWeight = 1;
+                            Object.keys(locationCounts).forEach(function(id) {
+                                var c = locationCounts[id];
+                                var w = c.sourceCount + c.targetCount;
+                                if (w > maxWeight) maxWeight = w;
+                            });
+
+                            var newCityData = [];
+                            Object.keys(locationCounts).forEach(function(id) {
+                                var loc = window.mapLocations.get(id);
+                                if (!loc) return;
+                                var c = locationCounts[id];
+                                var weight = c.sourceCount + c.targetCount;
+                                newCityData.push({
+                                    id: id,
+                                    lat: loc.lat,
+                                    lon: loc.lon,
+                                    name: loc.name,
+                                    marker: {radius: 2 + (weight / maxWeight) * 7},
+                                    color: '#ffaa00',
+                                    tooltip: '&lt;b&gt;' + loc.name + '&lt;/b&gt;&lt;br&gt;Sendeort: ' + c.sourceCount + '&lt;br&gt;Empfangsort: ' + c.targetCount
+                                });
+                            });
+
+                            // Verbindungen berechnen
+                            var newFlowData = [];
+                            Object.keys(connectionCounts).forEach(function(key) {
+                                var parts = key.split("|");
+                                var fromId = parts[0];
+                                var toId = parts[1];
+                                var weight = connectionCounts[key];
+                                var fromLoc = window.mapLocations.get(fromId);
+                                var toLoc = window.mapLocations.get(toId);
+                                if (!fromLoc || !toLoc) return;
+                                var reverseWeight = connectionCounts[toId + "|" + fromId] || 0;
+                                newFlowData.push({
+                                    id: fromId + "-" + toId,
+                                    from: {id: fromId, lat: fromLoc.lat, lon: fromLoc.lon},
+                                    to: {id: toId, lat: toLoc.lat, lon: toLoc.lon},
+                                    weight: weight,
+                                    lineWidth: Math.max(0.1, Math.min(weight, 2)),
+                                    color: '#8B5F8F',
+                                    tooltip: fromLoc.name + ' → ' + toLoc.name + ': ' + weight + '&lt;br&gt;' + toLoc.name + ' → ' + fromLoc.name + ': ' + reverseWeight
+                                });
+                            });
+
+                            window.mapChart.series[1].setData(newFlowData, false);
+                            window.mapChart.series[2].setData(newCityData, true);
+                        }
                     </script>
                 </div>
             </body>
