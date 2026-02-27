@@ -419,10 +419,11 @@
                                 });
                             });
 
-                            var flowSeries = window.mapChart.get('flowmap');
-                            var citySeries = window.mapChart.get('world');
-                            if (flowSeries) flowSeries.setData(newFlowData, false);
-                            if (citySeries) citySeries.setData(newCityData, true);
+                            if (window.mapChart.series.length >= 3) {
+                                window.mapChart.series[1].setData(newFlowData, false, false, false);
+                                window.mapChart.series[2].setData(newCityData, false, false, false);
+                                window.mapChart.redraw(false);
+                            }
                         }
                     </script>
                 </div>
