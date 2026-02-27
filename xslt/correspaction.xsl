@@ -30,6 +30,9 @@
                                 <div id="container"
                                     style="padding-bottom: 20px; width:100%; margin: auto"/>
                                 <script src="js/postwege_weights_directed.js"/>
+                                <style type="text/css">
+                                    #toggle-uncertain:checked { background-color: #A63437; border-color: #A63437; }
+                                </style>
                                 <div class="form-check form-switch mb-3">
                                     <input class="form-check-input" type="checkbox" id="toggle-uncertain" checked="checked"/>
                                     <label class="form-check-label" for="toggle-uncertain">Unsichere Datierungen anzeigen</label>
@@ -305,19 +308,21 @@
                                 responsiveLayoutCollapseStartOpen: false,
                                 placeholder: "Keine Daten verfügbar",
                                 initialSort: [
-                                    {column: "titel", dir: "asc"}
+                                    {column: "sendedatum", dir: "asc"}
                                 ],
-                                columns: [
-                                    {title: "Titel", field: "titel", headerFilter: "input", formatter: "html"},
-                                    {title: "Sendedatum", field: "sendedatum", headerFilter: "input", formatter: "html"},
-                                    {title: "Sendeort", field: "sendeort", headerFilter: "input", formatter: "html"},
-                                    {title: "weitere Stationen", field: "stationen", headerFilter: "input", formatter: "html"},
-                                    {title: "Empfangsdatum", field: "empfangsdatum", headerFilter: "input", formatter: "html"},
-                                    {title: "Empfangsort", field: "empfangsort", headerFilter: "input", formatter: "html"},
-                                    {title: "fromId", field: "fromId", visible: false},
-                                    {title: "toId", field: "toId", visible: false},
-                                    {title: "uncertain", field: "uncertain", visible: false}
-                                ]
+                                autoColumns: true,
+                                autoColumnsDefinitions: function(definitions) {
+                                    var hidden = ["fromid", "toid", "uncertain"];
+                                    definitions.forEach(function(column) {
+                                        if (hidden.indexOf(column.field) !== -1) {
+                                            column.visible = false;
+                                        } else {
+                                            column.formatter = "html";
+                                            column.headerFilter = "input";
+                                        }
+                                    });
+                                    return definitions;
+                                }
                             });
 
                             // Karte aktualisieren wenn Tabelle gefiltert wird
@@ -328,22 +333,19 @@
                             // Toggle: unsichere Datierungen aus-/einblenden
                             document.getElementById("toggle-uncertain").addEventListener("change", function() {
                                 if (this.checked) {
-                                    table.removeFilter("uncertain", "!=", "true");
+                                    table.clearFilter();
                                 } else {
-                                    table.addFilter("uncertain", "!=", "true");
+                                    table.setFilter("uncertain", "!=", "true");
                                 }
                             });
 
-                            // Download buttons
-                            document.getElementById("download-csv").addEventListener("click", function() {
-                                table.download("csv", "postwege.csv");
-                            });
-                            document.getElementById("download-json").addEventListener("click", function() {
-                                table.download("json", "postwege.json");
-                            });
-                            document.getElementById("download-xlsx").addEventListener("click", function() {
-                                table.download("xlsx", "postwege.xlsx", {sheetName: "Postwege"});
-                            });
+                            // Download buttons (nur wenn vorhanden)
+                            var dlCsv = document.getElementById("download-csv");
+                            if (dlCsv) dlCsv.addEventListener("click", function() { table.download("csv", "postwege.csv"); });
+                            var dlJson = document.getElementById("download-json");
+                            if (dlJson) dlJson.addEventListener("click", function() { table.download("json", "postwege.json"); });
+                            var dlXlsx = document.getElementById("download-xlsx");
+                            if (dlXlsx) dlXlsx.addEventListener("click", function() { table.download("xlsx", "postwege.xlsx", {sheetName: "Postwege"}); });
                         });
 
                         function updateMapFromRows(rows) {
@@ -354,8 +356,8 @@
 
                             rows.forEach(function(row) {
                                 var data = row.getData();
-                                var fromId = data.fromId;
-                                var toId = data.toId;
+                                var fromId = data.fromid;
+                                var toId = data.toid;
                                 if (!fromId || !toId) return;
 
                                 if (!locationCounts[fromId]) locationCounts[fromId] = {sourceCount: 0, targetCount: 0};
