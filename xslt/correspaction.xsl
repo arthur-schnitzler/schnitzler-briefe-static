@@ -353,6 +353,7 @@
 
                         function updateMapFromRows(rows) {
                             if (!window.mapLocations || !window.mapChart) return;
+                            window._mapFilterActive = true;
 
                             var locationCounts = {};
                             var connectionCounts = {};

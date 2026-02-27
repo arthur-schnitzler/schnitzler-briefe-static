@@ -137,6 +137,7 @@ async function createKarte1() {
     });
 
     function updateFlowData() {
+        if (window._mapFilterActive) return;
         const mapView = chart.mapView;
         const flowmapSeries = chart.get('flowmap');
         if (flowmapSeries && mapView) {
