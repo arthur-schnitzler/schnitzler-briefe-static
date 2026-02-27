@@ -393,7 +393,7 @@
                                     name: loc.name,
                                     marker: {radius: 2 + (weight / maxWeight) * 7},
                                     color: '#ffaa00',
-                                    tooltip: '&lt;b&gt;' + loc.name + '&lt;/b&gt;&lt;br&gt;Sendeort: ' + c.sourceCount + '&lt;br&gt;Empfangsort: ' + c.targetCount
+                                    tooltip: '\u003cb\u003e' + loc.name + '\u003c/b\u003e\u003cbr\u003eSendeort: ' + c.sourceCount + '\u003cbr\u003eEmpfangsort: ' + c.targetCount
                                 });
                             });
 
@@ -415,7 +415,7 @@
                                     weight: weight,
                                     lineWidth: Math.max(0.1, Math.min(weight, 2)),
                                     color: '#8B5F8F',
-                                    tooltip: fromLoc.name + ' → ' + toLoc.name + ': ' + weight + '&lt;br&gt;' + toLoc.name + ' → ' + fromLoc.name + ': ' + reverseWeight
+                                    tooltip: fromLoc.name + ' → ' + toLoc.name + ': ' + weight + '\u003cbr\u003e' + toLoc.name + ' → ' + fromLoc.name + ': ' + reverseWeight
                                 });
                             });
 
