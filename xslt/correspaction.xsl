@@ -374,7 +374,7 @@
                             Object.keys(locationCounts).forEach(function(id) {
                                 var c = locationCounts[id];
                                 var w = c.sourceCount + c.targetCount;
-                                if (w > maxWeight) maxWeight = w;
+                                maxWeight = Math.max(maxWeight, w);
                             });
 
                             var newCityData = [];
