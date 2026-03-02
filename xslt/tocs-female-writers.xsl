@@ -272,7 +272,7 @@
                             var q = query.toLowerCase();
                             cards.forEach(function(card) {
                                 var title = card.querySelector('.card-title');
-                                if (title &amp;&amp; title.textContent.toLowerCase().includes(q)) {
+                                if (title <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> title.textContent.toLowerCase().includes(q)) {
                                     card.style.display = '';
                                 } else {
                                     card.style.display = 'none';
