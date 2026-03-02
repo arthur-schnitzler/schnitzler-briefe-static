@@ -329,8 +329,14 @@
                             });
 
                             // Karte aktualisieren wenn Tabelle gefiltert wird
+                            // (nicht beim Toggle-Filter, nur bei Header-Filtern)
                             table.on("dataFiltered", function(filters, rows) {
-                                updateMapFromRows(rows);
+                                var hasNonToggleFilter = filters.some(function(f) {
+                                    return f.field !== "uncertain";
+                                });
+                                if (hasNonToggleFilter) {
+                                    updateMapFromRows(rows);
+                                }
                             });
 
                             // Toggle: unsichere Datierungen aus-/einblenden
