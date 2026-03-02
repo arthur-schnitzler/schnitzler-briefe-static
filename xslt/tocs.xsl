@@ -47,6 +47,11 @@
                             <div class="card-body">
                                 <!-- Gallery View -->
                                 <div id="gallery-view">
+                                    <div class="mb-3">
+                                        <input type="text" id="gallery-search" class="form-control"
+                                            placeholder="Korrespondenz suchen…"
+                                            oninput="filterGallery(this.value)"/>
+                                    </div>
                                     <div class="correspondence-grid">
                                         <xsl:for-each select="document('../data/indices/listcorrespondence.xml')/tei:TEI[1]/tei:text[1]/tei:body[1]/tei:listPerson[1]/tei:personGrp[not(@xml:id = 'correspondence_null') and not(@ana = 'planned')]">
                                             <xsl:sort select="tei:persName[@role = 'main'][1]/text()"/>
@@ -301,6 +306,19 @@
                     </style>
                     <xsl:if test="$output-type = 'briefe'">
                         <script>
+                        function filterGallery(query) {
+                            var cards = document.querySelectorAll('.correspondence-card');
+                            var q = query.toLowerCase();
+                            cards.forEach(function(card) {
+                                var title = card.querySelector('.card-title');
+                                if (title <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> title.textContent.toLowerCase().includes(q)) {
+                                    card.style.display = '';
+                                } else {
+                                    card.style.display = 'none';
+                                }
+                            });
+                        }
+
                         function showGalleryView() {
                             document.getElementById('gallery-view').style.display = 'block';
                             document.getElementById('table-view').style.display = 'none';
