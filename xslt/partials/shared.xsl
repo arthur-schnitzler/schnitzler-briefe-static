@@ -100,13 +100,13 @@
         </span>
     </xsl:template>
     <!-- Die folgenden beiden Regeln sollten das Leerzeichen vor und nach Streichungen mit aus- und einblenden -->
-    <!-- Spezialfall: del enthält nur Satzzeichen (z.B. "(") –
+    <!-- Spezialfall: del enthält keine Buchstaben (z.B. nur "(") –
          das vorausgehende Leerzeichen bleibt sichtbar, weil es nicht zum gestrichenen Wort gehört.
          Beispiel: ". <del>(</del>" → ". " wenn del ausgeblendet. Priorität höher als die allgemeine Regel. -->
     <xsl:template
         match="text()[matches(., '[\s\r\n]+$')
                       and following-sibling::node()[1][self::tei:del]
-                      and matches(normalize-space(string(following-sibling::node()[1][self::tei:del])), '^\p{P}+$')]"
+                      and not(matches(string(following-sibling::node()[1][self::tei:del]), '\p{L}'))]"
         priority="1">
         <xsl:value-of select="."/>
     </xsl:template>
