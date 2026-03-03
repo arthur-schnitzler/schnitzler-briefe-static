@@ -231,6 +231,11 @@
                   "license": "https://creativecommons.org/licenses/by/4.0/"
                 }
                 </script>
+                <!-- Leaflet für Postwegkarte im Überlieferungs-Modal -->
+                <xsl:if test="//tei:correspAction/tei:placeName/@ref">
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+                    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""/>
+                </xsl:if>
             </head>
             <body class="page">
                 <div class="hfeed site" id="page">
@@ -363,6 +368,35 @@
                                     aria-label="Schließen"/>
                             </div>
                             <div class="modal-body">
+                                <!-- Postwegkarte -->
+                                <xsl:if test="exists(for $r in //tei:correspAction/tei:placeName/@ref return $back//tei:place[@xml:id = substring-after(string($r), '#')]/tei:location[@type='coords']/tei:geo)">
+                                    <div id="corresp-route-map" style="height:250px;width:100%;margin-bottom:0.5em;border-radius:4px;border:1px solid #dee2e6;"/>
+                                    <div style="font-size:0.8em;margin-bottom:0.75em;color:#555;">
+                                        <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#c0392b;margin-right:4px;vertical-align:middle;"/>
+                                        <xsl:text>Versand&#160;&#160;</xsl:text>
+                                        <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#2980b9;margin-right:4px;vertical-align:middle;"/>
+                                        <xsl:text>Empfang</xsl:text>
+                                    </div>
+                                    <script>(function(){
+var mapPoints=[<xsl:for-each select="//tei:correspAction[tei:placeName/@ref]"><xsl:variable name="action-type" select="@type"/><xsl:for-each select="tei:placeName[@ref]"><xsl:variable name="place-id" select="substring-after(@ref,'#')"/><xsl:variable name="geo" select="$back//tei:place[@xml:id=$place-id]/tei:location[@type='coords']/tei:geo[1]"/><xsl:if test="$geo">{lat:<xsl:value-of select="replace(tokenize(string($geo),' ')[1],',','.')"/>,lng:<xsl:value-of select="replace(tokenize(string($geo),' ')[2],',','.')"/>,type:'<xsl:value-of select="$action-type"/>',name:'<xsl:value-of select="normalize-space(.)"/>'},</xsl:if></xsl:for-each></xsl:for-each>];
+document.getElementById('ueberlieferung').addEventListener('shown.bs.modal',function(){
+var el=document.getElementById('corresp-route-map');
+if(!el||el._leaflet_id){return;}
+var map=L.map(el);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+attribution:'&#169; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18
+}).addTo(map);
+var pts=[];
+mapPoints.forEach(function(p){
+var col=p.type==='sent'?'#c0392b':(p.type==='received'?'#2980b9':'#7f8c8d');
+L.circleMarker([p.lat,p.lng],{radius:8,fillColor:col,color:'#fff',weight:2,opacity:1,fillOpacity:0.9}).addTo(map).bindPopup(p.name);
+pts.push([p.lat,p.lng]);
+});
+if(pts[1]){L.polyline(pts,{color:'#888',weight:2,dashArray:'4,4'}).addTo(map);map.fitBounds(L.latLngBounds(pts).pad(0.3));}
+else if(pts[0]){map.setView(pts[0],12);}
+});
+})();</script>
+                                </xsl:if>
                                 <table class="table table-striped align-top">
                                     <tbody>
                                         <xsl:for-each select="//tei:correspAction">
