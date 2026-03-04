@@ -50,7 +50,6 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <span class="kommentar-label">[Fußnote] </span>
             <a class="lemma" href="#{@corresp}">
                 <xsl:choose>
                     <xsl:when test="string-length($lemma) &gt; 0">
