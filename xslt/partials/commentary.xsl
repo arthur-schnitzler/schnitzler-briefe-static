@@ -5,6 +5,71 @@
     <!-- this creates the notes[@type='commentary']. included is a feature that takes the text between anchor and note as input and creates a lemma. if the
   text is too long it abbreviates it-->
     <!-- Kommentar und Textkonstitution -->
+    <!-- Kommentare innerhalb von Fußnoten: im Fließtext unterdrücken -->
+    <xsl:template
+        match="tei:note[(@type = 'textConst' or @type = 'commentary') and ancestor::tei:note[@type = 'footnote']]"/>
+    <!-- Kommentare innerhalb von Fußnoten: im Kommentaranhang ausgeben -->
+    <xsl:template
+        match="tei:note[(@type = 'textConst' or @type = 'commentary') and ancestor::tei:note[@type = 'footnote']]"
+        mode="kommentaranhang">
+        <p>
+            <xsl:attribute name="id">
+                <xsl:value-of select="@corresp"/>
+            </xsl:attribute>
+            <xsl:variable name="corresp" select="@corresp"/>
+            <xsl:variable name="lemmaganz">
+                <xsl:for-each-group
+                    select="ancestor::tei:*/tei:anchor[@xml:id = $corresp]/following-sibling::node()"
+                    group-ending-with="tei:note[@corresp = $corresp]">
+                    <xsl:if test="position() eq 1">
+                        <xsl:apply-templates select="current-group()[position() != last()]"
+                            mode="lemma"/>
+                    </xsl:if>
+                </xsl:for-each-group>
+            </xsl:variable>
+            <xsl:variable name="lemma" as="xs:string">
+                <xsl:choose>
+                    <xsl:when test="not(contains($lemmaganz, ' '))">
+                        <xsl:value-of select="$lemmaganz"/>
+                    </xsl:when>
+                    <xsl:when test="string-length(normalize-space($lemmaganz)) &gt; 24">
+                        <xsl:variable name="lemma-kurz"
+                            select="concat(tokenize(normalize-space($lemmaganz), ' ')[1], ' … ', tokenize(normalize-space($lemmaganz), ' ')[last()])"/>
+                        <xsl:choose>
+                            <xsl:when
+                                test="string-length(normalize-space($lemmaganz)) - string-length($lemma-kurz) &lt; 5">
+                                <xsl:value-of select="normalize-space($lemmaganz)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$lemma-kurz"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$lemmaganz"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <span class="kommentar-label">[Fußnote] </span>
+            <a class="lemma" href="#{@corresp}">
+                <xsl:choose>
+                    <xsl:when test="string-length($lemma) &gt; 0">
+                        <xsl:value-of select="$lemma"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>XXXX Lemmafehler</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:text>&#160;&#8593;&#160;&#160;</xsl:text>
+            </a>
+            <span class="kommentar-text">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="@xml:id"/>
+                </xsl:attribute>
+                <xsl:apply-templates select="node() except Lemma"/>
+            </span>
+        </p>
+    </xsl:template>
     <xsl:template
         match="tei:note[(@type = 'textConst' or @type = 'commentary') and not(ancestor::tei:note[@type = 'footnote'])]"/>
     <xsl:template
