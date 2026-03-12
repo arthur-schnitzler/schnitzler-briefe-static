@@ -387,7 +387,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 attribution:'&#169; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18
 }).addTo(map);
 mapPoints.forEach(function(p,i){
-for(var j=0;j!==i;j++){if(!(Math.abs(mapPoints[j].lat-p.lat)>0.0001)){if(!(Math.abs(mapPoints[j].lng-p.lng)>0.0001)){mapPoints[j].lat-=0.001;mapPoints[j].lng-=0.001;p.lat+=0.001;p.lng+=0.001;}}}
+for(var j=0;j!==i;j++){if(Math.abs(mapPoints[j].lat-p.lat)&lt;0.0001){if(Math.abs(mapPoints[j].lng-p.lng)&lt;0.0001){mapPoints[j].lat-=0.001;mapPoints[j].lng-=0.001;p.lat+=0.001;p.lng+=0.001;}}}
 });
 var pts=[];
 mapPoints.forEach(function(p){
