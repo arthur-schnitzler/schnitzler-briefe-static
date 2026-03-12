@@ -386,13 +386,16 @@ var map=L.map(el);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 attribution:'&#169; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18
 }).addTo(map);
+mapPoints.forEach(function(p,i){
+for(var j=0;j&lt;i;j++){if(Math.abs(mapPoints[j].lat-p.lat)&lt;0.0001&amp;&amp;Math.abs(mapPoints[j].lng-p.lng)&lt;0.0001){mapPoints[j].lat-=0.001;mapPoints[j].lng-=0.001;p.lat+=0.001;p.lng+=0.001;}}
+});
 var pts=[];
 mapPoints.forEach(function(p){
 var col=p.type==='sent'?'#c0392b':(p.type==='received'?'#2980b9':'#7f8c8d');
 L.circleMarker([p.lat,p.lng],{radius:8,fillColor:col,color:'#fff',weight:2,opacity:1,fillOpacity:0.9}).addTo(map).bindPopup(p.name);
 pts.push([p.lat,p.lng]);
 });
-if(pts[1]){L.polyline(pts,{color:'#888',weight:2,dashArray:'4,4'}).addTo(map);map.fitBounds(L.latLngBounds(pts).pad(0.3));}
+if(pts[1]){L.polyline(pts,{color:'#888',weight:2,dashArray:'4,4'}).addTo(map);map.fitBounds(L.latLngBounds(pts).pad(0.3),{maxZoom:10});}
 else if(pts[0]){map.setView(pts[0],10);}
 });
 })();</script>
