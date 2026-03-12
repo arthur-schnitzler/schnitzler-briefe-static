@@ -393,7 +393,7 @@ L.circleMarker([p.lat,p.lng],{radius:8,fillColor:col,color:'#fff',weight:2,opaci
 pts.push([p.lat,p.lng]);
 });
 if(pts[1]){L.polyline(pts,{color:'#888',weight:2,dashArray:'4,4'}).addTo(map);map.fitBounds(L.latLngBounds(pts).pad(0.3));}
-else if(pts[0]){map.setView(pts[0],12);}
+else if(pts[0]){map.setView(pts[0],10);}
 });
 })();</script>
                                 </xsl:if>
