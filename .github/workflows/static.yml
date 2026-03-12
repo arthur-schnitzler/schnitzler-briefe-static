@@ -26,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ANT_OPTS: -Xmx6g
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       TYPESENSE_HOST: typesense.acdh-dev.oeaw.ac.at
       TYPESENSE_PORT: 443
       TYPESENSE_PROTOCOL: https
