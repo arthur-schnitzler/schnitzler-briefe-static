@@ -13,8 +13,12 @@ for x in tqdm(sorted(files), total=len(files)):
     doc = TeiReader(x)
     file_name = os.path.split(x)[1]
     doc_title = doc.any_xpath('.//tei:titleStmt/tei:title[@level="a"]/text()')[0]
-    doc_date = doc.any_xpath('.//tei:titleStmt/tei:title[@type="iso-date"]/@when-iso')
-    doc_date = doc_date[0] if doc_date else ""
+    doc_date = ""
+    for attr in ["@when", "@from", "@notBefore", "@to", "@notAfter"]:
+        result = doc.any_xpath(f'.//tei:correspDesc[1]/tei:correspAction[@type="sent"][1]/tei:date[1]/{attr}')
+        if result:
+            doc_date = result[0]
+            break
     for entity_node in doc.any_xpath('.//tei:back//*[@xml:id]'):
         entity_id = entity_node.attrib['{http://www.w3.org/XML/1998/namespace}id']
         ana_attr = entity_node.attrib.get('ana', '')
