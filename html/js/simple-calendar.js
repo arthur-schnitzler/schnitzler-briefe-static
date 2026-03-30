@@ -18,16 +18,19 @@ class SimpleCalendar {
     
     // Event type categories and colors for letters
     this.eventCategories = {
-      'as-sender': '#fff',       // Letters FROM Schnitzler (white)
-      'as-empf': '#2e86ab',      // Letters FROM Fischer (teal blue)
+      'as-sender': '#A63437',    // Letters FROM Schnitzler (red)
+      'as-empf': '#1C6E8C',      // Letters TO Schnitzler (blue)
       'umfeld': '#68825b',       // Third-party letters (green)
+      'gedruckt': 'rgb(101, 67, 33)',  // Printed letters (brown)
       'fischer': '#3D4F9F'       // S. Fischer Verlag
     };
 
     this.categoryLabels = {
-      'as-sender': 'Von Schnitzler',
-      'as-empf': 'Von Fischer',
-      'umfeld': 'Umfeldbriefe'
+      'as-sender': 'Briefe Schnitzlers',
+      'as-empf': 'Briefe an Schnitzler',
+      'umfeld': 'Umfeldbriefe',
+      'gedruckt': 'Gedruckte Briefe',
+      'fischer': 'S. Fischer'
     };
     
     
@@ -122,17 +125,21 @@ class SimpleCalendar {
                   <!-- Dropdowns will be added dynamically -->
                 </div>
                 <div class="category-filters">
-                  <button class="filter-toggle active" data-category="as-sender" title="Briefe von Schnitzler">
+                  <button class="filter-toggle active" data-category="as-sender" title="Briefe Schnitzlers">
                     <span class="filter-dot"></span>
                     Von Schnitzler
                   </button>
-                  <button class="filter-toggle active" data-category="as-empf" title="Briefe von Fischer">
+                  <button class="filter-toggle active" data-category="as-empf" title="Briefe an Schnitzler">
                     <span class="filter-dot"></span>
-                    Von Fischer
+                    An Schnitzler
                   </button>
                   <button class="filter-toggle active" data-category="umfeld" title="Umfeldbriefe">
                     <span class="filter-dot"></span>
                     Umfeldbriefe
+                  </button>
+                  <button class="filter-toggle active" data-category="gedruckt" title="Gedruckte Briefe">
+                    <span class="filter-dot"></span>
+                    Gedruckte Briefe
                   </button>
                   <button class="filter-toggle active" data-category="fischer" title="S. Fischer">
                     <span class="filter-dot"></span>
@@ -305,16 +312,19 @@ class SimpleCalendar {
         }
         
         .filter-toggle[data-category="as-sender"] .filter-dot {
-          background-color: #fff;
-          border-color: #666;
+          border-color: #A63437;
         }
 
         .filter-toggle[data-category="as-empf"] .filter-dot {
-          border-color: #2e86ab;
+          border-color: #1C6E8C;
         }
 
         .filter-toggle[data-category="umfeld"] .filter-dot {
           border-color: #68825b;
+        }
+
+        .filter-toggle[data-category="gedruckt"] .filter-dot {
+          border-color: rgb(101, 67, 33);
         }
 
         .filter-toggle[data-category="fischer"] .filter-dot {
@@ -322,26 +332,27 @@ class SimpleCalendar {
         }
 
         .filter-toggle.active[data-category="as-sender"] {
-          background: #fff;
-          color: #333;
-          border-color: #999;
-        }
-
-        .filter-toggle.active[data-category="as-sender"] .filter-dot {
-          background-color: #fff;
-          border-color: #666;
+          background: #A63437;
+          color: white;
+          border-color: #A63437;
         }
 
         .filter-toggle.active[data-category="as-empf"] {
-          background: #2e86ab;
+          background: #1C6E8C;
           color: white;
-          border-color: #2e86ab;
+          border-color: #1C6E8C;
         }
 
         .filter-toggle.active[data-category="umfeld"] {
           background: #68825b;
           color: white;
           border-color: #68825b;
+        }
+
+        .filter-toggle.active[data-category="gedruckt"] {
+          background: rgb(101, 67, 33);
+          color: white;
+          border-color: rgb(101, 67, 33);
         }
 
         .filter-toggle.active[data-category="fischer"] {
@@ -477,7 +488,6 @@ class SimpleCalendar {
           height: 3px;
           width: 100%;
           border-radius: 1px;
-          border: 1px solid rgba(0,0,0,0.12);
         }
 
         /* Option B: Farbige Punkte (auskommentiert - zum Testen aktivieren) */
@@ -1129,7 +1139,9 @@ class SimpleCalendar {
     const categoryCounts = {
       'as-sender': 0,
       'as-empf': 0,
-      'umfeld': 0
+      'umfeld': 0,
+      'gedruckt': 0,
+      'fischer': 0
     };
 
     dayEvents.forEach(event => {
