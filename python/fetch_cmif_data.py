@@ -56,6 +56,10 @@ def parse_cmif_xml(xml_content, category):
                 bibl = event.find('.//tei:bibl', namespace)
                 bibliographic_info = bibl.text.strip() if bibl is not None and bibl.text else "Bibliographische Angabe nicht verfügbar"
 
+                # Extract external link URL (for fischer: idno[@type="schnitzler-fischer"])
+                idno = event.find('.//tei:idno[@type="schnitzler-fischer"]', namespace)
+                link_url = idno.text.strip() if idno is not None and idno.text else None
+
                 # Generate a unique ID
                 date_part = when_iso.replace('-', '')
                 title_part = re.sub(r'[^a-zA-Z0-9]', '', letter_title)[:20]
@@ -67,7 +71,8 @@ def parse_cmif_xml(xml_content, category):
                     'id': letter_id,
                     'category': category,
                     'tageszaehler': 0,
-                    'bibliographic': bibliographic_info
+                    'bibliographic': bibliographic_info,
+                    'link_url': link_url
                 }
 
                 events.append(calendar_event)

@@ -17,7 +17,8 @@ function processCalendarData() {
     linkId: r.id,
     category: r.category,
     tageszaehler: r.tageszaehler,
-    bibliographic: r.bibliographic  // Preserve bibliographic data for printed letters
+    bibliographic: r.bibliographic,  // Preserve bibliographic data for printed letters
+    link_url: r.link_url             // External link URL (e.g. Fischer Briefdatenbank)
   }));
 
   // Get available years
@@ -63,17 +64,21 @@ function showPrintedLetterPopup(event) {
   html += "<div class='modal-dialog' role='document'>";
   html += "<div class='modal-content'>";
   html += "<div class='modal-header'>";
-  html += "<h5 class='modal-title' id='printedLetterModalLabel'>Gedruckter Brief</h5>";
+  html += "<h5 class='modal-title' id='printedLetterModalLabel'>Externer Brief</h5>";
   html += "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
   html += "</div><div class='modal-body'>";
 
   // Letter title
   html += "<h6 style='color: " + color + ";'>" + event.name + "</h6>";
 
-  // Bibliographic information
-  html += "<p style='color: " + color + ";'><strong>Gedruckt in:</strong><br>";
-  html += event.bibliographic || "Bibliographische Angabe nicht verfügbar";
-  html += "</p>";
+  // Source information
+  if (event.category === 'fischer' && event.link_url) {
+    html += "<p style='color: " + color + ";'><a href='" + event.link_url + "' style='color: " + color + ";'>S. Fischer-Briefdatenbank</a></p>";
+  } else {
+    html += "<p style='color: " + color + ";'><strong>Gedruckt in:</strong><br>";
+    html += event.bibliographic || "Bibliographische Angabe nicht verfügbar";
+    html += "</p>";
+  }
 
   html += "</div>";
   html += "<div class='modal-footer'>";
@@ -149,15 +154,19 @@ function showEventsModal(events, date) {
     if (regularEvents.length > 0) {
       html += "<hr style='margin: 16px 0; border-color: #dee2e6;'>";
     }
-    html += "<h6 style='margin: 12px 0 8px 0; color: #6c757d;'>Gedruckte Briefe</h6>";
+    html += "<h6 style='margin: 12px 0 8px 0; color: #6c757d;'>Externe Briefe</h6>";
 
     printedEvents.forEach(event => {
       const color = categoryColors[event.category] || 'rgb(101, 67, 33)';
       html += "<div class='indent' style='margin: 8px 0; padding: 8px;'>";
       html += "<div style='color: " + color + "; font-weight: 500; margin-bottom: 4px;'>" + event.name + "</div>";
-      html += "<div style='font-size: 0.9em; color: " + color + ";'><strong>Gedruckt in:</strong><br>";
-      html += (event.bibliographic || "Bibliographische Angabe nicht verfügbar");
-      html += "</div>";
+      if (event.category === 'fischer' && event.link_url) {
+        html += "<div style='font-size: 0.9em;'><a href='" + event.link_url + "' style='color: " + color + ";'>S. Fischer-Briefdatenbank</a></div>";
+      } else {
+        html += "<div style='font-size: 0.9em; color: " + color + ";'><strong>Gedruckt in:</strong><br>";
+        html += (event.bibliographic || "Bibliographische Angabe nicht verfügbar");
+        html += "</div>";
+      }
       html += "</div>";
     });
   }
