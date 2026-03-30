@@ -6,7 +6,7 @@ let data = [];
 let years = [];
 
 // Convert calendarData format to SimpleCalendar format
-let activeFilters = new Set(['as-sender', 'as-empf', 'umfeld']); // All active by default
+let activeFilters = new Set(['as-sender', 'as-empf', 'umfeld', 'fischer']); // All active by default
 window.activeFilters = activeFilters; // Make globally available for SimpleCalendar
 
 function processCalendarData() {

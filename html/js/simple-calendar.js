@@ -20,7 +20,8 @@ class SimpleCalendar {
     this.eventCategories = {
       'as-sender': '#fff',       // Letters FROM Schnitzler (white)
       'as-empf': '#2e86ab',      // Letters FROM Fischer (teal blue)
-      'umfeld': '#68825b'        // Third-party letters (green)
+      'umfeld': '#68825b',       // Third-party letters (green)
+      'fischer': '#3D4F9F'       // S. Fischer Verlag
     };
 
     this.categoryLabels = {
@@ -132,6 +133,10 @@ class SimpleCalendar {
                   <button class="filter-toggle active" data-category="umfeld" title="Umfeldbriefe">
                     <span class="filter-dot"></span>
                     Umfeldbriefe
+                  </button>
+                  <button class="filter-toggle active" data-category="fischer" title="S. Fischer">
+                    <span class="filter-dot"></span>
+                    S. Fischer
                   </button>
                 </div>
               </div>
@@ -312,6 +317,10 @@ class SimpleCalendar {
           border-color: #68825b;
         }
 
+        .filter-toggle[data-category="fischer"] .filter-dot {
+          border-color: #3D4F9F;
+        }
+
         .filter-toggle.active[data-category="as-sender"] {
           background: #fff;
           color: #333;
@@ -333,6 +342,12 @@ class SimpleCalendar {
           background: #68825b;
           color: white;
           border-color: #68825b;
+        }
+
+        .filter-toggle.active[data-category="fischer"] {
+          background: #3D4F9F;
+          color: white;
+          border-color: #3D4F9F;
         }
         
         .filter-toggle:not(.active) {
