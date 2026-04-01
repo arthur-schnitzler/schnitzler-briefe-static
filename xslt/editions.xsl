@@ -2361,7 +2361,7 @@ else if(pts[0]){map.setView(pts[0],10);}
         <xsl:value-of select="string-join(distinct-values($entity-types), ' ')"/>
     </xsl:template>
     <xsl:template
-        match="tei:rs[@type = 'work' and not(ancestor::tei:quote) and ancestor::tei:note and not(@subtype = 'implied')]/text()">
+        match="tei:rs[@type = 'work' and not(ancestor::tei:quote) and ancestor::tei:note[not(@type='footnote')] and not(@subtype = 'implied')]/text()">
         <span class="works {substring-after(@rendition, '#')}" id="{@xml:id}">
             <span class="italics">
                 <xsl:value-of select="."/>
