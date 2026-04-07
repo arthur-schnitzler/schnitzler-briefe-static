@@ -113,7 +113,9 @@
             <xsl:value-of select="mam:herausgeber($analytic/tei:editor)"/>
         </xsl:if>
         <xsl:if test="$analytic/tei:respStmt">
-            <xsl:text>. </xsl:text>
+            <xsl:if test="$analytic/tei:editor[1]">
+                <xsl:text>. </xsl:text>
+            </xsl:if>
             <xsl:for-each select="$analytic/tei:respStmt">
                 <xsl:value-of select="mam:respStmt(.)"/>
                 <xsl:if test="not(position() = last())">
