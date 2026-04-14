@@ -89,7 +89,7 @@
           </xsl:variable>
           <xsl:choose>
             <xsl:when test="$msIdentifier/tei:idno[contains(., 'Schnitzler, A')]">
-              <xsl:text>CUL_A</xsl:text>
+              <xsl:value-of select="concat('CUL_MS_A', $Folder-Number)"/>
             </xsl:when>
             <xsl:when test="$msIdentifier/tei:idno[contains(., 'Abschrift')]">
               <xsl:text>CUL_Abschriften</xsl:text>
