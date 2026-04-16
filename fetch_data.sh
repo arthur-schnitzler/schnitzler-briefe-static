@@ -31,6 +31,10 @@ find ./data/editions/ -type f -name "*.xml"  -print0 | xargs -0 sed -i '' -e 's@
 # echo "fixing entity ids"
 find ./data/indices/ -type f -name "*.xml"  -print0 | xargs -0 sed -i '' -e 's@<person xml:id="person__@<person xml:id="pmb@g'
 
+# fetch filtered relations.csv from PMB
+echo "Fetching relations.csv from PMB..."
+python3 xslt/export/fetch_relations.py --index data/indices/listevent.xml
+
 # get schnitzler-briefe-tex
 
 rm -rf ./html/L*.pdf
