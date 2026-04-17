@@ -160,6 +160,7 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
         <noscript>
             <link rel="stylesheet" href="css/style.css" type="text/css"/>
         </noscript>
+        <link rel="stylesheet" href="css/entities.css" type="text/css"/>
         <!-- Scripts with defer for optimal loading -->
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous" defer="defer"/>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" defer="defer"/>
@@ -168,6 +169,7 @@ Susen, Laura Untner und Selma Jahnke</xsl:text>
         <script src="js/fragezeichen.js" defer="defer"></script>
         <script src="js/accessibility-enhancements.js" defer="defer"></script>
         <script src="js/lemma-anchor-scroll.js" defer="defer"></script>
+        <script src="js/entity-tabs.js" defer="defer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" defer="defer"/>
         <xsl:if test="descendant::tei:div[@xml:id = 'jung-wien-container-ohne-slider'] or descendant::tei:div[@xml:id = 'jung-wien-container-mit-slider'] or descendant::tei:div[@xml:id = 'jung-wien-container-nebeneinander'] or descendant::tei:div[@xml:id = 'jung-wien-container-nebeneinander-mit-slider']">
             <script src="https://code.highcharts.com/highcharts.js" defer="defer"/>

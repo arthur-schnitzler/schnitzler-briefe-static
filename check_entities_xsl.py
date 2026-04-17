@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-"""Check whether xslt/partials/entities.xsl and entities-setup.xsl match the
-upstream versions in schnitzler-chronik-static and update them if they do not."""
+"""Sync entity-related assets from schnitzler-chronik-static.
+
+Pulls the XSL partials as well as the companion CSS/JS files described in the
+upstream README ``xslt/export/README-entities-layout.md`` and writes each file
+to its project-specific destination. Existing files are only touched when the
+upstream content changed."""
 
 import hashlib
 import sys
@@ -11,17 +15,24 @@ REMOTE_BASE = (
     "https://raw.githubusercontent.com/arthur-schnitzler/"
     "schnitzler-chronik-static/refs/heads/main/xslt/export/"
 )
-LOCAL_DIR = Path(__file__).parent / "xslt" / "partials"
-FILES = ("entities.xsl", "entities-setup.xsl")
+REPO_ROOT = Path(__file__).parent
+
+# (remote filename, local destination directory)
+ASSETS = (
+    ("entities.xsl", REPO_ROOT / "xslt" / "partials"),
+    ("entities-setup.xsl", REPO_ROOT / "xslt" / "partials"),
+    ("entities.css", REPO_ROOT / "html" / "css"),
+    ("entity-tabs.js", REPO_ROOT / "html" / "js"),
+)
 
 
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def sync(filename: str) -> int:
+def sync(filename: str, dest_dir: Path) -> int:
     remote_url = REMOTE_BASE + filename
-    local_path = LOCAL_DIR / filename
+    local_path = dest_dir / filename
 
     with urlopen(remote_url) as response:
         remote_bytes = response.read()
@@ -43,8 +54,8 @@ def sync(filename: str) -> int:
 
 def main() -> int:
     exit_code = 0
-    for filename in FILES:
-        exit_code |= sync(filename)
+    for filename, dest_dir in ASSETS:
+        exit_code |= sync(filename, dest_dir)
     return exit_code
 
 
