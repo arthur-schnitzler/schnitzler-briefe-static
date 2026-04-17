@@ -10,6 +10,7 @@ import hashlib
 import sys
 from pathlib import Path
 from urllib.request import urlopen
+from xml.etree import ElementTree as ET
 
 REMOTE_BASE = (
     "https://raw.githubusercontent.com/arthur-schnitzler/"
@@ -30,12 +31,31 @@ def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def is_well_formed_xml(data: bytes) -> tuple[bool, str]:
+    try:
+        ET.fromstring(data)
+    except ET.ParseError as exc:
+        return False, str(exc)
+    return True, ""
+
+
 def sync(filename: str, dest_dir: Path) -> int:
     remote_url = REMOTE_BASE + filename
     local_path = dest_dir / filename
 
     with urlopen(remote_url) as response:
         remote_bytes = response.read()
+
+    if filename.endswith((".xsl", ".xml")):
+        ok, err = is_well_formed_xml(remote_bytes)
+        if not ok:
+            print(
+                f"WARNUNG: Upstream {remote_url} ist kein wohlgeformtes XML "
+                f"({err}) – {local_path} bleibt unverändert, Build läuft mit "
+                f"lokalem Stand weiter.",
+                file=sys.stderr,
+            )
+            return 0
 
     if local_path.exists():
         local_bytes = local_path.read_bytes()
