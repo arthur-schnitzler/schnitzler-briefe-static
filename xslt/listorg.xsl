@@ -159,20 +159,14 @@
                         <div class="hfeed site" id="page">
                             <xsl:call-template name="nav_bar"/>
                             <div class="container-fluid">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h1 align="center">
-                                            <xsl:value-of select="$name"/>
-                                            <xsl:text> </xsl:text>
-                                            <small>
-                                                <xsl:text> (Institution)</xsl:text>
-                                            </small>
-                                        </h1>
-                                    </div>
-                                    <div class="card-body">
-                                        <xsl:call-template name="org_detail"/>
-                                    </div>
-                                </div>
+                                <h1 align="center">
+                                    <xsl:value-of select="$name"/>
+                                    <xsl:text> </xsl:text>
+                                    <small>
+                                        <xsl:text> (Institution)</xsl:text>
+                                    </small>
+                                </h1>
+                                <xsl:call-template name="org_detail"/>
                             </div>
                             <xsl:call-template name="html_footer"/>
                         </div>
