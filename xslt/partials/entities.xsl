@@ -63,17 +63,17 @@
             <!-- Rechte Spalte: Tabs -->
             <div class="entity-main">
                 <div class="entity-tabs">
-                    <button class="entity-tab-btn active" data-tab="tab-relationen"
+                    <button class="entity-tab-btn active" data-tab="tab-erwaehnungen">Erwähnungen</button>
+                    <button class="entity-tab-btn" data-tab="tab-relationen"
                         >Relationen</button>
-                    <button class="entity-tab-btn" data-tab="tab-erwaehnungen">Erwähnungen</button>
                 </div>
-                <div id="tab-relationen" class="entity-tab-panel active">
-                    <xsl:call-template name="relationen-block">
+                <div id="tab-erwaehnungen" class="entity-tab-panel active">
+                    <xsl:call-template name="person-mentions">
                         <xsl:with-param name="entity" select="."/>
                     </xsl:call-template>
                 </div>
-                <div id="tab-erwaehnungen" class="entity-tab-panel">
-                    <xsl:call-template name="person-mentions">
+                <div id="tab-relationen" class="entity-tab-panel">
+                    <xsl:call-template name="relationen-block">
                         <xsl:with-param name="entity" select="."/>
                     </xsl:call-template>
                 </div>
@@ -295,17 +295,17 @@
             <!-- Rechte Spalte: Tabs -->
             <div class="entity-main">
                 <div class="entity-tabs">
-                    <button class="entity-tab-btn active" data-tab="tab-relationen"
+                    <button class="entity-tab-btn active" data-tab="tab-erwaehnungen">Erwähnungen</button>
+                    <button class="entity-tab-btn" data-tab="tab-relationen"
                         >Relationen</button>
-                    <button class="entity-tab-btn" data-tab="tab-erwaehnungen">Erwähnungen</button>
                 </div>
-                <div id="tab-relationen" class="entity-tab-panel active">
-                    <xsl:call-template name="relationen-block">
+                <div id="tab-erwaehnungen" class="entity-tab-panel active">
+                    <xsl:call-template name="work-mentions">
                         <xsl:with-param name="entity" select="."/>
                     </xsl:call-template>
                 </div>
-                <div id="tab-erwaehnungen" class="entity-tab-panel">
-                    <xsl:call-template name="work-mentions">
+                <div id="tab-relationen" class="entity-tab-panel">
+                    <xsl:call-template name="relationen-block">
                         <xsl:with-param name="entity" select="."/>
                     </xsl:call-template>
                 </div>
@@ -433,32 +433,25 @@
                     <xsl:call-template name="place-namensvarianten">
                         <xsl:with-param name="entity" select="."/>
                     </xsl:call-template>
+                    <xsl:call-template name="place-map">
+                        <xsl:with-param name="entity" select="."/>
+                    </xsl:call-template>
                 </div>
                 <!-- Rechte Spalte: Tabs -->
                 <div class="entity-main">
                     <div class="entity-tabs">
-                        <button class="entity-tab-btn active" data-tab="tab-relationen"
-                            >Relationen</button>
-                        <xsl:if test=".//tei:geo/text()">
-                            <button class="entity-tab-btn" data-tab="tab-karte">Karte</button>
-                        </xsl:if>
-                        <button class="entity-tab-btn" data-tab="tab-erwaehnungen"
+                        <button class="entity-tab-btn active" data-tab="tab-erwaehnungen"
                             >Erwähnungen</button>
+                        <button class="entity-tab-btn" data-tab="tab-relationen"
+                            >Relationen</button>
                     </div>
-                    <div id="tab-relationen" class="entity-tab-panel active">
-                        <xsl:call-template name="relationen-block">
+                    <div id="tab-erwaehnungen" class="entity-tab-panel active">
+                        <xsl:call-template name="place-mentions">
                             <xsl:with-param name="entity" select="."/>
                         </xsl:call-template>
                     </div>
-                    <xsl:if test=".//tei:geo/text()">
-                        <div id="tab-karte" class="entity-tab-panel">
-                            <xsl:call-template name="place-map">
-                                <xsl:with-param name="entity" select="."/>
-                            </xsl:call-template>
-                        </div>
-                    </xsl:if>
-                    <div id="tab-erwaehnungen" class="entity-tab-panel">
-                        <xsl:call-template name="place-mentions">
+                    <div id="tab-relationen" class="entity-tab-panel">
+                        <xsl:call-template name="relationen-block">
                             <xsl:with-param name="entity" select="."/>
                         </xsl:call-template>
                     </div>
@@ -471,7 +464,7 @@
     <xsl:template name="place-map">
         <xsl:param name="entity" as="node()"/>
         <xsl:if test="$entity//tei:geo/text()">
-            <div id="mapid" style="height: 400px; width:100%; clear: both;"> </div>
+            <div id="mapid" style="height: 250px; width:100%; clear: both;"> </div>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
                 integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
                 crossorigin=""/>
@@ -576,17 +569,17 @@
             <!-- Rechte Spalte: Tabs -->
             <div class="entity-main">
                 <div class="entity-tabs">
-                    <button class="entity-tab-btn active" data-tab="tab-relationen"
+                    <button class="entity-tab-btn active" data-tab="tab-erwaehnungen">Erwähnungen</button>
+                    <button class="entity-tab-btn" data-tab="tab-relationen"
                         >Relationen</button>
-                    <button class="entity-tab-btn" data-tab="tab-erwaehnungen">Erwähnungen</button>
                 </div>
-                <div id="tab-relationen" class="entity-tab-panel active">
-                    <xsl:call-template name="relationen-block">
+                <div id="tab-erwaehnungen" class="entity-tab-panel active">
+                    <xsl:call-template name="org-mentions">
                         <xsl:with-param name="entity" select="."/>
                     </xsl:call-template>
                 </div>
-                <div id="tab-erwaehnungen" class="entity-tab-panel">
-                    <xsl:call-template name="org-mentions">
+                <div id="tab-relationen" class="entity-tab-panel">
+                    <xsl:call-template name="relationen-block">
                         <xsl:with-param name="entity" select="."/>
                     </xsl:call-template>
                 </div>
@@ -702,23 +695,23 @@
                         <xsl:with-param name="entity" select="."/>
                     </xsl:call-template>
                 </div>
-            </div>
-            <!-- Rechte Spalte: Tabs -->
-            <div class="entity-main">
-                <div class="entity-tabs">
-                    <button class="entity-tab-btn active" data-tab="tab-relationen"
-                        >Relationen</button>
-                    <button class="entity-tab-btn" data-tab="tab-erwaehnungen">Erwähnungen</button>
-                </div>
-                <div id="tab-relationen" class="entity-tab-panel active">
-                    <xsl:call-template name="relationen-block">
-                        <xsl:with-param name="entity" select="."/>
-                    </xsl:call-template>
-                </div>
-                <div id="tab-erwaehnungen" class="entity-tab-panel">
-                    <xsl:call-template name="event-mentions">
-                        <xsl:with-param name="entity" select="."/>
-                    </xsl:call-template>
+                <!-- Rechte Spalte: Tabs -->
+                <div class="entity-main">
+                    <div class="entity-tabs">
+                        <button class="entity-tab-btn active" data-tab="tab-erwaehnungen">Erwähnungen</button>
+                        <button class="entity-tab-btn" data-tab="tab-relationen"
+                            >Relationen</button>
+                    </div>
+                    <div id="tab-erwaehnungen" class="entity-tab-panel active">
+                        <xsl:call-template name="event-mentions">
+                            <xsl:with-param name="entity" select="."/>
+                        </xsl:call-template>
+                    </div>
+                    <div id="tab-relationen" class="entity-tab-panel">
+                        <xsl:call-template name="relationen-block">
+                            <xsl:with-param name="entity" select="."/>
+                        </xsl:call-template>
+                    </div>
                 </div>
             </div>
         </div>
@@ -982,19 +975,32 @@
             </li>
         </ul>
     </xsl:template>
-    <!-- Mentions-Block (events-in-events deaktiviert; nur tei:note[@type='mentions']) -->
+    <!-- Mentions-Block (events oder tei:note[@type='mentions']) -->
     <xsl:template name="event-mentions">
         <xsl:param name="entity" as="node()"/>
-        <xsl:if test="$entity//tei:note[@type = 'mentions'][1]">
-            <xsl:variable name="mentionsGrp">
-                <xsl:element name="noteGrp" namespace="http://www.tei-c.org/ns/1.0">
-                    <xsl:copy-of select="$entity//tei:note[@type = 'mentions']"/>
-                </xsl:element>
-            </xsl:variable>
-            <xsl:call-template name="list-all-mentions">
-                <xsl:with-param name="mentions" select="$mentionsGrp"/>
-            </xsl:call-template>
-        </xsl:if>
+        <xsl:choose>
+            <xsl:when test="$current-edition = 'schnitzler-kultur'">
+                <xsl:variable name="notes" as="node()">
+                    <xsl:call-template name="fill-event-variable">
+                        <xsl:with-param name="xmlid" select="$entity/@xml:id"/>
+                        <xsl:with-param name="entitityType" select="'eventName'"/>
+                    </xsl:call-template>
+                </xsl:variable>
+                <xsl:call-template name="list-all-mentions">
+                    <xsl:with-param name="mentions" select="$notes"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$entity//tei:note[@type = 'mentions'][1]">
+                <xsl:variable name="mentionsGrp">
+                    <xsl:element name="noteGrp" namespace="http://www.tei-c.org/ns/1.0">
+                        <xsl:copy-of select="$entity//tei:note[@type = 'mentions']"/>
+                    </xsl:element>
+                </xsl:variable>
+                <xsl:call-template name="list-all-mentions">
+                    <xsl:with-param name="mentions" select="$mentionsGrp"/>
+                </xsl:call-template>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     <xsl:function name="mam:ahref-namen">
         <xsl:param name="typityp" as="xs:string"/>
@@ -1328,6 +1334,7 @@
         <div id="lod-mentions">
             <xsl:if
                 test="key('only-relevant-uris', $idno/tei:idno[not(@subtype = $current-edition)]/@subtype, $relevant-uris)[1]">
+                <legend>Ressourcen</legend>
                 <p class="buttonreihe">
                     <xsl:variable name="idnos-of-current" as="node()">
                         <xsl:element name="nodeset_person">
@@ -1612,6 +1619,18 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    <!-- Personennamen umkehren: "Nachname, Vorname" → "Vorname Nachname" -->
+    <xsl:function name="mam:vn-nn" as="xs:string">
+        <xsl:param name="name" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="matches($name, '^[^,]+,\s*.+$')">
+                <xsl:value-of select="replace($name, '^([^,]+),\s*(.+)$', '$2 $1')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$name"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
     <!-- Plural-Label für Entitätstyp (für Relationen-Sektionen) -->
     <xsl:function name="mam:type-label" as="xs:string">
         <xsl:param name="type" as="xs:string?"/>
@@ -1621,6 +1640,8 @@
             <xsl:when test="$type = 'Ereignis'">Ereignisse</xsl:when>
             <xsl:when test="$type = 'Ort'">Orte</xsl:when>
             <xsl:when test="$type = 'Institution'">Institutionen</xsl:when>
+            <xsl:when test="$type = 'Organisation'">Institutionen</xsl:when>
+            <xsl:when test="$type = 'Veranstaltung'">Veranstaltungen</xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="string($type)"/>
             </xsl:otherwise>
@@ -1635,6 +1656,8 @@
             <xsl:when test="$type = 'Ereignis'">3</xsl:when>
             <xsl:when test="$type = 'Ort'">4</xsl:when>
             <xsl:when test="$type = 'Institution'">5</xsl:when>
+            <xsl:when test="$type = 'Organisation'">5</xsl:when>
+            <xsl:when test="$type = 'Veranstaltung'">6</xsl:when>
             <xsl:otherwise>9</xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -1643,36 +1666,36 @@
         <xsl:param name="entity" as="node()" select="."/>
         <xsl:variable name="pmbId" select="mam:to-pmb(string($entity/@xml:id))"/>
         <xsl:variable name="num" select="mam:pmb-num($pmbId)"/>
-        <!-- Alte Relationen aus tei:affiliation und tei:listEvent -->
-        <xsl:variable name="legacy-items" as="element()*">
+        <!-- Alte Relationen aus tei:affiliation und tei:listEvent als rel-item -->
+        <xsl:variable name="legacy-items" as="element(rel-item)*">
             <xsl:for-each select="$entity/tei:affiliation">
                 <xsl:variable name="targetNode"
                     select="(tei:orgName | tei:persName | tei:placeName)[1]"/>
                 <xsl:variable name="pmbId2" select="mam:to-pmb(string($targetNode/@key))"/>
                 <xsl:if test="$targetNode and mam:in-project($pmbId2)">
-                    <li>
-                        <xsl:if test="normalize-space(tei:term) != ''">
-                            <xsl:value-of select="normalize-space(tei:term)"/>
-                            <xsl:text> </xsl:text>
-                        </xsl:if>
-                        <a href="{concat($pmbId2, '.html')}">
-                            <xsl:value-of select="normalize-space($targetNode)"/>
-                        </a>
-                    </li>
+                    <xsl:variable name="dn" select="
+                            if (normalize-space(tei:term) != '') then
+                                normalize-space(tei:term)
+                            else
+                                '(ohne Bezeichnung)'"/>
+                    <xsl:variable name="ot" select="
+                            if ($targetNode/self::tei:orgName) then 'Organisation'
+                            else if ($targetNode/self::tei:persName) then 'Person'
+                            else 'Ort'"/>
+                    <rel-item display-name="{$dn}" other-type="{$ot}"
+                        other-id="{$pmbId2}" other-name="{normalize-space($targetNode)}"/>
                 </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="$entity/tei:listEvent/tei:event">
                 <xsl:variable name="pmbId2" select="mam:to-pmb(string(@key))"/>
                 <xsl:if test="mam:in-project($pmbId2)">
-                    <li>
-                        <xsl:if test="normalize-space(tei:desc) != ''">
-                            <xsl:value-of select="normalize-space(tei:desc)"/>
-                            <xsl:text> </xsl:text>
-                        </xsl:if>
-                        <a href="{concat($pmbId2, '.html')}">
-                            <xsl:value-of select="normalize-space(tei:label)"/>
-                        </a>
-                    </li>
+                    <xsl:variable name="dn" select="
+                            if (normalize-space(tei:desc) != '') then
+                                normalize-space(tei:desc)
+                            else
+                                '(ohne Bezeichnung)'"/>
+                    <rel-item display-name="{$dn}" other-type="Veranstaltung"
+                        other-id="{$pmbId2}" other-name="{normalize-space(tei:label)}"/>
                 </xsl:if>
             </xsl:for-each>
         </xsl:variable>
@@ -1698,13 +1721,19 @@
                                 string(@tgt-name)
                             else
                                 string(@src-name)"/>
-                    <!-- Anzeigename via Vokabular aus relations.json (Gegenrichtung bei is-source=false) -->
+                    <!-- Anzeigename via Vokabular aus relations.json -->
                     <xsl:variable name="class-key" as="xs:string"
                         select="concat(mam:pmb-type(@src-type), mam:pmb-type(@tgt-type), 'relation')"/>
                     <xsl:variable name="vocab-entry"
                         select="key('vocab-by-cn', concat($class-key, '|', @type), $vocab-doc)"/>
+                    <!-- Bei person–person und person–event ist die Richtung im CSV
+                         umgekehrt zur gewünschten Anzeigerichtung: swap -->
+                    <xsl:variable name="swap" as="xs:boolean"
+                        select="$class-key = 'personpersonrelation'
+                                or $class-key = 'personeventrelation'"/>
                     <xsl:variable name="display-name" as="xs:string" select="
-                            if ($is-source) then
+                            if ($is-source and not($swap)
+                                or not($is-source) and $swap) then
                                 string(@type)
                             else
                                 if ($vocab-entry and $vocab-entry/@reverse != '') then
@@ -1727,24 +1756,21 @@
                 </xsl:for-each>
             </xsl:if>
         </xsl:variable>
-        <!-- Auf eindeutige (display-name, other-id)-Paare reduzieren -->
-        <xsl:variable name="csv-items-deduped" as="element(rel-item)*">
-            <xsl:for-each-group select="$csv-items" group-by="concat(@display-name, '|', @other-id)">
+        <!-- Alle Items zusammenführen und auf eindeutige (display-name, other-id)-Paare reduzieren -->
+        <xsl:variable name="all-items" as="element(rel-item)*"
+            select="$legacy-items | $csv-items"/>
+        <xsl:variable name="all-items-deduped" as="element(rel-item)*">
+            <xsl:for-each-group select="$all-items" group-by="concat(@display-name, '|', @other-id)">
                 <xsl:sequence select="current-group()[1]"/>
             </xsl:for-each-group>
         </xsl:variable>
-        <xsl:if test="exists($legacy-items) or exists($csv-items-deduped)">
+        <xsl:if test="exists($all-items-deduped)">
             <details class="relationen mb-3" open="open">
                 <summary>
                     <legend>Relationen</legend>
                 </summary>
-                <xsl:if test="exists($legacy-items)">
-                    <ul class="dashed">
-                        <xsl:copy-of select="$legacy-items"/>
-                    </ul>
-                </xsl:if>
-                <!-- Pro Entitätstyp eine ein-/ausklappbare Sektion, eingerückt -->
-                <xsl:for-each-group select="$csv-items-deduped" group-by="@other-type">
+                <!-- Pro Entitätstyp eine ein-/ausklappbare Sektion -->
+                <xsl:for-each-group select="$all-items-deduped" group-by="@other-type">
                     <xsl:sort select="mam:type-order(current-grouping-key())"/>
                     <details class="relationen-typ" open="open" style="padding-left:1em">
                         <summary>
@@ -1754,47 +1780,51 @@
                             <xsl:text>)</xsl:text>
                         </summary>
                         <ul class="dashed">
+                            <!-- Pro display-name eine Zeile mit Semikolon-getrennten Zielen -->
                             <xsl:for-each-group select="current-group()" group-by="@display-name">
                                 <xsl:sort select="current-grouping-key()"/>
-                                <xsl:variable name="total" select="count(current-group())"/>
-                                <xsl:for-each select="current-group()[position() le 10]">
-                                    <xsl:call-template name="render-rel-item"/>
-                                </xsl:for-each>
-                                <xsl:if test="$total gt 10">
-                                    <li class="relationen-mehr">
-                                        <details>
+                                <xsl:variable name="sorted-targets" as="element(rel-item)*">
+                                    <xsl:for-each select="current-group()">
+                                        <xsl:sort select="@other-name"/>
+                                        <xsl:sequence select="."/>
+                                    </xsl:for-each>
+                                </xsl:variable>
+                                <xsl:variable name="total" select="count($sorted-targets)"/>
+                                <li>
+                                    <xsl:value-of select="current-grouping-key()"/>
+                                    <xsl:text>: </xsl:text>
+                                    <xsl:for-each select="$sorted-targets[position() le 10]">
+                                        <a href="{concat(@other-id, '.html')}">
+                                            <xsl:value-of select="mam:vn-nn(@other-name)"/>
+                                        </a>
+                                        <xsl:if test="position() != last() or $total gt 10">
+                                            <xsl:text>; </xsl:text>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                    <xsl:if test="$total gt 10">
+                                        <details class="rel-inline">
                                             <summary>
-                                                <xsl:text>alle »</xsl:text>
-                                                <xsl:value-of select="current-grouping-key()"/>
-                                                <xsl:text>« anzeigen (</xsl:text>
+                                                <xsl:text>… </xsl:text>
                                                 <xsl:value-of select="$total - 10"/>
-                                                <xsl:text> weitere)</xsl:text>
+                                                <xsl:text> weitere</xsl:text>
                                             </summary>
-                                            <ul class="dashed">
-                                                <xsl:for-each
-                                                  select="subsequence(current-group(), 11)">
-                                                  <xsl:call-template name="render-rel-item"/>
-                                                </xsl:for-each>
-                                            </ul>
+                                            <xsl:for-each select="subsequence($sorted-targets, 11)">
+                                                <a href="{concat(@other-id, '.html')}">
+                                                    <xsl:value-of select="mam:vn-nn(@other-name)"/>
+                                                </a>
+                                                <xsl:if test="position() != last()">
+                                                    <xsl:text>; </xsl:text>
+                                                </xsl:if>
+                                            </xsl:for-each>
                                         </details>
-                                    </li>
-                                </xsl:if>
+                                    </xsl:if>
+                                </li>
                             </xsl:for-each-group>
                         </ul>
                     </details>
                 </xsl:for-each-group>
             </details>
         </xsl:if>
-    </xsl:template>
-    <!-- Ein einzelnes rel-item als <li> rendern -->
-    <xsl:template name="render-rel-item">
-        <li>
-            <xsl:value-of select="@display-name"/>
-            <xsl:text> </xsl:text>
-            <a href="{concat(@other-id, '.html')}">
-                <xsl:value-of select="@other-name"/>
-            </a>
-        </li>
     </xsl:template>
     <!-- Namensvarianten gruppiert ausgeben (eine Zeile pro Typ, Werte kommagetrennt) -->
     <xsl:template name="persName-gruppen">

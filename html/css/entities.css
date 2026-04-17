@@ -97,20 +97,25 @@
 /* ── Rechte Spalte: Tabs ─────────────────────────────────────── */
 .entity-main {
     min-width: 0; /* Grid-Overflow verhindern */
+    width: 100%;
 }
 
 /* Tab-Navigation */
 .entity-tabs {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0;
     border-bottom: 2px solid var(--entity-border);
     margin-bottom: 1rem;
     padding: 0;
     list-style: none;
+    width: 100%;
 }
 
 .entity-tab-btn {
+    flex: 1 1 0%;
+    min-width: 0;
+    text-align: center;
     padding: .6rem 1.2rem;
     border: none;
     background: none;
@@ -186,12 +191,12 @@
     padding: .3rem 0;
 }
 
-/* Karte – volle Breite im Tab */
-.entity-tab-panel #mapid {
-    height: 450px;
+/* Karte in der Sidebar */
+.entity-sidebar #mapid {
     width: 100%;
     border-radius: .35rem;
-    margin-bottom: 1rem;
+    margin-top: .75rem;
+    margin-bottom: .5rem;
 }
 
 /* Mentions-Chart responsive */
@@ -264,6 +269,11 @@
 /* ── Dashed Listen vereinheitlichen ──────────────────────────── */
 .entity-tab-panel ul.dashed {
     list-style: none;
+    padding-left: 1.2em;
+}
+
+.entity-tab-panel ul.dashed li {
+    text-indent: -1.2em;
     padding-left: 0;
 }
 
@@ -273,59 +283,32 @@
     color: #999;
 }
 
-/* ── "Mehr anzeigen"-Bereich bei langen Listen ───────────────── */
-.entity-tab-panel .relationen-mehr {
-    list-style: none;
-    margin-top: .5rem;
+/* ── Links in Relationen: fett bei Hover ────────────────────── */
+.entity-tab-panel .relationen a:hover {
+    font-weight: 700;
 }
 
-.entity-tab-panel .relationen-mehr::before {
-    content: none; /* kein Dash vor dem Aufklapper */
+/* ── Inline-Details für "… N weitere" ───────────────────────── */
+details.rel-inline {
+    display: inline;
 }
 
-.entity-tab-panel .relationen-mehr > details > summary {
-    display: inline-block;
-    padding: .35rem .9rem;
-    font-size: .85rem;
-    color: var(--entity-accent);
-    background: var(--entity-bg);
-    border: 1px solid var(--entity-border);
-    border-radius: 1rem;
+details.rel-inline > summary {
+    display: inline;
     cursor: pointer;
-    transition: background .15s, color .15s;
-    margin-top: .25rem;
+    color: var(--entity-accent);
+    font-size: .9em;
 }
 
-.entity-tab-panel .relationen-mehr > details > summary:hover {
-    background: var(--entity-accent);
-    color: #fff;
+details.rel-inline > summary:hover {
+    text-decoration: underline;
 }
 
-.entity-tab-panel .relationen-mehr > details[open] > summary {
-    background: var(--entity-accent);
-    color: #fff;
-    margin-bottom: .5rem;
+details.rel-inline[open] > summary {
+    display: none;
 }
 
-.entity-tab-panel .relationen-mehr > details > ul.dashed {
-    padding-left: 0;
-    border-left: 3px solid var(--entity-border);
-    margin-left: .5rem;
-    padding-left: .75rem;
+details.rel-inline[open] {
+    display: inline;
 }
 
-/* ── Legacy-Relationen (ohne Typ-Überschrift) ────────────────── */
-.entity-tab-panel .relationen > ul.dashed {
-    padding: .5rem 0 .75rem 1rem;
-    border-left: 3px solid var(--entity-accent);
-    margin-bottom: 1rem;
-}
-
-.entity-tab-panel .relationen > ul.dashed::before {
-    content: "Weitere Beziehungen";
-    display: block;
-    font-weight: 600;
-    color: var(--entity-tab-text);
-    margin-bottom: .4rem;
-    margin-left: -.25rem;
-}
