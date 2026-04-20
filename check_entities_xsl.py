@@ -22,6 +22,7 @@ REPO_ROOT = Path(__file__).parent
 ASSETS = (
     ("entities.xsl", REPO_ROOT / "xslt" / "partials"),
     ("entities-setup.xsl", REPO_ROOT / "xslt" / "partials"),
+    ("relations.json", REPO_ROOT / "xslt" / "partials"),
     ("entities.css", REPO_ROOT / "html" / "css"),
     ("entity-tabs.js", REPO_ROOT / "html" / "js"),
 )
