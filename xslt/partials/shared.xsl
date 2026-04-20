@@ -410,7 +410,7 @@
                                                   <li>
                                                   <xsl:value-of select=".//tei:title"/>
                                                   <xsl:text> </xsl:text>
-                                                  <a href="{$linkToDocument}">
+                                                  <a href="{$linkToDocument}"><xsl:text>&#160;</xsl:text>
                                                   <i class="fas fa-external-link-alt"/>
                                                   </a>
                                                   </li>
