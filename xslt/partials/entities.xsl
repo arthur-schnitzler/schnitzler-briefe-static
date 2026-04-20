@@ -1257,8 +1257,7 @@
                                                   </xsl:attribute>
                                                   <a href="{$linkToDocument}">
                                                   <xsl:value-of select="."/>
-                                                  <xsl:text>&#160;</xsl:text>
-                                                  <i class="fas fa-external-link-alt"/>
+                                            
                                                   </a>
                                                   </li>
                                                   </xsl:for-each>
@@ -1284,8 +1283,6 @@
                                                   </xsl:attribute>
                                                   <a href="{$linkToDocument}">
                                                   <xsl:value-of select="."/>
-                                                  <xsl:text>&#160;</xsl:text>
-                                                  <i class="fas fa-external-link-alt"/>
                                                   </a>
                                                   </li>
                                                   </xsl:for-each>
@@ -1315,8 +1312,7 @@
                                                 </xsl:attribute>
                                                 <a href="{$linkToDocument}">
                                                   <xsl:value-of select="."/>
-                                                  <xsl:text>&#160;</xsl:text>
-                                                  <i class="fas fa-external-link-alt"/>
+                                                 
                                                 </a>
                                             </li>
                                         </xsl:for-each>
