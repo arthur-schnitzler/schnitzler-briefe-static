@@ -230,9 +230,6 @@
                         <div class="hfeed site" id="page">
                             <xsl:call-template name="nav_bar"/>
                             <div class="container-fluid">
-                                <h1 align="center">
-                                    <xsl:value-of select="$name"/>
-                                </h1>
                                 <xsl:call-template name="work_detail"/>
                             </div>
                             <xsl:call-template name="html_footer"/>

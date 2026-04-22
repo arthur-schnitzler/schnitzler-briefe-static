@@ -276,16 +276,11 @@
                     </head>
                     <body class="d-flex flex-column h-100">
                         <xsl:call-template name="nav_bar"/>
-                        <main class="flex-shrink-0 flex-grow-1">
-                            <div class="container">
-                                <h1>
-                                    <xsl:value-of select="$name"/>
-                                </h1>
-                                <xsl:call-template name="event_detail">
-                                    
-                                </xsl:call-template>
+                        
+                            <div class="container-fluid">
+                                <xsl:call-template name="event_detail"/>
                             </div>
-                        </main>
+                        
                         <xsl:call-template name="html_footer"/>
                     </body>
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
