@@ -15,7 +15,7 @@
                     aria-label="Toggle navigation" style="border: none;">
                     <span class="navbar-toggler-icon"/>
                 </button>
-                <div class="collapse navbar-collapse " id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
