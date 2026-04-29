@@ -274,14 +274,14 @@
                             href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
                         <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"/>
                     </head>
-                    <body class="d-flex flex-column h-100">
-                        <xsl:call-template name="nav_bar"/>
-                        
-                            <div class="container-fluid">
+                    <body class="page">
+                        <div class="hfeed site" id="page">
+                            <xsl:call-template name="nav_bar"/>
+                            <div style="max-width: 2000px; margin: 0 auto;">
                                 <xsl:call-template name="event_detail"/>
                             </div>
-                        
-                        <xsl:call-template name="html_footer"/>
+                            <xsl:call-template name="html_footer"/>
+                        </div>
                     </body>
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
                         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="

@@ -158,7 +158,7 @@
                     <body class="page">
                         <div class="hfeed site" id="page">
                             <xsl:call-template name="nav_bar"/>
-                            <div class="container-fluid">
+                            <div style="max-width: 2000px; margin: 0 auto;">
                                 <xsl:call-template name="org_detail"/>
                             </div>
                             <xsl:call-template name="html_footer"/>
