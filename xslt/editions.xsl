@@ -596,6 +596,12 @@ else if(pts[0]){map.setView(pts[0],10);}
                                         <xsl:text> }}</xsl:text>
                                     </code>
                                 </blockquote>
+                                <p>Die Quelldaten (TEI-XML) dieser Edition sind über Zenodo dauerhaft archiviert und zitierbar:</p>
+                                <p>
+                                    <a href="https://doi.org/10.5281/zenodo.20309129" target="_blank">
+                                        <img src="https://zenodo.org/badge/doi/10.5281/zenodo.20309129.svg" alt="DOI 10.5281/zenodo.20309129"/>
+                                    </a>
+                                </p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
