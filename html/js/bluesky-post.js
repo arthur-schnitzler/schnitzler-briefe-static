@@ -24,7 +24,18 @@ document.addEventListener('DOMContentLoaded', function () {
             var facets = (post.record && post.record.facets) ? post.record.facets : [];
             var renderedText = renderFacets(text, facets);
 
+            var imgHtml = '';
+            var embed = post.embed;
+            if (embed && embed['$type'] === 'app.bsky.embed.images#view' && embed.images && embed.images.length > 0) {
+                var img = embed.images[0];
+                imgHtml = '<a href="' + escapeHtml(img.fullsize) + '" target="_blank" rel="noopener noreferrer">' +
+                    '<img src="' + escapeHtml(img.thumb) + '" alt="' + escapeHtml(img.alt || '') + '" ' +
+                    'style="max-width:100%;height:auto;display:block;margin-bottom:0.75em;border-radius:4px;">' +
+                    '</a>';
+            }
+
             document.getElementById('bluesky-post-content').innerHTML =
+                imgHtml +
                 '<p style="margin-bottom:0.75em;">' + renderedText + '</p>' +
                 '<p class="text-muted small mb-0">' +
                 '<a href="' + postUrl + '" target="_blank" rel="noopener noreferrer">' + dateStr + '</a>' +

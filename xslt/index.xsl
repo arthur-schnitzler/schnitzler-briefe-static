@@ -131,19 +131,6 @@
                     </div>
                     <div class="container-fluid" style="margin:2em auto;">
                         <div class="row wrapper img_bottom">
-                            <div class="col-md-12 mb-4" id="bluesky-post-container" style="display:none;">
-                                <div class="card" style="background-color: white;">
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 530"
-                                                 style="width:1em;height:1em;vertical-align:middle;fill:#0085ff;margin-right:0.4em;">
-                                                <path d="M135.72 44.03C202.216 93.448 272.95 192.953 300 249.49c27.05-56.538 97.784-156.043 164.28-205.46C512.199 10.017 596 -14.81 596 80.391c0 19.638-11.25 164.999-17.84 188.578-22.93 81.937-106.55 102.984-180.94 90.317 130.04 22.107 163.06 95.32 91.63 168.535-135.64 139.026-194.92-34.895-209.71-79.422-2.8-8.217-4.1-12.037-4.14-8.784-.04-3.253-1.34.567-4.14 8.784-14.79 44.527-74.07 218.448-209.71 79.422-71.43-73.215-38.41-146.428 91.63-168.535-74.39 12.667-158.01-8.38-180.94-90.317C11.25 245.39 0 100.029 0 80.391 0-14.81 83.801 10.017 135.72 44.03z"/>
-                                            </svg>Aktuell auf Bluesky
-                                        </h4>
-                                        <div id="bluesky-post-content"></div>
-                                    </div>
-                                </div>
-                            </div>
                         <div class="col-md-12 mb-4">
                                 <div class="card" style="background-color: white;">
                                     <div class="card-body">
@@ -165,6 +152,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12 mb-4" id="bluesky-post-container" style="display:none;">
+                                <div class="card" style="background-color: white; height: 100%;">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 530"
+                                                 style="width:1em;height:1em;vertical-align:middle;fill:#0085ff;margin-right:0.4em;">
+                                                <path d="M135.72 44.03C202.216 93.448 272.95 192.953 300 249.49c27.05-56.538 97.784-156.043 164.28-205.46C512.199 10.017 596 -14.81 596 80.391c0 19.638-11.25 164.999-17.84 188.578-22.93 81.937-106.55 102.984-180.94 90.317 130.04 22.107 163.06 95.32 91.63 168.535-135.64 139.026-194.92-34.895-209.71-79.422-2.8-8.217-4.1-12.037-4.14-8.784-.04-3.253-1.34.567-4.14 8.784-14.79 44.527-74.07 218.448-209.71 79.422-71.43-73.215-38.41-146.428 91.63-168.535-74.39 12.667-158.01-8.38-180.94-90.317C11.25 245.39 0 100.029 0 80.391 0-14.81 83.801 10.017 135.72 44.03z"/>
+                                            </svg>Unser Projekt auf Bluesky
+                                        </h4>
+                                        <div id="bluesky-post-content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <a href="tocs.html" class="index-link">
                                     <div class="card index-card">
