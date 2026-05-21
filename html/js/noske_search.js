@@ -145,6 +145,9 @@ class NoskeSearchImplementation {
                         text: "mb-0"
                     }
                 },
+                autocompleteOptions: {
+                    id: "noske-autocomplete",
+                },
             });
 
             // Add custom event listeners

@@ -206,6 +206,8 @@
                                                     <strong>Platzhalter: </strong> Einfach: <code>.*</code> und <code>.?</code> • CQL: <code>.*</code> in Anführungszeichen<br/>
                                                     <strong>Beispiele: </strong> <code>lieb.*</code> • <code>[word="Lie.*"]</code> • <code>[lemma="sein"]</code>
                                                 </p>
+                                                <p>Die Daten der Noske-Suche werden in regelmäßigen Abständen aktualisiert. Gegebenenfalls kann es sein,
+                                                dass die zuletzt edierten Korrespondenzstücke noch nicht erfasst sind.</p>
                                             </div>
                                         </div>
                                         <div class="col-md-8">
