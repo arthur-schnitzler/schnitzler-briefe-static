@@ -58,10 +58,13 @@ class NoskeSearchImplementation {
         window.fetch = async (...args) => {
             const response = await originalFetch(...args);
 
-            // Check if this is a Noske API call
+            // Check if this is a Noske API call (handle string, URL, and Request objects)
             const url = args[0];
-            if (typeof url === 'string' && url.includes('corpus-search.acdh.oeaw.ac.at')) {
-                console.log('Intercepted Noske API call:', url);
+            const urlStr = (typeof url === 'string') ? url :
+                           (url instanceof URL) ? url.href :
+                           (url instanceof Request) ? url.url : String(url);
+            if (urlStr.includes('corpus-search.acdh.oeaw.ac.at')) {
+                console.log('Intercepted Noske API call:', urlStr);
 
                 // Clone response so we can read it without consuming it
                 const clonedResponse = response.clone();
@@ -201,17 +204,20 @@ class NoskeSearchImplementation {
 
             if (hasNewTable) {
                 console.log('New results table detected');
-                // Add a delay to ensure table is fully rendered
                 setTimeout(() => {
-                    // Try to find the search input - it might be created dynamically
                     const searchContainer = document.getElementById('noske-search');
                     const searchInput = searchContainer ? searchContainer.querySelector('input') : null;
                     const query = searchInput ? searchInput.value : null;
-
-                    console.log('Search input found:', !!searchInput);
-                    console.log('Query value:', query);
-
-                    this.addLinksToResults();
+                    console.log('Query value for link resolution:', query);
+                    if (query) {
+                        this.fetchNoskeDataDirectly(query).then(() => {
+                            this.addLinksToResults();
+                        }).catch(() => {
+                            this.addLinksToResults();
+                        });
+                    } else {
+                        this.addLinksToResults();
+                    }
                 }, 500);
             }
         });
@@ -239,8 +245,8 @@ class NoskeSearchImplementation {
                 q = `q${encodeURIComponent(`"${query}"`)}`;
             }
 
-            // Use the correct SketchEngine API endpoint
-            const url = `https://corpus-search.acdh.oeaw.ac.at/search/concordance?corpname=schnitzlerbriefe&q=${q}&attrs=word,landingPageURI&attr_allpos=kw&viewmode=sen&structs=s,g&fromp=1&pagesize=50&kwicleftctx=100&format=json`;
+            // Use the correct SketchEngine API endpoint, include refs=chapter.id to get document IDs
+            const url = `https://corpus-search.acdh.oeaw.ac.at/search/concordance?corpname=schnitzlerbriefe&q=${q}&attrs=word,landingPageURI&attr_allpos=kw&viewmode=sen&structs=chapter&refs=chapter.id&fromp=1&pagesize=50&kwicleftctx=100&format=json`;
 
             console.log('Fetching Noske data directly via fetch:', url);
             console.log('Query type:', isCQL ? 'CQL' : 'Simple');
@@ -359,23 +365,30 @@ class NoskeSearchImplementation {
                     console.log('After checking all tokens, docRef:', docRef);
 
                     // Fallback: Check Refs for chapter.id
-                    if (!docRef && line.Refs && Array.isArray(line.Refs)) {
-                        console.log('Line', index, 'Refs:', line.Refs);
-                        const docRefObj = line.Refs.find(ref =>
-                            ref.name === 'chapter.id' || ref.name === 'chapter' || ref.name === 'doc.id' || ref.name === 'doc' || ref.name === 'text'
-                        );
-                        if (docRefObj) {
-                            docRef = docRefObj.val || docRefObj.value;
-                            console.log('Found docRef in Refs:', docRef);
-                        }
-                    }
-
-                    if (!docRef && line.refs && Array.isArray(line.refs)) {
-                        const docRefObj = line.refs.find(ref =>
-                            ref.name === 'chapter.id' || ref.name === 'chapter' || ref.name === 'doc.id' || ref.name === 'doc' || ref.name === 'text'
-                        );
-                        if (docRefObj) {
-                            docRef = docRefObj.val || docRefObj.value;
+                    // NOSKE returns Refs as plain strings (e.g. ["L01761"]) or "name=value" strings
+                    const refsArray = line.Refs || line.refs;
+                    if (!docRef && refsArray && Array.isArray(refsArray) && refsArray.length > 0) {
+                        console.log('Line', currentDataIndex, 'Refs:', refsArray);
+                        for (const ref of refsArray) {
+                            if (typeof ref === 'string' && ref && ref !== 'null') {
+                                // Handle "name=value" format or plain value
+                                const val = ref.includes('=') ? ref.split('=').slice(1).join('=') : ref;
+                                if (val && val !== 'null' && val !== '') {
+                                    docRef = val;
+                                    console.log('Found docRef in Refs (string):', docRef);
+                                    break;
+                                }
+                            } else if (ref && typeof ref === 'object') {
+                                // Handle {name, val} object format
+                                if (ref.name === 'chapter.id' || ref.name === 'doc.id' ||
+                                    ref.name === 'chapter' || ref.name === 'doc') {
+                                    docRef = ref.val || ref.value;
+                                    if (docRef) {
+                                        console.log('Found docRef in Refs (object):', docRef);
+                                        break;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
