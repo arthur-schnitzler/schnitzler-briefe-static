@@ -70,11 +70,12 @@ class NoskeSearchImplementation {
                     const data = await clonedResponse.json();
                     console.log('Noske API response data:', data);
 
-                    // Store in the class instance using 'self' reference
-                    self.latestApiData = data;
-                    self.searchResults = data;
-
-                    console.log('Stored API data in self.latestApiData');
+                    // Only store responses that contain actual concordance lines
+                    if (data.Lines || data.lines) {
+                        self.latestApiData = data;
+                        self.searchResults = data;
+                        console.log('Stored concordance API data in self.latestApiData');
+                    }
                 } catch (e) {
                     console.warn('Could not parse Noske API response:', e);
                 }
@@ -210,15 +211,7 @@ class NoskeSearchImplementation {
                     console.log('Search input found:', !!searchInput);
                     console.log('Query value:', query);
 
-                    if (query) {
-                        console.log('Search detected, fetching API data for query:', query);
-                        this.fetchNoskeDataDirectly(query).then(() => {
-                            this.addLinksToResults();
-                        });
-                    } else {
-                        console.warn('No query found, trying to add links anyway...');
-                        this.addLinksToResults();
-                    }
+                    this.addLinksToResults();
                 }, 500);
             }
         });
@@ -285,6 +278,7 @@ class NoskeSearchImplementation {
         const rows = hitsContainer.querySelectorAll('tr');
         console.log('Found', rows.length, 'rows');
 
+        let dataRowIndex = 0;
         rows.forEach((row, index) => {
             // Skip if already processed
             if (row.dataset.processed === 'true') return;
@@ -294,6 +288,8 @@ class NoskeSearchImplementation {
 
             const cells = row.querySelectorAll('td');
             if (cells.length < 3) return;
+
+            const currentDataIndex = dataRowIndex++;
 
             // Try to extract document reference from various sources
             let docRef = null;
@@ -315,9 +311,9 @@ class NoskeSearchImplementation {
             // 3. Try to extract from latestApiData if available
             if (!docRef && this.latestApiData) {
                 const lines = this.latestApiData.Lines || this.latestApiData.lines;
-                if (lines && lines[index]) {
-                    const line = lines[index];
-                    console.log('Line', index, 'full data:', JSON.stringify(line, null, 2));
+                if (lines && lines[currentDataIndex]) {
+                    const line = lines[currentDataIndex];
+                    console.log('Line', currentDataIndex, 'full data:', JSON.stringify(line, null, 2));
 
                     // First try to get landingPageURI from the line structure
                     // The landingPageURI is in the 'attr' field of Kwic tokens
@@ -417,8 +413,13 @@ class NoskeSearchImplementation {
                 });
             }
 
+            // Validate and discard obviously invalid docRef values
+            if (docRef === 'null' || docRef === 'undefined' || docRef === '' || docRef === '/') {
+                docRef = null;
+            }
+
             // Log for debugging
-            console.log('Row', index, 'final docRef:', docRef);
+            console.log('Row', currentDataIndex, 'final docRef:', docRef);
 
             if (docRef) {
                 // If docRef is already a full URL (from landingPageURI), extract just the filename
@@ -428,12 +429,18 @@ class NoskeSearchImplementation {
                     // e.g., "https://arthur-schnitzler.github.io/schnitzler-briefe-static/L01761.html" -> "L01761.html"
                     const urlParts = docRef.split('/');
                     letterUrl = urlParts[urlParts.length - 1];
-                    console.log('Row', index, 'extracted filename from URL:', letterUrl);
+                    console.log('Row', currentDataIndex, 'extracted filename from URL:', letterUrl);
                 } else {
                     // Otherwise, treat it as a file ID and construct the URL
                     const letterId = docRef.replace(/\.xml$/, '').replace(/^.*\//, '');
                     letterUrl = `${letterId}.html`;
-                    console.log('Row', index, 'linking to:', letterUrl);
+                    console.log('Row', currentDataIndex, 'linking to:', letterUrl);
+                }
+
+                // Skip if letterUrl still looks invalid
+                if (!letterUrl || letterUrl === 'null.html' || letterUrl === 'undefined.html' || letterUrl === '.html') {
+                    console.warn('Row', currentDataIndex, 'invalid letterUrl, skipping:', letterUrl);
+                    return;
                 }
 
                 // Make the entire row clickable
@@ -446,20 +453,23 @@ class NoskeSearchImplementation {
 
                 newRow.addEventListener('click', (e) => {
                     // Don't navigate if clicking on an existing link
-                    if (e.target.tagName !== 'A') {
-                        window.location.href = letterUrl;
-                    }
+                    if (e.target.closest('a')) return;
+                    window.location.href = letterUrl;
                 });
 
-                // Add link to the keyword (middle cell)
+                // Make the entire KWIC snippet clickable (left context, keyword, right context)
                 const newCells = newRow.querySelectorAll('td');
-                const keywordCell = newCells[1];
-                if (keywordCell && !keywordCell.querySelector('a')) {
-                    const keyword = keywordCell.innerHTML;
-                    keywordCell.innerHTML = `<a href="${letterUrl}">${keyword}</a>`;
-                }
+                newCells.forEach(cell => {
+                    const existingLinks = cell.querySelectorAll('a');
+                    if (existingLinks.length > 0) {
+                        existingLinks.forEach(link => { link.href = letterUrl; });
+                    } else {
+                        const content = cell.innerHTML;
+                        cell.innerHTML = `<a href="${letterUrl}" class="kwic-link">${content}</a>`;
+                    }
+                });
             } else {
-                console.warn('No document reference found for row', index);
+                console.warn('No document reference found for row', currentDataIndex);
             }
         });
     }

@@ -124,3 +124,17 @@
     width: 3rem;
     height: 3rem;
 }
+
+/* Full KWIC row links: inherit appearance, underline only on hover */
+#hitsbox .kwic-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+#hitsbox .kwic-link:hover {
+    text-decoration: underline;
+}
+
+#hitsbox .table-auto tr {
+    cursor: pointer;
+}
