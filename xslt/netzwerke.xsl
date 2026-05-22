@@ -8,7 +8,7 @@
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:template match="/">
-        <xsl:variable name="doc_title" select="'Netzwerke der Register'"/>
+        <xsl:variable name="doc_title" select="'Registernetzwerke'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
         <html xmlns="http://www.w3.org/1999/xhtml" style="hyphens: auto;" lang="de" xml:lang="de">
             <xsl:call-template name="html_head">
@@ -18,6 +18,20 @@
             <script src="https://code.highcharts.com/modules/networkgraph.js"/>
             <script src="https://code.highcharts.com/modules/exporting.js"/>
             <body class="page">
+                <style>
+                    .nav-tabs { border-bottom: 2px solid #A63437; }
+                    .nav-tabs .nav-link { color: #A63437; }
+                    .nav-tabs .nav-link.active {
+                        background-color: #A63437;
+                        border-color: #A63437;
+                        color: #fff;
+                    }
+                    .nav-tabs .nav-link:not(.active):hover {
+                        border-color: transparent;
+                        background-color: rgba(166,52,55,0.08);
+                        color: #A63437;
+                    }
+                </style>
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
                     <div class="container">
@@ -68,6 +82,17 @@
                                         </div>
                                         <div id="container-person"
                                             style="width:100%; margin: auto; padding-bottom: 20px;"/>
+                                        <div style="text-align: right; margin-top: 4px;">
+                                            <button class="btn mx-1"
+                                                style="background-color: #A63437; color: white; border: none; padding: 3px 10px; font-size: 1rem;"
+                                                data-zoom-container="container-person" data-zoom-factor="1.25">+</button>
+                                            <button class="btn mx-1"
+                                                style="background-color: #A63437; color: white; border: none; padding: 3px 10px; font-size: 1rem;"
+                                                data-zoom-container="container-person" data-zoom-factor="0.8">&#x2212;</button>
+                                            <button class="btn mx-1"
+                                                style="background-color: #A63437; color: white; border: none; padding: 3px 10px; font-size: 0.875rem;"
+                                                data-zoom-container="container-person" data-zoom-factor="0">Reset</button>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab-work" role="tabpanel"
                                         aria-labelledby="tab-work-btn">
@@ -87,6 +112,17 @@
                                         </div>
                                         <div id="container-work"
                                             style="width:100%; margin: auto; padding-bottom: 20px;"/>
+                                        <div style="text-align: right; margin-top: 4px;">
+                                            <button class="btn mx-1"
+                                                style="background-color: #A63437; color: white; border: none; padding: 3px 10px; font-size: 1rem;"
+                                                data-zoom-container="container-work" data-zoom-factor="1.25">+</button>
+                                            <button class="btn mx-1"
+                                                style="background-color: #A63437; color: white; border: none; padding: 3px 10px; font-size: 1rem;"
+                                                data-zoom-container="container-work" data-zoom-factor="0.8">&#x2212;</button>
+                                            <button class="btn mx-1"
+                                                style="background-color: #A63437; color: white; border: none; padding: 3px 10px; font-size: 0.875rem;"
+                                                data-zoom-container="container-work" data-zoom-factor="0">Reset</button>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab-institution" role="tabpanel"
                                         aria-labelledby="tab-institution-btn">
@@ -106,6 +142,17 @@
                                         </div>
                                         <div id="container-institution"
                                             style="width:100%; margin: auto; padding-bottom: 20px;"/>
+                                        <div style="text-align: right; margin-top: 4px;">
+                                            <button class="btn mx-1"
+                                                style="background-color: #A63437; color: white; border: none; padding: 3px 10px; font-size: 1rem;"
+                                                data-zoom-container="container-institution" data-zoom-factor="1.25">+</button>
+                                            <button class="btn mx-1"
+                                                style="background-color: #A63437; color: white; border: none; padding: 3px 10px; font-size: 1rem;"
+                                                data-zoom-container="container-institution" data-zoom-factor="0.8">&#x2212;</button>
+                                            <button class="btn mx-1"
+                                                style="background-color: #A63437; color: white; border: none; padding: 3px 10px; font-size: 0.875rem;"
+                                                data-zoom-container="container-institution" data-zoom-factor="0">Reset</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

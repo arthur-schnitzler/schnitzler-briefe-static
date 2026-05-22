@@ -5,6 +5,19 @@
     var minNodeSize = 2, maxNodeSize = 20;
     var minLinkWidth = 0.5, maxLinkWidth = 5;
     var charts = {};
+    var zoomScales = {};
+
+    function zoomChart(containerId, factor) {
+        var container = document.getElementById(containerId);
+        if (!container) return;
+        var svg = container.querySelector('svg');
+        if (!svg) return;
+        var current = parseFloat(svg.dataset.scale || '1');
+        var newScale = factor === 0 ? 1 : Math.max(0.3, Math.min(4, current * factor));
+        svg.dataset.scale = newScale;
+        svg.style.transform = 'scale(' + newScale + ')';
+        svg.style.transformOrigin = 'center center';
+    }
 
     function resizeContainer(containerId) {
         var el = document.getElementById(containerId);
@@ -148,6 +161,11 @@
 
     window.initNetworkChart = function (containerId, btnClass) {
         if (charts[containerId]) { return; }
+        document.querySelectorAll('[data-zoom-container="' + containerId + '"]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                zoomChart(containerId, parseFloat(btn.getAttribute('data-zoom-factor')));
+            });
+        });
         var buttons = document.querySelectorAll(btnClass);
         buttons.forEach(function (btn) {
             btn.addEventListener('click', function (e) {
