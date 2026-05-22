@@ -113,6 +113,8 @@ class NoskeSearchImplementation {
                     attrs: "word,landingPageURI",
                     structs: "chapter",
                     refs: "chapter.id",
+                    kwicleftctx: "s:chapter",
+                    kwicrightctx: "s:chapter",
                 },
                 hits: {
                     id: "hitsbox",
@@ -249,7 +251,7 @@ class NoskeSearchImplementation {
             }
 
             // Use the correct SketchEngine API endpoint, include refs=chapter.id to get document IDs
-            const url = `https://corpus-search.acdh.oeaw.ac.at/search/concordance?corpname=schnitzlerbriefe&q=${q}&attrs=word,landingPageURI&attr_allpos=kw&viewmode=sen&structs=chapter&refs=chapter.id&fromp=1&pagesize=50&kwicleftctx=100&format=json`;
+            const url = `https://corpus-search.acdh.oeaw.ac.at/search/concordance?corpname=schnitzlerbriefe&q=${q}&attrs=word,landingPageURI&attr_allpos=kw&viewmode=sen&structs=chapter&refs=chapter.id&fromp=1&pagesize=50&kwicleftctx=s:chapter&kwicrightctx=s:chapter&format=json`;
 
             console.log('Fetching Noske data directly via fetch:', url);
             console.log('Query type:', isCQL ? 'CQL' : 'Simple');
