@@ -110,10 +110,14 @@
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="statistiken.html">Allgemein</a>
                                 </li>
-                            
+                               
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="jung-wien.html">Netzwerk Jung-Wien</a>
                                 </li>
+                                 <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="netzwerke.html">Registernetzwerke</a>
+                                </li>
+
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="tocs_viz.html">Korrespondenzen</a>
                                 </li>
