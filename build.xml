@@ -118,6 +118,10 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
+    <xslt in="./xslt/venn.xsl" out="${target}/venn.html" style="./xslt/venn.xsl">
+        <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        <classpath location="${basedir}/saxon/saxon9he.jar"/>
+    </xslt>
     <!--<xslt in="./data/meta/statistiken-dynamisch.xml" out="${target}/statistiken-dynamisch.html" style="./xslt/statistics.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
