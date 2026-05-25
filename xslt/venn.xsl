@@ -172,6 +172,22 @@
                                             </div>
                                             <div class="form-check mb-1">
                                                 <input class="form-check-input" type="checkbox"
+                                                    id="vproj-schnitzler-fischer"
+                                                    value="schnitzler-fischer"/>
+                                                <label class="form-check-label"
+                                                    for="vproj-schnitzler-fischer"
+                                                    style="color:#3D4F9F;">Schnitzler – S. Fischer</label>
+                                            </div>
+                                            <div class="form-check mb-1">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="vproj-schoenberg-ue"
+                                                    value="schoenberg-ue"/>
+                                                <label class="form-check-label"
+                                                    for="vproj-schoenberg-ue"
+                                                    style="color:#C8884A;">Schönberg Universaledition</label>
+                                            </div>
+                                            <div class="form-check mb-1">
+                                                <input class="form-check-input" type="checkbox"
                                                     id="vproj-schnitzler-tagebuch"
                                                     value="schnitzler-tagebuch"/>
                                                 <label class="form-check-label"
