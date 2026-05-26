@@ -174,10 +174,10 @@
                 var checkedCount = document.querySelectorAll(
                     '#venn-project-list input[type="checkbox"]:not([disabled]):checked'
                 ).length;
-                if (checkedCount > 4) {
+                if (checkedCount > 2) {
                     this.checked = false;
                     document.getElementById('venn-info').textContent =
-                        'Maximal 4 zusätzliche Projekte können ausgewählt werden.';
+                        'Maximal 2 zusätzliche Projekte können ausgewählt werden (3 Kreise).';
                     return;
                 }
                 if (this.checked) {

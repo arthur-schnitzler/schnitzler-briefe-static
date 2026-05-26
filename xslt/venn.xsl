@@ -43,7 +43,7 @@
                                 <h1>
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
-                                <p class="text-muted mb-0">Gemeinsame PMB-Entitäten zwischen <em>schnitzler-briefe</em> und anderen Projekten</p>
+                                <p class="text-muted mb-0">Hier werden Schnittmengen zwischen <em>Schnitzler Briefwechsel mit Autorinnen und Autoren</em> und anderen Projekten angezeigt.</p>
                             </div>
                             <div class="card-body">
                                 <ul class="nav nav-tabs mb-3" id="vennEntityTabs" role="tablist">
@@ -71,7 +71,7 @@
                                 <div class="row">
                                     <div class="col-md-3 border-end pe-3">
                                         <h6 class="fw-bold mb-1">Projekte</h6>
-                                        <p class="text-muted mb-2" style="font-size:0.78rem;"><em>schnitzler-briefe</em> ist immer ausgewählt. Max. 4 weitere. Ausgegraut = für diesen Entitätstyp keine Daten.</p>
+                                        <p class="text-muted mb-2" style="font-size:0.78rem;"><em>schnitzler-briefe</em> ist immer ausgewählt. Max. 2 weitere (= 3 Kreise). Ausgeblendet = für diesen Entitätstyp keine Daten.</p>
                                         <div id="venn-project-list">
                                             <div class="form-check mb-1">
                                                 <input class="form-check-input" type="checkbox"
