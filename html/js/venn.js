@@ -23,7 +23,7 @@
     }
 
     function getCheckedProjects() {
-        var result = ['schnitzler-briefe'];
+        var result = [];
         document.querySelectorAll('#venn-project-list input[type="checkbox"]:not([disabled]):checked').forEach(function (cb) {
             result.push(cb.value);
         });
@@ -40,7 +40,7 @@
             points.push({
                 sets: [pid],
                 value: proj.count,
-                name: 'n ' + countStr,
+                name: proj.label,
                 label: proj.label + ': ' + countStr,
                 color: proj.color
             });
@@ -59,7 +59,7 @@
                     points.push({
                         sets: combo,
                         value: Math.max(count, 0.5),
-                        name: 'n ' + countStr2,
+                        name: countStr2,
                         label: names.join(' ∩ ') + ': ' + countStr2
                     });
                 }
@@ -69,7 +69,7 @@
     }
 
     function updateProjectAvailability(data) {
-        document.querySelectorAll('#venn-project-list input[type="checkbox"]:not([disabled])').forEach(function (cb) {
+        document.querySelectorAll('#venn-project-list input[type="checkbox"]').forEach(function (cb) {
             var available = Object.prototype.hasOwnProperty.call(data.projects, cb.value);
             cb.disabled = !available;
             var row = cb.closest('.form-check');
@@ -101,7 +101,7 @@
         var infoEl = document.getElementById('venn-info');
 
         if (selected.length < 2) {
-            infoEl.textContent = 'Bitte mindestens ein weiteres Projekt auswählen.';
+            infoEl.textContent = 'Bitte mindestens zwei Projekte auswählen.';
             if (chart) { chart.destroy(); chart = null; }
             return;
         }
@@ -169,15 +169,15 @@
             });
         });
 
-        document.querySelectorAll('#venn-project-list input[type="checkbox"]:not([disabled])').forEach(function (cb) {
+        document.querySelectorAll('#venn-project-list input[type="checkbox"]').forEach(function (cb) {
             cb.addEventListener('change', function () {
                 var checkedCount = document.querySelectorAll(
                     '#venn-project-list input[type="checkbox"]:not([disabled]):checked'
                 ).length;
-                if (checkedCount > 2) {
+                if (checkedCount > 3) {
                     this.checked = false;
                     document.getElementById('venn-info').textContent =
-                        'Maximal 2 zusätzliche Projekte können ausgewählt werden (3 Kreise).';
+                        'Maximal 3 Projekte können ausgewählt werden (3 Kreise).';
                     return;
                 }
                 if (this.checked) {

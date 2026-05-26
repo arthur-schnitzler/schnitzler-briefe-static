@@ -72,13 +72,13 @@
                                 <div class="row">
                                     <div class="col-md-3 border-end pe-3">
                                         <h6 class="fw-bold mb-1">Projekte</h6>
-                                        <p class="text-muted mb-2" style="font-size:0.78rem;"><em>schnitzler-briefe</em> ist immer ausgewählt. Max. 2 weitere (= 3 Kreise). Ausgeblendet = für diesen Entitätstyp keine Daten.</p>
+                                        <p class="text-muted mb-2" style="font-size:0.78rem;">Max. 3 Projekte (= 3 Kreise). Ausgeblendet = für diesen Entitätstyp keine Daten.</p>
                                         <div id="venn-project-list">
                                             <div class="form-check mb-1">
                                                 <input class="form-check-input" type="checkbox"
                                                     id="vproj-schnitzler-briefe"
                                                     value="schnitzler-briefe"
-                                                    checked="checked" disabled="disabled"/>
+                                                    checked="checked"/>
                                                 <label class="form-check-label fw-semibold"
                                                     for="vproj-schnitzler-briefe"
                                                     style="color:#A63437;">Briefe</label>
