@@ -68,8 +68,8 @@
         document.querySelectorAll('#venn-project-list input[type="checkbox"]:not([disabled])').forEach(function (cb) {
             var available = Object.prototype.hasOwnProperty.call(data.projects, cb.value);
             cb.disabled = !available;
-            var label = document.querySelector('label[for="' + cb.id + '"]');
-            if (label) { label.style.opacity = available ? '1' : '0.3'; }
+            var row = cb.closest('.form-check');
+            if (row) { row.style.display = available ? '' : 'none'; }
             if (!available) {
                 cb.checked = false;
             } else {
@@ -183,10 +183,10 @@
             });
         });
 
-        var firstCb = document.querySelector('#venn-project-list input[type="checkbox"]:not([disabled])');
-        if (firstCb) {
-            firstCb.checked = true;
-            selectedProjects[firstCb.value] = true;
+        var defaultCb = document.getElementById('vproj-schnitzler-tagebuch');
+        if (defaultCb) {
+            defaultCb.checked = true;
+            selectedProjects['schnitzler-tagebuch'] = true;
         }
         renderChart();
     };
