@@ -36,10 +36,12 @@
             var pid = selected[i];
             var proj = data.projects[pid];
             if (!proj) { continue; }
+            var countStr = proj.count.toLocaleString('de-AT');
             points.push({
                 sets: [pid],
                 value: proj.count,
-                name: proj.label + ': ' + proj.count.toLocaleString('de-AT'),
+                name: 'n ' + countStr,
+                label: proj.label + ': ' + countStr,
                 color: proj.color
             });
         }
@@ -53,10 +55,12 @@
                     var names = combo.map(function (id) {
                         return data.projects[id] ? data.projects[id].label : id;
                     });
+                    var countStr2 = count.toLocaleString('de-AT');
                     points.push({
                         sets: combo,
                         value: Math.max(count, 0.5),
-                        name: names.join(' ∩ ') + ': ' + count.toLocaleString('de-AT')
+                        name: 'n ' + countStr2,
+                        label: names.join(' ∩ ') + ': ' + countStr2
                     });
                 }
             }
@@ -126,7 +130,9 @@
                 chart: { type: 'venn' },
                 title: { text: null },
                 series: [{ type: 'venn', data: vennData }],
-                tooltip: { pointFormat: '{point.name}' },
+                tooltip: {
+                    formatter: function () { return this.point.label; }
+                },
                 credits: { enabled: false },
                 exporting: {
                     enabled: true,
