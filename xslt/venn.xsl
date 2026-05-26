@@ -43,7 +43,8 @@
                                 <h1>
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
-                                <p class="text-muted mb-0">Hier werden Schnittmengen zwischen <em>Schnitzler Briefwechsel mit Autorinnen und Autoren</em> und anderen Projekten angezeigt.</p>
+                                <p class="text-muted mb-0">Hier werden Schnittmengen zwischen <em>Schnitzler Briefwechsel mit Autorinnen und Autoren</em> und anderen Projekten angezeigt. In den
+                                Überlappungen der Kreise wird die Anzahl der gemeinsamen Entitäten dargestellt.</p>
                             </div>
                             <div class="card-body">
                                 <ul class="nav nav-tabs mb-3" id="vennEntityTabs" role="tablist">
