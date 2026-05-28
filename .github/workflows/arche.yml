@@ -8,6 +8,7 @@ jobs:
     name: Ingest Data into ARCHE
     runs-on: ubuntu-latest
     env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       ARCHE_USER: pandorfer
       ARCHE_PASSWORD: ${{secrets.ARCHE_PASSWORD}}
       ARCHE: https://arche.acdh.oeaw.ac.at/api
