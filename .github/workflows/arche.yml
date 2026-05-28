@@ -15,7 +15,7 @@ jobs:
       TOPCOLID: https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-briefe
     steps:
     - name: Perform Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - name: install python things
       run: pip install -r requirements.txt
     - name: Fetch the data

@@ -33,7 +33,7 @@ jobs:
       TYPESENSE_API_KEY: ${{secrets.TYPESENSE_API_KEY}}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Sync entity assets from schnitzler-chronik-static
         run: |
           python3 check_entities_xsl.py
@@ -62,9 +62,9 @@ jobs:
       - name: Build the app
         run: ./transform.sh
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           # Upload entire repository
           path: './html'
