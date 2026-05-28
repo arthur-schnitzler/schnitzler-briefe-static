@@ -2374,4 +2374,15 @@ else if(pts[0]){map.setView(pts[0],10);}
             </span>
         </span>
     </xsl:template>
+    <xsl:template match="tei:ref[@type='DOI' or @type='URL' and not(ancestor::tei:biblStruct)]">
+        <xsl:element name="a">
+            <xsl:attribute name="href">
+                <xsl:value-of select="@target"/>
+            </xsl:attribute>
+            <xsl:attribute name="target">
+                <xsl:text>_blank</xsl:text>
+            </xsl:attribute>
+        <xsl:value-of select="@target"/>
+        </xsl:element>
+    </xsl:template>
 </xsl:stylesheet>
