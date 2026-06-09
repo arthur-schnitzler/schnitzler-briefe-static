@@ -192,12 +192,14 @@
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
             layout:"fitColumns",
+            responsiveLayout:"collapse",
             columns: [
-            {title: "Vorname", field: "vorname", sorter: "string", formatter: "html"},
-            {title: "Nachname", field: "nachname", sorter: "string", formatter: "html"},
-            {title: "Namensvarianten", field: "namensvarianten", sorter: "string"},
-            {title: "Lebensdaten", field: "lebensdaten", sorter: "string"},
-            {title: "Berufe", field: "berufe", sorter: "string"}
+            {formatter:"responsiveCollapse", width:30, minWidth:30, hozAlign:"center", resizable:false, headerSort:false},
+            {title: "Vorname", field: "vorname", sorter: "string", formatter: "html", responsive: 1, minWidth: 80},
+            {title: "Nachname", field: "nachname", sorter: "string", formatter: "html", responsive: 0, minWidth: 100},
+            {title: "Namensvarianten", field: "namensvarianten", sorter: "string", responsive: 4, minWidth: 120},
+            {title: "Lebensdaten", field: "lebensdaten", sorter: "string", responsive: 3, minWidth: 80},
+            {title: "Berufe", field: "berufe", sorter: "string", responsive: 2, minWidth: 100}
             ],
             initialSort:[
             {column:"vorname", dir:"asc"},
