@@ -62,7 +62,8 @@
                                                 <div id="searchbox"></div>
                                                 <div id="current-refinements"></div>
                                                 <div id="clear-refinements"></div>
-                                            
+
+                                            <div id="filter-cards">
                                             <div class="card">
                                                 <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTextArea" aria-expanded="true" aria-controls="collapseTextArea" style="cursor: pointer;">
                                                     Textbereich <i class="fa fa-chevron-down float-end"></i>
@@ -161,6 +162,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            </div><!-- /filter-cards -->
                                         </div>
                                             <div class="col-md-8">
                                                 <div id="hits"></div>
