@@ -12,7 +12,7 @@
     <xsl:template
         match="tei:note[(@type = 'textConst' or @type = 'commentary') and ancestor::tei:note[@type = 'footnote']]"
         mode="kommentaranhang">
-        <p>
+        <div class="anno">
             <xsl:attribute name="id">
                 <xsl:value-of select="@corresp"/>
             </xsl:attribute>
@@ -50,7 +50,8 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <a class="lemma" href="#{@corresp}">
+            <div class="lemma">
+                <xsl:text>»</xsl:text>
                 <xsl:choose>
                     <xsl:when test="string-length($lemma) &gt; 0">
                         <xsl:value-of select="$lemma"/>
@@ -59,22 +60,27 @@
                         <xsl:text>XXXX Lemmafehler</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:text>&#160;&#8593;&#160;&#160;</xsl:text>
-            </a>
-            <span class="kommentar-text">
-                <xsl:attribute name="id">
-                    <xsl:value-of select="@xml:id"/>
-                </xsl:attribute>
-                <xsl:apply-templates select="node() except Lemma"/>
-            </span>
-        </p>
+                <xsl:text>«</xsl:text>
+                <a class="lemma back" href="#{@corresp}">
+                    <xsl:text>&#8593;&#160;zurück zur Textstelle</xsl:text>
+                </a>
+            </div>
+            <div class="body">
+                <span class="kommentar-text">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="@xml:id"/>
+                    </xsl:attribute>
+                    <xsl:apply-templates select="node() except Lemma"/>
+                </span>
+            </div>
+        </div>
     </xsl:template>
     <xsl:template
         match="tei:note[(@type = 'textConst' or @type = 'commentary') and not(ancestor::tei:note[@type = 'footnote'])]"/>
     <xsl:template
         match="tei:note[(@type = 'textConst' or @type = 'commentary') and not(ancestor::tei:note[@type = 'footnote'])]"
         mode="kommentaranhang">
-        <p>
+        <div class="anno">
             <xsl:attribute name="id">
                 <xsl:value-of select="@corresp"/>
             </xsl:attribute>
@@ -115,7 +121,8 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <a class="lemma" href="#{@corresp}">
+            <div class="lemma">
+                <xsl:text>»</xsl:text>
                 <xsl:choose>
                     <xsl:when test="string-length($lemma) &gt; 0">
                         <xsl:value-of select="$lemma"/>
@@ -124,15 +131,20 @@
                         <xsl:text>XXXX Lemmafehler</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:text>&#160;&#8593;&#160;&#160;</xsl:text>
-            </a>
-            <span class="kommentar-text">
-                <xsl:attribute name="id">
-                    <xsl:value-of select="@xml:id"/>
-                </xsl:attribute>
-                <xsl:apply-templates select="node() except Lemma"/>
-            </span>
-        </p>
+                <xsl:text>«</xsl:text>
+                <a class="lemma back" href="#{@corresp}">
+                    <xsl:text>&#8593;&#160;zurück zur Textstelle</xsl:text>
+                </a>
+            </div>
+            <div class="body">
+                <span class="kommentar-text">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="@xml:id"/>
+                    </xsl:attribute>
+                    <xsl:apply-templates select="node() except Lemma"/>
+                </span>
+            </div>
+        </div>
     </xsl:template>
     <xsl:template match="tei:del" mode="lemma"/>
     <xsl:template match="tei:subst/tei:del" mode="lemma"/><!-- das verhindert die Wiedergabe des gelöschten Teils von subst in einem Lemma -->

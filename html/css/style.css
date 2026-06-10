@@ -812,11 +812,11 @@ div.dataTables_filter {
 }
 
 .h1, h1 {
-    font-size: 1.4rem;
+    font-size: 38px;
     padding: 1rem 0;
     font-weight: bold;
     font-family: sans-serif;
-    text-align: center;
+    text-align: left;
 }
 
 .h2, h2 {
@@ -2463,4 +2463,390 @@ html {
     .back-to-toc {
         font-size: 0.8em;
     }
+}
+
+/* ============================================================
+   Editions-/Briefseiten (editions.xsl)
+   ============================================================ */
+
+.navBarNavDropdown ul li:nth-child(2) {
+    display: none !important;
+}
+
+/* Action-Bar (zweites Menü unter der Navbar) */
+.action-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    background: #A63437;
+    color: #fff;
+    border-bottom: 1px solid #8a2a2d;
+}
+.action-bar .inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 0;
+}
+.action-bar .draft-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px 10px 0;
+    color: #fff;
+    font-size: 11.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-right: 1px solid rgba(255, 255, 255, .2);
+    margin-right: 6px;
+    text-decoration: none;
+}
+.action-bar .draft-badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffd24a;
+    box-shadow: 0 0 0 3px rgba(255, 210, 74, .25);
+}
+.action-bar button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 11px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background .12s;
+}
+.action-bar button:hover {
+    background: rgba(255, 255, 255, .1);
+}
+.action-bar .fas,
+.action-bar .far {
+    color: #fff;
+}
+.action-bar .gap {
+    flex: 1;
+}
+.action-bar .neighbors {
+    display: inline-flex;
+    align-items: stretch;
+}
+.action-bar .neighbors .dropdown {
+    display: inline-flex;
+    align-items: stretch;
+}
+.action-bar .neighbors .dropdown-menu .fas {
+    color: #A63437;
+}
+
+/* Anmerkungen am Fuß des Briefes */
+.annotations-head {
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: #A63437;
+    font-weight: 700;
+    margin: 0 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #A63437;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.annotations-head .count {
+    color: #6c757d;
+    letter-spacing: 0;
+    font-size: 11px;
+    font-weight: 500;
+}
+.anno {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    line-height: 1.6;
+    scroll-margin-top: 72px;
+}
+.anno:last-child {
+    border-bottom: none;
+}
+.anno .lemma {
+    font-family: serif;
+    font-size: 16px;
+    color: #A63437;
+    font-weight: 500;
+    cursor: auto;
+}
+.anno .lemma:hover {
+    text-decoration: none;
+}
+.anno a.back {
+    display: block;
+    font-family: inherit;
+    font-size: 11px;
+    color: #6c757d;
+    text-decoration: none;
+    letter-spacing: .04em;
+    margin-top: 4px;
+    font-weight: 400;
+}
+.anno a.back:hover {
+    color: #A63437;
+}
+.anno .body a {
+    color: #A63437;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(166, 52, 55, .4);
+}
+.anno .body a:hover {
+    border-bottom-style: solid;
+}
+.anno:target {
+    background: rgba(166, 52, 55, .06);
+    border-radius: 4px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+@media (max-width: 768px) {
+    .anno {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+}
+
+/* Drawer unter der Action-Bar */
+.action-drawer {
+    background: #fff;
+    border-bottom: 1px solid #dee2e6;
+    display: none;
+    position: sticky;
+    top: 43px;
+    z-index: 1019;
+    box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .1);
+}
+.action-drawer.open {
+    display: block;
+}
+.drawer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 22px 28px 26px;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+.drawer-panel {
+    display: none;
+}
+.drawer-panel.active {
+    display: block;
+}
+.drawer-panel h3 {
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: #A63437;
+    font-weight: 700;
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #A63437;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.drawer-panel h3 .close {
+    color: #6c757d;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    float: none;
+    opacity: 1;
+}
+.drawer-panel h3 .close:hover {
+    color: #A63437;
+}
+.drawer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px 24px;
+}
+.transmission-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: start;
+    margin-bottom: 16px;
+}
+.drawer-panel table {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.drawer-panel table td,
+.drawer-panel table th {
+    border: none;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.setting-group {
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 14px 16px 12px;
+    background: rgba(166, 52, 55, .03);
+}
+.setting-group .title {
+    font-size: 12px;
+    color: #A63437;
+    font-weight: 600;
+    letter-spacing: .04em;
+    margin-bottom: 10px;
+}
+.meta-caption {
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #6c757d;
+    font-weight: 600;
+    margin: 18px 0 8px;
+}
+.cite-block {
+    font-size: 15px;
+    line-height: 1.55;
+    padding: 14px 18px;
+    background: #f8f9fa;
+    border-left: 3px solid #A63437;
+    border-radius: 3px;
+    margin: 6px 0 16px;
+}
+.download-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.download-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    background: #A63437;
+    color: #fff;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+}
+.download-list a.secondary {
+    background: #fff;
+    color: #A63437;
+    border: 1px solid rgba(166, 52, 55, .4);
+}
+.download-list a:hover {
+    filter: brightness(1.05);
+}
+.download-list a .far,
+.download-list a .fas {
+    color: inherit;
+}
+
+/* Entitäten-Gruppen unterhalb der Anmerkungen */
+.entities-foot {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    align-items: start;
+    margin-top: 2em;
+}
+.ent-group {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 14px 16px;
+}
+.ent-group h4 {
+    font-size: 12px;
+    color: #A63437;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+.ent-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.ent-group li {
+    font-size: 13px;
+    padding: 3px 0;
+}
+.ent-group li.entity-highlight-toggle {
+    display: flex;
+    align-items: flex-start;
+}
+.ent-group .ent-role {
+    font-size: 10.5px;
+    color: #6c757d;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+.ent-group .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 7px;
+    vertical-align: middle;
+    background: #e74c3c;
+}
+
+/* Layout-Korrekturen Briefseite */
+.wp-transcript {
+    margin-top: 0;
+}
+.card-footer .card-body-anhang {
+    max-width: none;
+}
+main.transcript,
+main.transcript .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+main.transcript .text {
+    padding-left: 0;
+}
+main.transcript .text .card-body {
+    padding-left: 0;
+    padding-right: 0;
+}
+main.transcript .card-body-text {
+    margin-left: 0;
+}
+#title-nav {
+    margin-left: 0;
+    margin-right: 0;
+}
+#title-nav .col-12 {
+    padding-left: 0;
+}
+main.transcript .row {
+    padding-left: 0;
+    padding-right: 0;
+}
+.card-footer {
+    padding-left: 0;
+    padding-right: 0;
 }
