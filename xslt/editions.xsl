@@ -1165,7 +1165,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                                   test="child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')][1]">
                                                   <xsl:text> (</xsl:text>
                                                   <xsl:for-each
-                                                  select="distinct-values(child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')])">
+                                                  select="distinct-values(child::tei:placeName[@type = 'alternative-name' or contains(@type, 'namensvariante')])[position() &lt; 4]">
                                                   <xsl:value-of select="normalize-space(.)"/>
                                                   <xsl:if test="position() != last()">
                                                   <xsl:text>, </xsl:text>
