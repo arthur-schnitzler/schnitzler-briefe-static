@@ -848,7 +848,7 @@ h5 {
 
 .image-rights {
     text-align: right;
-    color: gray;
+    color: #6c6c6c;
     font-size: 80%;
     font-family: sans-serif}
     
@@ -1275,13 +1275,14 @@ a.reference-black {
 }
 */
 
-/* Entity-specific link colors for modal entity lists */
+/* Entity-specific link colors for modal entity lists
+   (abgedunkelte Varianten der Entitätsfarben, Kontrast >= 4.5:1 auf Weiß) */
 a.persons {
-    color: #e74c3c !important;
+    color: #c0392b !important;
 }
 
 a.places {
-    color: #3498db !important;
+    color: #2874a6 !important;
 }
 
 a.orgs {
@@ -1289,11 +1290,11 @@ a.orgs {
 }
 
 a.works {
-    color: #f39c12 !important;
+    color: #9c6408 !important;
 }
 
 a.events {
-    color: #27ae60 !important;
+    color: #1e8449 !important;
 }
 
 .tripleUnderline {
@@ -2686,7 +2687,7 @@ html {
     align-items: center;
 }
 .drawer-panel h3 .close {
-    color: #6c757d;
+    color: #5f676e;
     font-weight: 500;
     letter-spacing: 0;
     text-transform: none;
@@ -2739,7 +2740,7 @@ html {
     font-size: 11px;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: #6c757d;
+    color: #5f676e;
     font-weight: 600;
     margin: 18px 0 8px;
 }
@@ -2840,7 +2841,7 @@ html {
     border-radius: 6px;
     padding: 14px 16px;
 }
-.ent-group h4 {
+.ent-group h2 {
     font-size: 12px;
     color: #A63437;
     font-weight: 600;
@@ -2884,19 +2885,19 @@ html {
 .card-footer .card-body-anhang {
     max-width: none;
 }
-main.transcript,
-main.transcript .row {
+main.wp-transcript .transcript,
+main.wp-transcript .transcript .row {
     margin-left: 0;
     margin-right: 0;
 }
-main.transcript .text {
+main.wp-transcript .transcript .text {
     padding-left: 0;
 }
-main.transcript .text .card-body {
+main.wp-transcript .transcript .text .card-body {
     padding-left: 0;
     padding-right: 0;
 }
-main.transcript .card-body-text {
+main.wp-transcript .transcript .card-body-text {
     margin-left: 0;
 }
 #title-nav {
@@ -2906,7 +2907,7 @@ main.transcript .card-body-text {
 #title-nav .col-12 {
     padding-left: 0;
 }
-main.transcript .row {
+main.wp-transcript .transcript .row {
     padding-left: 0;
     padding-right: 0;
 }

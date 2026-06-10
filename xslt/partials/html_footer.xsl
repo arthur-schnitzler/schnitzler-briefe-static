@@ -3,6 +3,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     exclude-result-prefixes="#all" version="2.0">
     <xsl:template match="/" name="html_footer">
+        <footer>
         <div class="wrapper hide-reading" id="wrapper-footer-full">
             <div class="container-fluid" id="footer-full-content" tabindex="-1">
                 <div class="footer-separator"> KONTAKT </div>
@@ -72,7 +73,8 @@
                     <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
                         <div class="row">
                             <div class="textwidget custom-html-widget">
-                                <h6 class="font-weight-bold">FÖRDERINSTITUTION</h6>
+                                <div class="font-weight-bold" style="margin-bottom: .5rem;"
+                                    >FÖRDERINSTITUTION</div>
                                 <a href="https://www.fwf.ac.at/">
                                     <img class="card-img-right flex-auto d-md-block"
                                         src="https://www.fwf.ac.at/fileadmin/Website/Logos/FWF_Logo_Zusatz_Blau_RGB_DE.svg"
@@ -98,6 +100,7 @@
             style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;"> © Copyright OEAW | <a
                 href="imprint.html">Impressum</a>
         </div>
+        </footer>
         <!-- Scripts already loaded in head with defer -->
     </xsl:template>
 </xsl:stylesheet>

@@ -240,7 +240,7 @@
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
                     <!-- Zweites Menü: erweitert den Trennstrich unter der Navbar -->
-                    <div class="action-bar" id="actionBar">
+                    <nav class="action-bar" id="actionBar" aria-label="Briefwerkzeuge und Blättern">
                         <div class="inner">
                             <xsl:if
                                 test="not(descendant::tei:teiHeader[1]/tei:revisionDesc[1]/@status = 'approved')">
@@ -270,10 +270,11 @@
                             <span class="gap"/>
                             <xsl:call-template name="header-nav-arrows"/>
                         </div>
-                    </div>
+                    </nav>
                     <!-- Drawer, der unter der Action-Bar aufklappt -->
                     <div class="drawer-backdrop" id="drawerBackdrop"/>
-                    <div class="action-drawer" id="drawer">
+                    <div class="action-drawer" id="drawer" role="region"
+                        aria-label="Briefwerkzeuge">
                         <div class="drawer-inner">
                             <!-- EINSTELLUNGEN -->
                             <div class="drawer-panel" data-panel="settings">
@@ -797,7 +798,7 @@ if(backdrop){backdrop.addEventListener('click',closeDrawer);}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer();}});
 })();</script>
                     <div class="container-fluid">
-                        <div class="wp-transcript">
+                        <main class="wp-transcript">
                             <!-- Breadcrumbs -->
                             <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
                                 <span class="type-pill">
@@ -939,12 +940,12 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                 <header>
                                     <xsl:call-template name="header-nav"/>
                                 </header>
-                                <main id="container-resize" class="row transcript active"
+                                <div id="container-resize" class="row transcript active"
                                     itemprop="articleBody">
                                     <xsl:for-each select="descendant::tei:body">
                                         <xsl:call-template name="mam:view-type-img"/>
                                     </xsl:for-each>
-                                </main>
+                                </div>
                             </article>
                             <div class="card-footer" style="clear: both;">
                                 <xsl:if
@@ -983,9 +984,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                         <xsl:if
                                             test="descendant::tei:text/tei:back/tei:listPerson/tei:person">
                                             <div class="ent-group">
-                                                <h4>Personen (<xsl:value-of
+                                                <h2>Personen (<xsl:value-of
                                                   select="count(descendant::tei:text/tei:back/tei:listPerson/tei:person)"
-                                                  />)</h4>
+                                                  />)</h2>
                                                 <ul>
                                                   <xsl:for-each
                                                   select="//tei:correspDesc//tei:persName">
@@ -1058,9 +1059,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                         <xsl:if
                                             test="descendant::tei:text/tei:back/tei:listBibl/tei:bibl">
                                             <div class="ent-group">
-                                                <h4>Werke (<xsl:value-of
+                                                <h2>Werke (<xsl:value-of
                                                   select="count(descendant::tei:text/tei:back/tei:listBibl/tei:bibl)"
-                                                  />)</h4>
+                                                  />)</h2>
                                                 <ul>
                                                   <xsl:for-each
                                                   select="descendant::tei:text/tei:back/tei:listBibl/tei:bibl">
@@ -1133,9 +1134,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                         <xsl:if
                                             test="descendant::tei:text/tei:back/tei:listPlace/tei:place">
                                             <div class="ent-group">
-                                                <h4>Orte (<xsl:value-of
+                                                <h2>Orte (<xsl:value-of
                                                   select="count(descendant::tei:text/tei:back/tei:listPlace/tei:place)"
-                                                  />)</h4>
+                                                  />)</h2>
                                                 <ul>
                                                   <xsl:for-each
                                                   select="descendant::tei:text/tei:back/tei:listPlace/tei:place">
@@ -1196,7 +1197,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                                   <xsl:attribute name="rel">
                                                   <xsl:text>noopener</xsl:text>
                                                   </xsl:attribute>
-                                                  <i class="fa-solid fa-location-dot"/>
+                                                  <xsl:attribute name="aria-label">
+                                                  <xsl:value-of
+                                                  select="concat(normalize-space(child::tei:placeName[1]), ' auf OpenStreetMap anzeigen')"
+                                                  />
+                                                  </xsl:attribute>
+                                                  <i class="fa-solid fa-location-dot"
+                                                  aria-hidden="true"/>
                                                   </a>
                                                   </xsl:if>
                                                   </span>
@@ -1209,9 +1216,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                         <xsl:if
                                             test="descendant::tei:text/tei:back/tei:listOrg/tei:org">
                                             <div class="ent-group">
-                                                <h4>Institutionen (<xsl:value-of
+                                                <h2>Institutionen (<xsl:value-of
                                                   select="count(descendant::tei:text/tei:back/tei:listOrg/tei:org)"
-                                                  />)</h4>
+                                                  />)</h2>
                                                 <ul>
                                                   <xsl:for-each
                                                   select="descendant::tei:text/tei:back/tei:listOrg//tei:org">
@@ -1245,9 +1252,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                         <xsl:if
                                             test="descendant::tei:text/tei:back/tei:listEvent/tei:event">
                                             <div class="ent-group">
-                                                <h4>Ereignisse (<xsl:value-of
+                                                <h2>Ereignisse (<xsl:value-of
                                                   select="count(descendant::tei:text/tei:back/tei:listEvent/tei:event)"
-                                                  />)</h4>
+                                                  />)</h2>
                                                 <ul>
                                                   <xsl:for-each
                                                   select="descendant::tei:text/tei:back/tei:listEvent/tei:event">
@@ -1280,8 +1287,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                     </section>
                                 </xsl:if>
                             </div>
-                            <xsl:call-template name="html_footer"/>
-                        </div>
+                        </main>
+                        <xsl:call-template name="html_footer"/>
                     </div>
                 </div>
                 <!-- Hier die Modals für mehrere rs/@refs in einem -->
@@ -2382,4 +2389,39 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
          behandelt Modal- und Drawer-Fall (drawer:open + IntersectionObserver)
          und bringt die chronik-card-Klassen mit (break-inside: avoid gegen
          Spaltenumbruch der Karte). -->
+    <!-- Überschreibt das gleichnamige Template aus schnitzler-chronik.xsl:
+         role="img" auf den Icon-<i>-Elementen, weil aria-label sonst auf <i>
+         nicht zulässig ist (axe: aria-prohibited-attr). Kann entfallen, sobald
+         der Fix im schnitzler-chronik-static-Repo veröffentlicht ist. -->
+    <xsl:template match="tei:event/tei:desc" mode="desc">
+        <xsl:for-each select="*[starts-with(name(), 'list')]">
+            <div class="chronik-entities">
+                <xsl:choose>
+                    <xsl:when test="self::tei:listPlace">
+                        <i class="fa-solid fa-location-dot" role="img" title="Orte"
+                            aria-label="Orte"/>
+                    </xsl:when>
+                    <xsl:when test="self::tei:listPerson">
+                        <i class="fa-solid fa-users" role="img" title="Personen"
+                            aria-label="Personen"/>
+                    </xsl:when>
+                    <xsl:when test="self::tei:listOrg">
+                        <i class="fa-solid fa-building-columns" role="img" title="Organisationen"
+                            aria-label="Organisationen"/>
+                    </xsl:when>
+                    <xsl:when test="self::tei:listBibl">
+                        <i class="fa-regular fa-image" role="img" title="Werke" aria-label="Werke"/>
+                    </xsl:when>
+                </xsl:choose>
+                <xsl:apply-templates select="." mode="desc"/>
+            </div>
+        </xsl:for-each>
+        <xsl:apply-templates select="tei:*[not(starts-with(name(), 'list'))]" mode="desc"/>
+        <xsl:if test="text()[normalize-space(.) != '']">
+            <p class="chronik-text">
+                <xsl:value-of
+                    select="normalize-space(string-join(text()[normalize-space(.) != ''], ' '))"/>
+            </p>
+        </xsl:if>
+    </xsl:template>
 </xsl:stylesheet>
