@@ -272,6 +272,7 @@
                         </div>
                     </div>
                     <!-- Drawer, der unter der Action-Bar aufklappt -->
+                    <div class="drawer-backdrop" id="drawerBackdrop"/>
                     <div class="action-drawer" id="drawer">
                         <div class="drawer-inner">
                             <!-- EINSTELLUNGEN -->
@@ -726,76 +727,9 @@ else if(pts[0]){map.setView(pts[0],10);}
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
-                                <xsl:variable name="datum-written" select="
-                                        format-date($datum-iso, '[D1].&#160;[M1].&#160;[Y0001]',
-                                        'en',
-                                        'AD',
-                                        'EN')"/>
-                                <xsl:variable name="wochentag">
-                                    <xsl:choose>
-                                        <xsl:when test="
-                                                format-date($datum-iso, '[F]',
-                                                'en',
-                                                'AD',
-                                                'EN') = 'Monday'">
-                                            <xsl:text>Montag</xsl:text>
-                                        </xsl:when>
-                                        <xsl:when test="
-                                                format-date($datum-iso, '[F]',
-                                                'en',
-                                                'AD',
-                                                'EN') = 'Tuesday'">
-                                            <xsl:text>Dienstag</xsl:text>
-                                        </xsl:when>
-                                        <xsl:when test="
-                                                format-date($datum-iso, '[F]',
-                                                'en',
-                                                'AD',
-                                                'EN') = 'Wednesday'">
-                                            <xsl:text>Mittwoch</xsl:text>
-                                        </xsl:when>
-                                        <xsl:when test="
-                                                format-date($datum-iso, '[F]',
-                                                'en',
-                                                'AD',
-                                                'EN') = 'Thursday'">
-                                            <xsl:text>Donnerstag</xsl:text>
-                                        </xsl:when>
-                                        <xsl:when test="
-                                                format-date($datum-iso, '[F]',
-                                                'en',
-                                                'AD',
-                                                'EN') = 'Friday'">
-                                            <xsl:text>Freitag</xsl:text>
-                                        </xsl:when>
-                                        <xsl:when test="
-                                                format-date($datum-iso, '[F]',
-                                                'en',
-                                                'AD',
-                                                'EN') = 'Saturday'">
-                                            <xsl:text>Samstag</xsl:text>
-                                        </xsl:when>
-                                        <xsl:when test="
-                                                format-date($datum-iso, '[F]',
-                                                'en',
-                                                'AD',
-                                                'EN') = 'Sunday'">
-                                            <xsl:text>Sonntag</xsl:text>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:text>DATUMSFEHLER</xsl:text>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:variable>
                                 <h3>Chronik <button type="button" class="close" data-close=""
                                         >schließen ✕</button></h3>
-                                <div class="meta-caption">
-                                    <a href="{concat('https://schnitzler-chronik.acdh.oeaw.ac.at/', $datum-iso, '.html')}"
-                                        target="_blank" style="color: #008B8B">
-                                        <xsl:value-of
-                                            select="concat($wochentag, ', ', $datum-written)"/>
-                                    </a>
-                                </div>
+                                <!-- Datums-Überschrift kommt zentral aus schnitzler-chronik.xsl -->
                                 <!-- SCHNITZLER-CHRONIK. Zuerst wird der Eintrag geladen, weil das schneller ist, wenn er lokal vorliegt -->
                                 <xsl:variable name="fetchContentsFromURL" as="node()?">
                                     <xsl:choose>
@@ -827,6 +761,7 @@ else if(pts[0]){map.setView(pts[0],10);}
 (function(){
 var bar=document.getElementById('actionBar');
 var drawer=document.getElementById('drawer');
+var backdrop=document.getElementById('drawerBackdrop');
 if(!bar||!drawer){return;}
 var buttons=bar.querySelectorAll('button[data-drawer]');
 var panels=drawer.querySelectorAll('.drawer-panel');
@@ -839,11 +774,15 @@ syncTop();
 buttons.forEach(function(b){b.setAttribute('aria-expanded',b.getAttribute('data-drawer')===name?'true':'false');});
 panels.forEach(function(p){p.classList.toggle('active',p.getAttribute('data-panel')===name);});
 drawer.classList.add('open');
+if(backdrop){backdrop.classList.add('show');}
+var inner=drawer.querySelector('.drawer-inner');
+if(inner){inner.scrollTop=0;}
 document.dispatchEvent(new CustomEvent('drawer:open',{detail:name}));
 }
 function closeDrawer(){
 buttons.forEach(function(b){b.setAttribute('aria-expanded','false');});
 drawer.classList.remove('open');
+if(backdrop){backdrop.classList.remove('show');}
 }
 buttons.forEach(function(b){
 b.addEventListener('click',function(){
@@ -853,6 +792,8 @@ if(expanded){closeDrawer();}else{openDrawer(name);}
 });
 });
 drawer.querySelectorAll('[data-close]').forEach(function(c){c.addEventListener('click',closeDrawer);});
+// Tipp/Klick auf die abgedunkelte Fläche hinter dem Drawer (mobiler Backdrop) schließt
+if(backdrop){backdrop.addEventListener('click',closeDrawer);}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer();}});
 })();</script>
                     <div class="container-fluid">
@@ -2437,35 +2378,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
             <xsl:value-of select="@target"/>
         </xsl:element>
     </xsl:template>
-    <!-- Überschreibt das gleichnamige Template aus schnitzler-chronik.xsl: Die Chronik
-         liegt hier im Drawer statt im Bootstrap-Modal, daher wird die Karte beim
-         drawer:open-Event initialisiert statt bei shown.bs.modal. -->
-    <xsl:template name="karte-mit-datum">
-        <xsl:param name="datum"/>
-        <div class="card mb-3" style="background-color: rgba(0, 0, 0, 0.03)">
-            <div class="card-header" style="background-color: transparent;">
-                <span class="badge cornered-pill"
-                    style="color: white; background-color: #595959;">Karte</span>
-            </div>
-            <div class="card-body">
-                <div id="collapseMap">
-                    <div id="wienerschnitzler-map" style="height: 300px; width: 100%;"
-                        data-datum="{$datum}"/>
-                </div>
-            </div>
-        </div>
-        <script
-            src="https://cdn.jsdelivr.net/gh/arthur-schnitzler/schnitzler-chronik-static@e250eac/xslt/export/wienerschnitzler-map.js?v=4"/>
-        <script>
-            document.addEventListener('drawer:open', function (ev) {
-            if (ev.detail !== 'chronik') { return; }
-            setTimeout(function () {
-            if (!window._wienerschnitzlerMapInitialized) {
-            window.initWienerschnitzlerMap();
-            window._wienerschnitzlerMapInitialized = true;
-            }
-            }, 100);
-            });
-        </script>
-    </xsl:template>
+    <!-- karte-mit-datum kommt aus schnitzler-chronik.xsl; das generische Template
+         behandelt Modal- und Drawer-Fall (drawer:open + IntersectionObserver)
+         und bringt die chronik-card-Klassen mit (break-inside: avoid gegen
+         Spaltenumbruch der Karte). -->
 </xsl:stylesheet>
