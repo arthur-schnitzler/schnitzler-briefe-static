@@ -128,11 +128,7 @@
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:variable>
-                                    <a class="dropdown-item" href="toc_{$corrPmb}.html"
-                                        style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
-                                        <xsl:text>Korrespondenz </xsl:text>
-                                        <xsl:value-of select="$corrName"/>
-                                    </a>
+                                    
                                     <xsl:for-each
                                         select="$correspContext/tei:ref[@type = 'withinCorrespondence' and @subtype = 'next_letter']">
                                         <xsl:call-template name="mam:nav-li-item">
@@ -156,11 +152,7 @@
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:variable>
-                                    <a class="dropdown-item" href="toc_{$corrPmb}.html"
-                                        style="background-color: #1C6E8C; color: white; padding: 2px 5px; margin: 3px 0; border-radius: 2px; text-align: center; display: block; text-decoration: none; font-size: 9px;">
-                                        <xsl:text>Korrespondenz </xsl:text>
-                                        <xsl:value-of select="$corrName"/>
-                                    </a>
+                                    
                                     <span class="dropdown-item-text">keine späteren Überlieferungen</span>
                                 </xsl:otherwise>
                             </xsl:choose>
