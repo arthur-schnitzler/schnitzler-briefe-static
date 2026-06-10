@@ -1,93 +1,13 @@
 // Noske Search Implementation using acdh-noske-search package
 import { NoskeSearch } from "https://cdn.jsdelivr.net/npm/acdh-noske-search/dist/index.js";
 
+// Maximum number of words shown left and right of the keyword
+const CONTEXT_WORDS = 25;
+
 class NoskeSearchImplementation {
     constructor() {
         this.search = null;
         this.initialized = false;
-        this.searchResults = null;
-        this.latestApiData = null;
-        this.config = {
-            client: {
-                base: "https://corpus-search.acdh.oeaw.ac.at/",
-                corpname: "schnitzlerbriefe",
-                attrs: "word,id",
-                structs: "doc,docTitle,head,p,imprimatur,list",
-                refs: "doc.id,doc.corpus,docTitle.id,p.id,head.id,imprimatur.id,list.id"
-            },
-            hits: {
-                id: "noske-hits",
-                css: {
-                    table: "table-auto",
-                    kwicContainer: "kwic-container",
-                    leftContext: "context-left",
-                    rightContext: "context-right",
-                    keyword: "keyword"
-                }
-            },
-            pagination: {
-                id: "noske-pagination",
-                css: {
-                    pagination: "pagination justify-content-center",
-                    pageItem: "page-item",
-                    pageLink: "page-link"
-                }
-            },
-            searchInput: {
-                id: "noske-input",
-                css: {
-                    input: "form-control form-control-lg"
-                }
-            },
-            stats: {
-                id: "noske-stats",
-                css: {
-                    container: "alert alert-info",
-                    text: "mb-0"
-                }
-            }
-        };
-    }
-
-    interceptNoskeAPI() {
-        // Store original fetch and keep reference to 'this'
-        const originalFetch = window.fetch;
-        const self = this;
-
-        // Override fetch to intercept Noske API calls
-        window.fetch = async (...args) => {
-            const response = await originalFetch(...args);
-
-            // Check if this is a Noske API call (handle string, URL, and Request objects)
-            const url = args[0];
-            const urlStr = (typeof url === 'string') ? url :
-                           (url instanceof URL) ? url.href :
-                           (url instanceof Request) ? url.url : String(url);
-            if (urlStr.includes('corpus-search.acdh.oeaw.ac.at')) {
-                console.log('Intercepted Noske API call:', urlStr);
-
-                // Clone response so we can read it without consuming it
-                const clonedResponse = response.clone();
-
-                try {
-                    const data = await clonedResponse.json();
-                    console.log('Noske API response data:', data);
-
-                    // Only store responses that contain actual concordance lines
-                    if (data.Lines || data.lines) {
-                        self.latestApiData = data;
-                        self.searchResults = data;
-                        console.log('Stored concordance API data in self.latestApiData');
-                    }
-                } catch (e) {
-                    console.warn('Could not parse Noske API response:', e);
-                }
-            }
-
-            return response;
-        };
-
-        console.log('Noske API interceptor installed');
     }
 
     init() {
@@ -96,25 +16,19 @@ class NoskeSearchImplementation {
         console.log('Initializing Noske search with acdh-noske-search package...');
 
         try {
-            // Intercept fetch calls to capture Noske API responses
-            this.interceptNoskeAPI();
-
-            // Create new NoskeSearch instance
-            this.search = new NoskeSearch({container: "noske-search"});
-
-            // Store reference to search results for later processing
-            this.searchResults = null;
+            this.search = new NoskeSearch({ container: "noske-search" });
 
             this.search.search({
                 client: {
-                    id: "noske-client",
                     base: "https://corpus-search.acdh.oeaw.ac.at/",
                     corpname: "schnitzlerbriefe",
                     attrs: "word,landingPageURI",
                     structs: "chapter",
-                    refs: "chapter.id",
-                    kwicleftctx: "s:chapter",
-                    kwicrightctx: "s:chapter",
+                    refs: "doc.id",
+                    // Sentence-bounded context: never crosses letter boundaries.
+                    // ("s:chapter" is invalid manatee syntax and yields empty contexts.)
+                    kwicleftctx: "-1:s",
+                    kwicrightctx: "1:s",
                 },
                 hits: {
                     id: "hitsbox",
@@ -142,18 +56,20 @@ class NoskeSearchImplementation {
                 },
                 stats: {
                     id: "noske-stats",
+                    label: "Treffer:",
                     css: {
                         container: "alert alert-info",
                         text: "mb-0"
                     }
                 },
+                config: {
+                    results: "Keine Treffer gefunden. Bitte versuchen Sie eine andere Suchanfrage.",
+                    customResponseHtml: (lines, containerId) => this.renderHits(lines, containerId)
+                },
                 autocompleteOptions: {
                     id: "noske-autocomplete",
                 },
             });
-
-            // Add custom event listeners
-            this.setupEventListeners();
 
             this.initialized = true;
             console.log('Noske search initialized successfully');
@@ -164,450 +80,75 @@ class NoskeSearchImplementation {
         }
     }
 
-    setupEventListeners() {
-        // Add Enter key support for search input
-        const searchInput = document.getElementById('noske-input');
-        if (searchInput) {
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    this.performSearch(e.target.value);
-                }
+    // Extracts the letter URL (e.g. "L02453.html") from a result line.
+    // The landingPageURI attribute is delivered per token in kwic_attr,
+    // e.g. "/https://arthur-schnitzler.github.io/schnitzler-briefe-static/L02453.html"
+    letterUrlFromLine(line) {
+        const attr = line.kwic_attr || '';
+        const match = attr.match(/([A-Za-z0-9_-]+\.html)/);
+        return match ? match[1] : null;
+    }
+
+    escapeHtml(text) {
+        return String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    trimContext(text, side) {
+        const words = String(text || '').trim().split(/\s+/).filter(Boolean);
+        if (words.length <= CONTEXT_WORDS) {
+            return words.join(' ');
+        }
+        if (side === 'left') {
+            return '… ' + words.slice(-CONTEXT_WORDS).join(' ');
+        }
+        return words.slice(0, CONTEXT_WORDS).join(' ') + ' …';
+    }
+
+    renderHits(lines, containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        const rows = lines.map(line => {
+            const left = this.escapeHtml(this.trimContext(line.left, 'left'));
+            const right = this.escapeHtml(this.trimContext(line.right, 'right'));
+            const kwic = this.escapeHtml(String(line.kwic || '').trim());
+            const url = this.letterUrlFromLine(line);
+
+            const wrap = (content) => url
+                ? `<a class="kwic-link" href="${url}">${content}</a>`
+                : content;
+
+            return `
+                <tr${url ? ` data-url="${url}"` : ''}>
+                    <td class="context-left">${wrap(left)}</td>
+                    <td class="keyword">${wrap(kwic)}</td>
+                    <td class="context-right">${wrap(right)}</td>
+                </tr>`;
+        }).join('');
+
+        container.innerHTML = `
+            <div class="overflow-x-auto">
+                <table class="table-auto">
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>`;
+
+        // Make whole rows clickable (links inside still work normally)
+        container.querySelectorAll('tr[data-url]').forEach(row => {
+            row.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return;
+                window.location.href = row.dataset.url;
             });
-
-            // Add search button
-            this.addSearchButton(searchInput);
-        }
-
-        // Add clear results button
-        this.addClearButton();
-
-        // Set up MutationObserver to watch for results and add links
-        this.setupResultsObserver();
-    }
-
-    setupResultsObserver() {
-        const hitsContainer = document.getElementById('hitsbox');
-        if (!hitsContainer) {
-            console.warn('hitsbox container not found, retrying in 100ms...');
-            setTimeout(() => this.setupResultsObserver(), 100);
-            return;
-        }
-
-        // Create observer to watch for new search results
-        const observer = new MutationObserver((mutations) => {
-            let hasNewTable = false;
-
-            mutations.forEach((mutation) => {
-                mutation.addedNodes.forEach(node => {
-                    // Check if a table was added (the actual results)
-                    if (node.nodeName === 'TABLE' || (node.querySelector && node.querySelector('table'))) {
-                        hasNewTable = true;
-                    }
-                });
-            });
-
-            if (hasNewTable) {
-                console.log('New results table detected');
-                setTimeout(() => {
-                    const searchContainer = document.getElementById('noske-search');
-                    const searchInput = searchContainer ? searchContainer.querySelector('input') : null;
-                    const query = searchInput ? searchInput.value : null;
-                    console.log('Query value for link resolution:', query);
-                    if (query) {
-                        this.fetchNoskeDataDirectly(query).then(() => {
-                            this.addLinksToResults();
-                        }).catch(() => {
-                            this.addLinksToResults();
-                        });
-                    } else {
-                        this.addLinksToResults();
-                    }
-                }, 500);
-            }
         });
-
-        // Start observing the hits container
-        observer.observe(hitsContainer, {
-            childList: true,
-            subtree: true
-        });
-
-        console.log('Results observer set up successfully');
-    }
-
-    async fetchNoskeDataDirectly(query) {
-        try {
-            // Detect if query is CQL (starts with [ or contains lemma=, word=, etc.)
-            const isCQL = query.trim().startsWith('[') || /\b(lemma|word|tag|pos)=/i.test(query);
-
-            let q;
-            if (isCQL) {
-                // For CQL queries, use 'q' parameter directly
-                q = `q${encodeURIComponent(query)}`;
-            } else {
-                // For simple queries, wrap in quotes
-                q = `q${encodeURIComponent(`"${query}"`)}`;
-            }
-
-            // Use the correct SketchEngine API endpoint, include refs=chapter.id to get document IDs
-            const url = `https://corpus-search.acdh.oeaw.ac.at/search/concordance?corpname=schnitzlerbriefe&q=${q}&attrs=word,landingPageURI&attr_allpos=kw&viewmode=sen&structs=chapter&refs=chapter.id&fromp=1&pagesize=50&kwicleftctx=s:chapter&kwicrightctx=s:chapter&format=json`;
-
-            console.log('Fetching Noske data directly via fetch:', url);
-            console.log('Query type:', isCQL ? 'CQL' : 'Simple');
-
-            const response = await fetch(url);
-            const data = await response.json();
-
-            console.log('Direct fetch Noske API response:', data);
-            this.latestApiData = data;
-            this.searchResults = data;
-
-            return data;
-        } catch (error) {
-            console.error('Error fetching Noske data directly:', error);
-            // Don't reject, just return null so the HTML parsing fallback can work
-            return null;
-        }
-    }
-
-    addLinksToResults() {
-        const hitsContainer = document.getElementById('hitsbox');
-        if (!hitsContainer) return;
-
-        console.log('Adding links to results...');
-        console.log('this.latestApiData available?', !!this.latestApiData);
-        console.log('Latest API data:', this.latestApiData);
-
-        // Try to access via window.noskeSearch as well
-        if (!this.latestApiData && window.noskeSearch && window.noskeSearch.latestApiData) {
-            console.log('Using latestApiData from window.noskeSearch');
-            this.latestApiData = window.noskeSearch.latestApiData;
-        }
-
-        // Find all table rows in the results
-        const rows = hitsContainer.querySelectorAll('tr');
-        console.log('Found', rows.length, 'rows');
-
-        let dataRowIndex = 0;
-        rows.forEach((row, index) => {
-            // Skip if already processed
-            if (row.dataset.processed === 'true') return;
-
-            // Mark as processed
-            row.dataset.processed = 'true';
-
-            const cells = row.querySelectorAll('td');
-            if (cells.length < 3) return;
-
-            const currentDataIndex = dataRowIndex++;
-
-            // Try to extract document reference from various sources
-            let docRef = null;
-
-            // 1. Check row data attributes
-            docRef = row.dataset.doc || row.dataset.docId || row.dataset.ref;
-
-            // 2. Check all attributes for doc-related info
-            if (!docRef) {
-                const allAttrs = Array.from(row.attributes);
-                const docAttr = allAttrs.find(attr =>
-                    attr.name.includes('doc') || attr.name.includes('ref')
-                );
-                if (docAttr) {
-                    docRef = docAttr.value;
-                }
-            }
-
-            // 3. Try to extract from latestApiData if available
-            if (!docRef && this.latestApiData) {
-                const lines = this.latestApiData.Lines || this.latestApiData.lines;
-                if (lines && lines[currentDataIndex]) {
-                    const line = lines[currentDataIndex];
-                    console.log('Line', currentDataIndex, 'full data:', JSON.stringify(line, null, 2));
-
-                    // First try to get landingPageURI from the line structure
-                    // The landingPageURI is in the 'attr' field of Kwic tokens
-                    if (line.Kwic && Array.isArray(line.Kwic)) {
-                        console.log('Kwic array length:', line.Kwic.length);
-                        for (let i = 0; i < line.Kwic.length; i++) {
-                            const token = line.Kwic[i];
-                            console.log('Kwic token', i, ':', JSON.stringify(token));
-                            if (token && typeof token === 'object' && token.attr) {
-                                // The attr field contains the landingPageURI with a leading slash
-                                // e.g., "/https://arthur-schnitzler.github.io/schnitzler-briefe-static/L00182.html"
-                                docRef = token.attr.replace(/^\//, ''); // Remove leading slash
-                                console.log('Found landingPageURI in Kwic token attr:', docRef);
-                                break;
-                            }
-                        }
-                    }
-
-                    // Fallback: check Left tokens
-                    if (!docRef && line.Left && Array.isArray(line.Left)) {
-                        console.log('Left array length:', line.Left.length);
-                        for (const token of line.Left) {
-                            if (token && typeof token === 'object' && token.attr) {
-                                docRef = token.attr.replace(/^\//, '');
-                                console.log('Found landingPageURI in Left token attr:', docRef);
-                                break;
-                            }
-                        }
-                    }
-
-                    // Fallback: check Right tokens
-                    if (!docRef && line.Right && Array.isArray(line.Right)) {
-                        console.log('Right array length:', line.Right.length);
-                        for (const token of line.Right) {
-                            if (token && typeof token === 'object' && token.attr) {
-                                docRef = token.attr.replace(/^\//, '');
-                                console.log('Found landingPageURI in Right token attr:', docRef);
-                                break;
-                            }
-                        }
-                    }
-
-                    console.log('After checking all tokens, docRef:', docRef);
-
-                    // Fallback: Check Refs for chapter.id
-                    // NOSKE returns Refs as plain strings (e.g. ["L01761"]) or "name=value" strings
-                    const refsArray = line.Refs || line.refs;
-                    if (!docRef && refsArray && Array.isArray(refsArray) && refsArray.length > 0) {
-                        console.log('Line', currentDataIndex, 'Refs:', refsArray);
-                        for (const ref of refsArray) {
-                            if (typeof ref === 'string' && ref && ref !== 'null') {
-                                // Handle "name=value" format or plain value
-                                const val = ref.includes('=') ? ref.split('=').slice(1).join('=') : ref;
-                                if (val && val !== 'null' && val !== '') {
-                                    docRef = val;
-                                    console.log('Found docRef in Refs (string):', docRef);
-                                    break;
-                                }
-                            } else if (ref && typeof ref === 'object') {
-                                // Handle {name, val} object format
-                                if (ref.name === 'chapter.id' || ref.name === 'doc.id' ||
-                                    ref.name === 'chapter' || ref.name === 'doc') {
-                                    docRef = ref.val || ref.value;
-                                    if (docRef) {
-                                        console.log('Found docRef in Refs (object):', docRef);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // 4. Look in cells for hidden data or landingPageURI in the rendered HTML
-            if (!docRef) {
-                cells.forEach(cell => {
-                    if (cell.dataset.doc || cell.dataset.docId) {
-                        docRef = cell.dataset.doc || cell.dataset.docId;
-                    }
-
-                    // Also check for landingPageURI in the rendered HTML
-                    // Look for <concordance-result-items> or <span> with URL
-                    if (!docRef) {
-                        const resultItems = cell.querySelectorAll('concordance-result-items span.itm, span.itm');
-                        resultItems.forEach(item => {
-                            const text = item.textContent.trim();
-                            if (text.startsWith('http://') || text.startsWith('https://')) {
-                                docRef = text;
-                                console.log('Found landingPageURI in rendered HTML:', docRef);
-                            }
-                        });
-                    }
-
-                    // Also check all text content for URLs
-                    if (!docRef) {
-                        const text = cell.textContent;
-                        const urlMatch = text.match(/(https?:\/\/[^\s]+\.html)/);
-                        if (urlMatch) {
-                            docRef = urlMatch[1];
-                            console.log('Found URL in cell text:', docRef);
-                        }
-                    }
-                });
-            }
-
-            // Validate and discard obviously invalid docRef values
-            if (docRef === 'null' || docRef === 'undefined' || docRef === '' || docRef === '/') {
-                docRef = null;
-            }
-
-            // Log for debugging
-            console.log('Row', currentDataIndex, 'final docRef:', docRef);
-
-            if (docRef) {
-                // If docRef is already a full URL (from landingPageURI), extract just the filename
-                let letterUrl;
-                if (docRef.startsWith('http://') || docRef.startsWith('https://')) {
-                    // Extract just the filename from the full URL
-                    // e.g., "https://arthur-schnitzler.github.io/schnitzler-briefe-static/L01761.html" -> "L01761.html"
-                    const urlParts = docRef.split('/');
-                    letterUrl = urlParts[urlParts.length - 1];
-                    console.log('Row', currentDataIndex, 'extracted filename from URL:', letterUrl);
-                } else {
-                    // Otherwise, treat it as a file ID and construct the URL
-                    const letterId = docRef.replace(/\.xml$/, '').replace(/^.*\//, '');
-                    letterUrl = `${letterId}.html`;
-                    console.log('Row', currentDataIndex, 'linking to:', letterUrl);
-                }
-
-                // Skip if letterUrl still looks invalid
-                if (!letterUrl || letterUrl === 'null.html' || letterUrl === 'undefined.html' || letterUrl === '.html') {
-                    console.warn('Row', currentDataIndex, 'invalid letterUrl, skipping:', letterUrl);
-                    return;
-                }
-
-                // Make the entire row clickable
-                row.style.cursor = 'pointer';
-                row.classList.add('clickable-row');
-
-                // Remove any existing click handlers
-                const newRow = row.cloneNode(true);
-                row.parentNode.replaceChild(newRow, row);
-
-                newRow.addEventListener('click', (e) => {
-                    // Don't navigate if clicking on an existing link
-                    if (e.target.closest('a')) return;
-                    window.location.href = letterUrl;
-                });
-
-                // Make the entire KWIC snippet clickable (left context, keyword, right context)
-                const newCells = newRow.querySelectorAll('td');
-                newCells.forEach(cell => {
-                    const existingLinks = cell.querySelectorAll('a');
-                    if (existingLinks.length > 0) {
-                        existingLinks.forEach(link => { link.href = letterUrl; });
-                    } else {
-                        const content = cell.innerHTML;
-                        cell.innerHTML = `<a href="${letterUrl}" class="kwic-link">${content}</a>`;
-                    }
-                });
-            } else {
-                console.warn('No document reference found for row', currentDataIndex);
-            }
-        });
-    }
-
-    addSearchButton(searchInput) {
-        // Check if button already exists
-        if (searchInput.parentElement.querySelector('.noske-search-btn')) return;
-
-        const searchButton = document.createElement('button');
-        searchButton.textContent = 'Suchen';
-        searchButton.className = 'btn btn-primary mt-2 noske-search-btn';
-        searchButton.type = 'button';
-
-        searchButton.addEventListener('click', () => {
-            this.performSearch(searchInput.value);
-        });
-
-        searchInput.parentElement.appendChild(searchButton);
-    }
-
-    addClearButton() {
-        const statsContainer = document.getElementById('noske-stats');
-        if (!statsContainer || statsContainer.querySelector('.noske-clear-btn')) return;
-
-        const clearButton = document.createElement('button');
-        clearButton.textContent = 'Ergebnisse löschen';
-        clearButton.className = 'btn btn-outline-secondary btn-sm ms-2 noske-clear-btn';
-        clearButton.style.display = 'none';
-        clearButton.type = 'button';
-
-        clearButton.addEventListener('click', () => {
-            this.clearResults();
-        });
-
-        statsContainer.appendChild(clearButton);
-    }
-
-    performSearch(query) {
-        if (!query || !query.trim()) {
-            this.showError('Bitte geben Sie einen Suchbegriff ein.');
-            return;
-        }
-
-        console.log('Performing Noske search for:', query);
-
-        // Show loading state
-        this.showLoading();
-
-        try {
-            // Use the acdh-noske-search package's search functionality
-            if (this.search && typeof this.search.performSearch === 'function') {
-                this.search.performSearch(query.trim());
-            } else {
-                // Fallback: trigger search through the configured input
-                const searchInput = document.getElementById('noske-input');
-                if (searchInput) {
-                    searchInput.value = query.trim();
-                    searchInput.dispatchEvent(new Event('change'));
-                }
-            }
-
-            // Show clear button
-            const clearButton = document.querySelector('.noske-clear-btn');
-            if (clearButton) {
-                clearButton.style.display = 'inline-block';
-            }
-
-        } catch (error) {
-            console.error('Error performing search:', error);
-            this.showError('Fehler bei der Suche. Bitte überprüfen Sie Ihre Suchanfrage.');
-        }
-    }
-
-    clearResults() {
-        // Clear all result containers
-        const containers = ['noske-hits', 'noske-stats', 'noske-pagination'];
-        containers.forEach(id => {
-            const container = document.getElementById(id);
-            if (container) {
-                container.innerHTML = '';
-            }
-        });
-
-        // Clear search input
-        const searchInput = document.getElementById('noske-input');
-        if (searchInput) {
-            searchInput.value = '';
-        }
-
-        // Hide clear button
-        const clearButton = document.querySelector('.noske-clear-btn');
-        if (clearButton) {
-            clearButton.style.display = 'none';
-        }
-
-        console.log('Noske search results cleared');
-    }
-
-    showLoading() {
-        const statsContainer = document.getElementById('noske-stats');
-        const hitsContainer = document.getElementById('noske-hits');
-
-        if (statsContainer) {
-            statsContainer.innerHTML = '<div class="alert alert-info mb-0"><i class="fas fa-spinner fa-spin"></i> Suche läuft...</div>';
-        }
-
-        if (hitsContainer) {
-            hitsContainer.innerHTML = `
-                <div class="d-flex justify-content-center p-4">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Suche läuft...</span>
-                    </div>
-                </div>
-            `;
-        }
     }
 
     showError(message) {
         const statsContainer = document.getElementById('noske-stats');
-        const hitsContainer = document.getElementById('noske-hits');
+        const hitsContainer = document.getElementById('hitsbox');
 
         if (statsContainer) {
             statsContainer.innerHTML = `<div class="alert alert-warning mb-0"><i class="fas fa-exclamation-triangle"></i> ${message}</div>`;

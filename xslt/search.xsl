@@ -199,9 +199,8 @@
 
                                             <div class="alert alert-info" role="alert">
                                                 <h6><i class="fas fa-info-circle"></i> Erweiterte Suche mit Noske</h6>
-                                                <p class="mb-2 small">Achtung, derzeit ist die Suche möglich, aber die Ergebnisse
-                                                sind nicht mit den Dokumenten verlinkt. Dafür lässt sich mit einem Textausschnitt des Ergebnisses
-                                                in der Typesense-Suche die betreffende Stelle finden.</p>
+                                                <p class="mb-2 small">Die Treffer sind mit den jeweiligen Korrespondenzstücken
+                                                verlinkt – ein Klick auf ein Ergebnis öffnet den betreffenden Brief.</p>
                                                 <p class="mb-2 small">
                                                     <strong>Einfache Suche: </strong> <code>liebe</code> oder <code>lieb.*</code> (mit * für beliebige Zeichen)<br/>
                                                     <strong>CQL-Suche: </strong> <code>[lemma="lieben"]</code> • <code>[word=".*ing"]</code><br/>
