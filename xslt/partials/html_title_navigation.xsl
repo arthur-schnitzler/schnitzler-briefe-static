@@ -6,21 +6,26 @@
     <!-- The template "add_header-navigation-custom-title" creates a custom header without
                 using tei:title but includes prev and next urls. -->
     <xsl:template name="header-nav">
-        <xsl:variable name="doc_title">
-            <xsl:value-of select="descendant::tei:titleSmt/tei:title[@level = 'a'][1]/text()"/>
-        </xsl:variable>
+        <div class="row" id="title-nav">
+            <div class="col-12">
+                <h1 itemprop="headline name">
+                    <xsl:value-of select="//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a']"/>
+                </h1>
+            </div>
+        </div>
+    </xsl:template>
+    <!-- Blätterfunktion (vorheriger/nächster Brief), rechtsbündig im roten Action-Balken -->
+    <xsl:template name="header-nav-arrows">
         <xsl:variable name="correspContext" as="node()?"
             select="descendant::tei:correspDesc[1]/tei:correspContext"/>
-        <div class="row" id="title-nav">
-            <div class="col-md-2 col-lg-2 col-sm-12">
-                <xsl:if test="$correspContext/tei:ref/@subtype = 'previous_letter'">
-                    <nav class="navbar navbar-previous-next" style="text-indent: 1em;"
-                        aria-label="Vorheriger Brief">
-                        <span class="nav-link float-start" href="#" id="navbarDropdownLeft"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-chevron-left" title="Vorheriger Brief" style="font-size: 0.5em;"/>
-                        </span>
-                        <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdown">
+        <span class="neighbors">
+            <xsl:if test="$correspContext/tei:ref/@subtype = 'previous_letter'">
+                <span class="dropdown" aria-label="Vorheriger Brief">
+                    <button type="button" id="navbarDropdownLeft" data-bs-toggle="dropdown"
+                        aria-expanded="false" title="Vorheriger Brief">
+                        <i class="fas fa-chevron-left"/>
+                    </button>
+                    <ul class="dropdown-menu unstyled" aria-labelledby="navbarDropdownLeft">
                             <xsl:if
                                 test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'previous_letter'][1]">
                                 <span class="dropdown-item-text">Vorheriger Brief </span>
@@ -85,24 +90,16 @@
                                     <span class="dropdown-item-text">keine früheren Überlieferungen</span>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </ul>
-                    </nav>
-                </xsl:if>
-            </div>
-            <div class="col-md-8">
-                <h1 align="center" itemprop="headline name">
-                    <xsl:value-of select="//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a']"/>
-                </h1>
-            </div>
-            <div class="col-md-2 col-lg-2 col-sm-12" style="text-align:right">
-                <xsl:if test="$correspContext/tei:ref/@subtype = 'next_letter'">
-                    <nav class="navbar navbar-previous-next float-end dropstart"
-                        aria-label="Nächster Brief">
-                        <span class="nav-link" href="#" id="navbarDropdownRight" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-chevron-right" title="Nächster Brief" style="font-size: 0.5em;"/>
-                        </span>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    </ul>
+                </span>
+            </xsl:if>
+            <xsl:if test="$correspContext/tei:ref/@subtype = 'next_letter'">
+                <span class="dropdown" aria-label="Nächster Brief">
+                    <button type="button" id="navbarDropdownRight" data-bs-toggle="dropdown"
+                        aria-expanded="false" title="Nächster Brief">
+                        <i class="fas fa-chevron-right"/>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownRight">
                             <xsl:if
                                 test="$correspContext/tei:ref[@type = 'withinCollection' and @subtype = 'next_letter'][1]">
                                 <span class="dropdown-item-text">Nächster Brief </span>
@@ -167,11 +164,10 @@
                                     <span class="dropdown-item-text">keine späteren Überlieferungen</span>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </ul>
-                    </nav>
-                </xsl:if>
-            </div>
-        </div>
+                    </ul>
+                </span>
+            </xsl:if>
+        </span>
     </xsl:template>
     <xsl:template name="mam:nav-li-item">
         <xsl:param name="eintrag" as="node()"/>
