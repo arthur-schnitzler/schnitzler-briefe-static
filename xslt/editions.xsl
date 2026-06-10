@@ -244,9 +244,8 @@
                         <div class="inner">
                             <xsl:if
                                 test="not(descendant::tei:teiHeader[1]/tei:revisionDesc[1]/@status = 'approved')">
-                                <a href="#" class="draft-badge" data-bs-target="#qualitaet"
-                                    data-bs-toggle="modal" title="Dieser Brief ist noch ein Entwurf"
-                                    >Entwurf</a>
+                                <button type="button" class="draft-badge" data-drawer="quality"
+                                    aria-expanded="false">Entwurf</button>
                             </xsl:if>
                             <button type="button" data-drawer="settings" aria-expanded="false">
                                 <i class="fas fa-solid fa-screwdriver-wrench"/>
@@ -606,16 +605,16 @@ else if(pts[0]){map.setView(pts[0],10);}
                                         </tbody>
                                     </table>
                                 </xsl:for-each>
-                                <xsl:if
-                                    test="not(descendant::tei:teiHeader[1]/tei:revisionDesc[1]/@status = 'approved')">
-                                    <div class="meta-caption" style="margin-top:18px;"
-                                        >Textqualität</div>
-                                    <p style="font-size:13.5px; color:#6c757d; line-height:1.55; margin:0;"
-                                        >Diese Abschrift wurde noch nicht ausreichend mit dem
-                                        Original abgeglichen. Sie sollte derzeit nicht – oder nur
-                                        durch eigenen Abgleich mit dem Faksimile, falls vorliegend –
-                                        als Zitatvorlage dienen.</p>
-                                </xsl:if>
+                            </div>
+                            <!-- TEXTQUALITÄT -->
+                            <div class="drawer-panel" data-panel="quality">
+                                <h3>Textqualität <button type="button" class="close" data-close=""
+                                        >schließen ✕</button></h3>
+                                <p style="font-size:13.5px; line-height:1.55; margin:0;"
+                                    >Diese Abschrift wurde noch nicht ausreichend mit dem Original
+                                    abgeglichen. Sie sollte derzeit nicht – oder nur durch eigenen
+                                    Abgleich mit dem Faksimile, falls vorliegend – als Zitatvorlage
+                                    dienen.</p>
                             </div>
                             <!-- ZITIEREN -->
                             <div class="drawer-panel" data-panel="cite">
@@ -1341,29 +1340,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
                                 </xsl:if>
                             </div>
                             <xsl:call-template name="html_footer"/>
-                        </div>
-                    </div>
-                </div>
-                <!-- Modal Qualität -->
-                <div class="modal fade" id="qualitaet" tabindex="-1"
-                    aria-labelledby="qualitaetModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Textqualität</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Schließen"/>
-                            </div>
-                            <div class="modal-body">
-                                <p>Diese Abschrift wurde noch nicht ausreichend mit dem Original
-                                    abgeglichen. Sie sollte derzeit nicht – oder nur durch eigenen
-                                    Abgleich mit dem Faksimile, falls vorliegend – als Zitatvorlage
-                                    dienen.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Schließen</button>
-                            </div>
                         </div>
                     </div>
                 </div>
