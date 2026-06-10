@@ -2442,9 +2442,17 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
          drawer:open-Event initialisiert statt bei shown.bs.modal. -->
     <xsl:template name="karte-mit-datum">
         <xsl:param name="datum"/>
-        <div id="collapseMap">
-            <div id="wienerschnitzler-map" style="height: 300px; width: 100%;"
-                data-datum="{$datum}"/>
+        <div class="card mb-3" style="background-color: rgba(0, 0, 0, 0.03)">
+            <div class="card-header" style="background-color: transparent;">
+                <span class="badge cornered-pill"
+                    style="color: white; background-color: #595959;">Karte</span>
+            </div>
+            <div class="card-body">
+                <div id="collapseMap">
+                    <div id="wienerschnitzler-map" style="height: 300px; width: 100%;"
+                        data-datum="{$datum}"/>
+                </div>
+            </div>
         </div>
         <script
             src="https://cdn.jsdelivr.net/gh/arthur-schnitzler/schnitzler-chronik-static@e250eac/xslt/export/wienerschnitzler-map.js?v=4"/>
