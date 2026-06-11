@@ -59,7 +59,7 @@
                     <div class="container-fluid">
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
-                            <span class="type-pill">Korrespondenz</span>
+                            <span class="type-pill">Inhaltsverzeichnis</span>
                             <a href="tocs.html">Korrespondenzen</a>
                             <span class="sep">/</span>
                             <xsl:variable name="corrTitle" select="normalize-space(descendant::tei:titleStmt/tei:title[@level = 'a'])"/>

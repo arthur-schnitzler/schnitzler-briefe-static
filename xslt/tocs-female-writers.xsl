@@ -27,7 +27,8 @@
                     <div class="container-fluid">
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
-                            <span class="type-pill">Korrespondenzen</span>
+                            <span class="type-pill">Korrespondenzen</span> <span class="sep">/</span>
+                            <xsl:text>Verzeichnis Schriftstellerinnen</xsl:text>
                         </nav>
                         <div class="card">
                             <div class="card-header">

@@ -24,7 +24,15 @@
                     <div class="container-fluid">
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
-                            <span class="type-pill">Seite</span>
+                            <span class="type-pill">Meta</span>  
+                            <xsl:element name="a">
+                                <xsl:attribute name="target">
+                                    <xsl:text>index.html</xsl:text>
+                                </xsl:attribute>
+                                <xsl:text>Index</xsl:text>
+                            </xsl:element>
+                            <span class="sep">/</span>
+                            <xsl:value-of select="ancestor-or-self::tei:TEI/@xml:id"/>
                         </nav>
                         <div class="card">
                             <div class="card-header">

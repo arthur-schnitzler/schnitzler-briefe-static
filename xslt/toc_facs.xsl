@@ -27,7 +27,8 @@
                     <div class="container-fluid">
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
-                            <span class="type-pill">Faksimiles</span>
+                            <span class="type-pill">Inhaltsverzeichnis</span> <span class="sep">/</span>
+                            <xsl:text>Faksimiles</xsl:text>
                         </nav>
                         <div class="card">
                             <div class="card-header">
