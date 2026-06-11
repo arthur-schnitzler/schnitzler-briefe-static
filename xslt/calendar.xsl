@@ -24,6 +24,10 @@
                     <xsl:call-template name="nav_bar"/>
 
                     <div class="container-fluid">
+                        <!-- Breadcrumbs -->
+                        <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
+                            <span class="type-pill">Kalender</span>
+                        </nav>
                         <div class="card">
                             <div class="card-header" style="text-align:center">
                                 <h1 style="display:inline-block;margin-bottom:0;padding-right:5px;">

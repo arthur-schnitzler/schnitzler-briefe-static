@@ -30,6 +30,10 @@
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
                     <div class="container-fluid">
+                        <!-- Breadcrumbs -->
+                        <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
+                            <span class="type-pill">Statistiken</span>
+                        </nav>
                         <div class="card">
                             <div class="card-header text-center">
                                 <h2>Wörter mit langem ſ</h2>

@@ -31,6 +31,10 @@
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
                     <div class="container">
+                        <!-- Breadcrumbs -->
+                        <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
+                            <span class="type-pill">Orte</span>
+                        </nav>
                         <div class="card">
                             <div class="card-header" style="text-align:center">
                                 <h1>

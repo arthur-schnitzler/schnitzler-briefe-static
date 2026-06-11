@@ -26,6 +26,10 @@
                 <xsl:call-template name="nav_bar" />
                 <main class="flex-shrink-0 flex-grow-1">
                     <div class="container 404-container">
+                        <!-- Breadcrumbs -->
+                        <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
+                            <span class="type-pill">Fehler</span>
+                        </nav>
                         <h1 class="viernullvier-h1">404</h1>
                         <p class="viernullvier-p lead">
                             Die gewünschte Seite existiert leider nicht.

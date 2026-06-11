@@ -44,7 +44,14 @@
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
                     
-                    <div class="container-fluid">                        
+                    <div class="container-fluid">
+                        <!-- Breadcrumbs -->
+                        <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
+                            <span class="type-pill">Faksimile</span>
+                            <a href="toc.html">Korrespondenzstücke</a>
+                            <span class="sep">/</span>
+                            <xsl:value-of select="$teiSource"/>
+                        </nav>
                         <div class="wp-transcript">
                             <div class="card-header">
                                 <div class="row">

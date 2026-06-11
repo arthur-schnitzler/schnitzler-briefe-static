@@ -47,6 +47,13 @@
                         <div class="hfeed site" id="page">
                             <xsl:call-template name="nav_bar"/>
                             <div class="container">
+                                <!-- Breadcrumbs -->
+                                <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
+                                    <span class="type-pill">Netzwerk</span>
+                                    <a href="tocs.html">Korrespondenzen</a>
+                                    <span class="sep">/</span>
+                                    <xsl:value-of select="$corr-name"/>
+                                </nav>
                                 <div class="card">
                                     <div class="card-header">
                                         <h1>

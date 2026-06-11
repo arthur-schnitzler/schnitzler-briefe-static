@@ -24,6 +24,10 @@
                     <xsl:call-template name="nav_bar"/>
                     
                     <div class="container-fluid">
+                        <!-- Breadcrumbs -->
+                        <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
+                            <span class="type-pill">Impressum</span>
+                        </nav>
                         <div class="card">
                             <div class="card-header">
                                 <h1><xsl:value-of select="Impressum"/></h1>
