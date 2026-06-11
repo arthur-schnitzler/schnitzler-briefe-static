@@ -1,1072 +1,1483 @@
 /**
- * SimpleCalendar – Kalender der schnitzler-briefe-Edition
- *
- * Ansichten: Leben (Heatmap über die gesamte Laufzeit), Jahr, Monat, Woche.
- * Tagesdetails öffnen sich in einem seitlichen Drawer. Die Kategoriefilter
- * werden über window.activeFilters (Set, definiert in calendar.js) gesteuert.
+ * Simple, sustainable calendar implementation for Schnitzler Briefe
+ * Based on SimpleCalendar from schnitzler-chronik project
+ * Adapted for letters correspondence data display with category filtering
  */
 
 class SimpleCalendar {
   constructor(containerId, options = {}) {
     this.container = document.getElementById(containerId);
+    this.currentYear = options.startYear || 1900;
+    this.currentMonth = new Date().getMonth();
+    this.currentWeek = this.getWeekOfYear(new Date());
     this.events = options.dataSource || [];
-
-    // Kategoriefarben (unverändert aus der bisherigen Version)
+    this.onDayClick = options.clickDay || (() => {});
+    
+    // View modes: 'year', 'month', 'week'
+    this.currentView = 'year';
+    
+    // Event type categories and colors for letters
     this.eventCategories = {
-      'as-sender': '#A63437',          // Briefe Schnitzlers (rot)
-      'as-empf': '#1C6E8C',            // Briefe an Schnitzler (blau)
-      'umfeld': '#68825b',             // Umfeldbriefe (grün)
-      'gedruckt': 'rgb(101, 67, 33)',  // Gedruckte Briefe (braun)
-      'fischer': '#3D4F9F'             // S. Fischer
+      'as-sender': '#A63437',    // Letters FROM Schnitzler (red)
+      'as-empf': '#1C6E8C',      // Letters TO Schnitzler (blue)
+      'umfeld': '#68825b',       // Third-party letters (green)
+      'gedruckt': 'rgb(101, 67, 33)',  // Printed letters (brown)
+      'fischer': '#3D4F9F'       // S. Fischer Verlag
     };
+
     this.categoryLabels = {
-      'as-sender': 'Von Schnitzler',
-      'as-empf': 'An Schnitzler',
+      'as-sender': 'Briefe Schnitzlers',
+      'as-empf': 'Briefe an Schnitzler',
       'umfeld': 'Umfeldbriefe',
       'gedruckt': 'Gedruckte Briefe',
       'fischer': 'S. Fischer'
     };
-    this.categoryOrder = ['as-sender', 'as-empf', 'umfeld', 'gedruckt', 'fischer'];
-
-    this.monthNames = ['Jänner', 'Februar', 'März', 'April', 'Mai', 'Juni',
-      'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
-    this.dayNames = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
-    this.dayNamesLong = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag',
-      'Freitag', 'Samstag', 'Sonntag'];
-
-    this.currentView = 'year';
-    this.currentYear = options.startYear || 1900;
-    this.currentMonth = 0;
-    this.currentWeek = 1;
-    this.selectedKey = null;
-    this.drawerOpen = false;
-
+    
+    
+    this.monthNames = [
+      'Jänner', 'Februar', 'März', 'April', 'Mai', 'Juni',
+      'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
+    ];
+    
+    this.dayNames = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+    
+    // Create initialization
     this.init();
   }
-
+  
   init() {
-    this.buildIndexes();
+    this.container.innerHTML = '';
     this.loadStateFromURL();
-    this.addStyles();
-    this.createStructure();
+
+    // Calculate available years from events
+    this.availableYears = [...new Set(this.events.map(event =>
+      new Date(event.startDate).getFullYear()
+    ))].sort((a, b) => a - b);
+
+    this.createCalendarStructure();
+
+    // Initialize view button states
+    this.container.querySelectorAll('.view-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.view === this.currentView) {
+        btn.classList.add('active');
+      }
+    });
+
+    // Initialize filter button states
+    if (typeof window.activeFilters !== 'undefined') {
+      this.container.querySelectorAll('.filter-toggle').forEach(btn => {
+        const category = btn.dataset.category;
+        if (window.activeFilters.has(category)) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
     this.render();
   }
-
-  buildIndexes() {
-    this.byDate = new Map();
-    this.monthAgg = new Map();
-    const years = new Set();
-    this.events.forEach((e) => {
-      const key = e.startDate;
-      if (!this.byDate.has(key)) this.byDate.set(key, []);
-      this.byDate.get(key).push(e);
-      const mk = key.slice(0, 7);
-      let agg = this.monthAgg.get(mk);
-      if (!agg) { agg = {}; this.monthAgg.set(mk, agg); }
-      agg[e.category] = (agg[e.category] || 0) + 1;
-      years.add(parseInt(key.slice(0, 4), 10));
-    });
-    // Innerhalb eines Tages nach Tageszähler sortieren, Einträge ohne Zähler ans Ende
-    this.byDate.forEach((list) => list.sort(
-      (a, b) => (parseInt(a.tageszaehler) || 999) - (parseInt(b.tageszaehler) || 999)
-    ));
-    this.availableYears = [...years].sort((a, b) => a - b);
-    this.minYear = this.availableYears[0] || 1875;
-    this.maxYear = this.availableYears[this.availableYears.length - 1] || 1931;
-  }
-
-  /* ---------- Helfer ---------- */
-
-  h(tag, attrs = {}, ...children) {
-    const node = document.createElement(tag);
-    Object.keys(attrs).forEach((k) => {
-      const v = attrs[k];
-      if (v == null) return;
-      if (k === 'class') node.className = v;
-      else if (k === 'style') node.style.cssText = v;
-      else if (k === 'onclick') node.addEventListener('click', v);
-      else node.setAttribute(k, v);
-    });
-    children.flat().forEach((c) => {
-      if (c == null) return;
-      node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
-    });
-    return node;
-  }
-
-  pad(n) { return n < 10 ? '0' + n : '' + n; }
-  keyOf(d) { return d.getFullYear() + '-' + this.pad(d.getMonth() + 1) + '-' + this.pad(d.getDate()); }
-  parseKey(k) { const p = k.split('-').map(Number); return new Date(p[0], p[1] - 1, p[2]); }
-  monday(d) { const off = (d.getDay() + 6) % 7; const m = new Date(d); m.setDate(d.getDate() - off); return m; }
-  clampDate(d) {
-    const lo = new Date(this.minYear, 0, 1);
-    const hi = new Date(this.maxYear, 11, 31);
-    if (d < lo) return lo;
-    if (d > hi) return hi;
-    return d;
-  }
-  weekStart(year, week) {
-    const base = this.monday(new Date(year, 0, 1));
-    const d = new Date(base);
-    d.setDate(base.getDate() + (week - 1) * 7);
-    return d;
-  }
-  weekRef(date) {
-    const m = this.monday(date);
-    const y = m.getFullYear();
-    const base = this.monday(new Date(y, 0, 1));
-    const w = Math.round((m - base) / (7 * 86400000)) + 1;
-    return { year: y, week: w };
-  }
-
-  dayList(key) { return this.byDate.get(key) || []; }
+  
+  
+  // Check if event should be visible based on external activeFilters
   isEventVisible(event) {
+    // Check if window.activeFilters exists (defined in calendar.js)
     if (typeof window.activeFilters !== 'undefined') {
       return event.category && window.activeFilters.has(event.category);
     }
+    // Fallback: show all events
     return true;
   }
-  activeList(key) { return this.dayList(key).filter((e) => this.isEventVisible(e)); }
-  color(cat) { return this.eventCategories[cat] || '#999'; }
-
-  parseColor(c) {
-    if (c.indexOf('rgb') === 0) {
-      const m = c.match(/\d+/g);
-      return { r: +m[0], g: +m[1], b: +m[2] };
-    }
-    const n = parseInt(c.slice(1), 16);
-    return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
-  }
-  colorA(cat, a) {
-    const c = this.parseColor(this.color(cat));
-    return 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + a + ')';
-  }
-  mixWhite(c, t) {
-    return {
-      r: Math.round(c.r + (255 - c.r) * t),
-      g: Math.round(c.g + (255 - c.g) * t),
-      b: Math.round(c.b + (255 - c.b) * t)
-    };
-  }
-  // Multiplikative Mischung der Kategoriefarben eines Tages (weiß = keine Einträge)
-  heatColor(tally) {
-    let r = 1, g = 1, b = 1, any = false;
-    for (const cat in tally) {
-      const count = tally[cat];
-      if (!count) continue;
-      any = true;
-      const col = this.parseColor(this.color(cat));
-      const s = Math.min(0.80, 0.30 + (count - 1) * 0.13);
-      r *= 1 - s * (1 - col.r / 255);
-      g *= 1 - s * (1 - col.g / 255);
-      b *= 1 - s * (1 - col.b / 255);
-    }
-    if (!any) return null;
-    return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
-  }
-  orderedCategories(events) {
-    const set = new Set(events.map((e) => e.category));
-    return this.categoryOrder.filter((c) => set.has(c));
-  }
-  countLabel(n, zero) {
-    if (n === 0) return zero || 'keine Einträge';
-    return n + (n === 1 ? ' Eintrag' : ' Einträge');
-  }
-
-  /* ---------- Grundgerüst und Styles ---------- */
-
-  createStructure() {
-    this.container.innerHTML = '';
-    this.container.classList.add('sc-root');
-
-    this.toolbarEl = this.h('div', { class: 'sc-toolbar' },
-      this.h('div', { class: 'sc-views', role: 'group', 'aria-label': 'Ansicht wählen' },
-        ...['life', 'year', 'month', 'week'].map((view, i) =>
-          this.h('button', {
-            class: 'sc-view-btn', type: 'button', 'data-view': view,
-            onclick: () => this.switchView(view)
-          }, ['Leben', 'Jahr', 'Monat', 'Woche'][i]))
-      ),
-      this.h('div', { class: 'sc-nav' },
-        this.h('button', {
-          class: 'sc-nav-btn', type: 'button', 'aria-label': 'Zurück',
-          onclick: () => this.navigatePeriod(-1)
-        }, '‹'),
-        this.h('button', {
-          class: 'sc-period', type: 'button', title: 'Zur Jahresübersicht',
-          onclick: () => this.switchView('year')
-        }),
-        this.h('button', {
-          class: 'sc-nav-btn', type: 'button', 'aria-label': 'Weiter',
-          onclick: () => this.navigatePeriod(1)
-        }, '›')
-      )
-    );
-    this.filtersEl = this.h('div', { class: 'sc-filters' });
-    this.bodyEl = this.h('div', { class: 'sc-body' });
-    this.drawerEl = this.h('div', { class: 'sc-drawer-backdrop', hidden: 'hidden' });
-
-    this.container.appendChild(this.toolbarEl);
-    this.container.appendChild(this.filtersEl);
-    this.container.appendChild(this.bodyEl);
-    this.container.appendChild(this.drawerEl);
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.drawerOpen) this.closeDrawer();
-    });
-  }
-
-  addStyles() {
-    if (document.getElementById('simple-calendar-styles')) return;
-    const style = document.createElement('style');
-    style.id = 'simple-calendar-styles';
-    style.textContent = `
-      .sc-root { color: #2a2722; }
-      .sc-root button { font-family: inherit; }
-
-      /* Toolbar */
-      .sc-toolbar {
-        display: flex; align-items: center; justify-content: space-between;
-        flex-wrap: wrap; gap: 14px; margin-bottom: 18px;
-      }
-      .sc-views {
-        display: inline-flex; border: 1px solid #d8d4ca; border-radius: 7px;
-        overflow: hidden; background: #fff;
-      }
-      .sc-view-btn {
-        padding: 8px 16px; font-size: 13.5px; font-weight: 600; cursor: pointer;
-        border: none; border-right: 1px solid #e2ded4; background: #fff; color: #6f6b62;
-      }
-      .sc-view-btn:last-child { border-right: none; }
-      .sc-view-btn.active { background: #26241f; color: #fff; }
-      .sc-nav { display: inline-flex; align-items: center; gap: 6px; }
-      .sc-nav-btn {
-        width: 34px; height: 34px; display: grid; place-items: center;
-        border: 1px solid #d8d4ca; background: #fff; border-radius: 7px;
-        cursor: pointer; color: #403c34; font-size: 16px;
-      }
-      .sc-nav-btn:disabled { opacity: .35; cursor: default; }
-      .sc-period {
-        min-width: 188px; text-align: center; font-size: 18px; font-weight: 600;
-        color: #26241f; background: none; border: none; cursor: pointer;
-        padding: 4px 12px; border-radius: 6px;
-      }
-      .sc-period:hover { background: #f3f1e9; }
-
-      /* Filterleiste */
-      .sc-filters {
-        display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
-        margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #ddd9cf;
-      }
-      .sc-filters-label {
-        font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
-        color: #9a9488; margin-right: 4px;
-      }
-      .sc-chip {
-        display: inline-flex; align-items: center; gap: 7px;
-        padding: 5px 11px 5px 9px; border-radius: 20px; cursor: pointer;
-        font-size: 12.5px; font-weight: 500;
-        border: 1px solid #e2ded4; background: #f0eee7; color: #a8a294;
-      }
-      .sc-chip.active { border-color: #cfcabf; background: #fff; color: #2a2722; }
-      .sc-chip-swatch {
-        width: 10px; height: 10px; border-radius: 50%; flex: none;
-        background: transparent; border: 1px solid #c4bfb2;
-      }
-      .sc-chip-count { font-size: 11px; font-variant-numeric: tabular-nums; color: #bdb8ab; }
-      .sc-chip.active .sc-chip-count { color: #9a9488; }
-      .sc-filters-spacer { flex: 1; }
-      .sc-link-btn {
-        font-size: 12px; color: #6f6b62; background: none; border: none; cursor: pointer;
-        text-decoration: underline; text-underline-offset: 2px; padding: 2px 4px;
-      }
-
-      /* Monatsansicht */
-      .sc-month {
-        background: #fff; border: 1px solid #ddd9cf; border-radius: 8px;
-        overflow: hidden; box-shadow: 0 1px 2px rgba(40,36,30,.04);
-      }
-      .sc-month-weekdays {
-        display: grid; grid-template-columns: repeat(7, 1fr);
-        background: #f6f4ee; border-bottom: 1px solid #e7e4dc;
-      }
-      .sc-month-weekdays div {
-        padding: 9px 10px; font-size: 11px; font-weight: 600;
-        letter-spacing: .08em; text-transform: uppercase; color: #9a9488;
-      }
-      .sc-month-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
-      .sc-day {
-        position: relative; min-height: 98px; padding: 8px 9px; background: #fff;
-        border-right: 1px solid #ece8df; border-bottom: 1px solid #ece8df;
-        cursor: pointer; display: flex; flex-direction: column; gap: 6px;
-        text-align: left; font: inherit;
-      }
-      .sc-day:hover { filter: brightness(.96); }
-      .sc-day:nth-child(7n) { border-right: none; }
-      .sc-day:nth-child(n+36) { border-bottom: none; }
-      .sc-day.other-month { background: #faf9f5; }
-      .sc-day.selected { box-shadow: inset 0 0 0 2px #26241f; }
-      .sc-day-num {
-        font-size: 13px; font-variant-numeric: tabular-nums; font-weight: 500; color: #33302a;
-      }
-      .sc-day.weekend .sc-day-num { color: #7a766c; }
-      .sc-day.other-month .sc-day-num { color: #bdb8ab; }
-      .sc-day.dark .sc-day-num { color: rgba(255,255,255,.96); font-weight: 600; }
-      .sc-day.selected .sc-day-num { font-weight: 700; }
-      .sc-day-markers {
-        display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin-top: auto;
-      }
-      .sc-day-marker {
-        width: 13px; height: 13px; border-radius: 3px; flex: none;
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
-      }
-      .sc-day-more { font-size: 11px; font-weight: 600; color: #6f6b62; margin-left: 1px; }
-      .sc-day.dark .sc-day-more { color: rgba(255,255,255,.85); }
-
-      /* Wochenansicht */
-      .sc-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
-      .sc-week-col {
-        background: #fff; border: 1px solid #ddd9cf; border-radius: 6px;
-        display: flex; flex-direction: column; min-height: 380px; overflow: hidden;
-      }
-      .sc-week-col.selected { border-color: #26241f; }
-      .sc-week-head {
-        padding: 10px 11px; border-bottom: 1px solid #ece8df; cursor: pointer;
-        display: flex; flex-direction: column; gap: 2px; background: #fff;
-        text-align: left; font: inherit; border-left: none; border-right: none; border-top: none;
-      }
-      .sc-week-head.weekend { background: #f6f4ee; }
-      .sc-week-head .sc-week-wd {
-        font-size: 11px; font-weight: 600; letter-spacing: .06em;
-        text-transform: uppercase; color: #9a9488;
-      }
-      .sc-week-head .sc-week-date { font-size: 17px; font-weight: 600; color: #403c34; }
-      .sc-week-list {
-        padding: 8px; display: flex; flex-direction: column; gap: 6px;
-        overflow: auto; max-height: 460px;
-      }
-      .sc-week-entry {
-        display: flex; gap: 8px; text-align: left; background: #faf9f5;
-        border: 1px solid #ece8df; border-radius: 5px; padding: 7px 8px;
-        cursor: pointer; width: 100%; text-decoration: none; font: inherit;
-      }
-      .sc-week-entry:hover { background: #f3f1e9; }
-      .sc-week-entry .sc-bar {
-        width: 3px; flex: none; border-radius: 2px; align-self: stretch;
-      }
-      .sc-week-entry .sc-week-entry-title {
-        display: block; font-size: 13px; line-height: 1.25; color: #2a2722;
-      }
-      .sc-week-entry .sc-week-entry-src {
-        display: block; font-size: 10.5px; letter-spacing: .04em;
-        text-transform: uppercase; color: #9a9488; margin-top: 2px;
-      }
-      .sc-week-empty { font-size: 13px; color: #b8b3a6; text-align: center; padding: 14px 0; }
-
-      /* Jahresansicht */
-      .sc-year {
-        display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px;
-      }
-      .sc-year-month {
-        background: #fff; border: 1px solid #ddd9cf; border-radius: 7px;
-        padding: 13px 13px 15px; box-shadow: 0 1px 2px rgba(40,36,30,.04);
-      }
-      .sc-year-month-name {
-        font-size: 15px; font-weight: 600; color: #26241f; background: none;
-        border: none; cursor: pointer; padding: 0 0 9px; display: block;
-      }
-      .sc-year-month-name:hover { color: #A63437; }
-      .sc-year-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-      .sc-year-day { width: 100%; padding-top: 100%; background: #f1efe8; border-radius: 2px; }
-      .sc-year-day.blank { background: transparent; }
-      .sc-year-day.has-events { cursor: pointer; }
-      .sc-year-day.has-events:hover { box-shadow: inset 0 0 0 1px #26241f; }
-
-      /* Lebensansicht (Heatmap) */
-      .sc-life {
-        background: #fff; border: 1px solid #ddd9cf; border-radius: 8px;
-        padding: 22px 24px 18px; box-shadow: 0 1px 2px rgba(40,36,30,.04);
-      }
-      .sc-life-head {
-        display: flex; justify-content: space-between; align-items: baseline;
-        flex-wrap: wrap; gap: 12px; margin-bottom: 16px;
-      }
-      .sc-life-title { font-size: 16px; color: #403c34; }
-      .sc-life-legend { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #9a9488; }
-      .sc-life-legend span.sw { width: 13px; height: 13px; border-radius: 2px; display: inline-block; }
-      .sc-life-scroll { overflow-x: auto; padding-bottom: 4px; }
-      .sc-life-inner { min-width: 760px; }
-      .sc-life-row { display: grid; gap: 2px; align-items: center; margin-bottom: 2px; }
-      .sc-life-rowlabel { font-size: 10px; color: #9a9488; text-align: right; padding-right: 7px; }
-      .sc-life-cell { height: 14px; border-radius: 2px; background: #f1efe8; }
-      .sc-life-cell.has-events { cursor: pointer; }
-      .sc-life-cell.has-events:hover { box-shadow: inset 0 0 0 1px #26241f; }
-      .sc-life-ticks { display: grid; gap: 2px; margin-top: 7px; }
-      .sc-life-tick {
-        font-size: 10px; color: #9a9488; white-space: nowrap; overflow: visible;
-        text-align: center; height: 12px;
-      }
-      .sc-life-note { margin: 16px 0 0; font-size: 12px; color: #9a9488; max-width: 74ch; }
-
-      /* Drawer */
-      .sc-drawer-backdrop {
-        position: fixed; inset: 0; background: rgba(28,24,18,.34); z-index: 1050;
-        animation: sc-fade .18s ease;
-      }
-      .sc-drawer {
-        position: fixed; top: 0; right: 0; bottom: 0; width: 420px; max-width: 92vw;
-        background: #fbfaf6; box-shadow: -12px 0 36px rgba(28,24,18,.18);
-        overflow: auto; display: flex; flex-direction: column;
-        animation: sc-slide .22s cubic-bezier(.2,.7,.3,1);
-      }
-      @keyframes sc-fade { from { opacity: 0; } to { opacity: 1; } }
-      @keyframes sc-slide { from { transform: translateX(24px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-      .sc-drawer-head {
-        position: sticky; top: 0; z-index: 1; background: #fbfaf6;
-        border-bottom: 1px solid #e7e4dc; padding: 20px 24px 16px;
-        display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
-      }
-      .sc-drawer-wd {
-        font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-        color: #9a9488; margin-bottom: 4px;
-      }
-      .sc-drawer-date { font-size: 23px; font-weight: 600; color: #26241f; line-height: 1.1; }
-      .sc-drawer-count { font-size: 12.5px; color: #6f6b62; margin-top: 5px; }
-      .sc-drawer-close {
-        width: 32px; height: 32px; flex: none; display: grid; place-items: center;
-        border: 1px solid #ddd9cf; background: #fff; border-radius: 7px;
-        cursor: pointer; color: #6f6b62; font-size: 17px;
-      }
-      .sc-drawer-list {
-        padding: 14px 24px 24px; display: flex; flex-direction: column; gap: 0; flex: 1;
-      }
-      .sc-entry { display: flex; gap: 12px; padding: 13px 0; border-bottom: 1px solid #ece8df; }
-      .sc-entry .sc-bar { width: 3px; flex: none; border-radius: 2px; align-self: stretch; }
-      .sc-entry-main { min-width: 0; }
-      .sc-entry-tag {
-        font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600;
-      }
-      .sc-entry-title { font-size: 15px; line-height: 1.35; color: #2a2722; margin: 3px 0 2px; }
-      .sc-entry-link { font-size: 12px; text-decoration: none; }
-      .sc-entry-link:hover { text-decoration: underline; }
-      .sc-entry-bib { font-size: 12px; color: #6f6b62; }
-      .sc-drawer-empty { color: #b8b3a6; font-size: 14px; padding: 20px 0; text-align: center; }
-      .sc-drawer-hidden { font-size: 12px; color: #9a9488; font-style: italic; padding-top: 8px; }
-      .sc-drawer-foot {
-        position: sticky; bottom: 0; background: #fbfaf6; border-top: 1px solid #e7e4dc;
-        padding: 12px 24px; display: flex; justify-content: space-between;
-      }
-      .sc-drawer-foot button {
-        font-size: 13px; color: #403c34; background: #fff; border: 1px solid #ddd9cf;
-        border-radius: 7px; padding: 7px 13px; cursor: pointer;
-      }
-      .sc-drawer-foot button:hover { background: #f3f1e9; }
-
-      /* Responsiv */
-      @media (max-width: 900px) {
-        .sc-week { grid-template-columns: 1fr; }
-        .sc-week-col { min-height: 0; }
-        .sc-year { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-      }
-      @media (max-width: 768px) {
-        .sc-day { min-height: 64px; padding: 5px 6px; }
-        .sc-day-marker { width: 9px; height: 9px; }
-        .sc-period { min-width: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  /* ---------- Navigation und Zustand ---------- */
-
-  switchView(view) {
-    const prev = this.currentView;
-    if (view === 'week' && prev !== 'week') {
-      const base = this.selectedKey
-        ? this.parseKey(this.selectedKey)
-        : new Date(this.currentYear, this.currentMonth, 15);
-      const ref = this.weekRef(this.clampDate(base));
-      this.currentYear = ref.year;
-      this.currentWeek = ref.week;
-    }
-    this.currentView = view;
-    this.render();
-    this.updateURL();
-  }
-
-  navigatePeriod(direction) {
-    const v = this.currentView;
-    if (v === 'life') return;
-    if (v === 'year') {
-      const y = this.currentYear + direction;
-      if (y < this.minYear || y > this.maxYear) return;
-      this.currentYear = y;
-    } else if (v === 'month') {
-      let y = this.currentYear, m = this.currentMonth + direction;
-      if (m > 11) { m = 0; y++; }
-      if (m < 0) { m = 11; y--; }
-      if (y < this.minYear || y > this.maxYear) return;
-      this.currentYear = y;
-      this.currentMonth = m;
-    } else if (v === 'week') {
-      const ws = this.weekStart(this.currentYear, this.currentWeek);
-      ws.setDate(ws.getDate() + direction * 7);
-      const ref = this.weekRef(this.clampDate(ws));
-      this.currentYear = ref.year;
-      this.currentWeek = ref.week;
-    }
-    this.render();
-    this.updateURL();
-  }
-
-  openDay(key) {
-    const d = this.parseKey(key);
-    this.selectedKey = key;
-    this.drawerOpen = true;
-    this.currentYear = d.getFullYear();
-    this.currentMonth = d.getMonth();
-    const ref = this.weekRef(d);
-    if (this.currentView === 'week') {
-      this.currentYear = ref.year;
-      this.currentWeek = ref.week;
-    } else {
-      this.currentWeek = ref.week;
-    }
-    this.render();
-    this.updateURL();
-  }
-
-  openMonth(year, month) {
-    this.currentView = 'month';
-    this.currentYear = year;
-    this.currentMonth = month;
-    this.render();
-    this.updateURL();
-  }
-
-  closeDrawer() {
-    this.drawerOpen = false;
-    this.render();
-  }
-
-  drawerStep(delta) {
-    const d = this.parseKey(this.selectedKey);
-    d.setDate(d.getDate() + delta);
-    this.openDay(this.keyOf(this.clampDate(d)));
-  }
-
+  
+  // Toggle category filter
   toggleCategoryFilter(category) {
-    if (typeof window.activeFilters === 'undefined') return;
-    if (window.activeFilters.has(category)) window.activeFilters.delete(category);
-    else window.activeFilters.add(category);
-    this.render();
-  }
-
-  setAllFilters(on) {
-    if (typeof window.activeFilters === 'undefined') return;
-    window.activeFilters.clear();
-    if (on) this.categoryOrder.forEach((c) => window.activeFilters.add(c));
-    this.render();
-  }
-
-  /* ---------- Rendering ---------- */
-
-  render() {
-    // Ansichtsknöpfe
-    this.toolbarEl.querySelectorAll('.sc-view-btn').forEach((btn) => {
-      const active = btn.dataset.view === this.currentView;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    // Zeitraumsbeschriftung und Pfeile
-    this.toolbarEl.querySelector('.sc-period').textContent = this.periodTitle();
-    this.toolbarEl.querySelectorAll('.sc-nav-btn').forEach((btn) => {
-      btn.disabled = this.currentView === 'life';
-    });
-
-    this.renderFilters();
-
-    this.bodyEl.innerHTML = '';
-    if (this.currentView === 'life') this.bodyEl.appendChild(this.buildLifeView());
-    else if (this.currentView === 'year') this.bodyEl.appendChild(this.buildYearView());
-    else if (this.currentView === 'month') this.bodyEl.appendChild(this.buildMonthView());
-    else this.bodyEl.appendChild(this.buildWeekView());
-
-    this.renderDrawer();
-  }
-
-  periodTitle() {
-    const v = this.currentView;
-    if (v === 'life') return this.minYear + ' – ' + this.maxYear;
-    if (v === 'year') return String(this.currentYear);
-    if (v === 'month') return this.monthNames[this.currentMonth] + ' ' + this.currentYear;
-    const ws = this.weekStart(this.currentYear, this.currentWeek);
-    const we = new Date(ws); we.setDate(ws.getDate() + 6);
-    if (ws.getMonth() === we.getMonth()) {
-      return ws.getDate() + '.–' + we.getDate() + '. ' + this.monthNames[ws.getMonth()] + ' ' + we.getFullYear();
-    }
-    const y1 = ws.getFullYear() !== we.getFullYear() ? ' ' + ws.getFullYear() : '';
-    return ws.getDate() + '. ' + this.monthNames[ws.getMonth()].slice(0, 3) + '.' + y1
-      + ' – ' + we.getDate() + '. ' + this.monthNames[we.getMonth()].slice(0, 3) + '. ' + we.getFullYear();
-  }
-
-  /* Anzahl der Einträge einer Kategorie im aktuell sichtbaren Zeitraum */
-  periodCount(category) {
-    const v = this.currentView;
-    let sum = 0;
-    if (v === 'life') {
-      this.monthAgg.forEach((agg) => { sum += agg[category] || 0; });
-      return sum;
-    }
-    if (v === 'year') {
-      for (let m = 0; m < 12; m++) {
-        const agg = this.monthAgg.get(this.currentYear + '-' + this.pad(m + 1));
-        if (agg) sum += agg[category] || 0;
-      }
-      return sum;
-    }
-    if (v === 'month') {
-      const agg = this.monthAgg.get(this.currentYear + '-' + this.pad(this.currentMonth + 1));
-      return agg ? (agg[category] || 0) : 0;
-    }
-    const ws = this.weekStart(this.currentYear, this.currentWeek);
-    for (let i = 0; i < 7; i++) {
-      const d = new Date(ws); d.setDate(ws.getDate() + i);
-      this.dayList(this.keyOf(d)).forEach((e) => { if (e.category === category) sum++; });
-    }
-    return sum;
-  }
-
-  renderFilters() {
-    this.filtersEl.innerHTML = '';
-    this.filtersEl.appendChild(this.h('span', { class: 'sc-filters-label' }, 'Kategorien'));
-    this.categoryOrder.forEach((cat) => {
-      const active = this.isEventVisible({ category: cat });
-      const swatch = this.h('span', { class: 'sc-chip-swatch', 'aria-hidden': 'true' });
-      if (active) {
-        swatch.style.background = this.color(cat);
-        swatch.style.borderColor = this.color(cat);
-      }
-      this.filtersEl.appendChild(this.h('button', {
-        class: 'sc-chip' + (active ? ' active' : ''),
-        type: 'button',
-        'data-category': cat,
-        'aria-pressed': active ? 'true' : 'false',
-        onclick: () => this.toggleCategoryFilter(cat)
-      },
-      swatch,
-      this.h('span', {}, this.categoryLabels[cat]),
-      this.h('span', { class: 'sc-chip-count' }, String(this.periodCount(cat)))
-      ));
-    });
-    this.filtersEl.appendChild(this.h('span', { class: 'sc-filters-spacer' }));
-    this.filtersEl.appendChild(this.h('button', {
-      class: 'sc-link-btn', type: 'button', onclick: () => this.setAllFilters(true)
-    }, 'alle'));
-    this.filtersEl.appendChild(this.h('button', {
-      class: 'sc-link-btn', type: 'button', onclick: () => this.setAllFilters(false)
-    }, 'keine'));
-  }
-
-  /* ----- Monatsansicht ----- */
-
-  buildMonthView() {
-    const weekdays = this.h('div', { class: 'sc-month-weekdays' },
-      ...this.dayNames.map((wd) => this.h('div', {}, wd)));
-    const grid = this.h('div', { class: 'sc-month-grid' });
-
-    const first = new Date(this.currentYear, this.currentMonth, 1);
-    const off = (first.getDay() + 6) % 7;
-    const start = new Date(this.currentYear, this.currentMonth, 1 - off);
-
-    for (let i = 0; i < 42; i++) {
-      const d = new Date(start); d.setDate(start.getDate() + i);
-      const inMonth = d.getMonth() === this.currentMonth;
-      const key = this.keyOf(d);
-      const events = this.activeList(key);
-      const tally = {};
-      events.forEach((e) => { tally[e.category] = (tally[e.category] || 0) + 1; });
-      const cats = this.orderedCategories(events);
-
-      const cell = this.h('div', {
-        class: 'sc-day'
-          + (inMonth ? '' : ' other-month')
-          + ((d.getDay() === 0 || d.getDay() === 6) ? ' weekend' : '')
-          + (key === this.selectedKey ? ' selected' : ''),
-        role: 'button', tabindex: '0',
-        title: d.getDate() + '. ' + this.monthNames[d.getMonth()] + ' ' + d.getFullYear()
-          + ' · ' + this.countLabel(events.length),
-        onclick: () => this.openDay(key)
-      });
-      cell.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.openDay(key); }
-      });
-
-      let heat = this.heatColor(tally);
-      if (heat && !inMonth) heat = this.mixWhite(heat, 0.62);
-      if (heat) {
-        cell.style.background = 'rgb(' + heat.r + ',' + heat.g + ',' + heat.b + ')';
-        const lum = 0.299 * heat.r + 0.587 * heat.g + 0.114 * heat.b;
-        if (lum < 145) cell.classList.add('dark');
-      }
-
-      cell.appendChild(this.h('span', { class: 'sc-day-num' }, String(d.getDate())));
-
-      const markers = this.h('div', { class: 'sc-day-markers' });
-      cats.slice(0, 6).forEach((cat) => {
-        const m = this.h('span', { class: 'sc-day-marker', title: this.categoryLabels[cat] });
-        m.style.background = this.color(cat);
-        markers.appendChild(m);
-      });
-      if (cats.length > 6) {
-        markers.appendChild(this.h('span', { class: 'sc-day-more' }, '+' + (cats.length - 6)));
-      }
-      cell.appendChild(markers);
-      grid.appendChild(cell);
-    }
-
-    return this.h('section', { class: 'sc-month' }, weekdays, grid);
-  }
-
-  /* ----- Wochenansicht ----- */
-
-  buildWeekView() {
-    const section = this.h('section', { class: 'sc-week' });
-    const ws = this.weekStart(this.currentYear, this.currentWeek);
-
-    for (let i = 0; i < 7; i++) {
-      const d = new Date(ws); d.setDate(ws.getDate() + i);
-      const key = this.keyOf(d);
-      const events = this.activeList(key);
-      const weekend = (d.getDay() === 0 || d.getDay() === 6);
-
-      const head = this.h('button', {
-        class: 'sc-week-head' + (weekend ? ' weekend' : ''), type: 'button',
-        title: 'Tagesansicht öffnen',
-        onclick: () => this.openDay(key)
-      },
-      this.h('span', { class: 'sc-week-wd' }, this.dayNamesLong[i]),
-      this.h('span', { class: 'sc-week-date' },
-        d.getDate() + '. ' + this.monthNames[d.getMonth()].slice(0, 3) + '.')
-      );
-
-      const list = this.h('div', { class: 'sc-week-list' });
-      events.forEach((event) => {
-        const bar = this.h('span', { class: 'sc-bar', 'aria-hidden': 'true' });
-        bar.style.background = this.color(event.category);
-        const content = this.h('span', {},
-          this.h('span', { class: 'sc-week-entry-title' }, event.name),
-          this.h('span', { class: 'sc-week-entry-src' },
-            event.categoryLabel || this.categoryLabels[event.category] || '')
-        );
-        if (event.category === 'gedruckt') {
-          // Gedruckte Briefe haben keine eigene Seite – Drawer mit Bibliographie öffnen
-          list.appendChild(this.h('button', {
-            class: 'sc-week-entry', type: 'button',
-            onclick: () => this.openDay(key)
-          }, bar, content));
-        } else {
-          const href = (event.category === 'fischer' && event.link_url)
-            ? event.link_url : event.linkId;
-          list.appendChild(this.h('a', { class: 'sc-week-entry', href: href }, bar, content));
-        }
-      });
-      if (!events.length) {
-        list.appendChild(this.h('div', { class: 'sc-week-empty' }, '–'));
-      }
-
-      section.appendChild(this.h('div', {
-        class: 'sc-week-col' + (key === this.selectedKey ? ' selected' : '')
-      }, head, list));
-    }
-    return section;
-  }
-
-  /* ----- Jahresansicht ----- */
-
-  buildYearView() {
-    const section = this.h('section', { class: 'sc-year' });
-    for (let mi = 0; mi < 12; mi++) {
-      const grid = this.h('div', { class: 'sc-year-grid' });
-      const first = new Date(this.currentYear, mi, 1);
-      const off = (first.getDay() + 6) % 7;
-      const dim = new Date(this.currentYear, mi + 1, 0).getDate();
-
-      for (let i = 0; i < off; i++) {
-        grid.appendChild(this.h('div', { class: 'sc-year-day blank' }));
-      }
-      for (let day = 1; day <= dim; day++) {
-        const d = new Date(this.currentYear, mi, day);
-        const key = this.keyOf(d);
-        const events = this.activeList(key);
-        const count = events.length;
-        const cell = this.h('div', {
-          class: 'sc-year-day' + (count ? ' has-events' : ''),
-          title: day + '. ' + this.monthNames[mi] + ' · ' + this.countLabel(count)
-        });
-        if (count) {
-          let dom = null, best = 0;
-          const tally = {};
-          events.forEach((e) => { tally[e.category] = (tally[e.category] || 0) + 1; });
-          for (const cat in tally) { if (tally[cat] > best) { best = tally[cat]; dom = cat; } }
-          const alpha = Math.min(0.85, 0.22 + count * 0.15);
-          cell.style.background = this.colorA(dom, alpha);
-          cell.setAttribute('role', 'button');
-          cell.setAttribute('tabindex', '0');
-          cell.addEventListener('click', () => { this.currentMonth = mi; this.openDay(key); });
-          cell.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.currentMonth = mi; this.openDay(key); }
-          });
-        }
-        grid.appendChild(cell);
-      }
-
-      section.appendChild(this.h('div', { class: 'sc-year-month' },
-        this.h('button', {
-          class: 'sc-year-month-name', type: 'button',
-          title: 'Zu ' + this.monthNames[mi] + ' ' + this.currentYear + ' wechseln',
-          onclick: () => this.openMonth(this.currentYear, mi)
-        }, this.monthNames[mi]),
-        grid
-      ));
-    }
-    return section;
-  }
-
-  /* ----- Lebensansicht (Heatmap über alle Jahre) ----- */
-
-  buildLifeView() {
-    const years = [];
-    for (let y = this.minYear; y <= this.maxYear; y++) years.push(y);
-    const n = years.length;
-    const cols = '30px repeat(' + n + ', 1fr)';
-
-    // Maximum für die Skalierung (nur aktive Kategorien)
-    let max = 1;
-    const cellData = [];
-    for (let m = 0; m < 12; m++) {
-      cellData.push(years.map((y) => {
-        const agg = this.monthAgg.get(y + '-' + this.pad(m + 1));
-        let count = 0, dom = null, best = 0;
-        if (agg) {
-          this.categoryOrder.forEach((cat) => {
-            if (!this.isEventVisible({ category: cat })) return;
-            const c = agg[cat] || 0;
-            count += c;
-            if (c > best) { best = c; dom = cat; }
-          });
-        }
-        if (count > max) max = count;
-        return { y: y, count: count, dom: dom };
-      }));
-    }
-
-    const inner = this.h('div', { class: 'sc-life-inner' });
-    for (let m = 0; m < 12; m++) {
-      const row = this.h('div', { class: 'sc-life-row' });
-      row.style.gridTemplateColumns = cols;
-      row.appendChild(this.h('div', { class: 'sc-life-rowlabel' }, this.monthNames[m].slice(0, 3)));
-      cellData[m].forEach((c) => {
-        const cell = this.h('div', {
-          class: 'sc-life-cell' + (c.count ? ' has-events' : ''),
-          title: this.monthNames[m] + ' ' + c.y + ' · ' + this.countLabel(c.count)
-        });
-        if (c.count) {
-          const alpha = Math.min(0.92, 0.16 + (c.count / max) * 0.8);
-          cell.style.background = this.colorA(c.dom, alpha);
-          cell.setAttribute('role', 'button');
-          cell.setAttribute('tabindex', '0');
-          cell.addEventListener('click', () => this.openMonth(c.y, m));
-          cell.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.openMonth(c.y, m); }
-          });
-        }
-        row.appendChild(cell);
-      });
-      inner.appendChild(row);
-    }
-    const ticks = this.h('div', { class: 'sc-life-ticks' });
-    ticks.style.gridTemplateColumns = cols;
-    ticks.appendChild(this.h('div', {}));
-    years.forEach((y, i) => {
-      ticks.appendChild(this.h('div', { class: 'sc-life-tick' },
-        (y % 10 === 0 || i === 0) ? String(y) : ''));
-    });
-    inner.appendChild(ticks);
-
-    const legend = this.h('div', { class: 'sc-life-legend' },
-      this.h('span', {}, 'weniger'),
-      ...[0, 0.3, 0.58, 0.9].map((a) => {
-        const sw = this.h('span', { class: 'sw' });
-        sw.style.background = a === 0 ? '#f1efe8' : 'rgba(28,110,140,' + a + ')';
-        return sw;
-      }),
-      this.h('span', {}, 'mehr')
-    );
-
-    return this.h('section', { class: 'sc-life' },
-      this.h('div', { class: 'sc-life-head' },
-        this.h('div', { class: 'sc-life-title' }, 'Korrespondenzstücke pro Monat über die Lebensspanne'),
-        legend
-      ),
-      this.h('div', { class: 'sc-life-scroll' }, inner),
-      this.h('p', { class: 'sc-life-note' },
-        'Ein Feld je Monat (' + this.minYear + '–' + this.maxYear + '); die Färbung folgt '
-        + 'der Anzahl der – nach den aktiven Kategorien gefilterten – Korrespondenzstücke, '
-        + 'in der Farbe der häufigsten Kategorie. Ein Klick öffnet den jeweiligen Monat.')
-    );
-  }
-
-  /* ----- Tages-Drawer ----- */
-
-  renderDrawer() {
-    this.drawerEl.innerHTML = '';
-    if (!this.drawerOpen || !this.selectedKey) {
-      this.drawerEl.hidden = true;
-      return;
-    }
-    this.drawerEl.hidden = false;
-
-    const key = this.selectedKey;
-    const d = this.parseKey(key);
-    const all = this.dayList(key);
-    const active = all.filter((e) => this.isEventVisible(e));
-    const hidden = all.length - active.length;
-
-    const list = this.h('div', { class: 'sc-drawer-list' });
-    active.forEach((event) => {
-      const bar = this.h('span', { class: 'sc-bar', 'aria-hidden': 'true' });
-      bar.style.background = this.color(event.category);
-      const tag = this.h('div', { class: 'sc-entry-tag' },
-        event.categoryLabel || this.categoryLabels[event.category] || '');
-      tag.style.color = this.color(event.category);
-
-      const main = this.h('div', { class: 'sc-entry-main' },
-        tag,
-        this.h('div', { class: 'sc-entry-title' }, event.name)
-      );
-      if (event.category === 'gedruckt') {
-        const bib = this.h('div', { class: 'sc-entry-bib' });
-        bib.appendChild(this.h('strong', {}, 'Gedruckt in: '));
-        bib.appendChild(document.createTextNode(
-          event.bibliographic || 'Bibliographische Angabe nicht verfügbar'));
-        main.appendChild(bib);
-      } else if (event.category === 'fischer' && event.link_url) {
-        const link = this.h('a', { class: 'sc-entry-link', href: event.link_url },
-          'S. Fischer-Briefdatenbank →');
-        link.style.color = this.color(event.category);
-        main.appendChild(link);
+    if (typeof window.activeFilters !== 'undefined') {
+      const button = this.container.querySelector(`[data-category="${category}"]`);
+      
+      if (window.activeFilters.has(category)) {
+        window.activeFilters.delete(category);
+        button.classList.remove('active');
       } else {
-        const link = this.h('a', { class: 'sc-entry-link', href: event.linkId },
-          'Zum Korrespondenzstück →');
-        link.style.color = this.color(event.category);
-        main.appendChild(link);
+        window.activeFilters.add(category);
+        button.classList.add('active');
       }
-      list.appendChild(this.h('div', { class: 'sc-entry' }, bar, main));
+      
+      // Update calendar display
+      this.renderCalendar();
+    }
+  }
+  
+  createCalendarStructure() {
+    this.container.innerHTML = `
+      <div class="calendar">
+        <div class="calendar-header">
+          <button class="nav-btn prev" data-direction="-1">&lt;</button>
+          <div class="current-period">
+            <div class="period-navigation">
+              <div class="calendar-controls">
+                <div class="view-buttons">
+                  <button class="view-btn active" data-view="year">Jahr</button>
+                  <button class="view-btn" data-view="month">Monat</button>
+                  <button class="view-btn" data-view="week">Woche</button>
+                </div>
+                <div class="period-dropdowns">
+                  <!-- Dropdowns will be added dynamically -->
+                </div>
+                <div class="category-filters">
+                  <button class="filter-toggle active" data-category="as-sender" title="Briefe Schnitzlers">
+                    <span class="filter-dot"></span>
+                    Von Schnitzler
+                  </button>
+                  <button class="filter-toggle active" data-category="as-empf" title="Briefe an Schnitzler">
+                    <span class="filter-dot"></span>
+                    An Schnitzler
+                  </button>
+                  <button class="filter-toggle active" data-category="umfeld" title="Umfeldbriefe">
+                    <span class="filter-dot"></span>
+                    Umfeldbriefe
+                  </button>
+                  <button class="filter-toggle active" data-category="gedruckt" title="Gedruckte Briefe">
+                    <span class="filter-dot"></span>
+                    Gedruckte Briefe
+                  </button>
+                  <button class="filter-toggle active" data-category="fischer" title="S. Fischer">
+                    <span class="filter-dot"></span>
+                    S. Fischer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="nav-btn next" data-direction="1">&gt;</button>
+        </div>
+        <div class="calendar-grid"></div>
+      </div>
+    `;
+
+    // Add CSS
+    this.addStyles();
+
+    // Add event listeners
+    this.container.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const direction = parseInt(e.target.dataset.direction);
+        this.navigatePeriod(direction);
+      });
     });
-    if (!active.length) {
-      list.appendChild(this.h('div', { class: 'sc-drawer-empty' },
-        'Keine sichtbaren Einträge an diesem Tag.'));
+
+    // Add view button listeners
+    this.container.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        this.switchView(e.target.dataset.view);
+      });
+    });
+
+    // Add category filter listeners
+    this.container.querySelectorAll('.filter-toggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const category = e.currentTarget.dataset.category;
+        this.toggleCategoryFilter(category);
+      });
+    });
+
+    // Create dropdown navigation
+    this.createDropdownNavigation();
+  }
+  
+  addStyles() {
+    if (!document.getElementById('simple-calendar-styles')) {
+      const style = document.createElement('style');
+      style.id = 'simple-calendar-styles';
+      style.textContent = `
+        .calendar {
+          width: 100%;
+          max-width: none;
+          margin: 0 auto;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .calendar-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+        
+        .current-period {
+          flex: 1;
+          text-align: center;
+          position: relative;
+        }
+        
+        .period-navigation {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+        
+        .period-dropdowns {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .period-dropdown {
+          padding: 6px 10px;
+          border: 1px solid #dee2e6;
+          border-radius: 4px;
+          font-size: 14px;
+          background: white;
+          cursor: pointer;
+          min-width: 100px;
+        }
+
+        .period-dropdown:hover {
+          border-color: #007bff;
+        }
+
+        .period-dropdown:focus {
+          outline: none;
+          border-color: #007bff;
+          box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+        
+        .calendar-controls {
+          display: flex;
+          gap: 20px;
+          margin-top: 10px;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .view-buttons {
+          display: flex;
+          gap: 4px;
+        }
+        
+        .category-filters {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+        
+        .view-btn {
+          background: #f8f9fa;
+          border: 1px solid #dee2e6;
+          border-radius: 4px;
+          padding: 6px 12px;
+          cursor: pointer;
+          font-size: 14px;
+          transition: all 0.2s;
+          color: #495057;
+        }
+        
+        .view-btn:hover {
+          background: #e9ecef;
+        }
+        
+        .view-btn.active {
+          background: #007bff;
+          color: white;
+          border-color: #007bff;
+        }
+        
+        .filter-toggle {
+          background: #f8f9fa;
+          border: 1px solid #dee2e6;
+          border-radius: 4px;
+          padding: 6px 12px;
+          cursor: pointer;
+          font-size: 14px;
+          transition: all 0.2s;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        
+        .filter-toggle:hover {
+          background: #e9ecef;
+        }
+        
+        .filter-toggle .filter-dot {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background-color: white;
+          border: 2px solid #ddd;
+        }
+        
+        .filter-toggle[data-category="as-sender"] .filter-dot {
+          border-color: #A63437;
+        }
+
+        .filter-toggle[data-category="as-empf"] .filter-dot {
+          border-color: #1C6E8C;
+        }
+
+        .filter-toggle[data-category="umfeld"] .filter-dot {
+          border-color: #68825b;
+        }
+
+        .filter-toggle[data-category="gedruckt"] .filter-dot {
+          border-color: rgb(101, 67, 33);
+        }
+
+        .filter-toggle[data-category="fischer"] .filter-dot {
+          border-color: #3D4F9F;
+        }
+
+        .filter-toggle.active[data-category="as-sender"] {
+          background: #A63437;
+          color: white;
+          border-color: #A63437;
+        }
+
+        .filter-toggle.active[data-category="as-empf"] {
+          background: #1C6E8C;
+          color: white;
+          border-color: #1C6E8C;
+        }
+
+        .filter-toggle.active[data-category="umfeld"] {
+          background: #68825b;
+          color: white;
+          border-color: #68825b;
+        }
+
+        .filter-toggle.active[data-category="gedruckt"] {
+          background: rgb(101, 67, 33);
+          color: white;
+          border-color: rgb(101, 67, 33);
+        }
+
+        .filter-toggle.active[data-category="fischer"] {
+          background: #3D4F9F;
+          color: white;
+          border-color: #3D4F9F;
+        }
+        
+        .filter-toggle:not(.active) {
+          opacity: 0.6;
+        }
+        
+        .nav-btn {
+          background: #f8f9fa;
+          border: 1px solid #dee2e6;
+          border-radius: 4px;
+          padding: 8px 12px;
+          cursor: pointer;
+          font-size: 16px;
+          min-width: 40px;
+        }
+        
+        .nav-btn:hover {
+          background: #e9ecef;
+        }
+        
+        .period-title {
+          margin: 0;
+          font-size: 24px;
+          font-weight: 600;
+          color: #333;
+        }
+        
+        .calendar-grid {
+          display: grid;
+          gap: 20px;
+        }
+        
+        .calendar-grid.year-view {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .calendar-grid.month-view {
+          grid-template-columns: 1fr;
+          overflow-x: auto;
+        }
+        
+        .calendar-grid.week-view {
+          grid-template-columns: 1fr;
+        }
+        
+        .month {
+          border: 1px solid #dee2e6;
+          border-radius: 8px;
+          overflow: hidden;
+          background: white;
+        }
+        
+        .month-header {
+          background: #f8f9fa;
+          padding: 12px;
+          text-align: center;
+          font-weight: 600;
+          color: #495057;
+          border-bottom: 1px solid #dee2e6;
+          transition: background-color 0.2s, color 0.2s;
+        }
+        
+        .month-header:hover {
+          background: #e9ecef;
+          color: #007bff;
+        }
+        
+        .month-days {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+        }
+        
+        .day-header {
+          background: #f8f9fa;
+          padding: 8px 4px;
+          text-align: center;
+          font-size: 12px;
+          font-weight: 500;
+          color: #6c757d;
+          border-bottom: 1px solid #dee2e6;
+        }
+        
+        .day {
+          position: relative;
+          aspect-ratio: 1;
+          border: 1px solid #f1f3f4;
+          cursor: pointer;
+          transition: background-color 0.2s;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 4px 2px 2px 2px;
+          min-height: 40px;
+        }
+
+        .day:hover {
+          background-color: #f8f9fa;
+        }
+
+        .day.other-month {
+          color: #adb5bd;
+          background-color: #fafbfc;
+        }
+
+        .day.has-events {
+          font-weight: 600;
+        }
+
+        .day-number {
+          font-size: 13px;
+          line-height: 1;
+          margin-bottom: 3px;
+          z-index: 2;
+        }
+
+        /* Option A: Kompakte Balken direkt unter der Ziffer */
+        .event-bars {
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+          width: 100%;
+          max-width: 24px;
+        }
+
+        .event-bar {
+          height: 3px;
+          width: 100%;
+          border-radius: 1px;
+        }
+
+        /* Option B: Farbige Punkte (auskommentiert - zum Testen aktivieren) */
+        /*
+        .event-bars {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 2px;
+          max-width: 100%;
+          padding: 0 2px;
+        }
+
+        .event-bar {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.9);
+        }
+        */
+        
+        .events-count {
+          display: none !important;
+        }
+
+        /* Month view styles */
+        .month-large {
+          width: 100%;
+          overflow-x: auto;
+          border: 1px solid #dee2e6;
+          border-radius: 8px;
+          background: white;
+        }
+        
+        .calendar-grid.month-view {
+          overflow-x: auto;
+          max-width: 100%;
+        }
+        
+        /* Hide sidebar and expand calendar for month view */
+        .calendar-grid.month-view ~ * #sidebar-col,
+        body:has(.calendar-grid.month-view) #sidebar-col {
+          display: none;
+        }
+        
+        body:has(.calendar-grid.month-view) #calendar-col {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+        
+        
+        .month-large .month-header {
+          background: #f8f9fa;
+          padding: 12px;
+          text-align: center;
+          font-weight: 600;
+          color: #495057;
+          border-bottom: 1px solid #dee2e6;
+        }
+        
+        .month-days-large {
+          display: grid;
+          grid-template-columns: repeat(7, minmax(135px, 1fr));
+          gap: 1px;
+          background: #dee2e6;
+          min-width: 945px;
+        }
+        
+        .day-header-large {
+          background: #f8f9fa;
+          padding: 12px;
+          text-align: center;
+          font-weight: 600;
+          color: #495057;
+          font-size: 14px;
+        }
+        
+        .day-large {
+          min-height: 140px;
+          background: white;
+          padding: 8px;
+          display: flex;
+          flex-direction: column;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+        
+        .day-large:hover {
+          background: #f8f9fa;
+        }
+        
+        .day-large.other-month {
+          background: #fafbfc;
+          color: #adb5bd;
+        }
+        
+        .day-number-large {
+          font-weight: 600;
+          margin-bottom: 6px;
+          font-size: 16px;
+        }
+        
+        .events-container-large {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          overflow: hidden;
+        }
+        
+        .event-item-large {
+          background: #007bff;
+          color: white;
+          padding: 4px 6px;
+          border-radius: 3px;
+          font-size: 11px;
+          line-height: 1.3;
+          cursor: pointer;
+          white-space: normal;
+          word-wrap: break-word;
+          word-break: break-word;
+          hyphens: auto;
+          min-height: 20px;
+          max-height: none;
+          border: 1px solid rgba(255,255,255,0.2);
+          display: block;
+        }
+        
+        .event-item-large:hover {
+          opacity: 0.8;
+        }
+        
+        .more-events-large {
+          font-size: 10px;
+          color: #6c757d;
+          font-style: italic;
+          margin-top: 2px;
+        }
+
+        /* Week view styles */
+        .week-view {
+          width: 100%;
+          border: 1px solid #dee2e6;
+          border-radius: 8px;
+          background: white;
+          overflow: hidden;
+        }
+        
+        .week-days-header {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 1px;
+          background: #dee2e6;
+        }
+        
+        .week-day-header {
+          background: #f8f9fa;
+          padding: 12px;
+          text-align: center;
+        }
+        
+        .week-day-name {
+          font-weight: 600;
+          color: #495057;
+          font-size: 14px;
+        }
+        
+        .week-day-date {
+          font-size: 12px;
+          color: #6c757d;
+          margin-top: 4px;
+        }
+        
+        .week-days-container {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 1px;
+          background: #dee2e6;
+          min-height: 500px;
+        }
+        
+        .week-day-column {
+          background: white;
+          padding: 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        
+        .week-event {
+          background: #007bff;
+          color: white;
+          padding: 6px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          cursor: pointer;
+          white-space: normal;
+          word-wrap: break-word;
+          word-break: break-word;
+          hyphens: auto;
+          line-height: 1.4;
+          min-height: 24px;
+          border: 1px solid rgba(255,255,255,0.2);
+          transition: opacity 0.2s;
+          display: block;
+        }
+        
+        .week-event:hover {
+          opacity: 0.8;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 1400px) {
+          .calendar-grid.year-view {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          }
+        }
+        
+        @media (max-width: 900px) {
+          .calendar-grid.year-view {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          }
+        }
+        
+        @media (max-width: 600px) {
+          .calendar-grid.year-view {
+            grid-template-columns: 1fr;
+          }
+        }
+      `;
+      document.head.appendChild(style);
     }
-    if (hidden > 0) {
-      list.appendChild(this.h('div', { class: 'sc-drawer-hidden' },
-        hidden + (hidden === 1 ? ' Eintrag ist' : ' Einträge sind') + ' durch den Filter ausgeblendet.'));
+  }
+  
+  createDropdownNavigation() {
+    const dropdownContainer = this.container.querySelector('.period-dropdowns');
+
+    // Clear existing dropdowns
+    dropdownContainer.innerHTML = '';
+
+    // Year dropdown for all views
+    this.createYearDropdown(dropdownContainer);
+
+    // Month dropdown for month view
+    if (this.currentView === 'month') {
+      this.createMonthDropdown(dropdownContainer);
     }
 
-    const drawer = this.h('aside', {
-      class: 'sc-drawer', role: 'dialog', 'aria-modal': 'true',
-      'aria-label': 'Einträge des Tages',
-      onclick: (e) => e.stopPropagation()
-    },
-    this.h('div', { class: 'sc-drawer-head' },
-      this.h('div', {},
-        this.h('div', { class: 'sc-drawer-wd' }, this.dayNamesLong[(d.getDay() + 6) % 7]),
-        this.h('div', { class: 'sc-drawer-date' },
-          d.getDate() + '. ' + this.monthNames[d.getMonth()] + ' ' + d.getFullYear()),
-        this.h('div', { class: 'sc-drawer-count' },
-          this.countLabel(active.length, 'keine sichtbaren Einträge'))
-      ),
-      this.h('button', {
-        class: 'sc-drawer-close', type: 'button', 'aria-label': 'Schließen',
-        onclick: () => this.closeDrawer()
-      }, '×')
-    ),
-    list,
-    this.h('div', { class: 'sc-drawer-foot' },
-      this.h('button', { type: 'button', onclick: () => this.drawerStep(-1) }, '‹ Vortag'),
-      this.h('button', { type: 'button', onclick: () => this.drawerStep(1) }, 'Folgetag ›')
-    ));
+    // Week dropdown for week view
+    if (this.currentView === 'week') {
+      this.createWeekDropdown(dropdownContainer);
+    }
+  }
+  
+  createYearDropdown(container) {
+    const yearSelect = document.createElement('select');
+    yearSelect.className = 'period-dropdown year-dropdown';
 
-    const backdrop = this.drawerEl;
-    backdrop.onclick = () => this.closeDrawer();
-    backdrop.appendChild(drawer);
-    drawer.querySelector('.sc-drawer-close').focus();
+    // Use pre-calculated available years
+    this.availableYears.forEach(year => {
+      const option = document.createElement('option');
+      option.value = year;
+      option.textContent = year;
+      option.selected = year === this.currentYear;
+      yearSelect.appendChild(option);
+    });
+
+    yearSelect.addEventListener('change', (e) => {
+      this.currentYear = parseInt(e.target.value);
+      this.renderCalendar();
+      this.updateURL();
+    });
+
+    container.appendChild(yearSelect);
+  }
+  
+  createMonthDropdown(container) {
+    const monthSelect = document.createElement('select');
+    monthSelect.className = 'period-dropdown month-dropdown';
+
+    this.monthNames.forEach((monthName, index) => {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = monthName;
+      option.selected = index === this.currentMonth;
+      monthSelect.appendChild(option);
+    });
+
+    monthSelect.addEventListener('change', (e) => {
+      this.currentMonth = parseInt(e.target.value);
+      this.renderCalendar();
+      this.updateURL();
+    });
+
+    container.appendChild(monthSelect);
+  }
+  
+  createWeekDropdown(container) {
+    const weekSelect = document.createElement('select');
+    weekSelect.className = 'period-dropdown week-dropdown';
+
+    for (let week = 1; week <= 53; week++) {
+      const option = document.createElement('option');
+      option.value = week;
+      const weekStart = this.getWeekStart(this.currentYear, week);
+      const weekEnd = new Date(weekStart.getTime() + 6 * 24 * 60 * 60 * 1000);
+      option.textContent = `Woche ${week} (${weekStart.getDate()}.${weekStart.getMonth() + 1}. - ${weekEnd.getDate()}.${weekEnd.getMonth() + 1}.)`;
+      option.selected = week === this.currentWeek;
+      weekSelect.appendChild(option);
+    }
+
+    weekSelect.addEventListener('change', (e) => {
+      this.currentWeek = parseInt(e.target.value);
+      this.renderCalendar();
+      this.updateURL();
+    });
+
+    container.appendChild(weekSelect);
+  }
+  
+  getPeriodTitle() {
+    if (this.currentView === 'year') {
+      return this.currentYear.toString();
+    } else if (this.currentView === 'month') {
+      return `${this.monthNames[this.currentMonth]} ${this.currentYear}`;
+    } else if (this.currentView === 'week') {
+      const weekStart = this.getWeekStart(this.currentYear, this.currentWeek);
+      const weekEnd = new Date(weekStart.getTime() + 6 * 24 * 60 * 60 * 1000);
+      return `${weekStart.getDate()}.${weekStart.getMonth() + 1}. - ${weekEnd.getDate()}.${weekEnd.getMonth() + 1}.${weekEnd.getFullYear()}`;
+    }
+  }
+  
+  navigatePeriod(direction) {
+    if (this.currentView === 'year') {
+      // Navigate to next/previous available year
+      const currentIndex = this.availableYears.indexOf(this.currentYear);
+      const newIndex = currentIndex + direction;
+
+      // Only navigate if there is a next/previous year
+      if (newIndex >= 0 && newIndex < this.availableYears.length) {
+        this.currentYear = this.availableYears[newIndex];
+      }
+    } else if (this.currentView === 'month') {
+      this.currentMonth += direction;
+      if (this.currentMonth > 11) {
+        this.currentMonth = 0;
+        // Navigate to next available year
+        const currentIndex = this.availableYears.indexOf(this.currentYear);
+        if (currentIndex + 1 < this.availableYears.length) {
+          this.currentYear = this.availableYears[currentIndex + 1];
+        }
+      } else if (this.currentMonth < 0) {
+        this.currentMonth = 11;
+        // Navigate to previous available year
+        const currentIndex = this.availableYears.indexOf(this.currentYear);
+        if (currentIndex - 1 >= 0) {
+          this.currentYear = this.availableYears[currentIndex - 1];
+        }
+      }
+    } else if (this.currentView === 'week') {
+      this.currentWeek += direction;
+      if (this.currentWeek > 52) {
+        this.currentWeek = 1;
+        // Navigate to next available year
+        const currentIndex = this.availableYears.indexOf(this.currentYear);
+        if (currentIndex + 1 < this.availableYears.length) {
+          this.currentYear = this.availableYears[currentIndex + 1];
+        }
+      } else if (this.currentWeek < 1) {
+        this.currentWeek = 52;
+        // Navigate to previous available year
+        const currentIndex = this.availableYears.indexOf(this.currentYear);
+        if (currentIndex - 1 >= 0) {
+          this.currentYear = this.availableYears[currentIndex - 1];
+        }
+      }
+    }
+    this.renderCalendar();
+    this.updateURL();
+  }
+  
+  switchView(view) {
+    const previousView = this.currentView;
+    this.currentView = view;
+    
+    // When switching from year to month view, always go to January (month 0)
+    if (previousView === 'year' && view === 'month') {
+      this.currentMonth = 0; // Januar = 0
+    }
+    
+    // When switching from year to week view, always go to first week of year
+    if (previousView === 'year' && view === 'week') {
+      this.currentWeek = 1; // Erste Kalenderwoche = 1
+    }
+    
+    // Update view button states
+    this.container.querySelectorAll('.view-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.view === view) {
+        btn.classList.add('active');
+      }
+    });
+    
+    this.renderCalendar();
+    this.updateURL();
+  }
+  
+  render() {
+    this.renderCalendar();
+  }
+  
+  renderCalendar() {
+    const grid = this.container.querySelector('.calendar-grid');
+    grid.innerHTML = '';
+
+    // Remove all view classes and add current view
+    grid.className = `calendar-grid ${this.currentView}-view`;
+
+    // Update dropdown navigation for current view
+    this.createDropdownNavigation();
+
+    switch(this.currentView) {
+      case 'year':
+        this.renderYearView(grid);
+        break;
+      case 'month':
+        this.renderMonthView(grid);
+        break;
+      case 'week':
+        this.renderWeekView(grid);
+        break;
+    }
+  }
+  
+  renderYearView(grid) {
+    // Filter events by enabled categories and current year
+    const filteredEvents = this.events.filter(event => {
+      const eventDate = new Date(event.startDate);
+      const eventYear = eventDate.getFullYear();
+      
+      return eventYear === this.currentYear && 
+             this.isEventVisible(event);
+    });
+    
+    // Group events by date
+    const eventsByDate = {};
+    filteredEvents.forEach(event => {
+      const date = event.startDate;
+      if (!eventsByDate[date]) {
+        eventsByDate[date] = [];
+      }
+      eventsByDate[date].push(event);
+    });
+    
+    // Render 12 months
+    for (let month = 0; month < 12; month++) {
+      const monthEl = this.createMonth(month, eventsByDate);
+      grid.appendChild(monthEl);
+    }
+  }
+  
+  renderMonthView(grid) {
+    // Filter events by enabled categories, current year and month
+    const filteredEvents = this.events.filter(event => {
+      const eventDate = new Date(event.startDate);
+      
+      return eventDate.getFullYear() === this.currentYear && 
+             eventDate.getMonth() === this.currentMonth &&
+             this.isEventVisible(event);
+    });
+    
+    // Group events by date
+    const eventsByDate = {};
+    filteredEvents.forEach(event => {
+      const date = event.startDate;
+      if (!eventsByDate[date]) {
+        eventsByDate[date] = [];
+      }
+      eventsByDate[date].push(event);
+    });
+    
+    const monthEl = this.createLargeMonth(this.currentMonth, eventsByDate);
+    grid.appendChild(monthEl);
+  }
+  
+  renderWeekView(grid) {
+    // Filter events by enabled categories and current week
+    const filteredEvents = this.events.filter(event => {
+      const eventDate = new Date(event.startDate);
+      const weekOfYear = this.getWeekOfYear(eventDate);
+      
+      return eventDate.getFullYear() === this.currentYear && 
+             weekOfYear === this.currentWeek &&
+             this.isEventVisible(event);
+    });
+    
+    // Group events by date
+    const eventsByDate = {};
+    filteredEvents.forEach(event => {
+      const date = event.startDate;
+      if (!eventsByDate[date]) {
+        eventsByDate[date] = [];
+      }
+      eventsByDate[date].push(event);
+    });
+    
+    const weekEl = this.createWeekView(this.currentYear, this.currentWeek, eventsByDate);
+    grid.appendChild(weekEl);
+  }
+  
+  createMonth(monthIndex, eventsByDate) {
+    const monthEl = document.createElement('div');
+    monthEl.className = 'month';
+    
+    // Month header
+    const headerEl = document.createElement('div');
+    headerEl.className = 'month-header';
+    headerEl.textContent = `${this.monthNames[monthIndex]} ${this.currentYear}`;
+    headerEl.style.cursor = 'pointer';
+    headerEl.title = `Zu ${this.monthNames[monthIndex]} ${this.currentYear} wechseln`;
+    
+    // Add click handler to switch to month view
+    headerEl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.currentMonth = monthIndex;
+      this.switchView('month');
+    });
+    
+    monthEl.appendChild(headerEl);
+    
+    // Days container
+    const daysEl = document.createElement('div');
+    daysEl.className = 'month-days';
+    
+    // Day headers
+    this.dayNames.forEach(dayName => {
+      const dayHeaderEl = document.createElement('div');
+      dayHeaderEl.className = 'day-header';
+      dayHeaderEl.textContent = dayName;
+      daysEl.appendChild(dayHeaderEl);
+    });
+    
+    // Days
+    const firstDay = new Date(this.currentYear, monthIndex, 1);
+    const lastDay = new Date(this.currentYear, monthIndex + 1, 0);
+    const firstWeekday = firstDay.getDay();
+    const daysInMonth = lastDay.getDate();
+    
+    // Previous month padding
+    const prevMonth = new Date(this.currentYear, monthIndex - 1, 0);
+    for (let i = firstWeekday - 1; i >= 0; i--) {
+      const dayEl = this.createDay(
+        prevMonth.getDate() - i, 
+        monthIndex - 1 < 0 ? 11 : monthIndex - 1,
+        monthIndex - 1 < 0 ? this.currentYear - 1 : this.currentYear,
+        true, 
+        eventsByDate
+      );
+      daysEl.appendChild(dayEl);
+    }
+    
+    // Current month days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayEl = this.createDay(day, monthIndex, this.currentYear, false, eventsByDate);
+      daysEl.appendChild(dayEl);
+    }
+    
+    // Next month padding
+    const cellsUsed = firstWeekday + daysInMonth;
+    const cellsNeeded = Math.ceil(cellsUsed / 7) * 7;
+    for (let day = 1; day <= cellsNeeded - cellsUsed; day++) {
+      const dayEl = this.createDay(
+        day, 
+        monthIndex + 1 > 11 ? 0 : monthIndex + 1,
+        monthIndex + 1 > 11 ? this.currentYear + 1 : this.currentYear,
+        true, 
+        eventsByDate
+      );
+      daysEl.appendChild(dayEl);
+    }
+    
+    monthEl.appendChild(daysEl);
+    return monthEl;
+  }
+  
+  createDay(day, month, year, isOtherMonth, eventsByDate) {
+    const dayEl = document.createElement('div');
+    dayEl.className = 'day';
+    if (isOtherMonth) dayEl.classList.add('other-month');
+
+    const dayNumberEl = document.createElement('div');
+    dayNumberEl.className = 'day-number';
+    dayNumberEl.textContent = day;
+    dayEl.appendChild(dayNumberEl);
+
+    // Check for events on this day
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const dayEvents = eventsByDate[dateStr] || [];
+
+    if (dayEvents.length > 0 && !isOtherMonth) {
+      dayEl.classList.add('has-events');
+
+      // Calculate background color based on event categories and count
+      const backgroundColor = this.calculateDayBackgroundColor(dayEvents);
+      if (backgroundColor) {
+        dayEl.style.backgroundColor = backgroundColor;
+      }
+
+      // Sort events by tageszaehler before rendering
+      // Printed letters (gedruckt) without tageszaehler should appear last
+      const sortedEvents = [...dayEvents].sort((a, b) => {
+        const posA = parseInt(a.tageszaehler) || 999;
+        const posB = parseInt(b.tageszaehler) || 999;
+        return posA - posB;
+      });
+
+      // Create event bars
+      const barsEl = document.createElement('div');
+      barsEl.className = 'event-bars';
+
+      sortedEvents.forEach(event => {
+        const barEl = document.createElement('div');
+        barEl.className = 'event-bar';
+        barEl.style.backgroundColor = this.eventCategories[event.category] || '#999';
+        barEl.title = event.name;
+        barsEl.appendChild(barEl);
+      });
+
+      dayEl.appendChild(barsEl);
+
+      // Add click handler for days with events (use sorted events)
+      dayEl.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const date = new Date(year, month, day);
+        this.onDayClick({ events: sortedEvents, date: date });
+      });
+    }
+
+    return dayEl;
+  }
+  
+  calculateDayBackgroundColor(dayEvents) {
+    if (!dayEvents || dayEvents.length === 0) return null;
+
+    // Count events per category
+    const categoryCounts = {
+      'as-sender': 0,
+      'as-empf': 0,
+      'umfeld': 0,
+      'gedruckt': 0,
+      'fischer': 0
+    };
+
+    dayEvents.forEach(event => {
+      if (categoryCounts.hasOwnProperty(event.category)) {
+        categoryCounts[event.category]++;
+      }
+    });
+
+    // Parse RGB colors from hex
+    const parseColor = (hex) => {
+      // Handle both formats: #A63437 and rgb(101, 67, 33)
+      if (hex.startsWith('rgb')) {
+        const matches = hex.match(/\d+/g);
+        return { r: parseInt(matches[0]), g: parseInt(matches[1]), b: parseInt(matches[2]) };
+      }
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return { r, g, b };
+    };
+
+    // Calculate weighted average color
+    let totalR = 0, totalG = 0, totalB = 0;
+    let totalEvents = 0;
+
+    Object.keys(categoryCounts).forEach(category => {
+      const count = categoryCounts[category];
+      if (count > 0) {
+        const color = parseColor(this.eventCategories[category]);
+        totalR += color.r * count;
+        totalG += color.g * count;
+        totalB += color.b * count;
+        totalEvents += count;
+      }
+    });
+
+    if (totalEvents === 0) return null;
+
+    const avgR = Math.round(totalR / totalEvents);
+    const avgG = Math.round(totalG / totalEvents);
+    const avgB = Math.round(totalB / totalEvents);
+
+    // Calculate opacity: 5% per event, max 25% at 5+ events
+    const opacity = Math.min(0.05 + (totalEvents - 1) * 0.05, 0.25);
+
+    return `rgba(${avgR}, ${avgG}, ${avgB}, ${opacity})`;
   }
 
-  /* ---------- URL-Zustand ---------- */
+  getWeekOfYear(date) {
+    const onejan = new Date(date.getFullYear(), 0, 1);
+    return Math.ceil((((date - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+  }
+  
+  getWeekStart(year, week) {
+    // ISO week calculation: week starts on Monday
+    const jan1 = new Date(year, 0, 1);
+    const jan1Day = jan1.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    
+    // Calculate days to first Monday of the year
+    const daysToFirstMonday = jan1Day === 0 ? 1 : (8 - jan1Day);
+    
+    // Calculate the start of the requested week
+    const weekStartDate = new Date(year, 0, 1 + daysToFirstMonday + (week - 2) * 7);
+    
+    return weekStartDate;
+  }
+  
+  createLargeMonth(monthIndex, eventsByDate) {
+    const monthEl = document.createElement('div');
+    monthEl.className = 'month-large';
+    
+    // Month header
+    const headerEl = document.createElement('div');
+    headerEl.className = 'month-header';
+    headerEl.textContent = `${this.monthNames[monthIndex]} ${this.currentYear}`;
+    monthEl.appendChild(headerEl);
+    
+    // Days container
+    const daysEl = document.createElement('div');
+    daysEl.className = 'month-days-large';
+    
+    // Day headers
+    this.dayNames.forEach(dayName => {
+      const dayHeaderEl = document.createElement('div');
+      dayHeaderEl.className = 'day-header-large';
+      dayHeaderEl.textContent = dayName;
+      daysEl.appendChild(dayHeaderEl);
+    });
+    
+    // Days
+    const firstDay = new Date(this.currentYear, monthIndex, 1);
+    const lastDay = new Date(this.currentYear, monthIndex + 1, 0);
+    const firstWeekday = firstDay.getDay();
+    const daysInMonth = lastDay.getDate();
+    
+    // Previous month padding
+    const prevMonth = new Date(this.currentYear, monthIndex - 1, 0);
+    for (let i = firstWeekday - 1; i >= 0; i--) {
+      const dayEl = this.createDayLarge(
+        prevMonth.getDate() - i,
+        monthIndex - 1 < 0 ? 11 : monthIndex - 1,
+        monthIndex - 1 < 0 ? this.currentYear - 1 : this.currentYear,
+        true,
+        eventsByDate
+      );
+      daysEl.appendChild(dayEl);
+    }
+    
+    // Current month days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayEl = this.createDayLarge(day, monthIndex, this.currentYear, false, eventsByDate);
+      daysEl.appendChild(dayEl);
+    }
+    
+    // Next month padding
+    const cellsUsed = firstWeekday + daysInMonth;
+    const cellsNeeded = Math.ceil(cellsUsed / 7) * 7;
+    for (let day = 1; day <= cellsNeeded - cellsUsed; day++) {
+      const dayEl = this.createDayLarge(
+        day,
+        monthIndex + 1 > 11 ? 0 : monthIndex + 1,
+        monthIndex + 1 > 11 ? this.currentYear + 1 : this.currentYear,
+        true,
+        eventsByDate
+      );
+      daysEl.appendChild(dayEl);
+    }
+    
+    monthEl.appendChild(daysEl);
+    return monthEl;
+  }
+  
+  createDayLarge(day, month, year, isOtherMonth, eventsByDate) {
+    const dayEl = document.createElement('div');
+    dayEl.className = 'day-large';
+    if (isOtherMonth) dayEl.classList.add('other-month');
+    
+    const dayNumberEl = document.createElement('div');
+    dayNumberEl.className = 'day-number-large';
+    dayNumberEl.textContent = day;
+    dayEl.appendChild(dayNumberEl);
+    
+    const eventsContainer = document.createElement('div');
+    eventsContainer.className = 'events-container-large';
+    
+    // Check for events on this day
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const dayEvents = eventsByDate[dateStr] || [];
 
+    if (dayEvents.length > 0 && !isOtherMonth) {
+      // Sort events by tageszaehler before rendering
+      // Printed letters (gedruckt) without tageszaehler should appear last
+      const sortedEvents = [...dayEvents].sort((a, b) => {
+        const posA = parseInt(a.tageszaehler) || 999;
+        const posB = parseInt(b.tageszaehler) || 999;
+        return posA - posB;
+      });
+
+      sortedEvents.slice(0, 5).forEach(event => {
+        const eventEl = document.createElement('div');
+        eventEl.className = 'event-item-large';
+        eventEl.style.backgroundColor = this.eventCategories[event.category] || '#999';
+        eventEl.textContent = event.name;
+        eventEl.title = event.name;
+        eventEl.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (event.category === 'gedruckt') {
+            // Use global function for printed letters
+            if (typeof window.showPrintedLetterPopup === 'function') {
+              window.showPrintedLetterPopup(event);
+            } else {
+              // Fallback if function not available
+              window.location.href = event.linkId || '#';
+            }
+          } else {
+            window.location.href = event.linkId;
+          }
+        });
+        eventsContainer.appendChild(eventEl);
+      });
+
+      if (sortedEvents.length > 5) {
+        const moreEl = document.createElement('div');
+        moreEl.className = 'more-events-large';
+        moreEl.textContent = `+${sortedEvents.length - 5} weitere`;
+        eventsContainer.appendChild(moreEl);
+      }
+
+      // Add click handler for the day (use sorted events)
+      dayEl.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const date = new Date(year, month, day);
+        this.onDayClick({ events: sortedEvents, date: date });
+      });
+
+      dayEl.style.cursor = 'pointer';
+    }
+    
+    dayEl.appendChild(eventsContainer);
+    return dayEl;
+  }
+  
+  createWeekView(year, week, eventsByDate) {
+    const weekEl = document.createElement('div');
+    weekEl.className = 'week-view';
+    
+    const weekStart = this.getWeekStart(year, week);
+    
+    // Week days header
+    const headerEl = document.createElement('div');
+    headerEl.className = 'week-days-header';
+    
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(weekStart.getTime() + i * 24 * 60 * 60 * 1000);
+      const headerDay = document.createElement('div');
+      headerDay.className = 'week-day-header';
+      headerDay.innerHTML = `
+        <div class="week-day-name">${this.dayNames[i]}</div>
+        <div class="week-day-date">${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}</div>
+      `;
+      headerEl.appendChild(headerDay);
+    }
+    
+    weekEl.appendChild(headerEl);
+    
+    // Week days container
+    const daysContainer = document.createElement('div');
+    daysContainer.className = 'week-days-container';
+    
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(weekStart.getTime() + i * 24 * 60 * 60 * 1000);
+      const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+      const dayEvents = eventsByDate[dateStr] || [];
+
+      // Sort events by tageszaehler before rendering
+      // Printed letters (gedruckt) without tageszaehler should appear last
+      const sortedEvents = [...dayEvents].sort((a, b) => {
+        const posA = parseInt(a.tageszaehler) || 999;
+        const posB = parseInt(b.tageszaehler) || 999;
+        return posA - posB;
+      });
+
+      const dayColumn = document.createElement('div');
+      dayColumn.className = 'week-day-column';
+
+      // Add events for this specific day
+      sortedEvents.forEach(event => {
+        const eventEl = document.createElement('div');
+        eventEl.className = 'week-event';
+        eventEl.style.backgroundColor = this.eventCategories[event.category] || '#999';
+        eventEl.textContent = event.name;
+        eventEl.title = event.name;
+        eventEl.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (event.category === 'gedruckt') {
+            // Use global function for printed letters
+            if (typeof window.showPrintedLetterPopup === 'function') {
+              window.showPrintedLetterPopup(event);
+            } else {
+              // Fallback if function not available
+              window.location.href = event.linkId || '#';
+            }
+          } else {
+            window.location.href = event.linkId;
+          }
+        });
+        dayColumn.appendChild(eventEl);
+      });
+
+      daysContainer.appendChild(dayColumn);
+    }
+    
+    weekEl.appendChild(daysContainer);
+    return weekEl;
+  }
+  
   loadStateFromURL() {
     const params = new URLSearchParams(window.location.search);
     if (params.has('year')) {
-      const y = parseInt(params.get('year'), 10);
-      if (y >= this.minYear && y <= this.maxYear) this.currentYear = y;
+      this.currentYear = parseInt(params.get('year')) || this.currentYear;
     }
     if (params.has('month')) {
-      const m = parseInt(params.get('month'), 10);
-      if (m >= 1 && m <= 12) this.currentMonth = m - 1;
-    }
-    if (params.has('week')) {
-      const w = parseInt(params.get('week'), 10);
-      if (w >= 1 && w <= 54) this.currentWeek = w;
-    }
-    if (params.has('view')) {
-      const v = params.get('view');
-      if (['life', 'year', 'month', 'week'].includes(v)) this.currentView = v;
-    }
-  }
-
-  updateURL() {
-    const params = new URLSearchParams(window.location.search);
-    params.set('view', this.currentView);
-    if (this.currentView === 'life') {
-      params.delete('year'); params.delete('month'); params.delete('week');
-    } else {
-      params.set('year', this.currentYear);
-      if (this.currentView === 'month') {
-        params.set('month', this.currentMonth + 1);
-        params.delete('week');
-      } else if (this.currentView === 'week') {
-        params.set('week', this.currentWeek);
-        params.delete('month');
-      } else {
-        params.delete('month');
-        params.delete('week');
+      // Convert from URL format (1-12) to internal format (0-11)
+      const urlMonth = parseInt(params.get('month'));
+      if (urlMonth >= 1 && urlMonth <= 12) {
+        this.currentMonth = urlMonth - 1;
       }
     }
+    if (params.has('week')) {
+      this.currentWeek = parseInt(params.get('week')) || this.currentWeek;
+    }
+    if (params.has('view')) {
+      this.currentView = params.get('view') || this.currentView;
+    }
+  }
+  
+  updateURL() {
+    const params = new URLSearchParams(window.location.search);
+    params.set('year', this.currentYear);
+    
+    if (this.currentView === 'month') {
+      // Convert from internal format (0-11) to URL format (1-12)
+      params.set('month', this.currentMonth + 1);
+      params.delete('week');
+    } else if (this.currentView === 'week') {
+      params.set('week', this.currentWeek);
+      params.delete('month');
+    } else {
+      params.delete('month');
+      params.delete('week');
+    }
+    
+    params.set('view', this.currentView);
     window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
   }
-
-  /* ---------- Öffentliche API (Kompatibilität) ---------- */
-
+  
+  // Public API methods
   setYear(year) {
     this.currentYear = year;
-    this.render();
+    this.renderCalendar();
     this.updateURL();
   }
-
+  
   getYear() {
     return this.currentYear;
   }
-
+  
   setView(view) {
-    if (['life', 'year', 'month', 'week'].includes(view)) {
+    if (['year', 'month', 'week'].includes(view)) {
       this.switchView(view);
     }
   }
-
+  
   setDataSource(newData) {
     this.events = newData || [];
-    this.buildIndexes();
-    this.render();
+    this.renderCalendar();
   }
 }
