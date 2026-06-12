@@ -37,16 +37,15 @@
                                 <h2>Sonderzeichen</h2>
                             </div>
                             <div class="card-body">
-                                <ul class="nav nav-tabs mb-3" role="tablist">
-                                    <xsl:for-each select="/sonderzeichen/charType">
-                                        <li class="nav-item" role="presentation">
+                                <div class="entity-theme" style="--project-color: {$current-colour};">
+                                    <div class="entity-tabs" role="tablist" aria-label="Sonderzeichen">
+                                        <xsl:for-each select="/sonderzeichen/charType">
                                             <button type="button" role="tab"
                                                 id="tab-{@type}"
-                                                data-bs-toggle="tab"
-                                                data-bs-target="#pane-{@type}"
+                                                data-tab="pane-{@type}"
                                                 aria-controls="pane-{@type}">
                                                 <xsl:attribute name="class">
-                                                    <xsl:text>nav-link</xsl:text>
+                                                    <xsl:text>entity-tab-btn</xsl:text>
                                                     <xsl:if test="position() = 1"> active</xsl:if>
                                                 </xsl:attribute>
                                                 <xsl:attribute name="aria-selected">
@@ -54,10 +53,8 @@
                                                 </xsl:attribute>
                                                 <xsl:value-of select="@label"/>
                                             </button>
-                                        </li>
-                                    </xsl:for-each>
-                                </ul>
-                                <div class="tab-content">
+                                        </xsl:for-each>
+                                    </div>
                                     <xsl:for-each select="/sonderzeichen/charType">
                                         <xsl:variable name="type" select="@type"/>
                                         <xsl:variable name="char" select="@char"/>
@@ -68,8 +65,8 @@
                                             id="pane-{@type}"
                                             aria-labelledby="tab-{@type}">
                                             <xsl:attribute name="class">
-                                                <xsl:text>tab-pane fade</xsl:text>
-                                                <xsl:if test="position() = 1"> show active</xsl:if>
+                                                <xsl:text>entity-tab-panel</xsl:text>
+                                                <xsl:if test="position() = 1"> active</xsl:if>
                                             </xsl:attribute>
 
                                             <!-- Einleitung -->
@@ -86,10 +83,9 @@
                                                             ausgebildet und verwendeten andere Rechtschreibregeln als die in Deutschland üblichen. Dazu gehören Unterschiede
                                                             bei der »ſs«- und »ß«-Schreibung. Kurz gefasst: In Österreich schrieb man bis zur Reform 1901 »dass«, danach wurde
                                                             das »daß« aus Deutschland zur Norm. Die Rechtschreibreform von 1997 wechselte wieder zum »dass«. Während
-                                                            also lange Zeit die Rechtschreibung von Schnitzler und seinen Landsleuten zur deutschen ›normalisiert‹ wurde und
-                                                            komplexe Regeln für die Umschrift von »ſs« (»ß«) und »ſſ« (»ss«) zum Einsatz kamen, genügt heute eine
-                                                            einfache Ersetzung: »ſ« wird zu »s«. Folglich wird auch
-                                                            »ſs« zu »ss«, was den beim Schreiben angewandten Regeln entspricht.</p>
+                                                            also lange Zeit die Rechtschreibung von Schnitzler und seinen Landsleuten zur deutschen ›normalisiert‹ wurde und zwei
+                                                            Regeln für die Umschrift zum Einsatz kamen (»ſs« wird zu »ß«, »ſ« zu »s«), genügt heute eine
+                                                            einfache Ersetzung: »ſ« wird zu »s«.</p>
                                                         <p class="text-muted mb-0">Wir kennen keine unmittelbare Verwendung für die folgende
                                                             Liste. Auch sind verschiedenen Wortformen (»iſt«, »ſein«; »dieſer«, »dieſe« …) nicht zusammengeführt.
                                                             Wir glauben aber trotzdem, dass jemand sie hilfreich finden wird, als Mosaiksteinchen der

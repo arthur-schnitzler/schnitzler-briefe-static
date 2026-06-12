@@ -18,20 +18,6 @@
             <script src="https://code.highcharts.com/modules/networkgraph.js"/>
             <script src="https://code.highcharts.com/modules/exporting.js"/>
             <body class="page">
-                <style>
-                    .nav-tabs { border-bottom: 2px solid #A63437; }
-                    .nav-tabs .nav-link { color: #A63437; }
-                    .nav-tabs .nav-link.active {
-                        background-color: #A63437;
-                        border-color: #A63437;
-                        color: #fff;
-                    }
-                    .nav-tabs .nav-link:not(.active):hover {
-                        border-color: transparent;
-                        background-color: rgba(166,52,55,0.08);
-                        color: #A63437;
-                    }
-                </style>
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
                     <div class="container">
@@ -48,28 +34,19 @@
                                 <p class="text-muted mb-0">Häufigkeitsnetzwerke der am stärksten vernetzten Einträge aus den Registern</p>
                             </div>
                             <div class="card-body">
-                                <ul class="nav nav-tabs mb-3" id="netzwerkeTabs" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="tab-person-btn"
-                                            data-bs-toggle="tab" data-bs-target="#tab-person"
-                                            type="button" role="tab" aria-controls="tab-person"
-                                            aria-selected="true">Personen</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="tab-work-btn"
-                                            data-bs-toggle="tab" data-bs-target="#tab-work"
-                                            type="button" role="tab" aria-controls="tab-work"
-                                            aria-selected="false">Werke</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="tab-institution-btn"
-                                            data-bs-toggle="tab" data-bs-target="#tab-institution"
-                                            type="button" role="tab" aria-controls="tab-institution"
-                                            aria-selected="false">Institutionen</button>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="netzwerkeTabContent">
-                                    <div class="tab-pane fade show active" id="tab-person"
+                                <div class="entity-theme" style="--project-color: {$current-colour};">
+                                    <div class="entity-tabs" id="netzwerkeTabs" role="tablist" aria-label="Netzwerke">
+                                        <button class="entity-tab-btn active" id="tab-person-btn"
+                                            data-tab="tab-person" type="button" role="tab"
+                                            aria-controls="tab-person" aria-selected="true">Personen</button>
+                                        <button class="entity-tab-btn" id="tab-work-btn"
+                                            data-tab="tab-work" type="button" role="tab"
+                                            aria-controls="tab-work" aria-selected="false">Werke</button>
+                                        <button class="entity-tab-btn" id="tab-institution-btn"
+                                            data-tab="tab-institution" type="button" role="tab"
+                                            aria-controls="tab-institution" aria-selected="false">Institutionen</button>
+                                    </div>
+                                    <div class="entity-tab-panel active" id="tab-person"
                                         role="tabpanel" aria-labelledby="tab-person-btn">
                                         <div class="text-center mb-3">
                                             <button class="btn mx-1 chart-btn-person"
@@ -99,7 +76,7 @@
                                                 data-zoom-container="container-person" data-zoom-factor="0">Reset</button>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="tab-work" role="tabpanel"
+                                    <div class="entity-tab-panel" id="tab-work" role="tabpanel"
                                         aria-labelledby="tab-work-btn">
                                         <div class="text-center mb-3">
                                             <button class="btn mx-1 chart-btn-work"
@@ -129,7 +106,7 @@
                                                 data-zoom-container="container-work" data-zoom-factor="0">Reset</button>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="tab-institution" role="tabpanel"
+                                    <div class="entity-tab-panel" id="tab-institution" role="tabpanel"
                                         aria-labelledby="tab-institution-btn">
                                         <div class="text-center mb-3">
                                             <button class="btn mx-1 chart-btn-institution"
@@ -159,7 +136,7 @@
                                                 data-zoom-container="container-institution" data-zoom-factor="0">Reset</button>
                                         </div>
                                     </div>
-                                </div>
+                                </div><!-- entity-theme -->
                             </div>
                         </div>
                     </div>
@@ -168,10 +145,10 @@
                     <script>
                         document.addEventListener('DOMContentLoaded', function () {
                             initNetworkChart('container-person', '.chart-btn-person');
-                            document.getElementById('tab-work-btn').addEventListener('shown.bs.tab', function () {
+                            document.getElementById('tab-work-btn').addEventListener('click', function () {
                                 initNetworkChart('container-work', '.chart-btn-work');
                             });
-                            document.getElementById('tab-institution-btn').addEventListener('shown.bs.tab', function () {
+                            document.getElementById('tab-institution-btn').addEventListener('click', function () {
                                 initNetworkChart('container-institution', '.chart-btn-institution');
                             });
                         });

@@ -19,18 +19,6 @@
             <script src="https://code.highcharts.com/modules/exporting.js"/>
             <body class="page">
                 <style>
-                    .nav-tabs { border-bottom: 2px solid #A63437; }
-                    .nav-tabs .nav-link { color: #A63437; }
-                    .nav-tabs .nav-link.active {
-                        background-color: #A63437;
-                        border-color: #A63437;
-                        color: #fff;
-                    }
-                    .nav-tabs .nav-link:not(.active):hover {
-                        border-color: transparent;
-                        background-color: rgba(166,52,55,0.08);
-                        color: #A63437;
-                    }
                     .form-check-label { cursor: pointer; font-size: 0.875rem; }
                     #venn-info { font-size: 0.875rem; color: #666; min-height: 1.5em; }
                     #venn-project-list input[disabled] + label { cursor: default; }
@@ -52,28 +40,20 @@
                                 Überlappungen der Kreise wird die Anzahl der gemeinsamen Entitäten dargestellt.</p>
                             </div>
                             <div class="card-body">
-                                <ul class="nav nav-tabs mb-3" id="vennEntityTabs" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" data-entity="person"
+                                <div class="entity-theme mb-3" style="--project-color: {$current-colour};">
+                                    <div class="entity-tabs" id="vennEntityTabs" role="tablist" aria-label="Entitätstyp">
+                                        <button class="entity-tab-btn active" data-entity="person"
                                             type="button" role="tab" aria-selected="true">Personen</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-entity="work" type="button"
-                                            role="tab" aria-selected="false">Werke</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-entity="place" type="button"
-                                            role="tab" aria-selected="false">Orte</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-entity="org" type="button"
-                                            role="tab" aria-selected="false">Institutionen</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-entity="event" type="button"
-                                            role="tab" aria-selected="false">Ereignisse</button>
-                                    </li>
-                                </ul>
+                                        <button class="entity-tab-btn" data-entity="work"
+                                            type="button" role="tab" aria-selected="false">Werke</button>
+                                        <button class="entity-tab-btn" data-entity="place"
+                                            type="button" role="tab" aria-selected="false">Orte</button>
+                                        <button class="entity-tab-btn" data-entity="org"
+                                            type="button" role="tab" aria-selected="false">Institutionen</button>
+                                        <button class="entity-tab-btn" data-entity="event"
+                                            type="button" role="tab" aria-selected="false">Ereignisse</button>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-3 border-end pe-3">
                                         <h6 class="fw-bold mb-1">Projekte</h6>
