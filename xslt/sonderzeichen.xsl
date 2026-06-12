@@ -34,7 +34,7 @@
                         </nav>
                         <div class="card">
                             <div class="card-header">
-                                <h2>Sonderzeichen</h2>
+                                <h1>Sonderzeichen</h1>
                             </div>
                             <div class="card-body">
                                 <div class="entity-theme" style="--project-color: {$current-colour};">
