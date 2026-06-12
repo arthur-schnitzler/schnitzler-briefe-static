@@ -42,10 +42,15 @@
                             <div class="card-header">
                                 <h1><xsl:value-of select="$doc_title"/></h1>
                                 <xsl:if test="$output-type = 'briefe'">
-                                    <div class="btn-group mt-3" role="group" aria-label="Ansicht auswählen">
-                                        <button type="button" class="btn btn-primary" id="view-gallery-btn" onclick="showGalleryView()">Galerie</button>
-                                        <button type="button" class="btn btn-outline-primary" id="view-table-btn" onclick="showTableView()">Tabelle</button>
-                                        <button type="button" class="btn btn-outline-primary" id="view-network-btn" onclick="showNetworkView()">Netzwerk</button>
+                                    <div class="entity-theme mt-2" style="--project-color: {$current-colour};">
+                                        <div class="entity-tabs" role="tablist" aria-label="Ansicht auswählen">
+                                            <button type="button" role="tab" class="entity-tab-btn active" id="view-gallery-btn"
+                                                aria-selected="true" onclick="showGalleryView()">Galerie</button>
+                                            <button type="button" role="tab" class="entity-tab-btn" id="view-table-btn"
+                                                aria-selected="false" onclick="showTableView()">Tabelle</button>
+                                            <button type="button" role="tab" class="entity-tab-btn" id="view-network-btn"
+                                                aria-selected="false" onclick="showNetworkView()">Netzwerk</button>
+                                        </div>
                                     </div>
                                 </xsl:if>
                             </div>
@@ -328,36 +333,18 @@
                             document.getElementById('gallery-view').style.display = 'block';
                             document.getElementById('table-view').style.display = 'none';
                             document.getElementById('network-view').style.display = 'none';
-                            document.getElementById('view-gallery-btn').classList.remove('btn-outline-primary');
-                            document.getElementById('view-gallery-btn').classList.add('btn-primary');
-                            document.getElementById('view-table-btn').classList.remove('btn-primary');
-                            document.getElementById('view-table-btn').classList.add('btn-outline-primary');
-                            document.getElementById('view-network-btn').classList.remove('btn-primary');
-                            document.getElementById('view-network-btn').classList.add('btn-outline-primary');
                         }
 
                         function showTableView() {
                             document.getElementById('gallery-view').style.display = 'none';
                             document.getElementById('table-view').style.display = 'block';
                             document.getElementById('network-view').style.display = 'none';
-                            document.getElementById('view-gallery-btn').classList.remove('btn-primary');
-                            document.getElementById('view-gallery-btn').classList.add('btn-outline-primary');
-                            document.getElementById('view-table-btn').classList.remove('btn-outline-primary');
-                            document.getElementById('view-table-btn').classList.add('btn-primary');
-                            document.getElementById('view-network-btn').classList.remove('btn-primary');
-                            document.getElementById('view-network-btn').classList.add('btn-outline-primary');
                         }
 
                         function showNetworkView() {
                             document.getElementById('gallery-view').style.display = 'none';
                             document.getElementById('table-view').style.display = 'none';
                             document.getElementById('network-view').style.display = 'block';
-                            document.getElementById('view-gallery-btn').classList.remove('btn-primary');
-                            document.getElementById('view-gallery-btn').classList.add('btn-outline-primary');
-                            document.getElementById('view-table-btn').classList.remove('btn-primary');
-                            document.getElementById('view-table-btn').classList.add('btn-outline-primary');
-                            document.getElementById('view-network-btn').classList.remove('btn-outline-primary');
-                            document.getElementById('view-network-btn').classList.add('btn-primary');
                             // Trigger chart reflow and resize after view is displayed
                             setTimeout(function() {
                                 if (window.chart) {

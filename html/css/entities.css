@@ -9,8 +9,8 @@
    params.xsl). Alle --red-*-Ableitungen werden via oklch(from …) aus
    dieser Farbe berechnet, sodass Lightness/Chroma konsistent bleiben,
    die Hue aber aus der Projektfarbe kommt. */
-.entity-page {
-    padding: 0 1rem;
+.entity-page,
+.entity-theme {
     --red: var(--project-color);
     --red-ink: oklch(from var(--project-color) 0.34 calc(c * 0.85) h);
     --red-soft: oklch(from var(--project-color) 0.94 0.04 h);
@@ -27,6 +27,9 @@
     --entity-ink-muted: oklch(0.58 0.008 60);
     --entity-tab-text: var(--entity-ink-soft);
     --entity-tab-active-bg: var(--red-softer);
+}
+.entity-page {
+    padding: 0 1rem;
 }
 
 /* ── Eltern-Container aufweiten wenn entity-page drin ist ──── */
