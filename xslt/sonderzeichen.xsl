@@ -98,10 +98,25 @@
                                                 </xsl:when>
                                                 <xsl:when test="$type = 'gemination-m'">
                                                     <!-- Einleitung Gemination m̅: hier einfügen -->
+                                                    <div class="mb-4">
+                                                        <p class="text-muted mb-0">Eine Verdoppelung von Konsonanten durch einen 
+                                                        Überstrich war eine häufige Praxis. In dem von uns bearbeiteten Korpus
+                                                        fällt auf, dass es innerhalb einer Handschrift zumeist beide Formen gab,
+                                                        also dass sich die Grenze nicht zwischen verschiedenen Schreibenden, sondern innerhalb der Praxis eines Schreibenden befindet. 
+                                                        </p>
+                                                        <p class="text-muted mb-0">Es folgt eine Aufstellung, bei denen das »m« gedoppelt wurde.</p>
+                                                        </div>
                                                 </xsl:when>
                                                 <xsl:when test="$type = 'gemination-n'">
-                                                    <!-- Einleitung Gemination n̅: hier einfügen -->
-                                                </xsl:when>
+ <!-- Einleitung Gemination m̅: hier einfügen -->
+                                                    <div class="mb-4">
+                                                        <p class="text-muted mb-0">Eine Verdoppelung von Konsonanten durch einen 
+                                                        Überstrich war eine häufige Praxis. In dem von uns bearbeiteten Korpus
+                                                        fällt auf, dass es innerhalb einer Handschrift zumeist beide Formen gab,
+                                                        also dass sich die Grenze nicht zwischen verschiedenen Schreibenden, sondern innerhalb der Praxis eines Schreibenden befindet. 
+                                                        </p>
+                                                        <p class="text-muted mb-0">Es folgt eine Aufstellung, bei denen das »n« gedoppelt wurde.</p>
+                                                        </div>                                                </xsl:when>
                                             </xsl:choose>
 
                                             <div class="row mb-4">
