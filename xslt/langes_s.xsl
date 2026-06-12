@@ -33,7 +33,7 @@
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
                             <span class="type-pill">Statistiken</span> <span class="sep">/</span>
-                            <xsl:value-of select="ancestor-or-self::tei:TEI/@xml:id"/>
+                            <xsl:text>langes_s</xsl:text>
                         </nav>
                         <div class="card">
                             <div class="card-header text-center">

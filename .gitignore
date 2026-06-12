@@ -43,6 +43,8 @@ schnitzler-bahr-static.xpr
 data/
 html/dist/
 /html/oai-pmh
+# versehentlich im Repo-Root erzeugte Seiten (z. B. list*.xsl ohne -o:)
+/*.html
 html/*.html
 html/*.xml
 html/*.rdf

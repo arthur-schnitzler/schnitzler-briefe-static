@@ -28,7 +28,8 @@
                     <div class="container 404-container">
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
-                            <span class="type-pill">Fehler</span>
+                            <span class="type-pill">Fehler</span> <span class="sep">/</span>
+                            <xsl:text>404</xsl:text>
                         </nav>
                         <h1 class="viernullvier-h1">404</h1>
                         <p class="viernullvier-p lead">

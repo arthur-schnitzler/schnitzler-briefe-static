@@ -41,7 +41,7 @@
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
                             <span class="type-pill">Netzwerke</span> <span class="sep">/</span>
-                            <xsl:value-of select="ancestor-or-self::tei:TEI/@xml:id"/>
+                            <xsl:text>interactive-networks</xsl:text>
                         </nav>
                         <div class="card">
                             <div class="card-header">
