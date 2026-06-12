@@ -70,6 +70,10 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
+    <xslt in="${index}" out="${target}/bildpostkarten.html" style="./xslt/bildpostkarten.xsl">
+        <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        <classpath location="${basedir}/saxon/saxon9he.jar"/>
+    </xslt>
     <xslt in="./data/indices/listperson.xml" out="${target}/netzwerke.html"
         style="./xslt/netzwerke.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>

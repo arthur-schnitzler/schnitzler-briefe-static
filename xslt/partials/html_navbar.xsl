@@ -80,6 +80,9 @@
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="archives.html">Archive</a>
                                 </li>
+                                <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="bildpostkarten.html">Bildpostkarten</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
