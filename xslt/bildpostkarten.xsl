@@ -34,6 +34,10 @@
                                         Ansichtskarten verfasst. Der Text wird im Jahrgang 34 von Studia Austriaca erscheinen. Wer schon vorher die Bildpostkarten und ihre Motiven, die
                                         Schnitzler versandte oder bekommen hat, studieren will, findet hier eine separate Aufstellung.</p>
                                 </div>
+                                <figure class="mb-4" role="img" aria-label="Balkendiagramm: Anzahl der Bildpostkarten pro Jahr, passt sich der Tabellenfilterung an">
+                                    <div id="bildpostkarten-chart" style="height: 250px;"/>
+                                    <figcaption class="text-muted small mt-1">Bildpostkarten pro Jahr (berücksichtigt die aktuelle Filterung der Tabelle)</figcaption>
+                                </figure>
                                 <table class="table table-sm display" id="tabulator-table-bildpostkarten">
                                     <thead>
                                         <tr>
@@ -104,6 +108,8 @@
                     <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet"/>
                     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
                     <script src="tabulator-js/config.js"></script>
+                    <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="tabulator-js/bildpostkarten-chart.js"></script>
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
                             var table = new Tabulator("#tabulator-table-bildpostkarten", {
@@ -148,6 +154,8 @@
                                 },
                                 locale: "de-de"
                             });
+
+                            initBildpostkartenChart(table, "<xsl:value-of select="$current-colour"/>");
 
                             var dlCsv = document.getElementById("download-csv");
                             if (dlCsv) dlCsv.addEventListener("click", function() {
