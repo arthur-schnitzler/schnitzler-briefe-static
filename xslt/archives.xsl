@@ -37,6 +37,7 @@
                                 <table class="table table-sm display" id="tabulator-table-archives">
                                     <thead>
                                         <tr>
+                                            <th></th>
                                             <th scope="col" tabulator-headerFilter="input"
                                                 tabulator-formatter="html">Datum</th>
                                             <th scope="col" tabulator-headerFilter="input"
@@ -81,6 +82,7 @@
                                                     </xsl:choose>
                                                 </xsl:variable>
                                                 <tr>
+                                                  <td></td>
                                                   <td>
                                                   <xsl:value-of select="$sortdate"/>
                                                   </td>
@@ -135,6 +137,7 @@
                                 <table class="table table-sm display" id="tabulator-table-archives-summary">
                                     <thead>
                                         <tr>
+                                            <th></th>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Archiv</th>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Ort</th>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Anzahl</th>
@@ -145,6 +148,7 @@
                                             group-by="concat(descendant::tei:repository[1]/text(), '|', descendant::tei:settlement[1]/text())">
                                             <xsl:sort select="descendant::tei:repository[1]/text()"/>
                                             <tr>
+                                                <td></td>
                                                 <td>
                                                     <xsl:value-of select="descendant::tei:repository[1]/text()"/>
                                                 </td>
@@ -175,7 +179,7 @@
                                 paginationSize: 25,
                                 paginationCounter: "rows",
                                 layout: "fitColumns",
-                                responsiveLayout: "hide",
+                                responsiveLayout: "collapse",
                                 autoResize: true,
                                 tooltips: true,
                                 addRowPos: "top",
@@ -188,11 +192,12 @@
                                     {column: "datum", dir: "desc"}
                                 ],
                                 columns: [
-                                    {title: "Datum", field: "datum", headerFilter: "input", formatter: "html"},
-                                    {title: "Titel", field: "titel", headerFilter: "input", formatter: "html"},
-                                    {title: "Institution", field: "institution", headerFilter: "input", formatter: "html"},
-                                    {title: "Ort", field: "ort", headerFilter: "input", formatter: "html"},
-                                    {title: "Land", field: "land", headerFilter: "input", formatter: "html"}
+                                    tabulatorCollapseColumn,
+                                    {title: "Datum", field: "datum", headerFilter: "input", formatter: "html", responsive: 2, minWidth: 95},
+                                    {title: "Titel", field: "titel", headerFilter: "input", formatter: "html", responsive: 0, minWidth: 160},
+                                    {title: "Institution", field: "institution", headerFilter: "input", formatter: "html", responsive: 3, minWidth: 120},
+                                    {title: "Ort", field: "ort", headerFilter: "input", formatter: "html", responsive: 4, minWidth: 90},
+                                    {title: "Land", field: "land", headerFilter: "input", formatter: "html", responsive: 5, minWidth: 90}
                                 ]
                             });
 
@@ -202,7 +207,7 @@
                                 paginationSize: 25,
                                 paginationCounter: "rows",
                                 layout: "fitColumns",
-                                responsiveLayout: "hide",
+                                responsiveLayout: "collapse",
                                 autoResize: true,
                                 tooltips: true,
                                 addRowPos: "top",
@@ -215,9 +220,10 @@
                                     {column: "anzahl", dir: "desc"}
                                 ],
                                 columns: [
-                                    {title: "Archiv", field: "archiv", headerFilter: "input", formatter: "html"},
-                                    {title: "Ort", field: "ort", headerFilter: "input", formatter: "html"},
-                                    {title: "Anzahl", field: "anzahl", headerFilter: "input", formatter: "html", sorter: "number"}
+                                    tabulatorCollapseColumn,
+                                    {title: "Archiv", field: "archiv", headerFilter: "input", formatter: "html", responsive: 0, minWidth: 160},
+                                    {title: "Ort", field: "ort", headerFilter: "input", formatter: "html", responsive: 3, minWidth: 90},
+                                    {title: "Anzahl", field: "anzahl", headerFilter: "input", formatter: "html", sorter: "number", responsive: 2, minWidth: 80}
                                 ]
                             });
 

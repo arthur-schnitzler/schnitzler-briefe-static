@@ -21,7 +21,7 @@
                     <div class="container">
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
-                            <span class="type-pill">Bildpostkarten</span> <span class="sep">/</span>
+                            <span class="type-pill">Verzeichnis</span> <span class="sep">/</span>
                             <xsl:text>bildpostkarten</xsl:text>
                         </nav>
                         <div class="card">

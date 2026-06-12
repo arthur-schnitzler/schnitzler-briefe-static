@@ -17,6 +17,24 @@
             paginationSize:25,         //allow 25 rows per page of data
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
+            layout:"fitColumns",
+            responsiveLayout:"collapse",
+            responsiveLayoutCollapseStartOpen:false,
+            autoColumns:true,
+            autoColumnsDefinitions:function(definitions){
+                var titles = {"titel":"Titel","briefwechsel":"Briefwechsel","datum_(iso)":"Datum (ISO)","art":"Art","id":"ID","dateinname":"Dateinname"};
+                var priorities = {"titel":0,"datum_(iso)":2,"briefwechsel":3,"art":4,"id":5,"dateinname":2};
+                var minWidths = {"titel":160,"datum_(iso)":95,"briefwechsel":120,"art":70,"id":80,"dateinname":110};
+                definitions.forEach(function(column){
+                    column.formatter = "html";
+                    column.headerFilter = "input";
+                    if (titles[column.field]) { column.title = titles[column.field]; }
+                    if (priorities[column.field] !== undefined) { column.responsive = priorities[column.field]; }
+                    if (minWidths[column.field]) { column.minWidth = minWidths[column.field]; }
+                });
+                definitions.unshift(tabulatorCollapseColumn);
+                return definitions;
+            },
             initialSort:[
             {column:"urheber_in", dir:"asc"}, 
             {column:"titel", dir:"asc"}
@@ -61,6 +79,23 @@
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
             layout:"fitColumns",
+            responsiveLayout:"collapse",
+            responsiveLayoutCollapseStartOpen:false,
+            autoColumns:true,
+            autoColumnsDefinitions:function(definitions){
+                var titles = {"titel":"Titel","urheber_in":"Urheber_in","datum":"Datum","typ":"Typ"};
+                var priorities = {"titel":0,"urheber_in":2,"datum":3,"typ":4};
+                var minWidths = {"titel":160,"urheber_in":120,"datum":90,"typ":90};
+                definitions.forEach(function(column){
+                    column.formatter = "html";
+                    column.headerFilter = "input";
+                    if (titles[column.field]) { column.title = titles[column.field]; }
+                    if (priorities[column.field] !== undefined) { column.responsive = priorities[column.field]; }
+                    if (minWidths[column.field]) { column.minWidth = minWidths[column.field]; }
+                });
+                definitions.unshift(tabulatorCollapseColumn);
+                return definitions;
+            },
             initialSort:[
             {column:"urheber_in", dir:"asc"}, 
             {column:"titel", dir:"asc"}
@@ -105,6 +140,8 @@
             paginationCounter:"rows", //display count of paginated rows in footer
             movableColumns:true,
             layout:"fitColumns",
+            responsiveLayout:"collapse",
+            responsiveLayoutCollapseStartOpen:false,
             autoColumns:true,         //auto generate columns from HTML table structure
             autoColumnsDefinitions:function(definitions){
                 //auto columns returns columns with basic titles and field names
@@ -146,11 +183,18 @@
                     if (index === 0 <xsl:text disable-output-escaping="yes">&amp;&amp;</xsl:text> (column.field === "1" || column.title === "" || column.title.toLowerCase() === "id")) {
                         column.visible = false;
                     }
+
+                    // Responsive-Prioritäten: niedrige Werte bleiben am längsten sichtbar
+                    var priorities = {"ereignis":0,"datum":2,"ort":3,"typ":4,"werk":5,"mitwirkende":6,"teilnehmende":7,"organisation":8};
+                    var minWidths = {"ereignis":160,"datum":95,"ort":90,"typ":90};
+                    if (priorities[column.field] !== undefined) { column.responsive = priorities[column.field]; }
+                    if (minWidths[column.field]) { column.minWidth = minWidths[column.field]; }
                 });
+                definitions.unshift(tabulatorCollapseColumn);
                 return definitions;
             },
             initialSort:[
-            {column:"datum", dir:"asc"}, 
+            {column:"datum", dir:"asc"},
             {column:"ereignis", dir:"asc"}
             ],
             langs:{
@@ -193,8 +237,9 @@
             movableColumns:true,
             layout:"fitColumns",
             responsiveLayout:"collapse",
+            responsiveLayoutCollapseStartOpen:false,
             columns: [
-            {formatter:"responsiveCollapse", width:30, minWidth:30, hozAlign:"center", resizable:false, headerSort:false},
+            tabulatorCollapseColumn,
             {title: "Vorname", field: "vorname", sorter: "string", formatter: "html", responsive: 1, minWidth: 80},
             {title: "Nachname", field: "nachname", sorter: "string", formatter: "html", responsive: 0, minWidth: 100},
             {title: "Namensvarianten", field: "namensvarianten", sorter: "string", responsive: 4, minWidth: 120},
@@ -247,11 +292,14 @@
             paginationCounter: "rows", // display count of paginated rows in footer
             movableColumns: true,
             layout:"fitColumns",
+            responsiveLayout:"collapse",
+            responsiveLayoutCollapseStartOpen:false,
             columns: [
-            { title: "Name", field: "name", sorter: "string" },
-            { title: "Namensvarianten", field: "namensvarianten", sorter: "string" },
-            { title: "Orte", field: "zugehoerigkeiten", sorter: "string" },
-            { title: "Typ", field: "typ", sorter: "string" }
+            tabulatorCollapseColumn,
+            { title: "Name", field: "name", sorter: "string", responsive: 0, minWidth: 140 },
+            { title: "Namensvarianten", field: "namensvarianten", sorter: "string", responsive: 4, minWidth: 120 },
+            { title: "Orte", field: "zugehoerigkeiten", sorter: "string", responsive: 2, minWidth: 100 },
+            { title: "Typ", field: "typ", sorter: "string", responsive: 3, minWidth: 90 }
             ],
             initialSort: [
             { column: "zugehoerigkeiten", dir: "asc" },
