@@ -41,7 +41,6 @@
                                     <table class="table table-sm display" id="tabulator-table-org">
                                         <thead>
                                             <tr>
-                                                <th></th>
                                                 <th scope="col" tabulator-headerFilter="input"
                                                   tabulator-formatter="html">Name</th>
                                                 <th scope="col" tabulator-headerFilter="input"
@@ -58,7 +57,6 @@
                                                   <xsl:value-of select="data(@xml:id)"/>
                                                 </xsl:variable>
                                                 <tr>
-                                                  <td></td>
                                                   <td>
                                                       <span hidden="true">
                                                           <xsl:value-of select="mam:sonderzeichen-entfernen(child::tei:orgName[1]/text())"/>

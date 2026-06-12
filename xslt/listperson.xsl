@@ -40,7 +40,6 @@
                                 <table class="table table-sm display" id="tabulator-table-person">
                                     <thead>
                                         <tr>
-                                            <th></th>
                                             <th scope="col" tabulator-headerFilter="input"
                                                 >Vorname</th>
                                             <th scope="col" tabulator-headerFilter="input"
@@ -62,7 +61,6 @@
                                                 select="replace(@xml:id, '#', '')"/>
                                             <xsl:variable name="entity" as="node()" select="."/>
                                             <tr>
-                                                <td></td>
                                                 <td>
                                                   <span hidden="true">
                                                   <xsl:choose>

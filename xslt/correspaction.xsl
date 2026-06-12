@@ -317,7 +317,7 @@
                                 ],
                                 autoColumns: true,
                                 autoColumnsDefinitions: function(definitions) {
-                                    var hidden = ["fromid", "toid", "uncertain"];
+                                    var hidden = ["id", "fromid", "toid", "uncertain"];
                                     var priorities = {"titel":0,"sendedatum":2,"empfangsdatum":3,"sendeort":4,"empfangsort":5,"weitere_stationen":6};
                                     var minWidths = {"titel":160,"sendedatum":95,"empfangsdatum":95,"sendeort":90,"empfangsort":90};
                                     definitions.forEach(function(column) {

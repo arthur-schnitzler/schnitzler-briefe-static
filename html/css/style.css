@@ -2935,3 +2935,29 @@ main.wp-transcript .transcript .row {
     --entity-tab-text: var(--entity-ink-soft);
     --entity-tab-active-bg: var(--red-softer);
 }
+
+/* Tabulator-Tabellen am Handy: kompakter, damit mehr Spalten Platz haben.
+   Ausgeblendete Spalten sind über die Toggle-Spalte (+) pro Zeile aufklappbar. */
+@media (max-width: 768px) {
+    .tabulator {
+        font-size: 0.85rem;
+    }
+    .tabulator .tabulator-row .tabulator-cell {
+        padding: 6px 5px;
+    }
+    .tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+        padding: 6px 5px;
+    }
+    .tabulator .tabulator-header-filter input,
+    .tabulator .tabulator-header-filter .form-control {
+        font-size: 0.8rem;
+        padding: 2px 4px;
+    }
+    .tabulator-row .tabulator-responsive-collapse {
+        font-size: 0.85rem;
+    }
+    .tabulator-row .tabulator-responsive-collapse td {
+        padding: 3px 6px;
+        vertical-align: top;
+    }
+}

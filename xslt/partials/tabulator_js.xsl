@@ -25,7 +25,15 @@
                 var titles = {"titel":"Titel","briefwechsel":"Briefwechsel","datum_(iso)":"Datum (ISO)","art":"Art","id":"ID","dateinname":"Dateinname"};
                 var priorities = {"titel":0,"datum_(iso)":2,"briefwechsel":3,"art":4,"id":5,"dateinname":2};
                 var minWidths = {"titel":160,"datum_(iso)":95,"briefwechsel":120,"art":70,"id":80,"dateinname":110};
+                // toc_facs hat keine ID-Spalte im HTML; dort ist "id" der interne Zeilenindex
+                var hasDateiname = definitions.some(function(c){ return c.field === "dateinname"; });
                 definitions.forEach(function(column){
+                    if (hasDateiname) {
+                        if (column.field === "id") {
+                            column.visible = false;
+                            return;
+                        }
+                    }
                     column.formatter = "html";
                     column.headerFilter = "input";
                     if (titles[column.field]) { column.title = titles[column.field]; }
@@ -87,6 +95,11 @@
                 var priorities = {"titel":0,"urheber_in":2,"datum":3,"typ":4};
                 var minWidths = {"titel":160,"urheber_in":120,"datum":90,"typ":90};
                 definitions.forEach(function(column){
+                    // interne, automatisch erzeugte id-Spalte ausblenden
+                    if (column.field === "id") {
+                        column.visible = false;
+                        return;
+                    }
                     column.formatter = "html";
                     column.headerFilter = "input";
                     if (titles[column.field]) { column.title = titles[column.field]; }

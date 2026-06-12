@@ -37,7 +37,6 @@
                                 <table class="table table-sm display" id="tabulator-table-archives">
                                     <thead>
                                         <tr>
-                                            <th></th>
                                             <th scope="col" tabulator-headerFilter="input"
                                                 tabulator-formatter="html">Datum</th>
                                             <th scope="col" tabulator-headerFilter="input"
@@ -82,7 +81,6 @@
                                                     </xsl:choose>
                                                 </xsl:variable>
                                                 <tr>
-                                                  <td></td>
                                                   <td>
                                                   <xsl:value-of select="$sortdate"/>
                                                   </td>
@@ -137,7 +135,6 @@
                                 <table class="table table-sm display" id="tabulator-table-archives-summary">
                                     <thead>
                                         <tr>
-                                            <th></th>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Archiv</th>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Ort</th>
                                             <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">Anzahl</th>
@@ -148,7 +145,6 @@
                                             group-by="concat(descendant::tei:repository[1]/text(), '|', descendant::tei:settlement[1]/text())">
                                             <xsl:sort select="descendant::tei:repository[1]/text()"/>
                                             <tr>
-                                                <td></td>
                                                 <td>
                                                     <xsl:value-of select="descendant::tei:repository[1]/text()"/>
                                                 </td>

@@ -31,7 +31,7 @@
                             <div class="card-body">
                                 <div class="mb-4">
                                     <p class="text-muted mb-0">Julia Ilgner hat eine weitreichende Auswertung von Arthur Schnitzlers Bildpolitik durch seine
-                                        Ansichtskarten verfasst. Der Text wird im Heft 34 von Studia Austriaca erscheinen. Wer schon vorher die Bildpostkarten und ihre Motiven, die
+                                        Ansichtskarten verfasst. Der Text wird im Jahrgang 34 von Studia Austriaca erscheinen. Wer schon vorher die Bildpostkarten und ihre Motiven, die
                                         Schnitzler versandte oder bekommen hat, studieren will, findet hier eine separate Aufstellung.</p>
                                 </div>
                                 <table class="table table-sm display" id="tabulator-table-bildpostkarten">
@@ -111,17 +111,19 @@
                                 paginationSize: 25,
                                 paginationCounter: "rows",
                                 layout: "fitColumns",
-                                responsiveLayout: "hide",
+                                responsiveLayout: "collapse",
+                                responsiveLayoutCollapseStartOpen: false,
                                 autoResize: true,
                                 tooltips: true,
                                 movableColumns: true,
                                 resizableRows: false,
                                 placeholder: "Keine Daten verfügbar",
                                 columns: [
-                                    {title: "Briefnummer", field: "briefnummer", headerFilter: "input", formatter: "html", width: 140},
-                                    {title: "Datum", field: "datum", headerFilter: "input", formatter: "html", width: 180},
-                                    {title: "Motiv", field: "motiv", headerFilter: "input", formatter: "html"},
-                                    {title: "Sender", field: "sender", headerFilter: "input", formatter: "html", width: 220}
+                                    tabulatorCollapseColumn,
+                                    {title: "Briefnummer", field: "briefnummer", headerFilter: "input", formatter: "html", width: 140, responsive: 2, minWidth: 110},
+                                    {title: "Datum", field: "datum", headerFilter: "input", formatter: "html", width: 180, responsive: 3, minWidth: 95},
+                                    {title: "Motiv", field: "motiv", headerFilter: "input", formatter: "html", responsive: 0, minWidth: 140},
+                                    {title: "Sender", field: "sender", headerFilter: "input", formatter: "html", width: 220, responsive: 4, minWidth: 120}
                                 ],
                                 langs: {
                                     "de-de": {
