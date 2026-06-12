@@ -10,7 +10,7 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
-  <xslt style="./xslt/meta.xsl" basedir="./data/meta" destdir="${target}" includes="*.xml" excludes="statistiken.xml langes_s.xml">
+  <xslt style="./xslt/meta.xsl" basedir="./data/meta" destdir="${target}" includes="*.xml" excludes="statistiken.xml sonderzeichen.xml">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
@@ -18,7 +18,7 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
-    <xslt in="./data/meta/langes_s.xml" out="${target}/langes_s.html" style="./xslt/langes_s.xsl">
+    <xslt in="./data/meta/sonderzeichen.xml" out="${target}/sonderzeichen.html" style="./xslt/sonderzeichen.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>

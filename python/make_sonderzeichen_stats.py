@@ -6,7 +6,30 @@ import lxml.etree as ET
 from tqdm import tqdm
 
 TEI_NS = 'http://www.tei-c.org/ns/1.0'
-LANGES_S_TAG = f'{{{TEI_NS}}}c'
+C_TAG = f'{{{TEI_NS}}}c'
+
+# Sonderzeichen, die ausgewertet werden: rendition → Eigenschaften.
+# 'original' ist die Glyphe der Handschrift, 'modern' die heutige Umschrift.
+SPECIAL_RENDITIONS = {
+    '#langesS': {
+        'key': 'langesS',
+        'label': 'Langes ſ',
+        'original': 'ſ',
+        'modern': 's',
+    },
+    '#gemination-m': {
+        'key': 'gemination-m',
+        'label': 'Gemination m̅',
+        'original': 'm̅',
+        'modern': 'mm',
+    },
+    '#gemination-n': {
+        'key': 'gemination-n',
+        'label': 'Gemination n̅',
+        'original': 'n̅',
+        'modern': 'nn',
+    },
+}
 
 # Elemente, die als Wortgrenze gelten (z.B. <lb/>, <pb/> etc.)
 WORD_BOUNDARY_TAGS = {
@@ -90,10 +113,10 @@ def serialize_inline(node, target_elem, parts, placeholder='§'):
             parts.append(' ')
             if child.tail:
                 parts.append(child.tail)
-        elif tag == LANGES_S_TAG and child.get('rendition') == '#langesS':
-            # Weiteres <c rendition="#langesS"> im gleichen Wort → Platzhalter (wird zu ſ)
-            # Keinesfalls den Textinhalt 's' direkt einfügen – s ≠ ſ!
-            parts.append(placeholder)
+        elif tag == C_TAG and child.get('rendition') in SPECIAL_RENDITIONS:
+            # Weiteres Sonderzeichen im gleichen Wort → direkt die Original-
+            # Glyphe einsetzen (keinesfalls den Textinhalt, z.B. 's' ≠ 'ſ')
+            parts.append(SPECIAL_RENDITIONS[child.get('rendition')]['original'])
             if child.tail:
                 parts.append(child.tail)
         elif tag in SKIP_TAGS:
@@ -122,11 +145,13 @@ def serialize_inline(node, target_elem, parts, placeholder='§'):
     return found
 
 
-def get_word_around(elem):
+def get_word_around(elem, glyph):
     """
-    Findet das vollständige Wort um ein <c rendition="#langesS">-Element.
+    Findet das vollständige Wort um ein Sonderzeichen-<c>-Element.
     Traversiert aufwärts bis zum nächsten Block-Container und serialisiert
     dessen Textinhalt, um korrekte Wortgrenzen zu ermitteln.
+    `glyph` ist die Original-Glyphe, die anstelle des Elements eingesetzt
+    wird (z.B. 'ſ' oder 'm̅').
     """
     # Block-Container finden
     parent = elem.getparent()
@@ -148,8 +173,6 @@ def get_word_around(elem):
     if pos < 0:
         return None
 
-    s_char = 'ſ'
-
     # Rückwärts nach Wortgrenze suchen
     before = text[:pos]
     after = text[pos + 1:]
@@ -169,11 +192,7 @@ def get_word_around(elem):
     m_after = WORD_BOUNDARY_RE.search(after)
     after_part = after[:m_after.start()] if m_after else after
 
-    # Platzhalter aus before/after entfernen (weitere lange S im selben Wort)
-    before_part = before_part.replace(placeholder, 'ſ')
-    after_part = after_part.replace(placeholder, 'ſ')
-
-    word = before_part + s_char + after_part
+    word = before_part + glyph + after_part
 
     # Leerstring oder nur Satzzeichen ignorieren
     if not re.search(r'\w', word, re.UNICODE):
@@ -182,62 +201,60 @@ def get_word_around(elem):
     return word
 
 
-# ── Zweite Spalte: Normalform mit modernen s/ſ-Regeln ──────────────────────
-# Regel: ſ am Wortanfang und in Wortmitte, s am Wortende und vor bestimmten
-# Konsonanten (st, sp am Anfang zählen als s – historisch variabel,
-# hier vereinfacht: ſ überall außer am Wortende und vor t/p nach Vokal
-# ist eine komplexe Frage; wir geben hier nur die Basisregel aus).
-# Da das eine editionswissenschaftliche Entscheidung ist, geben wir
-# einfach das rekonstruierte Wort mit den tatsächlich codierten ſ aus,
-# und ersetzen nur die ungekennzeichneten s durch s (Kleinbuchstabe).
-
-# Die zweite Spalte wird im XML als @modern gesetzt.
-
-def modern_form(word_with_langes_s):
+def modern_form(word):
     """
-    Gibt das Wort zurück, wie es mit moderner s/ſ-Unterscheidung aussähe.
-    Hier: ſ bleibt ſ (aus der Kodierung), normales s bleibt s.
-    Das ist die korrekte Form – keine naive Ersetzung.
+    Übersetzt die Original-Glyphen in die heutige Umschrift
+    (ſ → s, m̅ → mm, n̅ → nn).
     """
-    return word_with_langes_s  # bereits korrekt aus Kodierung
+    for props in SPECIAL_RENDITIONS.values():
+        word = word.replace(props['original'], props['modern'])
+    return word
 
 
 # ── Hauptprogramm ────────────────────────────────────────────────────────────
 
 files = sorted(glob.glob('./data/editions/*.xml'))
-word_counter = Counter()
+word_counters = {r: Counter() for r in SPECIAL_RENDITIONS}
 
 for filepath in tqdm(files, desc='Verarbeite Editions-Dateien'):
     try:
         tree = ET.parse(filepath)
         root = tree.getroot()
-        for elem in root.iter(LANGES_S_TAG):
-            if elem.get('rendition') == '#langesS':
-                word = get_word_around(elem)
+        for elem in root.iter(C_TAG):
+            rendition = elem.get('rendition')
+            if rendition in SPECIAL_RENDITIONS:
+                word = get_word_around(elem, SPECIAL_RENDITIONS[rendition]['original'])
                 if word:
-                    word_counter[word] += 1
+                    word_counters[rendition][word] += 1
     except ET.XMLSyntaxError as e:
         print(f"Fehler beim Parsen von {filepath}: {e}")
 
-total = sum(word_counter.values())
-unique = len(word_counter)
+root_el = ET.Element('sonderzeichen')
 
-root_el = ET.Element('langesS')
-meta_el = ET.SubElement(root_el, 'meta')
-ET.SubElement(meta_el, 'totalOccurrences').text = str(total)
-ET.SubElement(meta_el, 'uniqueWords').text = str(unique)
-words_el = ET.SubElement(root_el, 'words')
+for rendition, props in SPECIAL_RENDITIONS.items():
+    counter = word_counters[rendition]
+    total = sum(counter.values())
+    unique = len(counter)
 
-for word, count in sorted(word_counter.items(), key=lambda x: -x[1]):
-    w_el = ET.SubElement(words_el, 'word')
-    w_el.set('count', str(count))
-    # Spalte 1: Normalform – ſ → s
-    w_el.text = word.replace('ſ', 's')
-    # Spalte 2: Original mit ſ (wie kodiert)
-    w_el.set('langesS', word)
+    type_el = ET.SubElement(root_el, 'charType')
+    type_el.set('type', props['key'])
+    type_el.set('label', props['label'])
+    type_el.set('char', props['original'])
+    meta_el = ET.SubElement(type_el, 'meta')
+    ET.SubElement(meta_el, 'totalOccurrences').text = str(total)
+    ET.SubElement(meta_el, 'uniqueWords').text = str(unique)
+    words_el = ET.SubElement(type_el, 'words')
+
+    for word, count in sorted(counter.items(), key=lambda x: -x[1]):
+        w_el = ET.SubElement(words_el, 'word')
+        w_el.set('count', str(count))
+        # Text: heutige Umschrift; @original: Glyphen wie kodiert
+        w_el.text = modern_form(word)
+        w_el.set('original', word)
+
+    print(f"{props['label']}: {total} Vorkommen, {unique} einzigartige Wörter.")
 
 tree_out = ET.ElementTree(root_el)
 ET.indent(tree_out, space='  ')
 os.makedirs('./data/meta', exist_ok=True)
-tree_out.write('./data/meta/langes_s.xml', encoding='UTF-8', xml_declaration=True)
-print(f"Fertig: {total} Vorkommen, {unique} einzigartige Wörter.")
+tree_out.write('./data/meta/sonderzeichen.xml', encoding='UTF-8', xml_declaration=True)

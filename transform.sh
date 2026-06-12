@@ -18,8 +18,8 @@ python3 python/make_calendar_data.py
 echo "generate letter statistics"
 python3 python/generate_letter_statistics.py
 
-echo "generate langes-s word statistics"
-python3 python/make_langes_s_stats.py
+echo "generate sonderzeichen word statistics"
+python3 python/make_sonderzeichen_stats.py
 
 echo "fetch and integrate CMIF printed letters data"
 python3 python/fetch_cmif_data.py

@@ -128,9 +128,7 @@
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link" href="venn.html">Projektüberschneidungen</a>
                                 </li>
-                                <!--<li class="nav-item dropdown-submenu">
-                                    <a class="nav-link" href="langes_s.html">Wörter mit langem ſ</a>
-                                </li>-->
+                                
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -149,6 +147,9 @@
                                     <a class="nav-link"
                                         href="quelldatenUndAPI.html"
                                         >Quelldaten und API</a>
+                                </li>
+                                <li class="nav-item dropdown-submenu">
+                                    <a class="nav-link" href="sonderzeichen.html">Langes-S, Gemination</a>
                                 </li>
                                 <li class="nav-item dropdown-submenu">
                                     <a class="nav-link"
