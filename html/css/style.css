@@ -2915,3 +2915,23 @@ main.wp-transcript .transcript .row {
     padding-left: 0;
     padding-right: 0;
 }
+
+/* CSS-Variablen für entity-tab-Stil außerhalb von .entity-page
+   (entities.css wird extern synchronisiert und kennt .entity-theme nicht) */
+.entity-theme {
+    --red: var(--project-color);
+    --red-ink: oklch(from var(--project-color) 0.34 calc(c * 0.85) h);
+    --red-soft: oklch(from var(--project-color) 0.94 0.04 h);
+    --red-softer: oklch(from var(--project-color) 0.975 0.018 h);
+    --red-line: oklch(from var(--project-color) 0.88 0.06 h);
+    --entity-accent: var(--project-color);
+    --entity-bg: oklch(0.985 0.003 60);
+    --entity-card-bg: #ffffff;
+    --entity-border: oklch(0.9 0.005 60);
+    --entity-border-soft: oklch(0.94 0.004 60);
+    --entity-ink: oklch(0.2 0.01 60);
+    --entity-ink-soft: oklch(0.42 0.01 60);
+    --entity-ink-muted: oklch(0.58 0.008 60);
+    --entity-tab-text: var(--entity-ink-soft);
+    --entity-tab-active-bg: var(--red-softer);
+}

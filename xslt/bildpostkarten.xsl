@@ -29,6 +29,11 @@
                                 <h1>Bildpostkarten</h1>
                             </div>
                             <div class="card-body">
+                                <div class="mb-4">
+                                    <p class="text-muted mb-0">Julia Ilgner hat eine weitreichende Auswertung von Arthur Schnitzlers Bildpolitik durch seine
+                                        Ansichtskarten verfasst. Der Text wird im Heft 34 von Studia Austriaca erscheinen. Wer schon vorher die Bildpostkarten und ihre Motiven, die
+                                        Schnitzler versandte oder bekommen hat, studieren will, findet hier eine separate Aufstellung.</p>
+                                </div>
                                 <table class="table table-sm display" id="tabulator-table-bildpostkarten">
                                     <thead>
                                         <tr>
@@ -70,9 +75,17 @@
                                                     />
                                                 </td>
                                                 <td>
-                                                    <xsl:value-of
-                                                        select="string-join(for $d in descendant::tei:div[@type = 'image'] return normalize-space(string-join($d//text(), ' ')), ' | ')"
-                                                    />
+                                                    <xsl:variable name="motiv">
+                                                        <xsl:for-each
+                                                            select="descendant::tei:div[@type = 'image']">
+                                                            <xsl:if test="position() gt 1">
+                                                                <xsl:text> | </xsl:text>
+                                                            </xsl:if>
+                                                            <xsl:apply-templates select="."
+                                                                mode="motiv"/>
+                                                        </xsl:for-each>
+                                                    </xsl:variable>
+                                                    <xsl:value-of select="normalize-space($motiv)"/>
                                                 </td>
                                                 <td>
                                                     <xsl:value-of
@@ -151,5 +164,19 @@
                 </div>
             </body>
         </html>
+    </xsl:template>
+    <!-- Motiv als Fließtext: Absätze und Zeilenumbrüche trennen mit Leerzeichen,
+         Inline-Elemente (c, rs, hi) laufen ohne Trenner zusammen -->
+    <xsl:template match="tei:p" mode="motiv">
+        <xsl:if test="position() gt 1">
+            <xsl:text> </xsl:text>
+        </xsl:if>
+        <xsl:apply-templates mode="motiv"/>
+    </xsl:template>
+    <xsl:template match="tei:lb | tei:space" mode="motiv">
+        <xsl:text> </xsl:text>
+    </xsl:template>
+    <xsl:template match="tei:c[@rendition = '#kaufmannsund']" mode="motiv">
+        <xsl:text>&amp;</xsl:text>
     </xsl:template>
 </xsl:stylesheet>
