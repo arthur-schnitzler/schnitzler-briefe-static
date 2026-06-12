@@ -76,7 +76,7 @@
                                                         <p class="text-muted mb-0">Die meisten Schreibenden, deren Texte hier
                                                             ediert werden, verwendeten zwei unterschiedliche Formen von s: »s« und »ſ«. Diese
                                                             sind lautlich nicht zu unterscheiden, aber das trifft auch für andere
-                                                            Zeichen und Zeichenketten der deutschen Sprache zu (»f«, »ph«, »v«) zu. Eine wissenschaftliche
+                                                            Zeichen und Zeichenketten der deutschen Sprache zu (»f«, »ph«, »v«). Eine wissenschaftliche
                                                             Edition sollte dieser Unterscheidung Rechnung tragen.</p>
                                                         <p class="text-muted mb-0">Zudem sind viele der
                                                             Schreibenden im österreichischen Schulsystem vor der Orthografiereform 1901
