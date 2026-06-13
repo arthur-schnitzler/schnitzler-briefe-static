@@ -689,6 +689,17 @@ div.dataTables_filter {
     --bs-card-border-width: 0;
 }
 
+/* Auf Indexseiten liegt der Breadcrumb als direktes Kind des Containers,
+   der Inhalt aber in einer .card mit 1rem horizontalem Padding. Ohne Einzug
+   stünde die linke Kante des Breadcrumb-Pills 1rem weiter links als Überschrift
+   und Card-Inhalt. Hier (nicht in der gesyncten entities.css) ergänzt, damit es
+   den Asset-Sync aus schnitzler-chronik-static übersteht. Der Kind-Kombinator
+   schließt Briefseiten aus (dort liegt .crumbs in main.wp-transcript). */
+.container > .crumbs,
+.container-fluid > .crumbs {
+    padding-left: 1rem;
+}
+
 
 .card-body-anhang {
     display: block;
