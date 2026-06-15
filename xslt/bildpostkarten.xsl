@@ -175,12 +175,11 @@
             </body>
         </html>
     </xsl:template>
-    <!-- Motiv als Fließtext: Absätze und Zeilenumbrüche trennen mit Leerzeichen,
-         Inline-Elemente (c, rs, hi) laufen ohne Trenner zusammen -->
-    <xsl:template match="tei:p" mode="motiv">
-        <xsl:if test="position() gt 1">
-            <xsl:text> </xsl:text>
-        </xsl:if>
+    <!-- Motiv als Fließtext: Absätze, Zeilenumbrüche und (Blatt-)Segmente trennen
+         mit Leerzeichen, Inline-Elemente (c, rs, hi) laufen ohne Trenner zusammen.
+         Doppelte/führende Leerzeichen entfernt normalize-space() beim Ausgeben. -->
+    <xsl:template match="tei:p | tei:seg[not(child::tei:seg)]" mode="motiv">
+        <xsl:text> </xsl:text>
         <xsl:apply-templates mode="motiv"/>
     </xsl:template>
     <xsl:template match="tei:lb | tei:space" mode="motiv">
