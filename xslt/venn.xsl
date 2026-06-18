@@ -56,8 +56,30 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 border-end pe-3">
+                                        <div id="venn-gender-filter" class="mb-3" style="display:none;">
+                                            <h6 class="fw-bold mb-1">Gender</h6>
+                                            <p class="text-muted mb-2" style="font-size:0.78rem;">Auf einzelne soziale Geschlechter filtern:</p>
+                                            <div class="venn-gender-options">
+                                                <div class="form-check mb-1">
+                                                    <input class="form-check-input" type="radio" name="venn-gender" id="vgender-all" value="all" checked="checked"/>
+                                                    <label class="form-check-label" for="vgender-all">alle</label>
+                                                </div>
+                                                <div class="form-check mb-1">
+                                                    <input class="form-check-input" type="radio" name="venn-gender" id="vgender-female" value="female"/>
+                                                    <label class="form-check-label" for="vgender-female">weiblich</label>
+                                                </div>
+                                                <div class="form-check mb-1">
+                                                    <input class="form-check-input" type="radio" name="venn-gender" id="vgender-male" value="male"/>
+                                                    <label class="form-check-label" for="vgender-male">männlich</label>
+                                                </div>
+                                                <div class="form-check mb-1">
+                                                    <input class="form-check-input" type="radio" name="venn-gender" id="vgender-unknown" value="unknown"/>
+                                                    <label class="form-check-label" for="vgender-unknown">nicht ausgezeichnet, unbekannt oder anderes</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <h6 class="fw-bold mb-1">Projekte</h6>
-                                        <p class="text-muted mb-2" style="font-size:0.78rem;">Max. 3 Projekte (= 3 Kreise). Ausgeblendet = für diesen Entitätstyp keine Daten.</p>
+                                        <p class="text-muted mb-2" style="font-size:0.78rem;">Max. 3 Projekte (= 3 Kreise).</p>
                                         <div id="venn-project-list"/>
                                     </div>
                                     <div class="col-md-9">

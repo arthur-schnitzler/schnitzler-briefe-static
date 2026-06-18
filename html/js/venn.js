@@ -4,8 +4,27 @@
 
     var dataCache = {};
     var currentEntity = 'person';
+    var currentSex = 'all';
     var chart = null;
     var selectedProjects = { 'schnitzler-briefe': true, 'schnitzler-tagebuch': true };
+
+    // Liefert die Personenzahl eines Projekts unter Berücksichtigung des
+    // Geschlechtsfilters. 'all' (oder Daten ohne by_sex) → Gesamtzahl.
+    function projectCount(data, pid) {
+        if (currentSex !== 'all' && data.by_sex && data.by_sex[currentSex]) {
+            var c = data.by_sex[currentSex].counts[pid];
+            return c === undefined ? 0 : c;
+        }
+        return data.projects[pid] ? data.projects[pid].count : 0;
+    }
+
+    // Liefert die Schnittmengengröße unter Berücksichtigung des Geschlechtsfilters.
+    function intersectionCount(data, key) {
+        if (currentSex !== 'all' && data.by_sex && data.by_sex[currentSex]) {
+            return data.by_sex[currentSex].intersections[key];
+        }
+        return data.intersections[key];
+    }
 
     function getCombinations(arr, size) {
         if (size === 1) { return arr.map(function (x) { return [x]; }); }
@@ -37,10 +56,11 @@
             var pid = selected[i];
             var proj = data.projects[pid];
             if (!proj) { continue; }
-            var countStr = proj.count.toLocaleString('de-AT');
+            var count = projectCount(data, pid);
+            var countStr = count.toLocaleString('de-AT');
             points.push({
                 sets: [pid],
-                value: proj.count,
+                value: Math.max(count, 0.5),
                 name: proj.label,
                 label: proj.label + ': ' + countStr,
                 color: proj.color
@@ -51,7 +71,7 @@
             for (var c = 0; c < combos.length; c++) {
                 var combo = combos[c];
                 var key = intersectionKey(combo);
-                var count = data.intersections[key];
+                var count = intersectionCount(data, key);
                 if (count !== undefined) {
                     var names = combo.map(function (id) {
                         return data.projects[id] ? data.projects[id].label : id;
@@ -178,9 +198,17 @@
         infoEl.textContent = '';
     }
 
+    function updateGenderFilterVisibility() {
+        var box = document.getElementById('venn-gender-filter');
+        if (!box) { return; }
+        var data = dataCache[currentEntity];
+        box.style.display = (data && data.by_sex) ? '' : 'none';
+    }
+
     function onEntityChange(entity) {
         currentEntity = entity;
         var data = dataCache[entity];
+        updateGenderFilterVisibility();
         if (data) {
             updateProjectAvailability(data);
             renderChart();
@@ -223,6 +251,16 @@
                 });
             });
 
+            document.querySelectorAll('input[name="venn-gender"]').forEach(function (radio) {
+                radio.addEventListener('change', function () {
+                    if (this.checked) {
+                        currentSex = this.value;
+                        renderChart();
+                    }
+                });
+            });
+
+            updateGenderFilterVisibility();
             if (dataCache[currentEntity]) {
                 updateProjectAvailability(dataCache[currentEntity]);
             }
