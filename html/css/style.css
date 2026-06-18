@@ -1421,6 +1421,13 @@ code{
     box-shadow: 0 0.3rem 1.2rem 0 rgb(5 10 15 / 10%);
 }
 
+/* Dropdown menu auto-sizes to its widest item (these use .nav-link, which
+   lacks Bootstrap's .dropdown-item nowrap), so labels like
+   „… mit Schriftstellerinnen" no longer wrap. */
+.navbar .dropdown-menu .nav-link {
+    white-space: nowrap;
+}
+
 nav {
     display: table;
     font-size: 95%;
