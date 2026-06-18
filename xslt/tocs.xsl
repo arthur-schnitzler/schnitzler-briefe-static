@@ -329,22 +329,35 @@
                             });
                         }
 
+                        function setActiveTab(activeId) {
+                            ['view-gallery-btn', 'view-table-btn', 'view-network-btn'].forEach(function(id) {
+                                var btn = document.getElementById(id);
+                                if (!btn) return;
+                                var isActive = id === activeId;
+                                btn.classList.toggle('active', isActive);
+                                btn.setAttribute('aria-selected', isActive);
+                            });
+                        }
+
                         function showGalleryView() {
                             document.getElementById('gallery-view').style.display = 'block';
                             document.getElementById('table-view').style.display = 'none';
                             document.getElementById('network-view').style.display = 'none';
+                            setActiveTab('view-gallery-btn');
                         }
 
                         function showTableView() {
                             document.getElementById('gallery-view').style.display = 'none';
                             document.getElementById('table-view').style.display = 'block';
                             document.getElementById('network-view').style.display = 'none';
+                            setActiveTab('view-table-btn');
                         }
 
                         function showNetworkView() {
                             document.getElementById('gallery-view').style.display = 'none';
                             document.getElementById('table-view').style.display = 'none';
                             document.getElementById('network-view').style.display = 'block';
+                            setActiveTab('view-network-btn');
                             // Trigger chart reflow and resize after view is displayed
                             setTimeout(function() {
                                 if (window.chart) {

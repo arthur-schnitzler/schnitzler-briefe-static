@@ -33,9 +33,13 @@
                         <div class="card">
                             <div class="card-header">
                                 <h1>Verzeichnis der Korrespondenzen mit Schriftstellerinnen</h1>
-                                <div class="btn-group mt-3" role="group" aria-label="Ansicht auswählen">
-                                    <button type="button" class="btn btn-primary" id="view-gallery-btn" onclick="showGalleryView()">Galerie</button>
-                                    <button type="button" class="btn btn-outline-primary" id="view-table-btn" onclick="showTableView()">Tabelle</button>
+                                <div class="entity-theme mt-2" style="--project-color: {$current-colour};">
+                                    <div class="entity-tabs" role="tablist" aria-label="Ansicht auswählen">
+                                        <button type="button" role="tab" class="entity-tab-btn active" id="view-gallery-btn"
+                                            aria-selected="true" onclick="showGalleryView()">Galerie</button>
+                                        <button type="button" role="tab" class="entity-tab-btn" id="view-table-btn"
+                                            aria-selected="false" onclick="showTableView()">Tabelle</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -285,24 +289,27 @@
                             });
                         }
 
+                        function setActiveTab(activeId) {
+                            ['view-gallery-btn', 'view-table-btn'].forEach(function(id) {
+                                var btn = document.getElementById(id);
+                                var isActive = id === activeId;
+                                btn.classList.toggle('active', isActive);
+                                btn.setAttribute('aria-selected', isActive);
+                            });
+                        }
+
                         function showGalleryView() {
                             document.getElementById('gallery-view').style.display = 'block';
                             document.getElementById('intro-view').style.display = 'block';
                             document.getElementById('table-view').style.display = 'none';
-                            document.getElementById('view-gallery-btn').classList.remove('btn-outline-primary');
-                            document.getElementById('view-gallery-btn').classList.add('btn-primary');
-                            document.getElementById('view-table-btn').classList.remove('btn-primary');
-                            document.getElementById('view-table-btn').classList.add('btn-outline-primary');
+                            setActiveTab('view-gallery-btn');
                         }
 
                         function showTableView() {
                             document.getElementById('gallery-view').style.display = 'none';
                             document.getElementById('intro-view').style.display = 'none';
                             document.getElementById('table-view').style.display = 'block';
-                            document.getElementById('view-gallery-btn').classList.remove('btn-primary');
-                            document.getElementById('view-gallery-btn').classList.add('btn-outline-primary');
-                            document.getElementById('view-table-btn').classList.remove('btn-outline-primary');
-                            document.getElementById('view-table-btn').classList.add('btn-primary');
+                            setActiveTab('view-table-btn');
                         }
                     </script>
                 </div>

@@ -25,7 +25,7 @@
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
                             <span class="type-pill">Karten</span> <span class="sep">/</span>
-                            <xsl:text>correspaction</xsl:text>
+                            <xsl:text>Postwege</xsl:text>
                         </nav>
                         <div class="card">
                             <div class="card-header">
@@ -320,13 +320,16 @@
                                     var hidden = ["id", "fromid", "toid", "uncertain"];
                                     var priorities = {"titel":0,"sendedatum":2,"empfangsdatum":3,"sendeort":4,"empfangsort":5,"weitere_stationen":6};
                                     var minWidths = {"titel":160,"sendedatum":95,"empfangsdatum":95,"sendeort":90,"empfangsort":90};
+                                    var titles = {"titel":"Titel","sendedatum":"Sendedatum","empfangsdatum":"Empfangsdatum","sendeort":"Sendeort","empfangsort":"Empfangsort","weitere_stationen":"weitere Stationen"};
                                     definitions.forEach(function(column) {
                                         if (hidden.indexOf(column.field) !== -1) {
                                             column.visible = false;
                                         } else {
                                             column.formatter = "html";
                                             column.headerFilter = "input";
-                                            if (column.title) {
+                                            if (titles[column.field]) {
+                                                column.title = titles[column.field];
+                                            } else if (column.title) {
                                                 column.title = column.title.charAt(0).toUpperCase() + column.title.slice(1);
                                             }
                                             if (priorities[column.field] !== undefined) { column.responsive = priorities[column.field]; }

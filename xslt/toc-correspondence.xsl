@@ -61,13 +61,7 @@
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
                             <span class="type-pill">Inhaltsverzeichnis</span>
                             <a href="tocs.html">Korrespondenzen</a>
-                            <xsl:variable name="corrTitle" select="normalize-space(descendant::tei:titleStmt/tei:title[@level = 'a'])"/>
-                            <xsl:choose>
-                                <xsl:when test="string-length($corrTitle) &gt; 30">
-                                    <xsl:value-of select="concat(substring($corrTitle, 1, 30), '…')"/>
-                                </xsl:when>
-                                <xsl:otherwise><xsl:value-of select="$corrTitle"/></xsl:otherwise>
-                            </xsl:choose>
+                            
                         </nav>
                         <div class="card">
                             <div class="card-header">
