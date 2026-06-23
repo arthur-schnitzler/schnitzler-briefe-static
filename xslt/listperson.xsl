@@ -258,7 +258,7 @@
                                                   <item type="person_ehename">Ehename</item>
                                                   <item type="person_ehename_nachname"
                                                   >Ehename</item>
-                                                  <item type="person_verwitwet">verwitwet</item>
+                                                  <item type="person_verwitwet_nachname">verwitwet</item>
                                                   </list>
                                                   </xsl:variable>
                                                   <xsl:for-each
