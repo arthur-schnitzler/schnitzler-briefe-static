@@ -146,6 +146,11 @@ except ObjectNotFound:
 current_schema = {
     "name": COLLECTION_NAME,
     "enable_nested_fields": True,
+    "metadata": {
+        "owners": ["Peter Andorfer", "Martin Anton Müller"],
+        "description": "https://github.com/arthur-schnitzler/schnitzler-briefe-static",
+        "service_ids": [21741],
+    },
     "fields": [
         {"name": "id", "type": "string"},
         {"name": "rec_id", "type": "string"},
