@@ -25,43 +25,54 @@ def extract_fulltext_with_spacing(root_node, tag_blacklist=None):
 
     # Elements that should have spaces around them
     block_elements = {
-        'p', 'salute', 'dateline', 'closer', 'seg', 'opener', 'div', 'head'
+        "p",
+        "salute",
+        "dateline",
+        "closer",
+        "seg",
+        "opener",
+        "div",
+        "head",
     }
 
     def extract_text_recursive(element):
         # Handle the case where element.tag might not be a string
         try:
-            if hasattr(element.tag, 'split'):
-                element_tag_name = element.tag.split('}')[-1]
+            if hasattr(element.tag, "split"):
+                element_tag_name = element.tag.split("}")[-1]
             else:
-                element_tag_name = str(element.tag).split('}')[-1]
+                element_tag_name = str(element.tag).split("}")[-1]
         except (AttributeError, TypeError):
-            element_tag_name = ''
+            element_tag_name = ""
 
         if element_tag_name in tag_blacklist:
             return ""
 
         # Check if this is a tei:del element within tei:subst that should be excluded
         # Exclude tei:del elements within tei:subst that don't contain spaces
-        if element_tag_name == 'del':
+        if element_tag_name == "del":
             try:
-                parent = element.getparent() if hasattr(element, 'getparent') else None
+                parent = element.getparent() if hasattr(element, "getparent") else None
                 if parent is not None:
-                    parent_tag = parent.tag.split('}')[-1] if hasattr(parent.tag, 'split') else str(parent.tag).split('}')[-1]
-                    if parent_tag == 'subst':
+                    parent_tag = (
+                        parent.tag.split("}")[-1]
+                        if hasattr(parent.tag, "split")
+                        else str(parent.tag).split("}")[-1]
+                    )
+                    if parent_tag == "subst":
                         # Get all text content of this del element
-                        if hasattr(element, 'itertext'):
-                            del_text = ''.join(element.itertext())
+                        if hasattr(element, "itertext"):
+                            del_text = "".join(element.itertext())
                         else:
                             # Fallback for ElementTree
-                            del_text = element.text or ''
+                            del_text = element.text or ""
                             for child in element:
                                 if child.text:
                                     del_text += child.text
                                 if child.tail:
                                     del_text += child.tail
 
-                        if del_text and ' ' not in del_text:
+                        if del_text and " " not in del_text:
                             # Skip this del element if it doesn't contain spaces
                             return ""
             except (AttributeError, TypeError):
@@ -77,20 +88,20 @@ def extract_fulltext_with_spacing(root_node, tag_blacklist=None):
         for child in element:
             # Handle the case where child.tag might not be a string
             try:
-                if hasattr(child.tag, 'split'):
-                    tag_name = child.tag.split('}')[-1]  # Remove namespace
+                if hasattr(child.tag, "split"):
+                    tag_name = child.tag.split("}")[-1]  # Remove namespace
                 else:
-                    tag_name = str(child.tag).split('}')[-1]
+                    tag_name = str(child.tag).split("}")[-1]
             except (AttributeError, TypeError):
                 # Skip if we can't determine the tag name
-                if hasattr(child, 'tail') and child.tail:
+                if hasattr(child, "tail") and child.tail:
                     text_parts.append(child.tail)
                 continue
 
             # Handle space elements
-            if tag_name == 'space':
-                unit = child.get('unit', '')
-                if unit == 'chars':
+            if tag_name == "space":
+                unit = child.get("unit", "")
+                if unit == "chars":
                     # Add space for char-based spacing elements
                     text_parts.append(" ")
                 continue
@@ -117,7 +128,8 @@ def extract_fulltext_with_spacing(root_node, tag_blacklist=None):
     result = extract_text_recursive(root_node)
     # Clean up multiple spaces
     import re
-    result = re.sub(r'\s+', ' ', result).strip()
+
+    result = re.sub(r"\s+", " ", result).strip()
     return result
 
 
@@ -291,18 +303,24 @@ for x in tqdm(files, total=len(files)):
 
     record["events"] = []
     for y in doc.any_xpath(".//tei:back//tei:event[@xml:id]"):
-        event_name = y.xpath(".//tei:eventName/text()", namespaces=NSMAP)[0] if y.xpath(".//tei:eventName/text()", namespaces=NSMAP) else "Unbekanntes Ereignis"
-        event_type = y.xpath(".//tei:eventName/@n", namespaces=NSMAP)[0] if y.xpath(".//tei:eventName/@n", namespaces=NSMAP) else None
+        event_name = (
+            y.xpath(".//tei:eventName/text()", namespaces=NSMAP)[0]
+            if y.xpath(".//tei:eventName/text()", namespaces=NSMAP)
+            else "Unbekanntes Ereignis"
+        )
+        event_type = (
+            y.xpath(".//tei:eventName/@n", namespaces=NSMAP)[0]
+            if y.xpath(".//tei:eventName/@n", namespaces=NSMAP)
+            else None
+        )
 
-        item = {
-            "id": get_xmlid(y),
-            "label": event_name,
-            "type": event_type
-        }
+        item = {"id": get_xmlid(y), "label": event_name, "type": event_type}
         record["events"].append(item)
 
     cfts_record["places"] = [x["label"] for x in record["places"]]
-    record["full_text"] = f"{extract_fulltext_with_spacing(body)} {record['title']}".replace("(", " ")
+    record["full_text"] = (
+        f"{extract_fulltext_with_spacing(body)} {record['title']}".replace("(", " ")
+    )
     cfts_record["full_text"] = record["full_text"]
 
     # Extract separate text for each area
@@ -326,7 +344,9 @@ for x in tqdm(files, total=len(files)):
     # Kommentar: commentary notes in body
     kommentar_elements = doc.any_xpath(".//tei:body//tei:note[@type='commentary']")
     if kommentar_elements:
-        kommentar_texts = [extract_fulltext_with_spacing(elem) for elem in kommentar_elements]
+        kommentar_texts = [
+            extract_fulltext_with_spacing(elem) for elem in kommentar_elements
+        ]
         kommentar = " ".join(kommentar_texts).strip()
         if kommentar:
             record["kommentar"] = kommentar.replace("(", " ")
