@@ -592,20 +592,11 @@ else if(pts[0]){map.setView(pts[0],10);}
                                 <xsl:for-each select="//tei:biblStruct">
                                     <div class="meta-caption">Veröffentlichung <xsl:value-of
                                             select="position()"/></div>
-                                    <table class="table align-top">
-                                        <tbody>
-                                            <tr>
-                                                <th/>
-                                                <td>
-                                                  <xsl:call-template
-                                                  name="mam:bibliografische-angabe">
-                                                  <xsl:with-param name="biblStruct-input" select="."
-                                                  />
-                                                  </xsl:call-template>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="biblio-angabe">
+                                        <xsl:call-template name="mam:bibliografische-angabe">
+                                            <xsl:with-param name="biblStruct-input" select="."/>
+                                        </xsl:call-template>
+                                    </div>
                                 </xsl:for-each>
                             </div>
                             <!-- TEXTQUALITÄT -->
