@@ -18,6 +18,9 @@
         </xsl:variable>
         <html class="h-100">
             <head>
+                <!-- Die 404-Seite wird für beliebige (auch tiefere) URLs ausgeliefert;
+                     ohne <base> würden alle relativen Pfade (CSS, JS, Navbar) ins Leere zeigen. -->
+                <base href="{concat($base_url, '/')}"/>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"></xsl:with-param>
                 </xsl:call-template>
@@ -35,7 +38,7 @@
                         <p class="viernullvier-p lead">
                             Die gewünschte Seite existiert leider nicht.
                         </p>
-                        <p class="viernullvier-p lead">Zur <a href="index.html">Startseite</a>.</p>
+                        <p class="viernullvier-p lead">Zur <a href="{concat($base_url, '/')}">Startseite</a>.</p>
                         
                     </div>
                 </main>
