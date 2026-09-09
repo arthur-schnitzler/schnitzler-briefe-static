@@ -29,6 +29,14 @@
                                 <h1>Alle Briefe</h1>
                             </div>
                             <div class="card-body" style="overflow-x: auto;">
+                                <xsl:variable name="collection"
+                                    select="collection('../data/editions/?select=*.xml')"/>
+                                <xsl:variable name="anzahl-objekte" select="count($collection/tei:TEI)"/>
+                                <xsl:variable name="anzahl-erstpublikationen"
+                                    select="count($collection/tei:TEI[not(tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listBibl)])"/>
+                                <p style="text-align: center;">
+                                    <xsl:value-of select="$anzahl-objekte"/> Objekte, davon <xsl:value-of
+                                        select="$anzahl-erstpublikationen"/> erstmals veröffentlicht</p>
                                 <div style="display: flex; justify-content: center;">
                                     <table class="table table-sm display" id="tabulator-table"
                                         style="width: auto; min-width: 100%;">
@@ -47,8 +55,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <xsl:variable name="collection"
-                                                select="collection('../data/editions/?select=*.xml')"/>
                                             <xsl:for-each select="$collection/tei:TEI">
                                                 <xsl:variable name="current-node" select="."/>
                                                 <xsl:variable name="full_path">

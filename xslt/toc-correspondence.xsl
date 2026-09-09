@@ -72,6 +72,13 @@
                             </div>
                             <div class="card-body">
                                 <div id="statistik1" style="width:100%; height:400px;"/>
+                                <xsl:variable name="anzahl-objekte"
+                                    select="count(descendant::tei:text[1]/tei:body[1]/tei:list[1]/tei:item)"/>
+                                <xsl:variable name="anzahl-erstpublikationen"
+                                    select="count(descendant::tei:text[1]/tei:body[1]/tei:list[1]/tei:item[not(document(concat('../data/editions/', @corresp, '.xml'))/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listBibl)])"/>
+                                <p style="text-align: center;">
+                                    <xsl:value-of select="$anzahl-objekte"/> Objekte, davon <xsl:value-of
+                                        select="$anzahl-erstpublikationen"/> erstmals veröffentlicht</p>
                                 <p style="text-align: center;"><a
                                         href="{concat('statistik_pmb', $korrespondenznummer, '.html')}"
                                         >Weitere Statistiken</a>&#160;&#160;<xsl:if test="
