@@ -448,11 +448,10 @@
                                 if (newCityData.length !== 0) {
                                     var lons = newCityData.map(function(d) { return d.lon; });
                                     var lats = newCityData.map(function(d) { return d.lat; });
-                                    window.mapChart.mapView.fitBounds(
-                                        [Math.min.apply(null, lons) - 3, Math.min.apply(null, lats) - 3,
-                                         Math.max.apply(null, lons) + 3, Math.max.apply(null, lats) + 3],
-                                        { padding: 30 }
-                                    );
+                                    window.mapChart.mapView.fitToBounds([
+                                        [Math.min.apply(null, lons) - 3, Math.min.apply(null, lats) - 3],
+                                        [Math.max.apply(null, lons) + 3, Math.max.apply(null, lats) + 3]
+                                    ]);
                                 }
                             }
                         }

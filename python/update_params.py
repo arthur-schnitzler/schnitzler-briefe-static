@@ -13,6 +13,8 @@ import re
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
+TEI_NS = '{http://www.tei-c.org/ns/1.0}'
+
 
 def count_letters(editions_dir):
     """Count XML files in editions directory."""
@@ -24,6 +26,30 @@ def count_letters(editions_dir):
     xml_files = list(editions_path.glob("*.xml"))
     count = len(xml_files)
     print(f"Found {count} letter files in {editions_dir}")
+    return count
+
+
+def count_first_publications(editions_dir):
+    """
+    Count letters that are being published for the first time here,
+    i.e. their sourceDesc has no listBibl (no known prior print edition).
+    """
+    editions_path = Path(editions_dir)
+    if not editions_path.exists():
+        print(f"Warning: {editions_dir} does not exist")
+        return 0
+
+    count = 0
+    for xml_file in editions_path.glob("*.xml"):
+        try:
+            root = ET.parse(xml_file).getroot()
+            source_desc = root.find(f'.//{TEI_NS}sourceDesc')
+            if source_desc is None or source_desc.find(f'{TEI_NS}listBibl') is None:
+                count += 1
+        except Exception as e:
+            print(f"Warning: could not parse {xml_file}: {e}")
+
+    print(f"Found {count} first publications in {editions_dir}")
     return count
 
 
@@ -68,7 +94,7 @@ def format_number_german(number):
     return f"{number:,}".replace(',', '.')
 
 
-def update_params_xsl(params_file, total_letters, complete_correspondences):
+def update_params_xsl(params_file, total_letters, complete_correspondences, first_publications):
     """Update the params.xsl file with new values."""
 
     try:
@@ -77,6 +103,7 @@ def update_params_xsl(params_file, total_letters, complete_correspondences):
 
         # Format the numbers
         letters_formatted = format_number_german(total_letters)
+        first_publications_formatted = format_number_german(first_publications)
 
         # Update total_letters
         content = re.sub(
@@ -106,6 +133,20 @@ def update_params_xsl(params_file, total_letters, complete_correspondences):
             content
         )
 
+        # Update erstveroeffentlichungen
+        content = re.sub(
+            r'<xsl:param name="erstveroeffentlichungen">\d+</xsl:param>',
+            f'<xsl:param name="erstveroeffentlichungen">{first_publications}</xsl:param>',
+            content
+        )
+
+        # Update erstveroeffentlichungen_formatted
+        content = re.sub(
+            r'<xsl:param name="erstveroeffentlichungen_formatted">[\d.]+</xsl:param>',
+            f'<xsl:param name="erstveroeffentlichungen_formatted">{first_publications_formatted}</xsl:param>',
+            content
+        )
+
         # Write back
         with open(params_file, 'w', encoding='utf-8') as f:
             f.write(content)
@@ -115,6 +156,8 @@ def update_params_xsl(params_file, total_letters, complete_correspondences):
         print(f"  total_letters_formatted: {letters_formatted}")
         print(f"  complete_correspondences: {complete_correspondences}")
         print(f"  complete_correspondences_formatted: {complete_correspondences}")
+        print(f"  erstveroeffentlichungen: {first_publications}")
+        print(f"  erstveroeffentlichungen_formatted: {first_publications_formatted}")
 
     except Exception as e:
         print(f"Error updating {params_file}: {e}")
@@ -139,10 +182,13 @@ def main():
     # Count complete correspondences
     complete_correspondences = count_complete_correspondences(listcorrespondence_file)
 
+    # Count first publications
+    first_publications = count_first_publications(editions_dir)
+
     print("=" * 60)
 
     # Update params.xsl
-    update_params_xsl(params_file, total_letters, complete_correspondences)
+    update_params_xsl(params_file, total_letters, complete_correspondences, first_publications)
 
     print("\n✓ params.xsl updated successfully!")
 

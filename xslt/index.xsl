@@ -24,7 +24,7 @@
                 <link rel="preload" as="image" href="img/index/hero-bg.webp" type="image/webp" fetchpriority="high"/>
 
                 <!-- Preload statistics data to reduce request chain -->
-                <link rel="preload" as="fetch" href="js-data/gesamtstatistik.json" crossorigin="anonymous"/>
+                <link rel="preload" as="fetch" href="js-data/gesamtstatistik.json"/>
 
                 <!-- Highcharts for statistics visualization - deferred for performance -->
                 <script src="https://code.highcharts.com/highcharts.js" defer="defer"></script>
@@ -367,6 +367,7 @@
                     </div>
                     <xsl:call-template name="html_footer"/>
                 </div>
+                <script>window.erstveroeffentlichungen = <xsl:value-of select="$erstveroeffentlichungen"/>;</script>
                 <script src="js/index-statistics.js"></script>
                 <script src="js/bluesky-post.js"></script>
             </body>

@@ -106,7 +106,7 @@ function displayOverviewSlide() {
         'widmung': 'Widmungen'
     };
 
-    let html = '<div style="min-height: 400px;">';
+    let html = '<div style="min-height: 440px;">';
 
     // First row: Main statistics with large numbers
     html += '<div class="row mb-4">';
@@ -136,11 +136,11 @@ function displayOverviewSlide() {
 
     // Date range
     if (statsData.date_range && statsData.date_range.earliest && statsData.date_range.latest) {
-        html += '<div class="col-md-2 text-center mb-2">';
+        html += '<div class="col-md-2 text-center mb-3">';
         html += '<h5 style="color: black; margin-bottom: 0.25rem;">' + formatGermanDate(statsData.date_range.earliest) + '</h5>';
         html += '<p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">erstes Stück</p>';
         html += '</div>';
-        html += '<div class="col-md-2 text-center mb-2">';
+        html += '<div class="col-md-2 text-center mb-3">';
         html += '<h5 style="color: black; margin-bottom: 0.25rem;">' + formatGermanDate(statsData.date_range.latest) + '</h5>';
         html += '<p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">letztes Stück</p>';
         html += '</div>';
@@ -157,11 +157,19 @@ function displayOverviewSlide() {
         types.forEach(([type, count]) => {
             const color = colorMap[type] || '#999999';
             const name = typeNames[type] || type.charAt(0).toUpperCase() + type.slice(1);
-            html += '<div class="col-md-2 text-center mb-2">';
+            html += '<div class="col-md-2 text-center mb-3">';
             html += '<h5 style="color: ' + color + '; margin-bottom: 0.25rem;">' + count + '</h5>';
             html += '<p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">' + name + '</p>';
             html += '</div>';
         });
+    }
+
+    // Erstveröffentlichungen (letters without a known prior print edition)
+    if (typeof window.erstveroeffentlichungen === 'number') {
+        html += '<div class="col-md-2 text-center mb-3">';
+        html += '<h5 style="color: black; margin-bottom: 0.25rem;">' + window.erstveroeffentlichungen + '</h5>';
+        html += '<p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">Erstveröffentlichungen</p>';
+        html += '</div>';
     }
 
     html += '</div>';
@@ -187,7 +195,7 @@ function displayYearlyChart() {
         return;
     }
 
-    container.innerHTML = '<div id="yearly-chart" style="height: 400px; width: 100%;"></div>';
+    container.innerHTML = '<div id="yearly-chart" style="height: 440px; width: 100%;"></div>';
 
     // Check if Highcharts is loaded
     if (typeof Highcharts === 'undefined') {
@@ -214,7 +222,7 @@ function displayYearlyChart() {
         Highcharts.chart('yearly-chart', {
         chart: {
             type: 'column',
-            height: 400
+            height: 440
         },
         title: {
             text: null
@@ -285,7 +293,7 @@ function displayObjectTypeChart() {
         return;
     }
 
-    container.innerHTML = '<div id="object-type-chart" style="height: 400px; width: 100%;"></div>';
+    container.innerHTML = '<div id="object-type-chart" style="height: 440px; width: 100%;"></div>';
 
     // Check if Highcharts is loaded
     if (typeof Highcharts === 'undefined') {
@@ -342,7 +350,7 @@ function displayObjectTypeChart() {
         Highcharts.chart('object-type-chart', {
         chart: {
             type: 'column',
-            height: 400
+            height: 440
         },
         title: {
             text: null
