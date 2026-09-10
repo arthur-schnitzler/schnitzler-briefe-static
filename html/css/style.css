@@ -1445,14 +1445,6 @@ nav {
 
 .navbar .navbar-brand {
     padding-right: 0px;
-    margin-left: auto;
-    margin-right: 0;
-}
-
-/* Navbar spans the full viewport width and stays left-aligned; only the
-   page's text content is capped at 1200px, not the navbar itself. */
-nav.navbar > .container-fluid {
-    max-width: none;
 }
 
 .navbar .navbar-brand img {
