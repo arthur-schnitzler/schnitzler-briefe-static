@@ -1814,7 +1814,7 @@ div#map {
 .schnitzler-mikrofilme-daten { color: #6e7b8b; }
 .wienerschnitzler { color: #6F5106; }
 .schnitzler-events { color: #9BC53D; }
-.schnitzler-kultur { color: #AC7790; }
+.schnitzler-kultur { color: #7D4E63; }
 .schnitzler-zeitungen { color: #8E8575; }
 .schnitzler-traeume { color: #1193CC; }
 .schnitzler-kino-buch { color: #B43C9C; }
@@ -2512,9 +2512,9 @@ html {
     border-bottom: 1px solid #8a2a2d;
 }
 .action-bar .inner {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 22px;
+    max-width: none;
+    margin: 0;
+    padding: 0 15px;
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
@@ -2818,7 +2818,7 @@ html {
 /* Action-Bar und Drawer auf kleinen Bildschirmen */
 @media (max-width: 768px) {
     .action-bar .inner {
-        padding: 0 10px;
+        padding: 0 10px 0 15px;
     }
     .action-bar button {
         padding: 9px 8px;
