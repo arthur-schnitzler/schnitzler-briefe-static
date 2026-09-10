@@ -225,13 +225,14 @@ class SimpleCalendar {
         }
 
         .period-dropdown {
-          padding: 6px 10px;
+          padding: 6px 12px;
           border: 1px solid #dee2e6;
           border-radius: 4px;
           font-size: 14px;
           background: white;
           cursor: pointer;
           min-width: 100px;
+          box-sizing: border-box;
         }
 
         .period-dropdown:hover {
@@ -273,6 +274,7 @@ class SimpleCalendar {
           font-size: 14px;
           transition: all 0.2s;
           color: #495057;
+          box-sizing: border-box;
         }
         
         .view-btn:hover {
@@ -296,6 +298,7 @@ class SimpleCalendar {
           display: flex;
           align-items: center;
           gap: 6px;
+          box-sizing: border-box;
         }
         
         .filter-toggle:hover {
@@ -369,10 +372,11 @@ class SimpleCalendar {
           background: #f8f9fa;
           border: 1px solid #dee2e6;
           border-radius: 4px;
-          padding: 8px 12px;
+          padding: 6px 12px;
           cursor: pointer;
-          font-size: 16px;
+          font-size: 14px;
           min-width: 40px;
+          box-sizing: border-box;
         }
         
         .nav-btn:hover {
@@ -729,13 +733,13 @@ class SimpleCalendar {
     // Clear existing dropdowns
     dropdownContainer.innerHTML = '';
 
-    // Year dropdown for all views
-    this.createYearDropdown(dropdownContainer);
-
-    // Month dropdown for month view
+    // Month dropdown for month view goes left of the year dropdown
     if (this.currentView === 'month') {
       this.createMonthDropdown(dropdownContainer);
     }
+
+    // Year dropdown for all views
+    this.createYearDropdown(dropdownContainer);
 
     // Week dropdown for week view
     if (this.currentView === 'week') {

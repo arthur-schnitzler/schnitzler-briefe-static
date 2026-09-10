@@ -23,7 +23,7 @@
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
 
-                    <div class="container-fluid">
+                    <div class="container-fluid calendar-wide">
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
                             <span class="type-pill">Kalender</span> <span class="sep">/</span>

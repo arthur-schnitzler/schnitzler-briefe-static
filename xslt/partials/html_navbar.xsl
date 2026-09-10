@@ -5,11 +5,6 @@
     <xsl:template match="/" name="nav_bar">
         <nav class="navbar navbar-expand-md" role="navigation" aria-label="Hauptnavigation" style="padding-top:1px; position: relative; z-index: 1050;">
             <div class="container-fluid">
-                <a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url" aria-label="Zur Startseite">
-                    <img src="{$project_logo}" class="img-fluid" title="{$project_short_title}"
-                        alt="{$project_short_title}" itemprop="logo"
-                        width="220" height="120"/>
-                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation" style="border: none;">
@@ -202,6 +197,11 @@
                         </li>
                     </ul>
                 </div>
+                <a href="index.html" class="navbar-brand custom-logo-link" rel="home" itemprop="url" aria-label="Zur Startseite">
+                    <img src="{$project_logo}" class="img-fluid" title="{$project_short_title}"
+                        alt="{$project_short_title}" itemprop="logo"
+                        width="220" height="120"/>
+                </a>
             </div>
         </nav>
 
