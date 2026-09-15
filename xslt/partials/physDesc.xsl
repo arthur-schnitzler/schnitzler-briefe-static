@@ -6,7 +6,31 @@
         
         <xsl:text>Stempel </xsl:text>
         <xsl:value-of select="@n"/>
-        <xsl:text>:</xsl:text>
+        <xsl:text> (</xsl:text>
+        <xsl:choose>
+            <xsl:when test="@type='transmission'">
+                <xsl:text>Aufgabe</xsl:text>
+            </xsl:when>
+            <xsl:when test="@type='in_transit' or @type='forwarded'">
+                <xsl:text>Transit</xsl:text>
+            </xsl:when>
+            <xsl:when test="@type='delivery'">
+                <xsl:text>Zustellung</xsl:text>
+            </xsl:when>
+            <xsl:when test="@type='redirection'">
+                <xsl:text>Umleitung</xsl:text>
+            </xsl:when>
+            <xsl:when test="@type='arrival'">
+                <xsl:text>Ankunft am Zielort</xsl:text>
+            </xsl:when>
+            <xsl:when test="@type='non_postal'">
+                <xsl:text>Nebenstempel</xsl:text>
+            </xsl:when>
+            <xsl:when test="@type='other'">
+                <xsl:text>sonstig</xsl:text>
+            </xsl:when>
+        </xsl:choose>
+        <xsl:text>):</xsl:text>
         <ul style="list-style-type: none; padding: 0; margin: 0;">
         <xsl:if test="tei:placeName">
             <li>Ort: 
@@ -30,7 +54,7 @@
             <xsl:if test="tei:time"><li>Zeit: <xsl:apply-templates select="./tei:time"/>
             </li>
         </xsl:if>
-            <xsl:if test="tei:addSpan"><li>Vorgang: <xsl:apply-templates select="./tei:addSpan"/>
+            <xsl:if test="tei:addSpan"><li>Text: <xsl:apply-templates select="./tei:addSpan"/>
             </li>
         </xsl:if>
         </ul>

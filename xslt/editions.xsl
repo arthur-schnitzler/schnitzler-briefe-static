@@ -471,8 +471,9 @@ else if(pts[0]){map.setView(pts[0],10);}
                                                   <xsl:choose>
                                                   <xsl:when test="@type = 'sent'"> Versand: </xsl:when>
                                                   <xsl:when test="@type = 'received'"> Empfang: </xsl:when>
-                                                  <xsl:when test="@type = 'forwarded'">
-                                                  Weiterleitung: </xsl:when>
+                                                      <xsl:when test="@type = 'forwarded' or @type = 'in_transit'">
+                                                  In Transit: </xsl:when>
+                                                      <xsl:when test="@type = 'arrived'"> Ankunft am Zielort: </xsl:when>
                                                   <xsl:when test="@type = 'redirected'"> Umleitung: </xsl:when>
                                                   <xsl:when test="@type = 'delivered'"> Zustellung: </xsl:when>
                                                   <xsl:when test="@type = 'transmitted'">
