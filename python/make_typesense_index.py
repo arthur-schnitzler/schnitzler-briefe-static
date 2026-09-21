@@ -185,6 +185,12 @@ current_schema = {
             "optional": True,
         },
         {
+            "name": "correspondence",
+            "type": "object[]",
+            "facet": True,
+            "optional": True,
+        },
+        {
             "name": "persons",
             "type": "object[]",
             "facet": True,
@@ -278,6 +284,22 @@ for x in tqdm(files, total=len(files)):
         receiver_label = "Kein Absender"
         receiver_id = None
     record["receiver"].append({"label": receiver_label, "id": receiver_id})
+
+    record["correspondence"] = []
+    try:
+        corresp_label = doc.any_xpath(
+            './/tei:correspDesc/tei:correspContext'
+            '/tei:ref[@type="belongsToCorrespondence"]/text()'
+        )[0]
+        corresp_id = doc.any_xpath(
+            './/tei:correspDesc/tei:correspContext'
+            '/tei:ref[@type="belongsToCorrespondence"]/@target'
+        )[0]
+        record["correspondence"].append(
+            {"label": corresp_label, "id": str(corresp_id)}
+        )
+    except IndexError:
+        pass
 
     try:
         record["year"] = int(date_str[:4])

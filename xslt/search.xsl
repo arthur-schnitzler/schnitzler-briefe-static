@@ -70,6 +70,17 @@
 
                                             <div id="filter-cards">
                                             <div class="card">
+                                                <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseCorrespondence" aria-expanded="true" aria-controls="collapseCorrespondence" style="cursor: pointer;">
+                                                    Korrespondenz <i class="fa fa-chevron-down float-end"></i>
+                                                </h4>
+                                                <div id="collapseCorrespondence" class="collapse show">
+                                                    <div class="card-body">
+                                                        <div id="refinement-list-correspondence"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
                                                 <h4 class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTextArea" aria-expanded="true" aria-controls="collapseTextArea" style="cursor: pointer;">
                                                     Textbereich <i class="fa fa-chevron-down float-end"></i>
                                                 </h4>

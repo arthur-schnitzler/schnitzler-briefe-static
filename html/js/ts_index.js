@@ -127,6 +127,16 @@ search.addWidgets([
       }
   }),
   instantsearch.widgets.refinementList({
+    container: "#refinement-list-correspondence",
+    attribute: "correspondence.label",
+    searchable: true,
+    showMore: true,
+    showMoreLimit: 50,
+    searchablePlaceholder: "Suche",
+    cssClasses: DEFAULT_CSS_CLASSES,
+  }),
+
+  instantsearch.widgets.refinementList({
     container: "#refinement-list-text-areas",
     attribute: "text_areas",
     sortBy: ["name:asc"],
