@@ -1,14 +1,15 @@
 // Eine CSV-Zeile ist eine Etappe eines Postwegs (z.B. Versand -> Übermittlung), nicht
 // zwingend Versand -> Empfang; mehrstufige Briefe liefern mehrere Zeilen (siehe
 // schnitzler-briefe-charts/netzwerke/postwege_weights_directed/postwege_weights_directed.xsl).
+//
+// Leaflet statt Highcharts: Highcharts' flowmap-Modul zeichnet pro Kante einen animierten,
+// gekrümmten Pfeil und baute bei jedem Zoom/Pan-Redraw alle ~900 Kanten neu auf (spürbar
+// langsam). Leaflet muss beim Zoomen/Verschieben nichts neu berechnen (native Reprojektion
+// der Vektor-Layer) und zeichnet mit dem Canvas-Renderer auch hunderte Linien nahezu
+// augenblicklich.
 async function createKarte1() {
-    const mapDataUrl = 'https://code.highcharts.com/mapdata/custom/world.topo.json';
     const csvUrl = 'https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/postwege_weights_directed/postwege_weights_directed.csv';
-
-    const topology = await fetch(mapDataUrl).then(response => response.json());
     const csvData = await fetch(csvUrl).then(response => response.text());
-
-    console.log("Topology and CSV data fetched.");
 
     const processData = (csv) => {
         const lines = csv.split('\n');
@@ -20,11 +21,11 @@ async function createKarte1() {
             return line.split(regex).map(item => item.replace(/^"|"$/g, ''));
         };
 
-        lines.slice(1).forEach((line, index) => {
+        lines.slice(1).forEach((line) => {
             const columns = splitCSVLine(line);
             if (columns.length < 9) return;
 
-            const [Source, SourceID, LatLongSender, Target, TargetID, LatLongReceiver, Type, Label, Weight] = columns;
+            const [Source, SourceID, LatLongSender, Target, TargetID, LatLongReceiver, , , Weight] = columns;
             if (LatLongSender === 'nicht vorhanden' || LatLongReceiver === 'nicht vorhanden' || !SourceID || !TargetID) return;
 
             const [senderLat, senderLon] = LatLongSender.split(' ').map(coord => parseFloat(coord.replace(',', '.')));
@@ -32,25 +33,12 @@ async function createKarte1() {
 
             if (!isNaN(senderLat) && !isNaN(senderLon) && !isNaN(receiverLat) && !isNaN(receiverLon)) {
                 if (Source !== 'Unbekannt' && !locations.has(SourceID)) {
-                    locations.set(SourceID, { id: SourceID, name: Source, lat: senderLat, lon: senderLon, weight: 0, sourceCount: 0, targetCount: 0 });
+                    locations.set(SourceID, { id: SourceID, name: Source, lat: senderLat, lon: senderLon });
                 }
                 if (Target !== 'Unbekannt' && !locations.has(TargetID)) {
-                    locations.set(TargetID, { id: TargetID, name: Target, lat: receiverLat, lon: receiverLon, weight: 0, sourceCount: 0, targetCount: 0 });
+                    locations.set(TargetID, { id: TargetID, name: Target, lat: receiverLat, lon: receiverLon });
                 }
-
-                const weightValue = parseFloat(Weight);
-                if (locations.has(SourceID)) {
-                    const source = locations.get(SourceID);
-                    source.weight += weightValue;
-                    source.sourceCount += weightValue;
-                }
-                if (locations.has(TargetID)) {
-                    const target = locations.get(TargetID);
-                    target.weight += weightValue;
-                    target.targetCount += weightValue;
-                }
-
-                connections.push({ id: `${SourceID}-${TargetID}-${index}`, from: SourceID, to: TargetID, weight: weightValue });
+                connections.push({ from: SourceID, to: TargetID, weight: parseFloat(Weight) });
             }
         });
 
@@ -58,143 +46,85 @@ async function createKarte1() {
     };
 
     const data = processData(csvData);
-    window.mapLocations = data.locations;
-    console.log("Data processed:", data);
 
-    const maxWeight = Math.max(...Array.from(data.locations.values()).map(loc => loc.weight));
-    let cityData = Array.from(data.locations.values()).map(location => ({
-        id: location.id,
-        lat: location.lat,
-        lon: location.lon,
-        name: location.name,
-        marker: { radius: 2 + (location.weight / maxWeight) * 7 },
-        color: '#ffaa00', // node normal
-        tooltip: `<b>${location.name}</b><br>Ausgehende Etappen: ${location.sourceCount}<br>Eingehende Etappen: ${location.targetCount}`
-    }));
+    const map = L.map('container', { preferCanvas: true }).setView([48, 16], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&#169; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18
+    }).addTo(map);
 
-    let flowData = data.connections.map(connection => {
-        const fromLocation = data.locations.get(connection.from);
-        const toLocation = data.locations.get(connection.to);
-        const reverseConnection = data.connections.find(conn => conn.from === connection.to && conn.to === connection.from);
-        const reverseWeight = reverseConnection ? reverseConnection.weight : 0;
+    const linesLayer = L.layerGroup().addTo(map);
+    const citiesLayer = L.layerGroup().addTo(map);
 
-        return {
-            id: connection.id,
-            from: { id: connection.from, lat: fromLocation.lat, lon: fromLocation.lon },
-            to: { id: connection.to, lat: toLocation.lat, lon: toLocation.lon },
-            weight: connection.weight,
-            lineWidth: Math.max(0.1, Math.min(connection.weight, 2)),
-            color: '#8B5F8F',
-            tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}<br>${toLocation.name} → ${fromLocation.name}: ${reverseWeight}`
-        };
-    });
+    // Zeichnet Kanten + Ortspunkte neu; wird initial und bei gefilterter Tabelle aufgerufen.
+    function render(connections) {
+        linesLayer.clearLayers();
+        citiesLayer.clearLayers();
 
-    console.log("Initial cityData and flowData generated.");
+        // Gegenrichtung je Kante einmal vorab nachschlagbar machen (O(n) statt O(n²) pro Redraw).
+        const weightByPair = new Map();
+        connections.forEach(c => weightByPair.set(c.from + '|' + c.to, c.weight));
 
-    const chart = window.mapChart = Highcharts.mapChart('container', {
-        chart: {
-            map: topology,
-            events: {
-                redraw: debounce(() => {
-                    console.log("Chart redrawn.");
-                    updateFlowData();
-                }, 200)
-            }
-        },
-        title: { text: null },
-        exporting: { enabled: false },
-        mapNavigation: { enabled: true },
-        legend: { enabled: false },
-        accessibility: {
-            point: { valueDescriptionFormat: '{xDescription}.' }
-        },
-        plotOptions: {
-            mappoint: {
-                tooltip: { headerFormat: '', pointFormat: '{point.tooltip}' },
-                states: { hover: { enabled: false }, inactive: { enabled: false } },
-                point: {
-                    events: {
-                        click: function () {
-                            window.open(`https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${this.id}.html`, '_blank');
-                        }
-                    }
-                }
-            },
-            flowmap: {
-                minWidth: 0.1,
-                maxWidth: 100,
-                growTowards: true,
-                markerEnd: { width: '50%', height: '50%' },
+        connections.forEach(c => {
+            const from = data.locations.get(c.from);
+            const to = data.locations.get(c.to);
+            if (!from || !to) return;
+            const reverseWeight = weightByPair.get(c.to + '|' + c.from) || 0;
+            L.polyline([[from.lat, from.lon], [to.lat, to.lon]], {
                 color: '#8B5F8F',
-                fillOpacity: 1,
-                states: { hover: { enabled: false }, inactive: { enabled: false } },
-                tooltip: { headerFormat: '', pointFormat: '{point.tooltip}' }
-            }
+                weight: Math.max(0.5, Math.min(c.weight / 3, 4)),
+                opacity: 0.45
+            }).addTo(linesLayer).bindTooltip(
+                `${from.name} → ${to.name}: ${c.weight}<br>${to.name} → ${from.name}: ${reverseWeight}`
+            );
+        });
+
+        const locationCounts = new Map();
+        connections.forEach(c => {
+            if (!locationCounts.has(c.from)) locationCounts.set(c.from, { sourceCount: 0, targetCount: 0 });
+            if (!locationCounts.has(c.to)) locationCounts.set(c.to, { sourceCount: 0, targetCount: 0 });
+            locationCounts.get(c.from).sourceCount += c.weight;
+            locationCounts.get(c.to).targetCount += c.weight;
+        });
+
+        let maxWeight = 1;
+        locationCounts.forEach(counts => { maxWeight = Math.max(maxWeight, counts.sourceCount + counts.targetCount); });
+
+        locationCounts.forEach((counts, id) => {
+            const loc = data.locations.get(id);
+            if (!loc) return;
+            const w = counts.sourceCount + counts.targetCount;
+            L.circleMarker([loc.lat, loc.lon], {
+                radius: 2 + (w / maxWeight) * 10,
+                fillColor: '#ffaa00',
+                color: '#fff',
+                weight: 1,
+                fillOpacity: 0.9
+            }).addTo(citiesLayer)
+                .bindTooltip(`<b>${loc.name}</b><br>Ausgehende Etappen: ${counts.sourceCount}<br>Eingehende Etappen: ${counts.targetCount}`)
+                .on('click', () => window.open(`https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${id}.html`, '_blank'));
+        });
+    }
+
+    render(data.connections);
+
+    // Schnittstelle für die gefilterte Tabelle auf der Postwege-Seite (siehe correspaction.xsl)
+    window.postwegeMap = {
+        setConnections(connections) {
+            render(connections);
+            const pts = [];
+            connections.forEach(c => {
+                const from = data.locations.get(c.from);
+                const to = data.locations.get(c.to);
+                if (from) pts.push([from.lat, from.lon]);
+                if (to) pts.push([to.lat, to.lon]);
+            });
+            if (pts.length) map.fitBounds(L.latLngBounds(pts).pad(0.2));
         },
-        mapView: { center: [10, 20], zoom: 2.1 },
-        series: [
-            { name: 'Basemap', showInLegend: false, states: { inactive: { enabled: false } } },
-            { type: 'flowmap', id: 'flowmap', name: 'Connections', data: flowData },
-            { type: 'mappoint', id: 'world', name: 'Cities', dataLabels: { format: '{point.name}' }, data: cityData }
-        ]
-    });
-
-    function updateFlowData() {
-        const mapView = chart.mapView;
-        const flowmapSeries = chart.get('flowmap');
-        if (flowmapSeries && mapView) {
-            // Wenn ein Filter aktiv ist, gefilterter Datensatz verwenden; sonst Volldata
-            const activeFlowData = window._currentFlowData !== undefined
-                ? window._currentFlowData
-                : data.connections.map(connection => {
-                    const fromLocation = data.locations.get(connection.from);
-                    const toLocation = data.locations.get(connection.to);
-                    const reverseConnection = data.connections.find(conn => conn.from === connection.to && conn.to === connection.from);
-                    const reverseWeight = reverseConnection ? reverseConnection.weight : 0;
-
-                    return {
-                        id: connection.id,
-                        from: { id: connection.from, lat: fromLocation.lat, lon: fromLocation.lon },
-                        to: { id: connection.to, lat: toLocation.lat, lon: toLocation.lon },
-                        weight: connection.weight,
-                        lineWidth: Math.max(0.1, Math.min(connection.weight, 2)),
-                        color: '#8B5F8F',
-                        tooltip: `${fromLocation.name} → ${toLocation.name}: ${connection.weight}<br>${toLocation.name} → ${fromLocation.name}: ${reverseWeight}`
-                    };
-                });
-
-            flowmapSeries.setData(activeFlowData, true, false, false);
+        reset() {
+            render(data.connections);
         }
-    }
-
-    function debounce(func, wait) {
-        let timeout;
-        return function (...args) {
-            const context = this;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), wait);
-        };
-    }
-
-    function throttle(func, limit) {
-        let lastFunc;
-        let lastRan;
-        return function (...args) {
-            const context = this;
-            if (!lastRan) {
-                func.apply(context, args);
-                lastRan = Date.now();
-            } else {
-                clearTimeout(lastFunc);
-                lastFunc = setTimeout(function () {
-                    if ((Date.now() - lastRan) >= limit) {
-                        func.apply(context, args);
-                        lastRan = Date.now();
-                    }
-                }, limit - (Date.now() - lastRan));
-            }
-        };
-    }
+    };
 }
 
 createKarte1();

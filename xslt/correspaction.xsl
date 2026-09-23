@@ -14,10 +14,10 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
-            <script src="https://code.highcharts.com/maps/highmaps.js"/>
-            <script src="https://code.highcharts.com/maps/modules/flowmap.js"/>
-            <script src="https://code.highcharts.com/maps/modules/exporting.js"/>
-            <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"/>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+                integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+                crossorigin=""/>
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""/>
             <body class="page">
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="card-body">
                                 <div id="container"
-                                    style="padding-bottom: 20px; width:100%; margin: auto"/>
+                                    style="height:600px; width:100%; margin: 0 auto 20px; border-radius:4px;"/>
                                 <script src="js/postwege_weights_directed.js"/>
                                 <style type="text/css">
                                     #toggle-uncertain:checked { background-color: #A63437; border-color: #A63437; }
@@ -382,93 +382,27 @@
                         });
 
                         function updateMapFromRows(rows) {
-                            if (!window.mapLocations || !window.mapChart) return;
+                            if (!window.postwegeMap) return;
 
-                            var locationCounts = {};
+                            // routeids listet alle Stationen des Postwegs (nicht nur Versand/Empfang);
+                            // jede aufeinanderfolgende Etappe wird als eigene Kante gezählt und über
+                            // die sichtbaren Briefe hinweg zu einem Gewicht zusammengefasst.
                             var connectionCounts = {};
-
                             rows.forEach(function(row) {
                                 var data = row.getData();
-                                // routeids listet alle Stationen des Postwegs (nicht nur Versand/Empfang);
-                                // jede aufeinanderfolgende Etappe wird als eigene Kante gezählt.
                                 var stationIds = (data.routeids || "").split("|").filter(function(id) { return id; });
-
                                 stationIds.slice(1).forEach(function(toId, idx) {
-                                    var fromId = stationIds[idx];
-
-                                    if (!locationCounts[fromId]) locationCounts[fromId] = {sourceCount: 0, targetCount: 0};
-                                    if (!locationCounts[toId]) locationCounts[toId] = {sourceCount: 0, targetCount: 0};
-                                    locationCounts[fromId].sourceCount++;
-                                    locationCounts[toId].targetCount++;
-
-                                    var key = fromId + "|" + toId;
+                                    var key = stationIds[idx] + "|" + toId;
                                     connectionCounts[key] = (connectionCounts[key] || 0) + 1;
                                 });
                             });
 
-                            // Stadtpunkte berechnen
-                            var maxWeight = 1;
-                            Object.keys(locationCounts).forEach(function(id) {
-                                var c = locationCounts[id];
-                                var w = c.sourceCount + c.targetCount;
-                                maxWeight = Math.max(maxWeight, w);
-                            });
-
-                            var newCityData = [];
-                            Object.keys(locationCounts).forEach(function(id) {
-                                var loc = window.mapLocations.get(id);
-                                if (!loc) return;
-                                var c = locationCounts[id];
-                                var weight = c.sourceCount + c.targetCount;
-                                newCityData.push({
-                                    id: id,
-                                    lat: loc.lat,
-                                    lon: loc.lon,
-                                    name: loc.name,
-                                    marker: {radius: 2 + (weight / maxWeight) * 7},
-                                    color: '#ffaa00',
-                                    tooltip: '\u003cb\u003e' + loc.name + '\u003c/b\u003e\u003cbr\u003eAusgehende Etappen: ' + c.sourceCount + '\u003cbr\u003eEingehende Etappen: ' + c.targetCount
-                                });
-                            });
-
-                            // Verbindungen berechnen
-                            var newFlowData = [];
-                            Object.keys(connectionCounts).forEach(function(key) {
+                            var connections = Object.keys(connectionCounts).map(function(key) {
                                 var parts = key.split("|");
-                                var fromId = parts[0];
-                                var toId = parts[1];
-                                var weight = connectionCounts[key];
-                                var fromLoc = window.mapLocations.get(fromId);
-                                var toLoc = window.mapLocations.get(toId);
-                                if (!fromLoc || !toLoc) return;
-                                var reverseWeight = connectionCounts[toId + "|" + fromId] || 0;
-                                newFlowData.push({
-                                    id: fromId + "-" + toId,
-                                    from: {id: fromId, lat: fromLoc.lat, lon: fromLoc.lon},
-                                    to: {id: toId, lat: toLoc.lat, lon: toLoc.lon},
-                                    weight: weight,
-                                    lineWidth: Math.max(0.1, Math.min(weight, 2)),
-                                    color: '#8B5F8F',
-                                    tooltip: fromLoc.name + ' → ' + toLoc.name + ': ' + weight + '\u003cbr\u003e' + toLoc.name + ' → ' + fromLoc.name + ': ' + reverseWeight
-                                });
+                                return { from: parts[0], to: parts[1], weight: connectionCounts[key] };
                             });
 
-                            if (window.mapChart.series[2]) {
-                                window._currentFlowData = newFlowData;
-                                window.mapChart.series[1].setData(newFlowData, false, false, false);
-                                window.mapChart.series[2].setData(newCityData, false, false, false);
-                                window.mapChart.redraw(false);
-
-                                // Auto-Zoom auf die gefilterten Punkte
-                                if (newCityData.length !== 0) {
-                                    var lons = newCityData.map(function(d) { return d.lon; });
-                                    var lats = newCityData.map(function(d) { return d.lat; });
-                                    window.mapChart.mapView.fitToBounds([
-                                        [Math.min.apply(null, lons) - 3, Math.min.apply(null, lats) - 3],
-                                        [Math.max.apply(null, lons) + 3, Math.max.apply(null, lats) + 3]
-                                    ]);
-                                }
-                            }
+                            window.postwegeMap.setConnections(connections);
                         }
                     </script>
                 </div>
