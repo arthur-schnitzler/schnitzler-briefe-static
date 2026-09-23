@@ -429,16 +429,35 @@
                                     <div class="transmission-map-col">
                                     <div id="corresp-route-map"
                                         style="height:250px;width:100%;border-radius:4px;border:1px solid #dee2e6;"/>
-                                    <div style="font-size:0.8em;margin-top:0.5em;color:#555;">
-                                        <span
-                                            style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#c0392b;margin-right:4px;vertical-align:middle;"/>
-                                        <xsl:text>Versand&#160;&#160;</xsl:text>
-                                        <span
-                                            style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#2980b9;margin-right:4px;vertical-align:middle;"/>
-                                        <xsl:text>Empfang</xsl:text>
-                                    </div>
+                                    <ul id="corresp-route-legend" class="horizontal-list corresp-route-legend"/>
                                     <script>(function(){
-var mapPoints=[<xsl:for-each select="//tei:correspAction[tei:placeName/@ref]"><xsl:variable name="action-type" select="@type"/><xsl:for-each select="tei:placeName[@ref]"><xsl:variable name="place-id" select="substring-after(@ref, '#')"/><xsl:variable name="geo" select="$back//tei:place[@xml:id = $place-id]/tei:location[@type = 'coords']/tei:geo[1]"/><xsl:if test="$geo">{lat:<xsl:value-of select="replace(tokenize(string($geo), ' ')[1], ',', '.')"/>,lng:<xsl:value-of select="replace(tokenize(string($geo), ' ')[2], ',', '.')"/>,type:'<xsl:value-of select="$action-type"/>',name:'<xsl:value-of select="normalize-space(.)"/>'},</xsl:if></xsl:for-each></xsl:for-each>];
+var TYPE_INFO={
+sent:{label:'Versand',color:'#c0392b'},
+transmitted:{label:'Übermittlung',color:'#e67e22'},
+forwarded:{label:'In Transit',color:'#f1c40f'},
+in_transit:{label:'In Transit',color:'#f1c40f'},
+arrived:{label:'Ankunft am Zielort',color:'#16a085'},
+redirected:{label:'Umleitung',color:'#8e44ad'},
+delivered:{label:'Zustellung',color:'#34495e'},
+received:{label:'Empfang',color:'#2980b9'}
+};
+function typeInfo(t){return TYPE_INFO[t]||{label:t,color:'#7f8c8d'};}
+var mapPoints=[<xsl:for-each select="//tei:correspAction[tei:placeName/@ref]"><xsl:variable name="action-type" select="@type"/><xsl:variable name="action-date" select="normalize-space(tei:date)"/><xsl:for-each select="tei:placeName[@ref]"><xsl:variable name="place-id" select="substring-after(@ref, '#')"/><xsl:variable name="geo" select="$back//tei:place[@xml:id = $place-id]/tei:location[@type = 'coords']/tei:geo[1]"/><xsl:if test="$geo">{lat:<xsl:value-of select="replace(tokenize(string($geo), ' ')[1], ',', '.')"/>,lng:<xsl:value-of select="replace(tokenize(string($geo), ' ')[2], ',', '.')"/>,type:'<xsl:value-of select="$action-type"/>',name:'<xsl:value-of select="normalize-space(.)"/>',date:'<xsl:value-of select="$action-date"/>'},</xsl:if></xsl:for-each></xsl:for-each>];
+
+var legendEl=document.getElementById('corresp-route-legend');
+if(legendEl){
+var seenTypes={};
+mapPoints.forEach(function(p){
+if(seenTypes[p.type]){return;}
+seenTypes[p.type]=true;
+var info=typeInfo(p.type);
+var li=document.createElement('li');
+li.style.setProperty('--dot-color',info.color);
+li.textContent=info.label;
+legendEl.appendChild(li);
+});
+}
+
 document.addEventListener('drawer:open',function(ev){
 if(ev.detail!=='transmission'){return;}
 var el=document.getElementById('corresp-route-map');
@@ -451,9 +470,11 @@ mapPoints.forEach(function(p,i){
 for(var j=0;j!==i;j++){if(Math.round((mapPoints[j].lat-p.lat)*10000)===0){if(Math.round((mapPoints[j].lng-p.lng)*10000)===0){mapPoints[j].lat-=0.001;mapPoints[j].lng-=0.001;p.lat+=0.001;p.lng+=0.001;}}}
 });
 var pts=[];
-mapPoints.forEach(function(p){
-var col=p.type==='sent'?'#c0392b':(p.type==='received'?'#2980b9':'#7f8c8d');
-L.circleMarker([p.lat,p.lng],{radius:8,fillColor:col,color:'#fff',weight:2,opacity:1,fillOpacity:0.9}).addTo(map).bindPopup(p.name);
+mapPoints.forEach(function(p,i){
+var info=typeInfo(p.type);
+var icon=L.divIcon({className:'corresp-route-marker',html:'\u003cspan style="background:'+info.color+'"\u003e'+(i+1)+'\u003c/span\u003e',iconSize:[22,22],iconAnchor:[11,11]});
+var popup='\u003cb\u003eStation '+(i+1)+' \u00b7 '+info.label+'\u003c/b\u003e\u003cbr\u003e'+p.name+(p.date?'\u003cbr\u003e'+p.date:'');
+L.marker([p.lat,p.lng],{icon:icon}).addTo(map).bindPopup(popup);
 pts.push([p.lat,p.lng]);
 });
 if(pts[1]){L.polyline(pts,{color:'#888',weight:2,dashArray:'4,4'}).addTo(map);map.fitBounds(L.latLngBounds(pts).pad(0.3),{maxZoom:10});}
@@ -466,8 +487,21 @@ else if(pts[0]){map.setView(pts[0],10);}
                                 <table class="table align-top">
                                     <tbody>
                                         <xsl:for-each select="//tei:correspAction">
+                                            <xsl:variable name="route-dot-color">
+                                                <xsl:choose>
+                                                  <xsl:when test="@type = 'sent'">#c0392b</xsl:when>
+                                                  <xsl:when test="@type = 'transmitted'">#e67e22</xsl:when>
+                                                  <xsl:when test="@type = 'forwarded' or @type = 'in_transit'">#f1c40f</xsl:when>
+                                                  <xsl:when test="@type = 'arrived'">#16a085</xsl:when>
+                                                  <xsl:when test="@type = 'redirected'">#8e44ad</xsl:when>
+                                                  <xsl:when test="@type = 'delivered'">#34495e</xsl:when>
+                                                  <xsl:when test="@type = 'received'">#2980b9</xsl:when>
+                                                  <xsl:otherwise>#7f8c8d</xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:variable>
                                             <tr>
                                                 <th>
+                                                  <span class="route-dot" style="--dot-color: {$route-dot-color};"/>
                                                   <xsl:choose>
                                                   <xsl:when test="@type = 'sent'"> Versand: </xsl:when>
                                                   <xsl:when test="@type = 'received'"> Empfang: </xsl:when>

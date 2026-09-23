@@ -1,3 +1,6 @@
+// Eine CSV-Zeile ist eine Etappe eines Postwegs (z.B. Versand -> Übermittlung), nicht
+// zwingend Versand -> Empfang; mehrstufige Briefe liefern mehrere Zeilen (siehe
+// schnitzler-briefe-charts/netzwerke/postwege_weights_directed/postwege_weights_directed.xsl).
 async function createKarte1() {
     const mapDataUrl = 'https://code.highcharts.com/mapdata/custom/world.topo.json';
     const csvUrl = 'https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/postwege_weights_directed/postwege_weights_directed.csv';
@@ -66,7 +69,7 @@ async function createKarte1() {
         name: location.name,
         marker: { radius: 2 + (location.weight / maxWeight) * 7 },
         color: '#ffaa00', // node normal
-        tooltip: `<b>${location.name}</b><br>Sendeort: ${location.sourceCount}<br>Empfangsort: ${location.targetCount}`
+        tooltip: `<b>${location.name}</b><br>Ausgehende Etappen: ${location.sourceCount}<br>Eingehende Etappen: ${location.targetCount}`
     }));
 
     let flowData = data.connections.map(connection => {

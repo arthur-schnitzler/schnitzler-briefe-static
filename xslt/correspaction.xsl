@@ -61,6 +61,7 @@
                                                 tabulator-formatter="html">Empfangsort</th>
                                             <th scope="col">fromId</th>
                                             <th scope="col">toId</th>
+                                            <th scope="col">routeIds</th>
                                             <th scope="col">uncertain</th>
                                         </tr>
                                     </thead>
@@ -85,6 +86,15 @@
                                             </xsl:variable>
                                             <xsl:variable name="to-id">
                                                 <xsl:value-of select="replace(descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[@type='received'][1]/tei:placeName[1]/@ref, '#pmb', '')"/>
+                                            </xsl:variable>
+                                            <!-- alle Stationen des Postwegs (nicht nur Versand/Empfang), für die Kartenaktualisierung bei gefilterter Tabelle -->
+                                            <xsl:variable name="route-ids">
+                                                <xsl:value-of select="
+                                                        string-join(
+                                                        for $ca in descendant::tei:teiHeader[1]/tei:profileDesc[1]/tei:correspDesc[1]/tei:correspAction[tei:placeName[1]/@ref]
+                                                        return replace(string($ca/tei:placeName[1]/@ref), '#pmb', ''),
+                                                        '|')
+                                                        "/>
                                             </xsl:variable>
                                             <xsl:variable name="schnitzler-als-empfänger">
                                                 <xsl:choose>
@@ -282,6 +292,7 @@
                                                 </td>
                                                 <td><xsl:value-of select="$from-id"/></td>
                                                 <td><xsl:value-of select="$to-id"/></td>
+                                                <td><xsl:value-of select="$route-ids"/></td>
                                                 <td><xsl:value-of select="$uncertain"/></td>
                                             </tr>
                                         </xsl:for-each>
@@ -317,7 +328,7 @@
                                 ],
                                 autoColumns: true,
                                 autoColumnsDefinitions: function(definitions) {
-                                    var hidden = ["id", "fromid", "toid", "uncertain"];
+                                    var hidden = ["id", "fromid", "toid", "routeids", "uncertain"];
                                     var priorities = {"titel":0,"sendedatum":2,"empfangsdatum":3,"sendeort":4,"empfangsort":5,"weitere_stationen":6};
                                     var minWidths = {"titel":160,"sendedatum":95,"empfangsdatum":95,"sendeort":90,"empfangsort":90};
                                     var titles = {"titel":"Titel","sendedatum":"Sendedatum","empfangsdatum":"Empfangsdatum","sendeort":"Sendeort","empfangsort":"Empfangsort","weitere_stationen":"weitere Stationen"};
@@ -378,17 +389,21 @@
 
                             rows.forEach(function(row) {
                                 var data = row.getData();
-                                var fromId = data.fromid;
-                                var toId = data.toid;
-                                if (!fromId || !toId) return;
+                                // routeids listet alle Stationen des Postwegs (nicht nur Versand/Empfang);
+                                // jede aufeinanderfolgende Etappe wird als eigene Kante gezählt.
+                                var stationIds = (data.routeids || "").split("|").filter(function(id) { return id; });
 
-                                if (!locationCounts[fromId]) locationCounts[fromId] = {sourceCount: 0, targetCount: 0};
-                                if (!locationCounts[toId]) locationCounts[toId] = {sourceCount: 0, targetCount: 0};
-                                locationCounts[fromId].sourceCount++;
-                                locationCounts[toId].targetCount++;
+                                stationIds.slice(1).forEach(function(toId, idx) {
+                                    var fromId = stationIds[idx];
 
-                                var key = fromId + "|" + toId;
-                                connectionCounts[key] = (connectionCounts[key] || 0) + 1;
+                                    if (!locationCounts[fromId]) locationCounts[fromId] = {sourceCount: 0, targetCount: 0};
+                                    if (!locationCounts[toId]) locationCounts[toId] = {sourceCount: 0, targetCount: 0};
+                                    locationCounts[fromId].sourceCount++;
+                                    locationCounts[toId].targetCount++;
+
+                                    var key = fromId + "|" + toId;
+                                    connectionCounts[key] = (connectionCounts[key] || 0) + 1;
+                                });
                             });
 
                             // Stadtpunkte berechnen
@@ -412,7 +427,7 @@
                                     name: loc.name,
                                     marker: {radius: 2 + (weight / maxWeight) * 7},
                                     color: '#ffaa00',
-                                    tooltip: '\u003cb\u003e' + loc.name + '\u003c/b\u003e\u003cbr\u003eSendeort: ' + c.sourceCount + '\u003cbr\u003eEmpfangsort: ' + c.targetCount
+                                    tooltip: '\u003cb\u003e' + loc.name + '\u003c/b\u003e\u003cbr\u003eAusgehende Etappen: ' + c.sourceCount + '\u003cbr\u003eEingehende Etappen: ' + c.targetCount
                                 });
                             });
 
