@@ -127,7 +127,7 @@
         </p>
     </xsl:template>
     <xsl:template
-        match="tei:div[not(@xml:id = 'jung-wien-container-ohne-slider') and not(@xml:id = 'jung-wien-container-mit-slider') and not(@xml:id = 'jung-wien-container-nebeneinander-mit-slider')]">
+        match="tei:div[not(@xml:id = 'jung-wien-container-ohne-slider') and not(@xml:id = 'jung-wien-container-mit-slider') and not(@xml:id = 'jung-wien-container-nebeneinander') and not(@xml:id = 'jung-wien-container-nebeneinander-mit-slider')]">
         <div id="{generate-id()}">
             <xsl:apply-templates/>
         </div>
@@ -157,6 +157,23 @@
         <!-- Kein separates Script hier - wird vom ersten Container geladen -->
     </xsl:template>
 
+
+    <!-- Template für jung-wien-container-nebeneinander: Vergleichsansicht ohne Slider -->
+    <xsl:template match="tei:div[@xml:id = 'jung-wien-container-nebeneinander']">
+        <div style="width: 100%; margin: 2rem 0;">
+            <!-- Dropdowns oberhalb der Container -->
+            <div style="display: flex; width: 100%; margin-bottom: 1rem; justify-content: space-between;">
+                <div style="width: 48%;" id="dropdown-container-nebeneinander-left"></div>
+                <div style="width: 48%;" id="dropdown-container-nebeneinander-right"></div>
+            </div>
+            <!-- Chart-Container -->
+            <div style="display: flex; width: 100%; height: 600px; max-height: 600px; overflow: hidden;">
+                <div id="jung-wien-container-nebeneinander-left" style="width: 48%; margin-right: 2%; max-height: 600px;"/>
+                <div id="jung-wien-container-nebeneinander-right" style="width: 48%; margin-left: 2%; max-height: 600px;"/>
+            </div>
+        </div>
+        <!-- Kein separates Script hier - wird vom ersten Container (ohne-slider) geladen -->
+    </xsl:template>
 
     <xsl:template match="tei:div[@xml:id = 'jung-wien-container-nebeneinander-mit-slider']">
         <div style="width: 100%; margin: 2rem 0;">
