@@ -63,6 +63,7 @@
                                             <th scope="col">toId</th>
                                             <th scope="col">routeIds</th>
                                             <th scope="col">uncertain</th>
+                                            <th scope="col">kategorie</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -294,6 +295,7 @@
                                                 <td><xsl:value-of select="$to-id"/></td>
                                                 <td><xsl:value-of select="$route-ids"/></td>
                                                 <td><xsl:value-of select="$uncertain"/></td>
+                                                <td><xsl:value-of select="$schnitzler-als-empfänger"/></td>
                                             </tr>
                                         </xsl:for-each>
                                     </tbody>
@@ -328,7 +330,7 @@
                                 ],
                                 autoColumns: true,
                                 autoColumnsDefinitions: function(definitions) {
-                                    var hidden = ["id", "fromid", "toid", "routeids", "uncertain"];
+                                    var hidden = ["id", "fromid", "toid", "routeids", "uncertain", "kategorie"];
                                     var priorities = {"titel":0,"sendedatum":2,"empfangsdatum":3,"sendeort":4,"empfangsort":5,"weitere_stationen":6};
                                     var minWidths = {"titel":160,"sendedatum":95,"empfangsdatum":95,"sendeort":90,"empfangsort":90};
                                     var titles = {"titel":"Titel","sendedatum":"Sendedatum","empfangsdatum":"Empfangsdatum","sendeort":"Sendeort","empfangsort":"Empfangsort","weitere_stationen":"weitere Stationen"};
@@ -350,6 +352,12 @@
                                     definitions.unshift(tabulatorCollapseColumn);
                                     return definitions;
                                 }
+                            });
+
+                            // Karte initial aus allen Zeilen aufbauen, sobald die Tabelle steht
+                            // (liefert routeIds + kategorie je Brief für die Einfärbung der Karte)
+                            table.on("tableBuilt", function() {
+                                window.postwegeMap.init(table.getData());
                             });
 
                             // Karte aktualisieren wenn Tabelle gefiltert wird
@@ -383,26 +391,9 @@
 
                         function updateMapFromRows(rows) {
                             if (!window.postwegeMap) return;
-
-                            // routeids listet alle Stationen des Postwegs (nicht nur Versand/Empfang);
-                            // jede aufeinanderfolgende Etappe wird als eigene Kante gezählt und über
-                            // die sichtbaren Briefe hinweg zu einem Gewicht zusammengefasst.
-                            var connectionCounts = {};
-                            rows.forEach(function(row) {
-                                var data = row.getData();
-                                var stationIds = (data.routeids || "").split("|").filter(function(id) { return id; });
-                                stationIds.slice(1).forEach(function(toId, idx) {
-                                    var key = stationIds[idx] + "|" + toId;
-                                    connectionCounts[key] = (connectionCounts[key] || 0) + 1;
-                                });
-                            });
-
-                            var connections = Object.keys(connectionCounts).map(function(key) {
-                                var parts = key.split("|");
-                                return { from: parts[0], to: parts[1], weight: connectionCounts[key] };
-                            });
-
-                            window.postwegeMap.setConnections(connections);
+                            window.postwegeMap.setConnections(rows.map(function(row) {
+                                return row.getData();
+                            }));
                         }
                     </script>
                 </div>
