@@ -7,6 +7,15 @@ let maxYear = -Infinity;
 let currentView = 'map'; // 'map' or 'arc'
 let connectionsMap = null;
 
+const SCHNITZLER_COLOR = '#A63437'; // theme-color
+const PARTNER_COLOR = '#1C6E8C'; // sender-color
+const UMFELD_COLOR = '#68825b'; // umfeld-color
+const NEUTRAL_COLOR = '#ffaa00';
+
+function isUmfeldType(type) {
+    return type === 'umfeld' || type === 'umfeld schnitzler' || type === 'umfeld partner';
+}
+
 // Leaflet-Kartenobjekte (Kartenansicht; Arc-Diagram bleibt Highcharts, da keine Landkarte)
 let leafletMap = null;
 let linesLayer = null;
@@ -230,6 +239,14 @@ function updateMap() {
 
     // Sammle Orte und Verbindungen
     const locationsMap = new Map();
+    // Zählt je Ort, wie oft er in Briefen von Schnitzler, vom Korrespondenzpartner bzw. in
+    // Umfeldbriefen vorkommt, um die Orte entsprechend einzufärben (rot/blau/grün)
+    const roleVotes = new Map();
+    function addVote(ref, role) {
+        if (!ref) return;
+        if (!roleVotes.has(ref)) roleVotes.set(ref, { schnitzler: 0, partner: 0, umfeld: 0 });
+        roleVotes.get(ref)[role]++;
+    }
     connectionsMap = new Map();
 
     filteredLetters.forEach(letter => {
@@ -237,6 +254,7 @@ function updateMap() {
         if (!locationsMap.has(letter.from.ref)) {
             locationsMap.set(letter.from.ref, {
                 id: letter.from.name,
+                ref: letter.from.ref,
                 lat: letter.from.lat,
                 lon: letter.from.lon
             });
@@ -244,9 +262,23 @@ function updateMap() {
         if (!locationsMap.has(letter.to.ref)) {
             locationsMap.set(letter.to.ref, {
                 id: letter.to.name,
+                ref: letter.to.ref,
                 lat: letter.to.lat,
                 lon: letter.to.lon
             });
+        }
+
+        // Rollen zuordnen (nach Brieftyp, wie auch die Verbindungslinien eingefärbt werden):
+        // von schnitzler: from=Schnitzler, to=Partner / von partner: umgekehrt / umfeld*: beide Orte grün
+        if (isUmfeldType(letter.type)) {
+            addVote(letter.from.ref, 'umfeld');
+            addVote(letter.to.ref, 'umfeld');
+        } else if (letter.type === 'von schnitzler') {
+            addVote(letter.from.ref, 'schnitzler');
+            addVote(letter.to.ref, 'partner');
+        } else if (letter.type === 'von partner') {
+            addVote(letter.from.ref, 'partner');
+            addVote(letter.to.ref, 'schnitzler');
         }
 
         // Verbindungen sammeln (aggregiert nach von-nach und Typ)
@@ -270,24 +302,14 @@ function updateMap() {
     // Füge Farbcodierung zu den Verbindungen hinzu
     const flowData = Array.from(connectionsMap.values()).map(conn => {
         let color;
-        switch(conn.type) {
-            case 'von schnitzler':
-                color = '#A63437'; // theme-color
-                break;
-            case 'von partner':
-                color = '#1C6E8C'; // sender-color
-                break;
-            case 'umfeld schnitzler':
-                color = '#D4787A'; // helleres rot
-                break;
-            case 'umfeld partner':
-                color = '#5A9CB8'; // helleres blau
-                break;
-            case 'umfeld':
-                color = '#68825b'; // umfeld-color (grün)
-                break;
-            default:
-                color = '#999999'; // grau für unbekannt
+        if (conn.type === 'von schnitzler') {
+            color = SCHNITZLER_COLOR;
+        } else if (conn.type === 'von partner') {
+            color = PARTNER_COLOR;
+        } else if (isUmfeldType(conn.type)) {
+            color = UMFELD_COLOR;
+        } else {
+            color = '#999999'; // grau für unbekannt
         }
         return {
             ...conn,
@@ -393,10 +415,21 @@ function updateMap() {
     });
 
     cityData.forEach(city => {
+        const votes = roleVotes.get(city.ref);
+        let color = NEUTRAL_COLOR;
+        if (votes) {
+            if (votes.schnitzler > 0 && votes.schnitzler >= votes.partner) {
+                color = SCHNITZLER_COLOR;
+            } else if (votes.partner > 0) {
+                color = PARTNER_COLOR;
+            } else if (votes.umfeld > 0) {
+                color = UMFELD_COLOR;
+            }
+        }
         L.circleMarker([city.lat, city.lon], {
             radius: 6,
-            fillColor: '#ffaa00',
-            color: '#ffaa00',
+            fillColor: color,
+            color: color,
             weight: 2,
             fillOpacity: 0.6
         }).addTo(citiesLayer).bindTooltip(city.id);

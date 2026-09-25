@@ -26,8 +26,7 @@
                     <div class="container-fluid calendar-wide">
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
-                            <span class="type-pill">Kalender</span> <span class="sep">/</span>
-                            <xsl:text>calendar</xsl:text>
+                            <span class="type-pill">Kalender</span>
                         </nav>
                         <div class="card">
                             <div class="card-header" style="text-align:center">

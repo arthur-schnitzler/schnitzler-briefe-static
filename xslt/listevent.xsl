@@ -24,8 +24,7 @@
                     <div class="container">
                         <!-- Breadcrumbs -->
                         <nav class="crumbs mt-1" aria-label="Brotkrumennavigation" style="--project-color: {$current-colour};">
-                            <span class="type-pill">Ereignisse</span> <span class="sep">/</span>
-                            <xsl:text>listevent</xsl:text>
+                            <span class="type-pill">Ereignisse</span> 
                         </nav>
                         <div class="card">
                             <div class="card-header" style="text-align:center">
@@ -34,12 +33,13 @@
                                 </h1>
                             </div>
                             <div class="card-body">
-                                <div style="max-width: 800px; margin: 0 auto;">
+                                <div style="max-width: 800px;">
                                     <p>Hier werden »Ereignisse« im engeren Sinne verstanden: als eine kulturelle Veranstaltung. 
                                         Mit dem Auszeichnen von Ereignisse wurde erst nach sechs Jahren des Projekts begonnen, 
                                         so dass diese in den bis dahin publizierten
-                                        Briefen noch nicht vorhanden sind. Wir werden uns bemühen, diese nachzutragen. Es empfiehlt sich trotzdem, nach bestimmten
+                                        Briefen noch nicht vorhanden sind. Wir sind daran, diese nachzutragen. Es empfiehlt sich trotzdem, nach bestimmten
                                         Veranstaltungen auch über die Werke zu suchen, die aufgeführt wurden.</p>
+                                        <p>Für Ereignisse, die von Schnitzler besucht wurden, gibt es eine separate Website: <a href="https://schnitzler-kultur.acdh.oeaw.at">https://schnitzler-kultur.acdh.oeaw.at</a>.</p>
                                 </div>
                                 <table class="table table-sm display" id="tabulator-table-event">
                                     <thead>
@@ -64,14 +64,31 @@
                                     </thead>
                             <tbody>
                                 <xsl:for-each select=".//tei:event[@xml:id]">
-                                    <xsl:sort select="@when-iso" order="ascending"/>
+                                    <xsl:sort
+                                        select="if (@when-iso) then @when-iso else if (@from-iso) then @from-iso else @to-iso"
+                                        order="ascending"/>
                                     <xsl:variable name="id">
                                         <xsl:value-of select="data(@xml:id)"/>
                                     </xsl:variable>
                                     <xsl:variable name="idhtml" select="concat($id, '.html')"/>
                                     <tr>
                                         <td>
-                                            <xsl:value-of select="@when-iso"/>
+                                            <xsl:choose>
+                                                <xsl:when test="@when-iso">
+                                                    <xsl:value-of select="@when-iso"/>
+                                                </xsl:when>
+                                                <xsl:when test="@from-iso and @to-iso">
+                                                    <xsl:value-of select="@from-iso"/>
+                                                    <xsl:text> bis </xsl:text>
+                                                    <xsl:value-of select="@to-iso"/>
+                                                </xsl:when>
+                                                <xsl:when test="@from-iso">
+                                                    <xsl:value-of select="@from-iso"/>
+                                                </xsl:when>
+                                                <xsl:when test="@to-iso">
+                                                    <xsl:value-of select="@to-iso"/>
+                                                </xsl:when>
+                                            </xsl:choose>
                                         </td>
                                         <td>
                                             <span hidden="hidden">
