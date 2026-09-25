@@ -429,7 +429,6 @@
                                     <div class="transmission-map-col">
                                     <div id="corresp-route-map"
                                         style="height:250px;width:100%;border-radius:4px;border:1px solid #dee2e6;"/>
-                                    <ul id="corresp-route-legend" class="horizontal-list corresp-route-legend"/>
                                     <script>(function(){
 var TYPE_INFO={
 sent:{label:'Versand',color:'#c0392b'},
@@ -443,20 +442,6 @@ received:{label:'Empfang',color:'#2980b9'}
 };
 function typeInfo(t){return TYPE_INFO[t]||{label:t,color:'#7f8c8d'};}
 var mapPoints=[<xsl:for-each select="//tei:correspAction[tei:placeName/@ref]"><xsl:variable name="action-type" select="@type"/><xsl:variable name="action-date" select="normalize-space(tei:date)"/><xsl:for-each select="tei:placeName[@ref]"><xsl:variable name="place-id" select="substring-after(@ref, '#')"/><xsl:variable name="geo" select="$back//tei:place[@xml:id = $place-id]/tei:location[@type = 'coords']/tei:geo[1]"/><xsl:if test="$geo">{lat:<xsl:value-of select="replace(tokenize(string($geo), ' ')[1], ',', '.')"/>,lng:<xsl:value-of select="replace(tokenize(string($geo), ' ')[2], ',', '.')"/>,type:'<xsl:value-of select="$action-type"/>',name:'<xsl:value-of select="normalize-space(.)"/>',date:'<xsl:value-of select="$action-date"/>'},</xsl:if></xsl:for-each></xsl:for-each>];
-
-var legendEl=document.getElementById('corresp-route-legend');
-if(legendEl){
-var seenTypes={};
-mapPoints.forEach(function(p){
-if(seenTypes[p.type]){return;}
-seenTypes[p.type]=true;
-var info=typeInfo(p.type);
-var li=document.createElement('li');
-li.style.setProperty('--dot-color',info.color);
-li.textContent=info.label;
-legendEl.appendChild(li);
-});
-}
 
 document.addEventListener('drawer:open',function(ev){
 if(ev.detail!=='transmission'){return;}

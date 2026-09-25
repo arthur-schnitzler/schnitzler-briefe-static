@@ -84,13 +84,18 @@
                             background: linear-gradient(to right, #A63437 0%, #A63437 50%, #e9ecef 50%, #e9ecef 100%);
                         }
                     </style>
-                    <script src="https://code.highcharts.com/maps/highmaps.js"/>
-                    <script src="https://code.highcharts.com/maps/modules/flowmap.js"/>
+                    <!-- Arc-Diagram-Ansicht: kein Kartenmaterial, bleibt Highcharts -->
+                    <script src="https://code.highcharts.com/highcharts.js"/>
                     <script src="https://code.highcharts.com/modules/sankey.js"/>
                     <script src="https://code.highcharts.com/modules/arc-diagram.js"/>
-                    <script src="https://code.highcharts.com/maps/modules/exporting.js"/>
-                    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"/>
-                    <script src="https://code.highcharts.com/maps/modules/accessibility.js"/>
+                    <script src="https://code.highcharts.com/modules/exporting.js"/>
+                    <script src="https://code.highcharts.com/modules/offline-exporting.js"/>
+                    <script src="https://code.highcharts.com/modules/accessibility.js"/>
+                    <!-- Kartenansicht: Leaflet statt Highcharts-Maps (Performance) -->
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+                        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+                        crossorigin=""/>
+                    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""/>
                     <script src="./js/tocs-maps.js"/>
                     <body class="page">
                         <div class="hfeed site" id="page">
@@ -184,6 +189,7 @@
                                             </div>
                                         </div>
                                         <div id="map-view" style="display: block;">
+                                            <div id="karte4-title" style="text-align:center; margin-bottom:0.5em;"/>
                                             <div id="karte4" style="height: 600px;
                                                 min-width: 310px;
                                                 max-width: 100%;

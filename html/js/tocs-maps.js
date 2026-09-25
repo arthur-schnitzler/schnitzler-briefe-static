@@ -1,24 +1,29 @@
 // Globale Variablen für den Karten-Status
-let chartInstance = null;
 let arcChartInstance = null;
 let allLetters = [];
 let arcData = null; // Separate Daten für Arc-Diagramm
 let minYear = Infinity;
 let maxYear = -Infinity;
 let currentView = 'map'; // 'map' or 'arc'
-let topology = null;
 let connectionsMap = null;
 
+// Leaflet-Kartenobjekte (Kartenansicht; Arc-Diagram bleibt Highcharts, da keine Landkarte)
+let leafletMap = null;
+let linesLayer = null;
+let citiesLayer = null;
+
+function ensureLeafletMap() {
+    if (leafletMap) return;
+    leafletMap = L.map('karte4', { preferCanvas: true }).setView([48, 16], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&#169; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18
+    }).addTo(leafletMap);
+    linesLayer = L.layerGroup().addTo(leafletMap);
+    citiesLayer = L.layerGroup().addTo(leafletMap);
+}
+
 async function createKarte4(title) {
-    let mapDataUrl;
-
-    if (title.endsWith("pmb11485") || title.endsWith("pmb2167") || title.endsWith("pmb11740") || title.endsWith("pmb10863")) {
-        mapDataUrl = 'https://code.highcharts.com/mapdata/custom/world.topo.json';
-    } else {
-        mapDataUrl = 'https://code.highcharts.com/mapdata/custom/europe.topo.json';
-    }
-
-    topology = await fetch(mapDataUrl).then(response => response.json());
     const jsonURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/karte/${title}.json`;
     const arcURL = `https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/statistiken/arcs/${title.replace('karte_', 'arc_')}.json`;
 
@@ -138,6 +143,9 @@ window.showMapView = function() {
     document.getElementById('map-filters').style.display = 'flex';
     document.getElementById('time-filters').style.display = 'block';
     updateVisualization();
+    if (leafletMap) {
+        setTimeout(function() { leafletMap.invalidateSize(); }, 0);
+    }
 };
 
 window.showArcView = function() {
@@ -328,161 +336,75 @@ function updateMap() {
         maxLon += lonPadding;
     }
 
-    // Erstelle oder aktualisiere Karte
-    if (chartInstance) {
-        chartInstance.destroy();
-    }
-
+    // Titel zusammensetzen (Leaflet hat kein eingebautes Titel-Element)
     let titleText = 'Versandwege aller Korrespondenzstücke';
     if (direction === 'from-schnitzler') {
         titleText = 'Versandwege von Schnitzler verfasster Korrespondenzstücke';
     } else if (direction === 'to-schnitzler') {
         titleText = 'Versandwege an Schnitzler gerichteter Korrespondenzstücke';
     }
-
     if (showUmfeld) {
         titleText += ' (inkl. Umfeldbriefe)';
     }
+    const titleEl = document.getElementById('karte4-title');
+    if (titleEl) {
+        titleEl.innerHTML = '<strong>' + titleText + '</strong><br>'
+            + '<span style="font-size:0.85em;color:#666;">Zeitraum: ' + yearFrom + '–' + yearTo + '</span>';
+    }
 
-    chartInstance = Highcharts.mapChart('karte4', {
-        chart: {
-            map: topology,
-            events: {
-                load: function() {
-                    // Zoome auf die Bounding Box nach dem Laden
-                    if (cityData.length > 0 && isFinite(minLat) && isFinite(maxLat) && isFinite(minLon) && isFinite(maxLon)) {
-                        try {
-                            this.mapView.fitToBounds([
-                                [minLon, minLat],
-                                [maxLon, maxLat]
-                            ]);
-                        } catch (e) {
-                            console.warn('Konnte Karte nicht auf Bounds zoomen:', e);
-                        }
-                    }
-                }
-            }
-        },
+    // Karte (neu) zeichnen
+    ensureLeafletMap();
+    linesLayer.clearLayers();
+    citiesLayer.clearLayers();
 
-        title: {
-            text: titleText
-        },
+    const cityByName = new Map();
+    cityData.forEach(city => cityByName.set(city.id, city));
 
-        subtitle: {
-            text: `Zeitraum: ${yearFrom}–${yearTo}`
-        },
+    function typeLabelFor(type) {
+        switch (type) {
+            case 'von schnitzler': return 'Von Schnitzler';
+            case 'von partner': return 'Von Korrespondenzpartner';
+            case 'umfeld schnitzler': return 'Umfeld (von Schnitzler)';
+            case 'umfeld partner': return 'Umfeld (von Partner)';
+            case 'umfeld': return 'Umfeld (Dritte)';
+            default: return type;
+        }
+    }
 
-        mapNavigation: {
-            enabled: true,
-            buttonOptions: {
-                alignTo: 'spacingBox'
-            }
-        },
+    flowData.forEach(flow => {
+        const from = cityByName.get(flow.from);
+        const to = cityByName.get(flow.to);
+        if (!from || !to) return;
 
-        legend: {
-            enabled: false
-        },
+        let tooltipText = `<b>${flow.from} → ${flow.to}</b><br>`;
+        tooltipText += `<span style="color: ${flow.color}">${typeLabelFor(flow.type)}</span><br>`;
+        tooltipText += `Anzahl Briefe: ${flow.weight}<br><br>`;
+        tooltipText += '<ul style="margin:0; padding-left:20px;">';
+        flow.letters.forEach(letter => {
+            tooltipText += `<li>${letter.title}</li>`;
+        });
+        tooltipText += '</ul>';
 
-        accessibility: {
-            point: {
-                valueDescriptionFormat: '{xDescription}.'
-            }
-        },
-
-        plotOptions: {
-            mappoint: {
-                tooltip: {
-                    headerFormat: '{point.point.id}<br>',
-                    pointFormat: 'Länge: {point.lat} Breite: {point.lon}'
-                }
-            },
-            series: {
-                marker: {
-                    fillColor: '#ffaa00',
-                    lineWidth: 2,
-                    lineColor: '#ffaa00'
-                }
-            },
-            flowmap: {
-                tooltip: {
-                    headerFormat: '',
-                    pointFormatter: function() {
-                        // Finde die Verbindung mit dem gleichen Typ
-                        let conn = null;
-                        for (let [key, value] of connectionsMap) {
-                            if (value.from === this.from && value.to === this.to && value.type === this.options.type) {
-                                conn = value;
-                                break;
-                            }
-                        }
-
-                        if (!conn) return '';
-
-                        let typeLabel = '';
-                        switch(conn.type) {
-                            case 'von schnitzler': typeLabel = 'Von Schnitzler'; break;
-                            case 'von partner': typeLabel = 'Von Korrespondenzpartner'; break;
-                            case 'umfeld schnitzler': typeLabel = 'Umfeld (von Schnitzler)'; break;
-                            case 'umfeld partner': typeLabel = 'Umfeld (von Partner)'; break;
-                            case 'umfeld': typeLabel = 'Umfeld (Dritte)'; break;
-                            default: typeLabel = conn.type;
-                        }
-
-                        let tooltipText = `<b>${this.from} → ${this.to}</b><br>`;
-                        tooltipText += `<span style="color: ${this.color}">${typeLabel}</span><br>`;
-                        tooltipText += `Anzahl Briefe: ${this.weight}<br><br>`;
-                        tooltipText += '<ul style="margin:0; padding-left:20px;">';
-                        conn.letters.forEach(letter => {
-                            tooltipText += `<li>${letter.title}</li>`;
-                        });
-                        tooltipText += '</ul>';
-                        return tooltipText;
-                    }
-                }
-            }
-        },
-
-        series: [{
-            name: 'Basemap',
-            showInLegend: false,
-            states: {
-                inactive: {
-                    enabled: false
-                }
-            }
-        }, {
-            type: 'mappoint',
-            id: 'cities',
-            name: 'Orte',
-            dataLabels: {
-                format: '{point.id}'
-            },
-            data: cityData
-        }, {
-            type: 'flowmap',
-            name: 'Korrespondenzstücke',
-            accessibility: {
-                description: 'Landkarte mit Bögen zwischen Versand- und Empfangsort'
-            },
-            linkedTo: ':previous',
-            minWidth: 1,
-            maxWidth: 25,
-            growTowards: true,
-            markerEnd: {
-                width: '50%',
-                height: '50%'
-            },
-            fillOpacity: 0.7,
-            data: flowData.map(flow => ({
-                from: flow.from,
-                to: flow.to,
-                weight: flow.weight,
-                color: flow.color,
-                fillColor: flow.color,
-                type: flow.type
-            }))
-        }]
+        L.polyline([[from.lat, from.lon], [to.lat, to.lon]], {
+            color: flow.color,
+            weight: Math.max(1, Math.min(flow.weight, 8)),
+            opacity: 0.7
+        }).addTo(linesLayer).bindTooltip(tooltipText);
     });
+
+    cityData.forEach(city => {
+        L.circleMarker([city.lat, city.lon], {
+            radius: 6,
+            fillColor: '#ffaa00',
+            color: '#ffaa00',
+            weight: 2,
+            fillOpacity: 0.6
+        }).addTo(citiesLayer).bindTooltip(city.id);
+    });
+
+    if (cityData.length > 0 && isFinite(minLat) && isFinite(maxLat) && isFinite(minLon) && isFinite(maxLon)) {
+        leafletMap.fitBounds([[minLat, minLon], [maxLat, maxLon]]);
+    }
 }
 
 function updateArcDiagram() {

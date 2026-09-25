@@ -2741,7 +2741,7 @@ html {
     align-items: start;
     margin-bottom: 16px;
 }
-/* Postwegkarte: nummerierte Stationsmarker + Legende */
+/* Postwegkarte: nummerierte Stationsmarker */
 .corresp-route-marker span {
     display: flex;
     align-items: center;
@@ -2754,12 +2754,6 @@ html {
     font-weight: 600;
     border: 2px solid #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
-}
-.corresp-route-legend {
-    font-size: .8em;
-    color: #555;
-    margin: .5em 0 0;
-    padding: 0;
 }
 /* Farbpunkt vor Stationstyp in der Überlieferungstabelle */
 .route-dot {
