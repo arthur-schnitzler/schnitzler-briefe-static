@@ -37,7 +37,12 @@
                                 <script src="js/postwege_weights_directed.js"/>
                                 <style type="text/css">
                                     #toggle-uncertain:checked { background-color: #A63437; border-color: #A63437; }
+                                    #toggle-wien-view:checked { background-color: #A63437; border-color: #A63437; }
                                 </style>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="toggle-wien-view"/>
+                                    <label class="form-check-label" for="toggle-wien-view">Kartenausschnitt: Wien</label>
+                                </div>
                                 <div class="form-check form-switch mb-3">
                                     <input class="form-check-input" type="checkbox" id="toggle-uncertain" checked="checked"/>
                                     <label class="form-check-label" for="toggle-uncertain">Unsichere Datierungen anzeigen</label>
@@ -368,6 +373,16 @@
                                 });
                                 if (hasNonToggleFilter) {
                                     updateMapFromRows(rows);
+                                }
+                            });
+
+                            // Toggle: Kartenausschnitt Übersicht / Wien
+                            document.getElementById("toggle-wien-view").addEventListener("change", function() {
+                                if (!window.postwegeMap) return;
+                                if (this.checked) {
+                                    window.postwegeMap.focusWien();
+                                } else {
+                                    window.postwegeMap.focusOverview();
                                 }
                             });
 

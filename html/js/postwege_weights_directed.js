@@ -103,10 +103,15 @@ function buildFromRows(rows) {
     return { lineSegments: lineSegments, pointWeights: pointWeights };
 }
 
+const OVERVIEW_CENTER = [48, 16];
+const OVERVIEW_ZOOM = 4;
+const WIEN_CENTER = [48.2082, 16.3738];
+const WIEN_ZOOM = 13;
+
 async function createKarte1() {
     const csvUrl = 'https://raw.githubusercontent.com/arthur-schnitzler/schnitzler-briefe-charts/main/netzwerke/postwege_weights_directed/postwege_weights_directed.csv';
 
-    const map = L.map('container', { preferCanvas: true }).setView([48, 16], 4);
+    const map = L.map('container', { preferCanvas: true }).setView(OVERVIEW_CENTER, OVERVIEW_ZOOM);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&#169; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 18
@@ -208,6 +213,13 @@ async function createKarte1() {
         },
         reset() {
             render(buildFromRows(lastRows));
+        },
+        // Umschalten des Kartenausschnitts (Switch "Kartenausschnitt: Wien" in correspaction.xsl).
+        focusWien() {
+            map.flyTo(WIEN_CENTER, WIEN_ZOOM);
+        },
+        focusOverview() {
+            map.flyTo(OVERVIEW_CENTER, OVERVIEW_ZOOM);
         }
     };
 }
