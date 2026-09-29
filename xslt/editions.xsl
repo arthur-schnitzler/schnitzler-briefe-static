@@ -451,19 +451,27 @@ var map=L.map(el);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 attribution:'&#169; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18
 }).addTo(map);
+var pts=mapPoints.map(function(p){return [p.lat,p.lng];});
+if(pts[1]){L.polyline(pts,{color:'#888',weight:2,dashArray:'4,4'}).addTo(map);map.fitBounds(L.latLngBounds(pts).pad(0.3),{maxZoom:10});}
+else if(pts[0]){map.setView(pts[0],10);}
+var clusters=[];
+var markerPx=[];
 mapPoints.forEach(function(p,i){
-for(var j=0;j!==i;j++){if(Math.round((mapPoints[j].lat-p.lat)*10000)===0){if(Math.round((mapPoints[j].lng-p.lng)*10000)===0){mapPoints[j].lat-=0.001;mapPoints[j].lng-=0.001;p.lat+=0.001;p.lng+=0.001;}}}
+var px=map.latLngToLayerPoint([p.lat,p.lng]);
+var cluster=null;
+for(var c=0;c!==clusters.length;c++){if(px.distanceTo(clusters[c].anchor)<xsl:text disable-output-escaping="yes">&lt;</xsl:text>28){cluster=clusters[c];break;}}
+if(!cluster){cluster={anchor:px,count:0};clusters.push(cluster);}
+var idx=cluster.count;
+cluster.count=idx+1;
+if(idx===0){markerPx[i]=cluster.anchor;}
+else{var ang=idx*2.4;markerPx[i]=cluster.anchor.add(L.point(Math.cos(ang)*22,Math.sin(ang)*22));}
 });
-var pts=[];
 mapPoints.forEach(function(p,i){
 var info=typeInfo(p.type);
 var icon=L.divIcon({className:'corresp-route-marker',html:'\u003cspan style="background:'+info.color+'"\u003e'+(i+1)+'\u003c/span\u003e',iconSize:[22,22],iconAnchor:[11,11]});
 var popup='\u003cb\u003eStation '+(i+1)+' \u00b7 '+info.label+'\u003c/b\u003e\u003cbr\u003e'+p.name+(p.date?'\u003cbr\u003e'+p.date:'');
-L.marker([p.lat,p.lng],{icon:icon}).addTo(map).bindPopup(popup);
-pts.push([p.lat,p.lng]);
+L.marker(map.layerPointToLatLng(markerPx[i]),{icon:icon}).addTo(map).bindPopup(popup);
 });
-if(pts[1]){L.polyline(pts,{color:'#888',weight:2,dashArray:'4,4'}).addTo(map);map.fitBounds(L.latLngBounds(pts).pad(0.3),{maxZoom:10});}
-else if(pts[0]){map.setView(pts[0],10);}
 });
 })();</script>
                                     </div>
