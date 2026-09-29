@@ -422,10 +422,11 @@
                                         data-close="">schließen ✕</button></h3>
                                 <!-- Postwegkarte + Versand/Empfang-Tabelle nebeneinander -->
                                 <div class="transmission-layout">
-                                <xsl:if test="
-                                        exists(for $r in //tei:correspAction/tei:placeName/@ref
+                                <xsl:variable name="corresp-actions-geo" select="
+                                        //tei:correspAction[exists(for $r in tei:placeName/@ref
                                         return
-                                            $back//tei:place[@xml:id = substring-after(string($r), '#')]/tei:location[@type = 'coords']/tei:geo)">
+                                            $back//tei:place[@xml:id = substring-after(string($r), '#')]/tei:location[@type = 'coords']/tei:geo)]"/>
+                                <xsl:if test="exists($corresp-actions-geo)">
                                     <div class="transmission-map-col">
                                     <div id="corresp-route-map"
                                         style="height:250px;width:100%;border-radius:4px;border:1px solid #dee2e6;"/>
@@ -455,7 +456,7 @@ var pts=mapPoints.map(function(p){return [p.lat,p.lng];});
 if(pts[1]){L.polyline(pts,{color:'#888',weight:2,dashArray:'4,4'}).addTo(map);map.fitBounds(L.latLngBounds(pts).pad(0.3),{maxZoom:10});}
 else if(pts[0]){map.setView(pts[0],10);}
 var clusters=[];
-var markerPx=[];
+var markerOffset=[];
 mapPoints.forEach(function(p,i){
 var px=map.latLngToLayerPoint([p.lat,p.lng]);
 var cluster=null;
@@ -463,14 +464,15 @@ for(var c=0;c!==clusters.length;c++){if(px.distanceTo(clusters[c].anchor)<xsl:te
 if(!cluster){cluster={anchor:px,count:0};clusters.push(cluster);}
 var idx=cluster.count;
 cluster.count=idx+1;
-if(idx===0){markerPx[i]=cluster.anchor;}
-else{var ang=idx*2.4;markerPx[i]=cluster.anchor.add(L.point(Math.cos(ang)*22,Math.sin(ang)*22));}
+if(idx===0){markerOffset[i]=[0,0];}
+else{var ang=idx*2.4;markerOffset[i]=[Math.cos(ang)*22,Math.sin(ang)*22];}
 });
 mapPoints.forEach(function(p,i){
 var info=typeInfo(p.type);
-var icon=L.divIcon({className:'corresp-route-marker',html:'\u003cspan style="background:'+info.color+'"\u003e'+(i+1)+'\u003c/span\u003e',iconSize:[22,22],iconAnchor:[11,11]});
+var off=markerOffset[i];
+var icon=L.divIcon({className:'corresp-route-marker',html:'\u003cspan style="background:'+info.color+'"\u003e'+(i+1)+'\u003c/span\u003e',iconSize:[22,22],iconAnchor:[11-off[0],11-off[1]]});
 var popup='\u003cb\u003eStation '+(i+1)+' \u00b7 '+info.label+'\u003c/b\u003e\u003cbr\u003e'+p.name+(p.date?'\u003cbr\u003e'+p.date:'');
-L.marker(map.layerPointToLatLng(markerPx[i]),{icon:icon}).addTo(map).bindPopup(popup);
+L.marker([p.lat,p.lng],{icon:icon}).addTo(map).bindPopup(popup);
 });
 });
 })();</script>
@@ -492,9 +494,22 @@ L.marker(map.layerPointToLatLng(markerPx[i]),{icon:icon}).addTo(map).bindPopup(p
                                                   <xsl:otherwise>#7f8c8d</xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:variable>
+                                            <xsl:variable name="is-mapped" select="exists(current() intersect $corresp-actions-geo)"/>
+                                            <xsl:variable name="station-number" select="
+                                                    if ($is-mapped) then
+                                                        count($corresp-actions-geo[. &lt;&lt; current()]) + 1
+                                                    else
+                                                        0"/>
                                             <tr>
                                                 <th>
+                                                  <xsl:choose>
+                                                  <xsl:when test="$is-mapped">
+                                                  <span class="route-station-badge" style="--dot-color: {$route-dot-color};"><xsl:value-of select="$station-number"/></span>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
                                                   <span class="route-dot" style="--dot-color: {$route-dot-color};"/>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
                                                   <xsl:choose>
                                                   <xsl:when test="@type = 'sent'"> Versand: </xsl:when>
                                                   <xsl:when test="@type = 'received'"> Empfang: </xsl:when>
