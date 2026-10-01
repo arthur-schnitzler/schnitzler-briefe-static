@@ -1041,6 +1041,10 @@ high resolution or tablet regular resolution
     li a br {
         display: block !important;
     }
+    /* Postweg-Stationen (Datum / Person / Ort) sind per <br> getrennt */
+    .drawer-panel[data-panel="transmission"] td br {
+        display: inline;
+    }
 
     .card-footer {
         padding-left: 0em;
