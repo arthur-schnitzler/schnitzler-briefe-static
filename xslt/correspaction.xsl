@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="xsl tei xs">
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="http://dse-static.foo.bar"
+    version="2.0" exclude-result-prefixes="xsl tei xs local">
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="partials/html_footer.xsl"/>
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes"
         omit-xml-declaration="yes"/>
+    <!-- Orte in Wien (für den Switch "Nur Verbindungen innerhalb Wiens"): Wien (pmb50), die
+         Bezirke (pmb51–pmb73) und jeder Ort, der direkt oder über Zwischenstufen (Straße, Haus,
+         Postamt …) per located_in_place in einem davon liegt, d. h. einen von ihnen als Vorfahren
+         hat. Die Menge wird von diesen Wurzeln abwärts aufgebaut, bis nichts mehr dazukommt; die
+         Wurzeln zählen auch dann, wenn sie selbst keinen Eintrag in listplace.xml haben. -->
+    <xsl:variable name="listplace" select="document('../data/indices/listplace.xml')"/>
+    <xsl:key name="place-by-parent" match="tei:place"
+        use="tei:location[@type = 'located_in_place']/tei:placeName/@key"/>
+    <xsl:function name="local:orte-in" as="xs:string*">
+        <xsl:param name="ids" as="xs:string*"/>
+        <xsl:variable name="erweitert" as="xs:string*"
+            select="distinct-values(($ids, for $p in key('place-by-parent', $ids, $listplace) return string($p/@xml:id)))"/>
+        <xsl:sequence
+            select="if (count($erweitert) = count($ids)) then $ids else local:orte-in($erweitert)"/>
+    </xsl:function>
+    <xsl:variable name="wien-ids" as="xs:string*"
+        select="local:orte-in(for $n in 50 to 73 return concat('pmb', $n))"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Postwege'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
@@ -33,6 +51,7 @@
                             </div>
                             <div class="card-body">
                                 <div id="container"
+                                    data-wien-ids="{string-join(for $id in $wien-ids return replace($id, '^pmb', ''), ' ')}"
                                     style="height:600px; width:100%; margin: 0 auto 20px; border-radius:4px;"/>
                                 <script src="js/postwege_weights_directed.js"/>
                                 <style type="text/css">
@@ -41,7 +60,7 @@
                                 </style>
                                 <div class="form-check form-switch mb-3">
                                     <input class="form-check-input" type="checkbox" id="toggle-wien-view"/>
-                                    <label class="form-check-label" for="toggle-wien-view">Kartenausschnitt: Wien</label>
+                                    <label class="form-check-label" for="toggle-wien-view">Nur Verbindungen innerhalb Wiens</label>
                                 </div>
                                 <div class="form-check form-switch mb-3">
                                     <input class="form-check-input" type="checkbox" id="toggle-uncertain" checked="checked"/>
@@ -363,6 +382,10 @@
                             // (liefert routeIds + kategorie je Brief für die Einfärbung der Karte)
                             table.on("tableBuilt", function() {
                                 window.postwegeMap.init(table.getData());
+                                // Browser können den Zustand des Switches beim Neuladen wiederherstellen
+                                if (document.getElementById("toggle-wien-view").checked) {
+                                    window.postwegeMap.setWienOnly(true);
+                                }
                             });
 
                             // Karte aktualisieren wenn Tabelle gefiltert wird
@@ -373,17 +396,16 @@
                                 });
                                 if (hasNonToggleFilter) {
                                     updateMapFromRows(rows);
+                                } else if (window.postwegeMap) {
+                                    // Headerfilter aufgehoben: Karte wieder aus allen Zeilen aufbauen
+                                    window.postwegeMap.resetConnections(table.getData());
                                 }
                             });
 
-                            // Toggle: Kartenausschnitt Übersicht / Wien
+                            // Toggle: alle Verbindungen / nur Verbindungen zwischen Orten in Wien
                             document.getElementById("toggle-wien-view").addEventListener("change", function() {
                                 if (!window.postwegeMap) return;
-                                if (this.checked) {
-                                    window.postwegeMap.focusWien();
-                                } else {
-                                    window.postwegeMap.focusOverview();
-                                }
+                                window.postwegeMap.setWienOnly(this.checked);
                             });
 
                             // Toggle: unsichere Datierungen aus-/einblenden

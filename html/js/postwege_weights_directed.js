@@ -56,7 +56,12 @@ function blendColor(weights) {
 // Station (Sendeort) und letzte Station (Empfangsort) eindeutig Schnitzler bzw.
 // Briefpartner (je nach Richtung); Zwischenstationen bekommen die Gesamtfarbe des
 // Briefs. Sendeort = Empfangsort (einstufiger Postweg) zählt für beide Rollen.
-function buildFromRows(rows) {
+//
+// Mit wienIds (Set der Orts-IDs in Wien) bleiben nur Etappen zwischen zwei verschiedenen
+// Orten in Wien übrig, und nur deren Stationen werden zu Punkten. Etappen von oder nach
+// außerhalb fallen weg, ebenso Briefe innerhalb ein und desselben Ortes (z.B. Wien -> Wien),
+// die keine Verbindung ergeben, die sich zeichnen ließe.
+function buildFromRows(rows, wienIds) {
     var segmentWeights = new Map(); // "fromId|toId|color" -> weight
     var pointWeights = new Map();   // ortId -> { farbe: gewicht }
 
@@ -73,8 +78,14 @@ function buildFromRows(rows) {
         var stations = (data.routeids || '').split('|').filter(function(id) { return id; });
         if (!stations.length) return;
 
+        // Stationen, die an einer gezeichneten Etappe beteiligt sind (ohne Wien-Filter alle)
+        var used = stations.map(function() { return !wienIds; });
+
         stations.slice(1).forEach(function(toId, idx) {
             var fromId = stations[idx];
+            if (wienIds && !(fromId !== toId && wienIds.has(fromId) && wienIds.has(toId))) return;
+            used[idx] = true;
+            used[idx + 1] = true;
             var key = fromId + '|' + toId + '|' + lineColor;
             segmentWeights.set(key, (segmentWeights.get(key) || 0) + 1);
         });
@@ -83,6 +94,7 @@ function buildFromRows(rows) {
         var empfangsortFarbe = kategorie === 'as-empf' ? COLOR_VON_SCHNITZLER : COLOR_AN_SCHNITZLER;
 
         stations.forEach(function(id, i) {
+            if (!used[i]) return;
             if (kategorie === 'umfeld') {
                 addPoint(id, COLOR_UMFELD, 1);
                 return;
@@ -145,7 +157,13 @@ async function createKarte1() {
         });
     });
 
-    // Zeichnet Liniensegmente + Ortspunkte neu; wird initial und bei gefilterter Tabelle aufgerufen.
+    // IDs (ohne "pmb") aller Orte in Wien. correspaction.xsl ermittelt sie aus der
+    // located_in_place-Hierarchie in listplace.xml: Wien (pmb50), die Bezirke (pmb51-pmb73)
+    // und alle Orte, die einen von ihnen als Vorfahren haben.
+    const wienIds = new Set((document.getElementById('container').dataset.wienIds || '').split(' ').filter(Boolean));
+
+    // Zeichnet Liniensegmente + Ortspunkte neu; wird bei jedem Neuaufbau der Karte aufgerufen
+    // (initial, bei gefilterter Tabelle, beim Umschalten des Wien-Switches).
     function render(built) {
         linesLayer.clearLayers();
         citiesLayer.clearLayers();
@@ -190,36 +208,85 @@ async function createKarte1() {
     }
 
     let lastRows = [];
+    let rowsFiltered = false; // Tabelle per Headerfilter eingeschränkt: Ausschnitt folgt dem Filter
+    let wienOnly = false;     // Switch "Nur Verbindungen innerhalb Wiens"
+
+    // Hinweis auf der Karte, falls im Wien-Modus keine Verbindung übrig bleibt
+    const wienHinweis = L.control({ position: 'topright' });
+    wienHinweis.onAdd = function() {
+        const div = L.DomUtil.create('div', 'leaflet-bar');
+        div.setAttribute('role', 'status');
+        div.style.cssText = 'display:none; max-width:280px; background:#fff; padding:6px 10px;';
+        div.textContent = 'Keine Verbindungen innerhalb Wiens in der aktuellen Auswahl.';
+        return div;
+    };
+    wienHinweis.addTo(map);
+
+    // Baut die Karte aus den aktuellen Tabellenzeilen im aktuellen Modus (alle Verbindungen bzw.
+    // nur Verbindungen innerhalb Wiens). Liefert den Umfang der gezeichneten Verbindungen oder
+    // null, wenn keine übrig ist.
+    function redraw() {
+        const built = buildFromRows(lastRows, wienOnly ? wienIds : null);
+        render(built);
+        const pts = [];
+        built.lineSegments.forEach(function(seg) {
+            const from = locations.get(seg.from);
+            const to = locations.get(seg.to);
+            if (from) pts.push([from.lat, from.lon]);
+            if (to) pts.push([to.lat, to.lon]);
+        });
+        const bounds = pts.length ? L.latLngBounds(pts) : null;
+        wienHinweis.getContainer().style.display = wienOnly && !bounds ? 'block' : 'none';
+        return bounds;
+    }
+
+    // Fliegt nach dem Wechsel des Modus (Wien-Switch, Filter aufgehoben) auf den passenden
+    // Kartenausschnitt: Wien-Modus -> alle Verbindungen in Wien (ohne Treffer: Wien-Mitte),
+    // sonst gefilterte Tabelle -> deren Verbindungen, sonst Gesamtübersicht.
+    function flyToView(bounds) {
+        if (wienOnly) {
+            if (bounds) map.flyToBounds(bounds, { padding: [25, 25] });
+            else map.flyTo(WIEN_CENTER, WIEN_ZOOM);
+        } else if (rowsFiltered && bounds) {
+            map.flyToBounds(bounds.pad(0.2));
+        } else {
+            map.flyTo(OVERVIEW_CENTER, OVERVIEW_ZOOM);
+        }
+    }
 
     window.postwegeMap = {
         // Initialer Aufbau mit allen Tabellenzeilen (siehe correspaction.xsl, table "tableBuilt").
         init(rows) {
             lastRows = rows;
-            locationsReady.then(() => render(buildFromRows(rows)));
+            rowsFiltered = false;
+            locationsReady.then(redraw);
         },
         // Aufruf bei gefilterter Tabelle (siehe correspaction.xsl, table "dataFiltered").
         setConnections(rows) {
             lastRows = rows;
-            const built = buildFromRows(rows);
-            render(built);
-            const pts = [];
-            built.lineSegments.forEach(function(seg) {
-                const from = locations.get(seg.from);
-                const to = locations.get(seg.to);
-                if (from) pts.push([from.lat, from.lon]);
-                if (to) pts.push([to.lat, to.lon]);
+            rowsFiltered = true;
+            locationsReady.then(function() {
+                const bounds = redraw();
+                if (bounds) map.fitBounds(bounds.pad(0.2));
             });
-            if (pts.length) map.fitBounds(L.latLngBounds(pts).pad(0.2));
+        },
+        // Aufruf, wenn die Headerfilter der Tabelle wieder aufgehoben sind: die Karte zeigt
+        // wieder alle Briefe (nur nötig, wenn sie zuvor einem Filter folgte).
+        resetConnections(rows) {
+            if (!rowsFiltered) return;
+            lastRows = rows;
+            rowsFiltered = false;
+            locationsReady.then(function() { flyToView(redraw()); });
         },
         reset() {
-            render(buildFromRows(lastRows));
+            locationsReady.then(redraw);
         },
-        // Umschalten des Kartenausschnitts (Switch "Kartenausschnitt: Wien" in correspaction.xsl).
-        focusWien() {
-            map.flyTo(WIEN_CENTER, WIEN_ZOOM);
-        },
-        focusOverview() {
-            map.flyTo(OVERVIEW_CENTER, OVERVIEW_ZOOM);
+        // Switch "Nur Verbindungen innerhalb Wiens" (siehe correspaction.xsl): zeigt nur die
+        // Verbindungen zwischen Orten in Wien und fliegt auf sie; ausgeschaltet kommen wieder alle
+        // Verbindungen.
+        setWienOnly(flag) {
+            wienOnly = !!flag;
+            locationsReady.then(function() { flyToView(redraw()); });
         }
     };
 }
