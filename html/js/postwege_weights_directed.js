@@ -270,13 +270,17 @@ async function createKarte1() {
                 if (bounds) map.fitBounds(bounds.pad(0.2));
             });
         },
-        // Aufruf, wenn die Headerfilter der Tabelle wieder aufgehoben sind: die Karte zeigt
-        // wieder alle Briefe (nur nötig, wenn sie zuvor einem Filter folgte).
+        // Aufruf, wenn keine Headerfilter der Tabelle aktiv sind: die Karte zeigt die übergebenen
+        // Zeilen (alle bzw. nur die ohne unsichere Datierung, je nach Switch). Der Kartenausschnitt
+        // ändert sich nur, wenn die Karte zuvor einem Headerfilter folgte.
         resetConnections(rows) {
-            if (!rowsFiltered) return;
+            const wasFiltered = rowsFiltered;
             lastRows = rows;
             rowsFiltered = false;
-            locationsReady.then(function() { flyToView(redraw()); });
+            locationsReady.then(function() {
+                const bounds = redraw();
+                if (wasFiltered) flyToView(bounds);
+            });
         },
         reset() {
             locationsReady.then(redraw);

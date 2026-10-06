@@ -58,13 +58,41 @@
                                     #toggle-uncertain:checked { background-color: #A63437; border-color: #A63437; }
                                     #toggle-wien-view:checked { background-color: #A63437; border-color: #A63437; }
                                 </style>
-                                <div class="form-check form-switch mb-3">
-                                    <input class="form-check-input" type="checkbox" id="toggle-wien-view"/>
-                                    <label class="form-check-label" for="toggle-wien-view">Nur Verbindungen innerhalb Wiens</label>
+                                <div class="mb-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        id="toggle-info" aria-expanded="false"
+                                        aria-controls="postwege-info">
+                                        <span aria-hidden="true">ⓘ</span> Infotext anzeigen
+                                    </button>
                                 </div>
-                                <div class="form-check form-switch mb-3">
-                                    <input class="form-check-input" type="checkbox" id="toggle-uncertain" checked="checked"/>
-                                    <label class="form-check-label" for="toggle-uncertain">Unsichere Datierungen anzeigen</label>
+                                <div id="postwege-info" class="alert alert-light border mb-3" hidden="hidden">
+                                    <p class="mb-2">Die Karte zeigt die Postwege der Korrespondenzstücke in
+                                        der Edition: Jede Linie verbindet den Ort, an dem ein Brief
+                                        abgeschickt wurde, mit dem Ort, an dem er empfangen wurde, wobei
+                                        er über weitere Stationen (z. B. Postämter) geleitet worden sein kann. Je mehr Briefe
+                                        denselben Weg nahmen, desto dicker erscheint die Linie; die Größe
+                                        der Kreise entspricht der Zahl der Briefe, die an einem Ort
+                                        geschrieben oder empfangen wurden. Die rote Projektfarbe verweist
+                                        auf von Schnitzler verfasste Korrespondenzstücke, blau auf solche,
+                                        die an ihn gerichtet waren. Umfeldbriefe sind in grün dargestellt.</p>
+                                    <p class="mb-2">Die Farben unterscheiden die Richtung:
+                                        <span style="color:#A63437;">rot</span> = von Schnitzler,
+                                        <span style="color:#1C6E8C;">blau</span> = an Schnitzler,
+                                        <span style="color:#68825b;">grün</span> = Briefe im Umfeld
+                                        (ohne Schnitzler als Absender oder Empfänger).</p>
+                                    <p class="mb-0">Die Tabelle darunter steuert die Karte: Wenn Sie
+                                        in den Spaltenköpfen filtern, zeigt die Karte nur die
+                                        passenden Briefe.</p>
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center mb-3" style="column-gap: 1.5rem; row-gap: .5rem;">
+                                    <div class="form-check form-switch mb-0">
+                                        <input class="form-check-input" type="checkbox" id="toggle-wien-view"/>
+                                        <label class="form-check-label" for="toggle-wien-view">Nur Verbindungen innerhalb Wiens</label>
+                                    </div>
+                                    <div class="form-check form-switch mb-0">
+                                        <input class="form-check-input" type="checkbox" id="toggle-uncertain" checked="checked"/>
+                                        <label class="form-check-label" for="toggle-uncertain">Unsichere Datierungen anzeigen</label>
+                                    </div>
                                 </div>
                                 <div>
                                 <table class="table table-sm display"
@@ -382,6 +410,9 @@
                             // (liefert routeIds + kategorie je Brief für die Einfärbung der Karte)
                             table.on("tableBuilt", function() {
                                 window.postwegeMap.init(table.getData());
+                                if (!document.getElementById("toggle-uncertain").checked) {
+                                    table.addFilter("uncertain", "!=", "true");
+                                }
                                 // Browser können den Zustand des Switches beim Neuladen wiederherstellen
                                 if (document.getElementById("toggle-wien-view").checked) {
                                     window.postwegeMap.setWienOnly(true);
@@ -397,9 +428,21 @@
                                 if (hasNonToggleFilter) {
                                     updateMapFromRows(rows);
                                 } else if (window.postwegeMap) {
-                                    // Headerfilter aufgehoben: Karte wieder aus allen Zeilen aufbauen
-                                    window.postwegeMap.resetConnections(table.getData());
+                                    // Kein Headerfilter: Karte aus den Zeilen bauen, die der Switch
+                                    // "unsichere Datierungen" übrig lässt (bei ausgeschaltetem Filter alle)
+                                    window.postwegeMap.resetConnections(rows.map(function(row) {
+                                        return row.getData();
+                                    }));
                                 }
+                            });
+
+                            // Infotext ein-/ausblenden
+                            document.getElementById("toggle-info").addEventListener("click", function() {
+                                var info = document.getElementById("postwege-info");
+                                var open = info.hasAttribute("hidden");
+                                if (open) info.removeAttribute("hidden"); else info.setAttribute("hidden", "hidden");
+                                this.setAttribute("aria-expanded", open ? "true" : "false");
+                                this.lastChild.textContent = open ? " Infotext ausblenden" : " Infotext anzeigen";
                             });
 
                             // Toggle: alle Verbindungen / nur Verbindungen zwischen Orten in Wien
