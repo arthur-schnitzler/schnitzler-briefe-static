@@ -72,14 +72,10 @@
                                         er über weitere Stationen (z. B. Postämter) geleitet worden sein kann. Je mehr Briefe
                                         denselben Weg nahmen, desto dicker erscheint die Linie; die Größe
                                         der Kreise entspricht der Zahl der Briefe, die an einem Ort
-                                        geschrieben oder empfangen wurden. Die rote Projektfarbe verweist
-                                        auf von Schnitzler verfasste Korrespondenzstücke, blau auf solche,
-                                        die an ihn gerichtet waren. Umfeldbriefe sind in grün dargestellt.</p>
-                                    <p class="mb-2">Die Farben unterscheiden die Richtung:
-                                        <span style="color:#A63437;">rot</span> = von Schnitzler,
-                                        <span style="color:#1C6E8C;">blau</span> = an Schnitzler,
-                                        <span style="color:#68825b;">grün</span> = Briefe im Umfeld
-                                        (ohne Schnitzler als Absender oder Empfänger).</p>
+                                        geschrieben oder empfangen wurden. Die <span style="color:#A63437;">rote</span> Projektfarbe verweist
+                                        auf von Schnitzler verfasste Korrespondenzstücke, <span style="color:#1C6E8C;">blau</span> auf solche,
+                                        die an ihn gerichtet waren. Umfeldbriefe sind in  <span style="color:#68825b;">grün</span>  dargestellt.</p>
+                                   
                                     <p class="mb-0">Die Tabelle darunter steuert die Karte: Wenn Sie
                                         in den Spaltenköpfen filtern, zeigt die Karte nur die
                                         passenden Briefe.</p>
@@ -410,9 +406,6 @@
                             // (liefert routeIds + kategorie je Brief für die Einfärbung der Karte)
                             table.on("tableBuilt", function() {
                                 window.postwegeMap.init(table.getData());
-                                if (!document.getElementById("toggle-uncertain").checked) {
-                                    table.addFilter("uncertain", "!=", "true");
-                                }
                                 // Browser können den Zustand des Switches beim Neuladen wiederherstellen
                                 if (document.getElementById("toggle-wien-view").checked) {
                                     window.postwegeMap.setWienOnly(true);
@@ -428,11 +421,8 @@
                                 if (hasNonToggleFilter) {
                                     updateMapFromRows(rows);
                                 } else if (window.postwegeMap) {
-                                    // Kein Headerfilter: Karte aus den Zeilen bauen, die der Switch
-                                    // "unsichere Datierungen" übrig lässt (bei ausgeschaltetem Filter alle)
-                                    window.postwegeMap.resetConnections(rows.map(function(row) {
-                                        return row.getData();
-                                    }));
+                                    // Headerfilter aufgehoben: Karte wieder aus allen Zeilen aufbauen
+                                    window.postwegeMap.resetConnections(table.getData());
                                 }
                             });
 
