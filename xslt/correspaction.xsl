@@ -75,7 +75,8 @@
                                         geschrieben oder empfangen wurden. Die <span style="color:#A63437;">rote</span> Projektfarbe verweist
                                         auf von Schnitzler verfasste Korrespondenzstücke, <span style="color:#1C6E8C;">blau</span> auf solche,
                                         die an ihn gerichtet waren. Umfeldbriefe sind in  <span style="color:#68825b;">grün</span>  dargestellt.</p>
-                                   
+                                   <p>Derzeit ist es nicht möglich, Absendeorte statt über die Adresse über
+                            den übergeordneten Ort (z. B. Wien) zu finden. An der Behebung wird gearbeitet.</p>
                                     <p class="mb-0">Die Tabelle darunter steuert die Karte: Wenn Sie
                                         in den Spaltenköpfen filtern, zeigt die Karte nur die
                                         passenden Briefe.</p>
