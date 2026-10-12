@@ -102,11 +102,16 @@
     <!-- Die folgenden beiden Regeln sollten das Leerzeichen vor und nach Streichungen mit aus- und einblenden -->
     <!-- Spezialfall: del enthält keine Buchstaben (z.B. nur "(") –
          das vorausgehende Leerzeichen bleibt sichtbar, weil es nicht zum gestrichenen Wort gehört.
-         Beispiel: ". <del>(</del>" → ". " wenn del ausgeblendet. Priorität höher als die allgemeine Regel. -->
+         Beispiel: ". <del>(</del>" → ". " wenn del ausgeblendet. Priorität höher als die allgemeine Regel.
+         Zweiter Spezialfall: Auf del folgt unmittelbar ein Wort (Text beginnt mit Buchstabe/Ziffer) oder ein
+         Element (z.B. add) – dann gibt es kein Leerzeichen nach der Streichung, das vorausgehende bleibt sichtbar.
+         Beispiel: "bestätige <del>m</del>ich" → "bestätige ich" wenn del ausgeblendet. -->
     <xsl:template
         match="text()[matches(., '[\s\r\n]+$')
                       and following-sibling::node()[1][self::tei:del]
-                      and not(matches(string(following-sibling::node()[1][self::tei:del]), '\p{L}'))]"
+                      and (not(matches(string(following-sibling::node()[1][self::tei:del]), '\p{L}'))
+                           or following-sibling::node()[2][self::text()][matches(., '^[\p{L}\p{N}]')]
+                           or following-sibling::node()[2][self::tei:add or self::tei:hi or self::tei:unclear or self::tei:subst])]"
         priority="1">
         <xsl:value-of select="."/>
     </xsl:template>
