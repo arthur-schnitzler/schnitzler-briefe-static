@@ -166,8 +166,6 @@
                     // Fix header capitalization for events table
                     if (column.title === "datum") {
                         column.title = "Datum";
-                        column.sorter = "date";
-                        column.sorterParams = {format:"YYYY-MM-DD"};
                     } else if (column.title === "ereignis") {
                         column.title = "Ereignis";
                     } else if (column.title === "werk") {
@@ -232,6 +230,14 @@
             },
             },
             locale: "de-de"
+            });
+            // initialSort greift bei autoColumns nicht (Spalten entstehen erst nach dem Aufbau)
+            table.on("tableBuilt", function(){
+                // Bei mehreren Sortierspalten ist die letzte die primäre
+                table.setSort([
+                    {column:"ereignis", dir:"asc"},
+                    {column:"datum", dir:"asc"}
+                ]);
             });
         </script>
         

@@ -33,14 +33,30 @@
                                 </h1>
                             </div>
                             <div class="card-body">
-                                <div style="max-width: 800px;">
-                                    <p>Hier werden »Ereignisse« im engeren Sinne verstanden: als eine kulturelle Veranstaltung. 
-                                        Mit dem Auszeichnen von Ereignisse wurde erst nach sechs Jahren des Projekts begonnen, 
+                                <div class="mb-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        id="toggle-info" aria-expanded="false"
+                                        aria-controls="event-info">
+                                        <span aria-hidden="true">ⓘ</span> Infotext anzeigen
+                                    </button>
+                                </div>
+                                <div id="event-info" class="alert alert-light border mb-3" hidden="hidden">
+                                    <p class="mb-2">Hier werden »Ereignisse« im engeren Sinne verstanden: als eine kulturelle Veranstaltung.
+                                        Mit dem Auszeichnen von Ereignisse wurde erst nach sechs Jahren des Projekts begonnen,
                                         so dass diese in den bis dahin publizierten
                                         Briefen noch nicht vorhanden sind. Wir sind daran, diese nachzutragen. Es empfiehlt sich trotzdem, nach bestimmten
                                         Veranstaltungen auch über die Werke zu suchen, die aufgeführt wurden.</p>
-                                        <p>Für Ereignisse, die von Schnitzler besucht wurden, gibt es eine separate Website: <a href="https://schnitzler-kultur.acdh.oeaw.at">https://schnitzler-kultur.acdh.oeaw.at</a>.</p>
+                                    <p class="mb-0">Für Ereignisse, die von Schnitzler besucht wurden, gibt es eine separate Website: <a href="https://schnitzler-kultur.acdh.oeaw.at">https://schnitzler-kultur.acdh.oeaw.at</a>.</p>
                                 </div>
+                                <script>
+                                    document.getElementById("toggle-info").addEventListener("click", function() {
+                                        var info = document.getElementById("event-info");
+                                        var open = info.hasAttribute("hidden");
+                                        if (open) info.removeAttribute("hidden"); else info.setAttribute("hidden", "hidden");
+                                        this.setAttribute("aria-expanded", open ? "true" : "false");
+                                        this.lastChild.textContent = open ? " Infotext ausblenden" : " Infotext anzeigen";
+                                    });
+                                </script>
                                 <table class="table table-sm display" id="tabulator-table-event">
                                     <thead>
                                         <tr>
