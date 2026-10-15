@@ -422,27 +422,38 @@
                                         data-close="">schließen ✕</button></h3>
                                 <!-- Postwegkarte + Versand/Empfang-Tabelle nebeneinander -->
                                 <div class="transmission-layout">
+                                <!-- Schritte, die sich auf der Karte verorten lassen -->
                                 <xsl:variable name="corresp-actions-geo" select="
-                                        //tei:correspAction[exists(for $r in tei:placeName/@ref
-                                        return
-                                            $back//tei:place[@xml:id = substring-after(string($r), '#')]/tei:location[@type = 'coords']/tei:geo)]"/>
+                                        //tei:correspAction[tei:placeName[exists(mam:place-geo(@ref))]]"/>
+                                <!-- Projektfarben für ersten/letzten Schritt: rot = Schnitzler, blau = Korrespondenzpartner, grün = Umfeldbrief -->
+                                <xsl:variable name="schnitzler-sender" select="exists(//tei:correspAction[@type = 'sent'][1]/tei:persName[@ref = '#pmb2121'])"/>
+                                <xsl:variable name="schnitzler-empfaenger" select="exists(//tei:correspAction[@type = 'received'][1]/tei:persName[@ref = '#pmb2121'])"/>
+                                <xsl:variable name="sent-color" select="
+                                        if ($schnitzler-sender) then '#A63437'
+                                        else if ($schnitzler-empfaenger) then '#1C6E8C'
+                                        else '#68825b'"/>
+                                <xsl:variable name="received-color" select="
+                                        if ($schnitzler-sender) then '#1C6E8C'
+                                        else if ($schnitzler-empfaenger) then '#A63437'
+                                        else '#68825b'"/>
                                 <xsl:if test="exists($corresp-actions-geo)">
                                     <div class="transmission-map-col">
                                     <div id="corresp-route-map"
                                         style="height:250px;width:100%;border-radius:4px;border:1px solid #dee2e6;"/>
                                     <script>(function(){
 var TYPE_INFO={
-sent:{label:'Versand',color:'#c0392b'},
+sent:{label:'Versand',color:'<xsl:value-of select="$sent-color"/>'},
 transmitted:{label:'Übermittlung',color:'#e67e22'},
 forwarded:{label:'In Transit',color:'#f1c40f'},
 in_transit:{label:'In Transit',color:'#f1c40f'},
 arrived:{label:'Ankunft am Zielort',color:'#16a085'},
 redirected:{label:'Umleitung',color:'#8e44ad'},
 delivered:{label:'Zustellung',color:'#34495e'},
-received:{label:'Empfang',color:'#2980b9'}
+received:{label:'Empfang',color:'<xsl:value-of select="$received-color"/>'}
 };
+var FIRST_COLOR='<xsl:value-of select="$sent-color"/>',LAST_COLOR='<xsl:value-of select="$received-color"/>';
 function typeInfo(t){return TYPE_INFO[t]||{label:t,color:'#7f8c8d'};}
-var mapPoints=[<xsl:for-each select="//tei:correspAction[tei:placeName/@ref]"><xsl:variable name="action-type" select="@type"/><xsl:variable name="action-date" select="normalize-space(tei:date)"/><xsl:for-each select="tei:placeName[@ref]"><xsl:variable name="place-id" select="substring-after(@ref, '#')"/><xsl:variable name="geo" select="$back//tei:place[@xml:id = $place-id]/tei:location[@type = 'coords']/tei:geo[1]"/><xsl:if test="$geo">{lat:<xsl:value-of select="replace(tokenize(string($geo), ' ')[1], ',', '.')"/>,lng:<xsl:value-of select="replace(tokenize(string($geo), ' ')[2], ',', '.')"/>,type:'<xsl:value-of select="$action-type"/>',name:'<xsl:value-of select="normalize-space(.)"/>',date:'<xsl:value-of select="$action-date"/>'},</xsl:if></xsl:for-each></xsl:for-each>];
+var mapPoints=[<xsl:for-each select="$corresp-actions-geo"><xsl:variable name="pn" select="(tei:placeName[exists(mam:place-geo(@ref))])[1]"/><xsl:variable name="geo" select="mam:place-geo($pn/@ref)"/>{lat:<xsl:value-of select="replace(tokenize($geo, ' ')[1], ',', '.')"/>,lng:<xsl:value-of select="replace(tokenize($geo, ' ')[2], ',', '.')"/>,type:'<xsl:value-of select="@type"/>',name:'<xsl:value-of select="replace(normalize-space($pn), &quot;'&quot;, &quot;\\'&quot;)"/>',date:'<xsl:value-of select="replace(normalize-space(tei:date[1]), &quot;'&quot;, &quot;\\'&quot;)"/>'},</xsl:for-each>];
 
 document.addEventListener('drawer:open',function(ev){
 if(ev.detail!=='transmission'){return;}
@@ -469,8 +480,12 @@ else{var ang=idx*2.4;markerOffset[i]=[Math.cos(ang)*22,Math.sin(ang)*22];}
 });
 mapPoints.forEach(function(p,i){
 var info=typeInfo(p.type);
+var color=info.color;
+if(mapPoints.length===1){color=p.type==='received'?LAST_COLOR:FIRST_COLOR;}
+else if(i===0){color=FIRST_COLOR;}
+else if(i===mapPoints.length-1){color=LAST_COLOR;}
 var off=markerOffset[i];
-var icon=L.divIcon({className:'corresp-route-marker',html:'\u003cspan style="background:'+info.color+'"\u003e'+(i+1)+'\u003c/span\u003e',iconSize:[22,22],iconAnchor:[11-off[0],11-off[1]]});
+var icon=L.divIcon({className:'corresp-route-marker',html:'\u003cspan style="background:'+color+'"\u003e'+(i+1)+'\u003c/span\u003e',iconSize:[22,22],iconAnchor:[11-off[0],11-off[1]]});
 var popup='\u003cb\u003eStation '+(i+1)+' \u00b7 '+info.label+'\u003c/b\u003e\u003cbr\u003e'+p.name+(p.date?'\u003cbr\u003e'+p.date:'');
 L.marker([p.lat,p.lng],{icon:icon}).addTo(map).bindPopup(popup);
 });
@@ -482,24 +497,27 @@ L.marker([p.lat,p.lng],{icon:icon}).addTo(map).bindPopup(popup);
                                 <table class="table align-top">
                                     <tbody>
                                         <xsl:for-each select="//tei:correspAction">
-                                            <xsl:variable name="route-dot-color">
-                                                <xsl:choose>
-                                                  <xsl:when test="@type = 'sent'">#c0392b</xsl:when>
-                                                  <xsl:when test="@type = 'transmitted'">#e67e22</xsl:when>
-                                                  <xsl:when test="@type = 'forwarded' or @type = 'in_transit'">#f1c40f</xsl:when>
-                                                  <xsl:when test="@type = 'arrived'">#16a085</xsl:when>
-                                                  <xsl:when test="@type = 'redirected'">#8e44ad</xsl:when>
-                                                  <xsl:when test="@type = 'delivered'">#34495e</xsl:when>
-                                                  <xsl:when test="@type = 'received'">#2980b9</xsl:when>
-                                                  <xsl:otherwise>#7f8c8d</xsl:otherwise>
-                                                </xsl:choose>
-                                            </xsl:variable>
                                             <xsl:variable name="is-mapped" select="exists(current() intersect $corresp-actions-geo)"/>
                                             <xsl:variable name="station-number" select="
                                                     if ($is-mapped) then
                                                         count($corresp-actions-geo[. &lt;&lt; current()]) + 1
                                                     else
                                                         0"/>
+                                            <xsl:variable name="route-dot-color">
+                                                <xsl:choose>
+                                                  <xsl:when test="$station-number = 1 and count($corresp-actions-geo) = 1"><xsl:value-of select="if (@type = 'received') then $received-color else $sent-color"/></xsl:when>
+                                                  <xsl:when test="$station-number = 1"><xsl:value-of select="$sent-color"/></xsl:when>
+                                                  <xsl:when test="$station-number != 0 and $station-number = count($corresp-actions-geo)"><xsl:value-of select="$received-color"/></xsl:when>
+                                                  <xsl:when test="@type = 'sent'"><xsl:value-of select="$sent-color"/></xsl:when>
+                                                  <xsl:when test="@type = 'received'"><xsl:value-of select="$received-color"/></xsl:when>
+                                                  <xsl:when test="@type = 'transmitted'">#e67e22</xsl:when>
+                                                  <xsl:when test="@type = 'forwarded' or @type = 'in_transit'">#f1c40f</xsl:when>
+                                                  <xsl:when test="@type = 'arrived'">#16a085</xsl:when>
+                                                  <xsl:when test="@type = 'redirected'">#8e44ad</xsl:when>
+                                                  <xsl:when test="@type = 'delivered'">#34495e</xsl:when>
+                                                  <xsl:otherwise>#7f8c8d</xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:variable>
                                             <tr>
                                                 <th>
                                                   <xsl:choose>
@@ -1485,6 +1503,12 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer
             <xsl:value-of select="mam:gaps(@quantity)"/>
         </span>
     </xsl:template>
+    <!-- Koordinaten eines Ortes (Format "48,2 16,3"): eigene Koordinaten, sonst die des nächsten übergeordneten Ortes (located_in_place) -->
+    <xsl:function name="mam:place-geo" as="xs:string?">
+        <xsl:param name="ref" as="xs:string?"/>
+        <xsl:variable name="place" select="$back//tei:place[@xml:id = substring-after($ref, '#')]"/>
+        <xsl:sequence select="string(($place/tei:location[@type = 'coords']/tei:geo, $place/tei:location[@type = 'located_in_place']/tei:geo)[normalize-space(.) != ''][1])[. != '']"/>
+    </xsl:function>
     <xsl:function name="mam:gaps">
         <xsl:param name="anzahl"/>
         <xsl:text>×</xsl:text>
