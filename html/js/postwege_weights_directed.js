@@ -64,6 +64,7 @@ function blendColor(weights) {
 function buildFromRows(rows, wienIds) {
     var segmentWeights = new Map(); // "fromId|toId|color" -> weight
     var pointWeights = new Map();   // ortId -> { farbe: gewicht }
+    var pointLetters = new Map();   // ortId -> { von: Briefe von Schnitzler, an: Briefe an Schnitzler }
 
     function addPoint(id, color, weight) {
         if (!id) return;
@@ -80,6 +81,7 @@ function buildFromRows(rows, wienIds) {
 
         // Stationen, die an einer gezeichneten Etappe beteiligt sind (ohne Wien-Filter alle)
         var used = stations.map(function() { return !wienIds; });
+        var seenPlaces = new Set(); // jeder Brief zählt pro Ort nur einmal
 
         stations.slice(1).forEach(function(toId, idx) {
             var fromId = stations[idx];
@@ -95,6 +97,11 @@ function buildFromRows(rows, wienIds) {
 
         stations.forEach(function(id, i) {
             if (!used[i]) return;
+            if (id && !seenPlaces.has(id) && kategorie !== 'umfeld') {
+                seenPlaces.add(id);
+                if (!pointLetters.has(id)) pointLetters.set(id, { von: 0, an: 0 });
+                pointLetters.get(id)[kategorie === 'as-empf' ? 'an' : 'von'] += 1;
+            }
             if (kategorie === 'umfeld') {
                 addPoint(id, COLOR_UMFELD, 1);
                 return;
@@ -112,7 +119,20 @@ function buildFromRows(rows, wienIds) {
         return { from: parts[0], to: parts[1], color: parts[2], weight: entry[1] };
     });
 
-    return { lineSegments: lineSegments, pointWeights: pointWeights };
+    return { lineSegments: lineSegments, pointWeights: pointWeights, pointLetters: pointLetters };
+}
+
+function korrespondenzstuecke(anzahl, richtung) {
+    return `${anzahl} ${anzahl === 1 ? 'Korrespondenzstück' : 'Korrespondenzstücke'} ${richtung}`;
+}
+
+// Tooltip einer Linie: Die Anzahl wird nur genannt, wenn die Richtung eindeutig ist
+// (rot = von Schnitzler, blau = an Schnitzler). Bei Umfeldbriefen (grün) entfällt sie.
+function lineTooltip(from, to, seg) {
+    const route = `<b>${from.name} → ${to.name}</b>`;
+    if (seg.color === COLOR_VON_SCHNITZLER) return `${route}<br>${korrespondenzstuecke(seg.weight, 'von Schnitzler')}`;
+    if (seg.color === COLOR_AN_SCHNITZLER) return `${route}<br>${korrespondenzstuecke(seg.weight, 'an Schnitzler')}`;
+    return route;
 }
 
 const OVERVIEW_CENTER = [48, 16];
@@ -176,9 +196,7 @@ async function createKarte1() {
                 color: seg.color,
                 weight: Math.max(0.5, Math.min(seg.weight / 3, 4)),
                 opacity: 0.55
-            }).addTo(linesLayer).bindTooltip(
-                `${from.name} → ${to.name}: ${seg.weight}`
-            );
+            }).addTo(linesLayer).bindTooltip(lineTooltip(from, to, seg));
         });
 
         let maxWeight = 1;
@@ -192,9 +210,9 @@ async function createKarte1() {
             if (!loc) return;
             const w = Object.values(weights).reduce(function(a, b) { return a + b; }, 0);
             const tooltipLines = [`<b>${loc.name}</b>`];
-            if (weights[COLOR_VON_SCHNITZLER]) tooltipLines.push(`Standort Schnitzler: ${weights[COLOR_VON_SCHNITZLER]}`);
-            if (weights[COLOR_AN_SCHNITZLER]) tooltipLines.push(`Aufenthaltsort Briefpartner: ${weights[COLOR_AN_SCHNITZLER]}`);
-            if (weights[COLOR_UMFELD]) tooltipLines.push(`Umfeld: ${weights[COLOR_UMFELD]}`);
+            const letters = built.pointLetters.get(id);
+            if (letters && letters.von) tooltipLines.push(korrespondenzstuecke(letters.von, 'von Schnitzler'));
+            if (letters && letters.an) tooltipLines.push(korrespondenzstuecke(letters.an, 'an Schnitzler'));
             L.circleMarker([loc.lat, loc.lon], {
                 radius: 2 + (w / maxWeight) * 10,
                 fillColor: blendColor(weights),
