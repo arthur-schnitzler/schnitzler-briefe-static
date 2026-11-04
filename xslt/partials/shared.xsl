@@ -56,10 +56,26 @@
                 <xsl:attribute name="src">
                     <!--<xsl:variable name="iiif-ext" select="'.jp2/full/,200/0/default.jpg'"/> -->
                     <xsl:variable name="iiif-ext" select="'.jp2/full/600,/0/default.jpg'"/>
-                    <xsl:variable name="iiif-domain"
-                        select="'https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/Bilder/'"/>
                     <xsl:variable name="facs_item" select="@url"/>
-                    <xsl:value-of select="concat($iiif-domain, $facs_item, $iiif-ext)"/>
+                    <!-- Ist das Bild eine Seite des Faksimiles, liegt es im selben Ordner wie die Viewer-Bilder -->
+                    <xsl:variable name="is-facs-page"
+                        select="exists(ancestor::tei:TEI/tei:facsimile/tei:graphic[@url = $facs_item])"/>
+                    <xsl:variable name="folder" as="xs:string">
+                        <xsl:choose>
+                            <xsl:when test="$is-facs-page">
+                                <xsl:variable name="f" as="xs:string*">
+                                    <xsl:for-each select="ancestor::tei:TEI/tei:text">
+                                        <xsl:call-template name="mam:get-facs-folder"/>
+                                    </xsl:for-each>
+                                </xsl:variable>
+                                <xsl:value-of select="string-join($f, '')"/>
+                            </xsl:when>
+                            <xsl:otherwise>Bilder</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:value-of
+                        select="concat('https://iiif.acdh-dev.oeaw.ac.at/iiif/images/schnitzler-briefe/', if ($folder != '') then concat($folder, '/') else 'Bilder/', $facs_item, $iiif-ext)"
+                    />
                 </xsl:attribute>
                 <xsl:attribute name="alt">
                     <xsl:choose>
