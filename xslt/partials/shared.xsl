@@ -7,6 +7,7 @@
     <xsl:import href="./biblStruct-output.xsl"/>
     <xsl:import href="./commentary.xsl"/>
     <xsl:import href="./physDesc.xsl"/>
+    <xsl:import href="./view-type.xsl"/>
     <xsl:import href="./refs.xsl"/>
     <xsl:function name="local:makeId" as="xs:string">
         <xsl:param name="currentNode" as="node()"/>
