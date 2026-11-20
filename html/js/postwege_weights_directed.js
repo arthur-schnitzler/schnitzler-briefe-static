@@ -7,6 +7,8 @@
 // "kategorie"), nicht die aggregierte CSV aus schnitzler-briefe-charts (die nur
 // Orts-Paare + Gewicht kennt, ohne Bezug zu Schnitzler). Die CSV liefert deshalb nur
 // noch die Koordinaten je Ort; Linien und Punkte werden aus den Tabellenzeilen gebaut.
+// Die CSV kennt nur die genauen Orte der Briefe; die Koordinaten der übergeordneten Orte
+// für die Städteansicht ("Nur Städte anzeigen") ergänzt correspaction.xsl (data-stadt-orte).
 const COLOR_VON_SCHNITZLER = '#A63437';
 const COLOR_AN_SCHNITZLER = '#1C6E8C';
 const COLOR_UMFELD = '#68825b';
@@ -152,6 +154,15 @@ async function createKarte1() {
     const linesLayer = L.layerGroup().addTo(map);
     const citiesLayer = L.layerGroup().addTo(map);
 
+    // Orte der Städteansicht aus schnitzler-briefe-cmif.xml, von correspaction.xsl als JSON
+    // {"50": [Breite, Länge, "Wien", true], ...} übergeben (letzter Wert: Ortsseite vorhanden)
+    let stadtOrte = {};
+    try {
+        stadtOrte = JSON.parse(document.getElementById('container').dataset.stadtOrte || '{}');
+    } catch (e) {
+        console.warn('Postwege: Orte der Städteansicht nicht lesbar', e);
+    }
+
     // Ortskoordinaten kommen weiterhin aus der aggregierten CSV aus
     // schnitzler-briefe-charts (dort bereits über listplace.xml aufgelöst);
     // die Kategorisierung selbst kommt aus den Tabellenzeilen dieser Seite.
@@ -173,6 +184,14 @@ async function createKarte1() {
             }
             if (!isNaN(receiverLat) && !isNaN(receiverLon) && Target !== 'Unbekannt' && !locations.has(TargetID)) {
                 locations.set(TargetID, { id: TargetID, name: Target, lat: receiverLat, lon: receiverLon });
+            }
+        });
+        // Übergeordnete Orte der Städteansicht, die in der CSV fehlen, weil kein Brief sie
+        // als genauen Ort nennt. ohneSeite: Ort ohne Eintrag in listplace.xml, also ohne Ortsseite.
+        Object.keys(stadtOrte).forEach(function(id) {
+            const [lat, lon, name, mitSeite] = stadtOrte[id];
+            if (!locations.has(id) && typeof lat === 'number' && typeof lon === 'number') {
+                locations.set(id, { id: id, name: name, lat: lat, lon: lon, ohneSeite: !mitSeite });
             }
         });
     });
@@ -213,15 +232,17 @@ async function createKarte1() {
             const letters = built.pointLetters.get(id);
             if (letters && letters.von) tooltipLines.push(korrespondenzstuecke(letters.von, 'von Schnitzler'));
             if (letters && letters.an) tooltipLines.push(korrespondenzstuecke(letters.an, 'an Schnitzler'));
-            L.circleMarker([loc.lat, loc.lon], {
+            const marker = L.circleMarker([loc.lat, loc.lon], {
                 radius: 2 + (w / maxWeight) * 10,
                 fillColor: blendColor(weights),
                 color: '#fff',
                 weight: 1,
                 fillOpacity: 0.9
             }).addTo(citiesLayer)
-                .bindTooltip(tooltipLines.join('<br>'))
-                .on('click', () => window.open(`https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${id}.html`, '_blank'));
+                .bindTooltip(tooltipLines.join('<br>'));
+            if (!loc.ohneSeite) {
+                marker.on('click', () => window.open(`https://schnitzler-briefe.acdh.oeaw.ac.at/pmb${id}.html`, '_blank'));
+            }
         });
     }
 
@@ -298,6 +319,20 @@ async function createKarte1() {
             locationsReady.then(function() {
                 const bounds = redraw();
                 if (wasFiltered) flyToView(bounds);
+            });
+        },
+        // Aufruf nach dem Umschalten "Nur Städte anzeigen" (siehe correspaction.xsl): Die Tabelle
+        // hat ihre Daten gegen die andere Fassung (genaue Orte bzw. Städte) getauscht und übergibt
+        // die Zeilen, die die Karte jetzt zeigen soll. Im Wien-Modus geht es auf die neuen
+        // Verbindungen in Wien, bei Headerfilter auf die gefilterten Verbindungen; sonst bleibt der
+        // Ausschnitt, damit sich genaue Orte und Städte an derselben Stelle vergleichen lassen.
+        replaceConnections(rows, filtered) {
+            lastRows = rows;
+            rowsFiltered = !!filtered;
+            locationsReady.then(function() {
+                const bounds = redraw();
+                if (wienOnly) flyToView(bounds);
+                else if (rowsFiltered && bounds) map.fitBounds(bounds.pad(0.2));
             });
         },
         reset() {
